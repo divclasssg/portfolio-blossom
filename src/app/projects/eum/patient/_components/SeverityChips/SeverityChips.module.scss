@@ -1,0 +1,26 @@
+@use '../../_styles/tokens' as *;
+
+.chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-primary;
+  white-space: nowrap;
+  user-select: none;
+}
+
+// NRS 강도별 배경색 (색상만으로 정보 전달 금지 → 이모지+텍스트 병행)
+.chip-mild     { background: #E8F5E9; } // 약함(1-3) — 연녹색
+.chip-moderate { background: #FFF9C4; } // 보통(4-6) — 연노랑
+.chip-severe   { background: #FFE0B2; } // 심함(7-8) — 연주황
+.chip-extreme  { background: #FFEBEE; } // 극심(9-10) — 연빨강

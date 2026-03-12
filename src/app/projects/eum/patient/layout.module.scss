@@ -1,0 +1,10 @@
+@use './_styles/tokens' as *;
+
+// 환자 앱 전체 래퍼 — 반응형 (고정 폭 없음)
+.patient-wrap {
+  width: 100%;
+  min-height: 100dvh;
+  background: $screen-bg;
+  font-family: var(--font-noto-kr), -apple-system, sans-serif;
+  position: relative;
+}

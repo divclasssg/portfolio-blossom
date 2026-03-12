@@ -1,0 +1,157 @@
+@use '../../_styles/tokens' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 32px $section-padding-x 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.org-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #00a651;
+  border-radius: 8px;
+  padding: 6px 12px;
+  align-self: flex-start;
+}
+
+.org-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.5;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-secondary;
+}
+
+.input {
+  height: 48px;
+  padding: 0 14px;
+  border: 1.5px solid $card-border;
+  border-radius: $card-radius;
+  font-size: 16px;
+  font-family: inherit;
+  color: $text-primary;
+  background: $card-bg;
+  outline: none;
+  letter-spacing: 0.1em;
+  transition: border-color 0.15s ease;
+
+  &::placeholder {
+    color: $text-secondary;
+    letter-spacing: 0;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+  }
+}
+
+.hint {
+  font-size: 13px;
+  color: $text-secondary;
+}
+
+.auth-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.auth-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px $card-padding;
+  background: $card-bg;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.radio {
+  accent-color: $color-primary;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.auth-option-label {
+  font-size: 15px;
+  color: $text-primary;
+}
+
+.mock-note {
+  font-size: 12px;
+  color: $text-secondary;
+  background: $badge-bg;
+  padding: 10px 14px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  padding: 16px $section-padding-x calc(16px + env(safe-area-inset-bottom));
+  background: $screen-bg;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 52px;
+  background: $color-primary;
+  color: #ffffff;
+  border: none;
+  border-radius: $card-radius;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):active {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+}

@@ -1,0 +1,49 @@
+@use '../../_styles/tokens' as *;
+
+.chat-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px $section-padding-x;
+}
+
+.message-bot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 85%;
+}
+
+.message-user {
+  align-self: flex-end;
+  max-width: 85%;
+}
+
+.bot-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: $color-primary;
+  padding-left: 4px;
+}
+
+.bubble-bot {
+  padding: 10px 14px;
+  background: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: 16px;
+  border-top-left-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $text-primary;
+}
+
+.bubble-user {
+  padding: 10px 14px;
+  background: $badge-bg;
+  border-radius: 16px;
+  border-top-right-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $text-primary;
+}

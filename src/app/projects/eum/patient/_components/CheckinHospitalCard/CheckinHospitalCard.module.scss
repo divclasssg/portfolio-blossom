@@ -1,0 +1,30 @@
+@use '../../_styles/tokens' as *;
+
+.hospital-card {
+  background: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: $card-radius;
+  padding: $card-padding;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hospital-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0;
+}
+
+.doctor-name {
+  font-size: 15px;
+  color: $text-secondary;
+  margin: 0;
+}
+
+.date {
+  font-size: 14px;
+  color: $text-secondary;
+  margin: 0;
+}

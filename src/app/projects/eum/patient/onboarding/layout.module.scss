@@ -1,0 +1,8 @@
+@use '../_styles/tokens' as *;
+
+.onboarding-wrap {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: $screen-bg;
+}

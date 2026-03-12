@@ -1,0 +1,82 @@
+@use '../../_styles/tokens' as t;
+
+.section {
+  background-color: t.$section-background;
+  padding: t.$section-padding-y t.$section-padding-x;
+}
+
+.section-content {
+  border-radius: 16px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 2px 4px 12px #00000014;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: t.$text-primary;
+  margin-bottom: 12px;
+}
+
+// Gray 카드 — 와이어프레임: #F3F4F6, radius 16px, padding 16px
+.card {
+  background: t.$neutral-bg;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+// 약물명 — 기간
+.drug-line {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+  color: #000000;
+  margin: 0;
+}
+
+.drug-name {
+  font-weight: 600;
+}
+
+.separator {
+  color: t.$text-muted;
+}
+
+.duration {
+  color: t.$text-secondary;
+}
+
+// → 쉬운말 설명
+.plain-line {
+  font-size: 14px;
+  line-height: 1.5;
+  color: t.$text-secondary;
+  margin: 0;
+}
+
+.context-note {
+  font-size: 13px;
+  color: t.$text-muted;
+  margin: 0 0 12px 0;
+}
+
+.empty {
+  font-size: 14px;
+  color: t.$text-muted;
+  margin: 0;
+}

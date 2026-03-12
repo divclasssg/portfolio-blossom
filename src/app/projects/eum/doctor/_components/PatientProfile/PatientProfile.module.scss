@@ -1,0 +1,106 @@
+@use '../../_styles/tokens' as t;
+
+.section {
+  padding: 32px 24px 16px;  
+}
+
+.section-content {
+  border-radius: 16px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 2px 4px 12px #00000014;
+}
+
+.section-title {
+  font: t.$font-title;
+  color: t.$text-primary;
+  margin-bottom: 16px;
+}
+
+.identity-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.patient-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: t.$text-primary;
+}
+
+.gender-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background: t.$neutral-bg;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: t.$text-secondary;
+}
+
+.age {
+  font-size: 14px;
+  color: t.$text-secondary;
+}
+
+.referral-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+// 알레르기 경고 — 닫기 기능 없음 (결정사항 문서 §4)
+// 시각적 강조 유지 (저채도 배경 + 아이콘 + 텍스트)
+.allergy-icon {
+  font-size: 12px;
+  color: t.$clinical-danger;
+}
+
+.allergy-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: t.$clinical-danger;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.allergy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.allergy-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: #fff5f5;
+  border: 1px solid #ff3b3026;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: t.$color-danger;
+}
+
+.allergy-reaction {
+  color: t.$color-danger;
+  font-size: 12px;
+  font-weight: 700;
+
+  &::before {
+    content: '—';
+    margin-right: 4px;
+    color: t.$color-danger;
+  }
+}

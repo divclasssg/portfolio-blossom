@@ -1,0 +1,38 @@
+@use '../../_styles/tokens' as t;
+
+.footer {
+  flex-shrink: 0;
+  padding: 16px 20px;
+  background: #fff;
+  border-top: 1px solid t.$neutral-border;
+}
+
+.cta-btn {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  padding: 14px;
+  background: t.$color-dark;
+  color: #f9fafb;
+  border: none;
+  border-radius: t.$card-radius;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font-noto-kr), sans-serif;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    background: #1f2937;
+  }
+
+  &:active {
+    background: #374151;
+  }
+
+  &:focus-visible {
+    outline: 2px solid t.$color-primary;
+    outline-offset: 2px;
+  }
+}

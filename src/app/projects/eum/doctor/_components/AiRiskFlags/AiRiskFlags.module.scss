@@ -1,0 +1,96 @@
+@use '../../_styles/tokens' as t;
+
+.section {
+  background-color: #F5F5F7;
+  padding: 32px t.$section-padding-x t.$section-padding-y;
+}
+
+.section-content {
+  box-shadow: rgba(0, 0, 0, 0.08) 2px 4px 12px;
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+// .ai-icon {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 20px;
+//   height: 20px;
+//   flex-shrink: 0;
+// }
+
+.section-title {
+  font: t.$font-title;
+  color: t.$text-primary;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+
+// 와이어프레임: #E5E7EB 보더 카드
+.card {
+  border-bottom: 1px solid t.$neutral-border;
+  // border-radius: t.$card-radius;
+  overflow: hidden;
+}
+.card:last-child {
+  border-bottom: none;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0 8px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: t.$text-primary;
+  flex: 1;
+}
+
+.evidence-btn {
+  font-size: 12px;
+  color: t.$text-muted;
+  background: none;
+  border: none;
+  cursor: not-allowed;
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+.card-body {
+  padding: 0 0 12px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.55;
+  color: t.$text-secondary;
+  word-break: keep-all;
+}

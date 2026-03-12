@@ -1,0 +1,31 @@
+@use '../../../_styles/tokens' as t;
+
+.tooltip {
+  background: t.$neutral-bg;
+  border: 1px solid t.$neutral-border;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: var(--font-noto-kr), sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: t.$text-primary;
+  box-shadow: t.$card-shadow;
+  pointer-events: none;
+}
+
+.tooltip-date {
+  font-weight: 600;
+  color: t.$text-primary;
+  margin: 0 0 4px;
+}
+
+.tooltip-row {
+  margin: 0;
+  font-weight: 500;
+}
+
+.tooltip-range {
+  margin: 0;
+  color: t.$text-secondary;
+  font-size: 11px;
+}

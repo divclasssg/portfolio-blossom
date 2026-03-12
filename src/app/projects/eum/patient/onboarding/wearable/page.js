@@ -1,0 +1,109 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import styles from './page.module.scss';
+
+const WEARABLES = [
+  {
+    id: 'apple',
+    label: 'Apple Watch',
+    icon: '⌚',
+    desc: 'Apple Health와 연동',
+  },
+  {
+    id: 'galaxy',
+    label: 'Galaxy Watch',
+    icon: '⌚',
+    desc: 'Samsung Health와 연동',
+  },
+];
+
+export default function WearablePage() {
+  const router = useRouter();
+  const [selected, setSelected] = useState(null);
+
+  return (
+    <>
+      <OnboardingAppBar
+        variant="progress"
+        step={10}
+        totalSteps={11}
+        backHref="/projects/eum/patient/onboarding/mydata-auth"
+      />
+      <main className={styles['page']}>
+        <section className={styles['content']} aria-labelledby="wearable-title">
+          <h1 id="wearable-title" className={styles['title']}>
+            웨어러블 기기를<br />연동하시겠어요?
+          </h1>
+          <p className={styles['subtitle']}>
+            스마트워치를 연동하면 심박수, 수면, 활동량 데이터를 자동으로 기록합니다.
+          </p>
+
+          <div
+            className={styles['options']}
+            role="radiogroup"
+            aria-labelledby="wearable-title"
+          >
+            {WEARABLES.map((device) => (
+              <label
+                key={device.id}
+                className={[
+                  styles['option'],
+                  selected === device.id ? styles['option-selected'] : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              >
+                <input
+                  type="radio"
+                  name="wearable"
+                  value={device.id}
+                  checked={selected === device.id}
+                  onChange={() => setSelected(device.id)}
+                  className={styles['sr-only']}
+                  aria-label={device.label}
+                />
+                <span className={styles['option-icon']} aria-hidden="true">
+                  {device.icon}
+                </span>
+                <div className={styles['option-text']}>
+                  <span className={styles['option-label']}>{device.label}</span>
+                  <span className={styles['option-desc']}>{device.desc}</span>
+                </div>
+                <div
+                  className={[
+                    styles['radio-dot'],
+                    selected === device.id ? styles['radio-dot-checked'] : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  aria-hidden="true"
+                />
+              </label>
+            ))}
+          </div>
+        </section>
+
+        <div className={styles['footer']}>
+          <button
+            type="button"
+            className={styles['btn-primary']}
+            disabled={!selected}
+            onClick={() => router.push('/projects/eum/patient/onboarding/health-info')}
+          >
+            연동하기
+          </button>
+          <button
+            type="button"
+            className={styles['btn-skip']}
+            onClick={() => router.push('/projects/eum/patient/onboarding/health-info')}
+          >
+            건너뛰기
+          </button>
+        </div>
+      </main>
+    </>
+  );
+}

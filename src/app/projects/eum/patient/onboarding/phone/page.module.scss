@@ -1,0 +1,146 @@
+@use '../../_styles/tokens' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 32px $section-padding-x 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-secondary;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.input {
+  flex: 1;
+  height: 48px;
+  padding: 0 14px;
+  border: 1.5px solid $card-border;
+  border-radius: $card-radius;
+  font-size: 16px;
+  font-family: inherit;
+  color: $text-primary;
+  background: $card-bg;
+  outline: none;
+  transition: border-color 0.15s ease;
+
+  &::placeholder {
+    color: $text-secondary;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+  }
+}
+
+.input-error {
+  border-color: #ff3b30;
+
+  &:focus {
+    border-color: #ff3b30;
+  }
+}
+
+.btn-send {
+  height: 48px;
+  padding: 0 14px;
+  background: $color-primary;
+  color: #ffffff;
+  border: none;
+  border-radius: $card-radius;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):active {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.hint {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.4;
+}
+
+.error {
+  font-size: 13px;
+  color: #ff3b30;
+  line-height: 1.4;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  padding: 16px $section-padding-x calc(16px + env(safe-area-inset-bottom));
+  background: $screen-bg;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 52px;
+  background: $color-primary;
+  color: #ffffff;
+  border: none;
+  border-radius: $card-radius;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):active {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+}

@@ -1,0 +1,99 @@
+@use '../../_styles/tokens' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - $app-bar-height);
+  background: $card-bg;
+  padding: 0 $section-padding-x;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 16px;
+}
+
+.question {
+  font-size: 18px;
+  font-weight: 700;
+  color: $text-primary;
+  text-align: center;
+  margin: 0;
+}
+
+.icon-circle {
+  width: 120px;
+  height: 120px;
+  background: $badge-bg;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 12px rgba($badge-bg, 0.4);
+}
+
+.hospital-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: $text-primary;
+  margin: 0;
+}
+
+.address {
+  font-size: 14px;
+  color: $text-secondary;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: calc(32px + env(safe-area-inset-bottom));
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  background: #000;
+  color: #fff;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 14px;
+  color: $text-secondary;
+  background: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}

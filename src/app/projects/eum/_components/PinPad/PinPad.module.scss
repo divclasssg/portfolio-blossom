@@ -1,0 +1,69 @@
+@use '../../patient/_styles/tokens' as *;
+
+$key-size: 72px;
+$dot-size: 14px;
+
+.pin-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 0 $section-padding-x;
+}
+
+.dots {
+  display: flex;
+  gap: 20px;
+}
+
+.dot {
+  width: $dot-size;
+  height: $dot-size;
+  border-radius: 50%;
+  border: 2px solid $card-border;
+  background: transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.dot-filled {
+  background: $text-primary;
+  border-color: $text-primary;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, $key-size);
+  gap: 12px;
+}
+
+.key {
+  width: $key-size;
+  height: $key-size;
+  border-radius: 50%;
+  background: $card-bg;
+  border: none;
+  font-size: 24px;
+  font-weight: 400;
+  color: $text-primary;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.1s ease;
+
+  &:active {
+    background: $badge-bg;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}

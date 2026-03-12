@@ -1,0 +1,173 @@
+@use '../../_styles/tokens' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 32px $section-padding-x 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.5;
+}
+
+// 전체 동의 행
+.all-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: $card-padding;
+  background: $card-bg;
+  border-radius: $card-radius;
+}
+
+.all-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid $divider-color;
+  margin: 0;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  padding: 12px 0;
+}
+
+.checkbox {
+  // 네이티브 체크박스 스타일 재정의
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid $card-border;
+  border-radius: 6px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  position: relative;
+  margin-top: 2px;
+
+  &:checked {
+    background: $color-primary;
+    border-color: $color-primary;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 6px;
+      width: 6px;
+      height: 10px;
+      border: 2px solid #ffffff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.item-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: $text-primary;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.required-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: $color-primary;
+  background: rgba(0, 122, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.item-detail {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.4;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  padding: 16px $section-padding-x calc(16px + env(safe-area-inset-bottom));
+  background: $screen-bg;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 52px;
+  background: $color-primary;
+  color: #ffffff;
+  border: none;
+  border-radius: $card-radius;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):active {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+}

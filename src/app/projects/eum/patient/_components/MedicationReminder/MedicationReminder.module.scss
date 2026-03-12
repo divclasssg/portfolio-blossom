@@ -1,0 +1,69 @@
+@use '../../_styles/tokens' as *;
+
+.section {
+  padding: $section-gap $section-padding-x 0;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0 0 10px;
+}
+
+.card {
+  background: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: $card-radius;
+  padding: $card-padding;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.med-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: $text-secondary;
+  background: $badge-bg;
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+
+  // 상태별 색상 — 색상만으로 전달하지 않음 (텍스트 병행)
+  &[data-status='taken']   { color: #1C7C4F; background: #D1FAE5; }
+  &[data-status='missed']  { color: #B91C1C; background: #FEE2E2; }
+}
+
+.next-time {
+  font-size: 14px;
+  color: $text-secondary;
+  margin: 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid $divider-color;
+  margin: 12px 0;
+}
+
+.active-count {
+  font-size: 14px;
+  color: $text-primary;
+  margin: 0;
+
+  strong {
+    font-weight: 600;
+  }
+}

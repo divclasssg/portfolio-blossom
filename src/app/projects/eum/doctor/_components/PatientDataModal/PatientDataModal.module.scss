@@ -1,0 +1,45 @@
+@use '../../_styles/tokens' as t;
+
+// dim overlay — DoctorPanel(z-index:100) 위에 렌더링
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+}
+
+// 모달 컨테이너 — 고정 1080×800, 중앙 정렬
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1080px;
+  height: 800px;
+  background: t.$panel-bg;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  // 포커스 링 숨김 (프로그래밍 방식 포커스)
+  &:focus {
+    outline: none;
+  }
+}
+
+// 탭 아래 콘텐츠 영역 — overflow:hidden으로 자식에게 스크롤 위임
+.content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+// 증상 탭 ChartGrid 스크롤 래퍼
+.chart-scroll {
+  flex: 1;
+  overflow-y: auto;
+}

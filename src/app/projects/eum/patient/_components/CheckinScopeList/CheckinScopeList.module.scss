@@ -1,0 +1,22 @@
+@use '../../_styles/tokens' as *;
+
+.scope-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.scope-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: $text-primary;
+}
+
+.check-icon {
+  flex-shrink: 0;
+}

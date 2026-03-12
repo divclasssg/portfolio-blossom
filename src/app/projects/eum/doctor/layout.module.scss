@@ -1,0 +1,108 @@
+// D-000/D-001 공용 뷰포트 레이아웃 — layout.js에서 사용
+
+// 전체 화면 컨테이너 — EMR 배경이 뷰포트 전체를 채움
+.doctor-viewport {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #dce3ee;
+}
+
+// ─────────────────────────────
+// EMR 배경 목업 (포트폴리오용) — 뷰포트 전체 고정, 패널과 무관
+// ─────────────────────────────
+
+.emr-background {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #eef1f6;
+  overflow: hidden;
+  user-select: none;
+}
+
+.emr-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 34px;
+  padding: 0 14px;
+  background: #2d3748;
+  flex-shrink: 0;
+}
+
+.emr-window-controls {
+  display: flex;
+  gap: 6px;
+
+  span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+
+    &:nth-child(1) { background: #fc6058; }
+    &:nth-child(2) { background: #fea429; }
+    &:nth-child(3) { background: #28c840; }
+  }
+}
+
+.emr-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.03em;
+}
+
+.emr-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.emr-sidebar {
+  width: 176px;
+  background: #e2e8f0;
+  border-right: 1px solid #cbd5e0;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.emr-nav-item {
+  height: 26px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.06);
+
+  &:first-child {
+    background: rgba(0, 90, 200, 0.12);
+  }
+}
+
+.emr-content {
+  flex: 1;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.emr-patient-header {
+  height: 56px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+.emr-section {
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.04);
+  flex: 1;
+
+  &:nth-child(2) { flex: 2; }
+}

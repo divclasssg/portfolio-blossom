@@ -1,0 +1,17 @@
+@use '../../_styles/tokens' as *;
+
+.vitals-banner {
+  margin: 10px $section-padding-x;
+  padding: 10px 16px;
+  background: $screen-bg;
+  border-radius: 20px;
+}
+
+.vitals-text {
+  margin: 0;
+  font-size: 13px;
+  color: $text-secondary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

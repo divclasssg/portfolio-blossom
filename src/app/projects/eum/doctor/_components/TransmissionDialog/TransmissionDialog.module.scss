@@ -1,0 +1,101 @@
+@use '../../_styles/tokens' as t;
+
+// 오버레이 — 패널 위 전체 덮음 (z-index 101 > 패널 100)
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 101;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+// 모달 카드
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 24px 24px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font-family: var(--font-noto-kr), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: t.$text-primary;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.body {
+  font-family: var(--font-noto-kr), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: t.$text-secondary;
+  margin: 0;
+}
+
+.referral-note {
+  font-family: var(--font-noto-kr), sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: t.$text-muted;
+  padding: 10px 12px;
+  background: t.$neutral-bg;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+// 공통 버튼 베이스
+%btn-base {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-noto-kr), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:focus-visible {
+    outline: 2px solid t.$color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.btn-cancel {
+  @extend %btn-base;
+  background: #ffffff;
+  color: t.$text-secondary;
+  border: 1px solid t.$neutral-border;
+
+  &:hover {
+    background: t.$neutral-bg;
+  }
+}
+
+.btn-confirm {
+  @extend %btn-base;
+  background: t.$color-dark;
+  color: #f9fafb;
+
+  &:hover {
+    background: #1f2937;
+  }
+}

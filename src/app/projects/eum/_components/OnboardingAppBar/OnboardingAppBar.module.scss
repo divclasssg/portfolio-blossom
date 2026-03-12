@@ -1,0 +1,55 @@
+@use '../../patient/_styles/tokens' as *;
+
+.app-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: $card-bg;
+  border-bottom: 1px solid $divider-color;
+}
+
+.app-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $app-bar-height;
+  padding: 0 $section-padding-x;
+  position: relative;
+}
+
+.logo {
+  font-size: 17px;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: -0.02em;
+}
+
+.back-btn {
+  position: absolute;
+  left: $section-padding-x;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // 터치 타겟 최소 44×44px
+  width: 44px;
+  height: 44px;
+  color: $text-primary;
+  text-decoration: none;
+  border-radius: 50%;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.progress-track {
+  height: 3px;
+  background: $badge-bg;
+}
+
+.progress-fill {
+  height: 100%;
+  background: $color-primary;
+  transition: width 0.3s ease;
+}

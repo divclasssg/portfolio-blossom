@@ -1,0 +1,55 @@
+// 이음 의사 패널 디자인 토큰 — 와이어프레임 기준
+
+// 패널
+$panel-bg: #ffffff;
+$panel-min-width: 480px;
+$panel-max-width: 1280px;
+$panel-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+$panel-radius: 16px 0 0 16px;
+
+// 헤더
+$header-bg: #111827;
+$header-fg: #f9fafb;
+$header-icon-color: #9ca3af;
+$header-height: 48px;
+
+// 섹션 공통
+$section-padding-x: 24px;
+$section-padding-y: 16px;
+$section-background: #F5F5F7;
+
+// 색상 — iOS HIG 기반 (CLAUDE_data_hierarchy.md)
+$color-primary: #007aff;
+$color-danger: #ff3b30;
+$color-warning: rgb(255, 149, 0);
+$color-normal: #34c759;
+
+// 중립 (와이어프레임 기준 #E5E7EB 보더)
+$neutral-bg: #f3f4f6;
+$neutral-border: #e5e7eb;
+$neutral-surface: #d1d1d6;
+$neutral-divider: #e5e7eb;
+$neutral-placeholder: #9ca3af;
+
+// 텍스트 (와이어프레임: #1F2937 제목, #374151 보조, #9CA3AF 플레이스홀더)
+$text-primary: #1f2937;
+$text-secondary: #374151;
+$text-muted: #9ca3af;
+
+// 타이포그래피
+$font-title: 700 18px/1.4 var(--font-roboto), var(--font-noto-kr), sans-serif;
+$font-body: 400 16px/1.5 var(--font-roboto), var(--font-noto-kr), sans-serif;
+$font-regular: 400 14px/1.5 var(--font-roboto), var(--font-noto-kr), sans-serif;
+$font-small: 400 12px/1.4 var(--font-roboto), var(--font-noto-kr), sans-serif;
+
+// 다크(헤더/CTA)
+$color-dark: #111827;
+
+// 임상 전용 (UI 포인트 컬러 사용 금지)
+$clinical-danger: #ff3b30;
+$clinical-warning: #ff9500;
+$clinical-normal: #34c759;
+
+// 카드
+$card-radius: 16px;
+$card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);

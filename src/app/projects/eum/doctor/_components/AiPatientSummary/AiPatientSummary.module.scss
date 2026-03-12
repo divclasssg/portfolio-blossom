@@ -1,0 +1,119 @@
+@use '../../_styles/tokens' as t;
+
+.section {
+  background-color: t.$section-background;
+  padding: t.$section-padding-y t.$section-padding-x;
+}
+
+.section-content {
+  border-radius: 16px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 2px 4px 12px #00000014;
+}
+
+// 섹션 헤더: AI 아이콘 + 제목 + 모델 태그
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.ai-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+// 와이어프레임: Roboto Bold 18px, letterSpacing 5%, color #1F2937
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: t.$text-primary;
+}
+
+.model-tag {
+  margin-left: auto;
+  font-size: 11px;
+  color: t.$text-muted;
+  white-space: nowrap;
+}
+
+// bordered 카드 — 와이어프레임: white bg, border 1px #E5E7EB, radius 16px
+.card {
+  background: #ffffff;
+  border: 1px solid t.$neutral-border;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// 생성 중 상태
+.generating-state {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid t.$neutral-border;
+  border-top-color: t.$text-muted;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.generating-text {
+  font-family: var(--font-noto-kr), sans-serif;
+  font-size: 14px;
+  color: t.$text-muted;
+}
+
+// 와이어프레임: Noto Sans KR Regular 16px, lineHeight 1.5em (한국어 쉬운말)
+.textarea {
+  width: 100%;
+  font-family: var(--font-noto-kr), sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden; // auto-resize — 스크롤바 숨김
+  background: transparent;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// 편집 가능 안내 — 와이어프레임: Noto Sans KR Bold 12px, 경고 아이콘
+.edit-hint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-noto-kr), sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: t.$text-muted;
+  margin: 0;
+}
+
+.hint-icon {
+  font-size: 11px;
+  color: t.$text-muted;
+}
