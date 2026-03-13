@@ -43,7 +43,7 @@ export async function POST() {
     const demoId = `pat_demo_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}`;
     const { data, error } = await supabase
       .from('patients')
-      .insert({ id: demoId, name: '데모 사용자', birth_date: '1992-05-14' })
+      .insert({ id: demoId, name: '데모 사용자', birth_date: '1992-05-14', gender: 'F' })
       .select('id')
       .single();
 
