@@ -69,7 +69,11 @@ export default function ConsentsPage() {
 
   useEffect(() => {
     // 데모 환자 생성 → 쿠키 + sessionStorage에 환자 ID 저장
+    // 이미 생성된 환자가 있으면 재생성하지 않음 (뒤로가기/새로고침 대응)
     async function createPatient() {
+      const existing = sessionStorage.getItem('eum_patient_id');
+      if (existing) return;
+
       try {
         const res = await fetch('/api/eum/patients', { method: 'POST' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);

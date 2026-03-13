@@ -30,7 +30,7 @@ export async function POST() {
   try {
     const supabase = getSupabaseClient();
 
-    // 오늘 00:00 KST 이전에 생성된 demo 행 삭제
+    // 오늘 00:00 이전에 생성된 demo 행 삭제
     const todayMidnight = new Date();
     todayMidnight.setHours(0, 0, 0, 0);
     await supabase
@@ -39,11 +39,19 @@ export async function POST() {
       .like('id', 'pat_demo_%')
       .lt('created_at', todayMidnight.toISOString());
 
+    // 온보딩 미완료(onboarded_at IS NULL) 상태로 1시간 이상 경과한 demo 행도 삭제
+    await supabase
+      .from('patients')
+      .delete()
+      .like('id', 'pat_demo_%')
+      .is('onboarded_at', null)
+      .lt('created_at', new Date(Date.now() - 60 * 60 * 1000).toISOString());
+
     // 새 demo 환자 생성 (온보딩에서 PATCH로 덮어씌울 기본값)
     const demoId = `pat_demo_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}`;
     const { data, error } = await supabase
       .from('patients')
-      .insert({ id: demoId, name: '데모 사용자', birth_date: '1992-05-14', gender: 'F' })
+      .insert({ id: demoId, name: '데모 사용자', birth_date: '1992-05-14', gender: '-' })
       .select('id')
       .single();
 
