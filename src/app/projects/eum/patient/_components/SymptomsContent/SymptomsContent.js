@@ -124,7 +124,12 @@ export default function SymptomsContent({ vitals, records: initialRecords }) {
 
       setMessages((prev) => {
         const next = [...prev];
-        next[botMsgIdx] = { ...next[botMsgIdx], streaming: false, showSeverityChips };
+        // 스트리밍 중 분할된 토큰으로 인해 태그가 노출될 수 있으므로 최종 정리
+        const cleanText = next[botMsgIdx].text
+          .replace(/\[META:.*?\]/gs, '')
+          .replace(/\[DONE:.*?\]/gs, '')
+          .trim();
+        next[botMsgIdx] = { ...next[botMsgIdx], text: cleanText, streaming: false, showSeverityChips };
         return next;
       });
 
