@@ -30,12 +30,13 @@ CREATE TABLE IF NOT EXISTS patients (
 
 -- 진료 세션 (환자↔의사 연결)
 CREATE TABLE IF NOT EXISTS sessions (
-  id              TEXT PRIMARY KEY,               -- ses_007
-  patient_id      TEXT REFERENCES patients(id),
-  doctor_id       TEXT NOT NULL,                  -- doc_park_001
-  referral_from   JSONB,                          -- {doctor_name, hospital, reason, date}
-  status          TEXT DEFAULT 'active',          -- active, completed, waiting, expired, cancelled_by_patient
-  created_at      TIMESTAMPTZ DEFAULT NOW()
+  id               TEXT PRIMARY KEY,              -- ses_007
+  patient_id       TEXT REFERENCES patients(id),
+  doctor_id        TEXT NOT NULL,                 -- doc_park_001
+  referral_from    JSONB,                         -- {doctor_name, hospital, reason, date}
+  chief_complaint  JSONB,                         -- {patient_text, symptom_count, symptom_period}
+  status           TEXT DEFAULT 'active',         -- active, completed, waiting, expired, cancelled_by_patient
+  created_at       TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- 증상 기록

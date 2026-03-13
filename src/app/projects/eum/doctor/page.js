@@ -34,32 +34,6 @@ function calcAge(birthDate) {
   return age;
 }
 
-// 증상 기록 배열 → Chief Complaint 데이터 생성
-function symptomsToChiefComplaint(symptoms) {
-  if (!symptoms || symptoms.length === 0) return null;
-
-  // 최신 증상 설명을 patient_text로 사용
-  const latest = symptoms[0];
-  const patientText = latest.description || latest.voice_transcript || '';
-
-  // 날짜 범위: 가장 오래된 ~ 가장 최신
-  const dates = symptoms.map((s) => new Date(s.occurred_at)).sort((a, b) => a - b);
-  const fmt = (d) =>
-    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-  const period =
-    dates.length > 1
-      ? `${fmt(dates[0])} ~ ${fmt(dates[dates.length - 1])}`
-      : fmt(dates[0]);
-
-  return {
-    visible: true,
-    level: 'L1',
-    patient_text: patientText,
-    symptom_count: symptoms.length,
-    symptom_period: period,
-  };
-}
-
 // 증상 기록 → 타임라인 아이템 변환
 function symptomToTimelineItem(record) {
   const date = new Date(record.occurred_at);
@@ -83,7 +57,7 @@ async function fetchLiveData() {
     const { getSupabaseClient } = await import('../../../api/eum/_lib/supabase');
     const supabase = getSupabaseClient();
 
-    const [symptomsRes, aiRes, patientRes] = await Promise.all([
+    const [symptomsRes, aiRes, patientRes, sessionRes] = await Promise.all([
       supabase
         .from('symptom_records')
         .select('*')
@@ -99,6 +73,11 @@ async function fetchLiveData() {
         .select('name, birth_date, gender, height_cm, weight_kg, chronic_conditions, allergies')
         .eq('id', 'pat_yoon_001')
         .single(),
+      supabase
+        .from('sessions')
+        .select('chief_complaint')
+        .eq('id', 'ses_007')
+        .single(),
     ]);
 
     if (symptomsRes.error) throw symptomsRes.error;
@@ -106,6 +85,7 @@ async function fetchLiveData() {
     const symptoms = symptomsRes.data ?? [];
     const aiData = aiRes.data ?? [];
     const patient = patientRes.data;
+    const chiefComplaint = sessionRes.data?.chief_complaint ?? null;
 
     // 최신 브리핑/서제스천 각 1개
     const dbBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
@@ -116,7 +96,7 @@ async function fetchLiveData() {
     const compactItems = timelineItems.slice(0, 3);
     const expandedItems = timelineItems.slice(3);
 
-    return { symptoms, compactItems, expandedItems, dbBriefing, dbSuggestions, patient };
+    return { symptoms, compactItems, expandedItems, dbBriefing, dbSuggestions, patient, chiefComplaint };
   } catch (err) {
     console.warn('[doctor/page] Supabase 조회 실패, 정적 JSON 사용:', err.message);
     return null;
@@ -190,10 +170,8 @@ export default async function DoctorDashboard() {
     ? patient.allergies
     : sections.allergies.items;
 
-  // chief complaint: Supabase 증상 기록 우선, 폴백 → 정적 JSON
-  const chiefComplaint = (liveData?.symptoms?.length > 0)
-    ? symptomsToChiefComplaint(liveData.symptoms)
-    : sections.chief_complaint;
+  // chief complaint: sessions.chief_complaint 우선, 폴백 → 정적 JSON
+  const chiefComplaint = liveData?.chiefComplaint ?? sections.chief_complaint;
 
   return (
     <PatientDataModalProvider>
