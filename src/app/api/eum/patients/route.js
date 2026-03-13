@@ -25,33 +25,39 @@ export async function GET(request) {
   }
 }
 
-// POST /api/eum/patients — 데모 환자 행 생성 + 전일 이전 demo 행 정리
-export async function POST() {
+// POST /api/eum/patients — 온보딩 완료 시 환자 데이터 전체 INSERT
+export async function POST(request) {
   try {
+    const body = await request.json();
+
+    // 필수 필드 검증
+    if (!body.name || !body.birth_date || !body.gender) {
+      return NextResponse.json(
+        { error: 'name, birth_date, gender는 필수입니다' },
+        { status: 400 },
+      );
+    }
+
+    const ALLOWED_FIELDS = [
+      'name', 'birth_date', 'gender', 'height_cm', 'weight_kg',
+      'chronic_conditions', 'allergies',
+      'blood_type', 'phone',
+      'consent_privacy', 'consent_terms', 'consent_sensitive', 'consent_location',
+      'consent_marketing', 'consent_research', 'consent_improvement',
+      'consent_mydata', 'consent_overseas',
+      'wearable_device',
+    ];
+
+    const row = { id: `pat_demo_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}` };
+    for (const key of ALLOWED_FIELDS) {
+      if (key in body) row[key] = body[key];
+    }
+    row.onboarded_at = new Date().toISOString();
+
     const supabase = getSupabaseClient();
-
-    // 오늘 00:00 이전에 생성된 demo 행 삭제
-    const todayMidnight = new Date();
-    todayMidnight.setHours(0, 0, 0, 0);
-    await supabase
-      .from('patients')
-      .delete()
-      .like('id', 'pat_demo_%')
-      .lt('created_at', todayMidnight.toISOString());
-
-    // 온보딩 미완료(onboarded_at IS NULL) 상태로 1시간 이상 경과한 demo 행도 삭제
-    await supabase
-      .from('patients')
-      .delete()
-      .like('id', 'pat_demo_%')
-      .is('onboarded_at', null)
-      .lt('created_at', new Date(Date.now() - 60 * 60 * 1000).toISOString());
-
-    // 새 demo 환자 생성 (온보딩 PATCH에서 실제 값으로 채워짐)
-    const demoId = `pat_demo_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}`;
     const { data, error } = await supabase
       .from('patients')
-      .insert({ id: demoId })
+      .insert(row)
       .select('id')
       .single();
 

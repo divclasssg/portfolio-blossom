@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
 import styles from './page.module.scss';
@@ -59,7 +59,6 @@ export default function ConsentsPage() {
   const router = useRouter();
   const [checked, setChecked] = useState(INITIAL_STATE);
   const [expanded, setExpanded] = useState({});
-  const [createError, setCreateError] = useState(false);
 
   function toggleExpanded(id) {
     setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -67,30 +66,6 @@ export default function ConsentsPage() {
 
   const allRequiredChecked = REQUIRED_ITEMS.every((item) => checked[item.id]);
   const allChecked = ALL_ITEMS.every((item) => checked[item.id]);
-  const hasPatientId = typeof window !== 'undefined' && !!sessionStorage.getItem('eum_patient_id');
-
-  async function createPatient() {
-    // sessionStorage에 있으면 현재 탭에서 온보딩 진행 중 → 스킵
-    if (sessionStorage.getItem('eum_patient_id')) return;
-
-    // 없으면 무조건 새 환자 생성 (쿠키 기반 DB 조회 제거 — 복잡성만 높이고 엣지 케이스 유발)
-    setCreateError(false);
-    try {
-      const res = await fetch('/api/eum/patients', { method: 'POST' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const { patientId } = await res.json();
-      document.cookie = `eum_patient_id=${patientId}; max-age=86400; path=/projects/eum; SameSite=Lax`;
-      sessionStorage.setItem('eum_patient_id', patientId);
-      setCreateError(false);
-    } catch (e) {
-      console.error('[consents] 환자 생성 실패:', e.message);
-      setCreateError(true);
-    }
-  }
-
-  useEffect(() => {
-    createPatient();
-  }, []);
 
   function handleAll(e) {
     const val = e.target.checked;
@@ -214,22 +189,10 @@ export default function ConsentsPage() {
         </section>
 
         <div className={styles['footer']}>
-          {createError && (
-            <div className={styles['error-banner']} role="alert">
-              <p className={styles['error-msg']}>환자 생성에 실패했습니다.</p>
-              <button
-                type="button"
-                className={styles['btn-retry']}
-                onClick={createPatient}
-              >
-                다시 시도
-              </button>
-            </div>
-          )}
           <button
             type="button"
             className={styles['btn-primary']}
-            disabled={!allRequiredChecked || !sessionStorage.getItem('eum_patient_id')}
+            disabled={!allRequiredChecked}
             onClick={() => {
               const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
               sessionStorage.setItem(

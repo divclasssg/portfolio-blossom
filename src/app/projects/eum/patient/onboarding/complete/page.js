@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
-import { getPatientIdFromCookie } from '../../../_lib/getPatientIdClient';
 import styles from './page.module.scss';
 
 // sessionStorage 데이터를 기반으로 요약 항목 생성
@@ -45,49 +44,43 @@ export default function CompletePage() {
 
   async function saveOnboarding() {
     const raw = sessionStorage.getItem('eum_onboarding');
-    const patientId = sessionStorage.getItem('eum_patient_id') || getPatientIdFromCookie();
 
-    // patientId 없으면 정상 온보딩 흐름이 아님 → 에러 표시
-    if (!patientId) {
-      setErrorMsg('환자 정보를 찾을 수 없습니다. 처음부터 다시 시도해 주세요.');
-      setSaveStatus('error');
-      return;
-    }
     // 이미 저장 완료된 경우 (재방문 — eum_onboarding 없음)
     if (!raw) { setSaveStatus('done'); return; }
 
     setSaveStatus('saving');
     try {
       const onboardingData = JSON.parse(raw);
+
+      // POST로 환자 생성 (전체 필드 한번에 INSERT)
       const res = await fetch('/api/eum/patients', {
-        method: 'PATCH',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          patientId,
-          ...onboardingData,
-          onboarded_at: new Date().toISOString(),
-        }),
+        body: JSON.stringify(onboardingData),
       });
       if (!res.ok) {
         const { error } = await res.json();
         throw new Error(error || '저장에 실패했습니다');
       }
 
+      const { patientId } = await res.json();
+
+      // 쿠키 + sessionStorage에 환자 ID 설정
+      document.cookie = `eum_patient_id=${patientId}; max-age=86400; path=/projects/eum; SameSite=Lax`;
+      sessionStorage.setItem('eum_patient_id', patientId);
+
       // 데모 환자에 윤서진 시나리오 임상 데이터 시드 (실패해도 진행)
-      if (patientId.startsWith('pat_demo_')) {
-        try {
-          await fetch('/api/eum/patients/seed', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ patientId }),
-          });
-        } catch (e) {
-          console.warn('[complete] 시드 실패 (정적 JSON 폴백 유지):', e.message);
-        }
+      try {
+        await fetch('/api/eum/patients/seed', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ patientId }),
+        });
+      } catch (e) {
+        console.warn('[complete] 시드 실패 (정적 JSON 폴백 유지):', e.message);
       }
 
       sessionStorage.removeItem('eum_onboarding');
-      // eum_patient_id는 유지 — 뒤로/앞으로 탐색 시 중복 생성 방지
       setSaveStatus('done');
     } catch (err) {
       setErrorMsg(err.message);
