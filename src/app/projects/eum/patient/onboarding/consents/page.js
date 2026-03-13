@@ -71,8 +71,9 @@ export default function ConsentsPage() {
     // 데모 환자 생성 → 쿠키 + sessionStorage에 환자 ID 저장
     // 이미 생성된 환자가 있으면 재생성하지 않음 (뒤로가기/새로고침 대응)
     async function createPatient() {
-      const existing = sessionStorage.getItem('eum_patient_id');
-      if (existing) return;
+      const fromSession = sessionStorage.getItem('eum_patient_id');
+      const fromCookie = document.cookie.match(/eum_patient_id=([^;]+)/)?.[1];
+      if (fromSession || fromCookie) return;
 
       try {
         const res = await fetch('/api/eum/patients', { method: 'POST' });
