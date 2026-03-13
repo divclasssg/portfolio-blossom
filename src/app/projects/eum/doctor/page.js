@@ -146,12 +146,18 @@ export default async function DoctorDashboard() {
   // Supabase 최신 데이터 (실패 시 null → 정적 JSON 폴백)
   const liveData = await fetchLiveData();
 
-  // 타임라인 데이터: Supabase 우선, 폴백 → 정적 JSON
-  const compactTimeline = liveData
-    ? { ...sections.symptom_timeline_compact, items: liveData.compactItems }
+  // 타임라인 데이터: Supabase에 데이터가 있을 때만 우선, 없으면 정적 JSON 폴백
+  const hasLiveSymptoms = (liveData?.symptoms?.length ?? 0) > 0;
+
+  const compactTimeline = hasLiveSymptoms
+    ? {
+        ...sections.symptom_timeline_compact,
+        items: liveData.compactItems,
+        remaining_count: Math.max(0, liveData.symptoms.length - 3),
+      }
     : sections.symptom_timeline_compact;
 
-  const expandedTimeline = liveData
+  const expandedTimeline = hasLiveSymptoms
     ? { items: liveData.expandedItems }
     : sections.symptom_timeline_expanded;
 
