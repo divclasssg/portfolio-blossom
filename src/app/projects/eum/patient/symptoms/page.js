@@ -6,10 +6,34 @@ export const metadata = {
   title: 'P-019 증상 기록 — 이음',
 };
 
-export default function SymptomsPage() {
+// DB 데이터가 업데이트될 때마다 반영
+export const dynamic = 'force-dynamic';
+
+// Supabase에서 증상 기록 조회 (실패 시 null → 정적 JSON 폴백)
+async function fetchSymptomRecords() {
+  try {
+    const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase
+      .from('symptom_records')
+      .select('*')
+      .eq('patient_id', 'pat_yoon_001')
+      .order('occurred_at', { ascending: false });
+    if (error) throw error;
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+export default async function SymptomsPage() {
   const vitals = homeDashboard.vitals_today;
+  const dbRecords = await fetchSymptomRecords();
 
   return (
-    <SymptomsContent vitals={vitals} records={symptomRecords.symptom_records} />
+    <SymptomsContent
+      vitals={vitals}
+      records={dbRecords ?? symptomRecords.symptom_records}
+    />
   );
 }

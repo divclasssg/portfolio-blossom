@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
+import { invalidatePipelineCache } from '../_lib/pipeline';
 
 // GET /api/eum/symptoms?patientId=pat_yoon_001
 export async function GET(request) {
@@ -71,6 +72,9 @@ export async function POST(request) {
     if (sessionId) {
       await supabase.from('ai_results').delete().eq('session_id', sessionId);
     }
+
+    // 인메모리 파이프라인 캐시도 무효화 → 다음 요청 시 재분석
+    invalidatePipelineCache();
 
     return NextResponse.json({ symptom_record: data }, { status: 201 });
   } catch (err) {

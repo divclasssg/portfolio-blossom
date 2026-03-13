@@ -18,6 +18,41 @@ import fallbackSuggestions from '../../../projects/eum/_references/data/doctor/0
 
 export { fallbackBriefing, fallbackSuggestions };
 
+// ── 인메모리 캐시 (공유) ──────────────────────────────────────
+// pipeline/route.js와 symptoms/route.js에서 공유
+const CACHE_TTL_MS = 60 * 60 * 1000;   // 1시간
+const ERROR_CACHE_TTL_MS = 5 * 60 * 1000; // 에러 시 5분간 재시도 방지
+
+let _cache = null;   // { result, expiresAt }
+let _running = null; // 진행 중인 파이프라인 Promise (중복 실행 방지)
+
+// 새 증상 추가 시 호출 → 캐시 무효화
+export function invalidatePipelineCache() {
+  _cache = null;
+}
+
+export function getCachedResult() {
+  if (_cache && Date.now() < _cache.expiresAt) return _cache.result;
+  return null;
+}
+
+export function setCachedResult(result, isError = false) {
+  const ttl = isError ? ERROR_CACHE_TTL_MS : CACHE_TTL_MS;
+  _cache = { result, expiresAt: Date.now() + ttl };
+}
+
+export function getRunningPipeline() {
+  return _running;
+}
+
+export function setRunningPipeline(promise) {
+  _running = promise;
+}
+
+export function clearRunningPipeline() {
+  _running = null;
+}
+
 // ── 환자 데이터 로드 (Supabase + 정적 JSON 혼합) ─────────────
 // Supabase: patients, symptom_records (동적)
 // 정적 JSON 유지: health_history, medical_records, vitals_wearable (읽기전용)

@@ -16,6 +16,66 @@ export const metadata = {
 // 환자 데이터가 업데이트될 때마다 반영
 export const dynamic = 'force-dynamic';
 
+// Supabase에서 최근 증상 요약 조회 (실패 시 null → 정적 JSON 폴백)
+async function fetchRecentSymptomsSummary() {
+  try {
+    const { getSupabaseClient } = await import('../../../api/eum/_lib/supabase');
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase
+      .from('symptom_records')
+      .select('*')
+      .eq('patient_id', 'pat_yoon_001')
+      .order('occurred_at', { ascending: false });
+    if (error) throw error;
+    if (!data || data.length === 0) return null;
+
+    const now = new Date();
+    const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
+
+    // 최근 7일 증상
+    const recent7 = data.filter((r) => new Date(r.occurred_at) >= sevenDaysAgo);
+    // 이전 7일 증상 (7~14일 전)
+    const prev7 = data.filter(
+      (r) => new Date(r.occurred_at) >= fourteenDaysAgo && new Date(r.occurred_at) < sevenDaysAgo
+    );
+
+    const last7DaysCount = recent7.length;
+    const avgSeverity = last7DaysCount > 0
+      ? Math.round(recent7.reduce((sum, r) => sum + r.severity, 0) / last7DaysCount * 10) / 10
+      : 0;
+
+    // 추세 계산
+    let trend = 'stable';
+    if (prev7.length > 0 && recent7.length > 0) {
+      const prevAvg = prev7.reduce((sum, r) => sum + r.severity, 0) / prev7.length;
+      const diff = avgSeverity - prevAvg;
+      if (diff > 0.5) trend = 'worsening';
+      else if (diff < -0.5) trend = 'improving';
+    }
+
+    // 가장 최근 증상
+    const latest = data[0];
+    const preview = latest.description
+      ? (latest.description.length > 20 ? latest.description.slice(0, 20) + '...' : latest.description)
+      : (latest.voice_transcript || '');
+
+    return {
+      last_7_days_count: last7DaysCount,
+      avg_severity: avgSeverity,
+      trend,
+      most_recent: {
+        symptom_id: latest.symptom_id,
+        occurred_at: latest.occurred_at,
+        severity: latest.severity,
+        description_preview: preview,
+      },
+    };
+  } catch {
+    return null;
+  }
+}
+
 // Supabase에서 환자 이름 조회 (실패 시 null 반환 → 정적 JSON 폴백)
 async function fetchPatientName() {
   try {
@@ -36,7 +96,10 @@ async function fetchPatientName() {
 export default async function PatientHome() {
   const unreadCount = consentNotifications.notifications.filter((n) => !n.read).length;
 
-  const name = await fetchPatientName();
+  const [name, dynamicSummary] = await Promise.all([
+    fetchPatientName(),
+    fetchRecentSymptomsSummary(),
+  ]);
   // DB에서 이름을 읽으면 동적 인사말, 실패 시 정적 JSON 폴백
   const greeting = name
     ? `${name}님, 오늘도 건강한 하루 보내세요.`
@@ -47,7 +110,7 @@ export default async function PatientHome() {
       <AppBar unreadCount={unreadCount} />
       <main className={styles['content']}>
         <GreetingSection greeting={greeting} />
-        <RecentSymptoms summary={homeDashboard.recent_symptoms_summary} />
+        <RecentSymptoms summary={dynamicSummary ?? homeDashboard.recent_symptoms_summary} />
         <VitalsToday vitals={homeDashboard.vitals_today} />
         <MedicationReminder
           reminder={homeDashboard.medication_reminder}
