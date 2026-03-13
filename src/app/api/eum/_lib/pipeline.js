@@ -61,7 +61,7 @@ const DATA_DIR = path.join(
   'src/app/projects/eum/_references/data/patient'
 );
 
-export async function loadPatientData(patientId = 'pat_yoon_001') {
+export async function loadPatientData(patientId) {
   // 정적 JSON은 기존 fs 방식 유지
   const staticFiles = ['02_health_history.json', '04_medical_records.json', '07_vitals_wearable.json'];
   const staticData = Object.fromEntries(
@@ -425,7 +425,7 @@ export async function stage5Report(rankedResult, patientData) {
           content:
             `환자 데이터:\n${JSON.stringify(patientData)}\n\n` +
             `감별진단 랭킹:\n${JSON.stringify(rankedResult.suggestions)}\n\n` +
-            `session_id: ses_007, generated_at: ${now}\n\n` +
+            `generated_at: ${now}\n\n` +
             '브리핑(summary_text, 2-3개 highlights, referral_context)을 작성하세요.\n' +
             '주의: highlights의 type은 "recurring"|"abnormal"|"worsening" 중 하나, ' +
             'badge_color는 hex 색상(예: "#E69F00" 경고, "#CC0000" 위험, "#2166AC" 정보).',
@@ -480,7 +480,6 @@ export async function stage5Report(rankedResult, patientData) {
 
   // 04_ai_briefing.json 스키마에 맞게 조립
   const briefing = {
-    session_id: 'ses_007',
     screen_feature: 'F11',
     model_version: 'GPT-4o',
     generated_at: now2,
@@ -504,7 +503,7 @@ export async function stage5Report(rankedResult, patientData) {
 
 // ── 오케스트레이터 ─────────────────────────────────────────────
 // 5단계 순차 실행, 단계별 폴백
-export async function runFullPipeline() {
+export async function runFullPipeline(patientId, sessionId) {
   const pipelineStartMs = Date.now();
   const pipelineStages = {
     entity_extraction: null,
@@ -517,7 +516,7 @@ export async function runFullPipeline() {
   // ─ Stage 1 ─
   let patientData, entities;
   try {
-    patientData = await loadPatientData();
+    patientData = await loadPatientData(patientId);
     const result = await stage1Extract(patientData);
     entities = result.entities;
     pipelineStages.entity_extraction = {
@@ -607,7 +606,6 @@ export async function runFullPipeline() {
 
   // 05_ai_suggestions.json 스키마에 맞게 suggestions 래퍼 조립
   const suggestions = {
-    session_id: 'ses_007',
     screen_feature: 'F13',
     model_version: stage4ModelUsed,
     generated_at: new Date().toISOString(),

@@ -4,7 +4,10 @@ import { getSupabaseClient } from '../_lib/supabase';
 // GET /api/eum/ai-results?sessionId=ses_007
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const sessionId = searchParams.get('sessionId') || 'ses_007';
+  const sessionId = searchParams.get('sessionId');
+  if (!sessionId) {
+    return NextResponse.json({ error: 'sessionId is required' }, { status: 400 });
+  }
 
   try {
     const supabase = getSupabaseClient();

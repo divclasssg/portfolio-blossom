@@ -5,7 +5,7 @@ import { loadPatientData, stage1Extract } from '../_lib/pipeline';
 
 export async function POST() {
   try {
-    const patientData = loadPatientData();
+    const patientData = await loadPatientData();
     const result = await stage1Extract(patientData);
     return NextResponse.json(result);
   } catch (e) {

@@ -4,7 +4,10 @@ import { getSupabaseClient } from '../_lib/supabase';
 // GET /api/eum/patients?patientId=pat_yoon_001
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const patientId = searchParams.get('patientId') || 'pat_yoon_001';
+  const patientId = searchParams.get('patientId');
+  if (!patientId) {
+    return NextResponse.json({ error: 'patientId is required' }, { status: 400 });
+  }
 
   try {
     const supabase = getSupabaseClient();
@@ -22,17 +25,19 @@ export async function GET(request) {
   }
 }
 
-// POST /api/eum/patients — 데모 환자 행 생성 + 24시간 지난 demo 행 정리
+// POST /api/eum/patients — 데모 환자 행 생성 + 전일 이전 demo 행 정리
 export async function POST() {
   try {
     const supabase = getSupabaseClient();
 
-    // 24시간 지난 demo 행 삭제
+    // 오늘 00:00 KST 이전에 생성된 demo 행 삭제
+    const todayMidnight = new Date();
+    todayMidnight.setHours(0, 0, 0, 0);
     await supabase
       .from('patients')
       .delete()
       .like('id', 'pat_demo_%')
-      .lt('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
+      .lt('created_at', todayMidnight.toISOString());
 
     // 새 demo 환자 생성 (온보딩에서 PATCH로 덮어씌울 기본값)
     const demoId = `pat_demo_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}`;

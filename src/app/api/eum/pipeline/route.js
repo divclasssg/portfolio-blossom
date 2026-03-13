@@ -10,12 +10,13 @@ import {
   clearRunningPipeline,
 } from '../_lib/pipeline';
 import { getSupabaseClient } from '../_lib/supabase';
+import { getLatestSessionId } from '../_lib/getLatestSession';
 
 // 전체 파이프라인 타임아웃: 90초 (Next.js default route timeout 초과 방지)
 export const maxDuration = 90;
 
 // 파이프라인 결과를 Supabase ai_results에 저장
-async function saveToDb(result, sessionId = 'ses_007') {
+async function saveToDb(result, sessionId) {
   if (result.is_fallback) return; // 폴백 결과는 저장하지 않음
 
   try {
@@ -50,7 +51,26 @@ async function saveToDb(result, sessionId = 'ses_007') {
   }
 }
 
-export async function POST() {
+export async function POST(request) {
+  // patientId 수신 → 동적 sessionId 조회
+  let patientId = null;
+  let sessionId = null;
+  try {
+    const body = await request.json();
+    patientId = body.patientId || null;
+  } catch {
+    // body 없으면 무시
+  }
+
+  if (patientId) {
+    try {
+      const supabase = getSupabaseClient();
+      sessionId = await getLatestSessionId(supabase, patientId);
+    } catch {
+      // sessionId 조회 실패 → null (저장 스킵)
+    }
+  }
+
   // 캐시 히트
   const cached = getCachedResult();
   if (cached) {
@@ -69,11 +89,11 @@ export async function POST() {
   }
 
   // 신규 파이프라인 실행
-  const pipeline = runFullPipeline().then(async (result) => {
+  const pipeline = runFullPipeline(patientId, sessionId).then(async (result) => {
     setCachedResult(result);
     clearRunningPipeline();
     // DB 저장 (비동기, 응답 차단 안 함)
-    saveToDb(result);
+    if (sessionId) saveToDb(result, sessionId);
     return result;
   }).catch((e) => {
     setCachedResult({ error: e.message, is_fallback: true }, true);

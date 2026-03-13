@@ -29,6 +29,7 @@ export default function AiDataProvider({
   suggestionWarnings,
   initialBriefing = null,   // Supabase에서 미리 로드한 브리핑 (있으면 파이프라인 스킵)
   initialSuggestions = null,
+  patientId = null,
 }) {
   const [briefing, setBriefing] = useState(initialBriefing);
   const [suggestions, setSuggestions] = useState(initialSuggestions);
@@ -48,7 +49,11 @@ export default function AiDataProvider({
     fetch('/api/eum/warmup').catch(() => {});
 
     // /api/eum/pipeline 호출
-    fetch('/api/eum/pipeline', { method: 'POST' })
+    fetch('/api/eum/pipeline', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ patientId }),
+    })
       .then((res) => {
         if (!res.ok) throw new Error(`Pipeline error: ${res.status}`);
         return res.json();

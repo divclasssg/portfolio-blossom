@@ -7,7 +7,7 @@ export async function POST(request) {
   try {
     const body = await request.json();
     const candidates = body.candidates;
-    const patientData = body.patientData ?? loadPatientData();
+    const patientData = body.patientData ?? await loadPatientData();
 
     if (!candidates) return NextResponse.json({ error: 'candidates required' }, { status: 400 });
 

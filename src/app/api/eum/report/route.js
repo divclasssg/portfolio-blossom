@@ -7,7 +7,7 @@ export async function POST(request) {
   try {
     const body = await request.json();
     const rankedResult = body.rankedResult;
-    const patientData = body.patientData ?? loadPatientData();
+    const patientData = body.patientData ?? await loadPatientData();
 
     if (!rankedResult) return NextResponse.json({ error: 'rankedResult required' }, { status: 400 });
 

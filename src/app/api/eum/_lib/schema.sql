@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS patients (
 -- 진료 세션 (환자↔의사 연결)
 CREATE TABLE IF NOT EXISTS sessions (
   id               TEXT PRIMARY KEY,              -- ses_007
-  patient_id       TEXT REFERENCES patients(id),
+  patient_id       TEXT REFERENCES patients(id) ON DELETE CASCADE,
   doctor_id        TEXT NOT NULL,                 -- doc_park_001
   referral_from    JSONB,                         -- {doctor_name, hospital, reason, date}
   chief_complaint  JSONB,                         -- {patient_text, symptom_count, symptom_period}
@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS sessions (
 CREATE TABLE IF NOT EXISTS symptom_records (
   id              SERIAL PRIMARY KEY,
   symptom_id      TEXT UNIQUE NOT NULL,           -- sym_001...
-  patient_id      TEXT REFERENCES patients(id),
-  session_id      TEXT REFERENCES sessions(id),
+  patient_id      TEXT REFERENCES patients(id) ON DELETE CASCADE,
+  session_id      TEXT REFERENCES sessions(id) ON DELETE CASCADE,
   description     TEXT,
   voice_transcript TEXT,
   occurred_at     TIMESTAMPTZ NOT NULL,
@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS symptom_records (
 -- 채팅 메시지
 CREATE TABLE IF NOT EXISTS chat_messages (
   id              SERIAL PRIMARY KEY,
-  patient_id      TEXT REFERENCES patients(id),
-  session_id      TEXT REFERENCES sessions(id),
+  patient_id      TEXT REFERENCES patients(id) ON DELETE CASCADE,
+  session_id      TEXT REFERENCES sessions(id) ON DELETE CASCADE,
   role            TEXT NOT NULL,                  -- user, assistant
   content         TEXT NOT NULL,
   metadata        JSONB,                          -- {showSeverityChips, completed, symptomRecord}
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS chat_messages (
 -- AI 분석 결과
 CREATE TABLE IF NOT EXISTS ai_results (
   id                  SERIAL PRIMARY KEY,
-  session_id          TEXT REFERENCES sessions(id),
+  session_id          TEXT REFERENCES sessions(id) ON DELETE CASCADE,
   result_type         TEXT NOT NULL,              -- briefing, suggestions
   model_version       TEXT,
   content             JSONB NOT NULL,             -- 전체 AI 출력
@@ -81,3 +81,30 @@ CREATE INDEX IF NOT EXISTS idx_symptom_records_patient ON symptom_records(patien
 CREATE INDEX IF NOT EXISTS idx_symptom_records_session ON symptom_records(session_id);
 CREATE INDEX IF NOT EXISTS idx_chat_messages_session ON chat_messages(session_id);
 CREATE INDEX IF NOT EXISTS idx_ai_results_session ON ai_results(session_id, result_type);
+
+-- ── 기존 테이블 마이그레이션 (1회 실행) ────────────────────────
+-- Supabase SQL Editor에서 아래를 실행하여 기존 FK에 ON DELETE CASCADE 추가
+--
+-- ALTER TABLE sessions DROP CONSTRAINT IF EXISTS sessions_patient_id_fkey;
+-- ALTER TABLE sessions ADD CONSTRAINT sessions_patient_id_fkey
+--   FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE;
+--
+-- ALTER TABLE symptom_records DROP CONSTRAINT IF EXISTS symptom_records_patient_id_fkey;
+-- ALTER TABLE symptom_records ADD CONSTRAINT symptom_records_patient_id_fkey
+--   FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE;
+--
+-- ALTER TABLE symptom_records DROP CONSTRAINT IF EXISTS symptom_records_session_id_fkey;
+-- ALTER TABLE symptom_records ADD CONSTRAINT symptom_records_session_id_fkey
+--   FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE;
+--
+-- ALTER TABLE chat_messages DROP CONSTRAINT IF EXISTS chat_messages_patient_id_fkey;
+-- ALTER TABLE chat_messages ADD CONSTRAINT chat_messages_patient_id_fkey
+--   FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE;
+--
+-- ALTER TABLE chat_messages DROP CONSTRAINT IF EXISTS chat_messages_session_id_fkey;
+-- ALTER TABLE chat_messages ADD CONSTRAINT chat_messages_session_id_fkey
+--   FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE;
+--
+-- ALTER TABLE ai_results DROP CONSTRAINT IF EXISTS ai_results_session_id_fkey;
+-- ALTER TABLE ai_results ADD CONSTRAINT ai_results_session_id_fkey
+--   FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE;

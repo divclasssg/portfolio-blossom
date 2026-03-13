@@ -28,7 +28,7 @@ function buildChatHistory(msgs) {
     .map((m) => ({ role: m.type === 'bot' ? 'assistant' : 'user', content: m.text }));
 }
 
-export default function SymptomsContent({ vitals, records: initialRecords, patientId, patientName }) {
+export default function SymptomsContent({ vitals, records: initialRecords, patientId, patientName, sessionId }) {
   const [activeTab, setActiveTab] = useState('chat');
   const [messages, setMessages] = useState(() => makeInitialMessages(patientName));
   const [isStreaming, setIsStreaming] = useState(false);
@@ -42,7 +42,7 @@ export default function SymptomsContent({ vitals, records: initialRecords, patie
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           patientId,
-          sessionId: 'ses_007',
+          sessionId,
           description: symptomRecord.description,
           occurredAt: symptomRecord.occurredAt || new Date().toISOString(),
           severity: symptomRecord.severity,
@@ -96,7 +96,7 @@ export default function SymptomsContent({ vitals, records: initialRecords, patie
         body: JSON.stringify({
           messages: buildChatHistory(currentMessages),
           patientId,
-          sessionId: 'ses_007',
+          sessionId,
         }),
       });
 

@@ -59,27 +59,35 @@ async function fetchLiveData(patientId) {
     const { getSupabaseClient } = await import('../../../api/eum/_lib/supabase');
     const supabase = getSupabaseClient();
 
+    // 최신 세션 ID 동적 조회
+    const { getLatestSessionId } = await import('../../../api/eum/_lib/getLatestSession');
+    const latestSessionId = await getLatestSessionId(supabase, patientId);
+
     const [symptomsRes, aiRes, patientRes, sessionRes] = await Promise.all([
       supabase
         .from('symptom_records')
         .select('*')
         .eq('patient_id', patientId)
         .order('occurred_at', { ascending: false }),
-      supabase
-        .from('ai_results')
-        .select('*')
-        .eq('session_id', 'ses_007')
-        .order('created_at', { ascending: false }),
+      latestSessionId
+        ? supabase
+            .from('ai_results')
+            .select('*')
+            .eq('session_id', latestSessionId)
+            .order('created_at', { ascending: false })
+        : { data: [], error: null },
       supabase
         .from('patients')
         .select('name, birth_date, gender, height_cm, weight_kg, chronic_conditions, allergies')
         .eq('id', patientId)
         .single(),
-      supabase
-        .from('sessions')
-        .select('chief_complaint')
-        .eq('id', 'ses_007')
-        .single(),
+      latestSessionId
+        ? supabase
+            .from('sessions')
+            .select('chief_complaint')
+            .eq('id', latestSessionId)
+            .single()
+        : { data: null, error: null },
     ]);
 
     if (symptomsRes.error) console.warn('[doctor/page] symptom_records 조회 실패:', symptomsRes.error.message);
@@ -106,7 +114,7 @@ async function fetchLiveData(patientId) {
     const compactItems = timelineItems.slice(0, 3);
     const expandedItems = timelineItems.slice(3);
 
-    return { symptoms, compactItems, expandedItems, dbBriefing, dbSuggestions, patient, chiefComplaint };
+    return { symptoms, compactItems, expandedItems, dbBriefing, dbSuggestions, patient, chiefComplaint, latestSessionId };
   } catch (err) {
     console.warn('[doctor/page] Supabase 조회 실패, 정적 JSON 사용:', err.message);
     return null;
@@ -220,6 +228,7 @@ export default async function DoctorDashboard() {
           suggestionWarnings={suggestionWarnings}
           initialBriefing={liveData?.dbBriefing ?? null}
           initialSuggestions={liveData?.dbSuggestions ?? null}
+          patientId={patientId}
         />
 
         {/* 섹션 7: 증상 타임라인 — Supabase에서 최신 데이터 */}

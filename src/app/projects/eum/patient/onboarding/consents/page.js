@@ -76,10 +76,8 @@ export default function ConsentsPage() {
         const { patientId } = await res.json();
         document.cookie = `eum_patient_id=${patientId}; max-age=86400; path=/projects/eum; SameSite=Lax`;
         sessionStorage.setItem('eum_patient_id', patientId);
-      } catch {
-        // 실패 시 시드 데이터 폴백
-        document.cookie = 'eum_patient_id=pat_yoon_001; max-age=86400; path=/projects/eum; SameSite=Lax';
-        sessionStorage.setItem('eum_patient_id', 'pat_yoon_001');
+      } catch (e) {
+        console.error('[consents] 환자 생성 실패:', e.message);
       }
     }
     createPatient();

@@ -65,6 +65,20 @@ export default function CompletePage() {
         const { error } = await res.json();
         throw new Error(error || '저장에 실패했습니다');
       }
+
+      // 데모 환자에 윤서진 시나리오 임상 데이터 시드 (실패해도 진행)
+      if (patientId.startsWith('pat_demo_')) {
+        try {
+          await fetch('/api/eum/patients/seed', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ patientId }),
+          });
+        } catch (e) {
+          console.warn('[complete] 시드 실패 (정적 JSON 폴백 유지):', e.message);
+        }
+      }
+
       sessionStorage.removeItem('eum_onboarding');
       sessionStorage.removeItem('eum_patient_id');
       setSaveStatus('done');

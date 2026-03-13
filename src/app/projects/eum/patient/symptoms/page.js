@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import homeDashboard from '../../_references/data/patient/08_home_dashboard.json';
 import symptomRecords from '../../_references/data/patient/03_symptom_records.json';
 import { getPatientId } from '../../_lib/getPatientId';
+import { getLatestSessionId } from '../../../../api/eum/_lib/getLatestSession';
 import SymptomsContent from '../_components/SymptomsContent/SymptomsContent';
 
 export const metadata = {
@@ -49,6 +50,17 @@ export default async function SymptomsPage() {
   const patientId = await getPatientId();
   if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
   const vitals = homeDashboard.vitals_today;
+
+  // 최신 세션 ID 동적 조회
+  let latestSessionId = null;
+  try {
+    const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
+    const supabase = getSupabaseClient();
+    latestSessionId = await getLatestSessionId(supabase, patientId);
+  } catch {
+    // 조회 실패 시 null
+  }
+
   const [dbRecords, patientName] = await Promise.all([
     fetchSymptomRecords(patientId),
     fetchPatientName(patientId),
@@ -60,6 +72,7 @@ export default async function SymptomsPage() {
       records={dbRecords ?? symptomRecords.symptom_records}
       patientId={patientId}
       patientName={patientName}
+      sessionId={latestSessionId}
     />
   );
 }

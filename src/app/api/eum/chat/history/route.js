@@ -5,7 +5,10 @@ import { getSupabaseClient } from '../../_lib/supabase';
 // 페이지 재방문 시 이전 대화 히스토리 로드
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const sessionId = searchParams.get('sessionId') || 'ses_007';
+  const sessionId = searchParams.get('sessionId');
+  if (!sessionId) {
+    return NextResponse.json({ error: 'sessionId is required' }, { status: 400 });
+  }
 
   try {
     const supabase = getSupabaseClient();

@@ -5,7 +5,10 @@ import { invalidatePipelineCache } from '../_lib/pipeline';
 // GET /api/eum/symptoms?patientId=pat_yoon_001
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const patientId = searchParams.get('patientId') || 'pat_yoon_001';
+  const patientId = searchParams.get('patientId');
+  if (!patientId) {
+    return NextResponse.json({ error: 'patientId is required' }, { status: 400 });
+  }
 
   try {
     const supabase = getSupabaseClient();
