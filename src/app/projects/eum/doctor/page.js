@@ -90,6 +90,8 @@ async function fetchLiveData() {
     const chiefComplaint = sessionRes.error ? null : (sessionRes.data?.chief_complaint ?? null);
 
     console.log('[doctor/page] chief_complaint:', chiefComplaint ? '동적 데이터 사용' : '정적 JSON 폴백');
+    console.log('[doctor/page] symptoms:', symptoms.length > 0
+      ? `동적 데이터 ${symptoms.length}건` : '정적 JSON 폴백');
 
     // 최신 브리핑/서제스천 각 1개
     const dbBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
@@ -132,6 +134,7 @@ export default async function DoctorDashboard() {
 
   // 타임라인 데이터: Supabase에 데이터가 있을 때만 우선, 없으면 정적 JSON 폴백
   const hasLiveSymptoms = (liveData?.symptoms?.length ?? 0) > 0;
+  console.log('[doctor/page] timeline:', hasLiveSymptoms ? '동적' : '정적 폴백');
 
   const compactTimeline = hasLiveSymptoms
     ? {
