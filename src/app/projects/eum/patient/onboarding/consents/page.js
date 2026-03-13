@@ -71,9 +71,23 @@ export default function ConsentsPage() {
     // 데모 환자 생성 → 쿠키 + sessionStorage에 환자 ID 저장
     // 이미 생성된 환자가 있으면 재생성하지 않음 (뒤로가기/새로고침 대응)
     async function createPatient() {
-      const fromSession = sessionStorage.getItem('eum_patient_id');
+      // sessionStorage에 있으면 현재 온보딩 진행 중 → 스킵
+      if (sessionStorage.getItem('eum_patient_id')) return;
+
+      // 쿠키에 있으면 DB에 실제 존재하는지 확인
       const fromCookie = document.cookie.match(/eum_patient_id=([^;]+)/)?.[1];
-      if (fromSession || fromCookie) return;
+      if (fromCookie) {
+        try {
+          const checkRes = await fetch(`/api/eum/patients?patientId=${fromCookie}`);
+          if (checkRes.ok) {
+            // DB에 존재 → sessionStorage 복원 후 스킵
+            sessionStorage.setItem('eum_patient_id', fromCookie);
+            return;
+          }
+        } catch {
+          // 확인 실패 → 새로 생성
+        }
+      }
 
       try {
         const res = await fetch('/api/eum/patients', { method: 'POST' });
