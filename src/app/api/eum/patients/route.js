@@ -95,15 +95,13 @@ export async function PATCH(request) {
     }
 
     const supabase = getSupabaseClient();
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('patients')
       .update(safeUpdate)
-      .eq('id', patientId)
-      .select()
-      .single();
+      .eq('id', patientId);
 
     if (error) throw error;
-    return NextResponse.json({ patient: data });
+    return NextResponse.json({ success: true });
   } catch (err) {
     console.error('[PATCH /api/eum/patients]', err.message);
     return NextResponse.json({ error: err.message }, { status: 500 });
