@@ -69,17 +69,55 @@ export async function POST(request) {
         });
 
         let fullContent = '';
+        // 태그는 여러 토큰에 걸쳐 분할될 수 있으므로 '[' 이후 버퍼링
+        let pending = '';
 
         for await (const chunk of completion) {
           const token = chunk.choices[0]?.delta?.content;
           if (!token) continue;
 
-          // META/DONE 태그 이전까지만 사용자에게 스트리밍
-          const cleanToken = token.replace(/\[META:.*?\]|\[DONE:.*?\]/gs, '');
-          if (cleanToken) {
-            send({ type: 'token', content: cleanToken });
-          }
           fullContent += token;
+          pending += token;
+
+          // pending에서 안전한 부분(태그 아닌 부분)을 클라이언트에 전송
+          while (pending.length > 0) {
+            const bracketIdx = pending.indexOf('[');
+
+            if (bracketIdx === -1) {
+              // '[' 없음 — 전체 전송
+              send({ type: 'token', content: pending });
+              pending = '';
+              break;
+            }
+
+            if (bracketIdx > 0) {
+              // '[' 이전 부분은 안전하게 전송
+              send({ type: 'token', content: pending.slice(0, bracketIdx) });
+              pending = pending.slice(bracketIdx);
+            }
+
+            // pending이 '['로 시작하는 상태
+            const closingIdx = pending.indexOf(']');
+            if (closingIdx === -1) {
+              // 아직 태그 닫힘 없음 — 더 기다림
+              break;
+            }
+
+            const potentialTag = pending.slice(0, closingIdx + 1);
+            if (potentialTag.startsWith('[META:') || potentialTag.startsWith('[DONE:')) {
+              // 태그 확인 — 전송하지 않고 소비
+              pending = pending.slice(closingIdx + 1);
+            } else {
+              // 태그가 아닌 '[...]' — 그대로 전송
+              send({ type: 'token', content: potentialTag });
+              pending = pending.slice(closingIdx + 1);
+            }
+          }
+        }
+
+        // 남은 pending 처리 (태그가 아닌 경우만 전송)
+        if (pending && !pending.startsWith('[META:') && !pending.startsWith('[DONE:')) {
+          send({ type: 'token', content: pending });
         }
 
         // 스트리밍 완료 후 태그 파싱
