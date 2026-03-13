@@ -31,11 +31,21 @@ export default function MydataAuthPage() {
   const [loading, setLoading] = useState(false);
 
   function handleAuth() {
+    // 기본 정보 입력의 생년월일과 주민등록번호 앞자리 일치 검증
+    const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
+    if (existing.birth_date) {
+      // birth_date: "1992-05-14" → "920514"
+      const birthYYMMDD = existing.birth_date.replace(/-/g, '').slice(2);
+      if (birthYYMMDD !== residentFront) {
+        setResidentError('기본 정보에 입력한 생년월일과 일치하지 않습니다.');
+        return;
+      }
+    }
+
     setLoading(true);
     // 포트폴리오 목업: 1.5초 후 인증 성공 처리
     setTimeout(() => {
       setLoading(false);
-      const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
       const derivedGender = deriveGender(residentBack1);
       sessionStorage.setItem(
         'eum_onboarding',
