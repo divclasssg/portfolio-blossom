@@ -10,6 +10,23 @@ export const metadata = {
 // DB 데이터가 업데이트될 때마다 반영
 export const dynamic = 'force-dynamic';
 
+// Supabase에서 환자 이름 조회 (실패 시 null → 정적 폴백)
+async function fetchPatientName(patientId) {
+  try {
+    const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase
+      .from('patients')
+      .select('name')
+      .eq('id', patientId)
+      .single();
+    if (error) throw error;
+    return data?.name ?? null;
+  } catch {
+    return null;
+  }
+}
+
 // Supabase에서 증상 기록 조회 (실패 시 null → 정적 JSON 폴백)
 async function fetchSymptomRecords(patientId) {
   try {
@@ -30,13 +47,17 @@ async function fetchSymptomRecords(patientId) {
 export default async function SymptomsPage() {
   const patientId = await getPatientId();
   const vitals = homeDashboard.vitals_today;
-  const dbRecords = await fetchSymptomRecords(patientId);
+  const [dbRecords, patientName] = await Promise.all([
+    fetchSymptomRecords(patientId),
+    fetchPatientName(patientId),
+  ]);
 
   return (
     <SymptomsContent
       vitals={vitals}
       records={dbRecords ?? symptomRecords.symptom_records}
       patientId={patientId}
+      patientName={patientName}
     />
   );
 }

@@ -15,20 +15,22 @@ const TABS = [
   { key: 'records', label: '기록' },
 ];
 
-const INITIAL_MESSAGES = [
-  { type: 'bot', text: '안녕하세요 윤서진님!\n어떤 증상이 있으신가요?' },
-];
+// 초기 인사 메시지 생성 (환자 이름 동적 반영)
+function makeInitialMessages(name) {
+  const greeting = name ? `안녕하세요 ${name}님!` : '안녕하세요!';
+  return [{ type: 'bot', text: `${greeting}\n어떤 증상이 있으신가요?` }];
+}
 
-// AI에 보낼 히스토리 형식 (role/content 배열) — 모듈 레벨 순수 함수
+// AI에 보낼 히스토리 형식 (role/content 배열) — 첫 인사 메시지 제외
 function buildChatHistory(msgs) {
   return msgs
-    .filter((m) => m !== INITIAL_MESSAGES[0])
+    .slice(1)
     .map((m) => ({ role: m.type === 'bot' ? 'assistant' : 'user', content: m.text }));
 }
 
-export default function SymptomsContent({ vitals, records: initialRecords, patientId }) {
+export default function SymptomsContent({ vitals, records: initialRecords, patientId, patientName }) {
   const [activeTab, setActiveTab] = useState('chat');
-  const [messages, setMessages] = useState(INITIAL_MESSAGES);
+  const [messages, setMessages] = useState(() => makeInitialMessages(patientName));
   const [isStreaming, setIsStreaming] = useState(false);
   const [records, setRecords] = useState(initialRecords);
 
