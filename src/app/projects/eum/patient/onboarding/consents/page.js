@@ -74,15 +74,19 @@ export default function ConsentsPage() {
       // sessionStorage에 있으면 현재 온보딩 진행 중 → 스킵
       if (sessionStorage.getItem('eum_patient_id')) return;
 
-      // 쿠키에 있으면 DB에 실제 존재하는지 확인
+      // 쿠키에 있으면 DB에서 온보딩 상태 확인
       const fromCookie = document.cookie.match(/eum_patient_id=([^;]+)/)?.[1];
       if (fromCookie) {
         try {
           const checkRes = await fetch(`/api/eum/patients?patientId=${fromCookie}`);
           if (checkRes.ok) {
-            // DB에 존재 → sessionStorage 복원 후 스킵
-            sessionStorage.setItem('eum_patient_id', fromCookie);
-            return;
+            const { patient } = await checkRes.json();
+            if (!patient.onboarded_at) {
+              // 온보딩 미완료 → 진행 중인 환자 재사용
+              sessionStorage.setItem('eum_patient_id', fromCookie);
+              return;
+            }
+            // 온보딩 완료된 환자 → 새 환자 생성 (새 방문)
           }
         } catch {
           // 확인 실패 → 새로 생성
