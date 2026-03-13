@@ -122,18 +122,37 @@ export default function PersonalInfoPage() {
     setCooldown(30);
   }
 
-  // 인증 성공 시 저장 후 pin으로 자동 이동
-  function handleVerify() {
-    if (code === MOCK_CODE) {
-      const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
-      sessionStorage.setItem(
-        'eum_onboarding',
-        JSON.stringify({ ...existing, name: name.trim(), birth_date: birthDate, phone, gender }),
-      );
-      router.push('/projects/eum/patient/onboarding/pin');
-    } else {
+  const [verifying, setVerifying] = useState(false);
+
+  // 인증 성공 시 중복 체크 후 pin으로 이동
+  async function handleVerify() {
+    if (code !== MOCK_CODE) {
       setCodeError('인증번호가 올바르지 않습니다. 다시 확인해 주세요.');
+      return;
     }
+
+    // 휴대폰 번호 중복 가입 체크
+    setVerifying(true);
+    setCodeError('');
+    try {
+      const res = await fetch(`/api/eum/patients?phone=${encodeURIComponent(phone)}`);
+      const { exists } = await res.json();
+      if (exists) {
+        setCodeError('이미 가입된 휴대폰 번호입니다. 다른 번호를 사용해 주세요.');
+        setVerifying(false);
+        return;
+      }
+    } catch {
+      // 네트워크 오류 시 진행 허용 (POST에서 2차 검증)
+    }
+    setVerifying(false);
+
+    const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
+    sessionStorage.setItem(
+      'eum_onboarding',
+      JSON.stringify({ ...existing, name: name.trim(), birth_date: birthDate, phone, gender }),
+    );
+    router.push('/projects/eum/patient/onboarding/pin');
   }
 
   // 한국 휴대폰 번호: 11자리 + 010/011/016/017/018/019 접두사
@@ -312,10 +331,10 @@ export default function PersonalInfoPage() {
                 <button
                   type="button"
                   className={styles['btn-primary']}
-                  disabled={code.length !== 6}
+                  disabled={code.length !== 6 || verifying}
                   onClick={handleVerify}
                 >
-                  확인
+                  {verifying ? '확인 중...' : '확인'}
                 </button>
               )}
             </div>

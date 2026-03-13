@@ -2,15 +2,32 @@ import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
 
 // GET /api/eum/patients?patientId=pat_yoon_001
+// GET /api/eum/patients?phone=010-1234-5678 — 중복 가입 체크
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const patientId = searchParams.get('patientId');
-  if (!patientId) {
-    return NextResponse.json({ error: 'patientId is required' }, { status: 400 });
+  const phone = searchParams.get('phone');
+
+  if (!patientId && !phone) {
+    return NextResponse.json({ error: 'patientId 또는 phone이 필요합니다' }, { status: 400 });
   }
 
   try {
     const supabase = getSupabaseClient();
+
+    // 휴대폰 번호 중복 체크
+    if (phone) {
+      const { data, error } = await supabase
+        .from('patients')
+        .select('id')
+        .eq('phone', phone)
+        .limit(1);
+
+      if (error) throw error;
+      return NextResponse.json({ exists: data.length > 0 });
+    }
+
+    // 기존 patientId 조회
     const { data, error } = await supabase
       .from('patients')
       .select('*')
@@ -48,13 +65,29 @@ export async function POST(request) {
       'wearable_device',
     ];
 
+    const supabase = getSupabaseClient();
+
+    // 휴대폰 번호 중복 체크
+    if (body.phone) {
+      const { data: existing } = await supabase
+        .from('patients')
+        .select('id')
+        .eq('phone', body.phone)
+        .limit(1);
+
+      if (existing?.length > 0) {
+        return NextResponse.json(
+          { error: '이미 가입된 휴대폰 번호입니다' },
+          { status: 409 },
+        );
+      }
+    }
+
     const row = { id: `pat_demo_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}` };
     for (const key of ALLOWED_FIELDS) {
       if (key in body) row[key] = body[key];
     }
     row.onboarded_at = new Date().toISOString();
-
-    const supabase = getSupabaseClient();
     const { data, error } = await supabase
       .from('patients')
       .insert(row)
