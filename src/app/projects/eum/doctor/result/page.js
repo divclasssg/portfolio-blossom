@@ -26,7 +26,7 @@ async function fetchPatient(patientId) {
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
       .from('patients')
-      .select('name, birth_date, gender')
+      .select('name, birth_date, gender, allergies')
       .eq('id', patientId)
       .single();
     if (error) throw error;
@@ -65,6 +65,11 @@ export default async function ResultPage() {
     ? { name: patient.name, age: calcAge(patient.birth_date), gender: patient.gender, patient_id: patientId }
     : dashboardState.patient_summary;
 
+  // 알레르기: DB [{allergen, reaction}] — 비어있으면 정적 JSON 폴백
+  const allergies = patient?.allergies?.length > 0
+    ? patient.allergies
+    : sections.allergies.items;
+
   return (
     <DoctorPanel
       backHref="/projects/eum/doctor"
@@ -79,7 +84,7 @@ export default async function ResultPage() {
       <PatientProfile
         patientSummary={patientSummary}
         referralBadge={dashboardState.header.referral_badge}
-        allergies={sections.allergies.items}
+        allergies={allergies}
       />
 
       {/* 섹션 2: 의사 소견 */}
