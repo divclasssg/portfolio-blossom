@@ -36,13 +36,15 @@ export default function MydataAuthPage() {
     setTimeout(() => {
       setLoading(false);
       const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
+      const derivedGender = deriveGender(residentBack1);
       sessionStorage.setItem(
         'eum_onboarding',
         JSON.stringify({
           ...existing,
           resident_front: residentFront,
           gender_code: residentBack1,
-          gender: deriveGender(residentBack1),
+          // personal-info에서 설정한 gender 유지, 없을 때만 주민번호에서 추론
+          gender: existing.gender || derivedGender,
         }),
       );
       router.push('/projects/eum/patient/onboarding/wearable');

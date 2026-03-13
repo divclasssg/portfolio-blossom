@@ -59,6 +59,7 @@ export default function ConsentsPage() {
   const router = useRouter();
   const [checked, setChecked] = useState(INITIAL_STATE);
   const [expanded, setExpanded] = useState({});
+  const [createError, setCreateError] = useState(false);
 
   function toggleExpanded(id) {
     setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -66,43 +67,28 @@ export default function ConsentsPage() {
 
   const allRequiredChecked = REQUIRED_ITEMS.every((item) => checked[item.id]);
   const allChecked = ALL_ITEMS.every((item) => checked[item.id]);
+  const hasPatientId = typeof window !== 'undefined' && !!sessionStorage.getItem('eum_patient_id');
+
+  async function createPatient() {
+    // sessionStorage에 있으면 현재 탭에서 온보딩 진행 중 → 스킵
+    if (sessionStorage.getItem('eum_patient_id')) return;
+
+    // 없으면 무조건 새 환자 생성 (쿠키 기반 DB 조회 제거 — 복잡성만 높이고 엣지 케이스 유발)
+    setCreateError(false);
+    try {
+      const res = await fetch('/api/eum/patients', { method: 'POST' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const { patientId } = await res.json();
+      document.cookie = `eum_patient_id=${patientId}; max-age=86400; path=/projects/eum; SameSite=Lax`;
+      sessionStorage.setItem('eum_patient_id', patientId);
+      setCreateError(false);
+    } catch (e) {
+      console.error('[consents] 환자 생성 실패:', e.message);
+      setCreateError(true);
+    }
+  }
 
   useEffect(() => {
-    // 데모 환자 생성 → 쿠키 + sessionStorage에 환자 ID 저장
-    // 이미 생성된 환자가 있으면 재생성하지 않음 (뒤로가기/새로고침 대응)
-    async function createPatient() {
-      // sessionStorage에 있으면 현재 온보딩 진행 중 → 스킵
-      if (sessionStorage.getItem('eum_patient_id')) return;
-
-      // 쿠키에 있으면 DB에서 온보딩 상태 확인
-      const fromCookie = document.cookie.match(/eum_patient_id=([^;]+)/)?.[1];
-      if (fromCookie) {
-        try {
-          const checkRes = await fetch(`/api/eum/patients?patientId=${fromCookie}`);
-          if (checkRes.ok) {
-            const { patient } = await checkRes.json();
-            if (!patient.onboarded_at) {
-              // 온보딩 미완료 → 진행 중인 환자 재사용
-              sessionStorage.setItem('eum_patient_id', fromCookie);
-              return;
-            }
-            // 온보딩 완료된 환자 → 새 환자 생성 (새 방문)
-          }
-        } catch {
-          // 확인 실패 → 새로 생성
-        }
-      }
-
-      try {
-        const res = await fetch('/api/eum/patients', { method: 'POST' });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const { patientId } = await res.json();
-        document.cookie = `eum_patient_id=${patientId}; max-age=86400; path=/projects/eum; SameSite=Lax`;
-        sessionStorage.setItem('eum_patient_id', patientId);
-      } catch (e) {
-        console.error('[consents] 환자 생성 실패:', e.message);
-      }
-    }
     createPatient();
   }, []);
 
@@ -228,10 +214,22 @@ export default function ConsentsPage() {
         </section>
 
         <div className={styles['footer']}>
+          {createError && (
+            <div className={styles['error-banner']} role="alert">
+              <p className={styles['error-msg']}>환자 생성에 실패했습니다.</p>
+              <button
+                type="button"
+                className={styles['btn-retry']}
+                onClick={createPatient}
+              >
+                다시 시도
+              </button>
+            </div>
+          )}
           <button
             type="button"
             className={styles['btn-primary']}
-            disabled={!allRequiredChecked}
+            disabled={!allRequiredChecked || !sessionStorage.getItem('eum_patient_id')}
             onClick={() => {
               const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
               sessionStorage.setItem(

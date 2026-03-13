@@ -46,8 +46,15 @@ export default function CompletePage() {
   async function saveOnboarding() {
     const raw = sessionStorage.getItem('eum_onboarding');
     const patientId = sessionStorage.getItem('eum_patient_id') || getPatientIdFromCookie();
-    // 직접 접근이나 이미 저장 완료된 경우
-    if (!raw || !patientId) { setSaveStatus('done'); return; }
+
+    // patientId 없으면 정상 온보딩 흐름이 아님 → 에러 표시
+    if (!patientId) {
+      setErrorMsg('환자 정보를 찾을 수 없습니다. 처음부터 다시 시도해 주세요.');
+      setSaveStatus('error');
+      return;
+    }
+    // 이미 저장 완료된 경우 (재방문 — eum_onboarding 없음)
+    if (!raw) { setSaveStatus('done'); return; }
 
     setSaveStatus('saving');
     try {
