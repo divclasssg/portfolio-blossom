@@ -34,6 +34,32 @@ function calcAge(birthDate) {
   return age;
 }
 
+// 증상 기록 배열 → Chief Complaint 데이터 생성
+function symptomsToChiefComplaint(symptoms) {
+  if (!symptoms || symptoms.length === 0) return null;
+
+  // 최신 증상 설명을 patient_text로 사용
+  const latest = symptoms[0];
+  const patientText = latest.description || latest.voice_transcript || '';
+
+  // 날짜 범위: 가장 오래된 ~ 가장 최신
+  const dates = symptoms.map((s) => new Date(s.occurred_at)).sort((a, b) => a - b);
+  const fmt = (d) =>
+    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const period =
+    dates.length > 1
+      ? `${fmt(dates[0])} ~ ${fmt(dates[dates.length - 1])}`
+      : fmt(dates[0]);
+
+  return {
+    visible: true,
+    level: 'L1',
+    patient_text: patientText,
+    symptom_count: symptoms.length,
+    symptom_period: period,
+  };
+}
+
 // 증상 기록 → 타임라인 아이템 변환
 function symptomToTimelineItem(record) {
   const date = new Date(record.occurred_at);
@@ -158,6 +184,11 @@ export default async function DoctorDashboard() {
     ? patient.allergies
     : sections.allergies.items;
 
+  // chief complaint: Supabase 증상 기록 우선, 폴백 → 정적 JSON
+  const chiefComplaint = (liveData?.symptoms?.length > 0)
+    ? symptomsToChiefComplaint(liveData.symptoms)
+    : sections.chief_complaint;
+
   return (
     <PatientDataModalProvider>
       {/* 이음 플로팅 패널 — DoctorPanel이 position:fixed 및 인터랙션 담당 */}
@@ -180,7 +211,7 @@ export default async function DoctorDashboard() {
         />
 
         {/* 섹션 4: 주호소 */}
-        <ChiefComplaint complaint={sections.chief_complaint} />
+        <ChiefComplaint complaint={chiefComplaint} />
 
         {/*
           섹션 5-6-8: AI 데이터 섹션
