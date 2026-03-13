@@ -26,7 +26,7 @@ async function fetchPatient(patientId) {
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
       .from('patients')
-      .select('name, birth_date, gender, allergies')
+      .select('name, birth_date, gender, chronic_conditions, allergies')
       .eq('id', patientId)
       .single();
     if (error) throw error;
@@ -65,6 +65,14 @@ export default async function ResultPage() {
     ? { name: patient.name, age: calcAge(patient.birth_date), gender: patient.gender, patient_id: patientId }
     : dashboardState.patient_summary;
 
+  // 기저질환: DB [{name}] → 문자열 배열로 변환, 비어있으면 정적 JSON 폴백
+  const conditionNames = (patient?.chronic_conditions ?? []).map(
+    (c) => (typeof c === 'string' ? c : c.name),
+  );
+  const chronicConditions = conditionNames.length > 0
+    ? conditionNames
+    : sections.basic_info.data.chronic_conditions;
+
   // 알레르기: DB [{allergen, reaction}] — 비어있으면 정적 JSON 폴백
   const allergies = patient?.allergies?.length > 0
     ? patient.allergies
@@ -80,10 +88,11 @@ export default async function ResultPage() {
         />
       }
     >
-      {/* 섹션 1: 환자 프로필 + 알레르기 */}
+      {/* 섹션 1: 환자 프로필 + 기저질환 + 알레르기 */}
       <PatientProfile
         patientSummary={patientSummary}
         referralBadge={dashboardState.header.referral_badge}
+        chronicConditions={chronicConditions}
         allergies={allergies}
       />
 

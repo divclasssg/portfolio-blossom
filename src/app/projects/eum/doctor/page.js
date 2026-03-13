@@ -90,6 +90,8 @@ async function fetchLiveData(patientId) {
     const patient = patientRes.error ? null : patientRes.data;
     const chiefComplaint = sessionRes.error ? null : (sessionRes.data?.chief_complaint ?? null);
 
+    console.log('[doctor/page] patientId:', patientId);
+    console.log('[doctor/page] patient:', patient ? JSON.stringify({ name: patient.name, chronic_conditions: patient.chronic_conditions, allergies: patient.allergies }) : 'null (정적 폴백)');
     console.log('[doctor/page] chief_complaint:', chiefComplaint ? '동적 데이터 사용' : '정적 JSON 폴백');
     console.log('[doctor/page] symptoms:', symptoms.length > 0
       ? `동적 데이터 ${symptoms.length}건` : '정적 JSON 폴백');
@@ -190,10 +192,11 @@ export default async function DoctorDashboard() {
         doctorName={doctor.name}
         hospitalName={doctor.hospital.hospital_name}
       >
-        {/* 섹션 2: 환자 프로필 + 알레르기 */}
+        {/* 섹션 2: 환자 프로필 + 기저질환 + 알레르기 */}
         <PatientProfile
           patientSummary={patientSummary}
           referralBadge={dashboardState.header.referral_badge}
+          chronicConditions={basicInfo.chronic_conditions}
           allergies={allergies}
         />
 

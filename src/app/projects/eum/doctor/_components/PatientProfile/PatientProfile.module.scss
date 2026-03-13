@@ -66,6 +66,26 @@
   margin-left: auto;
 }
 
+// 기저질환 배지 — 정보성 표시
+.condition-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.condition-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background: t.$neutral-bg;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: t.$text-secondary;
+}
+
 // 알레르기 경고 — 닫기 기능 없음 (결정사항 문서 §4)
 // 시각적 강조 유지 (저채도 배경 + 아이콘 + 텍스트)
 .allergy-icon {
