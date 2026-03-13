@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import dashboardState from '../_references/data/doctor/03_dashboard_state.json';
 import transmissionPkg from '../_references/data/doctor/02_transmission_package.json';
 import doctorProfiles from '../_references/data/doctor/01_doctor_profile.json';
@@ -132,8 +133,9 @@ export default async function DoctorDashboard() {
 
   const { sections } = dashboardState;
 
-  // Supabase 최신 데이터 (실패 시 null → 정적 JSON 폴백)
+  // 쿠키 없으면 온보딩으로 리디렉트
   const patientId = await getPatientId();
+  if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
   const liveData = await fetchLiveData(patientId);
 
   // 타임라인 데이터: Supabase에 데이터가 있을 때만 우선, 없으면 정적 JSON 폴백
@@ -152,12 +154,12 @@ export default async function DoctorDashboard() {
     ? { items: liveData.expandedItems }
     : sections.symptom_timeline_expanded;
 
-  // 환자 프로필: Supabase 우선, 폴백 → 정적 JSON
+  // 환자 프로필: Supabase 우선, 폴백 → 빈 프로필 (윤서진 노출 방지)
   const patient = liveData?.patient ?? null;
 
   const patientSummary = patient
     ? { name: patient.name, age: calcAge(patient.birth_date), gender: patient.gender, patient_id: patientId }
-    : dashboardState.patient_summary;
+    : { name: '정보 없음', age: null, gender: null, patient_id: patientId };
 
   // chronic_conditions: DB는 [{name: "..."}] 또는 ["..."] 형태 모두 허용
   const conditionNames = (patient?.chronic_conditions ?? []).map(
@@ -168,18 +170,14 @@ export default async function DoctorDashboard() {
   const basicInfo = patient
     ? {
         ...sections.basic_info.data,
-        chronic_conditions: conditionNames.length > 0
-          ? conditionNames
-          : sections.basic_info.data.chronic_conditions,
+        chronic_conditions: conditionNames,
         height: `${patient.height_cm}cm`,
         weight: `${patient.weight_kg}kg`,
       }
-    : sections.basic_info.data;
+    : { ...sections.basic_info.data, chronic_conditions: [] };
 
-  // allergies: DB [{allergen, reaction}] — 비어있으면 정적 JSON 폴백
-  const allergies = patient?.allergies?.length > 0
-    ? patient.allergies
-    : sections.allergies.items;
+  // allergies: DB 데이터만 사용 (빈 배열이면 알레르기 경고 미표시)
+  const allergies = patient?.allergies ?? [];
 
   // chief complaint: sessions.chief_complaint 우선, 폴백 → 정적 JSON
   const chiefComplaint = liveData?.chiefComplaint ?? sections.chief_complaint;

@@ -10,8 +10,12 @@ export default function PatientProfile({ patientSummary, referralBadge, allergie
 
         <div className={styles['identity-row']}>
           <span className={styles['patient-name']}>{patientSummary.name}</span>
-          <span className={styles['gender-badge']}>{genderLabel}</span>
-          <span className={styles.age}>만 {patientSummary.age}세</span>
+          {patientSummary.age != null && (
+            <>
+              <span className={styles['gender-badge']}>{genderLabel}</span>
+              <span className={styles.age}>만 {patientSummary.age}세</span>
+            </>
+          )}
         </div>
 
         {/* 기저질환 배지 */}

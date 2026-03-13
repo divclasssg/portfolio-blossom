@@ -13,7 +13,7 @@ export default function PatientOverview({ basicInfo, medications }) {
   const w = parseFloat(weight);
   const bmi = (w / (h / 100) ** 2).toFixed(1);
 
-  const conditions = chronic_conditions.join(' · ');
+  const conditions = chronic_conditions.length > 0 ? chronic_conditions.join(' · ') : '정보 없음';
 
   return (
     <section className={styles.section}>

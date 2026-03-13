@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import homeDashboard from '../../_references/data/patient/08_home_dashboard.json';
 import symptomRecords from '../../_references/data/patient/03_symptom_records.json';
 import { getPatientId } from '../../_lib/getPatientId';
@@ -46,6 +47,7 @@ async function fetchSymptomRecords(patientId) {
 
 export default async function SymptomsPage() {
   const patientId = await getPatientId();
+  if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
   const vitals = homeDashboard.vitals_today;
   const [dbRecords, patientName] = await Promise.all([
     fetchSymptomRecords(patientId),

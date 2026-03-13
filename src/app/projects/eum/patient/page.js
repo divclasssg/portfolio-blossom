@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import homeDashboard from '../_references/data/patient/08_home_dashboard.json';
 import consentNotifications from '../_references/data/patient/09_consent_notifications.json';
 import { getPatientId } from '../_lib/getPatientId';
@@ -96,16 +97,17 @@ async function fetchPatientName(patientId) {
 
 export default async function PatientHome() {
   const patientId = await getPatientId();
+  if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
   const unreadCount = consentNotifications.notifications.filter((n) => !n.read).length;
 
   const [name, dynamicSummary] = await Promise.all([
     fetchPatientName(patientId),
     fetchRecentSymptomsSummary(patientId),
   ]);
-  // DB에서 이름을 읽으면 동적 인사말, 실패 시 정적 JSON 폴백
+  // DB에서 이름을 읽으면 동적 인사말, 실패 시 이름 없이 인사
   const greeting = name
     ? `${name}님, 오늘도 건강한 하루 보내세요.`
-    : homeDashboard.greeting;
+    : '오늘도 건강한 하루 보내세요.';
 
   return (
     <>

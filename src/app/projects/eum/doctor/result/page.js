@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import resultPackage from '../../_references/data/doctor/07_result_package.json';
 import aiWarnings from '../../_references/data/doctor/08_ai_warnings.json';
 import dashboardState from '../../_references/data/doctor/03_dashboard_state.json';
@@ -51,6 +52,7 @@ export const dynamic = 'force-dynamic';
 export default async function ResultPage() {
   const { sections } = dashboardState;
   const patientId = await getPatientId();
+  if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
   const patient = await fetchPatient(patientId);
 
   // F16 경고: baseWarnings + 쉬운말 변환 모델 버전
@@ -61,22 +63,18 @@ export default async function ResultPage() {
     { ...modelWarning, text: modelWarning.current_values.F16_plain_language },
   ];
 
+  // 환자 프로필: DB 우선, 폴백 → 빈 프로필 (윤서진 노출 방지)
   const patientSummary = patient
     ? { name: patient.name, age: calcAge(patient.birth_date), gender: patient.gender, patient_id: patientId }
-    : dashboardState.patient_summary;
+    : { name: '정보 없음', age: null, gender: null, patient_id: patientId };
 
-  // 기저질환: DB [{name}] → 문자열 배열로 변환, 비어있으면 정적 JSON 폴백
-  const conditionNames = (patient?.chronic_conditions ?? []).map(
+  // 기저질환: DB 데이터만 사용 (빈 배열이면 미표시)
+  const chronicConditions = (patient?.chronic_conditions ?? []).map(
     (c) => (typeof c === 'string' ? c : c.name),
   );
-  const chronicConditions = conditionNames.length > 0
-    ? conditionNames
-    : sections.basic_info.data.chronic_conditions;
 
-  // 알레르기: DB [{allergen, reaction}] — 비어있으면 정적 JSON 폴백
-  const allergies = patient?.allergies?.length > 0
-    ? patient.allergies
-    : sections.allergies.items;
+  // 알레르기: DB 데이터만 사용 (빈 배열이면 알레르기 경고 미표시)
+  const allergies = patient?.allergies ?? [];
 
   return (
     <DoctorPanel
