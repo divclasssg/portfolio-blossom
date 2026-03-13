@@ -94,10 +94,13 @@ export async function PATCH(request) {
       return NextResponse.json({ error: '업데이트할 필드가 없습니다' }, { status: 400 });
     }
 
-    // supabase.rpc() 사용: PostgREST 스키마 캐시를 우회해 신규 컬럼도 안정적으로 업데이트
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
-      .rpc('patch_patient_onboarding', { p_id: patientId, p_data: safeUpdate });
+      .from('patients')
+      .update(safeUpdate)
+      .eq('id', patientId)
+      .select()
+      .single();
 
     if (error) throw error;
     return NextResponse.json({ patient: data });
