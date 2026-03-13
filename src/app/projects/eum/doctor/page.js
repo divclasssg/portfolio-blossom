@@ -80,12 +80,16 @@ async function fetchLiveData() {
         .single(),
     ]);
 
-    if (symptomsRes.error) throw symptomsRes.error;
+    if (symptomsRes.error) console.warn('[doctor/page] symptom_records 조회 실패:', symptomsRes.error.message);
+    if (sessionRes.error) console.warn('[doctor/page] sessions 조회 실패:', sessionRes.error.message);
+    if (patientRes.error) console.warn('[doctor/page] patients 조회 실패:', patientRes.error.message);
 
-    const symptoms = symptomsRes.data ?? [];
+    const symptoms = symptomsRes.error ? [] : (symptomsRes.data ?? []);
     const aiData = aiRes.data ?? [];
-    const patient = patientRes.data;
-    const chiefComplaint = sessionRes.data?.chief_complaint ?? null;
+    const patient = patientRes.error ? null : patientRes.data;
+    const chiefComplaint = sessionRes.error ? null : (sessionRes.data?.chief_complaint ?? null);
+
+    console.log('[doctor/page] chief_complaint:', chiefComplaint ? '동적 데이터 사용' : '정적 JSON 폴백');
 
     // 최신 브리핑/서제스천 각 1개
     const dbBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
