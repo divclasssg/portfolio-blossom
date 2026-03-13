@@ -14,6 +14,30 @@ import { getSupabaseClient } from '../_lib/supabase';
 
 export const maxDuration = 60;
 
+// 중괄호 깊이 카운팅으로 중첩 JSON 안전 추출
+function extractJsonTag(content, tagName) {
+  const prefix = `[${tagName}:`;
+  const startIdx = content.indexOf(prefix);
+  if (startIdx === -1) return null;
+
+  let depth = 0;
+  const jsonStart = startIdx + prefix.length;
+  for (let i = jsonStart; i < content.length; i++) {
+    if (content[i] === '{') depth++;
+    else if (content[i] === '}') depth--;
+    if (depth === 0) {
+      try {
+        return JSON.parse(content.slice(jsonStart, i + 1));
+      } catch {
+        console.warn(`[chat/route] ${tagName} 태그 JSON 파싱 실패:`, content.slice(jsonStart, i + 1));
+        return null;
+      }
+    }
+  }
+  console.warn(`[chat/route] ${tagName} 태그 닫힘 없음:`, content.slice(startIdx, startIdx + 100));
+  return null;
+}
+
 const SYSTEM_PROMPT = `당신은 이음(Eum) 의료 앱의 증상 수집 어시스턴트입니다.
 환자가 현재 느끼는 증상을 자연스러운 대화로 수집합니다.
 
@@ -120,9 +144,9 @@ export async function POST(request) {
           send({ type: 'token', content: pending });
         }
 
-        // 스트리밍 완료 후 태그 파싱
-        const metaMatch = fullContent.match(/\[META:(\{.*?\})\]/s);
-        const doneMatch = fullContent.match(/\[DONE:(\{.*?\})\]/s);
+        // 스트리밍 완료 후 태그 파싱 (중첩 JSON 안전 파서 사용)
+        const metaParsed = extractJsonTag(fullContent, 'META');
+        const doneParsed = extractJsonTag(fullContent, 'DONE');
 
         const assistantText = fullContent
           .replace(/\[META:.*?\]/gs, '')
@@ -130,21 +154,18 @@ export async function POST(request) {
           .trim();
 
         // meta 신호 전송 (심각도 칩 표시)
-        if (metaMatch) {
-          try {
-            const meta = JSON.parse(metaMatch[1]);
-            send({ type: 'meta', ...meta });
-          } catch {}
+        if (metaParsed) {
+          send({ type: 'meta', ...metaParsed });
         }
 
         // done 신호 전송
         let donePayload = { type: 'done', completed: false };
-        if (doneMatch) {
-          try {
-            const done = JSON.parse(doneMatch[1]);
-            donePayload = { type: 'done', ...done };
-          } catch {}
+        if (doneParsed) {
+          donePayload = { type: 'done', ...doneParsed };
+        } else {
+          console.warn('[chat/route] DONE 태그 미발견. fullContent 끝:', fullContent.slice(-200));
         }
+        console.log('[chat/route] donePayload:', JSON.stringify(donePayload));
         send(donePayload);
 
         // 메시지 DB 저장 (비동기, 스트림 응답 차단 안 함)

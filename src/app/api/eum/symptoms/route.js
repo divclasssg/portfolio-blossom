@@ -66,7 +66,24 @@ export async function POST(request) {
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('[POST /api/eum/symptoms] DB 에러:', error.code, error.message, error.details);
+      // FK 위반 구체적 메시지
+      if (error.code === '23503') {
+        return NextResponse.json(
+          { error: '환자 또는 세션이 존재하지 않습니다', detail: error.details },
+          { status: 400 }
+        );
+      }
+      // 중복 키 위반
+      if (error.code === '23505') {
+        return NextResponse.json(
+          { error: '중복된 증상 ID', detail: error.details },
+          { status: 409 }
+        );
+      }
+      throw error;
+    }
 
     // 해당 세션의 ai_results 무효화 (재분석 유도)
     if (sessionId) {

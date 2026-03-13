@@ -49,6 +49,9 @@ export default function SymptomsContent({ vitals, records: initialRecords }) {
         }),
       });
 
+      const resText = await res.text();
+      console.log('[SymptomsContent] POST /api/eum/symptoms:', res.status, resText);
+
       if (res.ok) {
         const updatedRes = await fetch('/api/eum/symptoms?patientId=pat_yoon_001');
         if (updatedRes.ok) {
@@ -59,9 +62,19 @@ export default function SymptomsContent({ vitals, records: initialRecords }) {
           ...prev,
           { type: 'bot', text: '증상이 기록됐어요.\n기록 탭에서 확인할 수 있습니다.' },
         ]);
+      } else {
+        console.error('[SymptomsContent] 증상 저장 실패:', res.status, resText);
+        setMessages((prev) => [
+          ...prev,
+          { type: 'bot', text: '증상 저장에 실패했습니다. 다시 시도해 주세요.' },
+        ]);
       }
     } catch (err) {
-      console.warn('[SymptomsContent] 증상 저장 실패:', err.message);
+      console.error('[SymptomsContent] 증상 저장 오류:', err.message);
+      setMessages((prev) => [
+        ...prev,
+        { type: 'bot', text: '증상 저장에 실패했습니다. 다시 시도해 주세요.' },
+      ]);
     }
   }
 
@@ -133,6 +146,7 @@ export default function SymptomsContent({ vitals, records: initialRecords }) {
         return next;
       });
 
+      console.log('[SymptomsContent] streaming done:', { completed, symptomRecord: !!symptomRecord });
       if (completed && symptomRecord) {
         await saveSymptomRecord(symptomRecord);
       }
