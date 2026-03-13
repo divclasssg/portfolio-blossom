@@ -2,7 +2,9 @@ import { WarningIcon } from '../../../_components/icons';
 import styles from './PatientProfile.module.scss';
 
 export default function PatientProfile({ patientSummary, referralBadge, allergies, chronicConditions }) {
-  const genderLabel = patientSummary.gender === 'F' ? '여' : '남';
+  const genderLabel = patientSummary.gender === 'F' ? '여'
+    : patientSummary.gender === 'M' ? '남'
+    : null;
 
   return (
     <section className={styles.section}>
@@ -12,7 +14,7 @@ export default function PatientProfile({ patientSummary, referralBadge, allergie
           <span className={styles['patient-name']}>{patientSummary.name}</span>
           {patientSummary.age != null && (
             <>
-              <span className={styles['gender-badge']}>{genderLabel}</span>
+              {genderLabel && <span className={styles['gender-badge']}>{genderLabel}</span>}
               <span className={styles.age}>만 {patientSummary.age}세</span>
             </>
           )}

@@ -30,6 +30,7 @@ export default function PersonalInfoPage() {
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [birthError, setBirthError] = useState('');
+  const [gender, setGender] = useState(null); // 'M' | 'F' | null
   const [phone, setPhone] = useState('');
   const [codeSent, setCodeSent] = useState(false);
   const [code, setCode] = useState('');
@@ -72,17 +73,26 @@ export default function PersonalInfoPage() {
         setBirthError('유효하지 않은 날짜입니다. YYYY-MM-DD 형식으로 입력해 주세요.');
         return;
       }
-      setPhase(2);
+      // 성별도 선택되어야 phase 2 진입
+      if (gender) setPhase(2);
     }
   }
 
-  // 생년월일 Enter → phase 2 진입
+  // 생년월일 Enter → phase 2 진입 (성별 선택 필요)
   function handleBirthDateKeyDown(e) {
     if (e.key === 'Enter' && birthDate.length === 10 && phase === 1) {
       if (!isValidDate(birthDate)) {
         setBirthError('유효하지 않은 날짜입니다. YYYY-MM-DD 형식으로 입력해 주세요.');
         return;
       }
+      if (gender) setPhase(2);
+    }
+  }
+
+  function handleGenderSelect(value) {
+    setGender(value);
+    // 생년월일이 이미 유효하면 phase 2 진입
+    if (birthDate.length === 10 && isValidDate(birthDate) && phase === 1) {
       setPhase(2);
     }
   }
@@ -118,7 +128,7 @@ export default function PersonalInfoPage() {
       const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
       sessionStorage.setItem(
         'eum_onboarding',
-        JSON.stringify({ ...existing, name: name.trim(), birth_date: birthDate, phone }),
+        JSON.stringify({ ...existing, name: name.trim(), birth_date: birthDate, phone, gender }),
       );
       router.push('/projects/eum/patient/onboarding/pin');
     } else {
@@ -190,6 +200,27 @@ export default function PersonalInfoPage() {
               {birthError && (
                 <span id="birth-error" className={styles['error']} role="alert">{birthError}</span>
               )}
+            </div>
+          )}
+
+          {/* 성별 — phase 1에서 생년월일과 함께 표시 */}
+          {phase >= 1 && (
+            <div className={[styles['field-group'], styles['field-animated']].join(' ')}>
+              <span className={styles['label']} id="gender-label">성별</span>
+              <div className={styles['gender-row']} role="radiogroup" aria-labelledby="gender-label">
+                <button
+                  type="button"
+                  className={[styles['gender-btn'], gender === 'M' ? styles['gender-btn-active'] : ''].filter(Boolean).join(' ')}
+                  onClick={() => handleGenderSelect('M')}
+                  aria-pressed={gender === 'M'}
+                >남</button>
+                <button
+                  type="button"
+                  className={[styles['gender-btn'], gender === 'F' ? styles['gender-btn-active'] : ''].filter(Boolean).join(' ')}
+                  onClick={() => handleGenderSelect('F')}
+                  aria-pressed={gender === 'F'}
+                >여</button>
+              </div>
             </div>
           )}
 

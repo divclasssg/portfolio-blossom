@@ -17,8 +17,8 @@ function validateResident(digits) {
 // 1,3,5,7 → 남성 / 2,4,6,8 → 여성 / 0,9 → 판별 불가
 function deriveGender(digit) {
   const n = parseInt(digit);
-  if ([1, 3, 5, 7].includes(n)) return 'male';
-  if ([2, 4, 6, 8].includes(n)) return 'female';
+  if ([1, 3, 5, 7].includes(n)) return 'M';
+  if ([2, 4, 6, 8].includes(n)) return 'F';
   return null;
 }
 

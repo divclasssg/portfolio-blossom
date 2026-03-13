@@ -38,7 +38,7 @@ export async function POST() {
     const demoId = `pat_demo_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}`;
     const { data, error } = await supabase
       .from('patients')
-      .insert({ id: demoId, name: '데모 사용자', birth_date: '1992-05-14', gender: 'F' })
+      .insert({ id: demoId, name: '데모 사용자', birth_date: '1992-05-14' })
       .select('id')
       .single();
 
@@ -65,7 +65,7 @@ export async function PATCH(request) {
       'name', 'birth_date', 'height_cm', 'weight_kg',
       'chronic_conditions', 'allergies',
       // 신규 필드
-      'blood_type', 'phone',
+      'gender', 'blood_type', 'phone',
       'consent_privacy', 'consent_terms', 'consent_sensitive', 'consent_location',
       'consent_marketing', 'consent_research', 'consent_improvement',
       'consent_mydata', 'consent_overseas',

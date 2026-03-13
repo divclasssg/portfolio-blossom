@@ -87,6 +87,37 @@
   }
 }
 
+.gender-row {
+  display: flex;
+  gap: 8px;
+}
+
+.gender-btn {
+  flex: 1;
+  height: 48px;
+  border: 1.5px solid $card-border;
+  border-radius: $card-radius;
+  background: $card-bg;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  color: $text-primary;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.gender-btn-active {
+  border-color: $color-primary;
+  background: rgba($color-primary, 0.08);
+  color: $color-primary;
+  font-weight: 600;
+}
+
 .input-row {
   display: flex;
   gap: 8px;
