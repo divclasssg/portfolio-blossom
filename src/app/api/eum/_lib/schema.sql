@@ -4,9 +4,9 @@
 -- 환자 프로필
 CREATE TABLE IF NOT EXISTS patients (
   id                  TEXT PRIMARY KEY,           -- pat_yoon_001
-  name                TEXT NOT NULL,
-  birth_date          DATE NOT NULL,
-  gender              TEXT NOT NULL,
+  name                TEXT,                       -- 온보딩 PATCH에서 설정
+  birth_date          DATE,                       -- 온보딩 PATCH에서 설정
+  gender              TEXT,                       -- 온보딩 PATCH에서 설정
   height_cm           NUMERIC,
   weight_kg           NUMERIC,
   chronic_conditions  JSONB DEFAULT '[]',         -- [{name, icd_code, diagnosed_at, status}]
@@ -81,6 +81,12 @@ CREATE INDEX IF NOT EXISTS idx_symptom_records_patient ON symptom_records(patien
 CREATE INDEX IF NOT EXISTS idx_symptom_records_session ON symptom_records(session_id);
 CREATE INDEX IF NOT EXISTS idx_chat_messages_session ON chat_messages(session_id);
 CREATE INDEX IF NOT EXISTS idx_ai_results_session ON ai_results(session_id, result_type);
+
+-- ── NOT NULL 제거 마이그레이션 (1회 실행) ─────────────────────
+-- 온보딩 POST 시 ID만 생성, PATCH에서 나머지 필드 채움
+-- ALTER TABLE patients ALTER COLUMN name DROP NOT NULL;
+-- ALTER TABLE patients ALTER COLUMN birth_date DROP NOT NULL;
+-- ALTER TABLE patients ALTER COLUMN gender DROP NOT NULL;
 
 -- ── 기존 테이블 마이그레이션 (1회 실행) ────────────────────────
 -- Supabase SQL Editor에서 아래를 실행하여 기존 FK에 ON DELETE CASCADE 추가

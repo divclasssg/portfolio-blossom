@@ -47,11 +47,11 @@ export async function POST() {
       .is('onboarded_at', null)
       .lt('created_at', new Date(Date.now() - 60 * 60 * 1000).toISOString());
 
-    // 새 demo 환자 생성 (온보딩에서 PATCH로 덮어씌울 기본값)
+    // 새 demo 환자 생성 (온보딩 PATCH에서 실제 값으로 채워짐)
     const demoId = `pat_demo_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}`;
     const { data, error } = await supabase
       .from('patients')
-      .insert({ id: demoId, name: '데모 사용자', birth_date: '1992-05-14', gender: '-' })
+      .insert({ id: demoId })
       .select('id')
       .single();
 
