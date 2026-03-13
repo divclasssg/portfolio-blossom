@@ -41,9 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 # project-specific
-data/
-docs/
-specs/
+/data/
+/docs/
+/specs/
 .mcp.json
 PLAN.md
 

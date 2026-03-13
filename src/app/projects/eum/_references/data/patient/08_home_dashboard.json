@@ -1,0 +1,37 @@
+{
+  "patient_id": "pat_yoon_001",
+  "snapshot_at": "2026-03-08T18:30:00+09:00",
+  "greeting": "윤서진님, 오늘도 건강한 하루 보내세요.",
+  "recent_symptoms_summary": {
+    "last_7_days_count": 2,
+    "avg_severity": 2.5,
+    "trend": "stable",
+    "most_recent": {
+      "symptom_id": "sym_010",
+      "occurred_at": "2026-03-08T18:00:00+09:00",
+      "severity": 2,
+      "description_preview": "오늘 하루 종일 속이 불편했어요..."
+    }
+  },
+  "last_visit_result": {
+    "session_id": "ses_003",
+    "visit_date": "2026-02-10",
+    "hospital_name": "서현내과의원",
+    "doctor_name": "김도현",
+    "summary_preview": "경과를 조금만 더 지켜보기로 했어요."
+  },
+  "vitals_today": {
+    "heart_rate_bpm": 80,
+    "bp_systolic": 120,
+    "bp_diastolic": 78,
+    "sleep_hours": 5.2,
+    "step_count": 6400,
+    "source_platform": "APPLE_HEALTH"
+  },
+  "medication_reminder": {
+    "next_medication": "에소메프라졸 40mg",
+    "scheduled_time": "07:30",
+    "status": "taken"
+  },
+  "active_medications_count": 4
+}

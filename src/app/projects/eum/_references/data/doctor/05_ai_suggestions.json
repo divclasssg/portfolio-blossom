@@ -1,0 +1,84 @@
+{
+  "session_id": "ses_007",
+  "screen_feature": "F13",
+  "model_version": "MedGemma 27B v1.2",
+  "generated_at": "2026-03-09T08:36:08+09:00",
+  "generation_time_ms": 7800,
+  "pipeline_stages": {
+    "entity_extraction": { "model": "GPT-4o mini", "extracted_count": 8 },
+    "normalization": { "service": "SNOMED CT Terminology Service", "mapped_count": 6 },
+    "retrieval": { "source": "ICD-11 Candidate DB", "candidates_filtered": 15 },
+    "clinical_reasoning": { "model": "MedGemma 27B v1.2", "ranked_count": 5 },
+    "report_generation": { "model": "GPT-4o", "outputs": ["doctor_report", "patient_report"] }
+  },
+  "suggestions": [
+    {
+      "rank": 1,
+      "disease_name": "자율신경 기능장애",
+      "icd_code": "G90.9",
+      "evidence_symptoms": [
+        "기립 시 어지러움 (sym_009)",
+        "심계항진 에피소드 반복 (sym_003, sym_009)",
+        "식은땀 + 오심 (sym_004)",
+        "수면-증상 연동 패턴 (웨어러블 데이터)"
+      ],
+      "confidence": "high",
+      "clinical_note": "6년간 기질적 원인 미발견(내시경 4회 정상). 자율신경계 검사(기립경사검사, HRV) 미시행 상태. 의뢰 목적과 일치."
+    },
+    {
+      "rank": 2,
+      "disease_name": "기능성 식도 질환 (기능성 가슴쓰림)",
+      "icd_code": "K22.4",
+      "evidence_symptoms": [
+        "PPI 40mg 불완전 반응",
+        "내시경 반복 정상 (LA-N × 4회)",
+        "스트레스 연동 악화 패턴",
+        "야간 역류 증상 지속"
+      ],
+      "confidence": "high",
+      "clinical_note": "초기 GERD(LA-A)에서 기능성으로 전환된 양상. 내장 과민성(visceral hypersensitivity) 가능성. 자율신경 기능장애와 공존 가능."
+    },
+    {
+      "rank": 3,
+      "disease_name": "공황장애",
+      "icd_code": "F41.0",
+      "evidence_symptoms": [
+        "갑작스러운 어지러움 + 심계항진 + 진전 (sym_009)",
+        "공공장소에서 발생 (지하철)",
+        "에피소드 종료 후에도 불안감 잔존"
+      ],
+      "confidence": "medium",
+      "clinical_note": "공식 정신과 진단력 없으나 불안 관련 에피소드 반복 관찰. 공황장애 가능성 감별 필요. 정신건강의학과 평가 권장."
+    },
+    {
+      "rank": 4,
+      "disease_name": "체위성 기립빈맥 증후군 (POTS)",
+      "icd_code": "I49.8",
+      "evidence_symptoms": [
+        "기립 시 심계항진 (sym_009)",
+        "어지러움 + 진전",
+        "젊은 여성 (34세)",
+        "만성 피로 + 수면장애 동반"
+      ],
+      "confidence": "medium",
+      "clinical_note": "기립경사검사로 확인 가능. 기립 시 심박수 30bpm 이상 증가 여부 확인 필요. POTS 기준 해당 시 자율신경 기능장애의 하위 유형으로 분류."
+    },
+    {
+      "rank": 5,
+      "disease_name": "미주신경성 실신 전단계",
+      "icd_code": "R55",
+      "evidence_symptoms": [
+        "식은땀 + 오심 선행 (sym_004)",
+        "어지러움 에피소드 (sym_009)",
+        "스트레스/피로 시 유발"
+      ],
+      "confidence": "low",
+      "clinical_note": "실신(의식소실)은 아직 미발생. 전구증상 단계로 판단. 기립경사검사에서 미주신경성 반응 확인 가능."
+    }
+  ],
+  "doctor_edits": {
+    "added": [],
+    "deleted": [],
+    "reordered": []
+  }
+}

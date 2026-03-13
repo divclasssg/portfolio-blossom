@@ -1,0 +1,142 @@
+{
+  "patient_id": "pat_yoon_001",
+  "chronic_conditions": [
+    {
+      "condition_name": "역류성 식도염",
+      "icd_code": "K21.0",
+      "diagnosed_date": "2020-03-10",
+      "diagnosed_hospital": "서현내과의원",
+      "status": "active",
+      "notes": "초기 내시경 LA-A 등급. 이후 반복 내시경 정상 소견이나 증상 지속."
+    }
+  ],
+  "medications_current": [
+    {
+      "drug_name": "에소메프라졸",
+      "dosage": "40mg",
+      "frequency": "1일 1회 아침 식전",
+      "start_date": "2020-03-10",
+      "prescribing_hospital": "서현내과의원",
+      "category": "PPI (양성자펌프억제제)"
+    },
+    {
+      "drug_name": "돔페리돈",
+      "dosage": "10mg",
+      "frequency": "1일 3회 식전",
+      "start_date": "2023-06-15",
+      "prescribing_hospital": "서현내과의원",
+      "category": "위장관운동촉진제"
+    },
+    {
+      "drug_name": "수크랄페이트",
+      "dosage": "1g",
+      "frequency": "1일 2회 식전",
+      "start_date": "2024-01-20",
+      "prescribing_hospital": "서현내과의원",
+      "category": "점막보호제"
+    },
+    {
+      "drug_name": "마그네슘 하이드록사이드",
+      "dosage": "500mg",
+      "frequency": "필요시",
+      "start_date": "2022-04-10",
+      "prescribing_hospital": "서현내과의원",
+      "category": "제산제"
+    },
+    {
+      "drug_name": "오메가-3",
+      "dosage": "1000mg",
+      "frequency": "1일 1회",
+      "start_date": "2023-01-01",
+      "prescribing_hospital": "자가 구매",
+      "category": "건강기능식품"
+    },
+    {
+      "drug_name": "비타민 D",
+      "dosage": "1000IU",
+      "frequency": "1일 1회",
+      "start_date": "2023-01-01",
+      "prescribing_hospital": "자가 구매",
+      "category": "건강기능식품"
+    }
+  ],
+  "allergies": [
+    {
+      "allergen": "아목시실린",
+      "reaction": "발진",
+      "severity": "moderate",
+      "confirmed_date": "2018-07-20"
+    },
+    {
+      "allergen": "새우",
+      "reaction": "두드러기",
+      "severity": "mild",
+      "confirmed_date": "2015-03-05"
+    }
+  ],
+  "surgical_history": [],
+  "vaccinations": [
+    {
+      "vaccine_name": "인플루엔자",
+      "dose_number": 1,
+      "date": "2025-10-15",
+      "institution": "서현내과의원",
+      "lot_number": "FLU2025-A1234"
+    },
+    {
+      "vaccine_name": "코로나19 (XBB.1.5)",
+      "dose_number": 5,
+      "date": "2024-11-20",
+      "institution": "성남시 보건소",
+      "lot_number": "MOD2024-B5678"
+    },
+    {
+      "vaccine_name": "Td (파상풍-디프테리아)",
+      "dose_number": 1,
+      "date": "2022-05-10",
+      "institution": "서현내과의원",
+      "lot_number": "TD2022-C9012"
+    }
+  ],
+  "health_screenings": [
+    {
+      "screening_type": "일반건강검진",
+      "date": "2025-04-22",
+      "institution": "서현내과의원",
+      "result_summary": "주의",
+      "findings": [
+        { "item": "체질량지수(BMI)", "value": "19.6", "unit": "kg/m²", "judgment": "정상", "ref_range": "18.5-24.9" },
+        { "item": "혈압", "value": "108/68", "unit": "mmHg", "judgment": "정상", "ref_range": "120/80 미만" },
+        { "item": "공복혈당", "value": "88", "unit": "mg/dL", "judgment": "정상", "ref_range": "100 미만" },
+        { "item": "총콜레스테롤", "value": "195", "unit": "mg/dL", "judgment": "정상", "ref_range": "200 미만" },
+        { "item": "HDL콜레스테롤", "value": "62", "unit": "mg/dL", "judgment": "정상", "ref_range": "60 이상" },
+        { "item": "LDL콜레스테롤", "value": "118", "unit": "mg/dL", "judgment": "정상", "ref_range": "130 미만" },
+        { "item": "중성지방", "value": "75", "unit": "mg/dL", "judgment": "정상", "ref_range": "150 미만" },
+        { "item": "AST", "value": "20", "unit": "U/L", "judgment": "정상", "ref_range": "0-40" },
+        { "item": "ALT", "value": "16", "unit": "U/L", "judgment": "정상", "ref_range": "0-35" },
+        { "item": "혈색소", "value": "11.8", "unit": "g/dL", "judgment": "주의", "ref_range": "12.0-16.0" },
+        { "item": "크레아티닌", "value": "0.7", "unit": "mg/dL", "judgment": "정상", "ref_range": "0.5-1.2" },
+        { "item": "우울증선별(PHQ-9)", "value": "8", "unit": "점", "judgment": "주의", "ref_range": "0-4 정상" }
+      ]
+    },
+    {
+      "screening_type": "일반건강검진",
+      "date": "2023-05-10",
+      "institution": "서현내과의원",
+      "result_summary": "정상",
+      "findings": [
+        { "item": "체질량지수(BMI)", "value": "20.2", "unit": "kg/m²", "judgment": "정상", "ref_range": "18.5-24.9" },
+        { "item": "혈압", "value": "112/72", "unit": "mmHg", "judgment": "정상", "ref_range": "120/80 미만" },
+        { "item": "공복혈당", "value": "85", "unit": "mg/dL", "judgment": "정상", "ref_range": "100 미만" },
+        { "item": "혈색소", "value": "12.2", "unit": "g/dL", "judgment": "정상", "ref_range": "12.0-16.0" }
+      ]
+    }
+  ],
+  "family_history": [
+    {
+      "relation": "모",
+      "condition": "위염",
+      "notes": "만성 위염으로 장기 투약 중"
+    }
+  ]
+}

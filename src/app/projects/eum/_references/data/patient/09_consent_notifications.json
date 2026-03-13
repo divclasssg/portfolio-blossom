@@ -1,0 +1,84 @@
+{
+  "patient_id": "pat_yoon_001",
+  "consent": {
+    "consent_id": "con_001",
+    "agreed_at": "2025-12-01T10:05:00+09:00",
+    "items": {
+      "service_terms": { "agreed": true, "required": true, "screen": "P-003" },
+      "personal_data": { "agreed": true, "required": true, "screen": "P-003" },
+      "sensitive_health_data": { "agreed": true, "required": true, "screen": "P-003" },
+      "public_medical_mydata": { "agreed": true, "required": false, "screen": "P-009" },
+      "cross_border_transfer": { "agreed": true, "required": false, "screen": "P-009" },
+      "health_platform_data": { "agreed": true, "required": false, "screen": "P-009" },
+      "marketing": { "agreed": false, "required": false, "screen": "P-003" }
+    },
+    "version": "1.0",
+    "ip_address": "192.168.0.1",
+    "device_info": "iPhone 15, iOS 18.1"
+  },
+  "notifications": [
+    {
+      "notification_id": "noti_001",
+      "type": "session_created",
+      "title": "의뢰 진료 세션이 생성되었습니다",
+      "body": "서현내과의원 김도현 선생님의 의뢰로 분당신경과의원 박지영 선생님에게 증상 기록이 전송되었습니다.",
+      "created_at": "2026-03-09T08:35:00+09:00",
+      "read": false,
+      "action_url": "/sessions/ses_007"
+    },
+    {
+      "notification_id": "noti_002",
+      "type": "session_expired",
+      "title": "진료 세션이 만료되었습니다",
+      "body": "3월 3일 서현내과의원 세션이 24시간 경과로 만료되었습니다. 필요하시면 새 진료 요청을 해 주세요.",
+      "created_at": "2026-03-04T00:00:00+09:00",
+      "read": true,
+      "action_url": "/sessions/ses_006"
+    },
+    {
+      "notification_id": "noti_003",
+      "type": "medication_reminder",
+      "title": "약 드실 시간이에요",
+      "body": "에소메프라졸 40mg — 아침 식사 30분 전에 복용해 주세요.",
+      "created_at": "2026-03-09T07:30:00+09:00",
+      "read": true,
+      "action_url": null
+    },
+    {
+      "notification_id": "noti_004",
+      "type": "consultation_result",
+      "title": "진료 결과가 등록되었습니다",
+      "body": "2월 17일 서현내과의원 진료 결과를 확인하세요.",
+      "created_at": "2026-02-17T16:00:00+09:00",
+      "read": true,
+      "action_url": "/results/ses_004"
+    },
+    {
+      "notification_id": "noti_005",
+      "type": "vitals_alert",
+      "title": "수면 시간이 평소보다 적어요",
+      "body": "최근 3일간 평균 수면 시간이 4.2시간입니다. 충분한 수면은 증상 관리에 도움이 됩니다.",
+      "created_at": "2026-03-06T09:00:00+09:00",
+      "read": true,
+      "action_url": "/vitals"
+    },
+    {
+      "notification_id": "noti_006",
+      "type": "symptom_trend",
+      "title": "증상 패턴 알림",
+      "body": "최근 2주간 야간에 증상이 집중되는 경향이 있습니다. 진료 시 참고해 주세요.",
+      "created_at": "2026-03-07T10:00:00+09:00",
+      "read": false,
+      "action_url": "/symptoms"
+    },
+    {
+      "notification_id": "noti_007",
+      "type": "consent_renewal",
+      "title": "개인정보 이용 동의 갱신 안내",
+      "body": "동의 유효기간이 30일 후 만료돼요. 설정 > 동의 관리에서 갱신할 수 있어요.",
+      "created_at": "2026-03-01T09:00:00+09:00",
+      "read": true,
+      "action_url": "/settings/consent"
+    }
+  ]
+}

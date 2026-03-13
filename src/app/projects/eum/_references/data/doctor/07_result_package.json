@@ -1,0 +1,63 @@
+{
+  "demo_note": "ses_007의 진료 완료 후 결과 화면(D-001) 데모 데이터. 실제 세션은 waiting 상태이나, 와이어프레임 시연을 위해 완료 상태의 결과를 미리 구성.",
+  "screen_id": "D-001",
+  "session_id": "ses_007",
+  "screen_feature": "F16",
+  "doctor_id": "doc_park_001",
+  "doctor_name": "박지영",
+  "patient_id": "pat_yoon_001",
+  "findings": "자율신경계 기능 평가를 위해 기립경사검사 및 심박변이도(HRV) 분석 시행. 기립경사검사에서 기립 후 심박수 35bpm 증가 확인 — POTS(체위성 기립빈맥 증후군) 진단 기준 충족. HRV 분석에서 교감신경 우위 패턴 확인.",
+  "treatment_plan": "POTS 진단 하 단계적 치료 계획 수립. 비약물 치료(수분 섭취 증가, 압박 스타킹, 단계적 운동 프로그램) 우선. 필요시 미도드린(midodrine) 또는 플루드로코르티손(fludrocortisone) 추가 고려.",
+  "next_steps": "비약물 치료 2주간 시행 후 경과 관찰. 서현내과의원 김도현 선생님께 결과 회신. 역류성 식도염 치료는 기존 내과 처방 유지하되, 자율신경 안정화에 따른 증상 변화 관찰.",
+  "plain_text_generation": {
+    "model_version": "GPT-4o v2024-08",
+    "generated_at": "2026-03-09T15:20:00+09:00",
+    "original_medical_text": "Head-up tilt test: HR increase 35bpm at 10min (supine 72→upright 107). Meets POTS criteria (≥30bpm increase within 10 min without orthostatic hypotension). HRV analysis: LF/HF ratio 4.2 (sympathetic dominant). Recommend non-pharmacological management first: fluid intake ≥2L/day, compression garments, graded exercise.",
+    "converted_blocks": [
+      {
+        "original": "Head-up tilt test: HR increase 35bpm at 10min",
+        "converted": "침대를 기울여서 일어서는 자세로 바꾸는 검사를 했어요. 일어섰을 때 심장이 평소보다 훨씬 빨리 뛰었어요."
+      },
+      {
+        "original": "Meets POTS criteria (≥30bpm increase within 10 min)",
+        "converted": "'체위성 기립빈맥 증후군'이라는 상태에 해당해요. 일어설 때 자율신경이 제대로 조절을 못 해서 심장이 빨리 뛰는 거예요."
+      },
+      {
+        "original": "HRV analysis: LF/HF ratio 4.2 (sympathetic dominant)",
+        "converted": "심장 박동의 변화를 분석했는데, 긴장할 때 활성화되는 신경(교감신경)이 너무 많이 활성화되어 있어요."
+      },
+      {
+        "original": "Non-pharmacological management: fluid intake ≥2L/day, compression garments, graded exercise",
+        "converted": "약 대신 생활습관으로 먼저 관리해볼 거예요. 물을 하루 2리터 이상 마시고, 압박 스타킹을 신고, 운동을 서서히 늘려가는 방법이에요."
+      }
+    ]
+  },
+  "doctor_note_plain": "검사 결과, 일어설 때 자율신경이 제대로 조절을 못 하는 '체위성 기립빈맥 증후군(POTS)'이라는 상태가 확인됐어요. 이게 그동안 가슴 두근거림, 어지러움, 식은땀 같은 증상의 원인이었을 가능성이 높아요. 역류성 식도염 증상도 자율신경이 불안정하면 악화될 수 있어요. 약 치료 전에 먼저 물 많이 마시기, 압박 스타킹, 가벼운 운동부터 시작해볼게요. 2주 뒤에 다시 오셔서 경과를 보고, 서현내과 김도현 선생님께도 결과를 알려드릴게요.",
+  "action_items": [
+    { "task": "물 하루 2리터 이상 마시기", "recommended_timing": "매일" },
+    { "task": "압박 스타킹 착용 (외출 시)", "recommended_timing": "매일" },
+    { "task": "단계적 운동 시작 (누워서 하는 운동부터)", "recommended_timing": "주 3회" },
+    { "task": "급격히 일어나지 않기 (천천히 단계적으로)", "recommended_timing": "상시" },
+    { "task": "카페인 섭취 줄이기", "recommended_timing": "매일" }
+  ],
+  "referral_response": {
+    "to_doctor": "김도현",
+    "to_hospital": "서현내과의원",
+    "response_summary": "기립경사검사 결과 POTS 진단 기준 충족. 자율신경 불안정이 기능성 역류 증상 악화에 기여할 가능성 있음. 비약물 치료 우선 시행 후 2주 경과 관찰 예정. 내과 처방 유지 권장.",
+    "response_date": "2026-03-09"
+  },
+  "prescriptions": [
+    { "name": "에소메프라졸 40mg", "duration": "28일", "plain_language": "위산을 줄여주는 약이에요" },
+    { "name": "돔페리돈 10mg", "duration": "28일", "plain_language": "소화를 도와주는 약이에요" },
+    { "name": "알긴산나트륨 10mL", "duration": "14일", "plain_language": "위산 역류를 막아주는 약이에요" }
+  ],
+  "next_visit_date": "2026-03-23",
+  "warnings": {
+    "hallucination_warning": "AI는 오류를 생성할 수 있습니다",
+    "review_obligation": "의사가 반드시 검토해야 합니다",
+    "model_version_display": "모델: GPT-4o v2024-08",
+    "dismissable": false
+  },
+  "doctor_confirmation_required": true,
+  "confirmed_at": null
+}

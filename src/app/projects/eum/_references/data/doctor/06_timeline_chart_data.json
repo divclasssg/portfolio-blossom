@@ -1,0 +1,89 @@
+{
+  "session_id": "ses_004",
+  "screen_feature": "F12",
+  "patient_id": "pat_yoon_001",
+  "current_filter": {
+    "period": "1_month",
+    "from": "2026-02-05",
+    "to": "2026-02-17"
+  },
+  "tabs": {
+    "symptoms": {
+      "active": true,
+      "chart_type": "bar_nrs",
+      "data": [
+        { "date": "2026-02-05", "severity": 3, "category": "SYM-05", "label": "야간 가슴 쓰림", "color": "#E69F00", "icon": "face_pain", "source": "patient_input" },
+        { "date": "2026-02-08", "severity": 2, "category": "SYM-05", "label": "식후 더부룩+신물", "color": "#FFC000", "icon": "face_neutral", "source": "patient_input" },
+        { "date": "2026-02-12", "severity": 3, "category": "SYM-12", "label": "흉부 답답+심계항진", "color": "#E69F00", "icon": "face_pain", "source": "voice_input" },
+        { "date": "2026-02-15", "severity": 2, "category": "SYM-05", "label": "오심+식은땀", "color": "#FFC000", "icon": "face_neutral", "source": "patient_input" }
+      ]
+    },
+    "heart_rate": {
+      "active": false,
+      "chart_type": "box_whisker",
+      "period_note": "7일 이하: box-and-whisker, 3개월: moving average line",
+      "reference_range": { "min": 60, "max": 100, "color": "#E5E5E5" },
+      "data": [
+        { "date": "2026-02-05", "min": null, "q1": null, "median": null, "q3": null, "max": null, "note": "웨어러블 데이터 없음" },
+        { "date": "2026-02-06", "min": null, "q1": null, "median": null, "q3": null, "max": null, "note": "웨어러블 데이터 없음" },
+        { "date": "2026-02-07", "min": 60, "q1": 67, "median": 74, "q3": 80, "max": 88 },
+        { "date": "2026-02-08", "min": 63, "q1": 70, "median": 78, "q3": 86, "max": 96, "symptom_day": true },
+        { "date": "2026-02-09", "min": 58, "q1": 65, "median": 72, "q3": 78, "max": 86 },
+        { "date": "2026-02-10", "min": 66, "q1": 73, "median": 80, "q3": 87, "max": 94 },
+        { "date": "2026-02-11", "min": 62, "q1": 70, "median": 76, "q3": 82, "max": 90 },
+        { "date": "2026-02-12", "min": 68, "q1": 78, "median": 88, "q3": 96, "max": 104, "symptom_day": true },
+        { "date": "2026-02-13", "min": 66, "q1": 74, "median": 82, "q3": 88, "max": 94 },
+        { "date": "2026-02-14", "min": 60, "q1": 68, "median": 75, "q3": 82, "max": 88 },
+        { "date": "2026-02-15", "min": 66, "q1": 76, "median": 84, "q3": 90, "max": 98, "symptom_day": true },
+        { "date": "2026-02-16", "min": 58, "q1": 66, "median": 73, "q3": 80, "max": 86 },
+        { "date": "2026-02-17", "min": 60, "q1": 70, "median": 77, "q3": 84, "max": 90 }
+      ],
+      "clinical_note": "증상일(2/12, 2/15) HR median 상승 패턴 — GI-Autonomic correlation 시사"
+    },
+    "sleep": {
+      "active": false,
+      "chart_type": "bar_daily",
+      "bar_color": "#E69F00",
+      "average_line_color": "#D55E00",
+      "reference_range": { "min": 7, "max": 9, "label": "권장 수면", "color": "#E5E5E5" },
+      "data_7day": [
+        { "date": "2026-02-11", "hours": 5.0 },
+        { "date": "2026-02-12", "hours": 5.8 },
+        { "date": "2026-02-13", "hours": 6.3 },
+        { "date": "2026-02-14", "hours": 4.0, "outlier_flag": true },
+        { "date": "2026-02-15", "hours": 5.5 },
+        { "date": "2026-02-16", "hours": 6.0 },
+        { "date": "2026-02-17", "hours": 5.2 }
+      ],
+      "average_hours": 5.4
+    },
+    "blood_pressure": {
+      "active": false,
+      "chart_type": "dot_pulse_band",
+      "dot_color": "#009E73",
+      "band_color": "#009E73",
+      "band_opacity": 0.15,
+      "reference_range": { "systolic": { "min": 90, "max": 120 }, "diastolic": { "min": 60, "max": 80 }, "color": "#E5E5E5" },
+      "data_7day": [
+        { "date": "2026-02-11", "systolic": 123, "diastolic": 80 },
+        { "date": "2026-02-12", "systolic": 118, "diastolic": 77 },
+        { "date": "2026-02-13", "systolic": 115, "diastolic": 74 },
+        { "date": "2026-02-14", "systolic": 134, "diastolic": 88, "outlier_flag": true },
+        { "date": "2026-02-15", "systolic": 122, "diastolic": 79 },
+        { "date": "2026-02-16", "systolic": 117, "diastolic": 76 },
+        { "date": "2026-02-17", "systolic": 120, "diastolic": 78 }
+      ]
+    },
+    "visit_history": {
+      "active": false,
+      "data": [
+        { "date": "2025-11-28", "diagnosis": "위-식도 역류병", "hospital": "서현내과의원", "source_badge": "public" },
+        { "date": "2025-04-14", "diagnosis": "위-식도 역류병", "hospital": "서현내과의원", "source_badge": "public" },
+        { "date": "2023-11-20", "diagnosis": "위-식도 역류병", "hospital": "서현내과의원", "source_badge": "public" },
+        { "date": "2022-07-05", "diagnosis": "위-식도 역류병", "hospital": "서현내과의원", "source_badge": "public" },
+        { "date": "2021-02-15", "diagnosis": "위-식도 역류병", "hospital": "서현내과의원", "source_badge": "public" },
+        { "date": "2020-03-10", "diagnosis": "위-식도 역류병", "hospital": "서현내과의원", "source_badge": "public" }
+      ]
+    }
+  }
+}
