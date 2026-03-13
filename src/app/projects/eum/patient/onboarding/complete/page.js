@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import { getPatientIdFromCookie } from '../../../_lib/getPatientIdClient';
 import styles from './page.module.scss';
 
 // sessionStorage 데이터를 기반으로 요약 항목 생성
@@ -44,7 +45,7 @@ export default function CompletePage() {
 
   async function saveOnboarding() {
     const raw = sessionStorage.getItem('eum_onboarding');
-    const patientId = sessionStorage.getItem('eum_patient_id');
+    const patientId = sessionStorage.getItem('eum_patient_id') || getPatientIdFromCookie();
     // 직접 접근이나 이미 저장 완료된 경우
     if (!raw || !patientId) { setSaveStatus('done'); return; }
 

@@ -26,7 +26,7 @@ function buildChatHistory(msgs) {
     .map((m) => ({ role: m.type === 'bot' ? 'assistant' : 'user', content: m.text }));
 }
 
-export default function SymptomsContent({ vitals, records: initialRecords }) {
+export default function SymptomsContent({ vitals, records: initialRecords, patientId }) {
   const [activeTab, setActiveTab] = useState('chat');
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
   const [isStreaming, setIsStreaming] = useState(false);
@@ -39,7 +39,7 @@ export default function SymptomsContent({ vitals, records: initialRecords }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          patientId: 'pat_yoon_001',
+          patientId,
           sessionId: 'ses_007',
           description: symptomRecord.description,
           occurredAt: symptomRecord.occurredAt || new Date().toISOString(),
@@ -53,7 +53,7 @@ export default function SymptomsContent({ vitals, records: initialRecords }) {
       console.log('[SymptomsContent] POST /api/eum/symptoms:', res.status, resText);
 
       if (res.ok) {
-        const updatedRes = await fetch('/api/eum/symptoms?patientId=pat_yoon_001');
+        const updatedRes = await fetch(`/api/eum/symptoms?patientId=${patientId}`);
         if (updatedRes.ok) {
           const { symptom_records } = await updatedRes.json();
           setRecords(symptom_records);
@@ -93,7 +93,7 @@ export default function SymptomsContent({ vitals, records: initialRecords }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: buildChatHistory(currentMessages),
-          patientId: 'pat_yoon_001',
+          patientId,
           sessionId: 'ses_007',
         }),
       });

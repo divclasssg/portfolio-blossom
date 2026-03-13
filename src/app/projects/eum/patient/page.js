@@ -1,5 +1,6 @@
 import homeDashboard from '../_references/data/patient/08_home_dashboard.json';
 import consentNotifications from '../_references/data/patient/09_consent_notifications.json';
+import { getPatientId } from '../_lib/getPatientId';
 import styles from './page.module.scss';
 import AppBar from './_components/AppBar/AppBar';
 import GreetingSection from './_components/GreetingSection/GreetingSection';
@@ -17,14 +18,14 @@ export const metadata = {
 export const dynamic = 'force-dynamic';
 
 // Supabase에서 최근 증상 요약 조회 (실패 시 null → 정적 JSON 폴백)
-async function fetchRecentSymptomsSummary() {
+async function fetchRecentSymptomsSummary(patientId) {
   try {
     const { getSupabaseClient } = await import('../../../api/eum/_lib/supabase');
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
       .from('symptom_records')
       .select('*')
-      .eq('patient_id', 'pat_yoon_001')
+      .eq('patient_id', patientId)
       .order('occurred_at', { ascending: false });
     if (error) throw error;
     if (!data || data.length === 0) return null;
@@ -77,14 +78,14 @@ async function fetchRecentSymptomsSummary() {
 }
 
 // Supabase에서 환자 이름 조회 (실패 시 null 반환 → 정적 JSON 폴백)
-async function fetchPatientName() {
+async function fetchPatientName(patientId) {
   try {
     const { getSupabaseClient } = await import('../../../api/eum/_lib/supabase');
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
       .from('patients')
       .select('name')
-      .eq('id', 'pat_yoon_001')
+      .eq('id', patientId)
       .single();
     if (error) throw error;
     return data?.name ?? null;
@@ -94,11 +95,12 @@ async function fetchPatientName() {
 }
 
 export default async function PatientHome() {
+  const patientId = await getPatientId();
   const unreadCount = consentNotifications.notifications.filter((n) => !n.read).length;
 
   const [name, dynamicSummary] = await Promise.all([
-    fetchPatientName(),
-    fetchRecentSymptomsSummary(),
+    fetchPatientName(patientId),
+    fetchRecentSymptomsSummary(patientId),
   ]);
   // DB에서 이름을 읽으면 동적 인사말, 실패 시 정적 JSON 폴백
   const greeting = name

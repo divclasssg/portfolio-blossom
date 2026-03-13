@@ -68,8 +68,21 @@ export default function ConsentsPage() {
   const allChecked = ALL_ITEMS.every((item) => checked[item.id]);
 
   useEffect(() => {
-    // 포트폴리오 데모: pat_yoon_001을 고정으로 사용 (온보딩 완료 시 이 행을 업데이트)
-    sessionStorage.setItem('eum_patient_id', 'pat_yoon_001');
+    // 데모 환자 생성 → 쿠키 + sessionStorage에 환자 ID 저장
+    async function createPatient() {
+      try {
+        const res = await fetch('/api/eum/patients', { method: 'POST' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const { patientId } = await res.json();
+        document.cookie = `eum_patient_id=${patientId}; max-age=86400; path=/projects/eum; SameSite=Lax`;
+        sessionStorage.setItem('eum_patient_id', patientId);
+      } catch {
+        // 실패 시 시드 데이터 폴백
+        document.cookie = 'eum_patient_id=pat_yoon_001; max-age=86400; path=/projects/eum; SameSite=Lax';
+        sessionStorage.setItem('eum_patient_id', 'pat_yoon_001');
+      }
+    }
+    createPatient();
   }, []);
 
   function handleAll(e) {

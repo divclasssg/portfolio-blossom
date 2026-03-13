@@ -7,6 +7,7 @@ import aiSuggestions from '../_references/data/doctor/05_ai_suggestions.json';
 import aiWarnings from '../_references/data/doctor/08_ai_warnings.json';
 import timelineChartData from '../_references/data/doctor/06_timeline_chart_data.json';
 
+import { getPatientId } from '../_lib/getPatientId';
 import DoctorPanel from './_components/DoctorPanel/DoctorPanel';
 import PatientProfile from './_components/PatientProfile/PatientProfile';
 import PatientOverview from './_components/PatientOverview/PatientOverview';
@@ -52,7 +53,7 @@ function symptomToTimelineItem(record) {
 }
 
 // Supabase에서 환자 데이터 + AI 결과 조회 (실패 시 null 반환 → 정적 JSON 폴백)
-async function fetchLiveData() {
+async function fetchLiveData(patientId) {
   try {
     const { getSupabaseClient } = await import('../../../api/eum/_lib/supabase');
     const supabase = getSupabaseClient();
@@ -61,7 +62,7 @@ async function fetchLiveData() {
       supabase
         .from('symptom_records')
         .select('*')
-        .eq('patient_id', 'pat_yoon_001')
+        .eq('patient_id', patientId)
         .order('occurred_at', { ascending: false }),
       supabase
         .from('ai_results')
@@ -71,7 +72,7 @@ async function fetchLiveData() {
       supabase
         .from('patients')
         .select('name, birth_date, gender, height_cm, weight_kg, chronic_conditions, allergies')
-        .eq('id', 'pat_yoon_001')
+        .eq('id', patientId)
         .single(),
       supabase
         .from('sessions')
@@ -130,7 +131,8 @@ export default async function DoctorDashboard() {
   const { sections } = dashboardState;
 
   // Supabase 최신 데이터 (실패 시 null → 정적 JSON 폴백)
-  const liveData = await fetchLiveData();
+  const patientId = await getPatientId();
+  const liveData = await fetchLiveData(patientId);
 
   // 타임라인 데이터: Supabase에 데이터가 있을 때만 우선, 없으면 정적 JSON 폴백
   const hasLiveSymptoms = (liveData?.symptoms?.length ?? 0) > 0;
@@ -152,7 +154,7 @@ export default async function DoctorDashboard() {
   const patient = liveData?.patient ?? null;
 
   const patientSummary = patient
-    ? { name: patient.name, age: calcAge(patient.birth_date), gender: patient.gender, patient_id: 'pat_yoon_001' }
+    ? { name: patient.name, age: calcAge(patient.birth_date), gender: patient.gender, patient_id: patientId }
     : dashboardState.patient_summary;
 
   // chronic_conditions: DB는 [{name: "..."}] 또는 ["..."] 형태 모두 허용
