@@ -80,7 +80,7 @@ export default function CompletePage() {
       }
 
       sessionStorage.removeItem('eum_onboarding');
-      sessionStorage.removeItem('eum_patient_id');
+      // eum_patient_id는 유지 — 뒤로/앞으로 탐색 시 중복 생성 방지
       setSaveStatus('done');
     } catch (err) {
       setErrorMsg(err.message);
