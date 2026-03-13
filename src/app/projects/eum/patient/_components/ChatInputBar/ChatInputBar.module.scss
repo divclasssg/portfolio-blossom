@@ -43,9 +43,23 @@ $input-bar-height: 60px;
   padding: 0 14px;
 }
 
-.placeholder {
+.input {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
   font-size: 14px;
-  color: $text-secondary;
+  color: $text-primary;
+  font-family: inherit;
+
+  &::placeholder {
+    color: $text-secondary;
+  }
+
+  &:disabled {
+    color: $text-secondary;
+    cursor: default;
+  }
 }
 
 .send-btn {
@@ -59,5 +73,11 @@ $input-bar-height: 60px;
   border-radius: 50%;
   color: $card-bg;
   flex-shrink: 0;
-  cursor: default;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
 }

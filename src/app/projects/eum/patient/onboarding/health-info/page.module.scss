@@ -11,7 +11,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  overflow-y: auto;
 }
 
 .title {
@@ -26,6 +27,48 @@
   font-size: 14px;
   color: $text-secondary;
   line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+// 섹션 헤더 (기본 건강 정보 / 기저질환 및 알레르기)
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid $divider-color;
+  margin-top: 4px;
+}
+
+// 첫 번째 섹션 헤더는 상단 구분선 없음
+.section-header-first {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.required-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: $color-primary;
+  background: rgba(0, 122, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.optional-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: $text-secondary;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
 .field-group {
@@ -49,6 +92,30 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.allergy-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-error {
+  border-color: #ff3b30;
+
+  &:focus { border-color: #ff3b30; }
+}
+
+.error {
+  font-size: 13px;
+  color: #ff3b30;
+  line-height: 1.4;
 }
 
 .input {
@@ -101,6 +168,81 @@
 
   &:focus {
     border-color: $color-primary;
+  }
+}
+
+.btn-add {
+  flex-shrink: 0;
+  height: 48px;
+  padding: 0 16px;
+  background: $color-primary;
+  color: #ffffff;
+  border: none;
+  border-radius: $card-radius;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):active {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+}
+
+.chip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba($color-primary, 0.08);
+  border-radius: 100px;
+  font-size: 13px;
+  color: $text-primary;
+}
+
+.chip-reaction {
+  color: $text-secondary;
+}
+
+.chip-remove {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  color: $text-secondary;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: $text-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    border-radius: 2px;
   }
 }
 

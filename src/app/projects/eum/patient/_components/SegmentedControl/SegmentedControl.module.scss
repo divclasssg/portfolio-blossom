@@ -1,0 +1,28 @@
+@use '../../_styles/tokens' as *;
+
+.segmented-control {
+  display: flex;
+  background: $badge-bg;
+  border-radius: 8px;
+  padding: 2px;
+  margin: 12px $section-padding-x;
+}
+
+.segment {
+  flex: 1;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-secondary;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.segment-active {
+  background: $card-bg;
+  color: $text-primary;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

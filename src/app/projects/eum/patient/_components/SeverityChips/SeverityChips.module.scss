@@ -17,6 +17,20 @@
   color: $text-primary;
   white-space: nowrap;
   user-select: none;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.15s, box-shadow 0.15s;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.45;
+  }
+}
+
+.chip-selected {
+  border-color: $text-primary;
+  opacity: 1 !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.12);
 }
 
 // NRS 강도별 배경색 (색상만으로 정보 전달 금지 → 이모지+텍스트 병행)

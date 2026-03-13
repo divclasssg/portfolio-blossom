@@ -1,8 +1,0 @@
-@use '../_styles/tokens' as *;
-
-// 입력바 높이 (ChatInputBar.module.scss와 동일 값 유지)
-$input-bar-height: 60px;
-
-.content {
-  padding-bottom: calc(#{$tab-bar-height} + #{$input-bar-height} + env(safe-area-inset-bottom));
-}

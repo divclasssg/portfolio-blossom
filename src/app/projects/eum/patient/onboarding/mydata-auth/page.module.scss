@@ -79,9 +79,66 @@
   }
 }
 
+.resident-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resident-sep {
+  font-size: 18px;
+  color: $text-secondary;
+  flex-shrink: 0;
+}
+
+.resident-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.input-back1 {
+  width: 40px;
+  height: 48px;
+  padding: 0;
+  border: 1.5px solid $card-border;
+  border-radius: $card-radius;
+  font-size: 16px;
+  font-family: inherit;
+  color: $text-primary;
+  background: $card-bg;
+  outline: none;
+  text-align: center;
+  letter-spacing: 0;
+  transition: border-color 0.15s ease;
+
+  &::placeholder { color: $text-secondary; }
+  &:focus { border-color: $color-primary; }
+}
+
+.resident-mask {
+  font-size: 10px;
+  color: $text-secondary;
+  letter-spacing: 2px;
+  flex-shrink: 0;
+}
+
 .hint {
   font-size: 13px;
   color: $text-secondary;
+}
+
+.input-error {
+  border-color: #ff3b30;
+
+  &:focus { border-color: #ff3b30; }
+}
+
+.error {
+  font-size: 13px;
+  color: #ff3b30;
+  line-height: 1.4;
 }
 
 .auth-methods {

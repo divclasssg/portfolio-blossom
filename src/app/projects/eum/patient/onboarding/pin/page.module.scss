@@ -29,3 +29,16 @@
   color: $text-secondary;
   line-height: 1.5;
 }
+
+.hint {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.4;
+}
+
+.error {
+  font-size: 13px;
+  color: #ff3b30;
+  line-height: 1.4;
+  font-weight: 500;
+}

@@ -1,27 +1,27 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
 import styles from './ChatArea.module.scss';
 import SeverityChips from '../SeverityChips/SeverityChips';
 
-// 포트폴리오 데모용 정적 대화 — 심계항진 증상 시나리오 (윤서진)
-const DEMO_MESSAGES = [
-  {
-    type: 'bot',
-    text: '안녕하세요 윤서진님!\n어떤 증상이 있으신가요?',
-  },
-  {
-    type: 'user',
-    text: '가슴이 답답하고 숨이 좀 차는 느낌이에요. 심장이 빨리 뛰는 것 같기도 하고요.',
-  },
-  {
-    type: 'bot',
-    text: '가슴이 답답하고 심장이 빨리 뛰는 느낌이시군요.\n증상의 강도를 선택해 주세요.',
-    showSeverityChips: true,
-  },
-];
+// messages: [{
+//   type: 'bot'|'user',
+//   text: string,
+//   showSeverityChips?: boolean,
+//   selectedSeverity?: number,   // 선택 완료 시
+//   streaming?: boolean,         // 스트리밍 중 커서 표시
+// }]
+export default function ChatArea({ messages = [], onSeveritySelect }) {
+  const bottomRef = useRef(null);
 
-export default function ChatArea() {
+  // 새 메시지 추가 시 자동 스크롤
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages.length, messages.at(-1)?.text]);
+
   return (
-    <div className={styles['chat-area']} aria-label="증상 기록 대화">
-      {DEMO_MESSAGES.map((msg, i) => (
+    <div className={styles['chat-area']} aria-label="증상 기록 대화" aria-live="polite">
+      {messages.map((msg, i) => (
         <div
           key={i}
           className={styles[msg.type === 'bot' ? 'message-bot' : 'message-user']}
@@ -36,10 +36,18 @@ export default function ChatArea() {
                 {j < arr.length - 1 && <br />}
               </span>
             ))}
+            {/* 스트리밍 중 커서 깜빡임 */}
+            {msg.streaming && <span className={styles['cursor']} aria-hidden="true" />}
           </div>
-          {msg.showSeverityChips && <SeverityChips />}
+          {msg.showSeverityChips && (
+            <SeverityChips
+              onSelect={onSeveritySelect}
+              selected={msg.selectedSeverity ?? null}
+            />
+          )}
         </div>
       ))}
+      <div ref={bottomRef} />
     </div>
   );
 }

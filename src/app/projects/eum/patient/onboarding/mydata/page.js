@@ -14,9 +14,9 @@ export default function MydataPage() {
     <>
       <OnboardingAppBar
         variant="progress"
-        step={8}
-        totalSteps={11}
-        backHref="/projects/eum/patient/onboarding/biometrics"
+        step={6}
+        totalSteps={10}
+        backHref="/projects/eum/patient/onboarding/pin-confirm"
       />
       <main className={styles['page']}>
         <section className={styles['content']} aria-labelledby="mydata-title">
@@ -82,14 +82,28 @@ export default function MydataPage() {
             type="button"
             className={styles['btn-primary']}
             disabled={!consentMydata || !consentOverseas}
-            onClick={() => router.push('/projects/eum/patient/onboarding/mydata-auth')}
+            onClick={() => {
+              const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
+              sessionStorage.setItem(
+                'eum_onboarding',
+                JSON.stringify({ ...existing, consent_mydata: consentMydata, consent_overseas: consentOverseas, mydata_skipped: false }),
+              );
+              router.push('/projects/eum/patient/onboarding/mydata-items');
+            }}
           >
             동의하고 계속하기
           </button>
           <button
             type="button"
             className={styles['btn-skip']}
-            onClick={() => router.push('/projects/eum/patient/onboarding/wearable')}
+            onClick={() => {
+              const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
+              sessionStorage.setItem(
+                'eum_onboarding',
+                JSON.stringify({ ...existing, consent_mydata: false, consent_overseas: false, mydata_skipped: true }),
+              );
+              router.push('/projects/eum/patient/onboarding/wearable');
+            }}
           >
             건너뛰기
           </button>

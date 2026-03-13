@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
 import styles from './page.module.scss';
@@ -23,14 +23,22 @@ const WEARABLES = [
 export default function WearablePage() {
   const router = useRouter();
   const [selected, setSelected] = useState(null);
+  const [backHref, setBackHref] = useState('/projects/eum/patient/onboarding/mydata-auth');
+
+  useEffect(() => {
+    const data = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
+    if (data.mydata_skipped) {
+      setBackHref('/projects/eum/patient/onboarding/mydata');
+    }
+  }, []);
 
   return (
     <>
       <OnboardingAppBar
         variant="progress"
-        step={10}
-        totalSteps={11}
-        backHref="/projects/eum/patient/onboarding/mydata-auth"
+        step={9}
+        totalSteps={10}
+        backHref={backHref}
       />
       <main className={styles['page']}>
         <section className={styles['content']} aria-labelledby="wearable-title">
@@ -91,14 +99,28 @@ export default function WearablePage() {
             type="button"
             className={styles['btn-primary']}
             disabled={!selected}
-            onClick={() => router.push('/projects/eum/patient/onboarding/health-info')}
+            onClick={() => {
+              const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
+              sessionStorage.setItem(
+                'eum_onboarding',
+                JSON.stringify({ ...existing, wearable_device: selected }),
+              );
+              router.push('/projects/eum/patient/onboarding/health-info');
+            }}
           >
             연동하기
           </button>
           <button
             type="button"
             className={styles['btn-skip']}
-            onClick={() => router.push('/projects/eum/patient/onboarding/health-info')}
+            onClick={() => {
+              const existing = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
+              sessionStorage.setItem(
+                'eum_onboarding',
+                JSON.stringify({ ...existing, wearable_device: null }),
+              );
+              router.push('/projects/eum/patient/onboarding/health-info');
+            }}
           >
             건너뛰기
           </button>

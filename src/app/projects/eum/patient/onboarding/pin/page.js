@@ -6,15 +6,38 @@ import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAp
 import PinPad from '../../../_components/PinPad/PinPad';
 import styles from './page.module.scss';
 
+function isWeakPin(pin) {
+  // 같은 숫자 3번 이상 연속 (예: 111234, 555123)
+  if (/(.)\1\1/.test(pin)) return true;
+  // 연속 3자리 오름/내림차순 (예: 123456, 321098)
+  for (let i = 0; i < pin.length - 2; i++) {
+    const a = parseInt(pin[i]);
+    const b = parseInt(pin[i + 1]);
+    const c = parseInt(pin[i + 2]);
+    if (b === a + 1 && c === b + 1) return true;
+    if (b === a - 1 && c === b - 1) return true;
+  }
+  return false;
+}
+
 export default function PinPage() {
   const router = useRouter();
   const [pin, setPin] = useState('');
+  const [pinError, setPinError] = useState('');
 
   function handleChange(value) {
     setPin(value);
-    // 6자리 입력 완료 시 자동으로 다음 화면 이동
-    if (value.length === 6) {
-      // pin-confirm 페이지로 값 전달 (sessionStorage 사용)
+    if (value.length < 6) {
+      setPinError('');
+      return;
+    }
+    if (isWeakPin(value)) {
+      setPinError('같은 숫자나 연속된 숫자를 3개 이상 사용할 수 없어요.');
+      setTimeout(() => {
+        setPin('');
+        setPinError('');
+      }, 800);
+    } else {
       sessionStorage.setItem('eum_pin_temp', value);
       router.push('/projects/eum/patient/onboarding/pin-confirm');
     }
@@ -24,9 +47,9 @@ export default function PinPage() {
     <>
       <OnboardingAppBar
         variant="progress"
-        step={5}
-        totalSteps={11}
-        backHref="/projects/eum/patient/onboarding/phone"
+        step={4}
+        totalSteps={10}
+        backHref="/projects/eum/patient/onboarding/personal-info"
       />
       <main className={styles['page']}>
         <section className={styles['content']} aria-labelledby="pin-title">
@@ -36,6 +59,11 @@ export default function PinPage() {
           <p className={styles['subtitle']}>
             앱 잠금 해제에 사용할 6자리 PIN을 입력해 주세요.
           </p>
+          {pinError ? (
+            <p className={styles['error']} role="alert">{pinError}</p>
+          ) : (
+            <p className={styles['hint']}>같은 숫자나 연속된 숫자를 3개 이상 사용할 수 없어요.</p>
+          )}
         </section>
 
         <PinPad value={pin} onChange={handleChange} maxLength={6} />

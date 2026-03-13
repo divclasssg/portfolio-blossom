@@ -69,6 +69,13 @@
   color: t.$header-fg;
 }
 
+.doctor-info {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
 .spacer {
   flex: 1;
 }

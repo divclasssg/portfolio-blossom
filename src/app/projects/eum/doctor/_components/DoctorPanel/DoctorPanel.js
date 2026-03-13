@@ -14,7 +14,7 @@ const RESIZE_DIRS = ['n', 's', 'e', 'w', 'nw', 'ne', 'sw', 'se'];
 // 이음 플로팅 패널 — 드래그 이동 / 8방향 리사이즈 / pin / opacity / 닫기
 // backHref: 헤더에 뒤로가기 링크 표시 (D-001 전용)
 // singleColumn: 그리드 대신 단일 컬럼 레이아웃 (D-001 전용)
-export default function DoctorPanel({ footer, children, backHref, singleColumn }) {
+export default function DoctorPanel({ footer, children, backHref, singleColumn, doctorName, hospitalName }) {
   const [pos, setPos] = useState(null);         // null = 기본 right:0, top:0
   const [width, setWidth] = useState(DEFAULT_WIDTH);
   const [height, setHeight] = useState(null);   // null = CSS 80vh, 리사이즈 시 px 전환
@@ -167,6 +167,8 @@ export default function DoctorPanel({ footer, children, backHref, singleColumn }
         onOpacityChange={setOpacity}
         onClose={() => setIsVisible(false)}
         backHref={backHref}
+        doctorName={doctorName}
+        hospitalName={hospitalName}
       />
       <div className={styles['panel-scroll']}>
         <div className={singleColumn ? styles['section-single'] : styles['section-grid']}>

@@ -1,0 +1,68 @@
+@use '../../_styles/tokens' as t;
+
+// AI 로딩 상태 — 패널 그리드 셀을 가로로 full-span
+.loading-wrapper {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 24px;
+  min-height: 180px;
+}
+
+.loading-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(0, 0, 0, 0.08);
+  border-top-color: t.$text-muted;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// 프로그레스 바
+.progress-bar-track {
+  width: 200px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: t.$color-primary;
+  border-radius: 4px;
+  transition: width 1.2s ease;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.progress-percent {
+  font-size: 12px;
+  color: t.$text-secondary;
+  font-weight: 500;
+}
+
+.progress-estimate {
+  font-size: 12px;
+  color: t.$text-muted;
+}
+
+.loading-message {
+  font-size: 13px;
+  color: t.$text-muted;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0;
+  line-height: 1.5;
+}

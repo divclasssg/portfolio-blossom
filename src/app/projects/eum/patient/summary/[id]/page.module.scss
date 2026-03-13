@@ -32,6 +32,11 @@
   color: $text-secondary;
   cursor: default; // 데모: 비활성
   opacity: 0.4;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
 }
 
 // 진료 정보 헤더
@@ -80,6 +85,41 @@
   line-height: 1.6;
   color: $text-primary;
   margin: 0;
+}
+
+// 검사 결과 (의료 기록)
+.lab-meta {
+  font-size: 13px;
+  color: $text-secondary;
+  margin: 0;
+}
+
+.lab-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lab-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.lab-name {
+  font-size: 14px;
+  color: $text-secondary;
+}
+
+.lab-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-primary;
+  text-align: right;
 }
 
 // 처방
@@ -192,5 +232,10 @@
 
   &:active {
     opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
   }
 }
