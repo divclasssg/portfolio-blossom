@@ -6,7 +6,7 @@ export default function VitalsBanner({ vitals }) {
     return (
         <div className={styles['vitals-banner']} role="note" aria-label="오늘의 바이탈 요약">
             <p className={styles['vitals-text']}>
-                💡 오늘 : 심박수 {heart_rate_bpm}bpm, 수면 {sleep_hours}h, 혈압 {bp_systolic}/
+                <span aria-hidden="true">💡</span> 오늘 : 심박수 {heart_rate_bpm}bpm, 수면 {sleep_hours}h, 혈압 {bp_systolic}/
                 {bp_diastolic}
             </p>
         </div>

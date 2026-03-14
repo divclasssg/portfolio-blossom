@@ -179,7 +179,6 @@ export async function POST(request) {
                         fullContent.slice(-200)
                     );
                 }
-                console.log('[chat/route] donePayload:', JSON.stringify(donePayload));
                 send(donePayload);
 
                 // 메시지 DB 저장 (비동기, 스트림 응답 차단 안 함)

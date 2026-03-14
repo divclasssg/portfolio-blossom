@@ -80,7 +80,7 @@ export default function PanelHeader({
                         aria-pressed={isPinned}
                         title={isPinned ? '고정 해제' : '위치 고정'}
                     >
-                        {isPinned ? <PinIcon size={24} /> : <PinIcon size={24} />}
+                        <PinIcon size={24} variant={isPinned ? 'active' : 'inactive'} />
                     </button>
 
                     {/* 닫기 */}

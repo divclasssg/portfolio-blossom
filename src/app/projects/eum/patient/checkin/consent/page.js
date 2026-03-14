@@ -57,7 +57,7 @@ export default function CheckinConsentPage() {
                     <p className={styles['scope-notice']}>체크인 시 다음 데이터를 전송합니다.</p>
                     <CheckinScopeList />
                     <p className={styles['security-notice']}>
-                        🛡 안전한 환경에서 데이터가 전송됩니다.
+                        <span aria-hidden="true">🛡</span> 안전한 환경에서 데이터가 전송됩니다.
                     </p>
                 </div>
 

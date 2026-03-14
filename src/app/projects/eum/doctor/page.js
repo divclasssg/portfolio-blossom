@@ -27,8 +27,10 @@ export const dynamic = 'force-dynamic';
 
 // birth_date → 만 나이 계산
 function calcAge(birthDate) {
+    if (!birthDate) return null;
     const today = new Date();
     const birth = new Date(birthDate);
+    if (isNaN(birth.getTime())) return null;
     let age = today.getFullYear() - birth.getFullYear();
     const m = today.getMonth() - birth.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
@@ -37,6 +39,7 @@ function calcAge(birthDate) {
 
 // 증상 기록 → 타임라인 아이템 변환
 function symptomToTimelineItem(record) {
+    if (!record.occurred_at) return null;
     const date = new Date(record.occurred_at);
     const mm = String(date.getMonth() + 1).padStart(2, '0');
     const dd = String(date.getDate()).padStart(2, '0');
@@ -103,32 +106,12 @@ async function fetchLiveData(patientId) {
         const patient = patientRes.error ? null : patientRes.data;
         const chiefComplaint = sessionRes.error ? null : (sessionRes.data?.chief_complaint ?? null);
 
-        console.log('[doctor/page] patientId:', patientId);
-        console.log(
-            '[doctor/page] patient:',
-            patient
-                ? JSON.stringify({
-                      name: patient.name,
-                      chronic_conditions: patient.chronic_conditions,
-                      allergies: patient.allergies,
-                  })
-                : 'null (정적 폴백)'
-        );
-        console.log(
-            '[doctor/page] chief_complaint:',
-            chiefComplaint ? '동적 데이터 사용' : '정적 JSON 폴백'
-        );
-        console.log(
-            '[doctor/page] symptoms:',
-            symptoms.length > 0 ? `동적 데이터 ${symptoms.length}건` : '정적 JSON 폴백'
-        );
-
         // 최신 브리핑/서제스천 각 1개
         const dbBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
         const dbSuggestions = aiData.find((r) => r.result_type === 'suggestions')?.content ?? null;
 
         // 타임라인 변환: 최신 3개 → compact, 나머지 → expanded
-        const timelineItems = symptoms.map(symptomToTimelineItem);
+        const timelineItems = symptoms.map(symptomToTimelineItem).filter(Boolean);
         const compactItems = timelineItems.slice(0, 3);
         const expandedItems = timelineItems.slice(3);
 
@@ -175,7 +158,6 @@ export default async function DoctorDashboard() {
 
     // 타임라인 데이터: Supabase에 데이터가 있을 때만 우선, 없으면 정적 JSON 폴백
     const hasLiveSymptoms = (liveData?.symptoms?.length ?? 0) > 0;
-    console.log('[doctor/page] timeline:', hasLiveSymptoms ? '동적' : '정적 폴백');
 
     const compactTimeline = hasLiveSymptoms
         ? {
@@ -235,7 +217,6 @@ export default async function DoctorDashboard() {
                 {/* 섹션 2: 환자 프로필 + 기저질환 + 알레르기 */}
                 <PatientProfile
                     patientSummary={patientSummary}
-                    referralBadge={dashboardState.header.referral_badge}
                     chronicConditions={basicInfo.chronic_conditions}
                     allergies={allergies}
                 />

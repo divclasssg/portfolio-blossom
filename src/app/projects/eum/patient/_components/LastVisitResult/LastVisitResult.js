@@ -1,16 +1,16 @@
 import Link from 'next/link';
 import styles from './LastVisitResult.module.scss';
 
-// "YYYY-MM-DD" → "YYYY. MM. DD"
+// "YYYY-MM-DD" → "YYYY.MM.DD" (UX 가이드 준수)
 function formatDate(dateStr) {
     const [year, month, day] = dateStr.split('-');
-    return `${year}. ${month}. ${day}`;
+    return `${year}.${month}.${day}`;
 }
 
 export default function LastVisitResult({ result }) {
     if (!result) return null;
 
-    const { visit_date, hospital_name, summary_preview } = result;
+    const { visit_date, hospital_name, summary_preview = '진료 결과를 확인해 주세요.' } = result;
 
     return (
         <section className={styles['section']} aria-labelledby="last-visit-title">

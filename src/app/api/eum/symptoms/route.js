@@ -47,18 +47,8 @@ export async function POST(request) {
 
         const supabase = getSupabaseClient();
 
-        // 자동 symptom_id 생성: 기존 최대 번호 + 1
-        const { data: existing } = await supabase
-            .from('symptom_records')
-            .select('symptom_id')
-            .eq('patient_id', patientId)
-            .order('created_at', { ascending: false })
-            .limit(1);
-
-        const lastNum = existing?.[0]?.symptom_id
-            ? parseInt(existing[0].symptom_id.replace('sym_', ''), 10)
-            : 0;
-        const symptomId = `sym_${String(lastNum + 1).padStart(3, '0')}`;
+        // UUID 기반 symptom_id 생성 (병렬 요청 시 ID 충돌 방지)
+        const symptomId = `sym_${crypto.randomUUID().slice(0, 8)}`;
 
         const row = {
             symptom_id: symptomId,

@@ -47,6 +47,11 @@ export async function POST(request) {
 
         if (updateError) {
             console.error('[POST /api/eum/transmit] UPDATE 에러:', updateError.message);
+            // 결과는 저장됐으나 세션 상태 미갱신 — 클라이언트에 경고 전달
+            return NextResponse.json(
+                { success: true, warning: '결과 저장 완료, 세션 상태 갱신 실패' },
+                { status: 201 }
+            );
         }
 
         return NextResponse.json({ success: true }, { status: 201 });

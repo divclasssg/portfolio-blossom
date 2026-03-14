@@ -23,8 +23,8 @@ function getTrend(value, average) {
 // healthPlatform 배열에서 특정 날짜(MM-DD) 레코드 찾기
 function findHealthRecord(date, healthPlatform) {
     if (!healthPlatform?.length) return null;
-    const target = `2026-${date}`;
-    return healthPlatform.find((h) => h.recorded_at.startsWith(target)) ?? null;
+    // MM-DD 접미사로 매칭 — 연도 하드코딩 제거
+    return healthPlatform.find((h) => h.recorded_at.slice(5, 10) === date) ?? null;
 }
 
 // 증상 타임라인 — 날짜 | 증상명 | NRS | 펼침 토글 + 건강 서브행
@@ -81,9 +81,13 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                             ? getTrend(health.sleep_hours, parseFloat(avgSleep))
                             : null;
 
-                        // 날짜 포맷: "03-08" → "2026. 03. 08"
+                        // 날짜 포맷: "03-08" → "YYYY. MM. DD" (healthPlatform에서 연도 추출)
                         const [month, day] = item.date.split('-');
-                        const dateLabel = `2026. ${month}. ${day}`;
+                        const matchedRecord = findHealthRecord(item.date, healthPlatform);
+                        const year = matchedRecord
+                            ? matchedRecord.recorded_at.slice(0, 4)
+                            : new Date().getFullYear();
+                        const dateLabel = `${year}. ${month}. ${day}`;
 
                         return (
                             <li key={itemKey} className={styles.item}>

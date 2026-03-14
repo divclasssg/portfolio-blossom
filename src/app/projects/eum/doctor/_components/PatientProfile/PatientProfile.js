@@ -3,7 +3,6 @@ import styles from './PatientProfile.module.scss';
 
 export default function PatientProfile({
     patientSummary,
-    referralBadge,
     allergies,
     chronicConditions,
 }) {

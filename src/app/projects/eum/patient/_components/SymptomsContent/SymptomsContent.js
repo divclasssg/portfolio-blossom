@@ -59,7 +59,6 @@ export default function SymptomsContent({
             });
 
             const resText = await res.text();
-            console.log('[SymptomsContent] POST /api/eum/symptoms:', res.status, resText);
 
             if (res.ok) {
                 const updatedRes = await fetch(`/api/eum/symptoms?patientId=${patientId}`);
@@ -163,10 +162,6 @@ export default function SymptomsContent({
                 return next;
             });
 
-            console.log('[SymptomsContent] streaming done:', {
-                completed,
-                symptomRecord: !!symptomRecord,
-            });
             if (completed && symptomRecord) {
                 await saveSymptomRecord(symptomRecord);
             }

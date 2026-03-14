@@ -436,7 +436,7 @@ export async function stage4RankGptFallback(candidates, patientData) {
 
 // ── Stage 5: GPT-4o 브리핑 생성 ────────────────────────────────
 // 랭킹 결과 + 환자 데이터 → 의사용 브리핑 (04_ai_briefing.json 스키마)
-export async function stage5Report(rankedResult, patientData) {
+export async function stage5Report(rankedResult, patientData, sessionId) {
     const openai = getOpenAI();
     const now = new Date().toISOString();
     const startMs = Date.now();
@@ -528,6 +528,7 @@ export async function stage5Report(rankedResult, patientData) {
 
     // 04_ai_briefing.json 스키마에 맞게 조립
     const briefing = {
+        session_id: sessionId,
         screen_feature: 'F11',
         model_version: 'GPT-4o',
         generated_at: now2,
@@ -643,7 +644,7 @@ export async function runFullPipeline(patientId, sessionId) {
     // ─ Stage 5 ─
     let briefing;
     try {
-        const result = await stage5Report(ranked, patientData);
+        const result = await stage5Report(ranked, patientData, sessionId);
         briefing = result.briefing;
         pipelineStages.report_generation = {
             model: 'GPT-4o',
@@ -657,6 +658,7 @@ export async function runFullPipeline(patientId, sessionId) {
 
     // 05_ai_suggestions.json 스키마에 맞게 suggestions 래퍼 조립
     const suggestions = {
+        session_id: sessionId,
         screen_feature: 'F13',
         model_version: stage4ModelUsed,
         generated_at: new Date().toISOString(),
