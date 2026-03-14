@@ -13,7 +13,7 @@ export default function PatientOverview({ basicInfo, medications }) {
     const w = parseFloat(weight);
     const bmi = (w / (h / 100) ** 2).toFixed(1);
 
-    const conditions = chronic_conditions.length > 0 ? chronic_conditions.join(' · ') : '정보 없음';
+    const conditions = chronic_conditions.length > 0 ? chronic_conditions.join(' · ') : null;
 
     // 혈액형: 값이 있고 '모름'이 아닐 때만 표시
     const showBloodType = blood_type && blood_type !== '모름';
@@ -27,7 +27,7 @@ export default function PatientOverview({ basicInfo, medications }) {
                 <h2 className={styles['section-title']}>Patient Overview</h2>
                 <div className={styles['overview-card']}>
                     <p className={styles.summary}>
-                        {conditions} · {height} / {weight} / BMI {bmi}
+                        {conditions && <>{conditions} · </>}{height} / {weight} / BMI {bmi}
                         {showBloodType && ` · 혈액형 ${blood_type}`} · {medications_count} Active
                         Medications
                     </p>
