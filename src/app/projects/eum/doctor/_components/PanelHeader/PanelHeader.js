@@ -2,6 +2,7 @@
 
 import { CloseIcon, DataIcon, PinIcon } from '../../../_components/icons';
 import styles from './PanelHeader.module.scss';
+import { usePatientDataModal } from '../PatientDataModal/PatientDataModalContext';
 
 // 결정사항: [뒤로가기(선택)] 드래그핸들 | Eum 로고 | 여백 | 차트아이콘(→D-F12) | opacity슬라이더 | pin | 닫기
 // 헤더 전체 영역을 드래그 핸들로 사용. 버튼/슬라이더는 mousedown stopPropagation으로 드래그 방지.
@@ -17,6 +18,8 @@ export default function PanelHeader({
     doctorName,
     hospitalName,
 }) {
+    const { open: openDataModal } = usePatientDataModal();
+
     return (
         <header
             className={`${styles.header} ${isPinned ? styles['is-pinned'] : styles['is-draggable']}`}
@@ -68,6 +71,7 @@ export default function PanelHeader({
                         className={styles['icon-btn']}
                         aria-label="타임라인 차트 보기 (D-F12)"
                         title="타임라인 차트"
+                        onClick={openDataModal}
                     >
                         <DataIcon size={24} />
                     </button>

@@ -7,10 +7,10 @@ export default function VitalsToday({ vitals, wearableDevice }) {
     const sourceLabel = wearableDevice === 'apple' ? '출처: Apple Health' : wearableDevice === 'galaxy' ? '출처: Samsung Health' : '출처: 건강 데이터';
 
     const rows = [
-        { label: '심박수', value: `${heart_rate_bpm} bpm` },
-        { label: '혈압', value: `${bp_systolic}/${bp_diastolic} mmHg` },
-        { label: '수면', value: `${sleep_hours}시간` },
-        { label: '걸음 수', value: `${step_count.toLocaleString('ko-KR')}보` },
+        { label: '심박수', value: `${heart_rate_bpm ?? '—'} bpm` },
+        { label: '혈압', value: `${bp_systolic ?? '—'}/${bp_diastolic ?? '—'} mmHg` },
+        { label: '수면', value: `${sleep_hours ?? '—'}시간` },
+        { label: '걸음 수', value: `${step_count?.toLocaleString('ko-KR') ?? '—'}보` },
     ];
 
     return (

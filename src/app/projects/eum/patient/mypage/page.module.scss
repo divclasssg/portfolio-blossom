@@ -1,0 +1,12 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100dvh - 48px - 56px); // AppBar + TabBar
+    padding: 0 24px;
+}
+
+.placeholder {
+    font-size: 15px;
+    color: #9ca3af;
+}

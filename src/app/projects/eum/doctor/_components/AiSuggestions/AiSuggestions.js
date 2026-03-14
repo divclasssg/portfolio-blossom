@@ -4,6 +4,7 @@ import { useState, useRef, useCallback } from 'react';
 import styles from './AiSuggestions.module.scss';
 import AiWarningBanner from '../AiWarningBanner/AiWarningBanner';
 import { AiIcon as AiIconSvg } from '../../../_components/icons';
+import { usePatientDataModal } from '../PatientDataModal/PatientDataModalContext';
 
 function AiIcon() {
     return (
@@ -16,6 +17,7 @@ function AiIcon() {
 // AI Key Findings (와이어프레임 섹션명)
 // "진단", "확진" 표현 금지 — 참고 키워드로 표시 (CLAUDE.md §금지사항)
 export default function AiSuggestions({ suggestions, modelVersion, warnings }) {
+    const { open: openDataModal } = usePatientDataModal();
     const [orderedSuggestions, setOrderedSuggestions] = useState(suggestions);
     const [disabledItems, setDisabledItems] = useState(new Set());
     const [dragIndex, setDragIndex] = useState(null);
@@ -94,6 +96,7 @@ export default function AiSuggestions({ suggestions, modelVersion, warnings }) {
                     <button
                         className={styles['data-link']}
                         aria-label="타임라인 차트 모달 열기 (D-F12)"
+                        onClick={openDataModal}
                     >
                         데이터보기 →
                     </button>

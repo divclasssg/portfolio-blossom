@@ -18,7 +18,7 @@ export default function CheckinActions() {
             <button
                 className={styles['decline-btn']}
                 type="button"
-                onClick={() => router.push('/projects/eum/patient')}
+                onClick={() => router.back()}
             >
                 거절 &gt;
             </button>

@@ -28,7 +28,7 @@ export default function AiRiskFlags({ highlights }) {
                                         style={{ background: item.badge_color }}
                                         aria-label={`신호 유형: ${config.label}`}
                                     >
-                                        {config.label}
+                                        <span aria-hidden="true">{config.icon}</span> {config.label}
                                     </span>
                                     <h3 className={styles['card-title']}>{item.title}</h3>
                                     <button

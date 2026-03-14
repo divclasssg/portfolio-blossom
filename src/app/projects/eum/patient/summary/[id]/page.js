@@ -54,7 +54,7 @@ function transformForPatient(dbResult) {
         })),
         referral: c.referral_response
             ? {
-                  referral_to_department: '신경과',
+                  referral_to_department: c.referral_response.to_department ?? '신경과',
                   referral_to_hospital: c.referral_response.to_hospital,
                   referral_reason: c.referral_response.response_summary,
                   referral_date: c.referral_response.response_date,

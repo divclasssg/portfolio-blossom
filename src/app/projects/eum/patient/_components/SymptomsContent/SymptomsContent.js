@@ -205,7 +205,7 @@ export default function SymptomsContent({
             );
             const severityText = ['', '약함(1-3)', '보통(4-6)', '심함(7-8)', '극심(9-10)'][
                 severity
-            ];
+            ] ?? '';
             await sendMessage(`증상 강도: ${severityText}`);
         },
         [sendMessage]

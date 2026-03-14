@@ -45,7 +45,7 @@ export default function WelcomePage() {
 
             {/* 하단 바 */}
             <div className={styles['bottom-bar']}>
-                <button type="button" className={styles['bottom-link']}>
+                <button type="button" className={styles['bottom-link']} disabled aria-label="개인정보 처리방침 (준비 중)">
                     개인정보 처리방침
                 </button>
                 <span className={styles['version']}>버전정보 v1.0.0</span>
