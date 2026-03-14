@@ -69,7 +69,7 @@ export default async function SymptomsPage() {
     return (
         <SymptomsContent
             vitals={vitals}
-            records={dbRecords ?? symptomRecords.symptom_records}
+            records={dbRecords?.length ? dbRecords : symptomRecords.symptom_records}
             patientId={patientId}
             patientName={patientName}
             sessionId={latestSessionId}
