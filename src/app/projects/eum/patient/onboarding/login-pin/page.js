@@ -31,7 +31,7 @@ export default function LoginPinPage() {
                         throw new Error(body.error || '시드 API 오류');
                     }
                     document.cookie =
-                        'eum_patient_id=pat_admin_001; max-age=1800; path=/projects/eum; SameSite=Lax';
+                        'eum_patient_id=pat_admin_001; max-age=86400; path=/projects/eum; SameSite=Lax';
                     router.push('/projects/eum/patient');
                 } catch {
                     setError('관리자 데이터 초기화에 실패했습니다.');

@@ -25,8 +25,14 @@ const fmtDate = (d) => {
 
 // 카테고리 → 한국어 라벨
 const CATEGORY_LABEL = {
-    'SYM-12': '심리/자율',
+    'SYM-01': '전신',
+    'SYM-02': '근골격',
+    'SYM-03': '신경',
     'SYM-05': '소화기',
+    'SYM-07': '호흡기',
+    'SYM-08': '심리',
+    'SYM-09': '피부',
+    'SYM-12': '심혈관/자율',
 };
 
 function NrsTooltip({ active, payload, label }) {

@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS symptom_records (
   voice_transcript TEXT,
   occurred_at     TIMESTAMPTZ NOT NULL,
   severity        SMALLINT NOT NULL CHECK (severity BETWEEN 1 AND 4),
-  category_code   TEXT NOT NULL,                  -- SYM-05, SYM-07, SYM-12
+  category_code   TEXT NOT NULL,                  -- SYM-01~SYM-12 (01전신, 02근골격, 03신경, 05소화기, 07호흡기, 08심리, 09피부, 12심혈관/자율)
   location_type   TEXT DEFAULT 'HOME',            -- HOME, WORK, OUTSIDE
   created_at      TIMESTAMPTZ DEFAULT NOW()
 );

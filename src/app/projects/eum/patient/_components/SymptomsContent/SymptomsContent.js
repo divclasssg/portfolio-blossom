@@ -53,7 +53,7 @@ export default function SymptomsContent({
                     // 채팅 완료 시점의 실제 시각 사용 (GPT 생성 날짜 무시)
                     occurredAt: new Date().toISOString(),
                     severity: symptomRecord.severity,
-                    categoryCode: symptomRecord.categoryCode || 'SYM-05',
+                    categoryCode: symptomRecord.categoryCode || 'SYM-01',
                     locationType: symptomRecord.locationType || 'HOME',
                 }),
             });

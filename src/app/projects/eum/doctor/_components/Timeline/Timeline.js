@@ -8,8 +8,13 @@ import { AiIcon } from '../../../_components/icons';
 const SEVERITY_LABEL = { 1: '낮음', 2: '중간', 3: '높음', 4: '심함' };
 
 const CATEGORY_LABEL = {
-    'SYM-05': 'Gastrointestinal Symptoms',
-    'SYM-07': 'Respiratory Symptoms',
+    'SYM-01': 'General / Constitutional',
+    'SYM-02': 'Musculoskeletal',
+    'SYM-03': 'Neurological',
+    'SYM-05': 'Gastrointestinal',
+    'SYM-07': 'Respiratory',
+    'SYM-08': 'Psychological',
+    'SYM-09': 'Dermatological',
     'SYM-12': 'Cardiovascular / Autonomic',
 };
 

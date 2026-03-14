@@ -25,7 +25,13 @@ const DOMAIN = [
 
 // 카테고리 칩 ID → JSON category 코드 매핑
 const CATEGORY_CODE = {
+    general: 'SYM-01',
+    musculoskeletal: 'SYM-02',
+    neurological: 'SYM-03',
     digestive: 'SYM-05',
+    respiratory: 'SYM-07',
+    psychological: 'SYM-08',
+    dermatological: 'SYM-09',
     autonomic: 'SYM-12',
 };
 
