@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation';
 import dashboardState from '../_references/data/doctor/03_dashboard_state.json';
 import transmissionPkg from '../_references/data/doctor/02_transmission_package.json';
 import doctorProfiles from '../_references/data/doctor/01_doctor_profile.json';
@@ -170,9 +169,8 @@ export default async function DoctorDashboard() {
 
     const { sections } = dashboardState;
 
-    // 쿠키 없으면 온보딩으로 리디렉트
-    const patientId = await getPatientId();
-    if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
+    // 쿠키 없으면 기본 환자(윤서진)로 폴백 — 의사 대시보드 직접 진입 허용
+    const patientId = (await getPatientId()) || 'pat_yoon_001';
     const liveData = await fetchLiveData(patientId);
 
     // 타임라인 데이터: Supabase에 데이터가 있을 때만 우선, 없으면 정적 JSON 폴백

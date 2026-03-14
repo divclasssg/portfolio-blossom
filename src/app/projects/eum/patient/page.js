@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation';
 import homeDashboard from '../_references/data/patient/08_home_dashboard.json';
 import consentNotifications from '../_references/data/patient/09_consent_notifications.json';
 import { getPatientId } from '../_lib/getPatientId';
@@ -120,8 +119,8 @@ async function fetchTransmittedResults() {
 }
 
 export default async function PatientHome() {
-    const patientId = await getPatientId();
-    if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
+    // 쿠키 없으면 기본 환자(윤서진)로 폴백 — 환자 앱 직접 진입 허용
+    const patientId = (await getPatientId()) || 'pat_yoon_001';
     const unreadCount = consentNotifications.notifications.filter((n) => !n.read).length;
 
     const [patientInfo, dynamicSummary, transmittedResults] = await Promise.all([
