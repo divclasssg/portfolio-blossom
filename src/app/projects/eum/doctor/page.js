@@ -77,7 +77,12 @@ async function fetchLiveData(patientId) {
                       .select('*')
                       .eq('session_id', latestSessionId)
                       .order('created_at', { ascending: false })
-                : { data: [], error: null },
+                : supabase
+                      .from('ai_results')
+                      .select('*')
+                      .eq('patient_id', patientId)
+                      .order('created_at', { ascending: false })
+                      .limit(2),
             supabase
                 .from('patients')
                 .select(

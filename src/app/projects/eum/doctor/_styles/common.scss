@@ -5,15 +5,13 @@
 // ── 섹션 레이아웃 ──────────────────────────────────────────────────────────────
 
 .section {
+    border-bottom: 1px solid t.$neutral-border;
     background-color: t.$section-background;
     padding: t.$section-padding-y t.$section-padding-x;
 }
 
 .section-content {
-    border-radius: 16px;
     background: t.$section-content-bg;
-    padding: 20px;
-    box-shadow: t.$section-content-shadow;
 }
 
 .section-title {

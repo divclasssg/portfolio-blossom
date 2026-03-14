@@ -176,6 +176,7 @@ export async function stage1Extract(patientData) {
     const completion = await openai.chat.completions.create(
         {
             model: MODEL_FAST,
+            temperature: 0,
             messages: [
                 {
                     role: 'system',
@@ -369,6 +370,7 @@ export async function stage4RankGptFallback(candidates, patientData) {
     const completion = await openai.chat.completions.create(
         {
             model: MODEL_PRO,
+            temperature: 0,
             messages: [
                 {
                     role: 'system',
@@ -444,6 +446,7 @@ export async function stage5Report(rankedResult, patientData, sessionId) {
     const completion = await openai.chat.completions.create(
         {
             model: MODEL_PRO,
+            temperature: 0,
             messages: [
                 {
                     role: 'system',

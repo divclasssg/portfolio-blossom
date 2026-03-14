@@ -16,7 +16,7 @@ import { getLatestSessionId } from '../_lib/getLatestSession';
 export const maxDuration = 90;
 
 // 파이프라인 결과를 Supabase ai_results에 저장
-async function saveToDb(result, sessionId) {
+async function saveToDb(result, sessionId, patientId) {
     if (result.is_fallback) return; // 폴백 결과는 저장하지 않음
 
     try {
@@ -26,6 +26,7 @@ async function saveToDb(result, sessionId) {
         if (result.briefing) {
             rows.push({
                 session_id: sessionId,
+                patient_id: patientId,
                 result_type: 'briefing',
                 model_version: result.briefing.model_version,
                 content: result.briefing,
@@ -35,6 +36,7 @@ async function saveToDb(result, sessionId) {
         if (result.suggestions) {
             rows.push({
                 session_id: sessionId,
+                patient_id: patientId,
                 result_type: 'suggestions',
                 model_version: result.suggestions.model_version,
                 content: result.suggestions,
@@ -94,7 +96,7 @@ export async function POST(request) {
             setCachedResult(result);
             clearRunningPipeline();
             // DB 저장 (비동기, 응답 차단 안 함)
-            if (sessionId) saveToDb(result, sessionId);
+            if (patientId) saveToDb(result, sessionId, patientId);
             return result;
         })
         .catch((e) => {
