@@ -18,7 +18,7 @@ const TABS = [
 // 초기 인사 메시지 생성 (환자 이름 동적 반영)
 function makeInitialMessages(name) {
     const greeting = name ? `안녕하세요 ${name}님!` : '안녕하세요!';
-    return [{ type: 'bot', text: `${greeting}\n어떤 증상이 있으신가요?` }];
+    return [{ type: 'bot', text: `${greeting}\n어떤 증상이 있으신가요?`, timestamp: new Date().toISOString() }];
 }
 
 // AI에 보낼 히스토리 형식 (role/content 배열) — 첫 인사 메시지 제외
@@ -68,13 +68,13 @@ export default function SymptomsContent({
                 }
                 setMessages((prev) => [
                     ...prev,
-                    { type: 'bot', text: '증상이 기록됐어요.\n기록 탭에서 확인할 수 있습니다.' },
+                    { type: 'bot', text: '증상이 기록됐어요.\n기록 탭에서 확인할 수 있습니다.', timestamp: new Date().toISOString() },
                 ]);
             } else {
                 console.error('[SymptomsContent] 증상 저장 실패:', res.status, resText);
                 setMessages((prev) => [
                     ...prev,
-                    { type: 'bot', text: '증상 저장에 실패했습니다. 다시 시도해 주세요.' },
+                    { type: 'bot', text: '증상 저장에 실패했습니다. 다시 시도해 주세요.', timestamp: new Date().toISOString() },
                 ]);
             }
         } catch (err) {
@@ -93,7 +93,7 @@ export default function SymptomsContent({
 
         // 봇 슬롯 인덱스 = currentMessages.length (봇 메시지가 추가될 위치)
         const botMsgIdx = currentMessages.length;
-        setMessages((prev) => [...prev, { type: 'bot', text: '', streaming: true }]);
+        setMessages((prev) => [...prev, { type: 'bot', text: '', streaming: true, timestamp: new Date().toISOString() }]);
 
         try {
             const res = await fetch('/api/eum/chat', {
@@ -185,7 +185,7 @@ export default function SymptomsContent({
     const sendMessage = useCallback(
         async (text) => {
             if (isStreaming) return;
-            const userMsg = { type: 'user', text };
+            const userMsg = { type: 'user', text, timestamp: new Date().toISOString() };
             const nextMessages = [...messages, userMsg];
             setMessages(nextMessages);
             startStreaming(nextMessages);
