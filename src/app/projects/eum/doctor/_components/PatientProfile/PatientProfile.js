@@ -1,4 +1,4 @@
-import { WarningIcon } from '../../../_components/icons';
+import { PillIcon, WarningIcon } from '../../../_components/icons';
 import styles from './PatientProfile.module.scss';
 
 export default function PatientProfile({
@@ -15,41 +15,43 @@ export default function PatientProfile({
 
             <div className={styles['identity-row']}>
                 <span className={styles['patient-name']}>{patientSummary.name}</span>
+                {genderLabel && <span className={styles['gender-badge']}>{genderLabel}</span>}
                 {patientSummary.age != null && (
-                    <>
-                        {genderLabel && (
-                            <span className={styles['gender-badge']}>{genderLabel}</span>
-                        )}
-                        <span className={styles.age}>만 {patientSummary.age}세</span>
-                    </>
+                    <span className={styles.age}>만 {patientSummary.age}세</span>
                 )}
-            </div>
 
-            {/* 기저질환 배지 */}
-            {chronicConditions?.length > 0 && (
-                <ul className={styles['condition-list']} aria-label="기저질환 목록">
-                    {chronicConditions.map((name) => (
-                        <li key={name} className={styles['condition-item']}>
-                            {name}
-                        </li>
-                    ))}
-                </ul>
-            )}
+                <div className={styles.chips}>
+                    {/* 기저질환 칩 — 0건이면 미표시 */}
+                    {chronicConditions?.length > 0 && (
+                        <div className={styles['chip-wrapper']}>
+                            <span className={styles['chip-condition']} aria-describedby="cond-tooltip" tabIndex={0}>
+                                <PillIcon size={14} />
+                                <span>{chronicConditions.length}</span>
+                            </span>
+                            <ul className={styles.tooltip} id="cond-tooltip" role="tooltip" aria-label="기저질환 목록">
+                                {chronicConditions.map((name) => <li key={name}>{name}</li>)}
+                            </ul>
+                        </div>
+                    )}
 
-            {/* 알레르기 경고 — 시각적 강조 유지, 닫기 없음 */}
-            {allergies?.length > 0 && (
-                <div className={styles['allergy-warning']} role="alert">
-                    <ul className={styles['allergy-list']} aria-label="알레르기 목록">
-                        {allergies.map((item) => (
-                            <li key={item.allergen} className={styles['allergy-item']}>
-                                <WarningIcon size={16} variant="triangle" />
-                                <span>{item.allergen}</span>
-                                <span className={styles['allergy-reaction']}>{item.reaction}</span>
-                            </li>
-                        ))}
-                    </ul>
+                    {/* 알레르기 칩 — 0건이면 미표시 */}
+                    {allergies?.length > 0 && (
+                        <div className={styles['chip-wrapper']}>
+                            <span className={styles['chip-allergy']} aria-describedby="allergy-tooltip" tabIndex={0}>
+                                <WarningIcon size={14} variant="triangle-fill" />
+                                <span>{allergies.length}</span>
+                            </span>
+                            <ul className={styles['tooltip-danger']} id="allergy-tooltip" role="tooltip" aria-label="알레르기 목록">
+                                {allergies.map((item) => (
+                                    <li key={item.allergen}>
+                                        <strong>{item.allergen}</strong> — {item.reaction}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </div>
-            )}
+            </div>
         </section>
     );
 }

@@ -2,6 +2,9 @@
 
 // section: padding이 32px 24px 16px (글로벌과 다름), section-content 없음
 .section {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0; 
     padding: 32px 24px 16px;
 }
 
@@ -9,7 +12,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 14px;
+    margin-bottom: 0;
     flex-wrap: wrap;
 }
 
@@ -47,67 +50,102 @@
     margin-left: auto;
 }
 
-// 기저질환 배지 — 정보성 표시
-.condition-list {
+// 칩 그룹
+.chips {
+    margin-left: auto;
     display: flex;
-    flex-wrap: wrap;
     gap: 6px;
-    margin-bottom: 10px;
+    flex-shrink: 0;
 }
 
-.condition-item {
+// 칩+툴팁 래퍼 — 툴팁 기준점
+.chip-wrapper {
+    position: relative;
+}
+
+// 기저질환 칩 (회색)
+.chip-condition {
     display: inline-flex;
     align-items: center;
-    padding: 4px 10px;
+    gap: 4px;
+    padding: 3px 8px;
     background: t.$neutral-bg;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    font-size: 13px;
+    border: 1px solid t.$neutral-border;
+    border-radius: 999px;
+    font-size: 12px;
     font-weight: 600;
     color: t.$text-secondary;
+    cursor: default;
+    user-select: none;
 }
 
-// 알레르기 경고 — 닫기 기능 없음 (결정사항 문서 §4)
-.allergy-icon {
-    font-size: 12px;
-    color: t.$clinical-danger;
-}
-
-.allergy-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: t.$clinical-danger;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.allergy-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.allergy-item {
-    display: flex;
+// 알레르기 칩 (빨강)
+.chip-allergy {
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
+    gap: 4px;
+    padding: 3px 8px;
     background: #fff5f5;
-    border: 1px solid #ff3b3026;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 700;
+    border: 1px solid rgba(t.$color-danger, 0.2);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
     color: t.$color-danger;
+    cursor: default;
+    user-select: none;
 }
 
-.allergy-reaction {
-    color: t.$color-danger;
-    font-size: 12px;
-    font-weight: 700;
+// 툴팁 공통 기반 (SCSS placeholder)
+%tooltip-base {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 160px;
+    max-width: 260px;
+    max-height: 240px;
+    overflow-y: auto;
+    background: t.$panel-bg;
+    border: 1px solid t.$neutral-border;
+    border-radius: 10px;
+    padding: 8px 12px;
+    list-style: none;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: t.$panel-shadow;
+    z-index: 200;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.12s;
+    pointer-events: none;
 
-    &::before {
-        content: '—';
-        margin-right: 4px;
-        color: t.$color-danger;
+    li + li {
+        border-top: 1px solid t.$neutral-border;
+        padding-top: 6px;
+        margin-top: 6px;
     }
+}
+
+.tooltip {
+    @extend %tooltip-base;
+    color: t.$text-primary;
+}
+
+.tooltip-danger {
+    @extend %tooltip-base;
+    color: t.$color-danger;
+
+    strong {
+        font-weight: 700;
+    }
+}
+
+// 호버/포커스 시 표시
+.chip-wrapper:hover .tooltip,
+.chip-wrapper:focus-within .tooltip,
+.chip-wrapper:hover .tooltip-danger,
+.chip-wrapper:focus-within .tooltip-danger {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
 }

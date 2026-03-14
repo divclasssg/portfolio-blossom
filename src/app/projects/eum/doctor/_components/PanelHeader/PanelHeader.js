@@ -1,6 +1,6 @@
 'use client';
 
-import { CloseIcon, DataIcon, PinIcon } from '../../../_components/icons';
+import { ArrowIcon, CloseIcon, DataIcon, PinIcon } from '../../../_components/icons';
 import styles from './PanelHeader.module.scss';
 import { usePatientDataModal } from '../PatientDataModal/PatientDataModalContext';
 
@@ -32,7 +32,7 @@ export default function PanelHeader({
                     aria-label="이전 화면으로 돌아가기"
                     onMouseDown={(e) => e.stopPropagation()}
                 >
-                    ←
+                    <ArrowIcon variant='left' size={24} color='#fff' />
                 </a>
             )}
 
