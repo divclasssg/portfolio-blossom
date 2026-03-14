@@ -189,10 +189,11 @@ export default async function DoctorDashboard() {
     );
 
     // basicInfo: DB(신체 측정·기저질환) + 정적 JSON(검진·예방접종·의뢰서) 병합
+    // chronic_conditions: DB 우선, 비어있으면 정적 JSON 폴백 (사용자 테스트용 디폴트 시나리오)
     const basicInfo = patient
         ? {
               ...sections.basic_info.data,
-              chronic_conditions: conditionNames,
+              chronic_conditions: conditionNames.length > 0 ? conditionNames : sections.basic_info.data.chronic_conditions,
               height: `${patient.height_cm}cm`,
               weight: `${patient.weight_kg}kg`,
               blood_type: patient.blood_type ?? null,
