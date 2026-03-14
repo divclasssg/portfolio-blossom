@@ -8,7 +8,7 @@ import styles from './page.module.scss';
 
 // 포트폴리오 목업: 고정 PIN
 const MOCK_PIN = '123456';
-const ADMIN_PIN = '145852';
+const ADMIN_PIN = '147852';
 
 export default function LoginPinPage() {
     const router = useRouter();
@@ -25,7 +25,11 @@ export default function LoginPinPage() {
             if (value === ADMIN_PIN) {
                 setLoading(true);
                 try {
-                    await fetch('/api/eum/admin/seed', { method: 'POST' });
+                    const res = await fetch('/api/eum/admin/seed', { method: 'POST' });
+                    if (!res.ok) {
+                        const body = await res.json().catch(() => ({}));
+                        throw new Error(body.error || '시드 API 오류');
+                    }
                     document.cookie =
                         'eum_patient_id=pat_admin_001; max-age=86400; path=/projects/eum; SameSite=Lax';
                     router.push('/projects/eum/patient');

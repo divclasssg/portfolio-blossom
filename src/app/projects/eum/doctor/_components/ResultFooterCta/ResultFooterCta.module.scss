@@ -42,6 +42,23 @@
     }
 }
 
+// 비활성화 상태 (로딩 중)
+.cta-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+// 에러 메시지
+.error-msg {
+    font-family: var(--font-noto-kr), sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: t.$color-danger;
+    text-align: center;
+    padding: 4px 0;
+    margin: 0;
+}
+
 // 전송 완료 메시지
 .transmitted-msg {
     font-family: var(--font-noto-kr), sans-serif;

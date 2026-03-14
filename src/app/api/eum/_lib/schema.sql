@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS sessions (
   referral_from    JSONB,                         -- {doctor_name, hospital, reason, date}
   chief_complaint  JSONB,                         -- {patient_text, symptom_count, symptom_period}
   status           TEXT DEFAULT 'active',         -- active, completed, waiting, expired, cancelled_by_patient
+  completed_at     TIMESTAMPTZ,
+  transmitted_at   TIMESTAMPTZ,
   created_at       TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -76,11 +78,29 @@ CREATE TABLE IF NOT EXISTS ai_results (
   created_at          TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- 진료 결과 (의사 전송 → 환자 조회)
+CREATE TABLE IF NOT EXISTS consultation_results (
+  id              SERIAL PRIMARY KEY,
+  session_id      TEXT UNIQUE REFERENCES sessions(id) ON DELETE CASCADE,
+  doctor_id       TEXT NOT NULL,
+  doctor_name     TEXT NOT NULL,
+  hospital_name   TEXT,
+  diagnosis_name  TEXT,
+  content         JSONB NOT NULL,       -- 07_result_package.json 전체 구조
+  transmitted_at  TIMESTAMPTZ DEFAULT NOW(),
+  created_at      TIMESTAMPTZ DEFAULT NOW()
+);
+
 -- 인덱스
 CREATE INDEX IF NOT EXISTS idx_symptom_records_patient ON symptom_records(patient_id);
 CREATE INDEX IF NOT EXISTS idx_symptom_records_session ON symptom_records(session_id);
 CREATE INDEX IF NOT EXISTS idx_chat_messages_session ON chat_messages(session_id);
 CREATE INDEX IF NOT EXISTS idx_ai_results_session ON ai_results(session_id, result_type);
+CREATE INDEX IF NOT EXISTS idx_consultation_results_session ON consultation_results(session_id);
+
+-- ── sessions 컬럼 추가 마이그레이션 (1회 실행) ─────────────────
+-- ALTER TABLE sessions ADD COLUMN IF NOT EXISTS completed_at TIMESTAMPTZ;
+-- ALTER TABLE sessions ADD COLUMN IF NOT EXISTS transmitted_at TIMESTAMPTZ;
 
 -- ── 기존 테이블 마이그레이션 (1회 실행) ────────────────────────
 -- Supabase SQL Editor에서 아래를 실행하여 기존 FK에 ON DELETE CASCADE 추가

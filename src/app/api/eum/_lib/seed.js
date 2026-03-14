@@ -82,6 +82,8 @@ async function seedSessions() {
         doctor_id: s.doctor_name === '박지영' ? 'doc_park_001' : 'doc_kim_001',
         referral_from: s.referral_from || null,
         status: s.status,
+        completed_at: s.completed_at || null,
+        transmitted_at: s.transmitted_at || null,
         created_at: s.created_at,
     }));
 

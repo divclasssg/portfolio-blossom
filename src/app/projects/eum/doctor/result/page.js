@@ -85,7 +85,17 @@ export default async function ResultPage() {
         <DoctorPanel
             backHref="/projects/eum/doctor"
             singleColumn
-            footer={<ResultFooterCta patientName={patientSummary.name} />}
+            footer={
+                <ResultFooterCta
+                    patientName={patientSummary.name}
+                    sessionId={resultPackage.session_id}
+                    doctorId={resultPackage.doctor_id}
+                    doctorName={resultPackage.doctor_name}
+                    hospitalName="분당신경과의원"
+                    diagnosisName="체위성 기립빈맥 증후군 (POTS)"
+                    resultData={resultPackage}
+                />
+            }
         >
             {/* 섹션 1: 환자 프로필 + 기저질환 + 알레르기 */}
             <PatientProfile

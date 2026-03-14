@@ -14,8 +14,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
     const { id } = await params;
     const result = consultationResults.consultation_results.find((r) => r.session_id === id);
-    if (!result) return {};
-    return { title: `${result.visit_date} 진료 요약 — 이음` };
+    if (result) return { title: `${result.visit_date} 진료 요약 — 이음` };
+    // DB 결과일 경우 기본 제목
+    return { title: '진료 요약 — 이음' };
 }
 
 const sessionMap = Object.fromEntries(
@@ -35,12 +36,65 @@ function findPriorMedicalRecord(visitDate) {
     );
 }
 
+// 07_result_package 형식(DB content) → 06_consultation_results 형식(UI)
+function transformForPatient(dbResult) {
+    const c = dbResult.content;
+    return {
+        session_id: dbResult.session_id,
+        visit_date: dbResult.transmitted_at?.slice(0, 10) ?? '',
+        doctor_name: dbResult.doctor_name,
+        diagnosis_name: dbResult.diagnosis_name,
+        doctor_note_plain: c.doctor_note_plain,
+        prescriptions: c.prescriptions?.map((rx) => ({
+            drug_name: rx.name,
+            dosage: '',
+            days: parseInt(rx.duration) || 0,
+            plain_language: rx.plain_language,
+        })),
+        referral: c.referral_response
+            ? {
+                  referral_to_department: '신경과',
+                  referral_to_hospital: c.referral_response.to_hospital,
+                  referral_reason: c.referral_response.response_summary,
+                  referral_date: c.referral_response.response_date,
+              }
+            : null,
+        next_visit_date: c.next_visit_date,
+    };
+}
+
+// DB에서 진료 결과 조회
+async function fetchDbResult(sessionId) {
+    try {
+        const { getSupabaseClient } = await import('../../../../../api/eum/_lib/supabase');
+        const supabase = getSupabaseClient();
+        const { data, error } = await supabase
+            .from('consultation_results')
+            .select('*')
+            .eq('session_id', sessionId)
+            .single();
+        if (error) throw error;
+        return data;
+    } catch {
+        return null;
+    }
+}
+
 export default async function SummaryDetailPage({ params }) {
     const { id } = await params;
-    const result = consultationResults.consultation_results.find((r) => r.session_id === id);
-    if (!result) notFound();
 
-    const hospitalName = sessionMap[result.session_id] ?? '—';
+    // 정적 JSON에서 먼저 검색
+    let result = consultationResults.consultation_results.find((r) => r.session_id === id);
+    let hospitalName = sessionMap[id] ?? '—';
+
+    // 정적 JSON에 없으면 DB 조회
+    if (!result) {
+        const dbResult = await fetchDbResult(id);
+        if (!dbResult) notFound();
+        result = transformForPatient(dbResult);
+        hospitalName = dbResult.hospital_name ?? '—';
+    }
+
     const priorRecord = findPriorMedicalRecord(result.visit_date);
 
     return (
