@@ -1,97 +1,97 @@
 @use '../../_styles/tokens' as t;
 
 .section {
-  padding: t.$section-padding-y t.$section-padding-x;
+    padding: t.$section-padding-y t.$section-padding-x;
 }
 
 .section-content {
-  border-radius: 16px;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 2px 4px 12px #00000014;
+    border-radius: 16px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 2px 4px 12px #00000014;
 }
 
 .section-title {
-  font: t.$font-title;
-  color: t.$text-primary;
-  margin-bottom: 16px;
+    font: t.$font-title;
+    color: t.$text-primary;
+    margin-bottom: 16px;
 }
 
 // 와이어프레임: 단일 텍스트 블록, 카드 형태
 .overview-card {
-  // padding: 12px 14px;
-  // background: t.$neutral-bg;
-  // border: 1px solid t.$neutral-border;
-  border-radius: t.$card-radius;
-  font-size: t.$font-body;
-  line-height: 1.6;
-  color: t.$text-secondary;
+    // padding: 12px 14px;
+    // background: t.$neutral-bg;
+    // border: 1px solid t.$neutral-border;
+    border-radius: t.$card-radius;
+    font-size: t.$font-body;
+    line-height: 1.6;
+    color: t.$text-secondary;
 }
 
 .summary {
-  margin: 0;
+    margin: 0;
 }
 
 // 더보기 펼침 영역
 .expanded-detail {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid t.$neutral-border;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid t.$neutral-border;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .detail-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .detail-label {
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: t.$text-secondary;
-  opacity: 0.65;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: t.$text-secondary;
+    opacity: 0.65;
 }
 
 .med-list {
-  margin: 0;
-  padding: 0 0 0 14px;
-  font-size: 14px;
-  color: t.$text-primary;
-  line-height: 1.7;
+    margin: 0;
+    padding: 0 0 0 14px;
+    font-size: 14px;
+    color: t.$text-primary;
+    line-height: 1.7;
 
-  li {
-    list-style: disc;
-  }
+    li {
+        list-style: disc;
+    }
 }
 
 // 더보기/접기 버튼
 .more-btn {
-  display: block;
-  margin-top: 10px;
-  padding: 0;
-  border: none;
-  background: t.$color-primary;
-  border-radius: 22px;
-  padding: 4px 12px;;
-  display: flex;
-  gap: 8px;
-  align-items: flex-end;
-  font-size: 12px;
-  font-weight: 700;
-  color: #fff;
-  cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    padding: 0;
+    border: none;
+    background: t.$color-primary;
+    border-radius: 22px;
+    padding: 4px 12px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
 
-  &:hover {
-    opacity: 1;
-  }
+    &:hover {
+        opacity: 1;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    border-radius: 2px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        border-radius: 2px;
+    }
 }

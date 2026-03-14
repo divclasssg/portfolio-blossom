@@ -1,26 +1,26 @@
 @use '../../_styles/tokens' as t;
 
 .warning-list {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  gap: 3px;
-  border-radius: 16px;
-  background: rgba(255, 149, 0, 0.1);
-  border: 1px solid t.$clinical-warning;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 3px;
+    border-radius: 16px;
+    background: rgba(255, 149, 0, 0.1);
+    border: 1px solid t.$clinical-warning;
 }
 
 .warning-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.5;
-  color: #374151;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #374151;
 }
 
 .warning-symbol {
-  flex-shrink: 0;
-  font-size: 11px;
+    flex-shrink: 0;
+    font-size: 11px;
 }

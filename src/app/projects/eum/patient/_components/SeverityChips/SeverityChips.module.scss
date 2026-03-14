@@ -1,40 +1,50 @@
 @use '../../_styles/tokens' as *;
 
 .chips-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
 }
 
 .chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  color: $text-primary;
-  white-space: nowrap;
-  user-select: none;
-  border: 1.5px solid transparent;
-  cursor: pointer;
-  transition: opacity 0.15s, box-shadow 0.15s;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: $text-primary;
+    white-space: nowrap;
+    user-select: none;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition:
+        opacity 0.15s,
+        box-shadow 0.15s;
 
-  &:disabled {
-    cursor: default;
-    opacity: 0.45;
-  }
+    &:disabled {
+        cursor: default;
+        opacity: 0.45;
+    }
 }
 
 .chip-selected {
-  border-color: $text-primary;
-  opacity: 1 !important;
-  box-shadow: 0 0 0 2px rgba(0,0,0,0.12);
+    border-color: $text-primary;
+    opacity: 1 !important;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.12);
 }
 
 // NRS 강도별 배경색 (색상만으로 정보 전달 금지 → 이모지+텍스트 병행)
-.chip-mild     { background: #E8F5E9; } // 약함(1-3) — 연녹색
-.chip-moderate { background: #FFF9C4; } // 보통(4-6) — 연노랑
-.chip-severe   { background: #FFE0B2; } // 심함(7-8) — 연주황
-.chip-extreme  { background: #FFEBEE; } // 극심(9-10) — 연빨강
+.chip-mild {
+    background: #e8f5e9;
+} // 약함(1-3) — 연녹색
+.chip-moderate {
+    background: #fff9c4;
+} // 보통(4-6) — 연노랑
+.chip-severe {
+    background: #ffe0b2;
+} // 심함(7-8) — 연주황
+.chip-extreme {
+    background: #ffebee;
+} // 극심(9-10) — 연빨강

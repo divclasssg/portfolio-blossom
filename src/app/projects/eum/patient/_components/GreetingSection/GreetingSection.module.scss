@@ -1,13 +1,13 @@
 @use '../../_styles/tokens' as *;
 
 .greeting {
-  padding: 24px $section-padding-x 0;
+    padding: 24px $section-padding-x 0;
 }
 
 .text {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.4;
-  color: $text-primary;
-  margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: $text-primary;
+    margin: 0;
 }

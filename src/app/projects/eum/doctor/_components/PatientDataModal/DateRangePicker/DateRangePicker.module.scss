@@ -2,110 +2,110 @@
 
 // 기간 필터 바로 아래 절대 위치 드롭다운
 .dropdown {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  z-index: 10;
-  display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  padding: 12px 16px;
-  background: t.$panel-bg;
-  border: 1px solid t.$neutral-border;
-  border-radius: t.$card-radius;
-  box-shadow: t.$card-shadow;
-  white-space: nowrap;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 10;
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    padding: 12px 16px;
+    background: t.$panel-bg;
+    border: 1px solid t.$neutral-border;
+    border-radius: t.$card-radius;
+    box-shadow: t.$card-shadow;
+    white-space: nowrap;
 }
 
 .inputs {
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
 }
 
 .label {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .label-text {
-  font-size: 11px;
-  font-weight: 600;
-  color: t.$text-muted;
-  letter-spacing: 0.03em;
+    font-size: 11px;
+    font-weight: 600;
+    color: t.$text-muted;
+    letter-spacing: 0.03em;
 }
 
 .input {
-  height: 36px;
-  padding: 0 10px;
-  border: 1px solid t.$neutral-border;
-  border-radius: 6px;
-  font-size: 13px;
-  color: t.$text-primary;
-  background: t.$panel-bg;
-  cursor: pointer;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid t.$neutral-border;
+    border-radius: 6px;
+    font-size: 13px;
+    color: t.$text-primary;
+    background: t.$panel-bg;
+    cursor: pointer;
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: 1px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 1px;
+    }
 }
 
 .separator {
-  font-size: 14px;
-  color: t.$text-muted;
-  padding-bottom: 8px;
+    font-size: 14px;
+    color: t.$text-muted;
+    padding-bottom: 8px;
 }
 
 .actions {
-  display: flex;
-  gap: 8px;
+    display: flex;
+    gap: 8px;
 }
 
 .btn-cancel {
-  height: 36px;
-  padding: 0 14px;
-  background: transparent;
-  border: 1px solid t.$neutral-border;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  color: t.$text-secondary;
-  cursor: pointer;
+    height: 36px;
+    padding: 0 14px;
+    background: transparent;
+    border: 1px solid t.$neutral-border;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: t.$text-secondary;
+    cursor: pointer;
 
-  &:hover {
-    background: t.$neutral-bg;
-  }
+    &:hover {
+        background: t.$neutral-bg;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: 1px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 1px;
+    }
 }
 
 .btn-apply {
-  height: 36px;
-  padding: 0 14px;
-  background: t.$color-dark;
-  border: none;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #f9fafb;
-  cursor: pointer;
+    height: 36px;
+    padding: 0 14px;
+    background: t.$color-dark;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #f9fafb;
+    cursor: pointer;
 
-  &:hover {
-    background: #1f2937;
-  }
+    &:hover {
+        background: #1f2937;
+    }
 
-  &:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: 1px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 1px;
+    }
 }

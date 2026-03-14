@@ -1,214 +1,220 @@
 @use '../../_styles/tokens' as *;
 
 .page {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 32px $section-padding-x 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 32px $section-padding-x 0;
 }
 
 .content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .org-badge {
-  display: inline-flex;
-  align-items: center;
-  background: #00a651;
-  border-radius: 8px;
-  padding: 6px 12px;
-  align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    background: #00a651;
+    border-radius: 8px;
+    padding: 6px 12px;
+    align-self: flex-start;
 }
 
 .org-text {
-  font-size: 13px;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.01em;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.01em;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 700;
-  color: $text-primary;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
+    font-size: 24px;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
 }
 
 .subtitle {
-  font-size: 14px;
-  color: $text-secondary;
-  line-height: 1.5;
+    font-size: 14px;
+    color: $text-secondary;
+    line-height: 1.5;
 }
 
 .field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .label {
-  font-size: 14px;
-  font-weight: 500;
-  color: $text-secondary;
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-secondary;
 }
 
 .input {
-  height: 48px;
-  padding: 0 14px;
-  border: 1.5px solid $card-border;
-  border-radius: $card-radius;
-  font-size: 16px;
-  font-family: inherit;
-  color: $text-primary;
-  background: $card-bg;
-  outline: none;
-  letter-spacing: 0.1em;
-  transition: border-color 0.15s ease;
+    height: 48px;
+    padding: 0 14px;
+    border: 1.5px solid $card-border;
+    border-radius: $card-radius;
+    font-size: 16px;
+    font-family: inherit;
+    color: $text-primary;
+    background: $card-bg;
+    outline: none;
+    letter-spacing: 0.1em;
+    transition: border-color 0.15s ease;
 
-  &::placeholder {
-    color: $text-secondary;
-    letter-spacing: 0;
-  }
+    &::placeholder {
+        color: $text-secondary;
+        letter-spacing: 0;
+    }
 
-  &:focus {
-    border-color: $color-primary;
-  }
+    &:focus {
+        border-color: $color-primary;
+    }
 }
 
 .resident-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .resident-sep {
-  font-size: 18px;
-  color: $text-secondary;
-  flex-shrink: 0;
+    font-size: 18px;
+    color: $text-secondary;
+    flex-shrink: 0;
 }
 
 .resident-back {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
 }
 
 .input-back1 {
-  width: 40px;
-  height: 48px;
-  padding: 0;
-  border: 1.5px solid $card-border;
-  border-radius: $card-radius;
-  font-size: 16px;
-  font-family: inherit;
-  color: $text-primary;
-  background: $card-bg;
-  outline: none;
-  text-align: center;
-  letter-spacing: 0;
-  transition: border-color 0.15s ease;
+    width: 40px;
+    height: 48px;
+    padding: 0;
+    border: 1.5px solid $card-border;
+    border-radius: $card-radius;
+    font-size: 16px;
+    font-family: inherit;
+    color: $text-primary;
+    background: $card-bg;
+    outline: none;
+    text-align: center;
+    letter-spacing: 0;
+    transition: border-color 0.15s ease;
 
-  &::placeholder { color: $text-secondary; }
-  &:focus { border-color: $color-primary; }
+    &::placeholder {
+        color: $text-secondary;
+    }
+    &:focus {
+        border-color: $color-primary;
+    }
 }
 
 .resident-mask {
-  font-size: 10px;
-  color: $text-secondary;
-  letter-spacing: 2px;
-  flex-shrink: 0;
+    font-size: 10px;
+    color: $text-secondary;
+    letter-spacing: 2px;
+    flex-shrink: 0;
 }
 
 .hint {
-  font-size: 13px;
-  color: $text-secondary;
+    font-size: 13px;
+    color: $text-secondary;
 }
 
 .input-error {
-  border-color: #ff3b30;
+    border-color: #ff3b30;
 
-  &:focus { border-color: #ff3b30; }
+    &:focus {
+        border-color: #ff3b30;
+    }
 }
 
 .error {
-  font-size: 13px;
-  color: #ff3b30;
-  line-height: 1.4;
+    font-size: 13px;
+    color: #ff3b30;
+    line-height: 1.4;
 }
 
 .auth-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .auth-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px $card-padding;
-  background: $card-bg;
-  border-radius: 8px;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px $card-padding;
+    background: $card-bg;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .radio {
-  accent-color: $color-primary;
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
+    accent-color: $color-primary;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
 }
 
 .auth-option-label {
-  font-size: 15px;
-  color: $text-primary;
+    font-size: 15px;
+    color: $text-primary;
 }
 
 .mock-note {
-  font-size: 12px;
-  color: $text-secondary;
-  background: $badge-bg;
-  padding: 10px 14px;
-  border-radius: 8px;
-  line-height: 1.4;
+    font-size: 12px;
+    color: $text-secondary;
+    background: $badge-bg;
+    padding: 10px 14px;
+    border-radius: 8px;
+    line-height: 1.4;
 }
 
 .footer {
-  position: sticky;
-  bottom: 0;
-  padding: 16px $section-padding-x calc(16px + env(safe-area-inset-bottom));
-  background: $screen-bg;
+    position: sticky;
+    bottom: 0;
+    padding: 16px $section-padding-x calc(16px + env(safe-area-inset-bottom));
+    background: $screen-bg;
 }
 
 .btn-primary {
-  width: 100%;
-  height: 52px;
-  background: $color-primary;
-  color: #ffffff;
-  border: none;
-  border-radius: $card-radius;
-  font-size: 17px;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: opacity 0.15s ease;
+    width: 100%;
+    height: 52px;
+    background: $color-primary;
+    color: #ffffff;
+    border: none;
+    border-radius: $card-radius;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
 
-  &:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-  }
+    &:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
 
-  &:not(:disabled):active {
-    opacity: 0.85;
-  }
+    &:not(:disabled):active {
+        opacity: 0.85;
+    }
 
-  &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: 3px;
-  }
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: 3px;
+    }
 }

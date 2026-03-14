@@ -1,8 +1,8 @@
 @use '../../_styles/tokens' as t;
 
 .section {
-  background-color: t.$section-background;
-  padding: t.$section-padding-y t.$section-padding-x;
+    background-color: t.$section-background;
+    padding: t.$section-padding-y t.$section-padding-x;
 }
 
 .section-content {
@@ -13,71 +13,69 @@
 }
 
 .section-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
 }
 
-
 .section-title {
-  font: t.$font-title;
-  color: t.$text-primary;
-  flex: 1;
+    font: t.$font-title;
+    color: t.$text-primary;
+    flex: 1;
 }
 
 .model-tag {
-  font-size: 11px;
-  color: t.$text-muted;
-  padding: 2px 6px;
-  background: t.$neutral-bg;
-  border-radius: 4px;
-  flex-shrink: 0;
+    font-size: 11px;
+    color: t.$text-muted;
+    padding: 2px 6px;
+    background: t.$neutral-bg;
+    border-radius: 4px;
+    flex-shrink: 0;
 }
 
 .summary-text {
-  font-size: 16px;
-  line-height: 1.65;
-  color: t.$text-secondary;
-  margin-bottom: 14px;
-  word-break: keep-all;
+    font-size: 16px;
+    line-height: 1.65;
+    color: t.$text-secondary;
+    margin-bottom: 14px;
+    word-break: keep-all;
 }
 
 // 인라인 하이라이트 뱃지 (와이어프레임: Recurrent / HR elevation / Notable)
 .highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
 }
 
 .highlight-row {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
 }
 
 .highlight-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #fff;
-  flex-shrink: 0;
-  margin-top: 1px;
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 1px;
 }
 
 .highlight-desc {
-  font-size: 16px;
-  line-height: 1.5;
-  color: t.$text-secondary;
-  word-break: keep-all;
+    font-size: 16px;
+    line-height: 1.5;
+    color: t.$text-secondary;
+    word-break: keep-all;
 }
 
 // AI 경고 배너 영역
 .warnings-area {
-  
 }

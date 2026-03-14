@@ -1,65 +1,70 @@
 @use '../../_styles/tokens' as *;
 
 .chat-area {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 16px $section-padding-x;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px $section-padding-x;
 }
 
 .message-bot {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  max-width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    max-width: 85%;
 }
 
 .message-user {
-  align-self: flex-end;
-  max-width: 85%;
+    align-self: flex-end;
+    max-width: 85%;
 }
 
 .bot-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: $color-primary;
-  padding-left: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: $color-primary;
+    padding-left: 4px;
 }
 
 .bubble-bot {
-  padding: 10px 14px;
-  background: $card-bg;
-  border: 1px solid $card-border;
-  border-radius: 16px;
-  border-top-left-radius: 4px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: $text-primary;
+    padding: 10px 14px;
+    background: $card-bg;
+    border: 1px solid $card-border;
+    border-radius: 16px;
+    border-top-left-radius: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $text-primary;
 }
 
 .bubble-user {
-  padding: 10px 14px;
-  background: $badge-bg;
-  border-radius: 16px;
-  border-top-right-radius: 4px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: $text-primary;
+    padding: 10px 14px;
+    background: $badge-bg;
+    border-radius: 16px;
+    border-top-right-radius: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $text-primary;
 }
 
 // 스트리밍 커서 깜빡임
 .cursor {
-  display: inline-block;
-  width: 2px;
-  height: 14px;
-  background: $text-secondary;
-  margin-left: 2px;
-  vertical-align: middle;
-  animation: blink 0.8s step-end infinite;
+    display: inline-block;
+    width: 2px;
+    height: 14px;
+    background: $text-secondary;
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 0.8s step-end infinite;
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }

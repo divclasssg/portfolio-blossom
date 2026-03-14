@@ -1,49 +1,49 @@
 @use '../../_styles/tokens' as *;
 
 .tab-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: $tab-bar-height;
-  // iOS 홈 인디케이터 대응
-  padding-bottom: env(safe-area-inset-bottom);
-  background: $card-bg;
-  border-top: 1px solid $divider-color;
-  display: flex;
-  z-index: 200;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $tab-bar-height;
+    // iOS 홈 인디케이터 대응
+    padding-bottom: env(safe-area-inset-bottom);
+    background: $card-bg;
+    border-top: 1px solid $divider-color;
+    display: flex;
+    z-index: 200;
 }
 
 .tab {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  text-decoration: none;
-  color: $text-secondary;
-  // 터치 타겟
-  min-height: 44px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    text-decoration: none;
+    color: $text-secondary;
+    // 터치 타겟
+    min-height: 44px;
 
-  &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: -2px;
-  }
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: -2px;
+    }
 }
 
 .tab--active {
-  color: $color-primary;
+    color: $color-primary;
 }
 
 .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .label {
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 1;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1;
 }

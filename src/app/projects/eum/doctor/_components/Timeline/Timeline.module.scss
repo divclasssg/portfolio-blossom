@@ -1,185 +1,185 @@
 @use '../../_styles/tokens' as t;
 
 .section {
-  background-color: t.$section-background;
-  padding: t.$section-padding-y t.$section-padding-x;
-  border-bottom: 1px solid t.$neutral-border;
+    background-color: t.$section-background;
+    padding: t.$section-padding-y t.$section-padding-x;
+    border-bottom: 1px solid t.$neutral-border;
 }
 
 .section-content {
-  background: #fff;
+    background: #fff;
     border-radius: 16px;
     padding: 20px;
     box-shadow: 2px 4px 12px #00000014;
 }
 
 .section-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
 }
 
 .ai-icon {
-  display: flex;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
 .section-title {
-  font: t.$font-title;
-  color: t.$text-primary;
+    font: t.$font-title;
+    color: t.$text-primary;
 }
 
 .items {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .item {
-  padding: 10px 0;
-  border-bottom: 1px solid t.$neutral-bg;
-  list-style: none;
+    padding: 10px 0;
+    border-bottom: 1px solid t.$neutral-bg;
+    list-style: none;
 
-  &:last-child {
-    border-bottom: none;
-  }
+    &:last-child {
+        border-bottom: none;
+    }
 }
 
 // 와이어프레임: 날짜 | 증상명 | NRS n | ∧/V
 // button 리셋 — 웨어러블 데이터 있는 항목은 <button>으로 렌더링
 .item-main {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  width: 100%;
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  text-align: left;
-  cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    cursor: default;
 
-  // 웨어러블 데이터 있는 항목 → 클릭 가능
-  &:is(button) {
-    cursor: pointer;
+    // 웨어러블 데이터 있는 항목 → 클릭 가능
+    &:is(button) {
+        cursor: pointer;
 
-    &:focus-visible {
-      outline: 2px solid t.$color-primary;
-      outline-offset: 2px;
-      border-radius: 4px;
+        &:focus-visible {
+            outline: 2px solid t.$color-primary;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
     }
-  }
 }
 
 .item-date {
-  font-size: 12px;
-  color: t.$text-muted;
-  min-width: 68px;
-  flex-shrink: 0;
+    font-size: 12px;
+    color: t.$text-muted;
+    min-width: 68px;
+    flex-shrink: 0;
 }
 
 .item-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: t.$text-primary;
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    font-size: 13px;
+    font-weight: 500;
+    color: t.$text-primary;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nrs-label {
-  font-size: 12px;
-  color: t.$text-muted;
-  flex-shrink: 0;
+    font-size: 12px;
+    color: t.$text-muted;
+    flex-shrink: 0;
 }
 
 .expand-icon {
-  font-size: 11px;
-  color: t.$text-muted;
-  flex-shrink: 0;
-  width: 16px;
-  text-align: center;
+    font-size: 11px;
+    color: t.$text-muted;
+    flex-shrink: 0;
+    width: 16px;
+    text-align: center;
 }
 
 // 서브 행: HR bpm ↑ | Sleep h ↓ (와이어프레임)
 .item-health {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 4px;
-  padding-left: 74px; // item-date 너비에 맞춤
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+    padding-left: 74px; // item-date 너비에 맞춤
 }
 
 .health-stat {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 11px;
-  color: t.$text-secondary;
-  font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    color: t.$text-secondary;
+    font-weight: 500;
 }
 
 .health-trend {
-  font-size: 10px;
-  font-weight: 700;
+    font-size: 10px;
+    font-weight: 700;
 }
 
 .health-divider {
-  width: 1px;
-  height: 10px;
-  background: t.$neutral-border;
+    width: 1px;
+    height: 10px;
+    background: t.$neutral-border;
 }
 
 // 더보기 버튼
 .more-btn {
-  display: block;
-  width: 100%;
-  margin-top: 12px;
-  padding: 12px;
-  background: t.$color-dark;
-  color: #f9fafb;
-  border: none;
-  border-radius: t.$card-radius;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    background: t.$color-dark;
+    color: #f9fafb;
+    border: none;
+    border-radius: t.$card-radius;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
 
-  &:hover {
-    background: #1f2937;
-  }
+    &:hover {
+        background: #1f2937;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: 2px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+    }
 }
 
 // 데이터 보기 버튼 — D-F12 모달 열기
 .data-btn {
-  display: block;
-  width: 100%;
-  margin-top: 8px;
-  padding: 12px;
-  background: transparent;
-  color: t.$color-dark;
-  border: 1px solid t.$neutral-border;
-  border-radius: t.$card-radius;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    background: transparent;
+    color: t.$color-dark;
+    border: 1px solid t.$neutral-border;
+    border-radius: t.$card-radius;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
 
-  &:hover {
-    background: t.$neutral-bg;
-  }
+    &:hover {
+        background: t.$neutral-bg;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: 2px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+    }
 }

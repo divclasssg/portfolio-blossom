@@ -1,99 +1,99 @@
 .page {
-  min-height: 100vh;
-  background: #f2f2f7;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 48px 16px;
+    min-height: 100vh;
+    background: #f2f2f7;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 16px;
 }
 
 .container {
-  width: 100%;
-  max-width: 640px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1c1c1e;
-  margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1c1c1e;
+    margin: 0;
 }
 
 .subtitle {
-  font-size: 15px;
-  color: #6c6c70;
-  margin: -16px 0 0; /* gap을 좁혀 title과 붙임 */
+    font-size: 15px;
+    color: #6c6c70;
+    margin: -16px 0 0; /* gap을 좁혀 title과 붙임 */
 }
 
 .disclaimer-card {
-  background: #fffbeb;
-  border: 1px solid #f0e080;
-  border-radius: 12px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    background: #fffbeb;
+    border: 1px solid #f0e080;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .disclaimer-heading {
-  font-size: 14px;
-  font-weight: 700;
-  color: #92400e;
-  margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #92400e;
+    margin: 0;
 }
 
 .disclaimer-body {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #78350f;
-  margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #78350f;
+    margin: 0;
 }
 
 .agree-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  color: #1c1c1e;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: #1c1c1e;
+    cursor: pointer;
 }
 
 .agree-checkbox {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  cursor: pointer;
-  accent-color: #007aff;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: #007aff;
 }
 
 .button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .entry-button {
-  width: 100%;
-  padding: 14px 20px;
-  background: #007aff;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  transition: opacity 0.2s;
+    width: 100%;
+    padding: 14px 20px;
+    background: #007aff;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: opacity 0.2s;
 
-  &:not(:disabled):hover {
-    opacity: 0.85;
-  }
+    &:not(:disabled):hover {
+        opacity: 0.85;
+    }
 
-  &:disabled {
-    opacity: 0.4;
-    pointer-events: none;
-  }
+    &:disabled {
+        opacity: 0.4;
+        pointer-events: none;
+    }
 }

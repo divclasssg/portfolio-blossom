@@ -1,80 +1,80 @@
 @use '../../_styles/tokens' as *;
 
 .app-bar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: $app-bar-height;
-  background: $card-bg;
-  border-bottom: 1px solid $divider-color;
-  padding: 0 $section-padding-x;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $app-bar-height;
+    background: $card-bg;
+    border-bottom: 1px solid $divider-color;
+    padding: 0 $section-padding-x;
 }
 
 .title {
-  font-size: 17px;
-  font-weight: 700;
-  color: $text-primary;
-  letter-spacing: -0.02em;
+    font-size: 17px;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.02em;
 }
 
 .back-btn {
-  position: absolute;
-  left: $section-padding-x;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  color: $text-primary;
-  text-decoration: none;
-  border-radius: 50%;
+    position: absolute;
+    left: $section-padding-x;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: $text-primary;
+    text-decoration: none;
+    border-radius: 50%;
 
-  &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
-  }
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: 2px;
+    }
 }
 
 .bell-btn {
-  position: absolute;
-  right: $section-padding-x;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // 터치 타겟 최소 44×44px
-  width: 44px;
-  height: 44px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: $text-primary;
-  border-radius: 50%;
+    position: absolute;
+    right: $section-padding-x;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // 터치 타겟 최소 44×44px
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $text-primary;
+    border-radius: 50%;
 
-  &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
-  }
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: 2px;
+    }
 }
 
 // 읽지 않은 알림 배지
 .badge {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 4px;
-  background: #FF3B30; // iOS systemRed
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  pointer-events: none;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    background: #ff3b30; // iOS systemRed
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    pointer-events: none;
 }

@@ -3,28 +3,28 @@
 // CSV 스펙(v3.0) 색상(#2E75B6 등)은 구버전 — 이 파일이 authoritative
 
 // 배경
-$screen-bg: #F2F2F7;   // iOS systemGray6 = semantic.screen.background
-$card-bg:   #FFFFFF;    // 카드/섹션 내부 배경
+$screen-bg: #f2f2f7; // iOS systemGray6 = semantic.screen.background
+$card-bg: #ffffff; // 카드/섹션 내부 배경
 
 // 테두리/구분선
-$card-border:    #C7C7CC;  // iOS systemGray3 = neutral.divider
-$divider-color:  #F2F2F7;  // iOS systemGray6 = neutral.background-secondary (행 구분선)
+$card-border: #c7c7cc; // iOS systemGray3 = neutral.divider
+$divider-color: #f2f2f7; // iOS systemGray6 = neutral.background-secondary (행 구분선)
 
 // 텍스트
-$text-primary:   #000000;  // Figma: text.primary
-$text-secondary: #8E8E93;  // iOS systemGray = text.secondary
+$text-primary: #000000; // Figma: text.primary
+$text-secondary: #8e8e93; // iOS systemGray = text.secondary
 
 // 인터랙션
-$color-primary:  #007AFF;  // iOS systemBlue = global/color.primary
-$color-danger:   #FF3B30;  // iOS systemRed = 에러/위험 상태
+$color-primary: #007aff; // iOS systemBlue = global/color.primary
+$color-danger: #ff3b30; // iOS systemRed = 에러/위험 상태
 
 // 배지
-$badge-bg: #E5E5EA;  // iOS systemGray5 = neutral.background-tertiary
+$badge-bg: #e5e5ea; // iOS systemGray5 = neutral.background-tertiary
 
 // 레이아웃
 $section-padding-x: 20px;
-$section-gap:       24px;   // 섹션 간 여백
-$card-radius:       12px;
-$card-padding:      16px;
-$app-bar-height:    56px;
-$tab-bar-height:    64px;
+$section-gap: 24px; // 섹션 간 여백
+$card-radius: 12px;
+$card-padding: 16px;
+$app-bar-height: 56px;
+$tab-bar-height: 64px;

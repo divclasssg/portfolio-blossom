@@ -1,58 +1,58 @@
 @use '../../_styles/tokens' as t;
 
 .section {
-  background-color: t.$section-background;
-  padding: t.$section-padding-y t.$section-padding-x;
+    background-color: t.$section-background;
+    padding: t.$section-padding-y t.$section-padding-x;
 }
 
 .section-content {
-  border-radius: 16px;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 2px 4px 12px #00000014;
+    border-radius: 16px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 2px 4px 12px #00000014;
 }
 
 .section-title {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: t.$text-primary;
-  margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: t.$text-primary;
+    margin-bottom: 12px;
 }
 
 // Gray 카드 — 와이어프레임: #F3F4F6, radius 16px, padding 16px
 .card {
-  background: t.$neutral-bg;
-  border-radius: 16px;
-  padding: 16px;
+    background: t.$neutral-bg;
+    border-radius: 16px;
+    padding: 16px;
 }
 
 .list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .row {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 8px;
-  align-items: baseline;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+    align-items: baseline;
 }
 
 .label {
-  font-size: 12px;
-  font-weight: 600;
-  color: t.$text-muted;
-  white-space: nowrap;
-  margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: t.$text-muted;
+    white-space: nowrap;
+    margin: 0;
 }
 
 .value {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.015em;
-  color: #000000;
-  margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.015em;
+    color: #000000;
+    margin: 0;
 }

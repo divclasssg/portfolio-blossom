@@ -1,19 +1,19 @@
 // D-F12 차트 공통 색상 — CLAUDE_data_hierarchy.md 기반
 // NRS 카테고리 색상은 Okabe-Ito CVD-safe 팔레트 사용 (Data Hierarchy 미정의 항목)
 export const NRS_CATEGORY_COLORS = {
-  'SYM-12': '#CC79A7', // 심리/자율 — Okabe-Ito reddish-purple
-  'SYM-05': '#E3B8D3', // 소화기 — 위 색상 연한 변형
+    'SYM-12': '#CC79A7', // 심리/자율 — Okabe-Ito reddish-purple
+    'SYM-05': '#E3B8D3', // 소화기 — 위 색상 연한 변형
 };
 
 // 심박수 차트 (Data Hierarchy 명시 — Okabe-Ito 기반)
-export const HR_BOX_FILL = 'rgba(0,114,178,0.20)';  // box 내부 (진한 파랑 20%)
-export const HR_WHISKER_COLOR = '#56B4E9';           // 수염, 박스 테두리 (하늘색)
-export const HR_MEDIAN_COLOR = '#0072B2';            // 중앙값 선 (진한 파랑)
+export const HR_BOX_FILL = 'rgba(0,114,178,0.20)'; // box 내부 (진한 파랑 20%)
+export const HR_WHISKER_COLOR = '#56B4E9'; // 수염, 박스 테두리 (하늘색)
+export const HR_MEDIAN_COLOR = '#0072B2'; // 중앙값 선 (진한 파랑)
 
 // 수면 차트 (Data Hierarchy 명시)
-export const SLEEP_BAR_COLOR = '#E69F00';     // 일별 수면시간
+export const SLEEP_BAR_COLOR = '#E69F00'; // 일별 수면시간
 export const SLEEP_OUTLIER_COLOR = '#FF3B30'; // 정상 이탈 (clinical.danger)
-export const SLEEP_AVG_COLOR = '#D55E00';     // 평균선
+export const SLEEP_AVG_COLOR = '#D55E00'; // 평균선
 
 // 공통
 export const REFERENCE_RANGE_COLOR = '#C7C7CC'; // 정상 참조 범위 (Neutral-divider)

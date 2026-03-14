@@ -1,37 +1,37 @@
 @use '../../_styles/tokens' as *;
 
 .actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
 }
 
 .checkin-btn {
-  width: 100%;
-  height: 52px;
-  background: #111827;
-  color: #FFFFFF;
-  border: none;
-  border-radius: $card-radius;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
+    width: 100%;
+    height: 52px;
+    background: #111827;
+    color: #ffffff;
+    border: none;
+    border-radius: $card-radius;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
 
-  &:active {
-    opacity: 0.85;
-  }
+    &:active {
+        opacity: 0.85;
+    }
 }
 
 .decline-btn {
-  background: none;
-  border: none;
-  color: $text-secondary;
-  font-size: 15px;
-  cursor: pointer;
-  padding: 4px 8px;
+    background: none;
+    border: none;
+    color: $text-secondary;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 4px 8px;
 
-  &:active {
-    opacity: 0.7;
-  }
+    &:active {
+        opacity: 0.7;
+    }
 }

@@ -1,89 +1,91 @@
 @use '../../_styles/tokens' as t;
 
 .header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 24px;
-  height: t.$header-height;
-  background: t.$header-bg;
-  color: t.$header-fg;
-  flex-shrink: 0;
-  user-select: none; // 드래그 중 텍스트 선택 방지
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 24px;
+    height: t.$header-height;
+    background: t.$header-bg;
+    color: t.$header-fg;
+    flex-shrink: 0;
+    user-select: none; // 드래그 중 텍스트 선택 방지
 
-  // 드래그 가능 상태
-  &.is-draggable {
-    cursor: grab;
+    // 드래그 가능 상태
+    &.is-draggable {
+        cursor: grab;
 
-    &:active {
-      cursor: grabbing;
+        &:active {
+            cursor: grabbing;
+        }
     }
-  }
 
-  // 고정 상태 — 드래그 불가
-  &.is-pinned {
-    cursor: default;
-  }
+    // 고정 상태 — 드래그 불가
+    &.is-pinned {
+        cursor: default;
+    }
 }
 
 // 뒤로가기 링크 — D-001에서 표시, 드래그 이벤트 차단
 .back-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  color: t.$header-icon-color;
-  text-decoration: none;
-  font-size: 16px;
-  border-radius: 6px;
-  flex-shrink: 0;
-  transition: background 0.15s, color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: t.$header-icon-color;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    transition:
+        background 0.15s,
+        color 0.15s;
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: t.$header-fg;
-  }
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: t.$header-fg;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: -2px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: -2px;
+    }
 }
 
 // 드래그 힌트 아이콘 — 시각적 표시만, 커서는 헤더에서 상속
 .drag-handle {
-  color: #4b5563;
-  font-size: 16px;
-  line-height: 1;
-  padding: 4px;
-  border-radius: 4px;
-  transition: color 0.15s;
-  pointer-events: none; // 클릭 이벤트 무시, 헤더로 위임
+    color: #4b5563;
+    font-size: 16px;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.15s;
+    pointer-events: none; // 클릭 이벤트 무시, 헤더로 위임
 }
 
 .logo {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: t.$header-fg;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: t.$header-fg;
 }
 
 .doctor-info {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
-  white-space: nowrap;
-  letter-spacing: 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    letter-spacing: 0;
 }
 
 .spacer {
-  flex: 1;
+    flex: 1;
 }
 
 .controls {
-  display: flex;
-  align-items: center;
-  gap: 16px;  
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .action-icons {
@@ -92,59 +94,61 @@
 }
 
 .icon-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border: none;
-  background: none;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background 0.15s, color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    transition:
+        background 0.15s,
+        color 0.15s;
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: t.$header-fg;
-  }
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: t.$header-fg;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: -2px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: -2px;
+    }
 
-  svg {
-    display: block;
-    flex-shrink: 0;
-  }
+    svg {
+        display: block;
+        flex-shrink: 0;
+    }
 }
 
 // Pin 활성 상태 — 고정됨을 시각적으로 표시
 .icon-btn.is-active {
-  color: #60a5fa;
+    color: #60a5fa;
 
-  &:hover {
-    color: #93c5fd;
-  }
+    &:hover {
+        color: #93c5fd;
+    }
 }
 
 // Opacity 슬라이더
 .opacity-control {
-  display: flex;
-  align-items: center;
-  padding: 0 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
 }
 
 .opacity-slider {
-  width: 80px;
-  height: 3px;
-  cursor: pointer;
-  accent-color: #fff;
+    width: 80px;
+    height: 3px;
+    cursor: pointer;
+    accent-color: #fff;
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
 }

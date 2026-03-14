@@ -1,40 +1,40 @@
 @use '../../../_styles/tokens' as t;
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 484px);
-  gap: 16px;
-  padding: 20px;
-  justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 484px);
+    gap: 16px;
+    padding: 20px;
+    justify-content: center;
 }
 
 .card {
-  border: 1px solid t.$neutral-border;
-  border-radius: t.$card-radius;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: t.$panel-bg;
+    border: 1px solid t.$neutral-border;
+    border-radius: t.$card-radius;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: t.$panel-bg;
 }
 
 .card-title {
-  margin: 0;
-  font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: t.$text-primary;
+    margin: 0;
+    font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: t.$text-primary;
 }
 
 // Step 4 구현 전 임시 플레이스홀더
 .placeholder {
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-noto-kr), sans-serif;
-  font-size: 12px;
-  color: t.$text-muted;
-  background: t.$neutral-bg;
-  border-radius: 4px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-noto-kr), sans-serif;
+    font-size: 12px;
+    color: t.$text-muted;
+    background: t.$neutral-bg;
+    border-radius: 4px;
 }

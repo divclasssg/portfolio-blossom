@@ -1,45 +1,45 @@
 @use '../../_styles/tokens' as *;
 
 .content {
-  padding: 0 $section-padding-x;
-  padding-top: 32px;
-  padding-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: $section-gap;
-  min-height: calc(100vh - $app-bar-height);
-  background: $screen-bg;
+    padding: 0 $section-padding-x;
+    padding-top: 32px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: $section-gap;
+    min-height: calc(100vh - $app-bar-height);
+    background: $screen-bg;
 }
 
 .title-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-top: 8px;
 }
 
 .title {
-  font-size: 22px;
-  font-weight: 700;
-  color: $text-primary;
-  margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0;
 }
 
 .scope-section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .scope-notice {
-  font-size: 14px;
-  color: $text-secondary;
-  margin: 0;
+    font-size: 14px;
+    color: $text-secondary;
+    margin: 0;
 }
 
 .security-notice {
-  font-size: 13px;
-  color: $text-secondary;
-  margin: 0;
+    font-size: 13px;
+    color: $text-secondary;
+    margin: 0;
 }

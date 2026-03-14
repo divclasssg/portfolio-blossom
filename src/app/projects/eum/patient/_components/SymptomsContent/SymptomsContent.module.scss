@@ -4,11 +4,9 @@
 $input-bar-height: 60px;
 
 .content-chat {
-  padding-bottom: calc(
-    #{$tab-bar-height} + #{$input-bar-height} + env(safe-area-inset-bottom)
-  );
+    padding-bottom: calc(#{$tab-bar-height} + #{$input-bar-height} + env(safe-area-inset-bottom));
 }
 
 .content-records {
-  padding-bottom: calc(#{$tab-bar-height} + env(safe-area-inset-bottom));
+    padding-bottom: calc(#{$tab-bar-height} + env(safe-area-inset-bottom));
 }

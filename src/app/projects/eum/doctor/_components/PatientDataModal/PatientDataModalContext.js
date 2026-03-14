@@ -5,23 +5,24 @@ import { createContext, useContext, useState } from 'react';
 const PatientDataModalContext = createContext(null);
 
 export function PatientDataModalProvider({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <PatientDataModalContext.Provider
-      value={{
-        isOpen,
-        open: () => setIsOpen(true),
-        close: () => setIsOpen(false),
-      }}
-    >
-      {children}
-    </PatientDataModalContext.Provider>
-  );
+    return (
+        <PatientDataModalContext.Provider
+            value={{
+                isOpen,
+                open: () => setIsOpen(true),
+                close: () => setIsOpen(false),
+            }}
+        >
+            {children}
+        </PatientDataModalContext.Provider>
+    );
 }
 
 export function usePatientDataModal() {
-  const ctx = useContext(PatientDataModalContext);
-  if (!ctx) throw new Error('usePatientDataModal은 PatientDataModalProvider 안에서 사용해야 합니다.');
-  return ctx;
+    const ctx = useContext(PatientDataModalContext);
+    if (!ctx)
+        throw new Error('usePatientDataModal은 PatientDataModalProvider 안에서 사용해야 합니다.');
+    return ctx;
 }

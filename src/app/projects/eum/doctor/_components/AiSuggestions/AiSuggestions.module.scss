@@ -1,177 +1,177 @@
 @use '../../_styles/tokens' as t;
 
 .section {
-  background-color: t.$section-background;
-  padding: t.$section-padding-y t.$section-padding-x;
+    background-color: t.$section-background;
+    padding: t.$section-padding-y t.$section-padding-x;
 }
 
 .section-content {
-  border-radius: 16px;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 2px 4px 12px #00000014;
+    border-radius: 16px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 2px 4px 12px #00000014;
 }
 
 .section-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
 }
 
 .ai-icon {
-  display: flex;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
 .section-title {
-  font: t.$font-title;
-  color: t.$text-primary;
-  flex: 1;
+    font: t.$font-title;
+    color: t.$text-primary;
+    flex: 1;
 }
 
 .model-tag {
-  font-size: 11px;
-  color: t.$text-muted;
-  padding: 2px 6px;
-  background: t.$neutral-bg;
-  border-radius: 4px;
+    font-size: 11px;
+    color: t.$text-muted;
+    padding: 2px 6px;
+    background: t.$neutral-bg;
+    border-radius: 4px;
 }
 
 // 데이터보기 → D-F12 링크
 .data-link {
-  font-size: 12px;
-  font-weight: 500;
-  color: t.$text-secondary;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  white-space: nowrap;
+    font-size: 12px;
+    font-weight: 500;
+    color: t.$text-secondary;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    white-space: nowrap;
 
-  &:hover {
-    color: t.$text-primary;
-  }
+    &:hover {
+        color: t.$text-primary;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
 }
 
 // 와이어프레임: 체크박스 스타일 리스트 (단순 목록)
 .items {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0;
 }
 
 .item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid t.$neutral-bg;
-  transition: opacity 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid t.$neutral-bg;
+    transition: opacity 0.15s;
 
-  &:last-child {
-    border-bottom: none;
-  }
+    &:last-child {
+        border-bottom: none;
+    }
 }
 
 // 드래그 중인 항목
 .item--dragging {
-  opacity: 0.4;
+    opacity: 0.4;
 }
 
 // 드롭 위치 강조 (box-shadow로 레이아웃 시프트 방지)
 .item--drag-over {
-  box-shadow: 0 -2px 0 0 t.$color-primary;
+    box-shadow: 0 -2px 0 0 t.$color-primary;
 }
 
 // 드래그 핸들 (⠿)
 .drag-handle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  flex-shrink: 0;
-  font-size: 14px;
-  color: t.$text-muted;
-  cursor: grab;
-  user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    flex-shrink: 0;
+    font-size: 14px;
+    color: t.$text-muted;
+    cursor: grab;
+    user-select: none;
 
-  &:active {
-    cursor: grabbing;
-  }
+    &:active {
+        cursor: grabbing;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
 }
 
 // 스크린리더 전용 (순서 변경 알림)
 .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 // 체크박스 버튼 (활성/비활성 토글)
 .item-icon {
-  width: 16px;
-  height: 16px;
-  background: t.$neutral-border;
-  border: 1px solid t.$neutral-border;
-  border-radius: 3px;
-  flex-shrink: 0;
-  padding: 0;
-  cursor: pointer;
+    width: 16px;
+    height: 16px;
+    background: t.$neutral-border;
+    border: 1px solid t.$neutral-border;
+    border-radius: 3px;
+    flex-shrink: 0;
+    padding: 0;
+    cursor: pointer;
 
-  // 활성 상태: 채워진 체크박스
-  &[aria-checked='true'] {
-    background: t.$text-secondary;
-    border-color: t.$text-secondary;
-  }
+    // 활성 상태: 채워진 체크박스
+    &[aria-checked='true'] {
+        background: t.$text-secondary;
+        border-color: t.$text-secondary;
+    }
 
-  // 비활성 상태: 빈 체크박스
-  &[aria-checked='false'] {
-    background: transparent;
-  }
+    // 비활성 상태: 빈 체크박스
+    &[aria-checked='false'] {
+        background: transparent;
+    }
 
-  &:focus-visible {
-    outline: 2px solid t.$color-primary;
-    outline-offset: 2px;
-  }
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+    }
 }
 
 .item-name {
-  font-size: 14px;
-  color: t.$text-primary;
-  flex: 1;
+    font-size: 14px;
+    color: t.$text-primary;
+    flex: 1;
 }
 
 // 비활성화된 항목
 .item--disabled {
-  .item-name {
-    opacity: 0.4;
-    text-decoration: line-through;
-  }
+    .item-name {
+        opacity: 0.4;
+        text-decoration: line-through;
+    }
 }
 
 .warnings-area {
-  margin: 0 -20px;
+    margin: 0 -20px;
 }
