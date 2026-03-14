@@ -1,0 +1,47 @@
+@use '../../_styles/tokens' as t;
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: t.$color-primary;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover {
+        background: darken(t.$color-primary, 8%);
+    }
+
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+    }
+
+    &--text {
+        padding: 0;
+        border-radius: 0;
+        background: none;
+        font-size: 14px;
+        color: t.$text-primary;
+        transition: color 0.15s ease;
+
+        &:hover {
+            background: none;
+            color: t.$text-primary;
+        }
+
+        &:focus-visible {
+            outline-offset: 4px;
+        }
+    }
+}
+
+.chevron {
+    flex-shrink: 0;
+}

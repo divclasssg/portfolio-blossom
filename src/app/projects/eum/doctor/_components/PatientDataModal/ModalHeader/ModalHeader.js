@@ -1,13 +1,5 @@
 import styles from './ModalHeader.module.scss';
-import { AiIcon as AiIconSvg } from '../../../../_components/icons';
-
-function AiIcon() {
-    return (
-        <span className={styles['ai-icon']} aria-hidden="true">
-            <AiIconSvg size={18} color="#9CA3AF" />
-        </span>
-    );
-}
+import { AiIcon } from '../../../../_components/icons';
 
 function PatientBadge({ children }) {
     return <span className={styles.badge}>{children}</span>;
@@ -24,7 +16,7 @@ export default function ModalHeader({ patient, onClose }) {
         <header className={styles.header}>
             <div className={styles['header-left']}>
                 <div className={styles['title-group']}>
-                    <AiIcon />
+                    <AiIcon size={24} />
                     <h2 className={styles.title}>Patient Data</h2>
                 </div>
                 <div className={styles['patient-group']}>

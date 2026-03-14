@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './ResultFooterCta.module.scss';
+import ActionButton from '../ActionButton/ActionButton';
 import TransmissionDialog from '../TransmissionDialog/TransmissionDialog';
 
 // D-001 하단 CTA — 확인 및 전송 / 취소
@@ -90,13 +91,14 @@ export default function ResultFooterCta({
             >
                 {isLoading ? '전송 중...' : '확인 및 전송 · 진료 종료 →'}
             </button>
-            <button
+            <ActionButton
+                variant="text"
                 className={styles['cancel-btn']}
                 onClick={() => router.push('/projects/eum/doctor')}
                 aria-label="결과 작성 취소, 이전 화면으로 돌아가기"
             >
-                취소 →
-            </button>
+                취소
+            </ActionButton>
 
             <TransmissionDialog
                 isOpen={isDialogOpen}

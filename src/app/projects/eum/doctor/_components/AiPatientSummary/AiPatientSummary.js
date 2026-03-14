@@ -2,15 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './AiPatientSummary.module.scss';
-import { AiIcon as AiIconSvg } from '../../../_components/icons';
-
-function AiIcon() {
-    return (
-        <span className={styles['ai-icon']} aria-hidden="true">
-            <AiIconSvg size={18} color="#9CA3AF" />
-        </span>
-    );
-}
+import { AiIcon } from '../../../_components/icons';
 
 // D-001 섹션 4: AI 쉬운말 변환 결과 — 의사가 직접 편집 가능
 export default function AiPatientSummary({ plainText, modelVersion }) {
@@ -46,10 +38,11 @@ export default function AiPatientSummary({ plainText, modelVersion }) {
         <section className="section">
             <div className="section-content">
                 <div className="section-header">
-                    <AiIcon />
+                    <AiIcon size={24} />
                     <h2 className="section-title">AI Patient Summary</h2>
-                    <span className={`model-tag ${styles['model-tag']}`}>{modelVersion}</span>
                 </div>
+
+                <span className={`model-tag ${styles['model-tag']}`}>{modelVersion}</span>
 
                 {/* bordered 카드 — white bg, border 1px #E5E7EB, radius 16px */}
                 <div className={styles.card}>

@@ -10,31 +10,12 @@
     "to": "2026-02-17",
     "label": "6년간 진료 기록 종합"
   },
-  "summary_text": "34세 여성. 역류성 식도염(6년, K21.0). 2020년 초진 시 LA-A 등급 확인 후 이후 내시경 4회 모두 정상(LA-N). PPI 40mg 장기 복용 중이나 증상 불완전 반응 지속. 공식 정신과 진단 없으나 불안 관련 증상 반복 관찰. 이음 앱 데이터 분석 결과 스트레스-소화기 증상 교차 패턴 확인. 최근 심계항진, 어지러움 등 자율신경 관련 에피소드 새롭게 관찰됨. 2025-04 건강검진 혈색소 11.8 g/dL(경계), PHQ-9 8점(경도 우울 주의).",
-  "highlights": [
-    {
-      "type": "abnormal",
-      "badge_color": "#FFC000",
-      "icon": "alert_circle",
-      "title": "PPI 불완전 반응 + 내시경 정상 반복",
-      "description": "에소메프라졸 40mg 6년 복용 중 증상 호전-악화 반복. 내시경 4회 모두 정상(LA-N). 기질적 원인 미발견 상태에서 증상 지속 — 기능성 식도 질환 가능성.",
-      "evidence": ["2020-03 LA-A → 이후 LA-N × 4회 (2021, 2022, 2023, 2025)", "PPI 40mg 6년 복용에도 야간 역류·인후 이물감 지속"]
-    },
-    {
-      "type": "recurring",
-      "badge_color": "#E69F00",
-      "icon": "refresh",
-      "title": "스트레스-소화기 증상 교차 패턴",
-      "description": "이음 앱 증상 기록에서 스트레스 상황과 소화기 증상 악화의 시간적 상관관계 확인. 수면 부족 시 다음 날 증상 발생 확률 증가.",
-      "evidence": ["sym_004: 회의 중 스트레스 → 오심+식은땀", "sym_001: 수면 3.5h → 야간 흉통 발생", "PHQ-9 8점: 경도 우울 주의 범위"]
-    },
-    {
-      "type": "worsening",
-      "badge_color": "#C00000",
-      "icon": "trending_up",
-      "title": "자율신경 징후 새롭게 관찰",
-      "description": "최근 심계항진, 가슴 답답함, 식은땀 에피소드가 소화기 증상과 별도로 관찰됨. 기존 GERD 프레임으로 설명되지 않는 증상 확대.",
-      "evidence": ["sym_003: 심계항진+호흡곤란+수면장애 (severity 3)", "sym_004: 회의 중 식은땀+오심 에피소드 (severity 2)"]
-    }
+  "summary_text": "F/34. GERD(K21.0) Dx 2020, 6yr f/u. Initial EGD LA-A → 이후 EGD × 4 all LA-N. Esomeprazole 40mg QD 6yr 유지 중 불완전 반응 지속. 공식 psychiatric Dx 없으나 anxiety 관련 Sx 반복. 이음 앱 분석상 stress-GI Sx 교차 패턴 확인. 최근 palpitation, dizziness 등 autonomic episode 새롭게 관찰. 2025-04 건강검진 Hb 11.8g/dL(경계), PHQ-9 8점(mild depression).",
+  "summary_bullets": [
+    "F/34. Esomeprazole 40mg QD 6yr에도 불완전 반응 지속 → functional esophageal disorder 감별 필요",
+    "이음 앱 분석: stress-GI Sx 교차 패턴 확인. 수면 부족 시 익일 Sx 발생률 ↑",
+    "최근 palpitation·dizziness·cold sweat 등 autonomic episode 새롭게 관찰 — 기존 GERD 프레임 외 Sx 확대",
+    "Hb 11.8g/dL(경계), PHQ-9 8점(mild depression) — 추가 w/u 필요",
+    "EGD: initial LA-A(2020) → LA-N × 4(2021-2025). 기질적 원인 미발견"
   ]
 }

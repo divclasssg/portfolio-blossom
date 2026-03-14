@@ -1,52 +1,32 @@
 @use '../../_styles/tokens' as t;
 
-// section-title: flex: 1로 공간 차지
-.section-title {
+// 서브섹션 래퍼
+.subsection {
+    padding-top: 16px;
+}
+
+.subsection-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.subsection-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: t.$text-primary;
     flex: 1;
 }
 
-.ai-icon {
-    display: flex;
-    align-items: center;
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-}
-
-// 데이터보기 → D-F12 링크
-.data-link {
-    font-size: 12px;
-    font-weight: 500;
-    color: t.$text-secondary;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    white-space: nowrap;
-
-    &:hover {
-        color: t.$text-primary;
-    }
-
-    &:focus-visible {
-        outline: 2px solid t.$color-primary;
-        outline-offset: 2px;
-        border-radius: 2px;
-    }
-}
-
-// 와이어프레임: 체크박스 스타일 리스트 (단순 목록)
 .items {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    margin-bottom: 0;
 }
 
 .item {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
     padding: 10px 0;
     border-bottom: 1px solid t.$neutral-bg;
     transition: opacity 0.15s;
@@ -56,24 +36,27 @@
     }
 }
 
-// 드래그 중인 항목
 .item--dragging {
     opacity: 0.4;
 }
 
-// 드롭 위치 강조 (box-shadow로 레이아웃 시프트 방지)
 .item--drag-over {
     box-shadow: 0 -2px 0 0 t.$color-primary;
 }
 
-// 드래그 핸들 (⠿)
+.item-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
 .drag-handle {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 16px;
     flex-shrink: 0;
-    font-size: 14px;
     color: t.$text-muted;
     cursor: grab;
     user-select: none;
@@ -89,27 +72,86 @@
     }
 }
 
-// 체크박스 버튼 (활성/비활성 토글)
-.item-icon {
-    width: 16px;
-    height: 16px;
-    background: t.$neutral-border;
-    border: 1px solid t.$neutral-border;
-    border-radius: 3px;
+// 질환명 버튼 — 아코디언 토글 역할
+.item-name {
+    flex: 1;
+    font-size: 14px;
+    color: t.$text-primary;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.icd-tag {
+    font-size: 11px;
+    color: t.$text-muted;
+    background: t.$neutral-bg;
+    padding: 1px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.confidence-high {
+    font-size: 11px;
+    font-weight: 600;
+    color: t.$clinical-normal;
     flex-shrink: 0;
+}
+
+.confidence-medium {
+    font-size: 11px;
+    font-weight: 600;
+    color: t.$clinical-warning;
+    flex-shrink: 0;
+}
+
+.confidence-low {
+    font-size: 11px;
+    font-weight: 600;
+    color: t.$text-muted;
+    flex-shrink: 0;
+}
+
+// 아코디언 화살표
+.chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: t.$text-muted;
+    background: none;
+    border: none;
     padding: 0;
     cursor: pointer;
 
-    // 활성 상태: 채워진 체크박스
-    &[aria-checked='true'] {
-        background: t.$text-secondary;
-        border-color: t.$text-secondary;
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+        border-radius: 2px;
     }
+}
 
-    // 비활성 상태: 빈 체크박스
-    &[aria-checked='false'] {
-        background: transparent;
-    }
+// 의사 판단 드롭다운
+.judgment-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.judgment-trigger {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid t.$neutral-border;
+    background: none;
+    cursor: pointer;
+    white-space: nowrap;
 
     &:focus-visible {
         outline: 2px solid t.$color-primary;
@@ -117,13 +159,86 @@
     }
 }
 
-.item-name {
-    font-size: 14px;
-    color: t.$text-primary;
-    flex: 1;
+.judgment--pending {
+    color: t.$text-muted;
+    border-color: t.$neutral-border;
 }
 
-// 비활성화된 항목
+.judgment--agree {
+    color: t.$color-primary;
+    border-color: t.$color-primary;
+}
+
+.judgment--hold {
+    color: t.$clinical-warning;
+    border-color: t.$clinical-warning;
+}
+
+.judgment--exclude {
+    color: t.$text-muted;
+    border-color: t.$neutral-border;
+    text-decoration: line-through;
+}
+
+.judgment-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 10;
+    margin-top: 4px;
+    padding: 4px 0;
+    background: #fff;
+    border: 1px solid t.$neutral-border;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    list-style: none;
+    min-width: 72px;
+}
+
+.judgment-option {
+    font-size: 13px;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: t.$text-primary;
+
+    &:hover {
+        background: t.$neutral-bg;
+    }
+
+    &[aria-selected='true'] {
+        font-weight: 600;
+        color: t.$color-primary;
+    }
+}
+
+// 아코디언 상세 영역
+.item-detail {
+    padding: 6px 0 2px 24px; // drag(16) + gap(8) = 24px
+}
+
+.evidence-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    list-style: none;
+    margin-bottom: 6px;
+}
+
+.evidence-chip {
+    font-size: 12px;
+    color: t.$text-secondary;
+    background: t.$neutral-bg;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.clinical-note {
+    font-size: 13px;
+    line-height: 1.55;
+    color: t.$text-secondary;
+    word-break: keep-all;
+}
+
 .item--disabled {
     .item-name {
         opacity: 0.4;
@@ -131,6 +246,22 @@
     }
 }
 
-.warnings-area {
-    margin: 0 -20px;
+// 목록 상단 안내 문구
+.list-guide {
+    font-size: 12px;
+    color: t.$text-muted;
+    margin-top: 12px;
+    margin-bottom: 4px;
 }
+
+// confidence 범례
+.confidence-legend {
+    font-size: 11px;
+    color: t.$text-muted;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 4px;
+    padding-bottom: 12px;
+}
+

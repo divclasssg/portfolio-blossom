@@ -17,7 +17,8 @@
       "frequency": "1일 1회 아침 식전",
       "start_date": "2020-03-10",
       "prescribing_hospital": "서현내과의원",
-      "category": "PPI (양성자펌프억제제)"
+      "category": "PPI (양성자펌프억제제)",
+      "days": 56
     },
     {
       "drug_name": "돔페리돈",
@@ -25,7 +26,8 @@
       "frequency": "1일 3회 식전",
       "start_date": "2023-06-15",
       "prescribing_hospital": "서현내과의원",
-      "category": "위장관운동촉진제"
+      "category": "위장관운동촉진제",
+      "days": 56
     },
     {
       "drug_name": "수크랄페이트",
@@ -33,7 +35,8 @@
       "frequency": "1일 2회 식전",
       "start_date": "2024-01-20",
       "prescribing_hospital": "서현내과의원",
-      "category": "점막보호제"
+      "category": "점막보호제",
+      "days": 56
     },
     {
       "drug_name": "마그네슘 하이드록사이드",
@@ -41,7 +44,8 @@
       "frequency": "필요시",
       "start_date": "2022-04-10",
       "prescribing_hospital": "서현내과의원",
-      "category": "제산제"
+      "category": "제산제",
+      "days": 84
     },
     {
       "drug_name": "오메가-3",
@@ -49,7 +53,8 @@
       "frequency": "1일 1회",
       "start_date": "2023-01-01",
       "prescribing_hospital": "자가 구매",
-      "category": "건강기능식품"
+      "category": "건강기능식품",
+      "days": null
     },
     {
       "drug_name": "비타민 D",
@@ -57,7 +62,8 @@
       "frequency": "1일 1회",
       "start_date": "2023-01-01",
       "prescribing_hospital": "자가 구매",
-      "category": "건강기능식품"
+      "category": "건강기능식품",
+      "days": null
     }
   ],
   "allergies": [

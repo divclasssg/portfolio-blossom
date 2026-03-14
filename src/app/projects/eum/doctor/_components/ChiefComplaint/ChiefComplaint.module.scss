@@ -1,19 +1,43 @@
 @use '../../_styles/tokens' as t;
 
-// section: padding-bottom이 32px으로 글로벌과 다름
 .section {
-    padding-bottom: 32px;
+    padding: 0 24px 32px;
 }
 
-// section-title: margin-bottom이 4px으로 글로벌(12px)과 다름
-.section-title {
-    margin-bottom: 4px;
+// 탭 바
+.tab-bar {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid t.$neutral-border;
+}
+
+.tab {
+    padding: 8px 0;
+    border: none;
+    background: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: t.$text-secondary;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px; // border-bottom과 겹치기
+
+    &--active {
+        color: t.$text-primary;
+        border-bottom-color: t.$text-primary;
+    }
+
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: -2px;
+    }
 }
 
 .meta {
     font-size: 14px;
     color: t.$text-muted;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
 }
 
 // 환자 원문 — 수정 불가
@@ -37,4 +61,36 @@
         color: t.$neutral-placeholder;
         margin-left: 2px;
     }
+}
+
+// 복용약 리스트
+.med-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    li {
+        list-style: none;
+    }
+}
+
+.med-name {
+    display: block;
+    font-size: 16px;
+    color: t.$text-primary;
+    line-height: 1.5;
+}
+
+.med-meta {
+    display: block;
+    font-size: 12px;
+    color: t.$text-secondary;
+    margin-top: 2px;
+}
+
+.visit-history-btn {
+    margin-top: 16px;
 }

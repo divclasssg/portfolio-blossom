@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { usePatientDataModal } from '../PatientDataModal/PatientDataModalContext';
 import styles from './Timeline.module.scss';
-import { AiIcon } from '../../../_components/icons';
+import { AiIcon, ArrowIcon } from '../../../_components/icons';
+import ActionButton from '../ActionButton/ActionButton';
 
 const SEVERITY_LABEL = { 1: '낮음', 2: '중간', 3: '높음', 4: '심함' };
 
@@ -38,13 +39,29 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
     const [expandedItems, setExpandedItems] = useState(new Set());
     const [showAll, setShowAll] = useState(false);
     const { open: openModal } = usePatientDataModal();
+    const expandRef = useRef(null);
+    const btnRef = useRef(null);
 
-    // 표시할 항목: compact만 또는 compact + expanded (날짜 역순)
-    const visibleItems = showAll
-        ? [...compactItems, ...(expandedTimeline?.items ?? [])].sort((a, b) =>
-              b.date.localeCompare(a.date)
-          )
-        : compactItems;
+    // 전체 항목 (날짜 역순) — 항상 계산해서 DOM에 유지
+    const allItems = [...compactItems, ...(expandedTimeline?.items ?? [])].sort((a, b) =>
+        b.date.localeCompare(a.date)
+    );
+    // compact에 포함된 항목의 key Set
+    const compactKeys = new Set(compactItems.map((i) => `${i.date}-${i.category}`));
+    // expanded 전용 항목만 추출 (애니메이션 대상)
+    const expandedOnly = allItems.filter((i) => !compactKeys.has(`${i.date}-${i.category}`));
+
+    const handleToggle = useCallback(() => {
+        const next = !showAll;
+        setShowAll(next);
+
+        if (next) {
+            // 열림: 버튼이 보이도록 스크롤
+            requestAnimationFrame(() => {
+                btnRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        }
+    }, [showAll]);
 
     // 평균 HR, Sleep 계산
     const avgHr = healthPlatform?.length
@@ -65,137 +82,146 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
         });
     }
 
+    function renderItem(item) {
+        const itemKey = `${item.date}-${item.category}`;
+        const health = findHealthRecord(item.date, healthPlatform);
+        const hasHealth = !!health;
+        const isExpanded = expandedItems.has(itemKey);
+        const healthId = `health-${itemKey}`;
+
+        const hrTrend = health ? getTrend(health.heart_rate_bpm, avgHr) : null;
+        const sleepTrend = health
+            ? getTrend(health.sleep_hours, parseFloat(avgSleep))
+            : null;
+
+        const [month, day] = item.date.split('-');
+        const matchedRecord = findHealthRecord(item.date, healthPlatform);
+        const year = matchedRecord
+            ? matchedRecord.recorded_at.slice(0, 4)
+            : new Date().getFullYear();
+        const dateLabel = `${year}. ${month}. ${day}`;
+
+        return (
+            <li key={itemKey} className={styles.item}>
+                {hasHealth ? (
+                    <button
+                        className={styles['item-main']}
+                        onClick={() => toggleItem(itemKey)}
+                        aria-expanded={isExpanded}
+                        aria-controls={healthId}
+                    >
+                        <time className={styles['item-date']} dateTime={`${year}-${month}-${day}`}>{dateLabel}</time>
+                        <span className={styles['item-name']} title={item.preview}>
+                            {CATEGORY_LABEL[item.category] ?? item.preview}
+                        </span>
+                        <span
+                            className={styles['nrs-label']}
+                            aria-label={`NRS ${item.severity} (${SEVERITY_LABEL[item.severity]})`}
+                        >
+                            NRS {item.severity}
+                        </span>
+                        <span className={styles['expand-icon']} aria-hidden="true">
+                            <ArrowIcon variant={isExpanded ? 'up' : 'down'} size={12} color="currentColor" />
+                        </span>
+                    </button>
+                ) : (
+                    <button className={styles['item-main']} disabled aria-disabled="true">
+                        <time className={styles['item-date']} dateTime={`${year}-${month}-${day}`}>{dateLabel}</time>
+                        <span className={styles['item-name']} title={item.preview}>
+                            {CATEGORY_LABEL[item.category] ?? item.preview}
+                        </span>
+                        <span
+                            className={styles['nrs-label']}
+                            aria-label={`NRS ${item.severity} (${SEVERITY_LABEL[item.severity]})`}
+                        >
+                            NRS {item.severity}
+                        </span>
+                    </button>
+                )}
+
+                {hasHealth && isExpanded && (
+                    <div className={styles['item-health']} id={healthId}>
+                        <span className={styles['health-stat']}>
+                            HR {health.heart_rate_bpm}bpm
+                            <span
+                                className={styles['health-trend']}
+                                style={{ color: hrTrend.color }}
+                                aria-label={
+                                    hrTrend.arrow === '↑'
+                                        ? '평균 대비 높음'
+                                        : hrTrend.arrow === '↓'
+                                          ? '평균 대비 낮음'
+                                          : '평균'
+                                }
+                            >
+                                {hrTrend.arrow}
+                            </span>
+                        </span>
+                        <span
+                            className={styles['health-divider']}
+                            aria-hidden="true"
+                        />
+                        <span className={styles['health-stat']}>
+                            Sleep {health.sleep_hours}h
+                            <span
+                                className={styles['health-trend']}
+                                style={{ color: sleepTrend.color }}
+                                aria-label={
+                                    sleepTrend.arrow === '↑'
+                                        ? '평균 대비 많음'
+                                        : sleepTrend.arrow === '↓'
+                                          ? '평균 대비 적음'
+                                          : '평균'
+                                }
+                            >
+                                {sleepTrend.arrow}
+                            </span>
+                        </span>
+                    </div>
+                )}
+            </li>
+        );
+    }
+
     return (
         <section className={`section ${styles.section}`}>
             <div className="section-content">
                 <div className={`section-header ${styles['section-header']}`}>
                     <AiIcon size={24} />
-                    <h2 className="section-title">Timeline</h2>
+                    <h2 className={`section-title ${styles['section-title']}`}>Timeline</h2>
+                    <ActionButton
+                        variant="text"
+                        aria-label="환자 데이터 상세 보기 — 증상 타임라인 차트 열기"
+                        onClick={openModal}
+                    >
+                        데이터보기
+                    </ActionButton>
                 </div>
 
                 <ul className={styles.items} aria-label="최근 증상 기록">
-                    {visibleItems.map((item) => {
-                        const itemKey = `${item.date}-${item.category}`;
-                        const health = findHealthRecord(item.date, healthPlatform);
-                        const hasHealth = !!health;
-                        const isExpanded = expandedItems.has(itemKey);
-                        const healthId = `health-${itemKey}`;
-
-                        const hrTrend = health ? getTrend(health.heart_rate_bpm, avgHr) : null;
-                        const sleepTrend = health
-                            ? getTrend(health.sleep_hours, parseFloat(avgSleep))
-                            : null;
-
-                        // 날짜 포맷: "03-08" → "YYYY. MM. DD" (healthPlatform에서 연도 추출)
-                        const [month, day] = item.date.split('-');
-                        const matchedRecord = findHealthRecord(item.date, healthPlatform);
-                        const year = matchedRecord
-                            ? matchedRecord.recorded_at.slice(0, 4)
-                            : new Date().getFullYear();
-                        const dateLabel = `${year}. ${month}. ${day}`;
-
-                        return (
-                            <li key={itemKey} className={styles.item}>
-                                {/* 주 행: 날짜 | 증상명 | NRS | ∧/V */}
-                                {hasHealth ? (
-                                    <button
-                                        className={styles['item-main']}
-                                        onClick={() => toggleItem(itemKey)}
-                                        aria-expanded={isExpanded}
-                                        aria-controls={healthId}
-                                    >
-                                        <time className={styles['item-date']} dateTime={`${year}-${month}-${day}`}>{dateLabel}</time>
-                                        <span className={styles['item-name']} title={item.preview}>
-                                            {CATEGORY_LABEL[item.category] ?? item.preview}
-                                        </span>
-                                        <span
-                                            className={styles['nrs-label']}
-                                            aria-label={`NRS ${item.severity} (${SEVERITY_LABEL[item.severity]})`}
-                                        >
-                                            NRS {item.severity}
-                                        </span>
-                                        <span className={styles['expand-icon']} aria-hidden="true">
-                                            {isExpanded ? '∧' : 'V'}
-                                        </span>
-                                    </button>
-                                ) : (
-                                    <button className={styles['item-main']} disabled aria-disabled="true">
-                                        <time className={styles['item-date']} dateTime={`${year}-${month}-${day}`}>{dateLabel}</time>
-                                        <span className={styles['item-name']} title={item.preview}>
-                                            {CATEGORY_LABEL[item.category] ?? item.preview}
-                                        </span>
-                                        <span
-                                            className={styles['nrs-label']}
-                                            aria-label={`NRS ${item.severity} (${SEVERITY_LABEL[item.severity]})`}
-                                        >
-                                            NRS {item.severity}
-                                        </span>
-                                    </button>
-                                )}
-
-                                {/* 건강 서브 행 (웨어러블 데이터 있는 경우, expanded일 때만) */}
-                                {hasHealth && isExpanded && (
-                                    <div className={styles['item-health']} id={healthId}>
-                                        <span className={styles['health-stat']}>
-                                            HR {health.heart_rate_bpm}bpm
-                                            <span
-                                                className={styles['health-trend']}
-                                                style={{ color: hrTrend.color }}
-                                                aria-label={
-                                                    hrTrend.arrow === '↑'
-                                                        ? '평균 대비 높음'
-                                                        : hrTrend.arrow === '↓'
-                                                          ? '평균 대비 낮음'
-                                                          : '평균'
-                                                }
-                                            >
-                                                {hrTrend.arrow}
-                                            </span>
-                                        </span>
-                                        <span
-                                            className={styles['health-divider']}
-                                            aria-hidden="true"
-                                        />
-                                        <span className={styles['health-stat']}>
-                                            Sleep {health.sleep_hours}h
-                                            <span
-                                                className={styles['health-trend']}
-                                                style={{ color: sleepTrend.color }}
-                                                aria-label={
-                                                    sleepTrend.arrow === '↑'
-                                                        ? '평균 대비 많음'
-                                                        : sleepTrend.arrow === '↓'
-                                                          ? '평균 대비 적음'
-                                                          : '평균'
-                                                }
-                                            >
-                                                {sleepTrend.arrow}
-                                            </span>
-                                        </span>
-                                    </div>
-                                )}
-                            </li>
-                        );
-                    })}
+                    {compactItems.map((item) => renderItem(item))}
                 </ul>
 
-                <button
-                    className={styles['more-btn']}
-                    onClick={() => setShowAll((prev) => !prev)}
+                {/* 확장 영역 — 높이 애니메이션 */}
+                <div
+                    ref={expandRef}
+                    className={`${styles['expand-area']} ${showAll ? styles['expand-area--open'] : ''}`}
+                >
+                    <ul className={styles.items} aria-label="추가 증상 기록">
+                        {expandedOnly.map((item) => renderItem(item))}
+                    </ul>
+                </div>
+
+                <ActionButton
+                    ref={btnRef}
+                    className={`${styles['more-btn']} ${showAll ? styles['more-btn--open'] : ''}`}
+                    onClick={handleToggle}
                     aria-label={
                         showAll ? '증상 기록 접기' : `증상 기록 ${remaining_count}건 더 보기`
                     }
                 >
                     {showAll ? '접기' : '더보기'}
-                </button>
-
-                <button
-                    className={styles['data-btn']}
-                    onClick={openModal}
-                    aria-label="환자 데이터 상세 보기 — 증상 타임라인 차트 열기"
-                >
-                    데이터 보기
-                </button>
+                </ActionButton>
             </div>
         </section>
     );

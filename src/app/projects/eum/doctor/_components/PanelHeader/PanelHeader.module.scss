@@ -1,6 +1,7 @@
 @use '../../_styles/tokens' as t;
 
 .header {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -10,6 +11,7 @@
     color: t.$header-fg;
     flex-shrink: 0;
     user-select: none; // 드래그 중 텍스트 선택 방지
+    z-index: 100;
 
     // 드래그 가능 상태
     &.is-draggable {

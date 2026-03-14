@@ -1,45 +1,58 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import styles from './AiSuggestions.module.scss';
-import AiWarningBanner from '../AiWarningBanner/AiWarningBanner';
-import { AiIcon as AiIconSvg } from '../../../_components/icons';
+import ActionButton from '../ActionButton/ActionButton';
+import { ArrowIcon, DragHandleIcon } from '../../../_components/icons';
 import { usePatientDataModal } from '../PatientDataModal/PatientDataModalContext';
 
-function AiIcon() {
-    return (
-        <span className={styles['ai-icon']} aria-hidden="true">
-            <AiIconSvg size={18} color="#9CA3AF" />
-        </span>
-    );
-}
+const CONFIDENCE_MAP = {
+    high: { icon: '●', label: '높음', className: 'confidence-high' },
+    medium: { icon: '◐', label: '중간', className: 'confidence-medium' },
+    low: { icon: '○', label: '낮음', className: 'confidence-low' },
+};
+
+const JUDGMENT_OPTIONS = [
+    { value: null, label: '미결' },
+    { value: 'agree', label: '동의' },
+    { value: 'hold', label: '보류' },
+    { value: 'exclude', label: '제외' },
+];
 
 // AI Key Findings (와이어프레임 섹션명)
 // "진단", "확진" 표현 금지 — 참고 키워드로 표시 (CLAUDE.md §금지사항)
-export default function AiSuggestions({ suggestions, modelVersion, warnings }) {
+export default function AiSuggestions({ suggestions, modelVersion }) {
     const { open: openDataModal } = usePatientDataModal();
     const [orderedSuggestions, setOrderedSuggestions] = useState(suggestions);
-    const [disabledItems, setDisabledItems] = useState(new Set());
+    const [judgments, setJudgments] = useState({});
+    const [openDropdown, setOpenDropdown] = useState(null);
+    const [expandedItem, setExpandedItem] = useState(null);
     const [dragIndex, setDragIndex] = useState(null);
     const [dragOverIndex, setDragOverIndex] = useState(null);
     const liveRef = useRef(null);
     const handleRefs = useRef([]);
 
-    // 드래그 핸들 ref 콜백
     const setHandleRef = useCallback((el, index) => {
         handleRefs.current[index] = el;
     }, []);
 
-    function toggleDisabled(icdCode) {
-        setDisabledItems((prev) => {
-            const next = new Set(prev);
-            if (next.has(icdCode)) next.delete(icdCode);
-            else next.add(icdCode);
-            return next;
-        });
+    function setJudgment(icdCode, value) {
+        setJudgments((prev) => ({ ...prev, [icdCode]: value }));
+        setOpenDropdown(null);
     }
 
-    // 순서 변경 (드래그앤드롭 + 키보드 공통)
+    // 드롭다운 외부 클릭 닫기
+    useEffect(() => {
+        if (!openDropdown) return;
+        function handleClickOutside() { setOpenDropdown(null); }
+        document.addEventListener('click', handleClickOutside);
+        return () => document.removeEventListener('click', handleClickOutside);
+    }, [openDropdown]);
+
+    function toggleExpand(icdCode) {
+        setExpandedItem((prev) => (prev === icdCode ? null : icdCode));
+    }
+
     function moveItem(fromIndex, toIndex) {
         if (toIndex < 0 || toIndex >= orderedSuggestions.length) return;
         const next = [...orderedSuggestions];
@@ -47,13 +60,11 @@ export default function AiSuggestions({ suggestions, modelVersion, warnings }) {
         next.splice(toIndex, 0, moved);
         setOrderedSuggestions(next);
 
-        // 스크린리더 알림
         if (liveRef.current) {
             liveRef.current.textContent = `${moved.disease_name}, ${toIndex + 1}/${next.length} 위치로 이동됨`;
         }
     }
 
-    // 드래그 핸들 키보드 조작 — 이동 후 focus 복원
     function handleDragKeyDown(e, index) {
         if (e.key === 'ArrowUp' && index > 0) {
             e.preventDefault();
@@ -86,35 +97,47 @@ export default function AiSuggestions({ suggestions, modelVersion, warnings }) {
     }
 
     return (
-        <section className="section">
-            <div className="section-content">
-                <div className="section-header">
-                    <AiIcon />
-                    <h2 className={`section-title ${styles['section-title']}`}>AI Key Findings</h2>
-                    <span className="model-tag">{modelVersion}</span>
-                    {/* 데이터보기 → D-F12 */}
-                    <button
-                        className={styles['data-link']}
-                        aria-label="타임라인 차트 모달 열기 (D-F12)"
-                        onClick={openDataModal}
-                    >
-                        데이터보기 →
-                    </button>
-                </div>
+        <div className={styles['subsection']}>
+            <div className={styles['subsection-header']}>
+                <h3 className={styles['subsection-title']}>Key Findings</h3>
+                <ActionButton
+                    variant="text"
+                    aria-label="타임라인 차트 모달 열기 (D-F12)"
+                    onClick={openDataModal}
+                >
+                    데이터보기
+                </ActionButton>
+            </div>
 
-                {/* 스크린리더 순서 변경 알림 */}
+            <span className="model-tag">{modelVersion}</span>
+
                 <div ref={liveRef} aria-live="polite" className="sr-only" />
 
-                {/* 와이어프레임: 드래그핸들 + 체크박스 + 조건명 목록 */}
+                <p className={styles['list-guide']}>
+                    드래그하여 순서를 조정하고, 각 항목에 의사 판단을 표시할 수 있습니다
+                </p>
+
+                <p className={styles['confidence-legend']}>
+                    <span className={styles['confidence-high']}>● 높음</span> 주요 근거 충분
+                    <span>|</span>
+                    <span className={styles['confidence-medium']}>◐ 중간</span> 추가 검사 권장
+                    <span>|</span>
+                    <span className={styles['confidence-low']}>○ 낮음</span> AI 감별 판단
+                </p>
+
                 <ul
                     className={styles.items}
                     aria-label="AI 참고 키워드 목록"
                     aria-roledescription="재정렬 가능한 목록"
                 >
                     {orderedSuggestions.map((item, index) => {
-                        const isDisabled = disabledItems.has(item.icd_code);
+                        const judgment = judgments[item.icd_code] ?? null;
+                        const isDisabled = judgment === 'exclude';
                         const isDragging = dragIndex === index;
                         const isDragOver = dragOverIndex === index && dragIndex !== index;
+                        const conf = CONFIDENCE_MAP[item.confidence] ?? CONFIDENCE_MAP.low;
+                        const isOpen = expandedItem === item.icd_code;
+                        const currentLabel = JUDGMENT_OPTIONS.find((o) => o.value === judgment).label;
 
                         const itemClasses = [
                             styles.item,
@@ -134,35 +157,99 @@ export default function AiSuggestions({ suggestions, modelVersion, warnings }) {
                                 onDragOver={(e) => handleDragOver(e, index)}
                                 onDragEnd={handleDragEnd}
                             >
-                                <span
-                                    className={styles['drag-handle']}
-                                    ref={(el) => setHandleRef(el, index)}
-                                    tabIndex={0}
-                                    role="button"
-                                    aria-label={`${item.disease_name} 순서 변경, 위아래 화살표로 이동`}
-                                    onKeyDown={(e) => handleDragKeyDown(e, index)}
-                                    aria-roledescription="드래그 핸들"
-                                >
-                                    ⠿
-                                </span>
-                                <button
-                                    className={styles['item-icon']}
-                                    role="checkbox"
-                                    aria-checked={!isDisabled}
-                                    aria-label={`${item.disease_name} ${isDisabled ? '비활성화됨' : '활성화됨'}`}
-                                    onClick={() => toggleDisabled(item.icd_code)}
-                                />
-                                <span className={styles['item-name']}>{item.disease_name}</span>
+                                {/* 헤더 행: 드래그핸들 + 질환명 + ICD + confidence + 판단 드롭다운 + 아코디언 토글 */}
+                                <div className={styles['item-header']}>
+                                    <span
+                                        className={styles['drag-handle']}
+                                        ref={(el) => setHandleRef(el, index)}
+                                        tabIndex={0}
+                                        role="button"
+                                        aria-label={`${item.disease_name} 순서 변경, 위아래 화살표로 이동`}
+                                        onKeyDown={(e) => handleDragKeyDown(e, index)}
+                                        aria-roledescription="드래그 핸들"
+                                    >
+                                        <DragHandleIcon size={14} color="currentColor" />
+                                    </span>
+                                    <button
+                                        className={styles['item-name']}
+                                        onClick={() => toggleExpand(item.icd_code)}
+                                        aria-expanded={isOpen}
+                                    >
+                                        {item.disease_name}
+                                    </button>
+                                    {/* icd_code가 순수 숫자면 entity ID → 표시하지 않음 */}
+                                    {item.icd_code && !/^\d+$/.test(item.icd_code) && (
+                                        <span className={styles['icd-tag']}>{item.icd_code}</span>
+                                    )}
+                                    <span className={styles[conf.className]} aria-label={`신뢰도: ${conf.label}`}>
+                                        {conf.icon} {conf.label}
+                                    </span>
+                                    <div className={styles['judgment-wrapper']}>
+                                        <button
+                                            className={`${styles['judgment-trigger']} ${styles[`judgment--${judgment ?? 'pending'}`]}`}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setOpenDropdown((prev) => prev === item.icd_code ? null : item.icd_code);
+                                            }}
+                                            aria-haspopup="listbox"
+                                            aria-expanded={openDropdown === item.icd_code}
+                                            aria-label={`${item.disease_name} 의사 판단: ${currentLabel}`}
+                                        >
+                                            {currentLabel} ▾
+                                        </button>
+                                        {openDropdown === item.icd_code && (
+                                            <ul className={styles['judgment-menu']} role="listbox">
+                                                {JUDGMENT_OPTIONS.map((opt) => (
+                                                    <li
+                                                        key={opt.value ?? 'pending'}
+                                                        role="option"
+                                                        aria-selected={judgment === opt.value}
+                                                        className={styles['judgment-option']}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            setJudgment(item.icd_code, opt.value);
+                                                        }}
+                                                    >
+                                                        {opt.label}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+                                    <button
+                                        className={styles.chevron}
+                                        onClick={() => toggleExpand(item.icd_code)}
+                                        aria-expanded={isOpen}
+                                        aria-label={`${item.disease_name} 상세 ${isOpen ? '닫기' : '열기'}`}
+                                    >
+                                        <ArrowIcon
+                                            variant={isOpen ? 'up' : 'down'}
+                                            size={12}
+                                            color="currentColor"
+                                        />
+                                    </button>
+                                </div>
+
+                                {/* 아코디언 상세 영역 */}
+                                {isOpen && (
+                                    <div className={styles['item-detail']}>
+                                        {item.evidence_symptoms?.length > 0 && (
+                                            <ul className={styles['evidence-list']} aria-label="근거 증상">
+                                                {item.evidence_symptoms.map((ev) => (
+                                                    <li key={ev} className={styles['evidence-chip']}>{ev}</li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                        {item.clinical_note && (
+                                            <p className={styles['clinical-note']}>{item.clinical_note}</p>
+                                        )}
+                                    </div>
+                                )}
                             </li>
                         );
                     })}
                 </ul>
 
-                {/* AI 경고 — 닫기 불가, 영구 노출 */}
-                <div className={styles['warnings-area']}>
-                    <AiWarningBanner warnings={warnings} />
-                </div>
-            </div>
-        </section>
+        </div>
     );
 }

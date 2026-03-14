@@ -43,24 +43,7 @@
     margin: 0;
 }
 
-// 취소 버튼
+// 취소 — ActionButton 오버라이드
 .cancel-btn {
-    background: none;
-    border: none;
-    font-family: var(--font-noto-kr), sans-serif;
-    font-size: 14px;
     font-weight: 400;
-    color: t.$text-secondary;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 4px;
-
-    &:hover {
-        color: t.$text-primary;
-    }
-
-    &:focus-visible {
-        outline: 2px solid t.$color-primary;
-        outline-offset: 2px;
-    }
 }

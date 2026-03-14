@@ -119,52 +119,37 @@
     background: t.$neutral-border;
 }
 
-// 더보기 버튼
-.more-btn {
-    display: block;
-    width: 100%;
-    margin-top: 12px;
-    padding: 12px;
-    background: t.$color-dark;
-    color: #f9fafb;
-    border: none;
-    border-radius: t.$card-radius;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
+.section-title {
+    flex: 1;
+}
 
-    &:hover {
-        background: #1f2937;
+// 확장 영역 — grid 높이 애니메이션
+.expand-area {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+
+    > * {
+        overflow: hidden;
     }
 
-    &:focus-visible {
-        outline: 2px solid t.$color-primary;
-        outline-offset: 2px;
+    &--open {
+        grid-template-rows: 1fr;
     }
 }
 
-// 데이터 보기 버튼 — D-F12 모달 열기
-.data-btn {
-    display: block;
-    width: 100%;
-    margin-top: 8px;
-    padding: 12px;
-    background: transparent;
-    color: t.$color-dark;
-    border: 1px solid t.$neutral-border;
-    border-radius: t.$card-radius;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
+// 더보기 — ActionButton filled 기반, chevron을 아래/위 방향으로 회전
+.more-btn {
+    margin-top: 12px;
 
-    &:hover {
-        background: t.$neutral-bg;
+    // 닫힘: chevron → 아래 (90deg)
+    svg {
+        transform: rotate(90deg);
+        transition: transform 0.3s ease;
     }
 
-    &:focus-visible {
-        outline: 2px solid t.$color-primary;
-        outline-offset: 2px;
+    // 열림: chevron → 위 (-90deg)
+    &--open svg {
+        transform: rotate(-90deg);
     }
 }

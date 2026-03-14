@@ -16,7 +16,7 @@ $header-height: 48px;
 
 // 섹션 공통
 $section-padding-x: 24px;
-$section-padding-y: 24px;
+$section-padding-y: 32px;
 $section-background: #fff;
 
 // 색상 — iOS HIG 기반 (bridge-tokens-studio.json)
@@ -74,3 +74,7 @@ $section-content-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
 // 카드
 $card-radius: 16px;
 $card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+// 버튼
+$button-radius: 16px;
+

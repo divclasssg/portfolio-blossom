@@ -2,11 +2,9 @@
 
 // section: padding이 32px 24px 16px (글로벌과 다름), section-content 없음
 .section {
-    position: -webkit-sticky;
-    position: sticky;
-    top: -1px; 
-    padding: 32px 24px 16px;
-    z-index: 100;
+    border-bottom: 0;
+    flex-shrink: 0;
+    padding: 24px 24px 11px;
 }
 
 .identity-row {
@@ -39,6 +37,16 @@
     color: t.$text-secondary;
 }
 
+// ICD-10 코드 — 나이 옆에 표시
+.icd-code {
+    font-size: 13px;
+    font-weight: 600;
+    color: t.$text-secondary;
+    background: t.$neutral-bg;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
 .referral-badge {
     display: inline-flex;
     align-items: center;
@@ -57,6 +65,7 @@
     display: flex;
     gap: 6px;
     flex-shrink: 0;
+    align-items: center;
 }
 
 // 칩+툴팁 래퍼 — 툴팁 기준점
@@ -94,6 +103,30 @@
     color: t.$color-danger;
     cursor: default;
     user-select: none;
+}
+
+// 펼치기/접기 토글 버튼
+.toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid t.$neutral-border;
+    border-radius: 8px;
+    background: t.$panel-bg;
+    color: t.$text-secondary;
+    cursor: pointer;
+
+    &:hover {
+        background: t.$neutral-bg;
+    }
+
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 1px;
+    }
 }
 
 // 툴팁 공통 기반 (SCSS placeholder)
@@ -149,4 +182,60 @@
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+}
+
+// ── 펼침 영역 ──
+
+// 펼침 래퍼 — grid 0fr→1fr 트랜지션으로 슬라이드 애니메이션
+.expand-area {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+
+    &--open {
+        grid-template-rows: 1fr;
+    }
+}
+
+.expanded-content {
+    overflow: hidden;
+    min-height: 0;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.summary {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: t.$text-secondary;
+}
+
+.detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: t.$text-secondary;
+    opacity: 0.65;
+}
+
+.detail-list {
+    margin: 0;
+    padding: 0 0 12px 14px;
+    font-size: 14px;
+    color: t.$text-primary;
+    line-height: 1.7;
+
+    li {
+        list-style: disc;
+    }
 }

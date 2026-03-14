@@ -88,6 +88,14 @@ export default async function ResultPage() {
         <DoctorPanel
             backHref="/projects/eum/doctor"
             singleColumn
+            profile={
+                <PatientProfile
+                    patientSummary={patientSummary}
+                    referralBadge={dashboardState.header.referral_badge}
+                    chronicConditions={chronicConditions}
+                    allergies={allergies}
+                />
+            }
             footer={
                 <ResultFooterCta
                     patientName={patientSummary.name}
@@ -100,14 +108,6 @@ export default async function ResultPage() {
                 />
             }
         >
-            {/* 섹션 1: 환자 프로필 + 기저질환 + 알레르기 */}
-            <PatientProfile
-                patientSummary={patientSummary}
-                referralBadge={dashboardState.header.referral_badge}
-                chronicConditions={chronicConditions}
-                allergies={allergies}
-            />
-
             {/* 섹션 2: 의사 소견 */}
             <ClinicalNotes findings={resultPackage.findings} />
 

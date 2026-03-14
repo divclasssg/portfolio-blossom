@@ -17,6 +17,7 @@ const RESIZE_DIRS = ['n', 's', 'e', 'w', 'nw', 'ne', 'sw', 'se'];
 export default function DoctorPanel({
     footer,
     children,
+    profile,
     backHref,
     singleColumn,
 }) {
@@ -28,10 +29,12 @@ export default function DoctorPanel({
     const [isVisible, setIsVisible] = useState(true);
     const [isDragging, setIsDragging] = useState(false);
     const [isResizing, setIsResizing] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     const dragRef = useRef(null);
     const resizeRef = useRef(null);
     const panelRef = useRef(null);
+    const scrollRef = useRef(null);
 
     // ── 패널 이동 ──────────────────────────────────────
     const handleDragStart = useCallback(
@@ -173,7 +176,14 @@ export default function DoctorPanel({
                 onClose={() => setIsVisible(false)}
                 backHref={backHref}
             />
-            <div className={styles['panel-scroll']}>
+            <div className={`${styles['profile-wrapper']} ${isScrolled ? styles['profile-wrapper--scrolled'] : ''}`}>
+                {profile}
+            </div>
+            <div
+                ref={scrollRef}
+                className={styles['panel-scroll']}
+                onScroll={() => setIsScrolled(scrollRef.current?.scrollTop > 0)}
+            >
                 <div className={singleColumn ? styles['section-single'] : styles['section-grid']}>
                     {children}
                 </div>

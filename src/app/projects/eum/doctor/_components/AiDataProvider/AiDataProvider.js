@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import AiRiskFlags from '../AiRiskFlags/AiRiskFlags';
 import AiBriefing from '../AiBriefing/AiBriefing';
 import AiSuggestions from '../AiSuggestions/AiSuggestions';
+import AiWarningBanner from '../AiWarningBanner/AiWarningBanner';
+import { AiIcon } from '../../../_components/icons';
 import styles from './AiDataProvider.module.scss';
 
 // 파이프라인 5단계에 대응하는 프로그레시브 로딩 단계
@@ -25,8 +26,7 @@ const MSG_INTERVAL_MS = 8000;
 export default function AiDataProvider({
     fallbackBriefing,
     fallbackSuggestions,
-    briefingWarnings,
-    suggestionWarnings,
+    warnings,
     initialBriefing = null, // Supabase에서 미리 로드한 브리핑 (있으면 파이프라인 스킵)
     initialSuggestions = null,
     patientId = null,
@@ -107,19 +107,25 @@ export default function AiDataProvider({
     const activeSuggestions = suggestions || fallbackSuggestions;
 
     return (
-        <>
-            {/* 섹션 5: AI 위험 신호 */}
-            <AiRiskFlags highlights={activeBriefing.highlights} />
+        <section className="section">
+            <div className="section-content">
+                <div className="section-header">
+                    <AiIcon size={24} />
+                    <h2 className="section-title">AI Analysis</h2>
+                </div>
 
-            {/* 섹션 6: AI 분석 요약 */}
-            <AiBriefing briefing={activeBriefing} warnings={briefingWarnings} />
+                <AiBriefing briefing={activeBriefing} />
 
-            {/* 섹션 8: AI 참고 키워드 */}
-            <AiSuggestions
-                suggestions={activeSuggestions.suggestions}
-                modelVersion={activeSuggestions.model_version}
-                warnings={suggestionWarnings}
-            />
-        </>
+                <AiSuggestions
+                    suggestions={activeSuggestions.suggestions}
+                    modelVersion={activeSuggestions.model_version}
+                />
+
+                {/* AI 경고 — 닫기 불가, 영구 노출 */}
+                <div className={styles['warnings-area']}>
+                    <AiWarningBanner warnings={warnings} />
+                </div>
+            </div>
+        </section>
     );
 }

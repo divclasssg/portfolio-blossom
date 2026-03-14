@@ -117,6 +117,16 @@ $handle-corner: 10px;
     z-index: 12;
 }
 
+// PatientProfile 래퍼 — 스크롤 시 border-bottom 표시
+.profile-wrapper {
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+
+    &--scrolled {
+        border-bottom-color: t.$neutral-border;
+    }
+}
+
 // 스크롤 영역 — container query 기준
 .panel-scroll {
     flex: 1;
@@ -151,13 +161,13 @@ $handle-corner: 10px;
 .section-grid {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
 }
 
 // 640px 이상: 2열
 @container panel (min-width: 640px) {
     .section-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1px;
         background: t.$neutral-border; // gap을 border처럼 사용
 
@@ -171,8 +181,8 @@ $handle-corner: 10px;
             grid-column: 1 / -1;
         }
 
-        // AI Briefing — 전체 폭 (child 5)
-        > :nth-child(5) {
+        // AI Analysis (통합 섹션) — 전체 폭 (child 4)
+        > :nth-child(4) {
             grid-column: 1 / -1;
         }
     }
@@ -181,16 +191,16 @@ $handle-corner: 10px;
 // 960px 이상: 3열
 @container panel (min-width: 960px) {
     .section-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
 
         // Patient Profile — 전체 폭
         > :nth-child(1) {
             grid-column: 1 / -1;
         }
 
-        // AI Briefing — 2열 span
-        > :nth-child(5) {
-            grid-column: span 2;
+        // AI Analysis (통합 섹션) — 전체 폭 (child 4)
+        > :nth-child(4) {
+            grid-column: 1 / -1;
         }
     }
 }

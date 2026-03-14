@@ -1,49 +1,25 @@
 import styles from './AiBriefing.module.scss';
-import AiWarningBanner from '../AiWarningBanner/AiWarningBanner';
-import { AiIcon } from '../../../_components/icons';
 
-const BADGE_LABEL = {
-    recurring: 'Recurrent',
-    abnormal: 'HR elevation',
-    worsening: 'Notable',
-};
-
-// AI Pre-Consultation Brief (와이어프레임 섹션명)
-export default function AiBriefing({ briefing, warnings }) {
-    const { summary_text, highlights, model_version } = briefing;
+// AI Pre-Consultation Brief — AiDataProvider 내 서브섹션
+export default function AiBriefing({ briefing }) {
+    const { summary_text, summary_bullets, model_version } = briefing;
 
     return (
-        <section className="section">
-            <div className="section-content">
-                <div className="section-header">
-                    <AiIcon size={24} />
-                    <h2 className={`section-title ${styles['section-title']}`}>AI Pre-Consultation Brief</h2>
-                    <span className="model-tag">{model_version}</span>
-                </div>
+        <div className={styles['subsection']}>
+            <h3 className={styles['subsection-title']}>Pre-Consultation Brief</h3>
 
-                <p className={styles['summary-text']}>{summary_text}</p>
+            <span className="model-tag">{model_version}</span>
 
-                {/* 인라인 하이라이트 뱃지 (와이어프레임 스타일) */}
-                <div className={styles.highlights}>
-                    {highlights.map((item) => (
-                        <div key={item.title} className={styles['highlight-row']}>
-                            <span
-                                className={styles['highlight-badge']}
-                                style={{ background: item.badge_color }}
-                                aria-label={`하이라이트: ${BADGE_LABEL[item.type] ?? item.type}`}
-                            >
-                                {BADGE_LABEL[item.type] ?? item.type}
-                            </span>
-                            <p className={styles['highlight-desc']}>{item.description}</p>
-                        </div>
+            {/* summary_bullets가 있으면 불릿 리스트, 없으면 기존 문단 폴백 */}
+            {summary_bullets?.length > 0 ? (
+                <ul className={styles['summary-bullets']}>
+                    {summary_bullets.map((text, i) => (
+                        <li key={i} className={styles['summary-bullet']}>{text}</li>
                     ))}
-                </div>
-
-                {/* AI 경고 — 닫기 불가, 영구 노출 */}
-                <div className={styles['warnings-area']}>
-                    <AiWarningBanner warnings={warnings} />
-                </div>
-            </div>
-        </section>
+                </ul>
+            ) : (
+                <p className={styles['summary-text']}>{summary_text}</p>
+            )}
+        </div>
     );
 }

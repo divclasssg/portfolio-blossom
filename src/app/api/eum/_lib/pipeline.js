@@ -315,8 +315,8 @@ export async function stage3Candidates(mappings, entities) {
                 if (!res.ok) return [];
                 const data = await res.json();
                 return (data.destinationEntities || []).slice(0, 3).map((e) => {
-                    // theCode가 null인 경우 id URI 마지막 세그먼트 사용
-                    const code = e.theCode || e.id?.split('/').pop() || null;
+                    // theCode가 없으면 코드 없음 처리 (entity ID를 ICD 코드로 오인 방지)
+                    const code = e.theCode || null;
                     // title에서 HTML <em> 태그 제거
                     const name = e.title?.replace(/<[^>]+>/g, '') || '';
                     return {
@@ -453,6 +453,10 @@ export async function stage5Report(rankedResult, patientData, sessionId) {
                     content:
                         '의료 AI 브리핑 작성 도우미입니다. 환자 데이터와 감별진단 결과를 바탕으로 ' +
                         '의사가 진료 전 15~30초 안에 파악할 수 있는 임상 요약을 작성하세요. ' +
+                        '의무기록(SOAP note) 수준의 간결한 임상 표현을 사용하세요. ' +
+                        '의학 약어(PPI, EGD, LA-N, Hb, QD 등)를 적극 사용하고, ' +
+                        '수치·날짜·분류 코드를 구체적으로 포함하세요. ' +
+                        "서술체('~합니다', '~있습니다')를 지양하고, 체언 종결 또는 간결한 문장을 사용하세요. " +
                         '언어: 한국어. JSON으로만 응답하세요.',
                 },
                 {
@@ -461,9 +465,11 @@ export async function stage5Report(rankedResult, patientData, sessionId) {
                         `환자 데이터:\n${JSON.stringify(patientData)}\n\n` +
                         `감별진단 랭킹:\n${JSON.stringify(rankedResult.suggestions)}\n\n` +
                         `generated_at: ${now}\n\n` +
-                        '브리핑(summary_text, 2-3개 highlights, referral_context)을 작성하세요.\n' +
-                        '주의: highlights의 type은 "recurring"|"abnormal"|"worsening" 중 하나, ' +
-                        'badge_color는 hex 색상(예: "#E69F00" 경고, "#CC0000" 위험, "#2166AC" 정보).',
+                        '브리핑(summary_text, summary_bullets, referral_context)을 작성하세요.\n' +
+                        'summary_bullets: 두괄식, 임상 약어 사용, 체언 종결체. ' +
+                        '가장 중요한 임상 결론을 첫 항목에. ' +
+                        '핵심 항목 4-6개. 수치·코드·날짜를 반드시 포함. ' +
+                        "예시: 'GERD(K21.0) 6yr. PPI 40mg QD 불완전 반응 → 기능성 식도 질환 감별 필요'",
                 },
             ],
             response_format: {
@@ -475,46 +481,24 @@ export async function stage5Report(rankedResult, patientData, sessionId) {
                         type: 'object',
                         properties: {
                             summary_text: { type: 'string' },
+                            summary_bullets: {
+                                type: 'array',
+                                items: { type: 'string' },
+                            },
                             period_label: { type: 'string' },
                             period_from: { type: 'string' },
                             period_to: { type: 'string' },
                             period_range_label: { type: 'string' },
-                            highlights: {
-                                type: 'array',
-                                items: {
-                                    type: 'object',
-                                    properties: {
-                                        type: {
-                                            type: 'string',
-                                            enum: ['recurring', 'abnormal', 'worsening'],
-                                        },
-                                        badge_color: { type: 'string' },
-                                        icon: { type: 'string' },
-                                        title: { type: 'string' },
-                                        description: { type: 'string' },
-                                        evidence: { type: 'array', items: { type: 'string' } },
-                                    },
-                                    required: [
-                                        'type',
-                                        'badge_color',
-                                        'icon',
-                                        'title',
-                                        'description',
-                                        'evidence',
-                                    ],
-                                    additionalProperties: false,
-                                },
-                            },
                             referring_doctor_summary: { type: 'string' },
                             requested_tests: { type: 'array', items: { type: 'string' } },
                         },
                         required: [
                             'summary_text',
+                            'summary_bullets',
                             'period_label',
                             'period_from',
                             'period_to',
                             'period_range_label',
-                            'highlights',
                             'referring_doctor_summary',
                             'requested_tests',
                         ],
@@ -543,7 +527,7 @@ export async function stage5Report(rankedResult, patientData, sessionId) {
             label: content.period_range_label,
         },
         summary_text: content.summary_text,
-        highlights: content.highlights,
+        summary_bullets: content.summary_bullets,
         referral_context: {
             referring_doctor_summary: content.referring_doctor_summary,
             requested_tests: content.requested_tests,

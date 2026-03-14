@@ -1,6 +1,7 @@
 import dashboardState from '../_references/data/doctor/03_dashboard_state.json';
 import transmissionPkg from '../_references/data/doctor/02_transmission_package.json';
 import doctorProfiles from '../_references/data/doctor/01_doctor_profile.json';
+import healthHistory from '../_references/data/patient/02_health_history.json';
 // AI 데이터 — AiDataProvider의 폴백으로 사용 (API 실패 시 정적 JSON 유지)
 import aiBriefing from '../_references/data/doctor/04_ai_briefing.json';
 import aiSuggestions from '../_references/data/doctor/05_ai_suggestions.json';
@@ -10,7 +11,6 @@ import timelineChartData from '../_references/data/doctor/06_timeline_chart_data
 import { getPatientId } from '../_lib/getPatientId';
 import DoctorPanel from './_components/DoctorPanel/DoctorPanel';
 import PatientProfile from './_components/PatientProfile/PatientProfile';
-import PatientOverview from './_components/PatientOverview/PatientOverview';
 import ChiefComplaint from './_components/ChiefComplaint/ChiefComplaint';
 import Timeline from './_components/Timeline/Timeline';
 import FooterCta from './_components/FooterCta/FooterCta';
@@ -112,7 +112,9 @@ async function fetchLiveData(patientId) {
         const chiefComplaint = sessionRes.error ? null : (sessionRes.data?.chief_complaint ?? null);
 
         // 최신 브리핑/서제스천 각 1개
-        const dbBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
+        // summary_bullets 없는 옛 결과는 stale → null 처리하여 파이프라인 재실행 유도
+        const rawBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
+        const dbBriefing = rawBriefing?.summary_bullets?.length > 0 ? rawBriefing : null;
         const dbSuggestions = aiData.find((r) => r.result_type === 'suggestions')?.content ?? null;
 
         // 타임라인 변환: 최신 3개 → compact, 나머지 → expanded
@@ -142,17 +144,16 @@ export default async function DoctorDashboard() {
         doctorProfiles.doctors.find((d) => d.doctor_id === dashboardState.doctor_id) ??
         doctorProfiles.doctors[0];
 
-    // AI 경고: 모델 경고는 섹션별로 다른 텍스트 사용
+    // AI 경고: 통합 단일 배너 — 모델 경고는 두 모델명 병합
     const baseWarnings = aiWarnings.warnings.filter((w) => w.id !== 'warn_model');
     const modelWarning = aiWarnings.warnings.find((w) => w.id === 'warn_model');
 
-    const briefingWarnings = [
+    const aiAnalysisWarnings = [
         ...baseWarnings,
-        { ...modelWarning, text: modelWarning.current_values.F11_briefing },
-    ];
-    const suggestionWarnings = [
-        ...baseWarnings,
-        { ...modelWarning, text: modelWarning.current_values.F13_suggestions },
+        {
+            ...modelWarning,
+            text: `${modelWarning.current_values.F11_briefing} / ${modelWarning.current_values.F13_suggestions.replace('모델: ', '')}`,
+        },
     ];
 
     const { sections } = dashboardState;
@@ -219,23 +220,26 @@ export default async function DoctorDashboard() {
             {/* 이음 플로팅 패널 — DoctorPanel이 position:fixed 및 인터랙션 담당 */}
             <DoctorPanel
                 footer={<FooterCta />}
+                profile={
+                    <PatientProfile
+                        patientSummary={patientSummary}
+                        chronicConditions={basicInfo.chronic_conditions}
+                        allergies={allergies}
+                        basicInfo={basicInfo}
+                    />
+                }
             >
-                {/* 섹션 2: 환자 프로필 + 기저질환 + 알레르기 */}
-                <PatientProfile
-                    patientSummary={patientSummary}
-                    chronicConditions={basicInfo.chronic_conditions}
-                    allergies={allergies}
-                />
-
-                {/* 섹션 3: 환자 개요 */}
-                <PatientOverview
-                    basicInfo={basicInfo}
-                    medications={transmissionPkg.basic_health.medications}
-                />
-
                 {/* 섹션 4: 주호소 */}
-                <ChiefComplaint complaint={chiefComplaint} />
-
+                <ChiefComplaint
+                    complaint={chiefComplaint}
+                    medications={healthHistory.medications_current}
+                />
+{/* 섹션 7: 증상 타임라인 — Supabase에서 최신 데이터 */}
+                <Timeline
+                    timeline={compactTimeline}
+                    expandedTimeline={expandedTimeline}
+                    healthPlatform={transmissionPkg.health_platform}
+                />
                 {/*
           섹션 5-6-8: AI 데이터 섹션
           - initialBriefing/Suggestions: Supabase DB에 캐시된 결과 (있으면 파이프라인 스킵)
@@ -245,19 +249,13 @@ export default async function DoctorDashboard() {
                 <AiDataProvider
                     fallbackBriefing={aiBriefing}
                     fallbackSuggestions={aiSuggestions}
-                    briefingWarnings={briefingWarnings}
-                    suggestionWarnings={suggestionWarnings}
+                    warnings={aiAnalysisWarnings}
                     initialBriefing={liveData?.dbBriefing ?? null}
                     initialSuggestions={liveData?.dbSuggestions ?? null}
                     patientId={patientId}
                 />
 
-                {/* 섹션 7: 증상 타임라인 — Supabase에서 최신 데이터 */}
-                <Timeline
-                    timeline={compactTimeline}
-                    expandedTimeline={expandedTimeline}
-                    healthPlatform={transmissionPkg.health_platform}
-                />
+                
             </DoctorPanel>
 
             {/* D-F12 증상 타임라인 모달 — DoctorPanel 형제, position:fixed로 전체 뷰포트 커버 */}
