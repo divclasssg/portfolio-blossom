@@ -105,6 +105,32 @@ export async function POST(request) {
         // 해당 세션의 ai_results 무효화 (재분석 유도)
         if (sessionId) {
             await supabase.from('ai_results').delete().eq('session_id', sessionId);
+
+            // chief_complaint 갱신 — 의사 대시보드에 최신 증상 반영
+            const { data: allSymptoms } = await supabase
+                .from('symptom_records')
+                .select('description, occurred_at')
+                .eq('patient_id', patientId)
+                .order('occurred_at', { ascending: false });
+
+            if (allSymptoms?.length) {
+                const latest = allSymptoms[0];
+                const oldest = allSymptoms[allSymptoms.length - 1];
+                const fmtDate = (iso) => iso.slice(0, 10);
+
+                const chiefComplaint = {
+                    patient_text: latest.description,
+                    symptom_count: allSymptoms.length,
+                    symptom_period: allSymptoms.length === 1
+                        ? fmtDate(latest.occurred_at)
+                        : `${fmtDate(oldest.occurred_at)} ~ ${fmtDate(latest.occurred_at)}`,
+                };
+
+                await supabase
+                    .from('sessions')
+                    .update({ chief_complaint: chiefComplaint })
+                    .eq('id', sessionId);
+            }
         }
 
         // 인메모리 파이프라인 캐시도 무효화 → 다음 요청 시 재분석
