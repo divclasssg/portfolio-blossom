@@ -43,12 +43,12 @@ export default function AiPatientSummary({ plainText, modelVersion }) {
     }, []);
 
     return (
-        <section className={styles.section}>
-            <div className={styles['section-content']}>
-                <div className={styles['section-header']}>
+        <section className="section">
+            <div className="section-content">
+                <div className="section-header">
                     <AiIcon />
-                    <h2 className={styles['section-title']}>AI Patient Summary</h2>
-                    <span className={styles['model-tag']}>{modelVersion}</span>
+                    <h2 className="section-title">AI Patient Summary</h2>
+                    <span className={`model-tag ${styles['model-tag']}`}>{modelVersion}</span>
                 </div>
 
                 {/* bordered 카드 — white bg, border 1px #E5E7EB, radius 16px */}

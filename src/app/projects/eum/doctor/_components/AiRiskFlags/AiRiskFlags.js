@@ -10,11 +10,11 @@ const TYPE_CONFIG = {
 // AI 위험 신호 — [근거 보기] 목적지 보류 (결정사항 문서 §6-1)
 export default function AiRiskFlags({ highlights }) {
     return (
-        <section className={styles.section}>
-            <div className={styles['section-content']}>
-                <div className={styles['section-header']}>
+        <section className={`section ${styles.section}`}>
+            <div className="section-content">
+                <div className={`section-header ${styles['section-header']}`}>
                     <AiIcon size={24} />
-                    <h2 className={styles['section-title']}>AI Risk Flags</h2>
+                    <h2 className="section-title">AI Risk Flags</h2>
                 </div>
 
                 <div className={styles.cards}>

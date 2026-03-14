@@ -23,7 +23,7 @@ export default function MedicationReminder({ reminder, activeCount }) {
             <h2 id="medication-title" className={styles['section-title']}>
                 복약 알림
             </h2>
-            <div className={styles['card']}>
+            <div className="home-card">
                 {/* 약명 + 상태 배지 */}
                 <div className={styles['top-row']}>
                     <span className={styles['med-name']}>{next_medication}</span>

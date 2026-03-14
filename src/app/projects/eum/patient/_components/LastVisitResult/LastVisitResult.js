@@ -17,7 +17,7 @@ export default function LastVisitResult({ result }) {
             <h2 id="last-visit-title" className={styles['section-title']}>
                 지난 진료 결과
             </h2>
-            <div className={styles['card']}>
+            <div className="home-card">
                 {/* 날짜 + 병원 + 링크 */}
                 <div className={styles['top-row']}>
                     <span className={styles['meta']}>

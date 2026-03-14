@@ -84,19 +84,19 @@ export default function MydataAuthPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/mydata-items"
             />
-            <main className={styles['page']}>
-                <section className={styles['content']} aria-labelledby="mydata-auth-title">
+            <main className="page">
+                <section className="content" aria-labelledby="mydata-auth-title">
                     <div className={styles['org-badge']} aria-hidden="true">
                         <span className={styles['org-text']}>건강보험공단</span>
                     </div>
-                    <h1 id="mydata-auth-title" className={styles['title']}>
+                    <h1 id="mydata-auth-title" className="title">
                         건강보험공단 인증
                     </h1>
-                    <p className={styles['subtitle']}>본인 확인 후 의료 마이데이터를 연동합니다.</p>
+                    <p className="subtitle">본인 확인 후 의료 마이데이터를 연동합니다.</p>
 
                     {/* 주민등록번호 */}
-                    <div className={styles['field-group']}>
-                        <span className={styles['label']} id="resident-label">
+                    <div className="field-group">
+                        <span className="label" id="resident-label">
                             주민등록번호
                         </span>
                         <div
@@ -109,8 +109,8 @@ export default function MydataAuthPage() {
                                 type="text"
                                 inputMode="numeric"
                                 className={[
-                                    styles['input'],
-                                    residentError ? styles['input-error'] : '',
+                                    `input ${styles.input}`,
+                                    residentError ? 'input-error' : '',
                                 ]
                                     .filter(Boolean)
                                     .join(' ')}
@@ -145,19 +145,19 @@ export default function MydataAuthPage() {
                             </div>
                         </div>
                         {residentError ? (
-                            <span id="resident-error" className={styles['error']} role="alert">
+                            <span id="resident-error" className="error" role="alert">
                                 {residentError}
                             </span>
                         ) : (
-                            <span id="resident-hint" className={styles['hint']}>
+                            <span id="resident-hint" className="hint">
                                 예: 920514 – 1 (1992년생 남성)
                             </span>
                         )}
                     </div>
 
                     {/* 인증 방법 선택 */}
-                    <div className={styles['field-group']}>
-                        <span className={styles['label']} id="auth-method-label">
+                    <div className="field-group">
+                        <span className="label" id="auth-method-label">
                             인증 방법
                         </span>
                         <div
@@ -192,10 +192,10 @@ export default function MydataAuthPage() {
                     </p>
                 </section>
 
-                <div className={styles['footer']}>
+                <div className="footer">
                     <button
                         type="button"
-                        className={styles['btn-primary']}
+                        className="btn-primary"
                         disabled={!isValid || loading}
                         onClick={handleAuth}
                         aria-busy={loading}

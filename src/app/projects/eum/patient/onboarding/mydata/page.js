@@ -18,14 +18,14 @@ export default function MydataPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/pin-confirm"
             />
-            <main className={styles['page']}>
-                <section className={styles['content']} aria-labelledby="mydata-title">
-                    <h1 id="mydata-title" className={styles['title']}>
+            <main className="page">
+                <section className={`content ${styles.content}`} aria-labelledby="mydata-title">
+                    <h1 id="mydata-title" className="title">
                         의료 마이데이터
                         <br />
                         연동 동의
                     </h1>
-                    <p className={styles['subtitle']}>
+                    <p className={`subtitle ${styles.subtitle}`}>
                         건강보험공단 진료 기록을 연동하면 더 정확한 건강 분석이 가능합니다.
                     </p>
 
@@ -84,10 +84,10 @@ export default function MydataPage() {
                     </div>
                 </section>
 
-                <div className={styles['footer']}>
+                <div className={`footer ${styles.footer}`}>
                     <button
                         type="button"
-                        className={styles['btn-primary']}
+                        className="btn-primary"
                         disabled={!consentMydata || !consentOverseas}
                         onClick={() => {
                             const existing = JSON.parse(

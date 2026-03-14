@@ -10,8 +10,8 @@ export default function PatientProfile({
         patientSummary.gender === 'F' ? '여' : patientSummary.gender === 'M' ? '남' : null;
 
     return (
-        <section className={styles.section}>
-            <h2 className={styles['section-title']}>Patient Profile</h2>
+        <section className={`section ${styles.section}`}>
+            <h2 className="sr-only">Patient Profile</h2>
 
             <div className={styles['identity-row']}>
                 <span className={styles['patient-name']}>{patientSummary.name}</span>

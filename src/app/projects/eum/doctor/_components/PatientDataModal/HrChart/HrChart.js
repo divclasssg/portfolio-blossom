@@ -109,8 +109,8 @@ function HrTooltip({ active, payload, label }) {
     const entry = payload[0]?.payload;
     if (!entry || entry.median == null) return null;
     return (
-        <div className={styles.tooltip}>
-            <p className={styles['tooltip-date']}>{fmtDate(label)}</p>
+        <div className="chart-tooltip">
+            <p className="chart-tooltip-date">{fmtDate(label)}</p>
             <p className={styles['tooltip-row']}>중앙값 {entry.median} bpm</p>
             <p className={styles['tooltip-range']}>
                 Q1–Q3: {entry.q1}–{entry.q3}

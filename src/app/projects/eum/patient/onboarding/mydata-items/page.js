@@ -68,10 +68,10 @@ export default function MydataItemsPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/mydata"
             />
-            <main className={styles['page']}>
+            <main className={`page ${styles.page}`}>
                 <h1 className={styles['page-title']}>항목 동의</h1>
 
-                <div className={styles['content']}>
+                <div className={`content ${styles.content}`}>
                     {/* 공공데이터 섹션 */}
                     <section aria-labelledby="public-section-title">
                         <h2 id="public-section-title" className={styles['section-title']}>
@@ -182,7 +182,7 @@ export default function MydataItemsPage() {
                     </label>
                 </div>
 
-                <div className={styles['footer']}>
+                <div className={`footer ${styles.footer}`}>
                     <button
                         type="button"
                         className={styles['btn-confirm']}

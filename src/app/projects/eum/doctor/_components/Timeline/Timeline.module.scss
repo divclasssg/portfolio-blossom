@@ -1,22 +1,12 @@
 @use '../../_styles/tokens' as t;
 
+// section: border-bottom 추가 (공통 없음)
 .section {
-    background-color: t.$section-background;
-    padding: t.$section-padding-y t.$section-padding-x;
     border-bottom: 1px solid t.$neutral-border;
 }
 
-.section-content {
-    background: #fff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 2px 4px 12px #00000014;
-}
-
+// section-header: margin-bottom이 14px (글로벌과 동일, 하지만 명시적 override)
 .section-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
     margin-bottom: 14px;
 }
 
@@ -26,11 +16,6 @@
     width: 20px;
     height: 20px;
     flex-shrink: 0;
-}
-
-.section-title {
-    font: t.$font-title;
-    color: t.$text-primary;
 }
 
 .items {

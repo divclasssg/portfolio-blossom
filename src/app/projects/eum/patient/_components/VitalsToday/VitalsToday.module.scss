@@ -11,11 +11,10 @@
     margin: 0 0 10px;
 }
 
+// card: 상/하 패딩 없음 (글로벌 home-card는 $card-padding 전체 적용)
 .card {
-    background: $card-bg;
-    border: 1px solid $card-border;
-    border-radius: $card-radius;
-    padding: 0 $card-padding;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .list {

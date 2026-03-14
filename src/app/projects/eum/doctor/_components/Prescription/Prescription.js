@@ -4,10 +4,10 @@ import styles from './Prescription.module.scss';
 export default function Prescription({ prescriptions, contextNote }) {
     if (!prescriptions?.length) {
         return (
-            <section className={styles.section}>
-                <div className={styles['section-content']}>
-                    <h2 className={styles['section-title']}>Prescription</h2>
-                    <div className={styles.card}>
+            <section className="section">
+                <div className="section-content">
+                    <h2 className="section-title">Prescription</h2>
+                    <div className="card">
                         <p className={styles.empty}>처방 없음</p>
                     </div>
                 </div>
@@ -16,10 +16,10 @@ export default function Prescription({ prescriptions, contextNote }) {
     }
 
     return (
-        <section className={styles.section}>
-            <div className={styles['section-content']}>
-                <h2 className={styles['section-title']}>Prescription</h2>
-                <div className={styles.card}>
+        <section className="section">
+            <div className="section-content">
+                <h2 className="section-title">Prescription</h2>
+                <div className="card">
                     {contextNote && <p className={styles['context-note']}>{contextNote}</p>}
                     <ul className={styles.list}>
                         {prescriptions.map((item) => (

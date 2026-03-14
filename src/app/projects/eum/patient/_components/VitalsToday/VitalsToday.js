@@ -18,7 +18,7 @@ export default function VitalsToday({ vitals, wearableDevice }) {
             <h2 id="vitals-title" className={styles['section-title']}>
                 오늘의 건강
             </h2>
-            <div className={styles['card']}>
+            <div className={`home-card ${styles.card}`}>
                 <ul className={styles['list']}>
                     {rows.map(({ label, value }) => (
                         <li key={label} className={styles['row']}>

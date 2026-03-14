@@ -4,9 +4,10 @@
 // 폭은 JS(width state)로 제어. 기본 right:0, 드래그 후 left/top 전환.
 .doctor-panel {
     position: fixed;
-    right: 0;
-    top: 0;
-    height: 80vh;
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 90vh;
     background: t.$panel-bg;
     box-shadow: t.$panel-shadow;
     border-radius: 16px;

@@ -1,0 +1,135 @@
+// 이음 의사 패널 — 공통 글로벌 스타일
+// doctor/layout.js에서 한 번 import. 컴포넌트 고유 스타일은 각 .module.scss에 유지.
+@use 'tokens' as t;
+
+// ── 섹션 레이아웃 ──────────────────────────────────────────────────────────────
+
+.section {
+    background-color: t.$section-background;
+    padding: t.$section-padding-y t.$section-padding-x;
+}
+
+.section-content {
+    border-radius: 16px;
+    background: t.$section-content-bg;
+    padding: 20px;
+    box-shadow: t.$section-content-shadow;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: t.$text-primary;
+    margin-bottom: 12px;
+}
+
+// AI 섹션 헤더: 아이콘 + 제목 + 모델 태그
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+
+    // 헤더 안의 section-title은 margin-bottom 불필요
+    .section-title {
+        margin-bottom: 0;
+    }
+}
+
+// AI 모델 태그 (GPT-4o mini 등)
+.model-tag {
+    font-size: 11px;
+    color: t.$text-muted;
+    padding: 2px 6px;
+    background: t.$neutral-bg;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+// ── 카드 ───────────────────────────────────────────────────────────────────────
+
+// neutral-bg 카드 (gray)
+.card {
+    background: t.$neutral-bg;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+// ── 차트 툴팁 ──────────────────────────────────────────────────────────────────
+
+.chart-tooltip {
+    background: t.$neutral-bg;
+    border: 1px solid t.$neutral-border;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: t.$text-primary;
+    box-shadow: t.$card-shadow;
+    pointer-events: none;
+}
+
+.chart-tooltip-date {
+    font-weight: 600;
+    color: t.$text-primary;
+    margin: 0 0 4px;
+}
+
+// ── CTA ────────────────────────────────────────────────────────────────────────
+
+.cta-footer {
+    flex-shrink: 0;
+    padding: 16px 20px;
+    background: t.$section-content-bg;
+    border-top: 1px solid t.$neutral-border;
+}
+
+.cta-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: t.$color-dark;
+    color: t.$header-fg;
+    border: none;
+    border-radius: t.$card-radius;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--font-noto-kr), sans-serif;
+    letter-spacing: 0.02em;
+
+    &:hover {
+        background: #1f2937; // $color-dark보다 약간 밝은 단계 (전용 토큰 없음)
+    }
+
+    &:active {
+        background: #374151; // hover보다 더 밝은 단계
+    }
+
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+// ── 접근성 ─────────────────────────────────────────────────────────────────────
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

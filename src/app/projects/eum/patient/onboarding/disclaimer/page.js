@@ -10,12 +10,12 @@ export default function DisclaimerPage() {
     return (
         <>
             <OnboardingAppBar variant="logo" />
-            <main className={styles['page']}>
-                <section className={styles['content']} aria-labelledby="disclaimer-title">
-                    <div className={styles['icon']} aria-hidden="true">
+            <main className={`page ${styles.page}`}>
+                <section className="content" aria-labelledby="disclaimer-title">
+                    <div className={styles.icon} aria-hidden="true">
                         ⚠️
                     </div>
-                    <h1 id="disclaimer-title" className={styles['title']}>
+                    <h1 id="disclaimer-title" className="title">
                         의료 정보 이용 안내
                     </h1>
                     <div className={styles['body']}>
@@ -36,10 +36,10 @@ export default function DisclaimerPage() {
                     </div>
                 </section>
 
-                <div className={styles['footer']}>
+                <div className="footer">
                     <button
                         type="button"
-                        className={styles['btn-primary']}
+                        className="btn-primary"
                         onClick={() => router.push('/projects/eum/patient/onboarding/welcome')}
                     >
                         확인했습니다

@@ -32,8 +32,8 @@ function SleepTooltip({ active, payload, label }) {
     if (!active || !payload?.length || payload[0].value == null) return null;
     const { value, payload: entry } = payload[0];
     return (
-        <div className={styles.tooltip}>
-            <p className={styles['tooltip-date']}>{fmtDate(label)}</p>
+        <div className="chart-tooltip">
+            <p className="chart-tooltip-date">{fmtDate(label)}</p>
             <p className={styles['tooltip-value']}>{value}시간</p>
             {entry.outlier && <p className={styles['tooltip-outlier']}>⚠️ 참조 범위 이탈</p>}
         </div>

@@ -5,10 +5,10 @@ export default function Referral({ referral }) {
     if (!referral) return null;
 
     return (
-        <section className={styles.section}>
-            <div className={styles['section-content']}>
-                <h2 className={styles['section-title']}>Referral</h2>
-                <div className={styles.card}>
+        <section className="section">
+            <div className="section-content">
+                <h2 className="section-title">Referral</h2>
+                <div className="card">
                     <dl className={styles.list}>
                         <div className={styles.row}>
                             <dt className={styles.label}>의뢰 대상</dt>

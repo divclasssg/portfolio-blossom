@@ -55,7 +55,7 @@ export default function ResultFooterCta({
 
     if (isTransmitted) {
         return (
-            <footer className={styles.footer}>
+            <footer className={`cta-footer ${styles.footer}`}>
                 <p className={styles['transmitted-msg']} role="status">
                     전송이 완료되었습니다.
                 </p>
@@ -65,12 +65,12 @@ export default function ResultFooterCta({
 
     if (isError) {
         return (
-            <footer className={styles.footer}>
+            <footer className={`cta-footer ${styles.footer}`}>
                 <p className={styles['error-msg']} role="alert">
                     전송에 실패했습니다. 다시 시도해 주세요.
                 </p>
                 <button
-                    className={styles['cta-btn']}
+                    className={`cta-btn ${styles['cta-btn']}`}
                     onClick={handleConfirm}
                     disabled={isLoading}
                 >
@@ -81,9 +81,9 @@ export default function ResultFooterCta({
     }
 
     return (
-        <footer className={styles.footer}>
+        <footer className={`cta-footer ${styles.footer}`}>
             <button
-                className={styles['cta-btn']}
+                className={`cta-btn ${styles['cta-btn']}`}
                 onClick={() => setIsDialogOpen(true)}
                 disabled={isLoading}
                 aria-label="진료 결과 확인 및 전송, 진료 종료"

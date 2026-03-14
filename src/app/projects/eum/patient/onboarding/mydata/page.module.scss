@@ -1,32 +1,21 @@
 @use '../../_styles/tokens' as *;
 
-.page {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 32px $section-padding-x 0;
-}
-
+// content: gap 16px (글로벌: 20px)
 .content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
     gap: 16px;
 }
 
-.title {
-    font-size: 24px;
-    font-weight: 700;
-    color: $text-primary;
-    letter-spacing: -0.02em;
-    line-height: 1.3;
+// subtitle: margin-bottom 추가
+.subtitle {
+    margin-bottom: 4px;
 }
 
-.subtitle {
-    font-size: 14px;
-    color: $text-secondary;
-    line-height: 1.5;
-    margin-bottom: 4px;
+// footer: padding 12px + flex column (글로벌: padding 16px, flex 없음)
+.footer {
+    padding: 12px $section-padding-x calc(12px + env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .consent-card {
@@ -120,44 +109,6 @@
     padding: 8px 10px;
     border-radius: 6px;
     line-height: 1.5;
-}
-
-.footer {
-    position: sticky;
-    bottom: 0;
-    padding: 12px $section-padding-x calc(12px + env(safe-area-inset-bottom));
-    background: $screen-bg;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.btn-primary {
-    width: 100%;
-    height: 52px;
-    background: $color-primary;
-    color: #ffffff;
-    border: none;
-    border-radius: $card-radius;
-    font-size: 17px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: opacity 0.15s ease;
-
-    &:disabled {
-        opacity: 0.35;
-        cursor: not-allowed;
-    }
-
-    &:not(:disabled):active {
-        opacity: 0.85;
-    }
-
-    &:focus-visible {
-        outline: 2px solid $color-primary;
-        outline-offset: 3px;
-    }
 }
 
 .btn-skip {

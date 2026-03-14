@@ -1,22 +1,8 @@
 @use '../../_styles/tokens' as t;
 
-.section {
-    background-color: t.$section-background;
-    padding: t.$section-padding-y t.$section-padding-x;
-}
-
-.section-content {
-    border-radius: 16px;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 2px 4px 12px #00000014;
-}
-
-.section-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 14px;
+// section-title: flex: 1로 공간 차지
+.section-title {
+    flex: 1;
 }
 
 .ai-icon {
@@ -25,20 +11,6 @@
     width: 20px;
     height: 20px;
     flex-shrink: 0;
-}
-
-.section-title {
-    font: t.$font-title;
-    color: t.$text-primary;
-    flex: 1;
-}
-
-.model-tag {
-    font-size: 11px;
-    color: t.$text-muted;
-    padding: 2px 6px;
-    background: t.$neutral-bg;
-    border-radius: 4px;
 }
 
 // 데이터보기 → D-F12 링크
@@ -115,19 +87,6 @@
         outline-offset: 2px;
         border-radius: 2px;
     }
-}
-
-// 스크린리더 전용 (순서 변경 알림)
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
 }
 
 // 체크박스 버튼 (활성/비활성 토글)

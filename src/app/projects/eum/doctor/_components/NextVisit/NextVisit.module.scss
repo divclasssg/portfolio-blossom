@@ -1,32 +1,5 @@
 @use '../../_styles/tokens' as t;
 
-.section {
-    background-color: t.$section-background;
-    padding: t.$section-padding-y t.$section-padding-x;
-}
-
-.section-content {
-    border-radius: 16px;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 2px 4px 12px #00000014;
-}
-
-.section-title {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: t.$text-primary;
-    margin-bottom: 12px;
-}
-
-// Gray 카드 — 와이어프레임: #F3F4F6, radius 16px, padding 16px
-.card {
-    background: t.$neutral-bg;
-    border-radius: 16px;
-    padding: 16px;
-}
-
 .date {
     font-size: 16px;
     font-weight: 400;

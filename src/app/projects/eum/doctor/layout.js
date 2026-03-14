@@ -1,3 +1,4 @@
+import './_styles/common.scss';
 import styles from './layout.module.scss';
 
 export default function DoctorLayout({ children }) {

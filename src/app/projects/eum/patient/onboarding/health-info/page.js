@@ -107,14 +107,14 @@ export default function HealthInfoPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/wearable"
             />
-            <main className={styles['page']}>
-                <section className={styles['content']} aria-labelledby="health-info-title">
-                    <h1 id="health-info-title" className={styles['title']}>
+            <main className="page">
+                <section className={`content ${styles.content}`} aria-labelledby="health-info-title">
+                    <h1 id="health-info-title" className="title">
                         건강 정보를
                         <br />
                         입력해 주세요
                     </h1>
-                    <p className={styles['subtitle']}>
+                    <p className={`subtitle ${styles.subtitle}`}>
                         더 정확한 분석을 위해 활용됩니다. 언제든지 변경할 수 있어요.
                     </p>
 
@@ -131,8 +131,8 @@ export default function HealthInfoPage() {
                     </div>
 
                     {/* 키 */}
-                    <div className={styles['field-group']}>
-                        <label htmlFor="height-input" className={styles['label']}>
+                    <div className="field-group">
+                        <label htmlFor="height-input" className="label">
                             키 (cm)
                         </label>
                         <div className={styles['input-unit-row']}>
@@ -142,7 +142,7 @@ export default function HealthInfoPage() {
                                 inputMode="decimal"
                                 className={[
                                     styles['input'],
-                                    heightError ? styles['input-error'] : '',
+                                    heightError ? 'input-error' : '',
                                 ]
                                     .filter(Boolean)
                                     .join(' ')}
@@ -164,15 +164,15 @@ export default function HealthInfoPage() {
                             </span>
                         </div>
                         {heightError && (
-                            <span id="height-error" className={styles['error']} role="alert">
+                            <span id="height-error" className="error" role="alert">
                                 {heightError}
                             </span>
                         )}
                     </div>
 
                     {/* 몸무게 */}
-                    <div className={styles['field-group']}>
-                        <label htmlFor="weight-input" className={styles['label']}>
+                    <div className="field-group">
+                        <label htmlFor="weight-input" className="label">
                             몸무게 (kg)
                         </label>
                         <div className={styles['input-unit-row']}>
@@ -182,7 +182,7 @@ export default function HealthInfoPage() {
                                 inputMode="decimal"
                                 className={[
                                     styles['input'],
-                                    weightError ? styles['input-error'] : '',
+                                    weightError ? 'input-error' : '',
                                 ]
                                     .filter(Boolean)
                                     .join(' ')}
@@ -204,15 +204,15 @@ export default function HealthInfoPage() {
                             </span>
                         </div>
                         {weightError && (
-                            <span id="weight-error" className={styles['error']} role="alert">
+                            <span id="weight-error" className="error" role="alert">
                                 {weightError}
                             </span>
                         )}
                     </div>
 
                     {/* 혈액형 (선택) */}
-                    <div className={styles['field-group']}>
-                        <label htmlFor="blood-type-select" className={styles['label']}>
+                    <div className="field-group">
+                        <label htmlFor="blood-type-select" className="label">
                             혈액형 <span className={styles['optional']}>(선택)</span>
                         </label>
                         <select
@@ -240,8 +240,8 @@ export default function HealthInfoPage() {
                     </div>
 
                     {/* 기저질환 */}
-                    <div className={styles['field-group']}>
-                        <span className={styles['label']} id="conditions-label">
+                    <div className="field-group">
+                        <span className="label" id="conditions-label">
                             기저질환
                         </span>
                         <div
@@ -272,7 +272,7 @@ export default function HealthInfoPage() {
                             </button>
                         </div>
                         {conditionDupError && (
-                            <span className={styles['error']} role="alert">
+                            <span className="error" role="alert">
                                 {conditionDupError}
                             </span>
                         )}
@@ -296,8 +296,8 @@ export default function HealthInfoPage() {
                     </div>
 
                     {/* 알레르기 */}
-                    <div className={styles['field-group']}>
-                        <span className={styles['label']} id="allergies-label">
+                    <div className="field-group">
+                        <span className="label" id="allergies-label">
                             알레르기
                         </span>
                         <div
@@ -338,7 +338,7 @@ export default function HealthInfoPage() {
                             </div>
                         </div>
                         {allergyDupError && (
-                            <span className={styles['error']} role="alert">
+                            <span className="error" role="alert">
                                 {allergyDupError}
                             </span>
                         )}
@@ -370,10 +370,10 @@ export default function HealthInfoPage() {
                     </div>
                 </section>
 
-                <div className={styles['footer']}>
+                <div className="footer">
                     <button
                         type="button"
-                        className={styles['btn-primary']}
+                        className="btn-primary"
                         disabled={!isValid}
                         onClick={handleComplete}
                     >

@@ -5,10 +5,10 @@ export default function ActionItems({ items }) {
     if (!items?.length) return null;
 
     return (
-        <section className={styles.section}>
-            <div className={styles['section-content']}>
-                <h2 className={styles['section-title']}>Action Items</h2>
-                <div className={styles.card}>
+        <section className="section">
+            <div className="section-content">
+                <h2 className="section-title">Action Items</h2>
+                <div className="card">
                     <ul className={styles.list}>
                         {items.map((item) => (
                             <li key={item.task} className={styles.item}>

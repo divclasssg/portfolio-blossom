@@ -39,8 +39,8 @@ function NrsTooltip({ active, payload, label }) {
     if (!active || !payload?.length || payload[0].value == null) return null;
     const { value, payload: entry } = payload[0];
     return (
-        <div className={styles.tooltip}>
-            <p className={styles['tooltip-date']}>{fmtDate(label)}</p>
+        <div className="chart-tooltip">
+            <p className="chart-tooltip-date">{fmtDate(label)}</p>
             <p className={styles['tooltip-value']}>NRS {value}</p>
             {entry.category && (
                 <p className={styles['tooltip-category']}>

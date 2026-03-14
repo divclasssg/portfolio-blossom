@@ -1,31 +1,16 @@
 @use '../../_styles/tokens' as *;
 
-.page {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 32px $section-padding-x 0;
-}
-
+// content: gap 24px (글로벌: 20px)
 .content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
     gap: 24px;
 }
 
-.title {
-    font-size: 24px;
-    font-weight: 700;
-    color: $text-primary;
-    letter-spacing: -0.02em;
-    line-height: 1.3;
-}
-
-.subtitle {
-    font-size: 14px;
-    color: $text-secondary;
-    line-height: 1.5;
+// footer: padding 12px + flex column (글로벌: padding 16px, flex 없음)
+.footer {
+    padding: 12px $section-padding-x calc(12px + env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .options {
@@ -99,57 +84,6 @@
         border-radius: 50%;
         background: #ffffff;
         transform: translate(-50%, -50%);
-    }
-}
-
-// 스크린 리더 전용 숨김
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.footer {
-    position: sticky;
-    bottom: 0;
-    padding: 12px $section-padding-x calc(12px + env(safe-area-inset-bottom));
-    background: $screen-bg;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.btn-primary {
-    width: 100%;
-    height: 52px;
-    background: $color-primary;
-    color: #ffffff;
-    border: none;
-    border-radius: $card-radius;
-    font-size: 17px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: opacity 0.15s ease;
-
-    &:disabled {
-        opacity: 0.35;
-        cursor: not-allowed;
-    }
-
-    &:not(:disabled):active {
-        opacity: 0.85;
-    }
-
-    &:focus-visible {
-        outline: 2px solid $color-primary;
-        outline-offset: 3px;
     }
 }
 

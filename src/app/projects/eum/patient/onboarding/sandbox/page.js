@@ -47,7 +47,7 @@ export default function SandboxPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/welcome"
             />
-            <main className={styles['page']}>
+            <main className={`page ${styles.page}`}>
                 {/* 캐러셀 */}
                 <section
                     className={styles['carousel']}
@@ -67,8 +67,8 @@ export default function SandboxPage() {
                     </p>
                 </section>
 
-                <div className={styles['footer']}>
-                    <button type="button" className={styles['btn-primary']} onClick={handleNext}>
+                <div className="footer">
+                    <button type="button" className="btn-primary" onClick={handleNext}>
                         {current < SLIDES.length - 1 ? '다음' : '시작할게요'}
                     </button>
                 </div>

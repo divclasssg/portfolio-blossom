@@ -27,7 +27,7 @@ export default function RecentSymptoms({ summary }) {
             <h2 id="recent-symptoms-title" className={styles['section-title']}>
                 최근 증상
             </h2>
-            <div className={styles['card']}>
+            <div className="home-card">
                 {/* 상단 요약 행 */}
                 <div className={styles['summary-row']}>
                     <span className={styles['summary-text']}>

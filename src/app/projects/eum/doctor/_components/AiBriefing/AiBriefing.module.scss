@@ -1,37 +1,8 @@
 @use '../../_styles/tokens' as t;
 
-.section {
-    background-color: t.$section-background;
-    padding: t.$section-padding-y t.$section-padding-x;
-}
-
-.section-content {
-    box-shadow: rgba(0, 0, 0, 0.08) 2px 4px 12px;
-    background: rgb(255, 255, 255);
-    border-radius: 16px;
-    padding: 20px;
-}
-
-.section-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 14px;
-}
-
+// section-title: flex: 1로 공간 차지 (아이콘 + 제목 + 모델 태그 레이아웃)
 .section-title {
-    font: t.$font-title;
-    color: t.$text-primary;
     flex: 1;
-}
-
-.model-tag {
-    font-size: 11px;
-    color: t.$text-muted;
-    padding: 2px 6px;
-    background: t.$neutral-bg;
-    border-radius: 4px;
-    flex-shrink: 0;
 }
 
 .summary-text {

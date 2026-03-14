@@ -1,47 +1,19 @@
 @use '../../_styles/tokens' as t;
 
-.section {
-    background-color: t.$section-background;
-    padding: t.$section-padding-y t.$section-padding-x;
-}
-
-.section-content {
-    border-radius: 16px;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 2px 4px 12px #00000014;
-}
-
-// 섹션 헤더: AI 아이콘 + 제목 + 모델 태그
-.section-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 12px;
-}
-
 .ai-icon {
     display: flex;
     align-items: center;
     flex-shrink: 0;
 }
 
-// 와이어프레임: Roboto Bold 18px, letterSpacing 5%, color #1F2937
-.section-title {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: t.$text-primary;
-}
-
+// model-tag: margin-left: auto로 오른쪽 정렬
 .model-tag {
     margin-left: auto;
-    font-size: 11px;
-    color: t.$text-muted;
     white-space: nowrap;
 }
 
 // bordered 카드 — 와이어프레임: white bg, border 1px #E5E7EB, radius 16px
+// common의 neutral-bg 카드와 다름 (white + border)
 .card {
     background: #ffffff;
     border: 1px solid t.$neutral-border;

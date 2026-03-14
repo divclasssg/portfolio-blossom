@@ -43,8 +43,8 @@ function BpTooltip({ active, payload, label }) {
     const entry = payload[0]?.payload;
     if (!entry || entry.systolic == null) return null;
     return (
-        <div className={styles.tooltip}>
-            <p className={styles['tooltip-date']}>{fmtDate(label)}</p>
+        <div className="chart-tooltip">
+            <p className="chart-tooltip-date">{fmtDate(label)}</p>
             <p className={styles['tooltip-row']}>수축기 {entry.systolic} mmHg</p>
             <p className={styles['tooltip-row']}>이완기 {entry.diastolic} mmHg</p>
             {entry.outlier && <p className={styles['tooltip-outlier']}>⚠️ 참조 범위 이탈</p>}

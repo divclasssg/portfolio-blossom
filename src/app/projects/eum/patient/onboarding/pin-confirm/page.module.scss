@@ -1,40 +1,27 @@
 @use '../../_styles/tokens' as *;
 
+// page: PIN 레이아웃 — 상/하단 48px 패딩, 섹션-키패드 간격 48px (글로벌: padding-top 32px, gap 없음)
 .page {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
     padding: 48px $section-padding-x 48px;
     gap: 48px;
 }
 
+// content: 가운데 정렬 + gap 12px (글로벌: 정렬 없음, gap 20px)
 .content {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 12px;
     text-align: center;
 }
 
-.title {
-    font-size: 24px;
-    font-weight: 700;
-    color: $text-primary;
-    letter-spacing: -0.02em;
-    line-height: 1.3;
-}
-
+// subtitle: 15px (글로벌: 14px)
 .subtitle {
     font-size: 15px;
-    color: $text-secondary;
-    line-height: 1.5;
 }
 
+// error: 15px + font-weight 500 (글로벌: 13px, weight 없음)
 .error {
     font-size: 15px;
-    color: #ff3b30;
     font-weight: 500;
-    line-height: 1.4;
 }
 
 .modal-overlay {

@@ -102,8 +102,8 @@ export default function CompletePage() {
     return (
         <>
             <OnboardingAppBar variant="logo" />
-            <main className={styles['page']}>
-                <section className={styles['content']} aria-labelledby="complete-title">
+            <main className={`page ${styles.page}`}>
+                <section className={`content ${styles.content}`} aria-labelledby="complete-title">
                     <div className={styles['check-icon']} aria-hidden="true">
                         <svg
                             width="72"
@@ -122,7 +122,7 @@ export default function CompletePage() {
                             />
                         </svg>
                     </div>
-                    <h1 id="complete-title" className={styles['title']}>
+                    <h1 id="complete-title" className={`title ${styles.title}`}>
                         준비가 완료되었어요!
                     </h1>
                     <p className={styles['desc']}>
@@ -145,7 +145,7 @@ export default function CompletePage() {
                     </div>
                 </section>
 
-                <div className={styles['footer']}>
+                <div className="footer">
                     {saveStatus === 'error' && (
                         <p className={styles['error-msg']} role="alert">
                             {errorMsg} — 잠시 후 다시 시도해 주세요.
@@ -154,7 +154,7 @@ export default function CompletePage() {
                     {saveStatus === 'error' ? (
                         <button
                             type="button"
-                            className={styles['btn-primary']}
+                            className="btn-primary"
                             onClick={() => {
                                 setErrorMsg('');
                                 saveOnboarding();
@@ -165,7 +165,7 @@ export default function CompletePage() {
                     ) : (
                         <button
                             type="button"
-                            className={styles['btn-primary']}
+                            className="btn-primary"
                             disabled={saveStatus === 'saving'}
                             onClick={() => router.push('/projects/eum/patient')}
                         >

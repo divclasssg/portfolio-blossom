@@ -66,11 +66,11 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
     }
 
     return (
-        <section className={styles.section}>
-            <div className={styles['section-content']}>
-                <div className={styles['section-header']}>
+        <section className={`section ${styles.section}`}>
+            <div className="section-content">
+                <div className={`section-header ${styles['section-header']}`}>
                     <AiIcon size={24} />
-                    <h2 className={styles['section-title']}>Timeline</h2>
+                    <h2 className="section-title">Timeline</h2>
                 </div>
 
                 <ul className={styles.items} aria-label="최근 증상 기록">

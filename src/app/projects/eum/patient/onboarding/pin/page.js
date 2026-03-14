@@ -51,20 +51,20 @@ export default function PinPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/personal-info"
             />
-            <main className={styles['page']}>
-                <section className={styles['content']} aria-labelledby="pin-title">
-                    <h1 id="pin-title" className={styles['title']}>
+            <main className={`page ${styles.page}`}>
+                <section className={`content ${styles.content}`} aria-labelledby="pin-title">
+                    <h1 id="pin-title" className="title">
                         PIN 번호를 설정해 주세요
                     </h1>
-                    <p className={styles['subtitle']}>
+                    <p className={`subtitle ${styles.subtitle}`}>
                         앱 잠금 해제에 사용할 6자리 PIN을 입력해 주세요.
                     </p>
                     {pinError ? (
-                        <p className={styles['error']} role="alert">
+                        <p className={`error ${styles.error}`} role="alert">
                             {pinError}
                         </p>
                     ) : (
-                        <p className={styles['hint']}>
+                        <p className="hint">
                             같은 숫자나 연속된 숫자를 3개 이상 사용할 수 없어요.
                         </p>
                     )}

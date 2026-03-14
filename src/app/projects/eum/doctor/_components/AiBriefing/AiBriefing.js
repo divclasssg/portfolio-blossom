@@ -13,12 +13,12 @@ export default function AiBriefing({ briefing, warnings }) {
     const { summary_text, highlights, model_version } = briefing;
 
     return (
-        <section className={styles.section}>
-            <div className={styles['section-content']}>
-                <div className={styles['section-header']}>
+        <section className="section">
+            <div className="section-content">
+                <div className="section-header">
                     <AiIcon size={24} />
-                    <h2 className={styles['section-title']}>AI Pre-Consultation Brief</h2>
-                    <span className={styles['model-tag']}>{model_version}</span>
+                    <h2 className={`section-title ${styles['section-title']}`}>AI Pre-Consultation Brief</h2>
+                    <span className="model-tag">{model_version}</span>
                 </div>
 
                 <p className={styles['summary-text']}>{summary_text}</p>

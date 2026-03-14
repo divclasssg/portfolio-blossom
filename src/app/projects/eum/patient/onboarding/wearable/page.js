@@ -35,14 +35,14 @@ export default function WearablePage() {
     return (
         <>
             <OnboardingAppBar variant="progress" step={9} totalSteps={10} backHref={backHref} />
-            <main className={styles['page']}>
-                <section className={styles['content']} aria-labelledby="wearable-title">
-                    <h1 id="wearable-title" className={styles['title']}>
+            <main className="page">
+                <section className={`content ${styles.content}`} aria-labelledby="wearable-title">
+                    <h1 id="wearable-title" className="title">
                         웨어러블 기기를
                         <br />
                         연동하시겠어요?
                     </h1>
-                    <p className={styles['subtitle']}>
+                    <p className="subtitle">
                         스마트워치를 연동하면 심박수, 수면, 활동량 데이터를 자동으로 기록합니다.
                     </p>
 
@@ -67,7 +67,7 @@ export default function WearablePage() {
                                     value={device.id}
                                     checked={selected === device.id}
                                     onChange={() => setSelected(device.id)}
-                                    className={styles['sr-only']}
+                                    className="sr-only"
                                     aria-label={device.label}
                                 />
                                 <span className={styles['option-icon']} aria-hidden="true">
@@ -91,10 +91,10 @@ export default function WearablePage() {
                     </div>
                 </section>
 
-                <div className={styles['footer']}>
+                <div className={`footer ${styles.footer}`}>
                     <button
                         type="button"
-                        className={styles['btn-primary']}
+                        className="btn-primary"
                         disabled={!selected}
                         onClick={() => {
                             const existing = JSON.parse(

@@ -1,19 +1,12 @@
 @use '../../_styles/tokens' as t;
 
+// section: padding-bottom이 32px으로 글로벌과 다름
 .section {
-    padding: t.$section-padding-y t.$section-padding-x 32px;
+    padding-bottom: 32px;
 }
 
-.section-content {
-    background: #fff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 2px 4px 12px #00000014;
-}
-
+// section-title: margin-bottom이 4px으로 글로벌(12px)과 다름
 .section-title {
-    font: t.$font-title;
-    color: t.$text-primary;
     margin-bottom: 4px;
 }
 

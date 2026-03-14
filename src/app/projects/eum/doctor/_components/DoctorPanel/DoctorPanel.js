@@ -24,7 +24,7 @@ export default function DoctorPanel({
 }) {
     const [pos, setPos] = useState(null); // null = 기본 right:0, top:0
     const [width, setWidth] = useState(DEFAULT_WIDTH);
-    const [height, setHeight] = useState(null); // null = CSS 80vh, 리사이즈 시 px 전환
+    const [height, setHeight] = useState(null); // null = CSS 90vh, 리사이즈 시 px 전환
     const [isPinned, setIsPinned] = useState(false);
     const [opacity, setOpacity] = useState(100);
     const [isVisible, setIsVisible] = useState(true);
@@ -142,7 +142,7 @@ export default function DoctorPanel({
     }
 
     const isFloating = pos !== null;
-    const positionStyle = isFloating ? { left: pos.x, top: pos.y } : {};
+    const positionStyle = isFloating ? { left: pos.x, top: pos.y, transform: 'none' } : {};
 
     return (
         <aside

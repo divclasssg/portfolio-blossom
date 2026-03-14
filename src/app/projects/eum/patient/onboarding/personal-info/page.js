@@ -167,26 +167,26 @@ export default function PersonalInfoPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/consents"
             />
-            <main className={styles['page']}>
-                <section className={styles['content']} aria-labelledby="personal-info-title">
-                    <h1 id="personal-info-title" className={styles['title']}>
+            <main className={`page ${styles.page}`}>
+                <section className={`content ${styles.content}`} aria-labelledby="personal-info-title">
+                    <h1 id="personal-info-title" className="title">
                         기본 정보를
                         <br />
                         입력해 주세요
                     </h1>
-                    <p className={styles['subtitle']}>
+                    <p className="subtitle">
                         서비스 이용 및 의료진 소통에 사용됩니다. 언제든지 변경할 수 있어요.
                     </p>
 
                     {/* 이름 */}
-                    <div className={styles['field-group']}>
-                        <label htmlFor="name-input" className={styles['label']}>
+                    <div className="field-group">
+                        <label htmlFor="name-input" className="label">
                             이름
                         </label>
                         <input
                             id="name-input"
                             type="text"
-                            className={styles['input']}
+                            className={`input ${styles.input}`}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             onBlur={handleNameBlur}
@@ -200,9 +200,9 @@ export default function PersonalInfoPage() {
                     {/* 생년월일 — phase 1 이상에서 표시 */}
                     {phase >= 1 && (
                         <div
-                            className={[styles['field-group'], styles['field-animated']].join(' ')}
+                            className={['field-group', styles['field-animated']].join(' ')}
                         >
-                            <label htmlFor="birth-date-input" className={styles['label']}>
+                            <label htmlFor="birth-date-input" className="label">
                                 생년월일
                             </label>
                             <input
@@ -210,8 +210,8 @@ export default function PersonalInfoPage() {
                                 type="text"
                                 inputMode="numeric"
                                 className={[
-                                    styles['input'],
-                                    birthError ? styles['input-error'] : '',
+                                    `input ${styles.input}`,
+                                    birthError ? 'input-error' : '',
                                 ]
                                     .filter(Boolean)
                                     .join(' ')}
@@ -225,7 +225,7 @@ export default function PersonalInfoPage() {
                                 autoFocus
                             />
                             {birthError && (
-                                <span id="birth-error" className={styles['error']} role="alert">
+                                <span id="birth-error" className="error" role="alert">
                                     {birthError}
                                 </span>
                             )}
@@ -235,9 +235,9 @@ export default function PersonalInfoPage() {
                     {/* 성별 — phase 1에서 생년월일과 함께 표시 */}
                     {phase >= 1 && (
                         <div
-                            className={[styles['field-group'], styles['field-animated']].join(' ')}
+                            className={['field-group', styles['field-animated']].join(' ')}
                         >
-                            <span className={styles['label']} id="gender-label">
+                            <span className="label" id="gender-label">
                                 성별
                             </span>
                             <div
@@ -279,8 +279,8 @@ export default function PersonalInfoPage() {
                     {phase >= 2 && (
                         <div className={styles['field-animated']}>
                             {/* 휴대폰 번호 */}
-                            <div className={styles['field-group']}>
-                                <label htmlFor="phone-input" className={styles['label']}>
+                            <div className="field-group">
+                                <label htmlFor="phone-input" className="label">
                                     휴대폰 번호
                                 </label>
                                 <div className={styles['input-row']}>
@@ -289,8 +289,8 @@ export default function PersonalInfoPage() {
                                         type="tel"
                                         inputMode="numeric"
                                         className={[
-                                            styles['input'],
-                                            phoneError ? styles['input-error'] : '',
+                                            `input ${styles.input}`,
+                                            phoneError ? 'input-error' : '',
                                         ]
                                             .filter(Boolean)
                                             .join(' ')}
@@ -320,11 +320,11 @@ export default function PersonalInfoPage() {
                                     </button>
                                 </div>
                                 {phoneError ? (
-                                    <span id="phone-error" className={styles['error']} role="alert">
+                                    <span id="phone-error" className="error" role="alert">
                                         {phoneError}
                                     </span>
                                 ) : (
-                                    <span id="phone-hint" className={styles['hint']}>
+                                    <span id="phone-hint" className="hint">
                                         {codeSent
                                             ? '인증번호가 발송되었습니다. (포트폴리오 목업: 123456)'
                                             : '가입 및 본인 확인에 사용됩니다.'}
@@ -334,8 +334,8 @@ export default function PersonalInfoPage() {
 
                             {/* 인증번호 입력 */}
                             {codeSent && (
-                                <div className={styles['field-group']}>
-                                    <label htmlFor="code-input" className={styles['label']}>
+                                <div className="field-group">
+                                    <label htmlFor="code-input" className="label">
                                         인증번호
                                     </label>
                                     <input
@@ -343,8 +343,8 @@ export default function PersonalInfoPage() {
                                         type="text"
                                         inputMode="numeric"
                                         className={[
-                                            styles['input'],
-                                            codeError ? styles['input-error'] : '',
+                                            `input ${styles.input}`,
+                                            codeError ? 'input-error' : '',
                                         ]
                                             .filter(Boolean)
                                             .join(' ')}
@@ -365,7 +365,7 @@ export default function PersonalInfoPage() {
                                     {codeError && (
                                         <span
                                             id="code-error"
-                                            className={styles['error']}
+                                            className="error"
                                             role="alert"
                                         >
                                             {codeError}
@@ -378,7 +378,7 @@ export default function PersonalInfoPage() {
                             {codeSent && (
                                 <button
                                     type="button"
-                                    className={styles['btn-primary']}
+                                    className={`btn-primary ${styles['btn-primary']}`}
                                     disabled={code.length !== 6 || verifying}
                                     onClick={handleVerify}
                                 >

@@ -84,14 +84,14 @@ export default function ConsentsPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/sandbox"
             />
-            <main className={styles['page']}>
-                <section className={styles['content']} aria-labelledby="consent-title">
-                    <h1 id="consent-title" className={styles['title']}>
+            <main className="page">
+                <section className="content" aria-labelledby="consent-title">
+                    <h1 id="consent-title" className="title">
                         서비스 이용에
                         <br />
                         동의해 주세요
                     </h1>
-                    <p className={styles['subtitle']}>
+                    <p className="subtitle">
                         필수 항목에 모두 동의해야 서비스를 이용할 수 있습니다.
                     </p>
 
@@ -234,10 +234,10 @@ export default function ConsentsPage() {
                     </ul>
                 </section>
 
-                <div className={styles['footer']}>
+                <div className="footer">
                     <button
                         type="button"
-                        className={styles['btn-primary']}
+                        className="btn-primary"
                         disabled={!allRequiredChecked}
                         onClick={() => {
                             const existing = JSON.parse(

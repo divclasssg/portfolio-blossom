@@ -86,12 +86,12 @@ export default function AiSuggestions({ suggestions, modelVersion, warnings }) {
     }
 
     return (
-        <section className={styles.section}>
-            <div className={styles['section-content']}>
-                <div className={styles['section-header']}>
+        <section className="section">
+            <div className="section-content">
+                <div className="section-header">
                     <AiIcon />
-                    <h2 className={styles['section-title']}>AI Key Findings</h2>
-                    <span className={styles['model-tag']}>{modelVersion}</span>
+                    <h2 className={`section-title ${styles['section-title']}`}>AI Key Findings</h2>
+                    <span className="model-tag">{modelVersion}</span>
                     {/* 데이터보기 → D-F12 */}
                     <button
                         className={styles['data-link']}
@@ -103,7 +103,7 @@ export default function AiSuggestions({ suggestions, modelVersion, warnings }) {
                 </div>
 
                 {/* 스크린리더 순서 변경 알림 */}
-                <div ref={liveRef} aria-live="polite" className={styles['sr-only']} />
+                <div ref={liveRef} aria-live="polite" className="sr-only" />
 
                 {/* 와이어프레임: 드래그핸들 + 체크박스 + 조건명 목록 */}
                 <ul

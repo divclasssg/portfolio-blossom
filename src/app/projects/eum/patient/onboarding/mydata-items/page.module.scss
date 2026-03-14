@@ -1,9 +1,8 @@
 @use '../../_styles/tokens' as *;
 
+// page: 패딩 없음 + 배경색 (글로벌: padding-top 32px, 배경색 없음)
 .page {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+    padding: 0;
     background: $screen-bg;
 }
 
@@ -16,12 +15,10 @@
     letter-spacing: -0.01em;
 }
 
+// content: 스크롤 + 별도 패딩 + gap 24px (글로벌: gap 20px, 스크롤/패딩 없음)
 .content {
-    flex: 1;
     overflow-y: auto;
     padding: 8px $section-padding-x 16px;
-    display: flex;
-    flex-direction: column;
     gap: 24px;
     -webkit-overflow-scrolling: touch;
 }
@@ -277,9 +274,9 @@
     color: $text-primary;
 }
 
+// footer: padding-top 12px (글로벌: 16px)
 .footer {
-    padding: 12px $section-padding-x calc(16px + env(safe-area-inset-bottom));
-    background: $screen-bg;
+    padding-top: 12px;
 }
 
 .btn-confirm {

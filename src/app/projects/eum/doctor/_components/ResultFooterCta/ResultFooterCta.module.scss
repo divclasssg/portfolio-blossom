@@ -1,45 +1,18 @@
 @use '../../_styles/tokens' as t;
 
+// footer: column layout + center align 추가 (공통은 기본 block)
 .footer {
-    flex-shrink: 0;
-    padding: 16px 20px;
-    background: #fff;
-    border-top: 1px solid t.$neutral-border;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-// CTA 버튼 — 와이어프레임: dark bg #111827, white text, Noto Sans KR Bold 18px, radius 16px, 전체 폭
+// cta-btn: padding/font-size가 공통(14px/16px)과 다름 (16px/18px)
 .cta-btn {
-    display: block;
-    width: 100%;
     padding: 16px;
-    background: t.$color-dark;
-    color: #f9fafb;
-    border: none;
-    border-radius: 16px;
-    font-family: var(--font-noto-kr), sans-serif;
     font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    text-align: center;
     transition: background 0.15s;
-
-    &:hover {
-        background: #1f2937;
-    }
-
-    &:active {
-        background: #374151;
-    }
-
-    &:focus-visible {
-        outline: 2px solid t.$color-primary;
-        outline-offset: 2px;
-    }
 }
 
 // 비활성화 상태 (로딩 중)
@@ -70,7 +43,7 @@
     margin: 0;
 }
 
-// 취소 버튼 — 와이어프레임: text 스타일, Noto Sans KR 400 14px, color #374151
+// 취소 버튼
 .cancel-btn {
     background: none;
     border: none;

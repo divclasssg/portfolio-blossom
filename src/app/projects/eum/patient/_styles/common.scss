@@ -1,0 +1,143 @@
+// 이음 환자 앱 — 공통 글로벌 스타일
+// patient/layout.js에서 한 번 import. 컴포넌트 고유 스타일은 각 .module.scss에 유지.
+// 주의: doctor/common.scss와 클래스명 충돌 방지를 위해 home 섹션 공통 클래스는 모듈에 유지.
+@use 'tokens' as *;
+
+// ── 온보딩 페이지 레이아웃 ───────────────────────────────────────────────────────
+
+// 기본 padding-top: 32px (가장 많은 케이스). 다른 값 필요 시 컴포넌트 모듈에서 override.
+.page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 32px $section-padding-x 0;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+// ── 타이포그래피 ────────────────────────────────────────────────────────────────
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: $text-secondary;
+    line-height: 1.5;
+}
+
+// ── 하단 고정 푸터 ──────────────────────────────────────────────────────────────
+
+// 기본 padding: 16px. 다른 값 필요 시 모듈에서 override.
+.footer {
+    position: sticky;
+    bottom: 0;
+    padding: 16px $section-padding-x calc(16px + env(safe-area-inset-bottom));
+    background: $screen-bg;
+}
+
+// ── 버튼 ────────────────────────────────────────────────────────────────────────
+
+.btn-primary {
+    width: 100%;
+    height: 52px;
+    background: $color-primary;
+    color: #ffffff;
+    border: none;
+    border-radius: $card-radius;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+
+    &:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+
+    &:not(:disabled):active {
+        opacity: 0.85;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: 3px;
+    }
+}
+
+// ── 폼 ──────────────────────────────────────────────────────────────────────────
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-secondary;
+}
+
+.input {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1.5px solid $card-border;
+    border-radius: $card-radius;
+    font-size: 16px;
+    font-family: inherit;
+    color: $text-primary;
+    background: $card-bg;
+    outline: none;
+    transition: border-color 0.15s ease;
+
+    &::placeholder {
+        color: $text-secondary;
+    }
+
+    &:focus {
+        border-color: $color-primary;
+    }
+}
+
+.input-error {
+    border-color: $color-danger;
+
+    &:focus {
+        border-color: $color-danger;
+    }
+}
+
+.error {
+    font-size: 13px;
+    color: $color-danger;
+    line-height: 1.4;
+}
+
+.hint {
+    font-size: 13px;
+    color: $text-secondary;
+    line-height: 1.4;
+}
+
+// ── 홈 카드 ────────────────────────────────────────────────────────────────────
+// 주의: home section/section-title은 doctor와 이름 충돌로 인해 각 컴포넌트 모듈에 유지.
+
+.home-card {
+    background: $card-bg;
+    border: 1px solid $card-border;
+    border-radius: $card-radius;
+    padding: $card-padding;
+}
