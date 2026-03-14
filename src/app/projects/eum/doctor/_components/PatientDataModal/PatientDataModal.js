@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { usePatientDataModal } from './PatientDataModalContext';
 import ModalHeader from './ModalHeader/ModalHeader';
 import TabBar from './TabBar/TabBar';
@@ -9,7 +9,20 @@ import ChartGrid from './ChartGrid/ChartGrid';
 import VisitHistory from './VisitHistory/VisitHistory';
 import styles from './PatientDataModal.module.scss';
 
-export default function PatientDataModal({ patient, chartData }) {
+// DB symptom_records → 차트 데이터 형식 변환
+function symptomToChartItem(record) {
+    const date = record.occurred_at?.slice(0, 10); // "YYYY-MM-DD"
+    const rawLabel = record.description || record.voice_transcript || '';
+    return {
+        date,
+        severity: record.severity,
+        category: record.category_code,
+        label: rawLabel.length > 20 ? rawLabel.slice(0, 20) + '...' : rawLabel,
+        source: 'patient_input',
+    };
+}
+
+export default function PatientDataModal({ patient, chartData, liveSymptoms }) {
     const { isOpen, close } = usePatientDataModal();
     const [activeTab, setActiveTab] = useState('symptoms');
 
@@ -17,6 +30,22 @@ export default function PatientDataModal({ patient, chartData }) {
     const [activePeriod, setActivePeriod] = useState('1month');
     const [activeCategory, setActiveCategory] = useState('all');
     const [customRange, setCustomRange] = useState(null); // { startDate, endDate }
+
+    // DB 증상이 있으면 차트 데이터의 symptoms 탭을 동적으로 교체, 없으면 정적 JSON 폴백
+    const mergedChartData = useMemo(() => {
+        if (!liveSymptoms || liveSymptoms.length === 0) return chartData;
+
+        return {
+            ...chartData,
+            tabs: {
+                ...chartData.tabs,
+                symptoms: {
+                    ...chartData.tabs.symptoms,
+                    data: liveSymptoms.map(symptomToChartItem),
+                },
+            },
+        };
+    }, [chartData, liveSymptoms]);
 
     const modalRef = useRef(null);
 
@@ -113,7 +142,7 @@ export default function PatientDataModal({ patient, chartData }) {
                     {activeTab === 'symptoms' && (
                         <div className={styles['chart-scroll']}>
                             <ChartGrid
-                                chartData={chartData}
+                                chartData={mergedChartData}
                                 activePeriod={activePeriod}
                                 activeCategory={activeCategory}
                                 customRange={customRange}
@@ -122,7 +151,7 @@ export default function PatientDataModal({ patient, chartData }) {
                     )}
                     {/* 진료이력 탭 — VisitHistory가 자체 스크롤 관리 */}
                     {activeTab === 'visit-history' && (
-                        <VisitHistory data={chartData.tabs.visit_history.data} />
+                        <VisitHistory data={mergedChartData.tabs.visit_history.data} />
                     )}
                 </div>
             </div>

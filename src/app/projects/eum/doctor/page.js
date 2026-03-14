@@ -279,6 +279,7 @@ export default async function DoctorDashboard() {
             <PatientDataModal
                 patient={dashboardState.patient_summary}
                 chartData={timelineChartData}
+                liveSymptoms={liveData?.symptoms}
             />
         </PatientDataModalProvider>
     );
