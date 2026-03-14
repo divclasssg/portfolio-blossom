@@ -3,6 +3,7 @@ import aiWarnings from '../../_references/data/doctor/08_ai_warnings.json';
 import dashboardState from '../../_references/data/doctor/03_dashboard_state.json';
 import { getPatientId } from '../../_lib/getPatientId';
 
+import { PatientDataModalProvider } from '../_components/PatientDataModal/PatientDataModalContext';
 import DoctorPanel from '../_components/DoctorPanel/DoctorPanel';
 import PatientProfile from '../_components/PatientProfile/PatientProfile';
 import ClinicalNotes from '../_components/ClinicalNotes/ClinicalNotes';
@@ -81,6 +82,7 @@ export default async function ResultPage() {
     const allergies = patient?.allergies ?? [];
 
     return (
+        <PatientDataModalProvider>
         <DoctorPanel
             backHref="/projects/eum/doctor"
             singleColumn
@@ -137,5 +139,6 @@ export default async function ResultPage() {
             {/* 섹션 9: AI 경고 — 닫기 불가, 영구 노출 */}
             <AiWarningBanner warnings={resultWarnings} />
         </DoctorPanel>
+        </PatientDataModalProvider>
     );
 }

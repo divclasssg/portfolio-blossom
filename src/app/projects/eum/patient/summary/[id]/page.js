@@ -8,9 +8,7 @@ import AppBar from '../../_components/AppBar/AppBar';
 import TabBar from '../../_components/TabBar/TabBar';
 import MarkResultSeen from '../../_components/MarkResultSeen/MarkResultSeen';
 
-export function generateStaticParams() {
-    return consultationResults.consultation_results.map((r) => ({ id: r.session_id }));
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
     const { id } = await params;
@@ -52,12 +50,12 @@ function transformForPatient(dbResult) {
             days: parseInt(rx.duration) || 0,
             plain_language: rx.plain_language,
         })),
-        referral: c.referral_response
+        referral: c.referral
             ? {
-                  referral_to_department: c.referral_response.to_department ?? '신경과',
-                  referral_to_hospital: c.referral_response.to_hospital,
-                  referral_reason: c.referral_response.response_summary,
-                  referral_date: c.referral_response.response_date,
+                  referral_to_department: c.referral.to_department ?? '',
+                  referral_to_hospital: c.referral.to_hospital,
+                  referral_reason: c.referral.referral_reason,
+                  referral_date: c.referral.referral_date ?? '',
               }
             : null,
         next_visit_date: c.next_visit_date,
@@ -76,7 +74,8 @@ async function fetchDbResult(sessionId) {
             .single();
         if (error) throw error;
         return data;
-    } catch {
+    } catch (err) {
+        console.error('[SummaryDetail] DB 조회 실패:', sessionId, err);
         return null;
     }
 }
