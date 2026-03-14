@@ -47,7 +47,7 @@ export default function EumPage() {
                     <button
                         className={styles['entry-button']}
                         disabled={!agreed}
-                        onClick={() => router.push('/projects/eum/patient')}
+                        onClick={() => router.push('/projects/eum/patient/onboarding/login-pin')}
                     >
                         환자 앱 보기 →
                     </button>
