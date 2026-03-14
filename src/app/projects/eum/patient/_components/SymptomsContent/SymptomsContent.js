@@ -50,7 +50,8 @@ export default function SymptomsContent({
                     patientId,
                     sessionId,
                     description: symptomRecord.description,
-                    occurredAt: symptomRecord.occurredAt || new Date().toISOString(),
+                    // 채팅 완료 시점의 실제 시각 사용 (GPT 생성 날짜 무시)
+                    occurredAt: new Date().toISOString(),
                     severity: symptomRecord.severity,
                     categoryCode: symptomRecord.categoryCode || 'SYM-05',
                     locationType: symptomRecord.locationType || 'HOME',
