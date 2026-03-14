@@ -104,7 +104,7 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                                         aria-expanded={isExpanded}
                                         aria-controls={healthId}
                                     >
-                                        <span className={styles['item-date']}>{dateLabel}</span>
+                                        <time className={styles['item-date']} dateTime={`${year}-${month}-${day}`}>{dateLabel}</time>
                                         <span className={styles['item-name']} title={item.preview}>
                                             {CATEGORY_LABEL[item.category] ?? item.preview}
                                         </span>
@@ -119,8 +119,8 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                                         </span>
                                     </button>
                                 ) : (
-                                    <div className={styles['item-main']}>
-                                        <span className={styles['item-date']}>{dateLabel}</span>
+                                    <button className={styles['item-main']} disabled aria-disabled="true">
+                                        <time className={styles['item-date']} dateTime={`${year}-${month}-${day}`}>{dateLabel}</time>
                                         <span className={styles['item-name']} title={item.preview}>
                                             {CATEGORY_LABEL[item.category] ?? item.preview}
                                         </span>
@@ -130,7 +130,7 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                                         >
                                             NRS {item.severity}
                                         </span>
-                                    </div>
+                                    </button>
                                 )}
 
                                 {/* 건강 서브 행 (웨어러블 데이터 있는 경우, expanded일 때만) */}

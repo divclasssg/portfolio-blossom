@@ -74,9 +74,9 @@ export default function ChatArea({ messages = [], onSeveritySelect }) {
     return (
         <div className={styles['chat-area']} aria-label="증상 기록 대화" aria-live="polite">
             {dateLabel && (
-                <div className={styles['date-header']} aria-label={`대화 날짜: ${dateLabel}`}>
+                <time className={styles['date-header']} dateTime={messages[0].timestamp} aria-label={`대화 날짜: ${dateLabel}`}>
                     {dateLabel}
-                </div>
+                </time>
             )}
             {messages.map((msg, i) => (
                 <div
@@ -105,9 +105,9 @@ export default function ChatArea({ messages = [], onSeveritySelect }) {
                         />
                     )}
                     {shouldShowTime(messages, i) && (
-                        <span className={styles['message-time']}>
+                        <time className={styles['message-time']} dateTime={msg.timestamp}>
                             {formatTime(msg.timestamp)}
-                        </span>
+                        </time>
                     )}
                 </div>
             ))}

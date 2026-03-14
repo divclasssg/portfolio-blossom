@@ -82,6 +82,8 @@ export default async function ResultPage() {
     const allergies = patient?.allergies ?? [];
 
     return (
+        <>
+        <h1 className="sr-only">결과 작성</h1>
         <PatientDataModalProvider>
         <DoctorPanel
             backHref="/projects/eum/doctor"
@@ -140,5 +142,6 @@ export default async function ResultPage() {
             <AiWarningBanner warnings={resultWarnings} />
         </DoctorPanel>
         </PatientDataModalProvider>
+        </>
     );
 }

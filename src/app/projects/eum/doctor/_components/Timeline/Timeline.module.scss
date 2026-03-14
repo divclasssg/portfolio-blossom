@@ -47,8 +47,8 @@
     text-align: left;
     cursor: default;
 
-    // 웨어러블 데이터 있는 항목 → 클릭 가능
-    &:is(button) {
+    // 웨어러블 데이터 있는 항목 → 클릭 가능 (disabled 상태는 기본 커서 유지)
+    &:is(button:not(:disabled)) {
         cursor: pointer;
 
         &:focus-visible {

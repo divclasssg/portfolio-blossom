@@ -34,6 +34,7 @@ export default function HospitalCodeInput({ validCodes }) {
                 병원 코드로 등록하기
             </h2>
             <input
+                id="hospital-code"
                 className={`${styles['code-input']} ${error ? styles['code-input-error'] : ''}`}
                 type="text"
                 inputMode="numeric"
@@ -42,6 +43,7 @@ export default function HospitalCodeInput({ validCodes }) {
                 value={code}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
+                aria-labelledby="code-heading"
                 aria-describedby={error ? 'code-error' : undefined}
                 aria-invalid={error}
             />

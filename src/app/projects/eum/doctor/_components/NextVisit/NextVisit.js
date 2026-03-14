@@ -10,7 +10,7 @@ export default function NextVisit({ date }) {
             <div className="section-content">
                 <h2 className="section-title">Next Visit</h2>
                 <div className="card">
-                    <p className={styles.date}>{formatDate(date)}</p>
+                    <p className={styles.date}><time dateTime={date}>{formatDate(date)}</time></p>
                 </div>
             </div>
         </section>

@@ -207,6 +207,8 @@ export default async function DoctorDashboard() {
     const chiefComplaint = liveData?.chiefComplaint ?? sections.chief_complaint;
 
     return (
+        <>
+        <h1 className="sr-only">이음 의사 대시보드</h1>
         <PatientDataModalProvider>
             {/* 이음 플로팅 패널 — DoctorPanel이 position:fixed 및 인터랙션 담당 */}
             <DoctorPanel
@@ -259,5 +261,6 @@ export default async function DoctorDashboard() {
                 liveSymptoms={liveData?.symptoms}
             />
         </PatientDataModalProvider>
+        </>
     );
 }

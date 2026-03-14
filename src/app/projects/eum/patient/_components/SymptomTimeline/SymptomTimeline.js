@@ -27,36 +27,38 @@ export default function SymptomTimeline({ records }) {
     const sorted = [...records].sort((a, b) => new Date(b.occurred_at) - new Date(a.occurred_at));
 
     return (
-        <div className={styles['timeline-list']}>
+        <ul className={styles['timeline-list']} aria-label="증상 기록 목록">
             {sorted.map((record) => {
                 const severity = SEVERITY_MAP[record.severity] || SEVERITY_MAP[2];
                 const text = record.description || record.voice_transcript;
                 const location = LOCATION_MAP[record.location_type];
 
                 return (
-                    <article key={record.symptom_id} className={styles['timeline-card']}>
-                        <div className={styles['card-header']}>
-                            <time className={styles['card-date']} dateTime={record.occurred_at}>
-                                {dateFormatter.format(new Date(record.occurred_at))}
-                            </time>
-                            <span className={styles['severity-badge']}>
-                                <span
-                                    className={styles['severity-dot']}
-                                    style={{ backgroundColor: severity.color }}
-                                    aria-hidden="true"
-                                />
-                                {severity.label}
-                            </span>
-                        </div>
-                        {text && <p className={styles['card-text']}>{text}</p>}
-                        {location && (
-                            <span className={styles['card-location']}>
-                                <span aria-hidden="true">📍</span> {location}
-                            </span>
-                        )}
-                    </article>
+                    <li key={record.symptom_id}>
+                        <article className={styles['timeline-card']}>
+                            <div className={styles['card-header']}>
+                                <time className={styles['card-date']} dateTime={record.occurred_at}>
+                                    {dateFormatter.format(new Date(record.occurred_at))}
+                                </time>
+                                <span className={styles['severity-badge']}>
+                                    <span
+                                        className={styles['severity-dot']}
+                                        style={{ backgroundColor: severity.color }}
+                                        aria-hidden="true"
+                                    />
+                                    {severity.label}
+                                </span>
+                            </div>
+                            {text && <p className={styles['card-text']}>{text}</p>}
+                            {location && (
+                                <span className={styles['card-location']}>
+                                    <span aria-hidden="true">📍</span> {location}
+                                </span>
+                            )}
+                        </article>
+                    </li>
                 );
             })}
-        </div>
+        </ul>
     );
 }

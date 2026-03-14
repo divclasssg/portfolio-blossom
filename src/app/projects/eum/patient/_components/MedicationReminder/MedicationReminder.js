@@ -37,7 +37,7 @@ export default function MedicationReminder({ reminder, activeCount }) {
                 </div>
 
                 {/* 다음 복용 예정 */}
-                <p className={styles['next-time']}>다음 복용 예정 : {formatTime(scheduled_time)}</p>
+                <p className={styles['next-time']}>다음 복용 예정 : <time dateTime={scheduled_time}>{formatTime(scheduled_time)}</time></p>
 
                 <hr className={styles['divider']} />
 

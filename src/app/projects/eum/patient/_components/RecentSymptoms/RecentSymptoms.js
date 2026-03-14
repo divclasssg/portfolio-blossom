@@ -49,9 +49,9 @@ export default function RecentSymptoms({ summary }) {
 
                 {/* 최근 증상 */}
                 <div className={styles['recent-item']}>
-                    <span className={styles['recent-date']}>
+                    <time className={styles['recent-date']} dateTime={most_recent.occurred_at}>
                         {formatDateTime(most_recent.occurred_at)}
-                    </span>
+                    </time>
                     <p className={styles['recent-preview']}>
                         &ldquo;{most_recent.description_preview}&rdquo;
                     </p>

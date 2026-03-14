@@ -23,7 +23,12 @@ export default function ChatInputBar({ onSend, disabled = false }) {
     }
 
     return (
-        <div className={styles['input-bar']} role="region" aria-label="증상 입력">
+        <form
+            className={styles['input-bar']}
+            role="region"
+            aria-label="증상 입력"
+            onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}
+        >
             {/* 카메라 버튼 — MVP 제외 */}
             <button
                 type="button"
@@ -90,10 +95,9 @@ export default function ChatInputBar({ onSend, disabled = false }) {
 
             {/* 전송 버튼 */}
             <button
-                type="button"
+                type="submit"
                 className={styles['send-btn']}
                 aria-label="전송"
-                onClick={handleSubmit}
                 disabled={disabled || !value.trim()}
             >
                 <svg
@@ -111,6 +115,6 @@ export default function ChatInputBar({ onSend, disabled = false }) {
                     <polyline points="5 12 12 5 19 12" />
                 </svg>
             </button>
-        </div>
+        </form>
     );
 }

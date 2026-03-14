@@ -138,6 +138,7 @@ export default async function PatientHome() {
             <AppBar unreadCount={unreadCount} />
             <NewResultToast transmittedResults={transmittedResults} />
             <main className={styles['content']}>
+                <h1 className="sr-only">이음 홈</h1>
                 <GreetingSection greeting={greeting} />
                 <RecentSymptoms summary={dynamicSummary ?? homeDashboard.recent_symptoms_summary} />
                 <VitalsToday vitals={homeDashboard.vitals_today} wearableDevice={patientInfo?.wearable_device ?? null} />

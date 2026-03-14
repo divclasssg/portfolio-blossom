@@ -9,6 +9,7 @@ export default function MyPage() {
         <>
             <AppBar />
             <main className={styles['content']}>
+                <h1 className="sr-only">마이페이지</h1>
                 <p className={styles['placeholder']}>준비 중입니다</p>
             </main>
             <TabBar activePath="mypage" />

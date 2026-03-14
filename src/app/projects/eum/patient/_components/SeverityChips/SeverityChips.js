@@ -26,13 +26,13 @@ export default function SeverityChips({ onSelect, selected = null }) {
                         type="button"
                         className={`${styles['chip']} ${styles[chip.colorClass]} ${isSelected ? styles['chip-selected'] : ''}`}
                         role="listitem"
-                        aria-label={`${chip.emoji} ${chip.label}`}
+                        aria-label={chip.label}
                         aria-pressed={isSelected}
                         aria-disabled={isDisabled && !isSelected}
                         disabled={isDisabled}
                         onClick={() => !isDisabled && onSelect?.(chip.severity)}
                     >
-                        {chip.emoji} {chip.label}
+                        <span aria-hidden="true">{chip.emoji}</span> {chip.label}
                     </button>
                 );
             })}

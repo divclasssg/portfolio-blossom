@@ -222,6 +222,7 @@ export default function SymptomsContent({
                 id={`tabpanel-${activeTab}`}
                 aria-labelledby={`tab-${activeTab}`}
             >
+                <h1 className="sr-only">증상 기록</h1>
                 {activeTab === 'chat' && (
                     <ChatArea messages={messages} onSeveritySelect={handleSeveritySelect} />
                 )}

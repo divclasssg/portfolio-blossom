@@ -25,7 +25,7 @@ export default function ModalHeader({ patient, onClose }) {
             <div className={styles['header-left']}>
                 <div className={styles['title-group']}>
                     <AiIcon />
-                    <span className={styles.title}>Patient Data</span>
+                    <h2 className={styles.title}>Patient Data</h2>
                 </div>
                 <div className={styles['patient-group']}>
                     <span className={styles['patient-name']}>{patient.name}</span>
