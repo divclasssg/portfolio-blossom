@@ -19,8 +19,6 @@ export default function DoctorPanel({
     children,
     backHref,
     singleColumn,
-    doctorName,
-    hospitalName,
 }) {
     const [pos, setPos] = useState(null); // null = 기본 right:0, top:0
     const [width, setWidth] = useState(DEFAULT_WIDTH);
@@ -174,8 +172,6 @@ export default function DoctorPanel({
                 onOpacityChange={setOpacity}
                 onClose={() => setIsVisible(false)}
                 backHref={backHref}
-                doctorName={doctorName}
-                hospitalName={hospitalName}
             />
             <div className={styles['panel-scroll']}>
                 <div className={singleColumn ? styles['section-single'] : styles['section-grid']}>

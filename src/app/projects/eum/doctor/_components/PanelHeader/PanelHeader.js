@@ -15,8 +15,6 @@ export default function PanelHeader({
     onOpacityChange,
     onClose,
     backHref,
-    doctorName,
-    hospitalName,
 }) {
     const { open: openDataModal } = usePatientDataModal();
 
@@ -40,13 +38,6 @@ export default function PanelHeader({
 
             {/* 로고 */}
             <span className={styles.logo}>Eum</span>
-
-            {/* 의사 프로필 — 01_doctor_profile.json에서 전달 */}
-            {doctorName && (
-                <span className={styles['doctor-info']}>
-                    {doctorName} · {hospitalName}
-                </span>
-            )}
 
             <span className={styles.spacer} />
 

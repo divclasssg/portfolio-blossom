@@ -211,8 +211,6 @@ export default async function DoctorDashboard() {
             {/* 이음 플로팅 패널 — DoctorPanel이 position:fixed 및 인터랙션 담당 */}
             <DoctorPanel
                 footer={<FooterCta />}
-                doctorName={doctor.name}
-                hospitalName={doctor.hospital.hospital_name}
             >
                 {/* 섹션 2: 환자 프로필 + 기저질환 + 알레르기 */}
                 <PatientProfile
