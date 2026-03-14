@@ -6,6 +6,7 @@ import medicalRecords from '../../../_references/data/patient/04_medical_records
 import styles from './page.module.scss';
 import AppBar from '../../_components/AppBar/AppBar';
 import TabBar from '../../_components/TabBar/TabBar';
+import MarkResultSeen from '../../_components/MarkResultSeen/MarkResultSeen';
 
 export function generateStaticParams() {
     return consultationResults.consultation_results.map((r) => ({ id: r.session_id }));
@@ -100,6 +101,7 @@ export default async function SummaryDetailPage({ params }) {
     return (
         <>
             <AppBar backHref="/projects/eum/patient/summary" />
+            <MarkResultSeen sessionId={id} />
             <main className={styles['content']}>
                 {/* 페이지 제목 + 공유 버튼 */}
                 <div className={styles['page-title-row']}>

@@ -10,6 +10,7 @@ import VitalsToday from './_components/VitalsToday/VitalsToday';
 import MedicationReminder from './_components/MedicationReminder/MedicationReminder';
 import LastVisitResult from './_components/LastVisitResult/LastVisitResult';
 import TabBar from './_components/TabBar/TabBar';
+import NewResultToast from './_components/NewResultToast/NewResultToast';
 
 export const metadata = {
     title: 'P-018 홈 대시보드 — 이음',
@@ -101,14 +102,32 @@ async function fetchPatientInfo(patientId) {
     }
 }
 
+// 전송 완료된 진료 결과 목록 조회 (토스트 알림용)
+async function fetchTransmittedResults() {
+    try {
+        const { getSupabaseClient } = await import('../../../api/eum/_lib/supabase');
+        const supabase = getSupabaseClient();
+        const { data, error } = await supabase
+            .from('consultation_results')
+            .select('session_id, doctor_name, hospital_name, transmitted_at')
+            .not('transmitted_at', 'is', null)
+            .order('transmitted_at', { ascending: false });
+        if (error) throw error;
+        return data ?? [];
+    } catch {
+        return [];
+    }
+}
+
 export default async function PatientHome() {
     const patientId = await getPatientId();
     if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
     const unreadCount = consentNotifications.notifications.filter((n) => !n.read).length;
 
-    const [patientInfo, dynamicSummary] = await Promise.all([
+    const [patientInfo, dynamicSummary, transmittedResults] = await Promise.all([
         fetchPatientInfo(patientId),
         fetchRecentSymptomsSummary(patientId),
+        fetchTransmittedResults(),
     ]);
     // DB에서 이름을 읽으면 동적 인사말, 실패 시 이름 없이 인사
     const greeting = patientInfo?.name
@@ -118,6 +137,7 @@ export default async function PatientHome() {
     return (
         <>
             <AppBar unreadCount={unreadCount} />
+            <NewResultToast transmittedResults={transmittedResults} />
             <main className={styles['content']}>
                 <GreetingSection greeting={greeting} />
                 <RecentSymptoms summary={dynamicSummary ?? homeDashboard.recent_symptoms_summary} />
