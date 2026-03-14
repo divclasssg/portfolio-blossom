@@ -47,12 +47,27 @@ export async function POST() {
 
         if (selectErr) throw new Error(`환자 조회 실패: ${selectErr.message}`);
 
-        // 이미 존재하면 시드 건너뜀
+        // 환자는 있지만 데모 데이터가 없으면 시드 재실행
         if (existing) {
+            const { count } = await supabase
+                .from('symptom_records')
+                .select('*', { count: 'exact', head: true })
+                .eq('patient_id', ADMIN_PATIENT_ID);
+
+            if (count > 0) {
+                return NextResponse.json({
+                    success: true,
+                    patientId: ADMIN_PATIENT_ID,
+                    seeded: false,
+                });
+            }
+
+            // 데모 데이터 없음 → 시드 재실행
+            await seedDemoScenario(supabase, ADMIN_PATIENT_ID, 'admin');
             return NextResponse.json({
                 success: true,
                 patientId: ADMIN_PATIENT_ID,
-                seeded: false,
+                seeded: true,
             });
         }
 
