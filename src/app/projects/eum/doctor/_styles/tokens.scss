@@ -1,7 +1,8 @@
-// 이음 의사 패널 디자인 토큰 — 와이어프레임 기준
+// 이음 의사 패널 디자인 토큰
+// 출처: bridge-tokens-studio.json (Figma 공식 토큰, iOS HIG 기반)
 
 // 패널
-$panel-bg: #ffffff;
+$panel-bg: #ffffff; // neutral.background-primary
 $panel-min-width: 480px;
 $panel-max-width: 1280px;
 $panel-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -18,23 +19,27 @@ $section-padding-x: 24px;
 $section-padding-y: 24px;
 $section-background: #fff;
 
-// 색상 — iOS HIG 기반 (CLAUDE_data_hierarchy.md)
-$color-primary: #007aff;
-$color-danger: #ff3b30;
-$color-warning: rgb(255, 149, 0);
-$color-normal: #34c759;
+// 색상 — iOS HIG 기반 (bridge-tokens-studio.json)
+$color-primary: #007aff; // primary.default — iOS systemBlue
+$color-secondary: #5856d6; // secondary.default — iOS systemIndigo
+$color-tertiary: #5ac8fa; // tertiary.default — iOS systemTeal
+$color-danger: #ff3b30; // clinical.danger — iOS systemRed
+$color-warning: rgb(255, 149, 0); // clinical.warning — iOS systemOrange
+$color-normal: #34c759; // clinical.normal — iOS systemGreen
 
-// 중립 (와이어프레임 기준 #E5E7EB 보더)
-$neutral-bg: #f3f4f6;
-$neutral-border: #e5e7eb;
-$neutral-surface: #d1d1d6;
-$neutral-divider: #e5e7eb;
-$neutral-placeholder: #9ca3af;
+// 중립 — bridge-tokens-studio.json 기준
+$neutral-bg: #f2f2f7; // neutral.background-secondary — iOS systemGray6
+$neutral-border: #c7c7cc; // neutral.divider — iOS systemGray3
+$neutral-surface: #d1d1d6; // neutral.surface — iOS systemGray4
+$neutral-divider: #c7c7cc; // neutral.divider — iOS systemGray3
+$neutral-placeholder: #8e8e93; // neutral.placeholder — iOS systemGray
+$neutral-disabled: #aeaeb2; // neutral.disabled — iOS systemGray2
+$neutral-bg-tertiary: #e5e5ea; // neutral.background-tertiary — iOS systemGray5
 
-// 텍스트 (와이어프레임: #1F2937 제목, #374151 보조, #9CA3AF 플레이스홀더)
-$text-primary: #1f2937;
-$text-secondary: #374151;
-$text-muted: #9ca3af;
+// 텍스트 — bridge-tokens-studio.json 기준
+$text-primary: #1f1f1d; // 근사 블랙 (사용자 지정)
+$text-secondary: #8e8e93; // text.secondary — iOS systemGray
+$text-muted: #8e8e93; // text.secondary — iOS systemGray (= $text-secondary)
 
 // 타이포그래피
 $font-title:
@@ -58,9 +63,9 @@ $font-small:
 $color-dark: #111827;
 
 // 임상 전용 (UI 포인트 컬러 사용 금지)
-$clinical-danger: #ff3b30;
-$clinical-warning: #ff9500;
-$clinical-normal: #34c759;
+$clinical-danger: #ff3b30; // clinical.danger — iOS systemRed
+$clinical-warning: #ff9500; // clinical.warning — iOS systemOrange
+$clinical-normal: #34c759; // clinical.normal — iOS systemGreen
 
 // 섹션 콘텐츠 카드
 $section-content-bg: #fff;

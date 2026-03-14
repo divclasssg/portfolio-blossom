@@ -3,27 +3,27 @@
 // CSV 스펙(v3.0) 색상(#2E75B6 등)은 구버전 — 이 파일이 authoritative
 
 // 배경
-$screen-bg: #f2f2f7; // iOS systemGray6 = semantic.screen.background
-$card-bg: #ffffff; // 카드/섹션 내부 배경
+$screen-bg: #f2f2f7; // neutral.background-secondary — iOS systemGray6
+$card-bg: #ffffff; // neutral.background-primary
 
 // 테두리/구분선
-$card-border: #c7c7cc; // iOS systemGray3 = neutral.divider
-$divider-color: #f2f2f7; // iOS systemGray6 = neutral.background-secondary (행 구분선)
+$card-border: #c7c7cc; // neutral.divider — iOS systemGray3
+$divider-color: #f2f2f7; // neutral.background-secondary — iOS systemGray6 (행 구분선)
 
 // 텍스트
-$text-primary: #000000; // Figma: text.primary
-$text-secondary: #8e8e93; // iOS systemGray = text.secondary
+$text-primary: #000000; // text.primary
+$text-secondary: #8e8e93; // text.secondary — iOS systemGray
 
 // 인터랙션
-$color-primary: #007aff; // iOS systemBlue = global/color.primary
-$color-danger: #ff3b30; // iOS systemRed = 에러/위험 상태
+$color-primary: #007aff; // primary.default — iOS systemBlue
+$color-danger: #ff3b30; // clinical.danger — iOS systemRed
 
 // 배지
-$badge-bg: #e5e5ea; // iOS systemGray5 = neutral.background-tertiary
+$badge-bg: #e5e5ea; // neutral.background-tertiary — iOS systemGray5
 
 // 추가 색상
-$color-success: #34c759; // iOS systemGreen = complete 페이지 체크 아이콘 등
-$color-dark: #111827; // 다크 버튼 배경
+$color-success: #34c759; // clinical.normal — iOS systemGreen
+$color-dark: #111827; // 다크 버튼 배경 (커스텀)
 
 // 레이아웃
 $section-padding-x: 20px;
