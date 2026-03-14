@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation';
 import resultPackage from '../../_references/data/doctor/07_result_package.json';
 import aiWarnings from '../../_references/data/doctor/08_ai_warnings.json';
 import dashboardState from '../../_references/data/doctor/03_dashboard_state.json';
@@ -51,8 +50,8 @@ export const dynamic = 'force-dynamic';
 
 export default async function ResultPage() {
     const { sections } = dashboardState;
-    const patientId = await getPatientId();
-    if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
+    // 쿠키 없으면 기본 환자(윤서진)로 폴백 — 의사 대시보드와 동일 패턴
+    const patientId = (await getPatientId()) || 'pat_yoon_001';
     const patient = await fetchPatient(patientId);
 
     // F16 경고: baseWarnings + 쉬운말 변환 모델 버전
@@ -91,8 +90,8 @@ export default async function ResultPage() {
                     sessionId={resultPackage.session_id}
                     doctorId={resultPackage.doctor_id}
                     doctorName={resultPackage.doctor_name}
-                    hospitalName="분당신경과의원"
-                    diagnosisName="체위성 기립빈맥 증후군 (POTS)"
+                    hospitalName={resultPackage.hospital_name}
+                    diagnosisName={resultPackage.diagnosis_name}
                     resultData={resultPackage}
                 />
             }
@@ -126,11 +125,11 @@ export default async function ResultPage() {
             {/* 섹션 6: 처방 */}
             <Prescription
                 prescriptions={resultPackage.prescriptions}
-                contextNote="기존 처방 유지 (서현내과의원)"
+                contextNote="현재 처방 유지"
             />
 
-            {/* 섹션 7: 타과의뢰 회신 */}
-            <Referral referral={resultPackage.referral_response} />
+            {/* 섹션 7: 타과의뢰 */}
+            <Referral referral={resultPackage.referral} />
 
             {/* 섹션 8: 다음 방문 */}
             <NextVisit date={resultPackage.next_visit_date} />

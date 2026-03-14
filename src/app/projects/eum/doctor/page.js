@@ -149,7 +149,7 @@ async function fetchLiveData(patientId) {
 }
 
 export default async function DoctorDashboard() {
-    // ses_007 담당의: 박지영 / 분당신경과의원 (dashboardState.doctor_id = doc_park_001)
+    // ses_004 담당의: 김도현 / 서현내과의원 (dashboardState.doctor_id = doc_kim_001)
     const doctor =
         doctorProfiles.doctors.find((d) => d.doctor_id === dashboardState.doctor_id) ??
         doctorProfiles.doctors[0];

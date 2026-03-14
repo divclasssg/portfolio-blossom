@@ -1,44 +1,40 @@
 {
-  "session_id": "ses_007",
+  "session_id": "ses_004",
   "screen_feature": "F11",
   "model_version": "Claude Sonnet v20250304",
-  "generated_at": "2026-03-09T08:36:02+09:00",
+  "generated_at": "2026-02-17T09:01:00+09:00",
   "generation_time_ms": 4200,
-  "period_label": "follow_up",
+  "period_label": "comprehensive_review",
   "period_range": {
-    "from": "2026-02-17",
-    "to": "2026-03-09",
-    "label": "최근 진료 이후 20일"
+    "from": "2020-03-10",
+    "to": "2026-02-17",
+    "label": "6년간 진료 기록 종합"
   },
-  "summary_text": "34세 여성. 역류성 식도염(6년, K21.0). 공식 정신과 진단 없으나 불안 관련 증상 반복 관찰. 서현내과 김도현 선생님 의뢰 — 자율신경계 기능 평가 요청. 최근 20일간 증상 기록 2건: 자율신경 관련 에피소드(어지러움+심계항진+진전, severity 3)와 소화기 증상 지속(severity 2). 웨어러블 데이터상 에피소드 당일(3/5) 심박수 94bpm, 수면 4.0시간으로 평소 대비 유의미한 이탈. 2025-04 건강검진 혈색소 11.8 g/dL(경계), PHQ-9 8점(경도 우울 주의).",
+  "summary_text": "34세 여성. 역류성 식도염(6년, K21.0). 2020년 초진 시 LA-A 등급 확인 후 이후 내시경 4회 모두 정상(LA-N). PPI 40mg 장기 복용 중이나 증상 불완전 반응 지속. 공식 정신과 진단 없으나 불안 관련 증상 반복 관찰. 이음 앱 데이터 분석 결과 스트레스-소화기 증상 교차 패턴 확인. 최근 심계항진, 어지러움 등 자율신경 관련 에피소드 새롭게 관찰됨. 2025-04 건강검진 혈색소 11.8 g/dL(경계), PHQ-9 8점(경도 우울 주의).",
   "highlights": [
-    {
-      "type": "recurring",
-      "badge_color": "#E69F00",
-      "icon": "refresh",
-      "title": "자율신경 증상 반복",
-      "description": "어지러움+심계항진+식은땀 에피소드가 3개월간 3회 반복 (sym_003, sym_004, sym_009). 기립 시 및 스트레스 상황에서 유발.",
-      "evidence": ["sym_009: 지하철에서 어지러움+진전+심계항진 (severity 3)", "sym_003: 가슴 답답함+심계항진+수면장애 (severity 3)"]
-    },
     {
       "type": "abnormal",
       "badge_color": "#FFC000",
       "icon": "alert_circle",
-      "title": "수면-증상 상관",
-      "description": "증상 악화일(3/5)에 수면 4.0시간, 심박수 94bpm. 수면 5시간 미만 시 다음 날 증상 발생 확률이 높은 패턴.",
-      "evidence": ["3/5 수면 4.0h → sym_009 발생", "3/1 수면 3.5h → sym_008 발생"]
+      "title": "PPI 불완전 반응 + 내시경 정상 반복",
+      "description": "에소메프라졸 40mg 6년 복용 중 증상 호전-악화 반복. 내시경 4회 모두 정상(LA-N). 기질적 원인 미발견 상태에서 증상 지속 — 기능성 식도 질환 가능성.",
+      "evidence": ["2020-03 LA-A → 이후 LA-N × 4회 (2021, 2022, 2023, 2025)", "PPI 40mg 6년 복용에도 야간 역류·인후 이물감 지속"]
+    },
+    {
+      "type": "recurring",
+      "badge_color": "#E69F00",
+      "icon": "refresh",
+      "title": "스트레스-소화기 증상 교차 패턴",
+      "description": "이음 앱 증상 기록에서 스트레스 상황과 소화기 증상 악화의 시간적 상관관계 확인. 수면 부족 시 다음 날 증상 발생 확률 증가.",
+      "evidence": ["sym_004: 회의 중 스트레스 → 오심+식은땀", "sym_001: 수면 3.5h → 야간 흉통 발생", "PHQ-9 8점: 경도 우울 주의 범위"]
     },
     {
       "type": "worsening",
       "badge_color": "#C00000",
       "icon": "trending_up",
-      "title": "에피소드 빈도 증가",
-      "description": "최근 1개월간 severity 3 이상 에피소드 3건. 이전 1개월(1건) 대비 빈도 증가. 일상생활 영향 확대(지하철 탑승 중 발생).",
-      "evidence": ["2월: severity 3 × 1건 (sym_001)", "3월: severity 3 × 2건 (sym_008, sym_009)"]
+      "title": "자율신경 징후 새롭게 관찰",
+      "description": "최근 심계항진, 가슴 답답함, 식은땀 에피소드가 소화기 증상과 별도로 관찰됨. 기존 GERD 프레임으로 설명되지 않는 증상 확대.",
+      "evidence": ["sym_003: 심계항진+호흡곤란+수면장애 (severity 3)", "sym_004: 회의 중 식은땀+오심 에피소드 (severity 2)"]
     }
-  ],
-  "referral_context": {
-    "referring_doctor_summary": "서현내과 김도현: 6년간 GERD 치료 중 내시경 반복 정상. 이음 앱 데이터 분석 결과 소화기-불안 교차 패턴 및 자율신경 반응 이상 관찰. 기능성 역류 + 자율신경계 조절 이상 가능성으로 신경과 평가 의뢰.",
-    "requested_tests": ["기립경사검사 (Head-up Tilt Test)", "심박변이도 분석 (HRV Analysis)"]
-  }
+  ]
 }

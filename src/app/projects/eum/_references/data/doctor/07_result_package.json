@@ -1,57 +1,60 @@
 {
-  "demo_note": "ses_007의 진료 완료 후 결과 화면(D-001) 데모 데이터. 실제 세션은 waiting 상태이나, 와이어프레임 시연을 위해 완료 상태의 결과를 미리 구성.",
+  "demo_note": "ses_004의 진료 완료 후 결과 화면(D-001) 데모 데이터. 김도현(서현내과)이 6년간 GERD 치료 종합 분석 후 신경과 타과의뢰를 보내는 시나리오.",
   "screen_id": "D-001",
-  "session_id": "ses_007",
+  "session_id": "ses_004",
   "screen_feature": "F16",
-  "doctor_id": "doc_park_001",
-  "doctor_name": "박지영",
+  "doctor_id": "doc_kim_001",
+  "doctor_name": "김도현",
+  "hospital_name": "서현내과의원",
+  "diagnosis_name": "기능성 식도 질환 의심 + 자율신경계 평가 필요",
   "patient_id": "pat_yoon_001",
-  "findings": "자율신경계 기능 평가를 위해 기립경사검사 및 심박변이도(HRV) 분석 시행. 기립경사검사에서 기립 후 심박수 35bpm 증가 확인 — POTS(체위성 기립빈맥 증후군) 진단 기준 충족. HRV 분석에서 교감신경 우위 패턴 확인.",
-  "treatment_plan": "POTS 진단 하 단계적 치료 계획 수립. 비약물 치료(수분 섭취 증가, 압박 스타킹, 단계적 운동 프로그램) 우선. 필요시 미도드린(midodrine) 또는 플루드로코르티손(fludrocortisone) 추가 고려.",
-  "next_steps": "비약물 치료 2주간 시행 후 경과 관찰. 서현내과의원 김도현 선생님께 결과 회신. 역류성 식도염 치료는 기존 내과 처방 유지하되, 자율신경 안정화에 따른 증상 변화 관찰.",
+  "findings": "6년간 역류성 식도염(K21.0) 치료 중 내시경 4회 모두 정상(LA-N). PPI 40mg 장기 복용에도 증상 불완전 반응 지속. 이음 앱 데이터 분석 결과, 스트레스-소화기 증상 교차 패턴 및 최근 심계항진·식은땀 등 자율신경 관련 에피소드 새롭게 관찰. 기능성 역류 가능성과 함께 자율신경계 조절 이상 감별 필요.",
+  "treatment_plan": "기존 GERD 약물 치료 유지하되, 기능성 역류 가능성을 고려한 생활습관 관리 병행. 자율신경계 이상 여부 확인을 위해 신경과 전문의(분당신경과의원 박지영 선생님)에게 타과의뢰. 기립경사검사 및 심박변이도(HRV) 분석 요청.",
+  "next_steps": "신경과 평가 결과에 따라 치료 방향 재설정. 신경과 결과 회신 후 다음 내과 방문 시 종합 판단. 그 사이 이음 앱으로 증상 기록 지속 요청.",
   "plain_text_generation": {
     "model_version": "GPT-4o v2024-08",
-    "generated_at": "2026-03-09T15:20:00+09:00",
-    "original_medical_text": "Head-up tilt test: HR increase 35bpm at 10min (supine 72→upright 107). Meets POTS criteria (≥30bpm increase within 10 min without orthostatic hypotension). HRV analysis: LF/HF ratio 4.2 (sympathetic dominant). Recommend non-pharmacological management first: fluid intake ≥2L/day, compression garments, graded exercise.",
+    "generated_at": "2026-02-17T15:00:00+09:00",
+    "original_medical_text": "6-year history of GERD (K21.0) with incomplete PPI response. Serial EGD × 4 all normal (LA-N). Eum app data reveals stress-GI symptom cross-pattern and new autonomic episodes (palpitations, diaphoresis). Suspect functional esophageal disorder with possible autonomic dysregulation. Referring to neurology for tilt-table test and HRV analysis.",
     "converted_blocks": [
       {
-        "original": "Head-up tilt test: HR increase 35bpm at 10min",
-        "converted": "침대를 기울여서 일어서는 자세로 바꾸는 검사를 했어요. 일어섰을 때 심장이 평소보다 훨씬 빨리 뛰었어요."
+        "original": "6-year history of GERD with incomplete PPI response, serial EGD × 4 all normal",
+        "converted": "6년간 역류성 식도염 약을 드시고 계시지만, 위내시경을 4번이나 했는데 매번 정상이에요. 약이 완전히 듣지 않는 상태가 계속되고 있어요."
       },
       {
-        "original": "Meets POTS criteria (≥30bpm increase within 10 min)",
-        "converted": "'체위성 기립빈맥 증후군'이라는 상태에 해당해요. 일어설 때 자율신경이 제대로 조절을 못 해서 심장이 빨리 뛰는 거예요."
+        "original": "Eum app data reveals stress-GI symptom cross-pattern",
+        "converted": "이음 앱에 기록하신 데이터를 분석해보니, 스트레스를 받을 때 소화기 증상이 같이 나빠지는 패턴이 보여요."
       },
       {
-        "original": "HRV analysis: LF/HF ratio 4.2 (sympathetic dominant)",
-        "converted": "심장 박동의 변화를 분석했는데, 긴장할 때 활성화되는 신경(교감신경)이 너무 많이 활성화되어 있어요."
+        "original": "New autonomic episodes (palpitations, diaphoresis)",
+        "converted": "최근에 가슴 두근거림이나 식은땀 같은 증상이 새로 나타났는데, 이건 자율신경이라는 시스템이 제대로 조절이 안 돼서 생길 수 있어요."
       },
       {
-        "original": "Non-pharmacological management: fluid intake ≥2L/day, compression garments, graded exercise",
-        "converted": "약 대신 생활습관으로 먼저 관리해볼 거예요. 물을 하루 2리터 이상 마시고, 압박 스타킹을 신고, 운동을 서서히 늘려가는 방법이에요."
+        "original": "Referring to neurology for tilt-table test and HRV analysis",
+        "converted": "자율신경 문제인지 확인하기 위해 신경과 전문의에게 검사를 의뢰할 거예요. 침대를 기울이는 검사와 심장 박동 분석 검사를 받으시게 됩니다."
       }
     ]
   },
-  "doctor_note_plain": "검사 결과, 일어설 때 자율신경이 제대로 조절을 못 하는 '체위성 기립빈맥 증후군(POTS)'이라는 상태가 확인됐어요. 이게 그동안 가슴 두근거림, 어지러움, 식은땀 같은 증상의 원인이었을 가능성이 높아요. 역류성 식도염 증상도 자율신경이 불안정하면 악화될 수 있어요. 약 치료 전에 먼저 물 많이 마시기, 압박 스타킹, 가벼운 운동부터 시작해볼게요. 2주 뒤에 다시 오셔서 경과를 보고, 서현내과 김도현 선생님께도 결과를 알려드릴게요.",
+  "doctor_note_plain": "6년 동안 위장 문제로 치료해오셨는데, 위내시경을 여러 번 해봐도 특별한 원인이 안 나오고 있어요. 이음 앱에 기록해주신 데이터를 자세히 분석해보니, 스트레스와 소화기 증상이 같이 나타나는 패턴이 보이고, 최근에는 가슴 두근거림이나 식은땀 같은 새로운 증상도 관찰됐어요. 이런 증상들은 자율신경이라는 시스템의 문제일 수 있어서, 신경과 전문의에게 추가 검사를 의뢰하려고 해요. 기존 위장약은 그대로 드시면서, 검사 결과가 나오면 그때 종합적으로 판단할게요.",
   "action_items": [
-    { "task": "물 하루 2리터 이상 마시기", "recommended_timing": "매일" },
-    { "task": "압박 스타킹 착용 (외출 시)", "recommended_timing": "매일" },
-    { "task": "단계적 운동 시작 (누워서 하는 운동부터)", "recommended_timing": "주 3회" },
-    { "task": "급격히 일어나지 않기 (천천히 단계적으로)", "recommended_timing": "상시" },
-    { "task": "카페인 섭취 줄이기", "recommended_timing": "매일" }
+    { "task": "기존 위장약 꾸준히 복용하기", "recommended_timing": "매일" },
+    { "task": "식사 후 바로 눕지 않기 (최소 2시간)", "recommended_timing": "매일" },
+    { "task": "카페인·알코올·자극적 음식 줄이기", "recommended_timing": "매일" },
+    { "task": "스트레스 상황에서 심호흡·이완 연습하기", "recommended_timing": "매일" },
+    { "task": "수면 시간 확보하기 (최소 6시간)", "recommended_timing": "매일" },
+    { "task": "신경과(분당신경과의원) 방문 예약하기", "recommended_timing": "2주 이내" }
   ],
-  "referral_response": {
-    "to_doctor": "김도현",
-    "to_hospital": "서현내과의원",
-    "response_summary": "기립경사검사 결과 POTS 진단 기준 충족. 자율신경 불안정이 기능성 역류 증상 악화에 기여할 가능성 있음. 비약물 치료 우선 시행 후 2주 경과 관찰 예정. 내과 처방 유지 권장.",
-    "response_date": "2026-03-09"
+  "referral": {
+    "to_doctor": "박지영",
+    "to_hospital": "분당신경과의원",
+    "referral_reason": "6년간 GERD 치료 중 내시경 반복 정상. 이음 앱 데이터에서 소화기-자율신경 교차 패턴 및 최근 심계항진·식은땀 에피소드 관찰. 기능성 역류 + 자율신경계 조절 이상 가능성으로 신경과 평가 의뢰.",
+    "requested_tests": ["기립경사검사 (Head-up Tilt Test)", "심박변이도 분석 (HRV Analysis)"]
   },
   "prescriptions": [
     { "name": "에소메프라졸 40mg", "duration": "28일", "plain_language": "위산을 줄여주는 약이에요" },
     { "name": "돔페리돈 10mg", "duration": "28일", "plain_language": "소화를 도와주는 약이에요" },
     { "name": "알긴산나트륨 10mL", "duration": "14일", "plain_language": "위산 역류를 막아주는 약이에요" }
   ],
-  "next_visit_date": "2026-03-23",
+  "next_visit_date": "2026-03-03",
   "warnings": {
     "hallucination_warning": "AI는 오류를 생성할 수 있습니다",
     "review_obligation": "의사가 반드시 검토해야 합니다",

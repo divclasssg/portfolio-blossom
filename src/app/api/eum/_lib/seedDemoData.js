@@ -51,8 +51,8 @@ export async function seedDemoScenario(supabase, patientId, suffix = null) {
             created_at: s.created_at,
         };
 
-        // 최신 세션(007)에 chief_complaint 추가
-        if (s.session_id === 'ses_007') {
+        // 최신 세션(004)에 chief_complaint 추가
+        if (s.session_id === 'ses_004') {
             row.chief_complaint = dashboardState.sections.chief_complaint;
         }
 
@@ -90,7 +90,7 @@ export async function seedDemoScenario(supabase, patientId, suffix = null) {
     if (symErr) throw new Error(`symptom_records 시드 실패: ${symErr.message}`);
 
     // ── 4. ai_results 삽입 ───────────────────────────────────────
-    const latestSessionId = remapSessionId('ses_007', effectiveSuffix);
+    const latestSessionId = remapSessionId('ses_004', effectiveSuffix);
 
     const aiRows = [
         {

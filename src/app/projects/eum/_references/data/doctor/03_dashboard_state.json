@@ -1,9 +1,9 @@
 {
   "screen_id": "D-000",
-  "session_id": "ses_007",
+  "session_id": "ses_004",
   "session_status": "ACTIVE",
-  "doctor_id": "doc_park_001",
-  "doctor_name": "박지영",
+  "doctor_id": "doc_kim_001",
+  "doctor_name": "김도현",
   "patient_summary": {
     "name": "윤서진",
     "age": 34,
@@ -20,10 +20,7 @@
     "session_timer": "14:32",
     "session_timeout_minutes": 30,
     "referral_badge": {
-      "visible": true,
-      "text": "의뢰 진료",
-      "from_doctor": "김도현",
-      "from_hospital": "서현내과의원"
+      "visible": false
     }
   },
   "sections": {
@@ -54,17 +51,15 @@
         "vaccinations_recent": [
           { "name": "인플루엔자", "date": "2025-10-15" }
         ],
-        "referral_documents": [
-          { "doc_type": "진료의뢰서", "title": "신경과 진료의뢰서", "date": "2026-02-17", "from": "김도현 / 서현내과의원" }
-        ]
+        "referral_documents": []
       }
     },
     "chief_complaint": {
       "visible": true,
       "level": "L1",
-      "patient_text": "지하철에서 갑자기 어지럽고 손이 떨리면서 가슴이 두근거렸습니다. 공황 발작인지 저혈당인지 모르겠습니다.",
+      "patient_text": "가슴이 답답하고 심장이 두근거리면서 숨이 차는 느낌이 있습니다. 새벽에 잠을 자다가 가슴 통증으로 깨기도 했습니다.",
       "symptom_count": 2,
-      "symptom_period": "2026-03-05 ~ 2026-03-08"
+      "symptom_period": "2026-02-12 ~ 2026-02-15"
     },
     "ai_briefing": {
       "visible": true,
@@ -79,15 +74,15 @@
         "color": "#E69F00",
         "icon": "refresh"
       },
-      "description": "자율신경 관련 증상(어지러움, 심계항진, 식은땀) 3개월간 3회 반복 기록"
+      "description": "소화기-자율신경 교차 증상 3개월간 반복 기록 (내시경 반복 정상에도 증상 지속)"
     },
     "symptom_timeline_compact": {
       "visible": true,
       "level": "L2",
       "items": [
-        { "date": "03-08", "severity": 2, "preview": "하루 종일 속이 불편...", "category": "SYM-05" },
-        { "date": "03-05", "severity": 3, "preview": "지하철에서 어지러움...", "category": "SYM-12" },
-        { "date": "03-01", "severity": 3, "preview": "새벽 가슴 통증...", "category": "SYM-05" }
+        { "date": "02-15", "severity": 2, "preview": "오후 회의 중 갑자기 속이...", "category": "SYM-05" },
+        { "date": "02-12", "severity": 3, "preview": "가슴이 답답하고 숨이...", "category": "SYM-12" },
+        { "date": "02-08", "severity": 2, "preview": "점심 식사 후 1시간쯤...", "category": "SYM-05" }
       ],
       "remaining_count": 7,
       "expand_button": {
@@ -97,13 +92,13 @@
     },
     "symptom_timeline_expanded": {
       "items": [
-        { "date": "02-26", "severity": 1, "preview": "오늘은 컨디션이 괜찮은...", "category": "SYM-05" },
-        { "date": "02-23", "severity": 4, "preview": "저녁 식사 직후부터 명치...", "category": "SYM-05" },
-        { "date": "02-19", "severity": 2, "preview": "목이 쉬고 기침이...", "category": "SYM-07" },
-        { "date": "02-15", "severity": 2, "preview": "오후 회의 중 갑자기...", "category": "SYM-05" },
-        { "date": "02-12", "severity": 3, "preview": "가슴이 답답하고 숨이...", "category": "SYM-12" },
-        { "date": "02-08", "severity": 2, "preview": "점심 식사 후...", "category": "SYM-05" },
-        { "date": "02-05", "severity": 3, "preview": "새벽 3시쯤 가슴...", "category": "SYM-05" }
+        { "date": "02-05", "severity": 3, "preview": "새벽 3시쯤 가슴...", "category": "SYM-05" },
+        { "date": "01-28", "severity": 2, "preview": "저녁 식사 후 속쓰림...", "category": "SYM-05" },
+        { "date": "01-20", "severity": 1, "preview": "오늘은 컨디션이 괜찮은...", "category": "SYM-05" },
+        { "date": "01-13", "severity": 3, "preview": "야간 역류 증상 악화...", "category": "SYM-05" },
+        { "date": "12-15", "severity": 2, "preview": "명치 부위 불편감...", "category": "SYM-05" },
+        { "date": "12-08", "severity": 2, "preview": "식후 더부룩한 느낌...", "category": "SYM-05" },
+        { "date": "12-02", "severity": 3, "preview": "가슴 쓰림 심해서...", "category": "SYM-05" }
       ]
     },
     "ai_suggestions": {
