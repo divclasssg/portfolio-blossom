@@ -189,10 +189,11 @@ export default async function DoctorDashboard() {
     );
 
     // basicInfo: DB(신체 측정·기저질환) + 정적 JSON(검진·예방접종·의뢰서) 병합
+    // chronic_conditions: DB 우선, 비어있으면 정적 JSON 폴백 (데모 환경에서 미입력 환자 대응)
     const basicInfo = patient
         ? {
               ...sections.basic_info.data,
-              chronic_conditions: conditionNames,
+              chronic_conditions: conditionNames.length > 0 ? conditionNames : sections.basic_info.data.chronic_conditions,
               height: `${patient.height_cm}cm`,
               weight: `${patient.weight_kg}kg`,
               blood_type: patient.blood_type ?? null,
@@ -200,8 +201,10 @@ export default async function DoctorDashboard() {
           }
         : { ...sections.basic_info.data, chronic_conditions: [] };
 
-    // allergies: DB 데이터만 사용 (빈 배열이면 알레르기 경고 미표시)
-    const allergies = patient?.allergies ?? [];
+    // allergies: DB 우선, 비어있으면 정적 JSON 폴백 (데모 환경에서 미입력 환자 대응)
+    const allergies = (patient?.allergies ?? []).length > 0
+        ? patient.allergies
+        : sections.allergies.items;
 
     // chief complaint: sessions.chief_complaint 우선, 폴백 → 정적 JSON
     const chiefComplaint = liveData?.chiefComplaint ?? sections.chief_complaint;
