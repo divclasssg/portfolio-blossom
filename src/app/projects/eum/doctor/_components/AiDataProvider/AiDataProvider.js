@@ -59,6 +59,9 @@ export default function AiDataProvider({
                 return res.json();
             })
             .then((data) => {
+                if (!data.suggestions?.suggestions) {
+                    console.warn('[AiDataProvider] suggestions 배열 누락:', JSON.stringify(data.suggestions)?.slice(0, 200));
+                }
                 setBriefing(data.briefing || fallbackBriefing);
                 setSuggestions(data.suggestions || fallbackSuggestions);
             })
@@ -116,8 +119,8 @@ export default function AiDataProvider({
                 <AiBriefing briefing={activeBriefing} />
 
                 <AiSuggestions
-                    suggestions={activeSuggestions.suggestions}
-                    modelVersion={activeSuggestions.model_version}
+                    suggestions={activeSuggestions?.suggestions ?? fallbackSuggestions.suggestions}
+                    modelVersion={activeSuggestions?.model_version ?? fallbackSuggestions.model_version}
                 />
 
                 {/* AI 경고 — 닫기 불가, 영구 노출 */}

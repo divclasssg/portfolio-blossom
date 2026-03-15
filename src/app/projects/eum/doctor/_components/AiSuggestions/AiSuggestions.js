@@ -23,7 +23,12 @@ const JUDGMENT_OPTIONS = [
 // "진단", "확진" 표현 금지 — 참고 키워드로 표시 (CLAUDE.md §금지사항)
 export default function AiSuggestions({ suggestions, modelVersion }) {
     const { open: openDataModal } = usePatientDataModal();
-    const [orderedSuggestions, setOrderedSuggestions] = useState(suggestions);
+    const [orderedSuggestions, setOrderedSuggestions] = useState(suggestions || []);
+
+    // prop 변경 시 동기화 (파이프라인 완료 후 suggestions가 뒤늦게 도착하는 경우)
+    useEffect(() => {
+        if (suggestions) setOrderedSuggestions(suggestions);
+    }, [suggestions]);
     const [judgments, setJudgments] = useState({});
     const [openDropdown, setOpenDropdown] = useState(null);
     const [expandedItem, setExpandedItem] = useState(null);
