@@ -119,8 +119,10 @@ $handle-corner: 10px;
 
 // PatientProfile 래퍼 — 스크롤 시 border-bottom 표시
 .profile-wrapper {
+    position: relative;;
     border-bottom: 1px solid transparent;
     transition: border-color 0.15s ease;
+    z-index: 100;
 
     &--scrolled {
         border-bottom-color: t.$neutral-border;

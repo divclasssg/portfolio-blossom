@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './AiPatientSummary.module.scss';
 import { AiIcon } from '../../../_components/icons';
+import AiWarningBanner from '../AiWarningBanner/AiWarningBanner';
 
 // D-001 섹션 4: AI 쉬운말 변환 결과 — 의사가 직접 편집 가능
 export default function AiPatientSummary({ plainText, modelVersion }) {
@@ -37,7 +38,7 @@ export default function AiPatientSummary({ plainText, modelVersion }) {
     return (
         <section className="section">
             <div className="section-content">
-                <div className="section-header">
+                <div className={`section-header ${styles['section-header']}`}>
                     <AiIcon size={24} />
                     <h2 className="section-title">AI Patient Summary</h2>
                 </div>
@@ -75,6 +76,8 @@ export default function AiPatientSummary({ plainText, modelVersion }) {
                         </>
                     )}
                 </div>
+                {/* 섹션 9: AI 경고 — 닫기 불가, 영구 노출 */}
+                <AiWarningBanner warnings={resultWarnings} />
             </div>
         </section>
     );

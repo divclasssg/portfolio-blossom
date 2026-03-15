@@ -13,7 +13,7 @@
 }
 
 .subsection-title {
-    font-size: t.$fs-regular;
+    font-size: t.$fs-subtitle;
     font-weight: 600;
     color: t.$text-primary;
     flex: 1;
@@ -213,7 +213,7 @@
 
 // 아코디언 상세 영역
 .item-detail {
-    padding: 6px 0 2px 24px; // drag(16) + gap(8) = 24px
+    padding: 16px 0 2px 24px; // drag(16) + gap(8) = 24px
 }
 
 .evidence-list {
@@ -226,7 +226,7 @@
 
 .evidence-chip {
     font-size: t.$fs-small;
-    color: t.$text-secondary;
+    color: t.$text-subtle;
     background: t.$neutral-bg;
     padding: 2px 8px;
     border-radius: 6px;
@@ -235,7 +235,7 @@
 .clinical-note {
     font-size: t.$fs-small;
     line-height: 1.55;
-    color: t.$text-secondary;
+    color: t.$text-primary;
     word-break: keep-all;
 }
 
@@ -248,8 +248,8 @@
 
 // 목록 상단 안내 문구
 .list-guide {
-    font-size: t.$fs-small;
-    color: t.$text-muted;
+    font-size: t.$fs-regular;
+    color: t.$text-subtle;
     margin-top: 12px;
     margin-bottom: 4px;
 }
@@ -257,7 +257,7 @@
 // confidence 범례
 .confidence-legend {
     font-size: t.$fs-small;
-    color: t.$text-muted;
+    color: t.$text-subtle;
     display: flex;
     align-items: center;
     gap: 12px;

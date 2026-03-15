@@ -1,5 +1,24 @@
 @use '../../_styles/tokens' as t;
 
+// 제목 행: 배지를 우측에 배치하기 위한 flex
+.title-row {
+    display: flex;
+    align-items: center;
+}
+
+// 읽기전용 배지
+.readonly-badge {
+    margin-left: auto;
+    font-size: t.$fs-small;
+    font-weight: 500;
+    line-height: 1;
+    color: t.$text-secondary;
+    background: t.$neutral-bg;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0;
+}
+
 // 와이어프레임: Roboto 400 16px, lineHeight 1.5em, letterSpacing 1.5%
 .findings {
     font-size: t.$fs-body;

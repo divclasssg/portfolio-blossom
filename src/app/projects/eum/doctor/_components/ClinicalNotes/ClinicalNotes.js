@@ -5,7 +5,10 @@ export default function ClinicalNotes({ findings }) {
     return (
         <section className="section">
             <div className="section-content">
-                <h2 className="section-title">Clinical Notes</h2>
+                <h2 className={`section-title ${styles['title-row']}`}>
+                    Clinical Notes
+                    <span className={styles['readonly-badge']}>읽기전용</span>
+                </h2>
                 <div className="card">
                     <p className={styles.findings}>{findings}</p>
                 </div>

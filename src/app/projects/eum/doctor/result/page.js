@@ -144,8 +144,7 @@ export default async function ResultPage() {
             {/* 섹션 8: 다음 방문 */}
             <NextVisit date={resultPackage.next_visit_date} />
 
-            {/* 섹션 9: AI 경고 — 닫기 불가, 영구 노출 */}
-            <AiWarningBanner warnings={resultWarnings} />
+            
         </DoctorPanel>
         </PatientDataModalProvider>
         </>

@@ -1,5 +1,9 @@
 @use '../../_styles/tokens' as t;
 
+.section-header {
+    margin-bottom: 4px;
+}
+
 .ai-icon {
     display: flex;
     align-items: center;
@@ -18,6 +22,7 @@
     border: 1px solid t.$neutral-border;
     border-radius: 16px;
     padding: 16px;
+    margin-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 10px;

@@ -47,9 +47,16 @@ $text-dark: #374151; // gray-700 — 경고 배너 텍스트
 
 // 타이포그래피 — 폰트 사이즈 (이 4단계만 사용)
 $fs-title: 18px; // 섹션 제목, 환자명
+$fs-subtitle: 16px; // 부제목, 보조 설명
 $fs-body: 16px; // 본문, 소견, 처방
 $fs-regular: 14px; // 일반 텍스트, 버튼, 캡션
 $fs-small: 12px; // 라벨, 배지, 태그, 범례
+
+// line-height
+$line-height-title: 1.4;
+$line-height-body: 1.5;
+$line-height-regular: 1.5;
+$line-height-small: 1.4;
 
 // 타이포그래피 — 폰트 shorthand
 $font-title:
