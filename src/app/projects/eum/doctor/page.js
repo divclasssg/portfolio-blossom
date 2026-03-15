@@ -262,6 +262,8 @@ export default async function DoctorDashboard() {
             {/* D-F12 증상 타임라인 모달 — DoctorPanel 형제, position:fixed로 전체 뷰포트 커버 */}
             <PatientDataModal
                 patient={dashboardState.patient_summary}
+                chronicConditions={basicInfo.chronic_conditions}
+                allergies={allergies}
                 chartData={timelineChartData}
                 liveSymptoms={liveData?.symptoms}
             />

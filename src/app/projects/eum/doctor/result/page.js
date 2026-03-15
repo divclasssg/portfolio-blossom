@@ -1,6 +1,7 @@
 import resultPackage from '../../_references/data/doctor/07_result_package.json';
 import aiWarnings from '../../_references/data/doctor/08_ai_warnings.json';
 import dashboardState from '../../_references/data/doctor/03_dashboard_state.json';
+import timelineChartData from '../../_references/data/doctor/06_timeline_chart_data.json';
 import { getPatientId } from '../../_lib/getPatientId';
 
 import { PatientDataModalProvider } from '../_components/PatientDataModal/PatientDataModalContext';
@@ -14,6 +15,7 @@ import Prescription from '../_components/Prescription/Prescription';
 import Referral from '../_components/Referral/Referral';
 import NextVisit from '../_components/NextVisit/NextVisit';
 import AiWarningBanner from '../_components/AiWarningBanner/AiWarningBanner';
+import PatientDataModal from '../_components/PatientDataModal/PatientDataModal';
 import ResultFooterCta from '../_components/ResultFooterCta/ResultFooterCta';
 
 export const metadata = {
@@ -145,8 +147,15 @@ export default async function ResultPage() {
             {/* 섹션 8: 다음 방문 */}
             <NextVisit date={resultPackage.next_visit_date} />
 
-            
+
         </DoctorPanel>
+
+        <PatientDataModal
+            patient={patientSummary}
+            chronicConditions={chronicConditions}
+            allergies={allergies}
+            chartData={timelineChartData}
+        />
         </PatientDataModalProvider>
         </>
     );

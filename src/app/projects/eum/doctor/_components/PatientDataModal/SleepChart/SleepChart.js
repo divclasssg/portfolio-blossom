@@ -98,7 +98,7 @@ export default function SleepChart({ data, averageHours, symptomDays, xTicks, da
                 width={32}
             />
 
-            <Tooltip content={<SleepTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
+            <Tooltip content={<SleepTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} isAnimationActive={false} />
 
             {/* 평균 수면시간 기준선 — Badge 형태 라벨 */}
             <ReferenceLine

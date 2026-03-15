@@ -119,7 +119,7 @@ export default function BpChart({ data, symptomDays, xTicks, dateFormatter }) {
                 width={36}
             />
 
-            <Tooltip content={<BpTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
+            <Tooltip content={<BpTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} isAnimationActive={false} />
 
             {/* 맥압 밴드 — 스택 Area로 이완기~수축기 구간 채움 */}
             {/* base: 이완기까지 투명 오프셋, band: 맥압(수축기-이완기) 높이 */}

@@ -95,7 +95,7 @@ export default function NrsChart({ data, symptomDays, xTicks, dateFormatter }) {
                 width={28}
             />
 
-            <Tooltip content={<NrsTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
+            <Tooltip content={<NrsTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} isAnimationActive={false} />
 
             <Bar dataKey="severity" radius={[3, 3, 0, 0]} maxBarSize={24}>
                 {data.map((entry) => (

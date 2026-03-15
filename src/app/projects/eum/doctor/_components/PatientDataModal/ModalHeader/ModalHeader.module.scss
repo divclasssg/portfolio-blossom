@@ -53,18 +53,101 @@
 .badges {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
+}
+
+// ICD-10 코드 뱃지 — 어두운 배경에 맞춤
+.icd-code {
+    font-weight: 500;
+    padding: 2px 6px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 // Chip 오버라이드: 모달 헤더 — 더 큰 사이즈, 어두운 배경
 .modal-chip {
     height: 24px;
     padding: 0 12px;
-    background: t.$neutral-border;
-    border-color: t.$neutral-divider;
+    background: transparent;
+    border-color: #fff;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
     font-weight: 400;
+    color: #fff;
+}
+
+// 알레르기 칩 — danger variant 오버라이드 (어두운 배경)
+.modal-chip-danger {
+    height: 24px;
+    padding: 0 12px;
+    background: rgba(255, 59, 48, 0.2);
+    border-color: rgba(255, 59, 48, 0.5);
+    font-family: var(--font-noto-kr), sans-serif;
+    font-size: t.$fs-regular;
+    font-weight: 400;
+    color: #ff6961;
+}
+
+// 칩+툴팁 래퍼
+.chip-wrapper {
+    position: relative;
+
+    &:hover,
+    &:focus-within {
+        .tooltip,
+        .tooltip-danger {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+// 툴팁 공통 기반
+%tooltip-base {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 160px;
+    max-width: 260px;
+    max-height: 240px;
+    overflow-y: auto;
+    background: t.$panel-bg;
+    border: 1px solid t.$neutral-border;
+    border-radius: 10px;
+    padding: 8px 12px;
+    list-style: none;
+    margin: 0;
+    font-size: t.$fs-small;
+    line-height: t.$line-height-small;
+    box-shadow: t.$panel-shadow;
+    z-index: 200;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.12s;
+    pointer-events: none;
+
+    li + li {
+        border-top: 1px solid t.$neutral-border;
+        padding-top: 6px;
+        margin-top: 6px;
+    }
+}
+
+.tooltip {
+    @extend %tooltip-base;
+    color: t.$text-primary;
+}
+
+.tooltip-danger {
+    @extend %tooltip-base;
+    color: t.$color-danger;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .close-btn {

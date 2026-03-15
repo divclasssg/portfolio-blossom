@@ -22,7 +22,7 @@ function symptomToChartItem(record) {
     };
 }
 
-export default function PatientDataModal({ patient, chartData, liveSymptoms }) {
+export default function PatientDataModal({ patient, chronicConditions, allergies, chartData, liveSymptoms }) {
     const { isOpen, close, activeTab, setActiveTab } = usePatientDataModal();
 
     // 필터 상태 — FilterBar → ChartGrid 연결
@@ -120,7 +120,7 @@ export default function PatientDataModal({ patient, chartData, liveSymptoms }) {
                 aria-label="환자 데이터 — 증상 타임라인"
                 tabIndex={-1}
             >
-                <ModalHeader patient={patient} onClose={close} />
+                <ModalHeader patient={patient} chronicConditions={chronicConditions} allergies={allergies} onClose={close} />
                 <TabBar activeTab={activeTab} onTabChange={handleTabChange} />
 
                 {/* 필터 — 증상: 기간+카테고리, 진료이력: 기간만 */}

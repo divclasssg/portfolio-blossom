@@ -162,7 +162,7 @@ export default function HrChart({ data, symptomDays, xTicks, dateFormatter }) {
                 width={32}
             />
 
-            <Tooltip content={<HrTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
+            <Tooltip content={<HrTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} isAnimationActive={false} />
 
             {/* 투명 base (0→q1) — boxSpan의 y 오프셋용 */}
             <Bar dataKey="q1" stackId="hr" fill="none" legendType="none" />
