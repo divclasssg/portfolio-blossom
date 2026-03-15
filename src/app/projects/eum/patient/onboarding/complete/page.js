@@ -127,7 +127,7 @@ export default function CompletePage() {
                         준비가 완료되었어요!
                     </h1>
                     <p className={styles['desc']}>
-                        이음과 함께 건강한 하루를 시작해 보세요. 증상을 기록하고, 담당 의료진과 더
+                        Eum과 함께 건강한 하루를 시작해 보세요. 증상을 기록하고, 담당 의료진과 더
                         잘 소통할 수 있어요.
                     </p>
 
@@ -166,7 +166,7 @@ export default function CompletePage() {
                             disabled={saveStatus === 'saving'}
                             onClick={() => router.push('/projects/eum/patient')}
                         >
-                            {saveStatus === 'saving' ? '저장 중...' : '이음 시작하기'}
+                            {saveStatus === 'saving' ? '저장 중...' : 'Eum 시작하기'}
                         </CtaButton>
                     )}
                 </div>

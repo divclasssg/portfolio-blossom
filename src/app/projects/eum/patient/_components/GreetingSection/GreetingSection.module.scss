@@ -5,9 +5,9 @@
 }
 
 .text {
-    font-size: 18px;
+    font-size: $fs-title;
     font-weight: 700;
-    line-height: 1.4;
+    line-height: $line-height-title;
     color: $text-primary;
     margin: 0;
 }

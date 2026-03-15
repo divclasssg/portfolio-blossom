@@ -20,10 +20,10 @@ export default function OnboardingAppBar({
             <div className={styles['app-bar-inner']}>
                 {variant === 'progress' && backHref && (
                     <Link href={backHref} className={styles['back-btn']} aria-label="뒤로 가기">
-                        <ArrowIcon variant="left" size={20} />
+                        <ArrowIcon variant="left" size={28} />
                     </Link>
                 )}
-                <span className={styles['logo']}>이음</span>
+                <span className={styles['logo']}>Eum</span>
             </div>
 
             {variant === 'progress' && (

@@ -23,7 +23,7 @@
 }
 
 .card-date {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-secondary;
 }
 
@@ -31,7 +31,7 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: 12px;
+    font-size: $fs-small;
     font-weight: 500;
     color: $text-primary;
 }
@@ -45,8 +45,8 @@
 }
 
 .card-text {
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: $fs-regular;
+    line-height: $line-height-body;
     color: $text-primary;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -57,7 +57,7 @@
 
 .card-location {
     display: block;
-    font-size: 12px;
+    font-size: $fs-small;
     color: $text-secondary;
     margin-top: 6px;
 }

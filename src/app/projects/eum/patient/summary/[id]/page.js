@@ -13,9 +13,9 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }) {
     const { id } = await params;
     const result = consultationResults.consultation_results.find((r) => r.session_id === id);
-    if (result) return { title: `${result.visit_date} 진료 요약 — 이음` };
+    if (result) return { title: `${result.visit_date} 진료 요약 — Eum` };
     // DB 결과일 경우 기본 제목
-    return { title: '진료 요약 — 이음' };
+    return { title: '진료 요약 — Eum' };
 }
 
 const sessionMap = Object.fromEntries(

@@ -10,7 +10,7 @@ const REQUIRED_ITEMS = [
     {
         id: 'sandbox_notice',
         label: '실증특례 이용자 고지 확인',
-        detail: '마이데이터 기반 맞춤형 만성질환 및 중증이환 예방·관리 서비스(이음)의 규제특례(실증특례) 적용에 관한 고지 내용을 확인하였습니다. 유효기간: 사업 개시일로부터 2026.3.13.까지',
+        detail: '마이데이터 기반 맞춤형 만성질환 및 중증이환 예방·관리 서비스(Eum)의 규제특례(실증특례) 적용에 관한 고지 내용을 확인하였습니다. 유효기간: 사업 개시일로부터 2026.3.13.까지',
     },
     {
         id: 'privacy',
@@ -20,7 +20,7 @@ const REQUIRED_ITEMS = [
     {
         id: 'terms',
         label: '서비스 이용약관 동의',
-        detail: '이음 서비스 이용에 관한 약관',
+        detail: 'Eum 서비스 이용에 관한 약관',
     },
     {
         id: 'sensitive',
@@ -38,7 +38,7 @@ const OPTIONAL_ITEMS = [
     {
         id: 'marketing',
         label: '마케팅 정보 수신 동의',
-        detail: '이메일, 앱 알림을 통한 이음 소식 및 이벤트 안내',
+        detail: '이메일, 앱 알림을 통한 Eum 소식 및 이벤트 안내',
     },
     {
         id: 'research',
@@ -87,7 +87,7 @@ export default function ConsentsPage() {
             />
             <main className="page">
                 <section className="content" aria-labelledby="consent-title">
-                    <h1 id="consent-title" className="title">
+                    <h1 id="consent-title" className="title onboarding">
                         서비스 이용에
                         <br />
                         동의해 주세요

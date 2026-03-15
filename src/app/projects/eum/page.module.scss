@@ -1,6 +1,6 @@
 .page {
     min-height: 100vh;
-    background: #f2f2f7;
+    background: #fff;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -82,9 +82,11 @@
     color: #fff;
     border: none;
     border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 16px;
     font-weight: 600;
-    text-align: left;
     cursor: pointer;
     transition: opacity 0.2s;
 

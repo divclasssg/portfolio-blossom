@@ -7,7 +7,7 @@ export default function AppBar({ backHref, unreadCount = 0 }) {
         <header className={styles['app-bar']} role="banner">
             {backHref && (
                 <Link href={backHref} className={styles['back-btn']} aria-label="뒤로 가기">
-                    <ArrowIcon variant="left" size={20} />
+                    <ArrowIcon variant="left" size={24} />
                 </Link>
             )}
             <span className={styles['title']}>Eum</span>

@@ -1,7 +1,7 @@
 import styles from './layout.module.scss';
 
 export const metadata = {
-    title: '이음 — 온보딩',
+    title: 'Eum — 온보딩',
 };
 
 export default function OnboardingLayout({ children }) {

@@ -20,7 +20,7 @@
 }
 
 .title {
-    font-size: 22px;
+    font-size: $fs-title;
     font-weight: 700;
     color: $text-primary;
     margin: 0;
@@ -33,13 +33,13 @@
 }
 
 .scope-notice {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
     margin: 0;
 }
 
 .security-notice {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-secondary;
     margin: 0;
 }

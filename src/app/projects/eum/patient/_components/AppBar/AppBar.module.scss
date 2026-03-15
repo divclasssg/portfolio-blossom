@@ -14,7 +14,7 @@
 }
 
 .title {
-    font-size: 17px;
+    font-size: $fs-title;
     font-weight: 700;
     color: $text-primary;
     letter-spacing: -0.02em;
@@ -70,7 +70,7 @@
     padding: 0 4px;
     background: $color-danger;
     color: #fff;
-    font-size: 10px;
+    font-size: $fs-small;
     font-weight: 700;
     border-radius: 8px;
     display: flex;

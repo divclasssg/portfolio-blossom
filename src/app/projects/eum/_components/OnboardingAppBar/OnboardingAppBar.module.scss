@@ -4,8 +4,8 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: $card-bg;
-    border-bottom: 1px solid $divider-color;
+    background: $app-bar-bg;
+    backdrop-filter: $app-bar-backdrop-filter;
 }
 
 .app-bar-inner {
@@ -18,13 +18,16 @@
 }
 
 .logo {
-    font-size: 17px;
+    font-size: 24px;
     font-weight: 700;
     color: $text-primary;
     letter-spacing: -0.02em;
 }
 
-.back-btn {
+.back-btn {    
+    border-radius: 50%;
+    background: $app-bar-bg;
+    backdrop-filter: $app-bar-backdrop-filter;
     position: absolute;
     left: $section-padding-x;
     display: flex;

@@ -18,7 +18,7 @@
 }
 
 .question {
-    font-size: 18px;
+    font-size: $fs-title;
     font-weight: 700;
     color: $text-primary;
     text-align: center;
@@ -37,14 +37,14 @@
 }
 
 .hospital-name {
-    font-size: 18px;
+    font-size: $fs-title;
     font-weight: 700;
     color: $text-primary;
     margin: 0;
 }
 
 .address {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
     margin: 0;
     display: flex;
@@ -70,7 +70,7 @@
     background: #000;
     color: #fff;
     border-radius: 14px;
-    font-size: 16px;
+    font-size: $fs-body;
     font-weight: 700;
     text-decoration: none;
     text-align: center;
@@ -85,7 +85,7 @@
     display: flex;
     align-items: center;
     gap: 2px;
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
     background: none;
     border: none;

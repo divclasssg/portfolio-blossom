@@ -5,7 +5,7 @@ import HospitalCodeInput from '../../_components/HospitalCodeInput/HospitalCodeI
 import styles from './page.module.scss';
 
 export const metadata = {
-    title: 'P-016 병원 찾기 — 이음',
+    title: 'P-016 병원 찾기 — Eum',
 };
 
 export default function FindHospitalPage() {

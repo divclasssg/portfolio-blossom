@@ -90,9 +90,9 @@ export default function SandboxPage() {
 
                         <div className={styles['notice-body']}>
                             <p className={styles['notice-service']}>
-                                마이데이터 기반 맞춤형 만성질환 및 중증이환 예방·관리 서비스(이음)
+                                마이데이터 기반 맞춤형 만성질환 및 중증이환 예방·관리 서비스(Eum)
                             </p>
-                            <p className={styles['notice-org']}>이음 의료 컨소시엄</p>
+                            <p className={styles['notice-org']}>Eum 의료 컨소시엄</p>
 
                             <p className={styles['notice-section']}>1. 규제특례 내용</p>
                             <p className={styles['notice-item']}>

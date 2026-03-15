@@ -10,8 +10,8 @@ export default function WelcomePage() {
     return (
         <main className={styles['page']}>
             {/* 로고 영역 */}
-            <section className={styles['hero']} aria-label="이음 앱 소개">
-                <h1 className={styles['app-name']} aria-label="앱 이름: 이음">
+            <section className={styles['hero']} aria-label="Eum 앱 소개">
+                <h1 className={styles['app-name']} aria-label="앱 이름: Eum">
                     Eum
                 </h1>
             </section>

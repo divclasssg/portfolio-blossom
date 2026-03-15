@@ -22,7 +22,7 @@
     flex-direction: column;
     gap: 16px;
     font-size: $fs-body;
-    line-height: 1.6;
+    line-height: $line-height-body;
     color: $text-primary;
 
     strong {

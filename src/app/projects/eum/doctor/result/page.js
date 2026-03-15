@@ -19,7 +19,7 @@ import PatientDataModal from '../_components/PatientDataModal/PatientDataModal';
 import ResultFooterCta from '../_components/ResultFooterCta/ResultFooterCta';
 
 export const metadata = {
-    title: 'D-001 결과 확인 및 전송 — 이음',
+    title: 'D-001 결과 확인 및 전송 — Eum',
 };
 
 // Supabase에서 환자 정보 조회 (실패 시 null → 정적 JSON 폴백)

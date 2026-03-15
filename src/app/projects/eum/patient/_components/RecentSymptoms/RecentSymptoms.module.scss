@@ -5,7 +5,7 @@
 }
 
 .section-title {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
     margin: 0 0 10px;
@@ -19,7 +19,7 @@
 }
 
 .summary-text {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-primary;
 
     strong {
@@ -33,7 +33,7 @@
 }
 
 .link {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $color-primary;
     text-decoration: none;
     white-space: nowrap;
@@ -65,14 +65,14 @@
 }
 
 .recent-date {
-    font-size: 12px;
+    font-size: $fs-small;
     color: $text-secondary;
 }
 
 .recent-preview {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-primary;
-    line-height: 1.5;
+    line-height: $line-height-body;
     margin: 0;
 }
 
@@ -83,12 +83,12 @@
 }
 
 .trend-label {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
 }
 
 .trend-value {
-    font-size: 14px;
+    font-size: $fs-regular;
     font-weight: 600;
     color: $text-primary;
 }

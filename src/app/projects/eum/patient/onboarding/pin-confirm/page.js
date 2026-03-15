@@ -130,7 +130,7 @@ export default function PinConfirmPage() {
                             있습니다. 언제든지 설정에서 변경할 수 있어요.
                         </p>
                         <p className={styles['modal-note']}>
-                            생체 정보는 기기에만 저장되며, 이음 서버로 전송되지 않습니다.
+                            생체 정보는 기기에만 저장되며, Eum 서버로 전송되지 않습니다.
                         </p>
                         <div className={styles['modal-footer']}>
                             <button

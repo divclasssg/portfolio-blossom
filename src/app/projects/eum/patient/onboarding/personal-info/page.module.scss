@@ -42,7 +42,7 @@
     border: 1.5px solid $card-border;
     border-radius: $card-radius;
     background: $card-bg;
-    font-size: 16px;
+    font-size: $fs-body;
     font-weight: 500;
     font-family: inherit;
     color: $text-primary;
@@ -76,7 +76,7 @@
     color: #ffffff;
     border: none;
     border-radius: $card-radius;
-    font-size: 14px;
+    font-size: $fs-regular;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;

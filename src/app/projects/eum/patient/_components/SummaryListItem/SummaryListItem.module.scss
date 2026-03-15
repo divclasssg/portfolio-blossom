@@ -21,7 +21,7 @@
 .meta {
     grid-column: 1;
     grid-row: 1;
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-secondary;
     margin: 0;
 }
@@ -29,7 +29,7 @@
 .diagnosis {
     grid-column: 1;
     grid-row: 2;
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 500;
     color: $text-primary;
     margin: 0;

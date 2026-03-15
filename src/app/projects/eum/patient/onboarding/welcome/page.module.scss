@@ -29,14 +29,14 @@
 }
 
 .logo-text {
-    font-size: 30px;
+    font-size: $fs-title;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: -0.03em;
 }
 
 .app-name {
-    font-size: 32px;
+    font-size: $fs-title;
     font-weight: 700;
     color: $text-primary;
     letter-spacing: -0.02em;

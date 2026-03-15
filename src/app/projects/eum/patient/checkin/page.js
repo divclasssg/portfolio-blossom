@@ -3,7 +3,7 @@ import AppBar from '../_components/AppBar/AppBar';
 import HospitalConfirm from '../_components/HospitalConfirm/HospitalConfirm';
 
 export const metadata = {
-    title: 'P-015 병원 확인 — 이음',
+    title: 'P-015 병원 확인 — Eum',
 };
 
 export default function CheckinPage() {

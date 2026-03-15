@@ -5,7 +5,7 @@
 }
 
 .code-label {
-    font-size: 16px;
+    font-size: $fs-body;
     font-weight: 700;
     color: $text-primary;
     margin: 0 0 16px;
@@ -16,7 +16,7 @@
     height: 56px;
     border: 1.5px solid $card-border;
     border-radius: $card-radius;
-    font-size: 24px;
+    font-size: $fs-title;
     font-weight: 600;
     text-align: center;
     letter-spacing: 0.15em;
@@ -46,7 +46,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
+    font-size: $fs-small;
     color: $color-danger;
     margin: 8px 0 0;
 }
@@ -58,7 +58,7 @@
     color: #fff;
     border: none;
     border-radius: $card-radius;
-    font-size: 17px;
+    font-size: $fs-body;
     font-weight: 600;
     margin-top: 16px;
     cursor: pointer;

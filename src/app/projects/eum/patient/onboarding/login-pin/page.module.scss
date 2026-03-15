@@ -13,12 +13,12 @@
     text-align: center;
 }
 
-// subtitle: 15px (글로벌: 14px)
+// subtitle: $fs-body (글로벌: $fs-regular)
 .subtitle {
-    font-size: 15px;
+    font-size: $fs-body;
 }
 
-// error: 15px (글로벌: 13px)
+// error: $fs-body (글로벌: $fs-small)
 .error {
-    font-size: 15px;
+    font-size: $fs-body;
 }

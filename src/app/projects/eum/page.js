@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.scss';
+import { ArrowIcon } from './_components/icons';
 
 export default function EumPage() {
     const [agreed, setAgreed] = useState(false);
@@ -11,7 +12,7 @@ export default function EumPage() {
     return (
         <main className={styles.page}>
             <div className={styles.container}>
-                <h1 className={styles.title}>이음 (Eum)</h1>
+                <h1 className={styles.title}>Eum (이음)</h1>
                 <p className={styles.subtitle}>AI 기반 의료 연속성 플랫폼</p>
 
                 {/* 면책 고지 카드 */}
@@ -42,21 +43,24 @@ export default function EumPage() {
                         disabled={!agreed}
                         onClick={() => router.push('/projects/eum/patient/onboarding/disclaimer')}
                     >
-                        온보딩 체험 →
+                        환자앱 온보딩
+                        <ArrowIcon variant="right" />
                     </button>
                     <button
                         className={styles['entry-button']}
                         disabled={!agreed}
                         onClick={() => router.push('/projects/eum/patient/onboarding/login-pin')}
                     >
-                        환자 앱 보기 →
+                        환자 앱
+                        <ArrowIcon variant="right" />
                     </button>
                     <button
                         className={styles['entry-button']}
                         disabled={!agreed}
                         onClick={() => router.push('/projects/eum/doctor')}
                     >
-                        의사 대시보드 →
+                        의사 대시보드
+                        <ArrowIcon variant="right" />
                     </button>
                 </div>
             </div>

@@ -36,7 +36,7 @@
 }
 
 .option-icon {
-    font-size: 32px;
+    font-size: $fs-title;
     flex-shrink: 0;
 }
 
@@ -48,13 +48,13 @@
 }
 
 .option-label {
-    font-size: 16px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
 }
 
 .option-desc {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-secondary;
 }
 

@@ -2,12 +2,12 @@ import './_styles/common.scss';
 import styles from './layout.module.scss';
 
 export const metadata = {
-    title: '이음 — 환자 앱',
+    title: 'Eum — 환자 앱',
     manifest: '/eum/patient/manifest.json',
     appleWebApp: {
         capable: true,
         statusBarStyle: 'default',
-        title: '이음',
+        title: 'Eum',
     },
 };
 

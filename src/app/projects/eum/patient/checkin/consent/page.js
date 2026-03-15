@@ -6,7 +6,7 @@ import CheckinScopeList from '../../_components/CheckinScopeList/CheckinScopeLis
 import CheckinActions from '../../_components/CheckinActions/CheckinActions';
 
 export const metadata = {
-    title: 'P-017 진료 체크인 — 이음',
+    title: 'P-017 진료 체크인 — Eum',
 };
 
 // ses_004: 서현내과의원 / 김도현 / 2026-02-17

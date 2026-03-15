@@ -29,13 +29,13 @@
 }
 
 .section-title {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
 }
 
 .required-badge {
-    font-size: 11px;
+    font-size: $fs-small;
     font-weight: 600;
     color: $color-primary;
     background: rgba($color-primary, 0.1);
@@ -44,7 +44,7 @@
 }
 
 .optional-badge {
-    font-size: 11px;
+    font-size: $fs-small;
     font-weight: 600;
     color: $text-secondary;
     background: rgba(0, 0, 0, 0.06);
@@ -82,7 +82,7 @@
     padding: 0 14px;
     border: 1.5px solid $card-border;
     border-radius: $card-radius;
-    font-size: 16px;
+    font-size: $fs-body;
     font-family: inherit;
     color: $text-primary;
     background: $card-bg;
@@ -104,7 +104,7 @@
 }
 
 .unit {
-    font-size: 15px;
+    font-size: $fs-body;
     color: $text-secondary;
     flex-shrink: 0;
 }
@@ -114,7 +114,7 @@
     padding: 0 14px;
     border: 1.5px solid $card-border;
     border-radius: $card-radius;
-    font-size: 16px;
+    font-size: $fs-body;
     font-family: inherit;
     color: $text-primary;
     background: $card-bg;
@@ -136,7 +136,7 @@
     color: #ffffff;
     border: none;
     border-radius: $card-radius;
-    font-size: 14px;
+    font-size: $fs-regular;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
@@ -174,7 +174,7 @@
     padding: 6px 10px;
     background: rgba($color-primary, 0.08);
     border-radius: 100px;
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-primary;
 }
 
@@ -187,7 +187,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    font-size: 16px;
+    font-size: $fs-body;
     line-height: 1;
     color: $text-secondary;
     display: flex;

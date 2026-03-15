@@ -12,7 +12,7 @@ import TabBar from './_components/TabBar/TabBar';
 import NewResultToast from './_components/NewResultToast/NewResultToast';
 
 export const metadata = {
-    title: 'P-018 홈 대시보드 — 이음',
+    title: 'P-018 홈 대시보드 — Eum',
 };
 
 // 환자 데이터가 업데이트될 때마다 반영
@@ -138,7 +138,7 @@ export default async function PatientHome() {
             <AppBar unreadCount={unreadCount} />
             <NewResultToast transmittedResults={transmittedResults} />
             <main className={styles['content']}>
-                <h1 className="sr-only">이음 홈</h1>
+                <h1 className="sr-only">Eum 홈</h1>
                 <GreetingSection greeting={greeting} />
                 <RecentSymptoms summary={dynamicSummary ?? homeDashboard.recent_symptoms_summary} />
                 <VitalsToday vitals={homeDashboard.vitals_today} wearableDevice={patientInfo?.wearable_device ?? null} />

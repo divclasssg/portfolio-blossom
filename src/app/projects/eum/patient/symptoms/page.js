@@ -6,7 +6,7 @@ import { getLatestSessionId } from '../../../../api/eum/_lib/getLatestSession';
 import SymptomsContent from '../_components/SymptomsContent/SymptomsContent';
 
 export const metadata = {
-    title: 'P-019 증상 기록 — 이음',
+    title: 'P-019 증상 기록 — Eum',
 };
 
 // DB 데이터가 업데이트될 때마다 반영

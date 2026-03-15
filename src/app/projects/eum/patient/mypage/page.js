@@ -2,7 +2,7 @@ import AppBar from '../_components/AppBar/AppBar';
 import TabBar from '../_components/TabBar/TabBar';
 import styles from './page.module.scss';
 
-export const metadata = { title: '마이페이지 — 이음' };
+export const metadata = { title: '마이페이지 — Eum' };
 
 export default function MyPage() {
     return (

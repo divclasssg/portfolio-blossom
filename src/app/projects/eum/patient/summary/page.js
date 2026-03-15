@@ -8,7 +8,7 @@ import TabBar from '../_components/TabBar/TabBar';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-    title: '진료 요약 — 이음',
+    title: '진료 요약 — Eum',
 };
 
 // session_id → hospital_name 매핑 (정적 JSON)

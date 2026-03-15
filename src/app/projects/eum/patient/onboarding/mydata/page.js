@@ -49,7 +49,7 @@ export default function MydataPage() {
                                 </span>
                                 <span id="mydata-detail" className={styles['consent-detail']}>
                                     국민건강보험공단 및 의료기관의 진료 이력, 처방 이력, 건강검진
-                                    결과를 이음 서비스에 제공하는 데 동의합니다.
+                                    결과를 Eum 서비스에 제공하는 데 동의합니다.
                                 </span>
                             </div>
                         </label>

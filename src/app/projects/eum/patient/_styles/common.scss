@@ -23,17 +23,22 @@
 // ── 타이포그래피 ────────────────────────────────────────────────────────────────
 
 .title {
-    font-size: 24px;
+    font-size: $fs-title;
     font-weight: 700;
     color: $text-primary;
     letter-spacing: -0.02em;
-    line-height: 1.3;
+    line-height: $line-height-title;
+
+    &.onboarding {
+        font-size: 24px;
+    }
 }
 
 .subtitle {
-    font-size: 14px;
+    font-size: $fs-subtitle;
+    font-weight:500;
     color: $text-secondary;
-    line-height: 1.5;
+    line-height: $line-height-body;
 }
 
 // ── 하단 고정 푸터 ──────────────────────────────────────────────────────────────
@@ -55,7 +60,7 @@
     color: #ffffff;
     border: none;
     border-radius: $card-radius;
-    font-size: 17px;
+    font-size: $fs-body;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
@@ -85,7 +90,7 @@
 }
 
 .label {
-    font-size: 14px;
+    font-size: $fs-regular;
     font-weight: 500;
     color: $text-secondary;
 }
@@ -96,7 +101,7 @@
     padding: 0 14px;
     border: 1.5px solid $card-border;
     border-radius: $card-radius;
-    font-size: 16px;
+    font-size: $fs-body;
     font-family: inherit;
     color: $text-primary;
     background: $card-bg;
@@ -121,15 +126,15 @@
 }
 
 .error {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $color-danger;
-    line-height: 1.4;
+    line-height: $line-height-title;
 }
 
 .hint {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-secondary;
-    line-height: 1.4;
+    line-height: $line-height-title;
 }
 
 // ── 홈 카드 ────────────────────────────────────────────────────────────────────

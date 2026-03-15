@@ -11,20 +11,20 @@
 }
 
 .hospital-name {
-    font-size: 17px;
+    font-size: $fs-title;
     font-weight: 600;
     color: $text-primary;
     margin: 0;
 }
 
 .doctor-name {
-    font-size: 15px;
+    font-size: $fs-body;
     color: $text-secondary;
     margin: 0;
 }
 
 .date {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
     margin: 0;
 }

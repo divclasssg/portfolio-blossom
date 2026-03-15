@@ -24,7 +24,7 @@
 }
 
 .hospital-name {
-    font-size: 16px;
+    font-size: $fs-body;
     font-weight: 700;
     color: $text-primary;
 }
@@ -34,13 +34,13 @@
     background: $badge-bg;
     border-radius: 999px;
     padding: 2px 8px;
-    font-size: 12px;
+    font-size: $fs-small;
     font-weight: 600;
     color: $text-secondary;
 }
 
 .address {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-secondary;
     display: flex;
     align-items: center;
@@ -57,7 +57,7 @@
     color: #fff;
     border-radius: 8px;
     padding: 10px 16px;
-    font-size: 14px;
+    font-size: $fs-regular;
     font-weight: 600;
     text-decoration: none;
 

@@ -19,7 +19,7 @@
 }
 
 .page-title {
-    font-size: 22px;
+    font-size: $fs-title;
     font-weight: 700;
     color: $text-primary;
     margin: 0;
@@ -41,7 +41,7 @@
 
 // 진료 정보 헤더
 .visit-meta {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
     margin: 0;
@@ -55,7 +55,7 @@
 }
 
 .section-title {
-    font-size: 17px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
     margin: 0;
@@ -74,22 +74,22 @@
 
 // 검사 결과
 .diagnosis {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
     margin: 0;
 }
 
 .doctor-note {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: $fs-regular;
+    line-height: $line-height-body;
     color: $text-primary;
     margin: 0;
 }
 
 // 검사 결과 (의료 기록)
 .lab-meta {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-secondary;
     margin: 0;
 }
@@ -111,12 +111,12 @@
 }
 
 .lab-name {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
 }
 
 .lab-value {
-    font-size: 14px;
+    font-size: $fs-regular;
     font-weight: 500;
     color: $text-primary;
     text-align: right;
@@ -152,48 +152,48 @@
 }
 
 .rx-name {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 500;
     color: $text-primary;
 }
 
 .rx-days {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
 }
 
 .rx-note {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-secondary;
     margin: 0;
 }
 
 // 타과 의뢰
 .referral-hospital {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
     margin: 0;
 }
 
 .referral-reason {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
     margin: 0;
 }
 
 .referral-date {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
     margin: 0;
 }
 
 // 다음 단계
 .next-item {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-primary;
     margin: 0;
-    line-height: 1.5;
+    line-height: $line-height-body;
 }
 
 // AI 면책
@@ -205,15 +205,15 @@
 }
 
 .ai-disclaimer-text {
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: $fs-small;
+    line-height: $line-height-body;
     color: #7a5f00;
     margin: 0;
 }
 
 .ai-source {
     color: $text-secondary;
-    font-size: 12px;
+    font-size: $fs-small;
 }
 
 // 확인 버튼
@@ -224,7 +224,7 @@
     background: $color-dark;
     color: #ffffff;
     border-radius: $card-radius;
-    font-size: 17px;
+    font-size: $fs-body;
     font-weight: 600;
     text-align: center;
     line-height: 52px;

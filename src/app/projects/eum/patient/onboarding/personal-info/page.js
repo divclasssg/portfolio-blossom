@@ -169,7 +169,7 @@ export default function PersonalInfoPage() {
             />
             <main className={`page ${styles.page}`}>
                 <section className={`content ${styles.content}`} aria-labelledby="personal-info-title">
-                    <h1 id="personal-info-title" className="title">
+                    <h1 id="personal-info-title" className="title onboarding">
                         기본 정보를
                         <br />
                         입력해 주세요

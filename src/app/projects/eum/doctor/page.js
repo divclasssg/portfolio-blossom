@@ -19,7 +19,7 @@ import PatientDataModal from './_components/PatientDataModal/PatientDataModal';
 import AiDataProvider from './_components/AiDataProvider/AiDataProvider';
 
 export const metadata = {
-    title: 'D-000 의사 대시보드 — 이음',
+    title: 'D-000 의사 대시보드 — Eum',
 };
 
 // 의사가 대시보드를 열 때마다 Supabase에서 최신 데이터 조회
@@ -216,7 +216,7 @@ export default async function DoctorDashboard() {
 
     return (
         <>
-        <h1 className="sr-only">이음 의사 대시보드</h1>
+        <h1 className="sr-only">Eum 의사 대시보드</h1>
         <PatientDataModalProvider>
             {/* 이음 플로팅 패널 — DoctorPanel이 position:fixed 및 인터랙션 담당 */}
             <DoctorPanel

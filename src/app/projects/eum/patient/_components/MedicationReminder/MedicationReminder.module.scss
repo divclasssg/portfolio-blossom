@@ -5,7 +5,7 @@
 }
 
 .section-title {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
     margin: 0 0 10px;
@@ -20,13 +20,13 @@
 }
 
 .med-name {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
 }
 
 .badge {
-    font-size: 12px;
+    font-size: $fs-small;
     font-weight: 500;
     color: $text-secondary;
     background: $badge-bg;
@@ -46,7 +46,7 @@
 }
 
 .next-time {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
     margin: 0;
 }
@@ -58,7 +58,7 @@
 }
 
 .active-count {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-primary;
     margin: 0;
 

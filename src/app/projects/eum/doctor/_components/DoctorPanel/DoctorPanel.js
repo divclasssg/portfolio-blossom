@@ -135,7 +135,7 @@ export default function DoctorPanel({
             <button
                 className={styles['reopen-btn']}
                 onClick={() => setIsVisible(true)}
-                aria-label="이음 패널 열기"
+                aria-label="Eum 패널 열기"
             >
                 Eum
             </button>
@@ -155,7 +155,7 @@ export default function DoctorPanel({
                 ...(height !== null ? { height } : {}),
                 opacity: opacity / 100,
             }}
-            aria-label="이음 의사 보조 패널"
+            aria-label="Eum 의사 보조 패널"
         >
             {/* 8방향 리사이즈 핸들 */}
             {RESIZE_DIRS.map((dir) => (

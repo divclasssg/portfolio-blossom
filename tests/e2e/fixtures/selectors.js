@@ -3,9 +3,9 @@
 
 export const SELECTORS = {
     // DoctorPanel
-    panel: '[aria-label="이음 의사 보조 패널"]',
+    panel: '[aria-label="Eum 의사 보조 패널"]',
     panelClose: '[aria-label="패널 닫기"]',
-    panelOpen: '[aria-label="이음 패널 열기"]',
+    panelOpen: '[aria-label="Eum 패널 열기"]',
     panelPin: '[aria-label="패널 위치 고정"], [aria-label="패널 고정 해제"]',
 
     // PanelHeader

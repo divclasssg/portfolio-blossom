@@ -5,7 +5,7 @@
 }
 
 .section-title {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
     margin: 0 0 10px;
@@ -20,12 +20,12 @@
 }
 
 .meta {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $text-secondary;
 }
 
 .link {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $color-primary;
     text-decoration: none;
     white-space: nowrap;
@@ -45,8 +45,8 @@
 }
 
 .preview {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-primary;
-    line-height: 1.5;
+    line-height: $line-height-body;
     margin: 0;
 }

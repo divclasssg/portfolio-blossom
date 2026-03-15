@@ -13,14 +13,14 @@
     text-align: center;
 }
 
-// subtitle: 15px (글로벌: 14px)
+// subtitle: $fs-body (글로벌: $fs-regular)
 .subtitle {
-    font-size: 15px;
+    font-size: $fs-body;
 }
 
-// error: 15px + font-weight 500 (글로벌: 13px, weight 없음)
+// error: $fs-body + font-weight 500 (글로벌: $fs-small, weight 없음)
 .error {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 500;
 }
 
@@ -50,22 +50,22 @@
 }
 
 .modal-title {
-    font-size: 20px;
+    font-size: $fs-title;
     font-weight: 700;
     color: $text-primary;
     letter-spacing: -0.02em;
 }
 
 .modal-desc {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
-    line-height: 1.6;
+    line-height: $line-height-body;
 }
 
 .modal-note {
-    font-size: 12px;
+    font-size: $fs-small;
     color: $text-secondary;
-    line-height: 1.5;
+    line-height: $line-height-body;
     opacity: 0.7;
 }
 
@@ -84,7 +84,7 @@
     color: #ffffff;
     border: none;
     border-radius: $card-radius;
-    font-size: 17px;
+    font-size: $fs-body;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
@@ -105,7 +105,7 @@
     background: transparent;
     color: $text-secondary;
     border: none;
-    font-size: 16px;
+    font-size: $fs-body;
     font-family: inherit;
     cursor: pointer;
 

@@ -9,7 +9,7 @@
 
 .date-header {
     text-align: center;
-    font-size: 12px;
+    font-size: $fs-small;
     color: $text-secondary;
     padding: 4px 0 8px;
 }
@@ -31,7 +31,7 @@
 }
 
 .bot-label {
-    font-size: 11px;
+    font-size: $fs-small;
     font-weight: 600;
     color: $color-primary;
     padding-left: 4px;
@@ -43,8 +43,8 @@
     border: 1px solid $card-border;
     border-radius: 16px;
     border-top-left-radius: 4px;
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: $fs-regular;
+    line-height: $line-height-body;
     color: $text-primary;
 }
 
@@ -53,13 +53,13 @@
     background: $badge-bg;
     border-radius: 16px;
     border-top-right-radius: 4px;
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: $fs-regular;
+    line-height: $line-height-body;
     color: $text-primary;
 }
 
 .message-time {
-    font-size: 11px;
+    font-size: $fs-small;
     color: $text-secondary;
     margin-top: 2px;
     padding: 0 4px;

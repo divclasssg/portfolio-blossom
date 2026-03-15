@@ -19,7 +19,7 @@
 }
 
 .org-text {
-    font-size: 13px;
+    font-size: $fs-small;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: 0.01em;
@@ -32,7 +32,7 @@
 }
 
 .resident-sep {
-    font-size: 18px;
+    font-size: $fs-title;
     color: $text-secondary;
     flex-shrink: 0;
 }
@@ -50,7 +50,7 @@
     padding: 0;
     border: 1.5px solid $card-border;
     border-radius: $card-radius;
-    font-size: 16px;
+    font-size: $fs-body;
     font-family: inherit;
     color: $text-primary;
     background: $card-bg;
@@ -68,7 +68,7 @@
 }
 
 .resident-mask {
-    font-size: 10px;
+    font-size: $fs-small;
     color: $text-secondary;
     letter-spacing: 2px;
     flex-shrink: 0;
@@ -98,15 +98,15 @@
 }
 
 .auth-option-label {
-    font-size: 15px;
+    font-size: $fs-body;
     color: $text-primary;
 }
 
 .mock-note {
-    font-size: 12px;
+    font-size: $fs-small;
     color: $text-secondary;
     background: $badge-bg;
     padding: 10px 14px;
     border-radius: 8px;
-    line-height: 1.4;
+    line-height: $line-height-title;
 }

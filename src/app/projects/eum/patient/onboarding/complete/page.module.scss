@@ -31,14 +31,14 @@
 
 // title: font-size가 28px으로 글로벌(24px)과 다름
 .title {
-    font-size: 28px;
+    font-size: $fs-title;
     letter-spacing: -0.03em;
 }
 
 .desc {
-    font-size: 15px;
+    font-size: $fs-body;
     color: $text-secondary;
-    line-height: 1.65;
+    line-height: $line-height-body;
 }
 
 .summary-card {
@@ -62,22 +62,22 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-primary;
-    line-height: 1.4;
+    line-height: $line-height-title;
 }
 
 .summary-icon {
     color: $color-success;
     font-weight: 700;
-    font-size: 16px;
+    font-size: $fs-body;
     flex-shrink: 0;
 }
 
 .error-msg {
-    font-size: 13px;
+    font-size: $fs-small;
     color: $color-danger;
     text-align: center;
     margin-bottom: 8px;
-    line-height: 1.5;
+    line-height: $line-height-body;
 }

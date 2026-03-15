@@ -5,7 +5,7 @@
 }
 
 .section-title {
-    font-size: 15px;
+    font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
     margin: 0 0 10px;
@@ -37,18 +37,18 @@
 }
 
 .label {
-    font-size: 14px;
+    font-size: $fs-regular;
     color: $text-secondary;
 }
 
 .value {
-    font-size: 14px;
+    font-size: $fs-regular;
     font-weight: 600;
     color: $text-primary;
 }
 
 .source {
-    font-size: 12px;
+    font-size: $fs-small;
     color: $text-secondary;
     text-align: right;
     margin: 0;
