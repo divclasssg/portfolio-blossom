@@ -9,6 +9,7 @@
     margin: 0;
     color: t.$clinical-normal;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 500;
 }
 
@@ -16,6 +17,7 @@
     margin: 0;
     color: t.$clinical-warning;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 500;
 }
 
@@ -28,6 +30,7 @@
     margin: 0;
     color: t.$clinical-danger;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 500;
 }
 
@@ -35,5 +38,6 @@
     margin: 0;
     color: t.$clinical-warning;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 500;
 }

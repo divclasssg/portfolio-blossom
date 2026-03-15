@@ -30,6 +30,7 @@
 .title {
     font-family: var(--font-roboto), sans-serif;
     font-size: t.$fs-title;
+    line-height: t.$line-height-title;
     font-weight: 600;
     letter-spacing: 0.05em;
     color: t.$header-fg;
@@ -44,6 +45,7 @@
 .patient-name {
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-title;
+    line-height: t.$line-height-title;
     font-weight: 700;
     color: t.$header-fg;
 }
@@ -65,6 +67,7 @@
     border-radius: 12px;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     font-weight: 400;
     color: t.$text-secondary;
 }

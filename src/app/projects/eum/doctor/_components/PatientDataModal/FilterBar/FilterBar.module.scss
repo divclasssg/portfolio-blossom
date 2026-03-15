@@ -33,6 +33,7 @@
     border-radius: 12px;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     font-weight: 400;
     color: t.$text-primary;
     cursor: pointer;
@@ -75,6 +76,7 @@
     border-radius: 12px;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 400;
     color: t.$text-secondary;
     cursor: pointer;

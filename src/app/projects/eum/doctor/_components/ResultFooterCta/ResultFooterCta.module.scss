@@ -8,23 +8,11 @@
     gap: 10px;
 }
 
-// cta-btn: padding/font-size가 공통(14px/16px)과 다름 (16px/18px)
-.cta-btn {
-    padding: 16px;
-    font-size: t.$fs-title;
-    transition: background 0.15s;
-}
-
-// 비활성화 상태 (로딩 중)
-.cta-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
 // 에러 메시지
 .error-msg {
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     font-weight: 600;
     color: t.$color-danger;
     text-align: center;
@@ -36,14 +24,10 @@
 .transmitted-msg {
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     font-weight: 600;
     color: t.$text-secondary;
     text-align: center;
     padding: 8px 0;
     margin: 0;
-}
-
-// 취소 — ActionButton 오버라이드
-.cancel-btn {
-    font-weight: 400;
 }

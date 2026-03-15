@@ -9,6 +9,7 @@
     border-radius: 999px;
     background: t.$color-primary;
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     font-weight: 600;
     color: t.$header-fg;
     cursor: pointer;
@@ -28,6 +29,7 @@
         border-radius: 0;
         background: none;
         font-size: t.$fs-regular;
+        line-height: t.$line-height-regular;
         color: t.$text-primary;
         transition: color 0.15s ease;
 

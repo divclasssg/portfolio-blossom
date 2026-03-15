@@ -30,6 +30,7 @@
     thead th {
         padding: 0 12px 10px;
         font-size: t.$fs-small;
+        line-height: t.$line-height-small;
         font-weight: 600;
         color: t.$text-muted;
         letter-spacing: 0.04em;
@@ -88,6 +89,7 @@
     border: none;
     padding: 0;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 600;
     color: t.$text-muted;
     letter-spacing: 0.04em;
@@ -100,6 +102,7 @@
 
 .sort-icon {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
 }
 
 // 진료 유형 뱃지
@@ -110,6 +113,7 @@
     padding: 0 8px;
     border-radius: 10px;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 500;
     background: t.$neutral-bg;
     color: t.$text-secondary;
@@ -119,6 +123,7 @@
 // 확장 화살표
 .chevron {
     font-size: t.$fs-title;
+    line-height: t.$line-height-title;
     color: t.$text-muted;
     transition: transform 0.15s ease;
     display: inline-block;
@@ -143,6 +148,7 @@
     margin: 0 0 8px;
     font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
     font-size: t.$fs-title;
+    line-height: t.$line-height-title;
     font-weight: 700;
     color: t.$text-primary;
 }
@@ -153,7 +159,7 @@
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
     color: t.$text-secondary;
-    line-height: 1.5;
+    line-height: t.$line-height-small;
 }
 
 .detail-address {
@@ -164,7 +170,7 @@
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
     color: t.$text-secondary;
-    line-height: 1.5;
+    line-height: t.$line-height-small;
 }
 
 // 핀 아이콘 — CSS 마름모 + 원 조합
@@ -194,7 +200,7 @@
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
     color: t.$text-primary;
-    line-height: 1.5;
+    line-height: t.$line-height-small;
 
     &::before {
         content: '';
@@ -210,6 +216,7 @@
 .detail-subtitle {
     margin: 20px 0 10px;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 600;
     color: t.$text-muted;
     letter-spacing: 0.04em;
@@ -242,12 +249,14 @@
 .lab-name {
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-secondary;
 }
 
 .lab-value {
     font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 500;
     color: t.$text-primary;
     white-space: nowrap;
@@ -262,6 +271,7 @@
     border-top: 1px solid t.$neutral-bg;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-muted;
     flex-shrink: 0;
 }

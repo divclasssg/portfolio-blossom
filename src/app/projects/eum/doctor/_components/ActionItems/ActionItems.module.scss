@@ -18,12 +18,13 @@
 
 .task {
     font-size: t.$fs-body;
-    line-height: 1.5;
+    line-height: t.$line-height-body;
     color: t.$text-primary;
 }
 
 .timing {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 600;
     color: t.$text-muted;
     white-space: nowrap;

@@ -30,7 +30,7 @@
     font-size: t.$fs-title;
     font-weight: 700;
     color: t.$text-primary;
-    line-height: 1.4;
+    line-height: t.$line-height-title;
     margin: 0;
 }
 
@@ -38,7 +38,7 @@
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: t.$line-height-body;
     color: t.$text-secondary;
     margin: 0;
 }
@@ -47,7 +47,7 @@
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: t.$line-height-small;
     color: t.$text-muted;
     padding: 10px 12px;
     background: t.$neutral-bg;
@@ -69,6 +69,7 @@
     border-radius: 12px;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-body;
+    line-height: t.$line-height-body;
     font-weight: 700;
     cursor: pointer;
     transition: background 0.15s;

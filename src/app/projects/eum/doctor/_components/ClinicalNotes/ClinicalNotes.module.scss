@@ -23,7 +23,7 @@
 .findings {
     font-size: t.$fs-body;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: t.$line-height-body;
     letter-spacing: 0.015em;
     color: t.$text-primary;
     margin: 0;

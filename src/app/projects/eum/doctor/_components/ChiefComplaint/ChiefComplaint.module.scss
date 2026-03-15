@@ -17,6 +17,7 @@
     border: none;
     background: none;
     font-size: t.$fs-title;
+    line-height: t.$line-height-title;
     font-weight: 600;
     color: t.$text-secondary;
     cursor: pointer;
@@ -36,6 +37,7 @@
 
 .meta {
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     color: t.$text-muted;
     margin-bottom: 4px;
 }
@@ -43,7 +45,7 @@
 // 환자 원문 — 수정 불가
 .patient-text {
     font-size: t.$fs-body;
-    line-height: 1.65;
+    line-height: t.$line-height-body;
     color: t.$text-primary;
     word-break: keep-all;
     overflow-wrap: break-word;
@@ -51,6 +53,7 @@
     &::before {
         content: '"';
         font-size: t.$fs-title;
+        line-height: t.$line-height-title;
         color: t.$neutral-placeholder;
         margin-right: 2px;
     }
@@ -58,6 +61,7 @@
     &::after {
         content: '"';
         font-size: t.$fs-title;
+        line-height: t.$line-height-title;
         color: t.$neutral-placeholder;
         margin-left: 2px;
     }
@@ -81,12 +85,13 @@
     display: block;
     font-size: t.$fs-body;
     color: t.$text-primary;
-    line-height: 1.5;
+    line-height: t.$line-height-body;
 }
 
 .med-meta {
     display: block;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-secondary;
     margin-top: 2px;
 }

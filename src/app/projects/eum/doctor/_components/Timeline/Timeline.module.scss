@@ -61,6 +61,7 @@
 
 .item-date {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-muted;
     min-width: 68px;
     flex-shrink: 0;
@@ -68,6 +69,7 @@
 
 .item-name {
     font-size: t.$fs-body;
+    line-height: t.$line-height-body;
     font-weight: 500;
     color: t.$text-primary;
     flex: 1;
@@ -78,12 +80,14 @@
 
 .nrs-label {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-muted;
     flex-shrink: 0;
 }
 
 .expand-icon {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-muted;
     flex-shrink: 0;
     width: 16px;
@@ -104,12 +108,14 @@
     align-items: center;
     gap: 3px;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-secondary;
     font-weight: 500;
 }
 
 .health-trend {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 700;
 }
 

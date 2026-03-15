@@ -1,0 +1,32 @@
+@use '../../_styles/tokens' as t;
+
+.cta-secondary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: none;
+    color: t.$text-secondary;
+    border: none;
+    font-size: t.$fs-regular;
+    font-weight: 400;
+    line-height: t.$line-height-regular;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
+
+    &:hover {
+        color: t.$text-primary;
+    }
+
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+        border-radius: 8px;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}

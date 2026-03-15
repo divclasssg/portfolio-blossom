@@ -16,11 +16,12 @@
     gap: 5px;
     font-size: t.$fs-small;
     font-weight: 600;
-    line-height: 1.5;
+    line-height: t.$line-height-small;
     color: t.$text-dark;
 }
 
 .warning-symbol {
     flex-shrink: 0;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
 }

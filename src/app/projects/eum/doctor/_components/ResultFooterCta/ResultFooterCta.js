@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './ResultFooterCta.module.scss';
-import ActionButton from '../ActionButton/ActionButton';
+import CtaPrimary from '../CtaPrimary/CtaPrimary';
+import CtaSecondary from '../CtaSecondary/CtaSecondary';
 import TransmissionDialog from '../TransmissionDialog/TransmissionDialog';
 
 // D-001 하단 CTA — 확인 및 전송 / 취소
@@ -70,35 +71,31 @@ export default function ResultFooterCta({
                 <p className={styles['error-msg']} role="alert">
                     전송에 실패했습니다. 다시 시도해 주세요.
                 </p>
-                <button
-                    className={`cta-btn ${styles['cta-btn']}`}
+                <CtaPrimary
                     onClick={handleConfirm}
                     disabled={isLoading}
                 >
-                    {isLoading ? '전송 중...' : '재시도 →'}
-                </button>
+                    {isLoading ? '전송 중...' : '재시도'}
+                </CtaPrimary>
             </footer>
         );
     }
 
     return (
         <footer className={`cta-footer ${styles.footer}`}>
-            <button
-                className={`cta-btn ${styles['cta-btn']}`}
+            <CtaPrimary
                 onClick={() => setIsDialogOpen(true)}
                 disabled={isLoading}
                 aria-label="진료 결과 확인 및 전송, 진료 종료"
             >
-                {isLoading ? '전송 중...' : '확인 및 전송 · 진료 종료 →'}
-            </button>
-            <ActionButton
-                variant="text"
-                className={styles['cancel-btn']}
+                {isLoading ? '전송 중...' : '확인 및 전송 · 진료 종료'}
+            </CtaPrimary>
+            <CtaSecondary
                 onClick={() => router.push('/projects/eum/doctor')}
                 aria-label="결과 작성 취소, 이전 화면으로 돌아가기"
             >
                 취소
-            </ActionButton>
+            </CtaSecondary>
 
             <TransmissionDialog
                 isOpen={isDialogOpen}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './AiPatientSummary.module.scss';
-import { AiIcon } from '../../../_components/icons';
+import { AiIcon, WarningIcon } from '../../../_components/icons';
 import AiWarningBanner from '../AiWarningBanner/AiWarningBanner';
 
 // D-001 섹션 4: AI 쉬운말 변환 결과 — 의사가 직접 편집 가능
@@ -68,9 +68,7 @@ export default function AiPatientSummary({ plainText, modelVersion, resultWarnin
                                 aria-label="AI 쉬운말 요약 — 직접 수정 가능"
                             />
                             <p className={styles['edit-hint']}>
-                                <span className={styles['hint-icon']} aria-hidden="true">
-                                    ⚠
-                                </span>
+                                <WarningIcon variant="info" size={14} color="currentColor" className={styles['hint-icon']} />
                                 직접 수정 가능합니다
                             </p>
                         </>

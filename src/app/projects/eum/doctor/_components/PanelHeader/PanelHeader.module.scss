@@ -69,6 +69,7 @@
 .logo {
     font-size: t.$fs-title;
     font-weight: 700;
+    line-height: t.$line-height-title;
     letter-spacing: 0.02em;
     color: t.$header-fg;
 }

@@ -16,6 +16,7 @@
 .label {
     font-size: t.$fs-small;
     font-weight: 600;
+    line-height: t.$line-height-small;
     color: t.$text-muted;
     white-space: nowrap;
     margin: 0;
@@ -24,7 +25,7 @@
 .value {
     font-size: t.$fs-body;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: t.$line-height-body;
     letter-spacing: 0.015em;
     color: t.$text-primary;
     margin: 0;

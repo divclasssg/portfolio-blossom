@@ -17,6 +17,7 @@
 
 .patient-name {
     font-size: t.$fs-title;
+    line-height: t.$line-height-title;
     font-weight: 700;
     color: t.$text-primary;
 }
@@ -34,12 +35,14 @@
 
 .age {
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     color: t.$text-secondary;
 }
 
 // ICD-10 코드 — 나이 옆에 표시
 .icd-code {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 600;
     color: t.$text-secondary;
     background: t.$neutral-bg;
@@ -55,6 +58,7 @@
     background: t.$badge-blue-bg;
     color: t.$badge-blue-text;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 600;
     margin-left: auto;
 }
@@ -83,6 +87,7 @@
     border: 1px solid t.$neutral-border;
     border-radius: 999px;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 600;
     color: t.$text-secondary;
     cursor: default;
@@ -99,6 +104,7 @@
     border: 1px solid rgba(t.$color-danger, 0.2);
     border-radius: 999px;
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 600;
     color: t.$color-danger;
     cursor: default;
@@ -145,7 +151,7 @@
     list-style: none;
     margin: 0;
     font-size: t.$fs-small;
-    line-height: 1.5;
+    line-height: t.$line-height-small;
     box-shadow: t.$panel-shadow;
     z-index: 200;
     visibility: hidden;
@@ -209,7 +215,7 @@
 .summary {
     margin: 0;
     font-size: t.$fs-regular;
-    line-height: 1.6;
+    line-height: t.$line-height-regular;
     color: t.$text-secondary;
 }
 
@@ -221,6 +227,7 @@
 
 .detail-label {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -232,8 +239,8 @@
     margin: 0;
     padding: 0 0 12px 14px;
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     color: t.$text-primary;
-    line-height: 1.7;
 
     li {
         list-style: disc;

@@ -1,0 +1,38 @@
+@use '../../_styles/tokens' as t;
+
+.cta-primary {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: t.$color-dark;
+    color: t.$header-fg;
+    border: none;
+    border-radius: t.$card-radius;
+    font-size: t.$fs-title;
+    font-weight: 700;
+    line-height: t.$line-height-title;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
+    letter-spacing: 0.02em;
+    transition: background 0.15s;
+
+    &:hover {
+        background: t.$color-dark-hover;
+    }
+
+    &:active {
+        background: t.$color-dark-active;
+    }
+
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}

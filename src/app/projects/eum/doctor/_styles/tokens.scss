@@ -95,8 +95,35 @@ $section-content-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
 $card-radius: 16px;
 $card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
-// 버튼
+// CTA 버튼
+$cta-button-radius: 16px;
+$cta-button-primary-bg: #007aff;
+$cta-button-primary-text: #fff;
+$cta-button-primary-hover-bg: #007aff;
+$cta-button-primary-hover-text: #fff;
+$cta-button-primary-active-bg: #007aff;
+$cta-button-primary-active-text: #fff;
+$cta-button-primary-disabled-bg: #007aff;
+$cta-button-primary-disabled-text: #fff;
+$cta-button-secondary-bg: transparent;
+$cta-button-secondary-text: #1d1d1f;
+$cta-button-secondary-hover-bg: #f5f5f7;
+$cta-button-secondary-hover-text: #1d1d1f;
+$cta-button-secondary-active-bg: transparent;
+$cta-button-secondary-active-text: #1d1d1f;
+$cta-button-secondary-disabled-bg: transparent;
+$cta-button-secondary-disabled-text: #1d1d1f;
+
+// 일반 버튼
 $button-radius: 16px;
+$button-primary-bg: #007aff;
+$button-primary-text: #fff;
+$button-primary-hover-bg: #007aff;
+$button-primary-hover-text: #fff;
+$button-primary-active-bg: #007aff;
+$button-primary-active-text: #fff;
+$button-primary-disabled-bg: #007aff;
+$button-primary-disabled-text: #fff;
 
 // 배지
 $badge-blue-bg: #dbeafe; // blue-100 — 성별 배지 등

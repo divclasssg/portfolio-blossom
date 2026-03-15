@@ -36,22 +36,24 @@
 
 .progress-percent {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-secondary;
     font-weight: 500;
 }
 
 .progress-estimate {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-muted;
 }
 
 .loading-message {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-muted;
     text-align: center;
     margin: 0;
     letter-spacing: 0;
-    line-height: 1.5;
 }
 
 // 통합 AI 경고 배너 영역

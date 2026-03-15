@@ -21,8 +21,9 @@
     background: t.$panel-bg;
     border: 1px solid t.$neutral-border;
     border-radius: 16px;
-    padding: 16px;
+    padding: 24px;
     margin-top: 16px;
+    margin-bottom: 16px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -56,6 +57,7 @@
 .generating-text {
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     color: t.$text-muted;
 }
 
@@ -65,7 +67,7 @@
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-body;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: t.$line-height-body;
     color: t.$text-primary;
     border: none;
     outline: none;
@@ -87,11 +89,12 @@
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
     font-weight: 700;
-    color: t.$text-muted;
+    line-height: t.$line-height-small;
+    color: t.$color-warning;
     margin: 0;
 }
 
 .hint-icon {
-    font-size: t.$fs-small;
-    color: t.$text-muted;
+    display: flex;
+    color: t.$color-warning;
 }

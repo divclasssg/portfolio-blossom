@@ -51,7 +51,7 @@
 .card {
     background: t.$neutral-bg;
     border-radius: 16px;
-    padding: 16px;
+    padding: 24px;
 }
 
 // ── 차트 툴팁 ──────────────────────────────────────────────────────────────────
@@ -81,41 +81,6 @@
     padding: 16px 20px;
     background: t.$section-content-bg;
     border-top: 1px solid t.$neutral-border;
-}
-
-.cta-btn {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    background: t.$color-dark;
-    color: t.$header-fg;
-    border: none;
-    border-radius: t.$card-radius;
-    font-size: t.$fs-body;
-    font-weight: 700;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
-    letter-spacing: 0.02em;
-
-    &:hover {
-        background: t.$color-dark-hover;
-    }
-
-    &:active {
-        background: t.$color-dark-active;
-    }
-
-    &:focus-visible {
-        outline: 2px solid t.$color-primary;
-        outline-offset: 2px;
-    }
-
-    &:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
 }
 
 // ── 접근성 ─────────────────────────────────────────────────────────────────────

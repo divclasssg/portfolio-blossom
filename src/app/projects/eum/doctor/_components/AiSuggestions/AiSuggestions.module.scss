@@ -14,6 +14,7 @@
 
 .subsection-title {
     font-size: t.$fs-subtitle;
+    line-height: t.$line-height-body;
     font-weight: 600;
     color: t.$text-primary;
     flex: 1;
@@ -145,6 +146,7 @@
 
 .judgment-trigger {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     font-weight: 600;
     padding: 1px 6px;
     border-radius: 4px;
@@ -197,6 +199,7 @@
 
 .judgment-option {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     padding: 6px 12px;
     cursor: pointer;
     color: t.$text-primary;
@@ -226,6 +229,7 @@
 
 .evidence-chip {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-subtle;
     background: t.$neutral-bg;
     padding: 2px 8px;
@@ -234,7 +238,7 @@
 
 .clinical-note {
     font-size: t.$fs-small;
-    line-height: 1.55;
+    line-height: t.$line-height-small;
     color: t.$text-primary;
     word-break: keep-all;
 }
@@ -249,6 +253,7 @@
 // 목록 상단 안내 문구
 .list-guide {
     font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     color: t.$text-subtle;
     margin-top: 12px;
     margin-bottom: 4px;
@@ -257,6 +262,7 @@
 // confidence 범례
 .confidence-legend {
     font-size: t.$fs-small;
+    line-height: t.$line-height-small;
     color: t.$text-subtle;
     display: flex;
     align-items: center;
