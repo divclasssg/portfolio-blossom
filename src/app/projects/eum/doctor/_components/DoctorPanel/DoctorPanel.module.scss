@@ -213,7 +213,7 @@ $handle-corner: 10px;
     z-index: 100;
     padding: 6px 14px;
     background: t.$color-dark;
-    color: #f9fafb;
+    color: t.$header-fg;
     border: none;
     border-radius: 999px;
     font-size: 13px;
@@ -222,7 +222,7 @@ $handle-corner: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        background: #1f2937;
+        background: t.$color-dark-hover;
     }
 
     &:focus-visible {

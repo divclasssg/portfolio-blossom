@@ -23,6 +23,8 @@ $section-background: #fff;
 $color-primary: #007aff; // primary.default — iOS systemBlue
 $color-secondary: #5856d6; // secondary.default — iOS systemIndigo
 $color-tertiary: #5ac8fa; // tertiary.default — iOS systemTeal
+$color-link: #60a5fa; // 링크/URL (blue-400)
+$color-link-hover: #93c5fd; // 링크 hover (blue-300)
 $color-danger: #ff3b30; // clinical.danger — iOS systemRed
 $color-warning: rgb(255, 149, 0); // clinical.warning — iOS systemOrange
 $color-normal: #34c759; // clinical.normal — iOS systemGreen
@@ -40,6 +42,8 @@ $neutral-bg-tertiary: #e5e5ea; // neutral.background-tertiary — iOS systemGray
 $text-primary: #1f1f1d; // 근사 블랙 (사용자 지정)
 $text-secondary: #8e8e93; // text.secondary — iOS systemGray
 $text-muted: #8e8e93; // text.secondary — iOS systemGray (= $text-secondary)
+$text-subtle: #4b5563; // gray-600 — 부제목, 보조 설명
+$text-dark: #374151; // gray-700 — 경고 배너 텍스트
 
 // 타이포그래피
 $font-title:
@@ -61,9 +65,12 @@ $font-small:
 
 // 다크(헤더/CTA)
 $color-dark: #111827;
+$color-dark-hover: #1f2937; // $color-dark보다 한 단계 밝은 hover
+$color-dark-active: #374151; // hover보다 한 단계 밝은 active
 
 // 임상 전용 (UI 포인트 컬러 사용 금지)
 $clinical-danger: #ff3b30; // clinical.danger — iOS systemRed
+$clinical-danger-bg: #fff5f5; // clinical.danger 배경 (알러지 배너 등)
 $clinical-warning: #ff9500; // clinical.warning — iOS systemOrange
 $clinical-normal: #34c759; // clinical.normal — iOS systemGreen
 
@@ -77,4 +84,8 @@ $card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
 // 버튼
 $button-radius: 16px;
+
+// 배지
+$badge-blue-bg: #dbeafe; // blue-100 — 성별 배지 등
+$badge-blue-text: #1d4ed8; // blue-700 — 배지 텍스트
 

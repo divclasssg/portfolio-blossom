@@ -8,7 +8,7 @@ export async function getLatestSessionId(supabase, patientId) {
         .eq('patient_id', patientId)
         .order('created_at', { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
     if (error) {
         console.error('[getLatestSessionId] 세션 조회 실패:', error.message);
         return null;

@@ -14,7 +14,7 @@
 // bordered 카드 — 와이어프레임: white bg, border 1px #E5E7EB, radius 16px
 // common의 neutral-bg 카드와 다름 (white + border)
 .card {
-    background: #ffffff;
+    background: t.$panel-bg;
     border: 1px solid t.$neutral-border;
     border-radius: 16px;
     padding: 16px;
@@ -61,7 +61,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    color: #000000;
+    color: t.$text-primary;
     border: none;
     outline: none;
     resize: none;

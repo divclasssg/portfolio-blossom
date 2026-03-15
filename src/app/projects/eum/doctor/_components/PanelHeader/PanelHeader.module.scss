@@ -57,7 +57,7 @@
 
 // 드래그 힌트 아이콘 — 시각적 표시만, 커서는 헤더에서 상속
 .drag-handle {
-    color: #4b5563;
+    color: t.$text-subtle;
     font-size: 16px;
     line-height: 1;
     padding: 4px;
@@ -96,7 +96,7 @@
     height: 30px;
     border: none;
     background: none;
-    color: #fff;
+    color: t.$header-fg;
     cursor: pointer;
     border-radius: 6px;
     transition:
@@ -121,10 +121,10 @@
 
 // Pin 활성 상태 — 고정됨을 시각적으로 표시
 .icon-btn.is-active {
-    color: #60a5fa;
+    color: t.$color-link;
 
     &:hover {
-        color: #93c5fd;
+        color: t.$color-link-hover;
     }
 }
 
@@ -139,7 +139,7 @@
     width: 80px;
     height: 3px;
     cursor: pointer;
-    accent-color: #fff;
+    accent-color: t.$header-fg;
 
     &:focus-visible {
         outline: 2px solid t.$color-primary;

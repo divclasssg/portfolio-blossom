@@ -14,7 +14,7 @@
 
 // 모달 카드
 .card {
-    background: #ffffff;
+    background: t.$panel-bg;
     border-radius: 20px;
     padding: 28px 24px 24px;
     width: 100%;
@@ -81,7 +81,7 @@
 
 .btn-cancel {
     @extend %btn-base;
-    background: #ffffff;
+    background: t.$panel-bg;
     color: t.$text-secondary;
     border: 1px solid t.$neutral-border;
 
@@ -93,9 +93,9 @@
 .btn-confirm {
     @extend %btn-base;
     background: t.$color-dark;
-    color: #f9fafb;
+    color: t.$header-fg;
 
     &:hover {
-        background: #1f2937;
+        background: t.$color-dark-hover;
     }
 }

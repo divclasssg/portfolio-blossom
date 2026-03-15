@@ -52,8 +52,8 @@
     align-items: center;
     padding: 2px 8px;
     border-radius: 999px;
-    background: #dbeafe;
-    color: #1d4ed8;
+    background: t.$badge-blue-bg;
+    color: t.$badge-blue-text;
     font-size: 12px;
     font-weight: 600;
     margin-left: auto;
@@ -95,7 +95,7 @@
     align-items: center;
     gap: 4px;
     padding: 3px 8px;
-    background: #fff5f5;
+    background: t.$clinical-danger-bg;
     border: 1px solid rgba(t.$color-danger, 0.2);
     border-radius: 999px;
     font-size: 12px;

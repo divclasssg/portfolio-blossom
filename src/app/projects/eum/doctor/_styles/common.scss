@@ -100,11 +100,11 @@
     letter-spacing: 0.02em;
 
     &:hover {
-        background: #1f2937; // $color-dark보다 약간 밝은 단계 (전용 토큰 없음)
+        background: t.$color-dark-hover;
     }
 
     &:active {
-        background: #374151; // hover보다 더 밝은 단계
+        background: t.$color-dark-active;
     }
 
     &:focus-visible {

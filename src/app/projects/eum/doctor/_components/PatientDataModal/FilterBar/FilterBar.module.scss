@@ -50,10 +50,10 @@
 
 .period-btn--active {
     background: t.$color-dark;
-    color: #f9fafb;
+    color: t.$header-fg;
 
     &:hover {
-        background: #1f2937;
+        background: t.$color-dark-hover;
     }
 }
 
