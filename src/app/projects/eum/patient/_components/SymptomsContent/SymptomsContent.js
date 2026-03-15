@@ -3,7 +3,6 @@
 import { useState, useCallback } from 'react';
 import styles from './SymptomsContent.module.scss';
 import AppBar from '../AppBar/AppBar';
-import VitalsBanner from '../VitalsBanner/VitalsBanner';
 import SegmentedControl from '../SegmentedControl/SegmentedControl';
 import ChatArea from '../ChatArea/ChatArea';
 import ChatInputBar from '../ChatInputBar/ChatInputBar';
@@ -68,7 +67,7 @@ export default function SymptomsContent({
                 }
                 setMessages((prev) => [
                     ...prev,
-                    { type: 'bot', text: '증상이 기록됐어요.\n기록 탭에서 확인할 수 있습니다.', timestamp: new Date().toISOString() },
+                    { type: 'bot', text: '증상이 기록됐어요.\n다른 증상이 있으면 말씀해 주세요.', timestamp: new Date().toISOString() },
                 ]);
             } else {
                 console.error('[SymptomsContent] 증상 저장 실패:', res.status, resText);
@@ -214,9 +213,9 @@ export default function SymptomsContent({
     return (
         <>
             <AppBar backHref="/projects/eum/patient" />
-            <VitalsBanner vitals={vitals} />
+            
             <SegmentedControl tabs={TABS} activeTab={activeTab} onTabChange={setActiveTab} />
-            <main
+            <div
                 className={styles[activeTab === 'chat' ? 'content-chat' : 'content-records']}
                 role="tabpanel"
                 id={`tabpanel-${activeTab}`}
@@ -224,10 +223,10 @@ export default function SymptomsContent({
             >
                 <h1 className="sr-only">증상 기록</h1>
                 {activeTab === 'chat' && (
-                    <ChatArea messages={messages} onSeveritySelect={handleSeveritySelect} />
+                    <ChatArea messages={messages} onSeveritySelect={handleSeveritySelect} vitals={vitals} />
                 )}
                 {activeTab === 'records' && <SymptomTimeline records={records} />}
-            </main>
+            </div>
             {activeTab === 'chat' && <ChatInputBar onSend={sendMessage} disabled={isStreaming} />}
         </>
     );

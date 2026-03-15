@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './LastVisitResult.module.scss';
+import { ArrowIcon } from '../../../_components/icons';
 
 // "YYYY-MM-DD" → "YYYY.MM.DD" (UX 가이드 준수)
 function formatDate(dateStr) {
@@ -28,7 +29,8 @@ export default function LastVisitResult({ result }) {
                         className="home-link"
                         aria-label="지난 진료 결과 상세 보기"
                     >
-                        상세 보기 &gt;
+                        상세 보기 
+                        <ArrowIcon variant="right" size={16} />
                     </Link>
                 </div>
 

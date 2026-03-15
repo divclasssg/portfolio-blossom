@@ -9,6 +9,7 @@ export default function NoticeIcon({
     variant = 'basic',
     size = 24,
     color = 'currentColor',
+    viewBox = '0 0 27 29',
     className,
     ...rest
 }) {
@@ -16,7 +17,7 @@ export default function NoticeIcon({
         <svg
             width={size}
             height={size}
-            viewBox="0 0 27 29"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

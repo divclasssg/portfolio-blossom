@@ -1,10 +1,10 @@
 // 클립보드/차트 아이콘 (Figma: chart, 22×25)
-export default function ChartIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function ChartIcon({ size = 24, color = 'currentColor', viewBox = '0 0 22 25', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 22 25"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

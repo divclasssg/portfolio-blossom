@@ -9,6 +9,7 @@ export default function MapIcon({
     variant = 'basic',
     size = 24,
     color = 'currentColor',
+    viewBox = '0 0 26 24',
     className,
     ...rest
 }) {
@@ -16,7 +17,7 @@ export default function MapIcon({
         <svg
             width={size}
             height={size}
-            viewBox="0 0 26 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

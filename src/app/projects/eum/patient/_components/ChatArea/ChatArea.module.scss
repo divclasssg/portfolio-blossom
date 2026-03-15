@@ -10,8 +10,13 @@
 .date-header {
     text-align: center;
     font-size: $fs-small;
-    color: $text-secondary;
+    color: $text-primary;
     padding: 4px 0 8px;
+}
+
+.chat-area-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .message-bot {
@@ -43,7 +48,7 @@
     border: 1px solid $card-border;
     border-radius: 16px;
     border-top-left-radius: 4px;
-    font-size: $fs-regular;
+    font-size: $fs-body;
     line-height: $line-height-body;
     color: $text-primary;
 }
@@ -53,7 +58,7 @@
     background: $badge-bg;
     border-radius: 16px;
     border-top-right-radius: 4px;
-    font-size: $fs-regular;
+    font-size: $fs-body;
     line-height: $line-height-body;
     color: $text-primary;
 }

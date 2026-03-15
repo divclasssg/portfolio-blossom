@@ -1,10 +1,10 @@
 // 홈 아이콘 (Figma: home, 29×24)
-export default function HomeIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function HomeIcon({ size = 24, color = 'currentColor', viewBox = '0 0 29 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 29 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

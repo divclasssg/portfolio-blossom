@@ -1,10 +1,10 @@
 @use '../../_styles/tokens' as *;
 
 .summary-row {
+    border-bottom: 1px solid $divider-color;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 8px;
+    padding-bottom: 8px;
 }
 
 .summary-text {
@@ -12,7 +12,7 @@
     color: $text-primary;
 
     strong {
-        font-weight: 600;
+        font-weight: 700;
     }
 }
 
@@ -21,34 +21,31 @@
     color: $text-secondary;
 }
 
-.divider {
-    border: none;
-    border-top: 1px solid $divider-color;
-    margin: 12px 0;
-}
-
 .recent-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    padding-top: 8px;
 }
 
 .recent-date {
     font-size: $fs-small;
+    font-weight: 700;
     color: $text-secondary;
 }
 
 .recent-preview {
     font-size: $fs-regular;
+    line-height: $line-height-regular;
     color: $text-primary;
-    line-height: $line-height-body;
     margin: 0;
 }
 
 .trend-row {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
+    padding-top: 16px;
 }
 
 .trend-label {
@@ -57,7 +54,8 @@
 }
 
 .trend-value {
-    font-size: $fs-regular;
-    font-weight: 600;
+    font-size: $fs-body;
+    line-height: $line-height-body;
+    font-weight: 700;
     color: $text-primary;
 }

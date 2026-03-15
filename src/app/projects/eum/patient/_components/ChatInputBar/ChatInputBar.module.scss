@@ -1,30 +1,39 @@
 @use '../../_styles/tokens' as *;
 
 // page.module.scss의 $input-bar-height와 동일 값 유지
-$input-bar-height: 60px;
+$input-bar-height: 64px;
 
 .input-bar {
+    border-radius: 999px;
+    border: 1px solid $card-border;
     position: fixed;
     // 탭바(z-index: 200) 위에 배치
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - (24px * 2));
     height: $input-bar-height;
     background: $card-bg;
-    border-top: 1px solid $divider-color;
     display: flex;
     align-items: center;
-    padding: 0 12px;
     gap: 8px;
+    padding: 4px 8px;
     z-index: 199;
+}
+
+.input-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
 }
 
 .icon-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: none;
     border: none;
     color: $text-secondary;
@@ -35,12 +44,12 @@ $input-bar-height: 60px;
 
 .input-field {
     flex: 1;
-    height: 36px;
-    background: $screen-bg;
-    border-radius: 18px;
+    height: 48px;
+    background: transparent;
+    border-radius: 999px;
     display: flex;
     align-items: center;
-    padding: 0 14px;
+    padding: 0 20px;
 }
 
 .input {
@@ -62,16 +71,21 @@ $input-bar-height: 60px;
     }
 }
 
+.icon-btn-container {
+    display: flex;
+    align-items: center;
+}
+
 .send-btn {
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: $text-primary;
+    width: 44px;
+    height: 44px;
     border: none;
     border-radius: 50%;
-    color: $card-bg;
+    color: $color-primary;
     flex-shrink: 0;
     cursor: pointer;
     transition: opacity 0.15s;

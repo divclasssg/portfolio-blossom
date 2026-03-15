@@ -11,6 +11,7 @@ export default function ArrowIcon({
     variant = 'left',
     size = 24,
     color = 'currentColor',
+    viewBox = '0 0 29 24',
     className,
     ...rest
 }) {
@@ -18,7 +19,7 @@ export default function ArrowIcon({
         <svg
             width={size}
             height={size}
-            viewBox="0 0 29 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

@@ -1,18 +1,22 @@
 @use '../../_styles/tokens' as *;
 
 .segmented-control {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 64px;
+    z-index: 100;
     display: flex;
     background: $badge-bg;
-    border-radius: 8px;
-    padding: 2px;
-    margin: 12px $section-padding-x;
+    border-radius: 999px;
+    padding: 4px;
+    margin: 4px $section-padding-x;
 }
 
 .segment {
     flex: 1;
     height: 28px;
     border: none;
-    border-radius: 6px;
+    border-radius: 999px;
     background: transparent;
     font-size: $fs-small;
     font-weight: 500;

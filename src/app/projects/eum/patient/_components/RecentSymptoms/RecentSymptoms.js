@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './RecentSymptoms.module.scss';
+import { ArrowIcon } from '../../../_components/icons';
 
 // ISO 시간 문자열 → 와이어프레임 포맷: "YYYY. MM. DD 오전/오후 H:MM"
 function formatDateTime(isoStr) {
@@ -35,17 +36,7 @@ export default function RecentSymptoms({ summary }) {
                         <span className={styles['dot']}>·</span>
                         평균 강도 <strong>{avg_severity}</strong>
                     </span>
-                    <Link
-                        href="/projects/eum/patient/symptoms"
-                        className="home-link"
-                        aria-label="증상 기록 보기"
-                    >
-                        증상 기록 &gt;
-                    </Link>
                 </div>
-
-                {/* 구분선 */}
-                <hr className={styles['divider']} />
 
                 {/* 최근 증상 */}
                 <div className={styles['recent-item']}>
@@ -57,9 +48,7 @@ export default function RecentSymptoms({ summary }) {
                     </p>
                 </div>
 
-                {/* 구분선 */}
-                <hr className={styles['divider']} />
-
+       
                 {/* 추세 */}
                 <div className={styles['trend-row']}>
                     <span className={styles['trend-label']}>추세</span>

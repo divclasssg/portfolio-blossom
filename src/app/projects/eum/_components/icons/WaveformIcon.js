@@ -1,10 +1,10 @@
 // 심전도/파형 아이콘 (Figma: waveform, 24×24)
-export default function WaveformIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function WaveformIcon({ size = 24, color = 'currentColor', viewBox = '0 0 24 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 24 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import styles from './ChatArea.module.scss';
 import SeverityChips from '../SeverityChips/SeverityChips';
+import VitalsBanner from '../VitalsBanner/VitalsBanner';
 
 // 날짜 포맷: "2026년 3월 14일 토요일"
 function formatDateHeader(isoString) {
@@ -60,7 +61,7 @@ function shouldShowTime(messages, index) {
 //   selectedSeverity?: number,   // 선택 완료 시
 //   streaming?: boolean,         // 스트리밍 중 커서 표시
 // }]
-export default function ChatArea({ messages = [], onSeveritySelect }) {
+export default function ChatArea({ messages = [], onSeveritySelect, vitals }) {
     const bottomRef = useRef(null);
 
     // 새 메시지 추가 시 자동 스크롤
@@ -73,11 +74,14 @@ export default function ChatArea({ messages = [], onSeveritySelect }) {
 
     return (
         <div className={styles['chat-area']} aria-label="증상 기록 대화" aria-live="polite">
-            {dateLabel && (
-                <time className={styles['date-header']} dateTime={messages[0].timestamp} aria-label={`대화 날짜: ${dateLabel}`}>
-                    {dateLabel}
-                </time>
-            )}
+            <div className={styles['chat-area-container']}>
+                {dateLabel && (
+                    <time className={styles['date-header']} dateTime={messages[0].timestamp} aria-label={`대화 날짜: ${dateLabel}`}>
+                        {dateLabel}
+                    </time>
+                )}
+                <VitalsBanner vitals={vitals} />
+            </div>
             {messages.map((msg, i) => (
                 <div
                     key={i}

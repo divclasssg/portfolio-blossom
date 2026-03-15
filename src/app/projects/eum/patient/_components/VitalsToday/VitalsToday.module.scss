@@ -1,39 +1,136 @@
 @use '../../_styles/tokens' as *;
 
-// card: 상/하 패딩 없음 (글로벌 home-card는 $card-padding 전체 적용)
 .card {
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.insight {
+    font-size: $fs-body;
+    line-height: $line-height-body;
+    color: $text-primary;
+    margin: 0;
+    padding: 12px 0;
+    border-bottom: 1px solid $divider-color;
 }
 
 .list {
     list-style: none;
     margin: 0;
     padding: 0;
+
+    // border-top은 li 단위로 적용 (row가 button으로 바뀌어도 유지)
+    > li + li > .row {
+        border-top: 1px solid $divider-color;
+    }
 }
 
+// 라벨 | 스파크라인 | 값 — 한 줄 배치
+// button일 때와 div일 때 모두 동일하게 보이도록 리셋 포함
 .row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // 터치 타겟 최소 44px
+    gap: 8px;
     min-height: 44px;
-    padding: 10px 0;
+    padding: 8px 0;
+    width: 100%;
 
-    & + & {
-        border-top: 1px solid $divider-color;
+    // button 리셋
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+        background: rgba(0, 0, 0, 0.04);
     }
+}
+
+// hasChart=false일 때 div로 렌더링 → 커서/active 제거
+div.row {
+    cursor: default;
+
+    &:active {
+        background: none;
+    }
+}
+
+.row-icon {
+    flex-shrink: 0;
 }
 
 .label {
     font-size: $fs-regular;
     color: $text-secondary;
+    flex-shrink: 0;
 }
 
 .value {
     font-size: $fs-regular;
     font-weight: 600;
     color: $text-primary;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+// 스파크라인 영역 — 남는 공간 차지
+.chart-cell {
+    flex: 1;
+    min-width: 0;
+}
+
+.sparkline {
+    display: block;
+    width: 100%;
+    height: 24px;
+}
+
+.chevron {
+    flex-shrink: 0;
+    margin-left: 4px;
+    color: $text-secondary;
+}
+
+// ── 아코디언 상세 패널 ────────────────────────────────────────────────────────
+.detail-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+
+    &[data-expanded='true'] {
+        grid-template-rows: 1fr;
+    }
+}
+
+.detail-panel {
+    overflow: hidden;
+}
+
+.detail-list {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0 8px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0 4px 24px;
+    font-size: $fs-small;
+}
+
+.detail-date {
+    color: $text-secondary;
+}
+
+.detail-value {
+    font-weight: 500;
+    color: $text-primary;
+    font-variant-numeric: tabular-nums;
 }
 
 .source {

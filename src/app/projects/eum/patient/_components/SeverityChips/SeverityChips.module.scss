@@ -12,7 +12,8 @@
     align-items: center;
     padding: 6px 12px;
     border-radius: 20px;
-    font-size: $fs-small;
+    font-size: $fs-regular;
+    line-height: $line-height-regular;
     font-weight: 500;
     color: $text-primary;
     white-space: nowrap;
@@ -37,14 +38,18 @@
 
 // NRS 강도별 배경색 (색상만으로 정보 전달 금지 → 이모지+텍스트 병행)
 .chip-mild {
+    border: 1px solid $color-success;
     background: #e8f5e9;
 } // 약함(1-3) — 연녹색
 .chip-moderate {
+    border: 1px solid $color-warning;
     background: #fff9c4;
 } // 보통(4-6) — 연노랑
 .chip-severe {
+    border: 1px solid $color-warning;
     background: #ffe0b2;
 } // 심함(7-8) — 연주황
 .chip-extreme {
+    border: 1px solid $color-danger;
     background: #ffebee;
 } // 극심(9-10) — 연빨강

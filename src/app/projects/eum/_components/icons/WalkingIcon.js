@@ -1,10 +1,10 @@
 // 걷기/활동 아이콘 (Figma: walking, 20×24)
-export default function WalkingIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function WalkingIcon({ size = 24, color = 'currentColor', viewBox = '0 0 20 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 20 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

@@ -1,10 +1,10 @@
 // 정렬 아이콘 (Figma: sort, 28×24)
-export default function SortIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function SortIcon({ size = 24, color = 'currentColor', viewBox = '0 0 28 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 28 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

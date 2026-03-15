@@ -1,10 +1,10 @@
 // 카메라 아이콘 (Figma: camera, 30×24)
-export default function CameraIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function CameraIcon({ size = 24, color = 'currentColor', viewBox = '0 0 30 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 30 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

@@ -1,10 +1,10 @@
 // 드래그 핸들 아이콘 — 2×3 dot 그리드 (Figma: Icons > Drag-handle, 27:140)
-export default function DragHandleIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function DragHandleIcon({ size = 24, color = 'currentColor', viewBox = '0 0 24 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 24 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

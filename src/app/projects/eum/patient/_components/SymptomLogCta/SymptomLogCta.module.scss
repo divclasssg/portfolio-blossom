@@ -1,0 +1,46 @@
+@use '../../_styles/tokens' as *;
+
+
+.cta-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    padding: 0 16px;
+    background: #fff;
+    border-radius: $card-radius;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+
+    &:active {
+        opacity: 0.85;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: 2px;
+    }
+}
+
+.cta-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cta-text {
+    font-size: $fs-regular;
+    font-weight: 500;
+    color: $text-primary;
+    line-height: $line-height-regular;
+}
+
+.cta-action {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: $fs-small;
+    font-weight: 600;
+    color: $color-primary;
+    white-space: nowrap;
+}

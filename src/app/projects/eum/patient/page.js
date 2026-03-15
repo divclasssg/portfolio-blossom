@@ -1,12 +1,14 @@
 import homeDashboard from '../_references/data/patient/08_home_dashboard.json';
+import wearableData from '../_references/data/patient/07_vitals_wearable.json';
+import symptomRecords from '../_references/data/patient/03_symptom_records.json';
 import consentNotifications from '../_references/data/patient/09_consent_notifications.json';
 import { getPatientId } from '../_lib/getPatientId';
 import styles from './page.module.scss';
 import AppBar from './_components/AppBar/AppBar';
 import GreetingSection from './_components/GreetingSection/GreetingSection';
 import RecentSymptoms from './_components/RecentSymptoms/RecentSymptoms';
+import SymptomLogCta from './_components/SymptomLogCta/SymptomLogCta';
 import VitalsToday from './_components/VitalsToday/VitalsToday';
-import MedicationReminder from './_components/MedicationReminder/MedicationReminder';
 import LastVisitResult from './_components/LastVisitResult/LastVisitResult';
 import TabBar from './_components/TabBar/TabBar';
 import NewResultToast from './_components/NewResultToast/NewResultToast';
@@ -141,10 +143,12 @@ export default async function PatientHome() {
                 <h1 className="sr-only">Eum 홈</h1>
                 <GreetingSection greeting={greeting} />
                 <RecentSymptoms summary={dynamicSummary ?? homeDashboard.recent_symptoms_summary} />
-                <VitalsToday vitals={homeDashboard.vitals_today} wearableDevice={patientInfo?.wearable_device ?? null} />
-                <MedicationReminder
-                    reminder={homeDashboard.medication_reminder}
-                    activeCount={homeDashboard.active_medications_count}
+                <SymptomLogCta />
+                <VitalsToday
+                    vitals={homeDashboard.vitals_today}
+                    wearableDevice={patientInfo?.wearable_device ?? null}
+                    wearableHistory={wearableData.health_platform}
+                    symptomRecords={symptomRecords.symptom_records}
                 />
                 <LastVisitResult result={homeDashboard.last_visit_result} />
             </main>

@@ -12,6 +12,7 @@ export default function CheckmarkIcon({
     variant = 'active',
     size = 24,
     color = 'currentColor',
+    viewBox = '0 0 24 24',
     className,
     ...rest
 }) {
@@ -19,7 +20,7 @@ export default function CheckmarkIcon({
         <svg
             width={size}
             height={size}
-            viewBox="0 0 24 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

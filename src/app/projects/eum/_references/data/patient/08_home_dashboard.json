@@ -27,11 +27,5 @@
     "sleep_hours": 5.2,
     "step_count": 6400,
     "source_platform": "APPLE_HEALTH"
-  },
-  "medication_reminder": {
-    "next_medication": "에소메프라졸 40mg",
-    "scheduled_time": "07:30",
-    "status": "taken"
-  },
-  "active_medications_count": 4
+  }
 }

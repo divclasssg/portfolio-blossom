@@ -1,10 +1,10 @@
 // 웨어러블/스마트워치 아이콘 (Figma: wearable, 24×25)
-export default function WearableIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function WearableIcon({ size = 24, color = 'currentColor', viewBox = '0 0 24 25', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 24 25"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

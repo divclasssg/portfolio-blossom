@@ -1,10 +1,10 @@
 // 하트 아이콘 (Figma: heart, 25×24)
-export default function HeartIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function HeartIcon({ size = 24, color = 'currentColor', viewBox = '0 0 25 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 25 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

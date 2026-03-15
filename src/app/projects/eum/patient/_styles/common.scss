@@ -141,7 +141,7 @@
 }
 
 // ── 홈 섹션 레이아웃 ──────────────────────────────────────────────────────────
-// VitalsToday, RecentSymptoms, MedicationReminder, LastVisitResult 공통
+// VitalsToday, RecentSymptoms, LastVisitResult 공통
 
 .home-section {
     padding: $section-gap $section-padding-x 0;
@@ -156,14 +156,14 @@
     font-size: $fs-body;
     font-weight: 600;
     color: $text-primary;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
+    padding-left: 16px;
 }
 
 // ── 홈 카드 ────────────────────────────────────────────────────────────────────
 
 .home-card {
     background: $card-bg;
-    border: 1px solid $card-border;
     border-radius: $card-radius;
     padding: $card-padding;
 }
@@ -173,13 +173,13 @@
 
 .home-link {
     font-size: $fs-small;
+    font-weight: 700;
     color: $color-primary;
     text-decoration: none;
     white-space: nowrap;
     // 터치 타겟
-    min-height: 44px;
     display: inline-flex;
-    align-items: center;
+    align-items: flex-end;
 
     &:hover {
         text-decoration: underline;

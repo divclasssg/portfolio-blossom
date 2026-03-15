@@ -1,11 +1,11 @@
 // AI 칩/프로세서 아이콘 (Figma: Icons > AI, 34:137)
 // stroke 기반 — color prop이 선 색상에 적용됨
-export default function AiIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function AiIcon({ size = 24, color = 'currentColor', viewBox = '0 0 24 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 24 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

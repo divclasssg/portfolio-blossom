@@ -1,10 +1,10 @@
 // 데이터베이스 아이콘 (Figma: data, 24×24) — stroke 기반
-export default function DataIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function DataIcon({ size = 24, color = 'currentColor', viewBox = '0 0 24 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 24 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

@@ -1,10 +1,10 @@
 // 드래그 아이콘 — 4줄 horizontal bars (Figma: Icons > Drag, 34:211)
-export default function DragIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function DragIcon({ size = 24, color = 'currentColor', viewBox = '0 0 24 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 24 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

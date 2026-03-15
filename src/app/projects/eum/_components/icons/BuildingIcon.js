@@ -1,10 +1,10 @@
 // 건물/병원 아이콘 (Figma: building, 44×44) — 다중 path
-export default function BuildingIcon({ size = 44, color = 'currentColor', className, ...rest }) {
+export default function BuildingIcon({ size = 44, color = 'currentColor', viewBox = '0 0 44 44', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 44 44"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

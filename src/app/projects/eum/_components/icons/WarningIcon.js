@@ -32,15 +32,16 @@ export default function WarningIcon({
     variant = 'info',
     size = 24,
     color = 'currentColor',
+    viewBox,
     className,
     ...rest
 }) {
-    const { viewBox, path } = DATA[variant];
+    const { viewBox: defaultViewBox, path } = DATA[variant];
     return (
         <svg
             width={size}
             height={size}
-            viewBox={viewBox}
+            viewBox={viewBox || defaultViewBox}
             fill="none"
             aria-hidden="true"
             className={className}

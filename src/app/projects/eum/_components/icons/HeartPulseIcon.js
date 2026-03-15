@@ -1,10 +1,10 @@
 // 심박/하트펄스 아이콘 (Figma: heart-pulse, 32×32) — 다중 path
-export default function HeartPulseIcon({ size = 32, color = 'currentColor', className, ...rest }) {
+export default function HeartPulseIcon({ size = 32, color = 'currentColor', viewBox = '0 0 32 32', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 32 32"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}

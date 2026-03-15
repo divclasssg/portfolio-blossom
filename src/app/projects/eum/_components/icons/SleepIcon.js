@@ -1,10 +1,10 @@
 // 수면/침대 아이콘 (Figma: sleep, 31×24)
-export default function SleepIcon({ size = 24, color = 'currentColor', className, ...rest }) {
+export default function SleepIcon({ size = 24, color = 'currentColor', viewBox = '0 0 31 24', className, ...rest }) {
     return (
         <svg
             width={size}
             height={size}
-            viewBox="0 0 31 24"
+            viewBox={viewBox}
             fill="none"
             aria-hidden="true"
             className={className}
