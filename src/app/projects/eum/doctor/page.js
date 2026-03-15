@@ -115,7 +115,8 @@ async function fetchLiveData(patientId) {
         // summary_bullets 없는 옛 결과는 stale → null 처리하여 파이프라인 재실행 유도
         const rawBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
         const dbBriefing = rawBriefing?.summary_bullets?.length > 0 ? rawBriefing : null;
-        const dbSuggestions = aiData.find((r) => r.result_type === 'suggestions')?.content ?? null;
+        const rawSuggestions = aiData.find((r) => r.result_type === 'suggestions')?.content ?? null;
+        const dbSuggestions = rawSuggestions?.suggestions?.length > 0 ? rawSuggestions : null;
 
         // 타임라인 변환: 최신 3개 → compact, 나머지 → expanded
         const timelineItems = symptoms.map(symptomToTimelineItem).filter(Boolean);

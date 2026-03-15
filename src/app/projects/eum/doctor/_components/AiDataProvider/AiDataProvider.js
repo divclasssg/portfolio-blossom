@@ -119,7 +119,7 @@ export default function AiDataProvider({
                 <AiBriefing briefing={activeBriefing} />
 
                 <AiSuggestions
-                    suggestions={activeSuggestions?.suggestions ?? fallbackSuggestions.suggestions}
+                    suggestions={activeSuggestions?.suggestions?.length > 0 ? activeSuggestions.suggestions : fallbackSuggestions.suggestions}
                     modelVersion={activeSuggestions?.model_version ?? fallbackSuggestions.model_version}
                 />
 
