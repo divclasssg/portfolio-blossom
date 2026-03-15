@@ -177,7 +177,7 @@ export default async function DoctorDashboard() {
         ? { items: liveData.expandedItems }
         : sections.symptom_timeline_expanded;
 
-    // 환자 프로필: Supabase 우선, 폴백 → 빈 프로필 (윤서진 노출 방지)
+    // 환자 프로필: Supabase 우선, 폴백 → 정적 JSON (윤서진 데모 시나리오)
     const patient = liveData?.patient ?? null;
 
     const patientSummary = patient
@@ -187,7 +187,7 @@ export default async function DoctorDashboard() {
               gender: patient.gender,
               patient_id: patientId,
           }
-        : { name: '정보 없음', age: null, gender: null, patient_id: patientId };
+        : dashboardState.patient_summary;
 
     // chronic_conditions: DB는 [{name: "..."}] 또는 ["..."] 형태 모두 허용
     const conditionNames = (patient?.chronic_conditions ?? []).map((c) =>
@@ -205,10 +205,10 @@ export default async function DoctorDashboard() {
               blood_type: patient.blood_type ?? null,
               wearable_device: patient.wearable_device ?? null,
           }
-        : { ...sections.basic_info.data, chronic_conditions: [] };
+        : sections.basic_info.data;
 
-    // allergies: DB 데이터만 사용 (빈 배열이면 알레르기 경고 미표시)
-    const allergies = patient?.allergies ?? [];
+    // allergies: DB 우선, 폴백 → 정적 JSON
+    const allergies = patient?.allergies ?? sections.allergies.items;
 
     // chief complaint: sessions.chief_complaint 우선, 폴백 → 정적 JSON
     const chiefComplaint = liveData?.chiefComplaint ?? sections.chief_complaint;
