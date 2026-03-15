@@ -1,30 +1,41 @@
 @use '../../_styles/tokens' as *;
 
 .tab-bar {
+    border: 1px solid $divider-color;
+    border-radius: 9999px;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - (12px * 2));
     height: $tab-bar-height;
     // iOS 홈 인디케이터 대응
     padding-bottom: env(safe-area-inset-bottom);
     background: $card-bg;
     border-top: 1px solid $divider-color;
     display: flex;
+    padding: 4px;
     z-index: 200;
+        background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: $app-bar-backdrop-filter;
+}
+
+.tab-list {
+    display: flex;
+    width: 100%;
 }
 
 .tab {
-    flex: 1;
+    border-radius: 999px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
+    gap: 4px;
     text-decoration: none;
     color: $text-secondary;
     // 터치 타겟
-    min-height: 44px;
+    width: 120px;
 
     &:focus-visible {
         outline: 2px solid $color-primary;
@@ -34,6 +45,11 @@
 
 .tab--active {
     color: $color-primary;
+    background: $neutral-bg;
+
+    .label {
+        font-weight: 700;
+    }
 }
 
 .icon {

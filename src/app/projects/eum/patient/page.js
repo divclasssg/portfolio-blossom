@@ -130,7 +130,7 @@ export default async function PatientHome() {
     ]);
     // DB에서 이름을 읽으면 동적 인사말, 실패 시 이름 없이 인사
     const greeting = patientInfo?.name
-        ? `${patientInfo.name}님, 오늘도 건강한 하루 보내세요.`
+        ? <>{patientInfo.name}님, <br />오늘도 건강한 하루 보내세요.</>
         : '오늘도 건강한 하루 보내세요.';
 
     return (

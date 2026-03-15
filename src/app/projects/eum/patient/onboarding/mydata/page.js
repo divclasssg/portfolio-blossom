@@ -21,7 +21,7 @@ export default function MydataPage() {
             />
             <main className="page">
                 <section className={`content ${styles.content}`} aria-labelledby="mydata-title">
-                    <h1 id="mydata-title" className="title">
+                    <h1 id="mydata-title" className="title onboarding">
                         의료 마이데이터
                         <br />
                         연동 동의

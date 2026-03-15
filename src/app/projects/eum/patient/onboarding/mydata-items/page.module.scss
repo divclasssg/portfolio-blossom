@@ -91,7 +91,7 @@
 }
 
 .toggle-on {
-    background: #5b7fa6; // 스크린샷의 slate-blue 토글 색상
+    background: $color-primary;
 }
 
 .toggle-thumb {
@@ -142,6 +142,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 12px 8px;
     padding-bottom: 14px;
+    padding-top: 24px;
 }
 
 .check-item {
@@ -163,7 +164,7 @@
     width: 22px;
     height: 22px;
     border-radius: 6px;
-    background: #5b7fa6;
+    background: $color-primary;
     border: none;
     flex-shrink: 0;
     position: relative;

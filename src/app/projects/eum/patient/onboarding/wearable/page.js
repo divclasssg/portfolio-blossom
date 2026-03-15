@@ -38,7 +38,7 @@ export default function WearablePage() {
             <OnboardingAppBar variant="progress" step={9} totalSteps={10} backHref={backHref} />
             <main className="page">
                 <section className={`content ${styles.content}`} aria-labelledby="wearable-title">
-                    <h1 id="wearable-title" className="title">
+                    <h1 id="wearable-title" className="title onboarding">
                         웨어러블 기기를
                         <br />
                         연동하시겠어요?

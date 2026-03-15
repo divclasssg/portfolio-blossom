@@ -56,7 +56,7 @@ export default function PinConfirmPage() {
             />
             <main className={`page ${styles.page}`}>
                 <section className={`content ${styles.content}`} aria-labelledby="pin-confirm-title">
-                    <h1 id="pin-confirm-title" className="title">
+                    <h1 id="pin-confirm-title" className="title onboarding">
                         PIN 번호를 한 번 더<br />
                         입력해 주세요
                     </h1>

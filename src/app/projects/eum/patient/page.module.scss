@@ -2,5 +2,5 @@
 
 // P-018 홈 페이지 콘텐츠 영역
 .content {
-    padding-bottom: calc(#{$tab-bar-height} + env(safe-area-inset-bottom));
+    padding-bottom: calc(#{$content-padding-bottom} + env(safe-area-inset-bottom));
 }

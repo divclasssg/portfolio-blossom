@@ -53,7 +53,7 @@ export default function PinPage() {
             />
             <main className={`page ${styles.page}`}>
                 <section className={`content ${styles.content}`} aria-labelledby="pin-title">
-                    <h1 id="pin-title" className="title">
+                    <h1 id="pin-title" className="title onboarding">
                         PIN 번호를 설정해 주세요
                     </h1>
                     <p className={`subtitle ${styles.subtitle}`}>
@@ -64,7 +64,7 @@ export default function PinPage() {
                             {pinError}
                         </p>
                     ) : (
-                        <p className="hint">
+                        <p className={`hint ${styles.hint}`}>
                             같은 숫자나 연속된 숫자를 3개 이상 사용할 수 없어요.
                         </p>
                     )}

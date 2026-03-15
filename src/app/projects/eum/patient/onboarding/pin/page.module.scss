@@ -20,5 +20,11 @@
 
 // error: 추가 font-weight 500
 .error {
+    font-weight: 700;
+    color: $color-danger;
+}
+
+.hint {
     font-weight: 500;
+    color: $color-danger;
 }

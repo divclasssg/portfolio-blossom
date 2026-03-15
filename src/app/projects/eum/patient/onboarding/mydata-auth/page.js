@@ -151,7 +151,7 @@ export default function MydataAuthPage() {
                             </span>
                         ) : (
                             <span id="resident-hint" className="hint">
-                                예: 920514 – 1 (1992년생 남성)
+                                예: 920514 – 1
                             </span>
                         )}
                     </div>

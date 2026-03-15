@@ -22,7 +22,7 @@ $header-icon-color: #9ca3af;
 $header-height: 48px;
 
 // ── 섹션 공통 ─────────────────────────────────────────────────────────────────
-$section-padding-x: 20px;
+$section-padding-x: 24px;
 $section-padding-y: 32px;
 $section-gap: 24px; // 섹션 간 여백
 $section-background: #fff;
@@ -106,8 +106,9 @@ $clinical-normal: #34c759;
 $card-radius: 12px;
 $card-padding: 16px;
 $card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-$app-bar-height: 56px;
+$app-bar-height: 64px;
 $tab-bar-height: 64px;
+$content-padding-bottom: 100px;
 
 // ── 배지 ──────────────────────────────────────────────────────────────────────
 $badge-bg: #e5e5ea; // neutral.background-tertiary — iOS systemGray5

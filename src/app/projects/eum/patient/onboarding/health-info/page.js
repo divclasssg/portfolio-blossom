@@ -110,7 +110,7 @@ export default function HealthInfoPage() {
             />
             <main className="page">
                 <section className={`content ${styles.content}`} aria-labelledby="health-info-title">
-                    <h1 id="health-info-title" className="title">
+                    <h1 id="health-info-title" className="title onboarding">
                         건강 정보를
                         <br />
                         입력해 주세요

@@ -3,14 +3,14 @@
 .app-bar {
     position: sticky;
     top: 0;
-    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
     height: $app-bar-height;
-    background: $app-bar-bg;
+    background: rgba(242, 242, 247, 0.8);
     backdrop-filter: $app-bar-backdrop-filter;
-    padding: 0 $section-padding-x;
+    padding: $section-padding-x;
+    z-index: 100;
 }
 
 .title {
@@ -21,7 +21,7 @@
 }
 
 .back-btn {
-    background: $neutral-surface;
+    background: #fff;
     position: absolute;
     left: $section-padding-x;
     display: flex;
@@ -32,6 +32,7 @@
     color: $text-primary;
     text-decoration: none;
     border-radius: 50%;
+    box-shadow: $card-shadow;
 
     &:focus-visible {
         outline: 2px solid $color-primary;
@@ -40,6 +41,7 @@
 }
 
 .bell-btn {
+    background: #fff;
     position: absolute;
     right: $section-padding-x;
     display: flex;
@@ -48,11 +50,11 @@
     // 터치 타겟 최소 44×44px
     width: 44px;
     height: 44px;
-    background: none;
     border: none;
     cursor: pointer;
     color: $text-primary;
     border-radius: 50%;
+    box-shadow: $card-shadow;
 
     &:focus-visible {
         outline: 2px solid $color-primary;
