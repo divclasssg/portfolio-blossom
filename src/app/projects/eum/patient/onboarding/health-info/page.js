@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import CtaButton from '../../_components/CtaButton/CtaButton';
 import styles from './page.module.scss';
 
 const BLOOD_TYPES = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-', '모름'];
@@ -371,14 +372,12 @@ export default function HealthInfoPage() {
                 </section>
 
                 <div className="footer">
-                    <button
-                        type="button"
-                        className="btn-primary"
+                    <CtaButton
                         disabled={!isValid}
                         onClick={handleComplete}
                     >
                         완료
-                    </button>
+                    </CtaButton>
                 </div>
             </main>
         </>

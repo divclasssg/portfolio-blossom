@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import CtaButton from '../../_components/CtaButton/CtaButton';
 import styles from './page.module.scss';
 
 const SLIDES = [
@@ -63,14 +64,14 @@ export default function SandboxPage() {
                     </div>
 
                     <p className={styles['slide-counter']} aria-hidden="true">
-                        {current + 1} / {SLIDES.length}
+                        <span className={styles['slide-counter-current']}>{current + 1}</span> / {SLIDES.length}
                     </p>
                 </section>
 
                 <div className="footer">
-                    <button type="button" className="btn-primary" onClick={handleNext}>
+                    <CtaButton onClick={handleNext}>
                         {current < SLIDES.length - 1 ? '다음' : '시작할게요'}
-                    </button>
+                    </CtaButton>
                 </div>
             </main>
 

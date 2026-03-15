@@ -8,8 +8,8 @@
     align-items: center;
     justify-content: center;
     height: $app-bar-height;
-    background: $card-bg;
-    border-bottom: 1px solid $divider-color;
+    background: $app-bar-bg;
+    backdrop-filter: $app-bar-backdrop-filter;
     padding: 0 $section-padding-x;
 }
 
@@ -21,6 +21,7 @@
 }
 
 .back-btn {
+    background: $neutral-surface;
     position: absolute;
     left: $section-padding-x;
     display: flex;
@@ -67,7 +68,7 @@
     min-width: 16px;
     height: 16px;
     padding: 0 4px;
-    background: #ff3b30; // iOS systemRed
+    background: $color-danger;
     color: #fff;
     font-size: 10px;
     font-weight: 700;

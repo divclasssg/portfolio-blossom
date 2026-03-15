@@ -43,7 +43,7 @@
     position: sticky;
     bottom: 0;
     padding: 16px $section-padding-x calc(16px + env(safe-area-inset-bottom));
-    background: $screen-bg;
+    background: $card-bg;
 }
 
 // ── 버튼 ────────────────────────────────────────────────────────────────────────

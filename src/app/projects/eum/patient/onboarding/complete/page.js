@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import CtaButton from '../../_components/CtaButton/CtaButton';
 import styles from './page.module.scss';
 
 // sessionStorage 데이터를 기반으로 요약 항목 생성
@@ -152,25 +153,21 @@ export default function CompletePage() {
                         </p>
                     )}
                     {saveStatus === 'error' ? (
-                        <button
-                            type="button"
-                            className="btn-primary"
+                        <CtaButton
                             onClick={() => {
                                 setErrorMsg('');
                                 saveOnboarding();
                             }}
                         >
                             다시 시도
-                        </button>
+                        </CtaButton>
                     ) : (
-                        <button
-                            type="button"
-                            className="btn-primary"
+                        <CtaButton
                             disabled={saveStatus === 'saving'}
                             onClick={() => router.push('/projects/eum/patient')}
                         >
                             {saveStatus === 'saving' ? '저장 중...' : '이음 시작하기'}
-                        </button>
+                        </CtaButton>
                     )}
                 </div>
             </main>

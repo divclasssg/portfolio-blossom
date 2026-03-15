@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import CtaButton from '../../_components/CtaButton/CtaButton';
 import styles from './page.module.scss';
 
 function validateResident(digits) {
@@ -193,15 +194,12 @@ export default function MydataAuthPage() {
                 </section>
 
                 <div className="footer">
-                    <button
-                        type="button"
-                        className="btn-primary"
+                    <CtaButton
                         disabled={!isValid || loading}
                         onClick={handleAuth}
-                        aria-busy={loading}
                     >
                         {loading ? '인증 중...' : '인증하기'}
-                    </button>
+                    </CtaButton>
                 </div>
             </main>
         </>

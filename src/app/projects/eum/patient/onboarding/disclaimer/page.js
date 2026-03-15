@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import CtaButton from '../../_components/CtaButton/CtaButton';
 import styles from './page.module.scss';
 
 export default function DisclaimerPage() {
@@ -12,10 +13,10 @@ export default function DisclaimerPage() {
             <OnboardingAppBar variant="logo" />
             <main className={`page ${styles.page}`}>
                 <section className="content" aria-labelledby="disclaimer-title">
-                    <div className={styles.icon} aria-hidden="true">
+                    <div className={`${styles.icon} icon`} aria-hidden="true">
                         ⚠️
                     </div>
-                    <h1 id="disclaimer-title" className="title">
+                    <h1 id="disclaimer-title" className={`${styles.title} title`}>
                         의료 정보 이용 안내
                     </h1>
                     <div className={styles['body']}>
@@ -37,13 +38,11 @@ export default function DisclaimerPage() {
                 </section>
 
                 <div className="footer">
-                    <button
-                        type="button"
-                        className="btn-primary"
+                    <CtaButton
                         onClick={() => router.push('/projects/eum/patient/onboarding/welcome')}
                     >
                         확인했습니다
-                    </button>
+                    </CtaButton>
                 </div>
             </main>
         </>

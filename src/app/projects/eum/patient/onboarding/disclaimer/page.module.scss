@@ -2,21 +2,28 @@
 
 // page: padding-top이 40px으로 글로벌(32px)과 다름
 .page {
-    padding-top: 40px;
+    background-color: $card-bg;
+    padding: 40px 24px;
 }
 
 .icon {
     font-size: 48px;
     line-height: 1;
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 16px;
 }
 
 .body {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    font-size: 15px;
+    font-size: $fs-body;
     line-height: 1.6;
-    color: $text-secondary;
+    color: $text-primary;
 
     strong {
         color: $text-primary;

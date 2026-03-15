@@ -1,3 +1,5 @@
+@use '../_styles/tokens' as *;
+
 .content {
     display: flex;
     align-items: center;
@@ -8,5 +10,5 @@
 
 .placeholder {
     font-size: 15px;
-    color: #9ca3af;
+    color: $header-icon-color;
 }

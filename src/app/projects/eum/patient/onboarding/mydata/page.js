@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import CtaButton from '../../_components/CtaButton/CtaButton';
 import styles from './page.module.scss';
 
 export default function MydataPage() {
@@ -85,9 +86,7 @@ export default function MydataPage() {
                 </section>
 
                 <div className={`footer ${styles.footer}`}>
-                    <button
-                        type="button"
-                        className="btn-primary"
+                    <CtaButton
                         disabled={!consentMydata || !consentOverseas}
                         onClick={() => {
                             const existing = JSON.parse(
@@ -106,10 +105,9 @@ export default function MydataPage() {
                         }}
                     >
                         동의하고 계속하기
-                    </button>
-                    <button
-                        type="button"
-                        className={styles['btn-skip']}
+                    </CtaButton>
+                    <CtaButton
+                        variant="tertiary"
                         onClick={() => {
                             const existing = JSON.parse(
                                 sessionStorage.getItem('eum_onboarding') || '{}'
@@ -127,7 +125,7 @@ export default function MydataPage() {
                         }}
                     >
                         건너뛰기
-                    </button>
+                    </CtaButton>
                 </div>
             </main>
         </>

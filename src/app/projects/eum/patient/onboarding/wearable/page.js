@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import CtaButton from '../../_components/CtaButton/CtaButton';
 import styles from './page.module.scss';
 
 const WEARABLES = [
@@ -92,9 +93,7 @@ export default function WearablePage() {
                 </section>
 
                 <div className={`footer ${styles.footer}`}>
-                    <button
-                        type="button"
-                        className="btn-primary"
+                    <CtaButton
                         disabled={!selected}
                         onClick={() => {
                             const existing = JSON.parse(
@@ -108,10 +107,9 @@ export default function WearablePage() {
                         }}
                     >
                         연동하기
-                    </button>
-                    <button
-                        type="button"
-                        className={styles['btn-skip']}
+                    </CtaButton>
+                    <CtaButton
+                        variant="tertiary"
                         onClick={() => {
                             const existing = JSON.parse(
                                 sessionStorage.getItem('eum_onboarding') || '{}'
@@ -124,7 +122,7 @@ export default function WearablePage() {
                         }}
                     >
                         건너뛰기
-                    </button>
+                    </CtaButton>
                 </div>
             </main>
         </>

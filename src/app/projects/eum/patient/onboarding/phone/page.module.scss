@@ -62,10 +62,10 @@
 }
 
 .input-error {
-    border-color: #ff3b30;
+    border-color: $color-danger;
 
     &:focus {
-        border-color: #ff3b30;
+        border-color: $color-danger;
     }
 }
 
@@ -106,7 +106,7 @@
 
 .error {
     font-size: 13px;
-    color: #ff3b30;
+    color: $color-danger;
     line-height: 1.4;
 }
 

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
+import CtaButton from '../../_components/CtaButton/CtaButton';
 import styles from './page.module.scss';
 
 const REQUIRED_ITEMS = [
@@ -235,9 +236,7 @@ export default function ConsentsPage() {
                 </section>
 
                 <div className="footer">
-                    <button
-                        type="button"
-                        className="btn-primary"
+                    <CtaButton
                         disabled={!allRequiredChecked}
                         onClick={() => {
                             const existing = JSON.parse(
@@ -261,7 +260,7 @@ export default function ConsentsPage() {
                         }}
                     >
                         동의하고 계속하기
-                    </button>
+                    </CtaButton>
                 </div>
             </main>
         </>
