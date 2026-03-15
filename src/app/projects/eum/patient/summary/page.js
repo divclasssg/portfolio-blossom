@@ -72,7 +72,7 @@ export default async function SummaryListPage() {
 
     return (
         <>
-            <AppBar />
+            <AppBar backHref="/projects/eum/patient" />
             <main className={styles['content']}>
                 <h1 className={styles['title']}>진료 요약</h1>
                 <ul className={styles['list']}>

@@ -140,14 +140,114 @@
     color: $text-secondary;
 }
 
+// ── 홈 섹션 레이아웃 ──────────────────────────────────────────────────────────
+// VitalsToday, RecentSymptoms, MedicationReminder, LastVisitResult 공통
+
+.home-section {
+    padding: $section-gap $section-padding-x 0;
+}
+
+// 하단 패딩 필요 시 (LastVisitResult)
+.home-section--padded {
+    padding-bottom: $section-gap;
+}
+
+.home-section-title {
+    font-size: $fs-body;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 10px;
+}
+
 // ── 홈 카드 ────────────────────────────────────────────────────────────────────
-// 주의: home section/section-title은 doctor와 이름 충돌로 인해 각 컴포넌트 모듈에 유지.
 
 .home-card {
     background: $card-bg;
     border: 1px solid $card-border;
     border-radius: $card-radius;
     padding: $card-padding;
+}
+
+// ── 홈 링크 ───────────────────────────────────────────────────────────────────
+// RecentSymptoms, LastVisitResult 공통
+
+.home-link {
+    font-size: $fs-small;
+    color: $color-primary;
+    text-decoration: none;
+    white-space: nowrap;
+    // 터치 타겟
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+
+    &:hover {
+        text-decoration: underline;
+    }
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+}
+
+// ── 동의 체크박스 ─────────────────────────────────────────────────────────────
+// consents, mydata 공통
+
+.consent-checkbox {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid $card-border;
+    border-radius: 6px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+    position: relative;
+    margin-top: 2px;
+
+    &:checked {
+        background: $color-primary;
+        border-color: $color-primary;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 6px;
+            width: 6px;
+            height: 10px;
+            border: 2px solid #ffffff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg);
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: 2px;
+    }
+}
+
+// ── PIN 레이아웃 ──────────────────────────────────────────────────────────────
+// pin, pin-confirm, login-pin 공통 (.page, .content, .subtitle 글로벌 override)
+
+.pin-page {
+    padding: 48px $section-padding-x 48px;
+    gap: 48px;
+}
+
+.pin-content {
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.pin-subtitle {
+    font-size: $fs-body;
 }
 
 // ── 스크린리더 전용 ─────────────────────────────────────────────────────────────

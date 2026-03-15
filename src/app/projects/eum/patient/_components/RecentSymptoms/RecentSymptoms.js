@@ -23,8 +23,8 @@ export default function RecentSymptoms({ summary }) {
     const { last_7_days_count, avg_severity, trend, most_recent } = summary;
 
     return (
-        <section className={styles['section']} aria-labelledby="recent-symptoms-title">
-            <h2 id="recent-symptoms-title" className={styles['section-title']}>
+        <section className="home-section" aria-labelledby="recent-symptoms-title">
+            <h2 id="recent-symptoms-title" className="home-section-title">
                 최근 증상
             </h2>
             <div className="home-card">
@@ -37,7 +37,7 @@ export default function RecentSymptoms({ summary }) {
                     </span>
                     <Link
                         href="/projects/eum/patient/symptoms"
-                        className={styles['link']}
+                        className="home-link"
                         aria-label="증상 기록 보기"
                     >
                         증상 기록 &gt;

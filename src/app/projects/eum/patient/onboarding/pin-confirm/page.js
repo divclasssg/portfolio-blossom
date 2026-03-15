@@ -54,8 +54,8 @@ export default function PinConfirmPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/pin"
             />
-            <main className={`page ${styles.page}`}>
-                <section className={`content ${styles.content}`} aria-labelledby="pin-confirm-title">
+            <main className="page pin-page">
+                <section className="content pin-content" aria-labelledby="pin-confirm-title">
                     <h1 id="pin-confirm-title" className="title onboarding">
                         PIN 번호를 한 번 더<br />
                         입력해 주세요
@@ -65,7 +65,7 @@ export default function PinConfirmPage() {
                             {error}
                         </p>
                     ) : (
-                        <p className={`subtitle ${styles.subtitle}`}>
+                        <p className="subtitle pin-subtitle">
                             앞서 입력한 PIN 번호와 동일하게 입력하세요.
                         </p>
                     )}

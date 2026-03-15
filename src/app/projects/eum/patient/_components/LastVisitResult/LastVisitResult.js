@@ -13,8 +13,8 @@ export default function LastVisitResult({ result }) {
     const { visit_date, hospital_name, summary_preview = '진료 결과를 확인해 주세요.' } = result;
 
     return (
-        <section className={styles['section']} aria-labelledby="last-visit-title">
-            <h2 id="last-visit-title" className={styles['section-title']}>
+        <section className="home-section home-section--padded" aria-labelledby="last-visit-title">
+            <h2 id="last-visit-title" className="home-section-title">
                 지난 진료 결과
             </h2>
             <div className="home-card">
@@ -25,7 +25,7 @@ export default function LastVisitResult({ result }) {
                     </span>
                     <Link
                         href="/projects/eum/patient/summary"
-                        className={styles['link']}
+                        className="home-link"
                         aria-label="지난 진료 결과 상세 보기"
                     >
                         상세 보기 &gt;

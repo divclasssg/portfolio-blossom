@@ -1,16 +1,5 @@
 @use '../../_styles/tokens' as *;
 
-.section {
-    padding: $section-gap $section-padding-x 0;
-}
-
-.section-title {
-    font-size: $fs-body;
-    font-weight: 600;
-    color: $text-primary;
-    margin: 0 0 10px;
-}
-
 // card: 상/하 패딩 없음 (글로벌 home-card는 $card-padding 전체 적용)
 .card {
     padding-top: 0;

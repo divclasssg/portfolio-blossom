@@ -1,16 +1,5 @@
 @use '../../_styles/tokens' as *;
 
-.section {
-    padding: $section-gap $section-padding-x 0;
-}
-
-.section-title {
-    font-size: $fs-body;
-    font-weight: 600;
-    color: $text-primary;
-    margin: 0 0 10px;
-}
-
 .summary-row {
     display: flex;
     align-items: center;
@@ -30,26 +19,6 @@
 .dot {
     margin: 0 4px;
     color: $text-secondary;
-}
-
-.link {
-    font-size: $fs-small;
-    color: $color-primary;
-    text-decoration: none;
-    white-space: nowrap;
-    // 터치 타겟
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-
-    &:hover {
-        text-decoration: underline;
-    }
-    &:focus-visible {
-        outline: 2px solid $color-primary;
-        outline-offset: 2px;
-        border-radius: 4px;
-    }
 }
 
 .divider {

@@ -14,8 +14,8 @@ export default function VitalsToday({ vitals, wearableDevice }) {
     ];
 
     return (
-        <section className={styles['section']} aria-labelledby="vitals-title">
-            <h2 id="vitals-title" className={styles['section-title']}>
+        <section className="home-section" aria-labelledby="vitals-title">
+            <h2 id="vitals-title" className="home-section-title">
                 오늘의 건강
             </h2>
             <div className={`home-card ${styles.card}`}>

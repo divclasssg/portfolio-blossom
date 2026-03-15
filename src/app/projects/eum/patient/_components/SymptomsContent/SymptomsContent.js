@@ -8,7 +8,7 @@ import SegmentedControl from '../SegmentedControl/SegmentedControl';
 import ChatArea from '../ChatArea/ChatArea';
 import ChatInputBar from '../ChatInputBar/ChatInputBar';
 import SymptomTimeline from '../SymptomTimeline/SymptomTimeline';
-import TabBar from '../TabBar/TabBar';
+
 
 const TABS = [
     { key: 'chat', label: '채팅' },
@@ -229,7 +229,6 @@ export default function SymptomsContent({
                 {activeTab === 'records' && <SymptomTimeline records={records} />}
             </main>
             {activeTab === 'chat' && <ChatInputBar onSend={sendMessage} disabled={isStreaming} />}
-            <TabBar activePath="symptoms" />
         </>
     );
 }

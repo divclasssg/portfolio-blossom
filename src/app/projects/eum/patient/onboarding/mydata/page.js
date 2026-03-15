@@ -35,7 +35,7 @@ export default function MydataPage() {
                         <label className={styles['consent-item']}>
                             <input
                                 type="checkbox"
-                                className={styles['checkbox']}
+                                className="consent-checkbox"
                                 checked={consentMydata}
                                 onChange={(e) => setConsentMydata(e.target.checked)}
                                 aria-describedby="mydata-detail"
@@ -60,7 +60,7 @@ export default function MydataPage() {
                         <label className={styles['consent-item']}>
                             <input
                                 type="checkbox"
-                                className={styles['checkbox']}
+                                className="consent-checkbox"
                                 checked={consentOverseas}
                                 onChange={(e) => setConsentOverseas(e.target.checked)}
                                 aria-describedby="overseas-detail"

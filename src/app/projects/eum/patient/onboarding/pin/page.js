@@ -51,12 +51,12 @@ export default function PinPage() {
                 totalSteps={10}
                 backHref="/projects/eum/patient/onboarding/personal-info"
             />
-            <main className={`page ${styles.page}`}>
-                <section className={`content ${styles.content}`} aria-labelledby="pin-title">
+            <main className="page pin-page">
+                <section className="content pin-content" aria-labelledby="pin-title">
                     <h1 id="pin-title" className="title onboarding">
                         PIN 번호를 설정해 주세요
                     </h1>
-                    <p className={`subtitle ${styles.subtitle}`}>
+                    <p className="subtitle pin-subtitle">
                         앱 잠금 해제에 사용할 6자리 PIN을 입력해 주세요.
                     </p>
                     {pinError ? (

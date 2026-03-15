@@ -11,21 +11,19 @@ export default function AppBar({ backHref, unreadCount = 0 }) {
                 </Link>
             )}
             <span className={styles['title']}>Eum</span>
-            {!backHref && (
-                <button
-                    className={styles['bell-btn']}
-                    aria-label={unreadCount > 0 ? `알림 ${unreadCount}개 (준비 중)` : '알림 (준비 중)'}
-                    type="button"
-                    disabled
-                >
-                    <BellIcon variant="basic" size={22} />
-                    {unreadCount > 0 && (
-                        <span className={styles['badge']} aria-hidden="true">
-                            {unreadCount}
-                        </span>
-                    )}
-                </button>
-            )}
+            <button
+                className={styles['bell-btn']}
+                aria-label={unreadCount > 0 ? `알림 ${unreadCount}개 (준비 중)` : '알림 (준비 중)'}
+                type="button"
+                disabled
+            >
+                <BellIcon variant="basic" size={22} />
+                {unreadCount > 0 && (
+                    <span className={styles['badge']} aria-hidden="true">
+                        {unreadCount}
+                    </span>
+                )}
+            </button>
         </header>
     );
 }

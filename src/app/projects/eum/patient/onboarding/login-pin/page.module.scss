@@ -1,23 +1,5 @@
 @use '../../_styles/tokens' as *;
 
-// page: PIN 로그인 레이아웃 — 상/하단 48px 패딩, 섹션-키패드 간격 48px (글로벌: padding-top 32px, gap 없음)
-.page {
-    padding: 48px $section-padding-x 48px;
-    gap: 48px;
-}
-
-// content: 가운데 정렬 + gap 12px (글로벌: 정렬 없음, gap 20px)
-.content {
-    align-items: center;
-    gap: 12px;
-    text-align: center;
-}
-
-// subtitle: $fs-body (글로벌: $fs-regular)
-.subtitle {
-    font-size: $fs-body;
-}
-
 // error: $fs-body (글로벌: $fs-small)
 .error {
     font-size: $fs-body;

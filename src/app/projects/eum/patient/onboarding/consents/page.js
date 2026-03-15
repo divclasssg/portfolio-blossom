@@ -100,7 +100,7 @@ export default function ConsentsPage() {
                     <label className={styles['all-item']}>
                         <input
                             type="checkbox"
-                            className={styles['checkbox']}
+                            className="consent-checkbox"
                             checked={allChecked}
                             onChange={handleAll}
                             aria-label="전체 동의"
@@ -118,7 +118,7 @@ export default function ConsentsPage() {
                                     <label className={styles['item']}>
                                         <input
                                             type="checkbox"
-                                            className={styles['checkbox']}
+                                            className="consent-checkbox"
                                             checked={checked[item.id]}
                                             onChange={() => handleItem(item.id)}
                                             aria-label={item.label}
@@ -181,7 +181,7 @@ export default function ConsentsPage() {
                                     <label className={styles['item']}>
                                         <input
                                             type="checkbox"
-                                            className={styles['checkbox']}
+                                            className="consent-checkbox"
                                             checked={checked[item.id]}
                                             onChange={() => handleItem(item.id)}
                                             aria-label={item.label}

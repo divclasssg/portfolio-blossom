@@ -19,8 +19,8 @@ export default function MedicationReminder({ reminder, activeCount }) {
     const { next_medication, scheduled_time, status } = reminder;
 
     return (
-        <section className={styles['section']} aria-labelledby="medication-title">
-            <h2 id="medication-title" className={styles['section-title']}>
+        <section className="home-section" aria-labelledby="medication-title">
+            <h2 id="medication-title" className="home-section-title">
                 복약 알림
             </h2>
             <div className="home-card">

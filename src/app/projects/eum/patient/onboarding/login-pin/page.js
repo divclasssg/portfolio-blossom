@@ -50,8 +50,8 @@ export default function LoginPinPage() {
     return (
         <>
             <OnboardingAppBar variant="logo" />
-            <main className={`page ${styles.page}`}>
-                <section className={`content ${styles.content}`} aria-labelledby="login-pin-title">
+            <main className="page pin-page">
+                <section className="content pin-content" aria-labelledby="login-pin-title">
                     <h1 id="login-pin-title" className="title">
                         PIN 번호를 입력해 주세요
                     </h1>
@@ -60,7 +60,7 @@ export default function LoginPinPage() {
                             {error}
                         </p>
                     ) : (
-                        <p className={`subtitle ${styles.subtitle}`}>등록된 6자리 PIN을 입력해 주세요.</p>
+                        <p className="subtitle pin-subtitle">등록된 6자리 PIN을 입력해 주세요.</p>
                     )}
                 </section>
 
