@@ -53,47 +53,23 @@ export default function FilterBar({
                 )}
             </div>
 
-            {/* 카테고리 칩 + 범례 — 증상 탭 전용 */}
+            {/* 카테고리 칩 — 증상 탭 전용 */}
             {showCategory && (
-                <div className={styles['category-legend-row']}>
-                    <div
-                        className={styles['category-group']}
-                        role="group"
-                        aria-label="증상 카테고리 필터"
-                    >
-                        {CATEGORIES.map((cat) => (
-                            <button
-                                key={cat.id}
-                                className={`${styles['category-chip']} ${activeCategory === cat.id ? styles['category-chip--active'] : ''}`}
-                                onClick={() => onCategoryChange(cat.id)}
-                                aria-pressed={activeCategory === cat.id}
-                            >
-                                {cat.label}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* 범례 */}
-                    <div className={styles.legend} aria-label="차트 범례">
-                        <div className={styles['legend-item']}>
-                            <span className={styles['legend-rect']} aria-hidden="true" />
-                            <span>증상 발생일</span>
-                        </div>
-                        <div className={styles['legend-item']}>
-                            <span
-                                className={`${styles['legend-dot']} ${styles['legend-dot--autonomic']}`}
-                                aria-hidden="true"
-                            />
-                            <span>심리/자율</span>
-                        </div>
-                        <div className={styles['legend-item']}>
-                            <span
-                                className={`${styles['legend-dot']} ${styles['legend-dot--digestive']}`}
-                                aria-hidden="true"
-                            />
-                            <span>소화기</span>
-                        </div>
-                    </div>
+                <div
+                    className={styles['category-group']}
+                    role="group"
+                    aria-label="증상 카테고리 필터"
+                >
+                    {CATEGORIES.map((cat) => (
+                        <button
+                            key={cat.id}
+                            className={`${styles['category-chip']} ${activeCategory === cat.id ? styles['category-chip--active'] : ''}`}
+                            onClick={() => onCategoryChange(cat.id)}
+                            aria-pressed={activeCategory === cat.id}
+                        >
+                            {cat.label}
+                        </button>
+                    ))}
                 </div>
             )}
         </div>

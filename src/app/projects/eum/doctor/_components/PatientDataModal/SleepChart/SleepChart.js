@@ -35,12 +35,23 @@ function SleepTooltip({ active, payload, label }) {
         <div className="chart-tooltip">
             <p className="chart-tooltip-date">{fmtDate(label)}</p>
             <p className={styles['tooltip-value']}>{value}시간</p>
+            {entry.recommendedDelta != null && (
+                <p className={styles['tooltip-secondary']}>
+                    권장 대비 {entry.recommendedDelta >= 0 ? `+${entry.recommendedDelta}` : entry.recommendedDelta}h
+                </p>
+            )}
+            {entry.recentAvg != null && (
+                <p className={styles['tooltip-secondary']}>
+                    최근 7일 평균 {entry.recentAvg}h
+                </p>
+            )}
             {entry.outlier && <p className={styles['tooltip-outlier']}>⚠️ 참조 범위 이탈</p>}
+            {entry.isSymptomDay && <p className={styles['tooltip-symptom']}>증상 발생일</p>}
         </div>
     );
 }
 
-export default function SleepChart({ data, averageHours, symptomDays, xTicks }) {
+export default function SleepChart({ data, averageHours, symptomDays, xTicks, dateFormatter }) {
     return (
         <BarChart
             width={CHART_WIDTH}
@@ -74,7 +85,7 @@ export default function SleepChart({ data, averageHours, symptomDays, xTicks }) 
             <XAxis
                 dataKey="date"
                 ticks={xTicks}
-                tickFormatter={fmtDate}
+                tickFormatter={dateFormatter || fmtDate}
                 tick={{ fontSize: 11, fill: '#9ca3af' }}
                 axisLine={false}
                 tickLine={false}

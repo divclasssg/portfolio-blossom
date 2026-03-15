@@ -42,9 +42,17 @@ function NrsTooltip({ active, payload, label }) {
         <div className="chart-tooltip">
             <p className="chart-tooltip-date">{fmtDate(label)}</p>
             <p className={styles['tooltip-value']}>NRS {value}</p>
+            {entry.prevDelta != null && (
+                <p className={styles['tooltip-delta']}>
+                    이전 대비 {entry.prevDelta > 0 ? `↑${entry.prevDelta}` : entry.prevDelta < 0 ? `↓${Math.abs(entry.prevDelta)}` : '변화 없음'}
+                </p>
+            )}
             {entry.category && (
                 <p className={styles['tooltip-category']}>
                     {CATEGORY_LABEL[entry.category] ?? entry.category}
+                    {entry.categoryFreq != null && (
+                        <span className={styles['tooltip-freq']}> ({entry.categoryFreq}회)</span>
+                    )}
                 </p>
             )}
             {entry.label && <p className={styles['tooltip-label']}>{entry.label}</p>}
@@ -52,7 +60,7 @@ function NrsTooltip({ active, payload, label }) {
     );
 }
 
-export default function NrsChart({ data, symptomDays, xTicks }) {
+export default function NrsChart({ data, symptomDays, xTicks, dateFormatter }) {
     return (
         <BarChart
             width={CHART_WIDTH}
@@ -77,7 +85,7 @@ export default function NrsChart({ data, symptomDays, xTicks }) {
             <XAxis
                 dataKey="date"
                 ticks={xTicks}
-                tickFormatter={fmtDate}
+                tickFormatter={dateFormatter || fmtDate}
                 tick={{ fontSize: 11, fill: '#9ca3af' }}
                 axisLine={false}
                 tickLine={false}

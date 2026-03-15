@@ -42,17 +42,30 @@ function BpTooltip({ active, payload, label }) {
     if (!active || !payload?.length) return null;
     const entry = payload[0]?.payload;
     if (!entry || entry.systolic == null) return null;
+
+    // 분류별 색상 결정
+    const isElevated = entry.bpClass && entry.bpClass !== '정상' && entry.bpClass !== '높은 정상';
+
     return (
         <div className="chart-tooltip">
             <p className="chart-tooltip-date">{fmtDate(label)}</p>
             <p className={styles['tooltip-row']}>수축기 {entry.systolic} mmHg</p>
             <p className={styles['tooltip-row']}>이완기 {entry.diastolic} mmHg</p>
+            {entry.bpClass && (
+                <p className={isElevated ? styles['tooltip-warning'] : styles['tooltip-class']}>
+                    {entry.bpClass}
+                </p>
+            )}
+            {entry.pulsePressure != null && (
+                <p className={styles['tooltip-secondary']}>맥압 {entry.pulsePressure} mmHg</p>
+            )}
             {entry.outlier && <p className={styles['tooltip-outlier']}>⚠️ 참조 범위 이탈</p>}
+            {entry.isSymptomDay && <p className={styles['tooltip-symptom']}>증상 발생일</p>}
         </div>
     );
 }
 
-export default function BpChart({ data, symptomDays, xTicks }) {
+export default function BpChart({ data, symptomDays, xTicks, dateFormatter }) {
     return (
         <ComposedChart
             width={CHART_WIDTH}
@@ -94,7 +107,7 @@ export default function BpChart({ data, symptomDays, xTicks }) {
             <XAxis
                 dataKey="date"
                 ticks={xTicks}
-                tickFormatter={fmtDate}
+                tickFormatter={dateFormatter || fmtDate}
                 tick={{ fontSize: 11, fill: '#9ca3af' }}
                 axisLine={false}
                 tickLine={false}

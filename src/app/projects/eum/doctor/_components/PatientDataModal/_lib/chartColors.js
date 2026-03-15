@@ -24,3 +24,8 @@ export const SLEEP_AVG_COLOR = '#D55E00'; // 평균선
 // 공통
 export const REFERENCE_RANGE_COLOR = '#C7C7CC'; // 정상 참조 범위 (Neutral-divider)
 export const SYMPTOM_DAY_BG = 'rgba(209,209,214,0.30)'; // 증상 발생일 배경 ($neutral-surface 기반)
+
+// 추세 색상 — 3중 인코딩(아이콘+텍스트+색상)용
+export const TREND_POSITIVE = '#34C759'; // clinical.normal — 긍정적 변화
+export const TREND_NEGATIVE = '#FF3B30'; // clinical.danger — 부정적 변화
+export const TREND_FLAT = '#8E8E93'; // neutral — 변화 없음

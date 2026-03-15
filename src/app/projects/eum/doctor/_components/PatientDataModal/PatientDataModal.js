@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useRef, useMemo, useState } from 'react';
 import { usePatientDataModal } from './PatientDataModalContext';
 import ModalHeader from './ModalHeader/ModalHeader';
 import TabBar from './TabBar/TabBar';
@@ -23,13 +23,7 @@ function symptomToChartItem(record) {
 }
 
 export default function PatientDataModal({ patient, chartData, liveSymptoms }) {
-    const { isOpen, close, initialTab } = usePatientDataModal();
-    const [activeTab, setActiveTab] = useState(initialTab);
-
-    // 모달 열릴 때마다 initialTab으로 리셋
-    useEffect(() => {
-        if (isOpen) setActiveTab(initialTab);
-    }, [isOpen, initialTab]);
+    const { isOpen, close, activeTab, setActiveTab } = usePatientDataModal();
 
     // 필터 상태 — FilterBar → ChartGrid 연결
     const [activePeriod, setActivePeriod] = useState('1month');

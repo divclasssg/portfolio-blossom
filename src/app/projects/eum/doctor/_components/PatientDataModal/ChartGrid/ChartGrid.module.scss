@@ -1,11 +1,130 @@
 @use '../../../_styles/tokens' as t;
 
+.subtitle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 0;
+}
+
 .subtitle {
     margin: 0;
-    padding: 20px 20px 0;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
     color: t.$text-secondary;
+}
+
+// ── 범례 ──
+.legend {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-noto-kr), sans-serif;
+    font-size: t.$fs-small;
+    color: t.$text-primary;
+}
+
+// 증상 발생일 — NRS 차트 배경색과 동기화
+.legend-rect {
+    display: inline-block;
+    width: 32px;
+    height: 12px;
+    border-radius: 2px;
+    background: rgba(209, 209, 214, 0.5);
+}
+
+// 카테고리 원형 마커 — NRS 차트 색상(chartColors.js)과 동기화
+.legend-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.legend-dot--autonomic {
+    background: #cc79a7;
+}
+
+.legend-dot--digestive {
+    background: #e3b8d3;
+}
+
+// ── 슬라이드 네비게이션 ──
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px 0;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid t.$neutral-border;
+    border-radius: 8px;
+    background: t.$panel-bg;
+    color: t.$text-primary;
+    font-size: t.$fs-regular;
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:hover:not(:disabled) {
+        background: t.$neutral-bg;
+    }
+
+    &:disabled {
+        color: t.$neutral-disabled;
+        cursor: default;
+    }
+
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+    }
+}
+
+.nav-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-range {
+    font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
+    font-size: t.$fs-small;
+    font-weight: 500;
+    color: t.$text-primary;
+}
+
+.nav-track {
+    width: 100%;
+    max-width: 200px;
+    height: 4px;
+    background: t.$neutral-bg-tertiary;
+    border-radius: 2px;
+    position: relative;
+}
+
+.nav-thumb {
+    position: absolute;
+    top: -2px;
+    width: 24px;
+    height: 8px;
+    background: t.$text-secondary;
+    border-radius: 4px;
+    // JS가 left를 0~100%로 설정 — 12px(반너비)만큼 보정하여 오버플로 방지
+    // left는 inline style로 설정됨
 }
 
 .grid {
@@ -14,6 +133,16 @@
     gap: 16px;
     padding: 20px;
     justify-content: center;
+
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 4px;
+        border-radius: 8px;
+    }
+
+    &:focus:not(:focus-visible) {
+        outline: none;
+    }
 }
 
 .card {
@@ -26,6 +155,12 @@
     background: t.$panel-bg;
 }
 
+.card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
 .card-title {
     margin: 0;
     font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
@@ -34,15 +169,36 @@
     color: t.$text-primary;
 }
 
-// Step 4 구현 전 임시 플레이스홀더
-.placeholder {
-    height: 200px;
+.card-summary {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-family: var(--font-noto-kr), sans-serif;
+    gap: 8px;
+    font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
-    color: t.$text-muted;
-    background: t.$neutral-bg;
-    border-radius: 4px;
+    line-height: 1.4;
+}
+
+.card-avg {
+    color: t.$text-primary;
+    font-weight: 500;
+}
+
+.card-trend {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-weight: 500;
+    font-size: t.$fs-small;
+}
+
+.card-trend-icon {
+    font-size: t.$fs-small;
+}
+
+.card-date-range {
+    margin: 0;
+    font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
+    font-size: t.$fs-small;
+    color: t.$text-secondary;
+    line-height: 1.4;
 }

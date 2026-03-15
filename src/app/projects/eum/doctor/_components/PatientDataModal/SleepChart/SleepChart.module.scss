@@ -5,9 +5,21 @@
     font-weight: 500;
 }
 
+.tooltip-secondary {
+    margin: 0;
+    color: t.$text-secondary;
+}
+
 .tooltip-outlier {
     margin: 0;
     color: t.$clinical-danger;
+    font-size: t.$fs-small;
+    font-weight: 500;
+}
+
+.tooltip-symptom {
+    margin: 0;
+    color: t.$clinical-warning;
     font-size: t.$fs-small;
     font-weight: 500;
 }

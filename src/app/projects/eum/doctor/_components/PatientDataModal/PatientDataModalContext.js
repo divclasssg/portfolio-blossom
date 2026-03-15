@@ -6,15 +6,16 @@ const PatientDataModalContext = createContext(null);
 
 export function PatientDataModalProvider({ children }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [initialTab, setInitialTab] = useState('symptoms');
+    const [activeTab, setActiveTab] = useState('symptoms');
 
     return (
         <PatientDataModalContext.Provider
             value={{
                 isOpen,
-                initialTab,
-                open: (tab = 'symptoms') => {
-                    setInitialTab(tab);
+                activeTab,
+                setActiveTab,
+                open: (tab) => {
+                    setActiveTab(typeof tab === 'string' ? tab : 'symptoms');
                     setIsOpen(true);
                 },
                 close: () => setIsOpen(false),

@@ -137,6 +137,10 @@ export default function VisitHistory({ data }) {
                         aria-label="진료 상세 정보"
                     >
                         <h3 className={styles['detail-name']}>{detail.shortName}</h3>
+                        {/* 주호소 — 있을 때만 표시 */}
+                        {selectedVisit.chief_complaint && (
+                            <p className={styles['detail-complaint']}>{selectedVisit.chief_complaint}</p>
+                        )}
                         {detail.address && (
                             <p className={styles['detail-address']}>
                                 <span className={styles['address-pin']} aria-hidden="true" />
@@ -151,6 +155,20 @@ export default function VisitHistory({ data }) {
                                     </li>
                                 ))}
                             </ul>
+                        )}
+                        {/* 검사 결과 — 있을 때만 표시 */}
+                        {selectedVisit.lab_results?.length > 0 && (
+                            <>
+                                <h4 className={styles['detail-subtitle']}>검사 결과</h4>
+                                <ul className={styles['lab-list']}>
+                                    {selectedVisit.lab_results.map((lab, i) => (
+                                        <li key={i} className={styles['lab-item']}>
+                                            <span className={styles['lab-name']}>{lab.test_name}</span>
+                                            <span className={styles['lab-value']}>{lab.value}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </>
                         )}
                     </div>
                 )}

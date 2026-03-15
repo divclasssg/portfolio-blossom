@@ -1,14 +1,13 @@
 'use client';
 
 import {
-    ComposedChart,
-    Line,
+    BarChart,
+    Bar,
     XAxis,
     YAxis,
     CartesianGrid,
     ReferenceArea,
     Tooltip,
-    Customized,
 } from 'recharts';
 import {
     HR_BOX_FILL,
@@ -21,85 +20,72 @@ import styles from './HrChart.module.scss';
 
 const CHART_WIDTH = 452;
 const CHART_HEIGHT = 200;
-const BOX_HALF_WIDTH = 7; // 박스 반너비 (px)
+const WHISKER_CAP = 4; // 수염 캡 반너비 (px)
 
 const fmtDate = (d) => {
     const [, m, day] = d.split('-');
     return `${parseInt(m)}/${parseInt(day)}`;
 };
 
-// Customized 컴포넌트 — yScale에 접근해 box-and-whisker SVG 렌더
-function BoxWhiskerPlot({ formattedGraphicalItems, yAxisMap }) {
-    const yScale = yAxisMap?.[0]?.scale;
-    if (!yScale) return null;
+// stacked Bar의 custom shape — q1→q3 박스를 기준으로 전체 box-and-whisker 렌더
+function BoxWhiskerShape({ x, y, width, height, payload }) {
+    const { min, q1, median, q3, max } = payload;
+    if (min == null || height === 0 || q3 === q1) return null;
 
-    // 숨긴 Line(dataKey="median")의 points에서 x좌표 추출
-    const lineItem = formattedGraphicalItems?.find(
-        (item) => item?.item?.props?.dataKey === 'median'
-    );
-    const points = lineItem?.props?.points;
-    if (!points?.length) return null;
-
-    const py = (v) => yScale(v);
+    // y = q3 픽셀 위치 (박스 상단), y+height = q1 픽셀 위치 (박스 하단)
+    const pxPerUnit = height / (q3 - q1);
+    const py = (v) => y + (q3 - v) * pxPerUnit;
+    const cx = x + width / 2; // 바 중앙 x
+    const halfBox = Math.min(width / 2, 7); // 박스 반너비 (최대 7px)
 
     return (
         <g>
-            {points.map((point) => {
-                const { x, payload } = point;
-                const { min, q1, median, q3, max, date } = payload;
-                if (min == null) return null;
-
-                return (
-                    <g key={date}>
-                        {/* 수염 세로선 (min ~ max) */}
-                        <line
-                            x1={x}
-                            x2={x}
-                            y1={py(max)}
-                            y2={py(min)}
-                            stroke={HR_WHISKER_COLOR}
-                            strokeWidth={1.5}
-                        />
-                        {/* min 가로 캡 */}
-                        <line
-                            x1={x - 4}
-                            x2={x + 4}
-                            y1={py(min)}
-                            y2={py(min)}
-                            stroke={HR_WHISKER_COLOR}
-                            strokeWidth={1.5}
-                        />
-                        {/* max 가로 캡 */}
-                        <line
-                            x1={x - 4}
-                            x2={x + 4}
-                            y1={py(max)}
-                            y2={py(max)}
-                            stroke={HR_WHISKER_COLOR}
-                            strokeWidth={1.5}
-                        />
-                        {/* 박스 (q1 ~ q3) */}
-                        <rect
-                            x={x - BOX_HALF_WIDTH}
-                            y={py(q3)}
-                            width={BOX_HALF_WIDTH * 2}
-                            height={Math.max(py(q1) - py(q3), 1)}
-                            fill={HR_BOX_FILL}
-                            stroke={HR_WHISKER_COLOR}
-                            strokeWidth={1}
-                        />
-                        {/* 중앙값 선 */}
-                        <line
-                            x1={x - BOX_HALF_WIDTH}
-                            x2={x + BOX_HALF_WIDTH}
-                            y1={py(median)}
-                            y2={py(median)}
-                            stroke={HR_MEDIAN_COLOR}
-                            strokeWidth={2}
-                        />
-                    </g>
-                );
-            })}
+            {/* 수염 세로선 (min ~ max) */}
+            <line
+                x1={cx}
+                x2={cx}
+                y1={py(max)}
+                y2={py(min)}
+                stroke={HR_WHISKER_COLOR}
+                strokeWidth={1.5}
+            />
+            {/* min 가로 캡 */}
+            <line
+                x1={cx - WHISKER_CAP}
+                x2={cx + WHISKER_CAP}
+                y1={py(min)}
+                y2={py(min)}
+                stroke={HR_WHISKER_COLOR}
+                strokeWidth={1.5}
+            />
+            {/* max 가로 캡 */}
+            <line
+                x1={cx - WHISKER_CAP}
+                x2={cx + WHISKER_CAP}
+                y1={py(max)}
+                y2={py(max)}
+                stroke={HR_WHISKER_COLOR}
+                strokeWidth={1.5}
+            />
+            {/* 박스 (q1 ~ q3) */}
+            <rect
+                x={cx - halfBox}
+                y={y}
+                width={halfBox * 2}
+                height={height}
+                fill={HR_BOX_FILL}
+                stroke={HR_WHISKER_COLOR}
+                strokeWidth={1}
+            />
+            {/* 중앙값 선 */}
+            <line
+                x1={cx - halfBox}
+                x2={cx + halfBox}
+                y1={py(median)}
+                y2={py(median)}
+                stroke={HR_MEDIAN_COLOR}
+                strokeWidth={2}
+            />
         </g>
     );
 }
@@ -118,13 +104,21 @@ function HrTooltip({ active, payload, label }) {
             <p className={styles['tooltip-range']}>
                 범위: {entry.min}–{entry.max}
             </p>
+            {entry.inNormalRange != null && (
+                <p className={entry.inNormalRange ? styles['tooltip-normal'] : styles['tooltip-abnormal']}>
+                    {entry.inNormalRange ? '정상 범위' : '정상 범위 이탈'}
+                </p>
+            )}
+            {entry.isSymptomDay && (
+                <p className={styles['tooltip-symptom']}>증상 발생일</p>
+            )}
         </div>
     );
 }
 
-export default function HrChart({ data, symptomDays, xTicks }) {
+export default function HrChart({ data, symptomDays, xTicks, dateFormatter }) {
     return (
-        <ComposedChart
+        <BarChart
             width={CHART_WIDTH}
             height={CHART_HEIGHT}
             data={data}
@@ -156,7 +150,7 @@ export default function HrChart({ data, symptomDays, xTicks }) {
             <XAxis
                 dataKey="date"
                 ticks={xTicks}
-                tickFormatter={fmtDate}
+                tickFormatter={dateFormatter || fmtDate}
                 tick={{ fontSize: 11, fill: '#9ca3af' }}
                 axisLine={false}
                 tickLine={false}
@@ -172,11 +166,15 @@ export default function HrChart({ data, symptomDays, xTicks }) {
 
             <Tooltip content={<HrTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
 
-            {/* BoxWhiskerPlot이 참조할 포인트 생성용 숨긴 Line */}
-            <Line dataKey="median" stroke="none" dot={false} activeDot={false} legendType="none" />
-
-            {/* Box-and-whisker SVG 오버레이 */}
-            <Customized component={BoxWhiskerPlot} />
-        </ComposedChart>
+            {/* 투명 base (0→q1) — boxSpan의 y 오프셋용 */}
+            <Bar dataKey="q1" stackId="hr" fill="none" legendType="none" />
+            {/* box-and-whisker shape (q1→q3 영역에 전체 SVG 렌더) */}
+            <Bar
+                dataKey="boxSpan"
+                stackId="hr"
+                shape={<BoxWhiskerShape />}
+                legendType="none"
+            />
+        </BarChart>
     );
 }

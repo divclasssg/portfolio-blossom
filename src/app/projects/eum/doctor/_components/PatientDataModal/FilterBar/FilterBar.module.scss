@@ -57,14 +57,7 @@
     }
 }
 
-// ── 카테고리 칩 + 범례 ──────────────────────────────────
-.category-legend-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-}
-
+// ── 카테고리 칩 ──────────────────────────────────────────
 .category-group {
     display: flex;
     align-items: center;
@@ -100,43 +93,3 @@
     background: t.$neutral-border;
 }
 
-// ── 범례 ────────────────────────────────────────────────
-.legend {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-family: var(--font-noto-kr), sans-serif;
-    font-size: t.$fs-small;
-    color: t.$text-primary;
-}
-
-// 증상 발생일 — NRS 차트 배경색과 동기화 (rgba(209,209,214,0.30) 기반)
-.legend-rect {
-    display: inline-block;
-    width: 32px;
-    height: 12px;
-    border-radius: 2px;
-    background: rgba(209, 209, 214, 0.5); // 범례 가독성 위해 차트보다 약간 진하게
-}
-
-// 카테고리 원형 마커 — NRS 차트 색상(chartColors.js)과 동기화
-.legend-dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-}
-
-.legend-dot--autonomic {
-    background: #cc79a7; // NRS SYM-12 색상과 동기화
-}
-
-.legend-dot--digestive {
-    background: #e3b8d3; // NRS SYM-05 색상과 동기화
-}
