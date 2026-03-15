@@ -7,6 +7,7 @@ import styles from './page.module.scss';
 import AppBar from '../../_components/AppBar/AppBar';
 import TabBar from '../../_components/TabBar/TabBar';
 import MarkResultSeen from '../../_components/MarkResultSeen/MarkResultSeen';
+import { WarningIcon } from '../../../_components/icons';
 
 export const dynamic = 'force-dynamic';
 
@@ -238,13 +239,24 @@ export default async function SummaryDetailPage({ params }) {
                 )}
 
                 {/* ⑥ AI 면책 — 영구 노출, 닫기 불가 */}
-                <div className={styles['ai-disclaimer']} role="note" aria-label="AI 면책 고지">
-                    <p className={styles['ai-disclaimer-text']}>
-                        ▲ AI가 변환한 내용이에요.
-                        <br />
-                        정확하지 않을 수 있으니 의사에게 문의해 주세요.
-                        <br />
-                        <span className={styles['ai-source']}>출처: GPT-4o</span>
+                <div className={styles['warning-list']} role="alert" aria-live="polite">
+                    <p className={styles['warning-item']}>
+                        <span className={styles['warning-symbol']} style={{ color: '#FFC000' }} aria-hidden="true">
+                            <WarningIcon variant="triangle" size={18} />
+                        </span>
+                        <span>AI는 오류를 생성할 수 있습니다</span>
+                    </p>
+                    <p className={styles['warning-item']}>
+                        <span className={styles['warning-symbol']} style={{ color: '#FFC000' }} aria-hidden="true">
+                            <WarningIcon variant="triangle" size={18} />
+                        </span>
+                        <span>의사가 반드시 검토해야 합니다</span>
+                    </p>
+                    <p className={styles['warning-item']}>
+                        <span className={styles['warning-symbol']} style={{ color: '#737373' }} aria-hidden="true">
+                            <WarningIcon variant="info" size={14} />
+                        </span>
+                        <span>모델: GPT-4o v2024-08</span>
                     </p>
                 </div>
 
