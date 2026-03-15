@@ -81,7 +81,6 @@ export default function AiDataProvider({
 
         return (
             <div className={styles['loading-wrapper']} role="status" aria-live="polite">
-                <div className={styles['loading-spinner']} aria-hidden="true" />
                 <div
                     className={styles['progress-bar-track']}
                     role="progressbar"

@@ -12,21 +12,6 @@
     min-height: 180px;
 }
 
-.loading-spinner {
-    width: 28px;
-    height: 28px;
-    border: 3px solid rgba(0, 0, 0, 0.08);
-    border-top-color: t.$text-muted;
-    border-radius: 50%;
-    animation: spin 0.9s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 // 프로그레스 바
 .progress-bar-track {
     width: 200px;
