@@ -5,8 +5,16 @@ import { usePatientDataModal } from '../PatientDataModal/PatientDataModalContext
 import styles from './Timeline.module.scss';
 import { AiIcon, ArrowIcon } from '../../../_components/icons';
 import ActionButton from '../ActionButton/ActionButton';
+import Badge from '../Badge/Badge';
 
 const SEVERITY_LABEL = { 1: '낮음', 2: '중간', 3: '높음', 4: '심함' };
+
+// NRS 심각도별 색상 매핑
+function getNrsColor(severity) {
+    if (severity <= 3) return '#34C759';   // clinical.normal (초록)
+    if (severity <= 6) return '#FF9500';   // clinical.warning (주황)
+    return '#FF3B30';                       // clinical.danger (빨강)
+}
 
 const CATEGORY_LABEL = {
     'SYM-01': 'General / Constitutional',
@@ -114,12 +122,13 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                         <span className={styles['item-name']} title={item.preview}>
                             {CATEGORY_LABEL[item.category] ?? item.preview}
                         </span>
-                        <span
-                            className={styles['nrs-label']}
+                        <Badge
+                            className={styles['nrs-badge']}
+                            style={{ background: `${getNrsColor(item.severity)}14`, color: getNrsColor(item.severity), borderColor: `${getNrsColor(item.severity)}30` }}
                             aria-label={`NRS ${item.severity} (${SEVERITY_LABEL[item.severity]})`}
                         >
                             NRS {item.severity}
-                        </span>
+                        </Badge>
                         <span className={styles['expand-icon']} aria-hidden="true">
                             <ArrowIcon variant={isExpanded ? 'up' : 'down'} size={12} color="currentColor" />
                         </span>
@@ -130,12 +139,14 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                         <span className={styles['item-name']} title={item.preview}>
                             {CATEGORY_LABEL[item.category] ?? item.preview}
                         </span>
-                        <span
-                            className={styles['nrs-label']}
+                        <Badge
+                            className={styles['nrs-badge']}
+                            style={{ background: `${getNrsColor(item.severity)}14`, color: getNrsColor(item.severity), borderColor: `${getNrsColor(item.severity)}30` }}
                             aria-label={`NRS ${item.severity} (${SEVERITY_LABEL[item.severity]})`}
                         >
                             NRS {item.severity}
-                        </span>
+                        </Badge>
+                        <span className={styles['expand-icon']} aria-hidden="true" />
                     </button>
                 )}
 

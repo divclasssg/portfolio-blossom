@@ -78,11 +78,9 @@
     text-overflow: ellipsis;
 }
 
-.nrs-label {
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
-    color: t.$text-muted;
+.nrs-badge {
     flex-shrink: 0;
+    font-weight: 700;
 }
 
 .expand-icon {
@@ -107,8 +105,8 @@
     display: flex;
     align-items: center;
     gap: 3px;
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
+    font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     color: t.$text-secondary;
     font-weight: 500;
 }
