@@ -35,7 +35,7 @@ export default function FilterBar({
                     {PERIODS.map((period) => (
                         <button
                             key={period.id}
-                            className={`${styles['period-btn']} ${activePeriod === period.id ? styles['period-btn--active'] : ''}`}
+                            className={`${styles['period-btn']} ${activePeriod === period.id ? styles['period-btn--active'] : ''} ${period.id === 'custom' ? styles['period-btn--custom'] : ''}`}
                             onClick={() => onPeriodChange(period.id)}
                             aria-pressed={activePeriod === period.id}
                         >

@@ -296,6 +296,7 @@ const WINDOW_SIZE = 30; // 뷰포트 크기 (일수)
 
 // 네비게이션 범위 텍스트: "2025.10 ~ 2025.12"
 function formatNavRange(startDate, endDate) {
+    if (!startDate || !endDate) return '';
     const fmt = (d) => {
         const [y, m] = d.split('-');
         return `${y}.${parseInt(m)}`;

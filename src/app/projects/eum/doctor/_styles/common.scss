@@ -2,6 +2,11 @@
 // doctor/layout.js에서 한 번 import. 컴포넌트 고유 스타일은 각 .module.scss에 유지.
 @use 'tokens' as t;
 
+// ── 버튼 리셋 — 브라우저 기본 폰트(Arial) 대신 부모 폰트 상속 ────────────────
+button {
+    font-family: inherit;
+}
+
 // ── 섹션 레이아웃 ──────────────────────────────────────────────────────────────
 
 .section {
