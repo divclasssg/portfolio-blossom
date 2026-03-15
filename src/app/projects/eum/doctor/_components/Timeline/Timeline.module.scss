@@ -60,14 +60,14 @@
 }
 
 .item-date {
-    font-size: 12px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
     min-width: 68px;
     flex-shrink: 0;
 }
 
 .item-name {
-    font-size: 13px;
+    font-size: t.$fs-small;
     font-weight: 500;
     color: t.$text-primary;
     flex: 1;
@@ -77,13 +77,13 @@
 }
 
 .nrs-label {
-    font-size: 12px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
     flex-shrink: 0;
 }
 
 .expand-icon {
-    font-size: 11px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
     flex-shrink: 0;
     width: 16px;
@@ -103,13 +103,13 @@
     display: flex;
     align-items: center;
     gap: 3px;
-    font-size: 11px;
+    font-size: t.$fs-small;
     color: t.$text-secondary;
     font-weight: 500;
 }
 
 .health-trend {
-    font-size: 10px;
+    font-size: t.$fs-small;
     font-weight: 700;
 }
 

@@ -37,7 +37,7 @@
     height: 30px;
     color: t.$header-icon-color;
     text-decoration: none;
-    font-size: 16px;
+    font-size: t.$fs-body;
     border-radius: 6px;
     flex-shrink: 0;
     transition:
@@ -58,7 +58,7 @@
 // 드래그 힌트 아이콘 — 시각적 표시만, 커서는 헤더에서 상속
 .drag-handle {
     color: t.$text-subtle;
-    font-size: 16px;
+    font-size: t.$fs-body;
     line-height: 1;
     padding: 4px;
     border-radius: 4px;
@@ -67,7 +67,7 @@
 }
 
 .logo {
-    font-size: 18px;
+    font-size: t.$fs-title;
     font-weight: 700;
     letter-spacing: 0.02em;
     color: t.$header-fg;

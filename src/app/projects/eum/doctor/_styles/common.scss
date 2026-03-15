@@ -15,7 +15,7 @@
 }
 
 .section-title {
-    font-size: 18px;
+    font-size: t.$fs-title;
     font-weight: 700;
     letter-spacing: 0.05em;
     color: t.$text-primary;
@@ -37,7 +37,7 @@
 
 // AI 모델 태그 (GPT-4o mini 등)
 .model-tag {
-    font-size: 11px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
     padding: 2px 6px;
     background: t.$neutral-bg;
@@ -61,7 +61,7 @@
     border: 1px solid t.$neutral-border;
     border-radius: 8px;
     padding: 8px 12px;
-    font-size: 12px;
+    font-size: t.$fs-small;
     line-height: 1.5;
     color: t.$text-primary;
     box-shadow: t.$card-shadow;
@@ -91,7 +91,7 @@
     color: t.$header-fg;
     border: none;
     border-radius: t.$card-radius;
-    font-size: 16px;
+    font-size: t.$fs-body;
     font-weight: 700;
     cursor: pointer;
     text-align: center;

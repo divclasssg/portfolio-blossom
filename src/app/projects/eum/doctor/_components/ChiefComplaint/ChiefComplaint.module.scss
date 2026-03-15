@@ -16,7 +16,7 @@
     padding: 8px 0;
     border: none;
     background: none;
-    font-size: 18px;
+    font-size: t.$fs-title;
     font-weight: 600;
     color: t.$text-secondary;
     cursor: pointer;
@@ -35,14 +35,14 @@
 }
 
 .meta {
-    font-size: 14px;
+    font-size: t.$fs-regular;
     color: t.$text-muted;
     margin-bottom: 4px;
 }
 
 // 환자 원문 — 수정 불가
 .patient-text {
-    font-size: 16px;
+    font-size: t.$fs-body;
     line-height: 1.65;
     color: t.$text-primary;
     word-break: keep-all;
@@ -50,14 +50,14 @@
 
     &::before {
         content: '"';
-        font-size: 18px;
+        font-size: t.$fs-title;
         color: t.$neutral-placeholder;
         margin-right: 2px;
     }
 
     &::after {
         content: '"';
-        font-size: 18px;
+        font-size: t.$fs-title;
         color: t.$neutral-placeholder;
         margin-left: 2px;
     }
@@ -79,14 +79,14 @@
 
 .med-name {
     display: block;
-    font-size: 16px;
+    font-size: t.$fs-body;
     color: t.$text-primary;
     line-height: 1.5;
 }
 
 .med-meta {
     display: block;
-    font-size: 12px;
+    font-size: t.$fs-small;
     color: t.$text-secondary;
     margin-top: 2px;
 }

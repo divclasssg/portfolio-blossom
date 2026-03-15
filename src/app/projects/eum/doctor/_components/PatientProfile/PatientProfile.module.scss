@@ -16,7 +16,7 @@
 }
 
 .patient-name {
-    font-size: 18px;
+    font-size: t.$fs-title;
     font-weight: 700;
     color: t.$text-primary;
 }
@@ -27,19 +27,19 @@
     padding: 2px 8px;
     background: t.$neutral-bg;
     border-radius: 999px;
-    font-size: 12px;
+    font-size: t.$fs-small;
     font-weight: 500;
     color: t.$text-secondary;
 }
 
 .age {
-    font-size: 14px;
+    font-size: t.$fs-regular;
     color: t.$text-secondary;
 }
 
 // ICD-10 코드 — 나이 옆에 표시
 .icd-code {
-    font-size: 13px;
+    font-size: t.$fs-small;
     font-weight: 600;
     color: t.$text-secondary;
     background: t.$neutral-bg;
@@ -54,7 +54,7 @@
     border-radius: 999px;
     background: t.$badge-blue-bg;
     color: t.$badge-blue-text;
-    font-size: 12px;
+    font-size: t.$fs-small;
     font-weight: 600;
     margin-left: auto;
 }
@@ -82,7 +82,7 @@
     background: t.$neutral-bg;
     border: 1px solid t.$neutral-border;
     border-radius: 999px;
-    font-size: 12px;
+    font-size: t.$fs-small;
     font-weight: 600;
     color: t.$text-secondary;
     cursor: default;
@@ -98,7 +98,7 @@
     background: t.$clinical-danger-bg;
     border: 1px solid rgba(t.$color-danger, 0.2);
     border-radius: 999px;
-    font-size: 12px;
+    font-size: t.$fs-small;
     font-weight: 600;
     color: t.$color-danger;
     cursor: default;
@@ -144,7 +144,7 @@
     padding: 8px 12px;
     list-style: none;
     margin: 0;
-    font-size: 13px;
+    font-size: t.$fs-small;
     line-height: 1.5;
     box-shadow: t.$panel-shadow;
     z-index: 200;
@@ -208,7 +208,7 @@
 
 .summary {
     margin: 0;
-    font-size: 14px;
+    font-size: t.$fs-regular;
     line-height: 1.6;
     color: t.$text-secondary;
 }
@@ -220,7 +220,7 @@
 }
 
 .detail-label {
-    font-size: 12px;
+    font-size: t.$fs-small;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -231,7 +231,7 @@
 .detail-list {
     margin: 0;
     padding: 0 0 12px 14px;
-    font-size: 14px;
+    font-size: t.$fs-regular;
     color: t.$text-primary;
     line-height: 1.7;
 

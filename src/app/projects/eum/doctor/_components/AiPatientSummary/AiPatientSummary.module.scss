@@ -50,7 +50,7 @@
 
 .generating-text {
     font-family: var(--font-noto-kr), sans-serif;
-    font-size: 14px;
+    font-size: t.$fs-regular;
     color: t.$text-muted;
 }
 
@@ -58,7 +58,7 @@
 .textarea {
     width: 100%;
     font-family: var(--font-noto-kr), sans-serif;
-    font-size: 16px;
+    font-size: t.$fs-body;
     font-weight: 400;
     line-height: 1.5;
     color: t.$text-primary;
@@ -80,13 +80,13 @@
     align-items: center;
     gap: 4px;
     font-family: var(--font-noto-kr), sans-serif;
-    font-size: 12px;
+    font-size: t.$fs-small;
     font-weight: 700;
     color: t.$text-muted;
     margin: 0;
 }
 
 .hint-icon {
-    font-size: 11px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
 }

@@ -63,7 +63,7 @@ export default async function ResultPage() {
         { ...modelWarning, text: modelWarning.current_values.F16_plain_language },
     ];
 
-    // 환자 프로필: DB 우선, 폴백 → 빈 프로필 (윤서진 노출 방지)
+    // 환자 프로필: DB 우선, 폴백 → 정적 JSON (윤서진 데모 시나리오)
     const patientSummary = patient
         ? {
               name: patient.name,
@@ -71,15 +71,18 @@ export default async function ResultPage() {
               gender: patient.gender,
               patient_id: patientId,
           }
-        : { name: '정보 없음', age: null, gender: null, patient_id: patientId };
+        : dashboardState.patient_summary;
 
-    // 기저질환: DB 데이터만 사용 (빈 배열이면 미표시)
-    const chronicConditions = (patient?.chronic_conditions ?? []).map((c) =>
+    // 기저질환: DB 우선, 폴백 → 정적 JSON
+    const conditionNames = (patient?.chronic_conditions ?? []).map((c) =>
         typeof c === 'string' ? c : c.name
     );
+    const chronicConditions = conditionNames.length > 0
+        ? conditionNames
+        : sections.basic_info.data.chronic_conditions;
 
-    // 알레르기: DB 데이터만 사용 (빈 배열이면 알레르기 경고 미표시)
-    const allergies = patient?.allergies ?? [];
+    // 알레르기: DB 우선, 폴백 → 정적 JSON
+    const allergies = patient?.allergies ?? sections.allergies.items;
 
     return (
         <>
@@ -94,6 +97,7 @@ export default async function ResultPage() {
                     referralBadge={dashboardState.header.referral_badge}
                     chronicConditions={chronicConditions}
                     allergies={allergies}
+                    basicInfo={sections.basic_info.data}
                 />
             }
             footer={

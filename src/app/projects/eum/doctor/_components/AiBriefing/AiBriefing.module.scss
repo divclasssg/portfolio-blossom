@@ -6,7 +6,7 @@
 }
 
 .subsection-title {
-    font-size: 15px;
+    font-size: t.$fs-regular;
     font-weight: 600;
     color: t.$text-primary;
     margin-bottom: 4px;
@@ -14,7 +14,7 @@
 
 // 기존 문단형 요약 (summary_items 없을 때 폴백)
 .summary-text {
-    font-size: 16px;
+    font-size: t.$fs-body;
     line-height: 1.65;
     color: t.$text-secondary;
     margin-bottom: 14px;

@@ -35,18 +35,18 @@
 }
 
 .progress-percent {
-    font-size: 12px;
+    font-size: t.$fs-small;
     color: t.$text-secondary;
     font-weight: 500;
 }
 
 .progress-estimate {
-    font-size: 12px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
 }
 
 .loading-message {
-    font-size: 13px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
     text-align: center;
     margin: 0;

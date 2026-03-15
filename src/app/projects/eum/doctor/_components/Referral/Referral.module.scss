@@ -14,7 +14,7 @@
 }
 
 .label {
-    font-size: 12px;
+    font-size: t.$fs-small;
     font-weight: 600;
     color: t.$text-muted;
     white-space: nowrap;
@@ -22,7 +22,7 @@
 }
 
 .value {
-    font-size: 16px;
+    font-size: t.$fs-body;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.015em;

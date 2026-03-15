@@ -13,7 +13,7 @@
 }
 
 .subsection-title {
-    font-size: 15px;
+    font-size: t.$fs-regular;
     font-weight: 600;
     color: t.$text-primary;
     flex: 1;
@@ -75,7 +75,7 @@
 // 질환명 버튼 — 아코디언 토글 역할
 .item-name {
     flex: 1;
-    font-size: 14px;
+    font-size: t.$fs-regular;
     color: t.$text-primary;
     background: none;
     border: none;
@@ -89,7 +89,7 @@
 }
 
 .icd-tag {
-    font-size: 11px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
     background: t.$neutral-bg;
     padding: 1px 6px;
@@ -98,21 +98,21 @@
 }
 
 .confidence-high {
-    font-size: 11px;
+    font-size: t.$fs-small;
     font-weight: 600;
     color: t.$clinical-normal;
     flex-shrink: 0;
 }
 
 .confidence-medium {
-    font-size: 11px;
+    font-size: t.$fs-small;
     font-weight: 600;
     color: t.$clinical-warning;
     flex-shrink: 0;
 }
 
 .confidence-low {
-    font-size: 11px;
+    font-size: t.$fs-small;
     font-weight: 600;
     color: t.$text-muted;
     flex-shrink: 0;
@@ -144,7 +144,7 @@
 }
 
 .judgment-trigger {
-    font-size: 11px;
+    font-size: t.$fs-small;
     font-weight: 600;
     padding: 1px 6px;
     border-radius: 4px;
@@ -196,7 +196,7 @@
 }
 
 .judgment-option {
-    font-size: 13px;
+    font-size: t.$fs-small;
     padding: 6px 12px;
     cursor: pointer;
     color: t.$text-primary;
@@ -225,7 +225,7 @@
 }
 
 .evidence-chip {
-    font-size: 12px;
+    font-size: t.$fs-small;
     color: t.$text-secondary;
     background: t.$neutral-bg;
     padding: 2px 8px;
@@ -233,7 +233,7 @@
 }
 
 .clinical-note {
-    font-size: 13px;
+    font-size: t.$fs-small;
     line-height: 1.55;
     color: t.$text-secondary;
     word-break: keep-all;
@@ -248,7 +248,7 @@
 
 // 목록 상단 안내 문구
 .list-guide {
-    font-size: 12px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
     margin-top: 12px;
     margin-bottom: 4px;
@@ -256,7 +256,7 @@
 
 // confidence 범례
 .confidence-legend {
-    font-size: 11px;
+    font-size: t.$fs-small;
     color: t.$text-muted;
     display: flex;
     align-items: center;

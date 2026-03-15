@@ -216,7 +216,7 @@ $handle-corner: 10px;
     color: t.$header-fg;
     border: none;
     border-radius: 999px;
-    font-size: 13px;
+    font-size: t.$fs-small;
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);

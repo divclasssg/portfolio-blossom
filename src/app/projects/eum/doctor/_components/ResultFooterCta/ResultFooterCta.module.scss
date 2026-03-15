@@ -11,7 +11,7 @@
 // cta-btn: padding/font-size가 공통(14px/16px)과 다름 (16px/18px)
 .cta-btn {
     padding: 16px;
-    font-size: 18px;
+    font-size: t.$fs-title;
     transition: background 0.15s;
 }
 
@@ -24,7 +24,7 @@
 // 에러 메시지
 .error-msg {
     font-family: var(--font-noto-kr), sans-serif;
-    font-size: 15px;
+    font-size: t.$fs-regular;
     font-weight: 600;
     color: t.$color-danger;
     text-align: center;
@@ -35,7 +35,7 @@
 // 전송 완료 메시지
 .transmitted-msg {
     font-family: var(--font-noto-kr), sans-serif;
-    font-size: 15px;
+    font-size: t.$fs-regular;
     font-weight: 600;
     color: t.$text-secondary;
     text-align: center;

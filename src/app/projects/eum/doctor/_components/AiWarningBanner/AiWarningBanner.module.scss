@@ -14,7 +14,7 @@
     display: flex;
     align-items: flex-start;
     gap: 5px;
-    font-size: 12px;
+    font-size: t.$fs-small;
     font-weight: 600;
     line-height: 1.5;
     color: t.$text-dark;
@@ -22,5 +22,5 @@
 
 .warning-symbol {
     flex-shrink: 0;
-    font-size: 11px;
+    font-size: t.$fs-small;
 }
