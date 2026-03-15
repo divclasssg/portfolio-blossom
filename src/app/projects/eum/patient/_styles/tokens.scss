@@ -2,33 +2,144 @@
 // 출처: bridge-tokens-studio.json (Figma 공식 토큰, iOS HIG 기반)
 // CSV 스펙(v3.0) 색상(#2E75B6 등)은 구버전 — 이 파일이 authoritative
 
-// 배경
+// ── 배경 ──────────────────────────────────────────────────────────────────────
+$app-bar-bg: rgba(255, 255, 255, 0.8);
+$app-bar-backdrop-filter: saturate(180%) blur(20px);
 $screen-bg: #f2f2f7; // neutral.background-secondary — iOS systemGray6
 $card-bg: #ffffff; // neutral.background-primary
 
-// 테두리/구분선
+// ── 패널 (의사 토큰 병합) ────────────────────────────────────────────────────
+$panel-bg: #ffffff; // neutral.background-primary
+$panel-min-width: 480px;
+$panel-max-width: 1280px;
+$panel-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+$panel-radius: 16px 0 0 16px;
+
+// ── 헤더 ──────────────────────────────────────────────────────────────────────
+$header-bg: #111827;
+$header-fg: #f9fafb;
+$header-icon-color: #9ca3af;
+$header-height: 48px;
+
+// ── 섹션 공통 ─────────────────────────────────────────────────────────────────
+$section-padding-x: 20px;
+$section-padding-y: 32px;
+$section-gap: 24px; // 섹션 간 여백
+$section-background: #fff;
+$section-content-bg: #fff;
+$section-content-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+
+// ── 테두리/구분선 ─────────────────────────────────────────────────────────────
 $card-border: #c7c7cc; // neutral.divider — iOS systemGray3
 $divider-color: #f2f2f7; // neutral.background-secondary — iOS systemGray6 (행 구분선)
 
-// 텍스트
+// ── 색상 — iOS HIG 기반 ──────────────────────────────────────────────────────
+$color-primary: #007aff; // primary.default — iOS systemBlue
+$color-secondary: #5856d6; // secondary.default — iOS systemIndigo
+$color-tertiary: #5ac8fa; // tertiary.default — iOS systemTeal
+$color-link: #60a5fa; // 링크/URL (blue-400)
+$color-link-hover: #93c5fd; // 링크 hover (blue-300)
+$color-danger: #ff3b30; // clinical.danger — iOS systemRed
+$color-warning: rgb(255, 149, 0); // clinical.warning — iOS systemOrange
+$color-normal: #34c759; // clinical.normal — iOS systemGreen
+$color-success: #34c759; // clinical.normal — iOS systemGreen (alias)
+
+// ── 중립 ──────────────────────────────────────────────────────────────────────
+$neutral-bg: #f2f2f7; // neutral.background-secondary — iOS systemGray6
+$neutral-border: #c7c7cc; // neutral.divider — iOS systemGray3
+$neutral-surface: #d1d1d6; // neutral.surface — iOS systemGray4
+$neutral-divider: #c7c7cc; // neutral.divider — iOS systemGray3
+$neutral-placeholder: #8e8e93; // neutral.placeholder — iOS systemGray
+$neutral-disabled: #aeaeb2; // neutral.disabled — iOS systemGray2
+$neutral-bg-tertiary: #e5e5ea; // neutral.background-tertiary — iOS systemGray5
+
+// ── 텍스트 ────────────────────────────────────────────────────────────────────
 $text-primary: #000000; // text.primary
 $text-secondary: #8e8e93; // text.secondary — iOS systemGray
+$text-muted: #8e8e93; // text.secondary — iOS systemGray (= $text-secondary)
+$text-subtle: #4b5563; // gray-600 — 부제목, 보조 설명
+$text-dark: #374151; // gray-700 — 경고 배너 텍스트
 
-// 인터랙션
-$color-primary: #007aff; // primary.default — iOS systemBlue
-$color-danger: #ff3b30; // clinical.danger — iOS systemRed
+// ── 타이포그래피 — 폰트 사이즈 ────────────────────────────────────────────────
+$fs-title: 18px; // 섹션 제목, 환자명
+$fs-subtitle: 16px; // 부제목, 보조 설명
+$fs-body: 16px; // 본문, 소견, 처방
+$fs-regular: 14px; // 일반 텍스트, 버튼, 캡션
+$fs-small: 12px; // 라벨, 배지, 태그, 범례
 
-// 배지
-$badge-bg: #e5e5ea; // neutral.background-tertiary — iOS systemGray5
+// ── line-height ───────────────────────────────────────────────────────────────
+$line-height-title: 1.4;
+$line-height-body: 1.5;
+$line-height-regular: 1.5;
+$line-height-small: 1.4;
 
-// 추가 색상
-$color-success: #34c759; // clinical.normal — iOS systemGreen
-$color-dark: #111827; // 다크 버튼 배경 (커스텀)
+// ── 타이포그래피 — 폰트 shorthand ─────────────────────────────────────────────
+$font-title:
+    700 $fs-title/1.4 var(--font-roboto),
+    var(--font-noto-kr),
+    sans-serif;
+$font-body:
+    400 $fs-body/1.5 var(--font-roboto),
+    var(--font-noto-kr),
+    sans-serif;
+$font-regular:
+    400 $fs-regular/1.5 var(--font-roboto),
+    var(--font-noto-kr),
+    sans-serif;
+$font-small:
+    400 $fs-small/1.4 var(--font-roboto),
+    var(--font-noto-kr),
+    sans-serif;
 
-// 레이아웃
-$section-padding-x: 20px;
-$section-gap: 24px; // 섹션 간 여백
+// ── 다크(헤더/CTA) ───────────────────────────────────────────────────────────
+$color-dark: #111827;
+$color-dark-hover: #1f2937;
+$color-dark-active: #374151;
+
+// ── 임상 전용 ─────────────────────────────────────────────────────────────────
+$clinical-danger: #ff3b30;
+$clinical-danger-bg: #fff5f5;
+$clinical-warning: #ff9500;
+$clinical-normal: #34c759;
+
+// ── 레이아웃 ──────────────────────────────────────────────────────────────────
 $card-radius: 12px;
 $card-padding: 16px;
+$card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 $app-bar-height: 56px;
 $tab-bar-height: 64px;
+
+// ── 배지 ──────────────────────────────────────────────────────────────────────
+$badge-bg: #e5e5ea; // neutral.background-tertiary — iOS systemGray5
+$badge-blue-bg: #dbeafe; // blue-100
+$badge-blue-text: #1d4ed8; // blue-700
+
+// ── CTA 버튼 ─────────────────────────────────────────────────────────────────
+$cta-button-radius: 16px;
+$cta-button-primary-bg: #007aff;
+$cta-button-primary-text: #fff;
+$cta-button-primary-hover-bg: #007aff;
+$cta-button-primary-hover-text: #fff;
+$cta-button-primary-active-bg: #007aff;
+$cta-button-primary-active-text: #fff;
+$cta-button-primary-disabled-bg: #007aff;
+$cta-button-primary-disabled-text: #fff;
+$cta-button-secondary-bg: transparent;
+$cta-button-secondary-text: #1d1d1f;
+$cta-button-secondary-hover-bg: #f5f5f7;
+$cta-button-secondary-hover-text: #1d1d1f;
+$cta-button-secondary-active-bg: transparent;
+$cta-button-secondary-active-text: #1d1d1f;
+$cta-button-secondary-disabled-bg: transparent;
+$cta-button-secondary-disabled-text: #1d1d1f;
+
+// ── 일반 버튼 ─────────────────────────────────────────────────────────────────
+$button-radius: 16px;
+$button-primary-bg: #007aff;
+$button-primary-text: #fff;
+$button-primary-hover-bg: #007aff;
+$button-primary-hover-text: #fff;
+$button-primary-active-bg: #007aff;
+$button-primary-active-text: #fff;
+$button-primary-disabled-bg: #007aff;
+$button-primary-disabled-text: #fff;
