@@ -21,6 +21,29 @@
     color: $text-secondary;
 }
 
+.sparkline-wrapper {
+    padding: 12px 0 4px;
+}
+
+.sparkline {
+    display: block;
+    width: 100%;
+    height: 32px;
+}
+
+.sparkline-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4%;
+}
+
+.sparkline-label {
+    font-size: 10px;
+    color: $text-secondary;
+    text-align: center;
+    width: calc(100% / 7);
+}
+
 .recent-item {
     display: flex;
     flex-direction: column;

@@ -31,7 +31,7 @@ export default function HospitalCodeInput({ validCodes }) {
     return (
         <section className={styles['code-section']} aria-labelledby="code-heading">
             <h2 id="code-heading" className={styles['code-label']}>
-                병원 코드로 등록하기
+                병원 코드로 체크인하기
             </h2>
             <input
                 id="hospital-code"
@@ -66,9 +66,15 @@ export default function HospitalCodeInput({ validCodes }) {
                     올바른 코드를 입력해주세요.
                 </p>
             )}
-            <button className={styles['submit-btn']} type="button" onClick={handleSubmit}>
-                등록하기
+            <button
+                className={styles['submit-btn']}
+                type="button"
+                onClick={handleSubmit}
+                disabled={code.length < 6}
+            >
+                체크인할께요
             </button>
+            <p className={styles['hint']}>포트폴리오 목업: 482951</p>
         </section>
     );
 }

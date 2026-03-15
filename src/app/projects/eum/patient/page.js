@@ -142,7 +142,10 @@ export default async function PatientHome() {
             <main className={styles['content']}>
                 <h1 className="sr-only">Eum 홈</h1>
                 <GreetingSection greeting={greeting} />
-                <RecentSymptoms summary={dynamicSummary ?? homeDashboard.recent_symptoms_summary} />
+                <RecentSymptoms
+                    summary={dynamicSummary ?? homeDashboard.recent_symptoms_summary}
+                    symptomRecords={symptomRecords.symptom_records}
+                />
                 <SymptomLogCta />
                 <VitalsToday
                     vitals={homeDashboard.vitals_today}

@@ -268,7 +268,11 @@ export default function VitalsToday({ vitals, wearableDevice, wearableHistory, s
             label: '심박수',
             value: `${heart_rate_bpm ?? '—'} bpm`,
             chart: hasChart ? <HeartRateSparkline data={last7} symptomMap={symptomMap} /> : null,
-            details: last7Desc.map((d) => ({ date: formatShortDate(d.recorded_at), value: `${d.heart_rate_bpm} bpm` })),
+            details: last7Desc.map((d) => ({
+                date: formatShortDate(d.recorded_at),
+                value: `${d.heart_rate_bpm} bpm`,
+                flagged: d.heart_rate_bpm >= 90,
+            })),
         },
         {
             key: 'sleep',
@@ -276,7 +280,11 @@ export default function VitalsToday({ vitals, wearableDevice, wearableHistory, s
             label: '수면',
             value: `${sleep_hours ?? '—'}시간`,
             chart: hasChart ? <SleepSparkline data={last7} symptomMap={symptomMap} /> : null,
-            details: last7Desc.map((d) => ({ date: formatShortDate(d.recorded_at), value: `${d.sleep_hours}시간` })),
+            details: last7Desc.map((d) => ({
+                date: formatShortDate(d.recorded_at),
+                value: `${d.sleep_hours}시간`,
+                flagged: d.sleep_hours < 5,
+            })),
         },
         {
             key: 'bp',
@@ -284,7 +292,11 @@ export default function VitalsToday({ vitals, wearableDevice, wearableHistory, s
             label: '혈압',
             value: `${bp_systolic ?? '—'}/${bp_diastolic ?? '—'}`,
             chart: hasChart ? <BpSparkline data={last7} /> : null,
-            details: last7Desc.map((d) => ({ date: formatShortDate(d.recorded_at), value: `${d.bp_systolic}/${d.bp_diastolic}` })),
+            details: last7Desc.map((d) => ({
+                date: formatShortDate(d.recorded_at),
+                value: `${d.bp_systolic}/${d.bp_diastolic}`,
+                flagged: d.bp_systolic >= 130 || d.bp_diastolic >= 85,
+            })),
         },
         {
             key: 'steps',
@@ -292,7 +304,11 @@ export default function VitalsToday({ vitals, wearableDevice, wearableHistory, s
             label: '걸음 수',
             value: `${step_count?.toLocaleString('ko-KR') ?? '—'}보`,
             chart: hasChart ? <StepSparkline data={last7} /> : null,
-            details: last7Desc.map((d) => ({ date: formatShortDate(d.recorded_at), value: `${d.step_count.toLocaleString('ko-KR')}보` })),
+            details: last7Desc.map((d) => ({
+                date: formatShortDate(d.recorded_at),
+                value: `${d.step_count.toLocaleString('ko-KR')}보`,
+                flagged: false,
+            })),
         },
     ];
 
@@ -350,7 +366,12 @@ export default function VitalsToday({ vitals, wearableDevice, wearableHistory, s
                                             {details.map((item) => (
                                                 <li key={item.date} className={styles['detail-item']}>
                                                     <span className={styles['detail-date']}>{item.date}</span>
-                                                    <span className={styles['detail-value']}>{item.value}</span>
+                                                    <span
+                                                        className={styles['detail-value']}
+                                                        data-flagged={item.flagged || undefined}
+                                                    >
+                                                        {item.value}
+                                                    </span>
                                                 </li>
                                             ))}
                                         </ul>

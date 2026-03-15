@@ -4,6 +4,7 @@ import AppBar from '../../_components/AppBar/AppBar';
 import CheckinHospitalCard from '../../_components/CheckinHospitalCard/CheckinHospitalCard';
 import CheckinScopeList from '../../_components/CheckinScopeList/CheckinScopeList';
 import CheckinActions from '../../_components/CheckinActions/CheckinActions';
+import { CheckmarkIcon, WarningIcon } from '../../../_components/icons';
 
 export const metadata = {
     title: 'P-017 진료 체크인 — Eum',
@@ -20,29 +21,13 @@ function formatDate(isoString) {
 export default function CheckinConsentPage() {
     return (
         <>
-            <AppBar />
+            <AppBar backHref="/projects/eum/patient/checkin" />
             <main className={styles['content']}>
                 {/* 동심원 아이콘 + 타이틀 */}
                 <div className={styles['title-section']}>
-                    <svg
-                        className={styles['concentric-icon']}
-                        width="48"
-                        height="48"
-                        viewBox="0 0 48 48"
-                        fill="none"
-                        aria-hidden="true"
-                    >
-                        <circle cx="24" cy="24" r="22" stroke="#007AFF" strokeWidth="2" />
-                        <circle
-                            cx="24"
-                            cy="24"
-                            r="14"
-                            stroke="#007AFF"
-                            strokeWidth="2"
-                            opacity="0.5"
-                        />
-                        <circle cx="24" cy="24" r="6" fill="#007AFF" />
-                    </svg>
+                    <div className={styles['icon-circle']}>
+                        <CheckmarkIcon size={48} color="#007aff" />
+                    </div>
                     <h1 className={styles['title']}>진료 체크인</h1>
                 </div>
 
@@ -57,7 +42,7 @@ export default function CheckinConsentPage() {
                     <p className={styles['scope-notice']}>체크인 시 다음 데이터를 전송합니다.</p>
                     <CheckinScopeList />
                     <p className={styles['security-notice']}>
-                        <span aria-hidden="true">🛡</span> 안전한 환경에서 데이터가 전송됩니다.
+                        <WarningIcon size={16} variant="info" /> 안전한 환경에서 데이터가 전송됩니다.
                     </p>
                 </div>
 

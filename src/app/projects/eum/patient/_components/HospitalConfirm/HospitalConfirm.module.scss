@@ -1,39 +1,51 @@
 @use '../../_styles/tokens' as *;
 
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100dvh - $app-bar-height);
-    background: $card-bg;
-    padding: 0 $section-padding-x;
-}
-
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     flex: 1;
-    gap: 16px;
-}
-
-.question {
-    font-size: $fs-title;
-    font-weight: 700;
-    color: $text-primary;
-    text-align: center;
-    margin: 0;
 }
 
 .icon-circle {
+    position: relative;
     width: 120px;
     height: 120px;
-    background: $badge-bg;
+    background: rgba($color-primary, 0.12);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 12px rgba($badge-bg, 0.4);
+    margin-top: 64px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 0 12px rgba($color-primary, 0.15);
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 2px solid rgba($color-primary, 0.3);
+        animation: pulse-ring 2.5s ease-out infinite;
+    }
+
+    &::after {
+        animation-delay: 1.25s;
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
 }
 
 .hospital-name {
@@ -45,55 +57,26 @@
 
 .address {
     font-size: $fs-regular;
+    font-weight: 700;
     color: $text-secondary;
     margin: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 4px;
+    padding: 4px 16px;
+    margin-top: 12px;
 }
 
-.actions {
+.footer {
+    background: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
     padding-bottom: calc(32px + env(safe-area-inset-bottom));
-}
-
-.btn-primary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 56px;
-    background: #000;
-    color: #fff;
-    border-radius: 14px;
-    font-size: $fs-body;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-
-    &:focus-visible {
-        outline: 2px solid $color-primary;
-        outline-offset: 2px;
-    }
-}
-
-.btn-secondary {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    font-size: $fs-regular;
-    color: $text-secondary;
-    background: none;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
-
-    &:focus-visible {
-        outline: 2px solid $color-primary;
-        outline-offset: 2px;
-    }
 }

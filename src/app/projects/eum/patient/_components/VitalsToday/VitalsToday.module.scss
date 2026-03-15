@@ -131,6 +131,11 @@ div.row {
     font-weight: 500;
     color: $text-primary;
     font-variant-numeric: tabular-nums;
+
+    &[data-flagged] {
+        color: $color-danger;
+        font-weight: 600;
+    }
 }
 
 .source {

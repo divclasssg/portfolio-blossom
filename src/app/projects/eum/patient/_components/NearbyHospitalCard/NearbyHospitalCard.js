@@ -37,9 +37,9 @@ export default function NearbyHospitalCard({ hospitalName, address, distanceM, h
             <Link
                 href={href}
                 className={styles['register-btn']}
-                aria-label={`${hospitalName} 등록하기`}
+                aria-label={`${hospitalName} 체크인`}
             >
-                등록하기
+                체크인
             </Link>
         </article>
     );

@@ -1,25 +1,82 @@
 @use '../../_styles/tokens' as *;
 
 .content {
-    padding: 20px $section-padding-x 0;
+    padding: 0 $section-padding-x;
+    padding-top: 32px;
+    padding-bottom: 40px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    background: $screen-bg;
+    gap: $section-gap;
     min-height: calc(100dvh - $app-bar-height);
+    background: $screen-bg;
 }
 
-.search-banner {
+.title-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding-top: 8px;
+}
+
+.icon-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: rgba($color-primary, 0.12);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    background: $badge-bg;
-    border-radius: 999px;
-    padding: 12px 20px;
-    font-size: $fs-regular;
-    font-weight: 500;
+    box-shadow: 0 0 0 12px rgba($color-primary, 0.15);
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 2px solid rgba($color-primary, 0.3);
+        animation: pulse-ring 2.5s ease-out infinite;
+    }
+
+    &::after {
+        animation-delay: 1.25s;
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+.title {
+    font-size: $fs-title;
+    font-weight: 700;
     color: $text-primary;
+    margin: 0;
+}
+
+.hospital-section {
+    border-radius: $card-radius;
+    padding: 24px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section-notice {
+    font-size: $fs-regular;
+    color: $text-secondary;
+    margin: 0;
 }
 
 .hospital-list {

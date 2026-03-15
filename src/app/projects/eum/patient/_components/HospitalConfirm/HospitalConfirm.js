@@ -1,31 +1,21 @@
-import Link from 'next/link';
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { BuildingIcon } from '../../../_components/icons';
+import CtaButton from '../CtaButton/CtaButton';
 import styles from './HospitalConfirm.module.scss';
 
 export default function HospitalConfirm({ hospitalName, address }) {
+    const router = useRouter();
+
     return (
-        <div className={styles['container']}>
+        <main className="page">
             {/* 콘텐츠 영역 — 수직 중앙 */}
             <div className={styles['content']}>
-                <h1 className={styles['question']}>이 병원에 오셨나요?</h1>
+                <h1 className="title">이 병원에 오셨나요?</h1>
 
                 <div className={styles['icon-circle']}>
-                    {/* 빌딩 아이콘 */}
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-                        <rect
-                            x="10"
-                            y="8"
-                            width="28"
-                            height="34"
-                            rx="2"
-                            stroke="#8E8E93"
-                            strokeWidth="2.5"
-                        />
-                        <rect x="18" y="14" width="4" height="4" rx="0.5" fill="#8E8E93" />
-                        <rect x="26" y="14" width="4" height="4" rx="0.5" fill="#8E8E93" />
-                        <rect x="18" y="22" width="4" height="4" rx="0.5" fill="#8E8E93" />
-                        <rect x="26" y="22" width="4" height="4" rx="0.5" fill="#8E8E93" />
-                        <rect x="20" y="32" width="8" height="10" rx="1" fill="#8E8E93" />
-                    </svg>
+                    <BuildingIcon size={48} color="#007aff" />
                 </div>
 
                 <p className={styles['hospital-name']}>{hospitalName}</p>
@@ -50,17 +40,17 @@ export default function HospitalConfirm({ hospitalName, address }) {
             </div>
 
             {/* CTA 영역 — 하단 고정 */}
-            <div className={styles['actions']}>
-                <Link
-                    href="/projects/eum/patient/checkin/consent"
-                    className={styles['btn-primary']}
-                >
+            <div className={`footer ${styles['footer']}`}>
+                <CtaButton onClick={() => router.push('/projects/eum/patient/checkin/consent')}>
                     맞아요, 체크인 할게요
-                </Link>
-                <Link href="/projects/eum/patient/checkin/find" className={styles['btn-secondary']}>
-                    아니오, 다른 병원이에요 <span aria-hidden="true">›</span>
-                </Link>
+                </CtaButton>
+                <CtaButton
+                    variant="tertiary"
+                    onClick={() => router.push('/projects/eum/patient/checkin/find')}
+                >
+                    아니오, 다른 병원이에요
+                </CtaButton>
             </div>
-        </div>
+        </main>
     );
 }
