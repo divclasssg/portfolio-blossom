@@ -10,6 +10,7 @@ import {
     ReferenceArea,
     ReferenceLine,
     Tooltip,
+    ResponsiveContainer,
 } from 'recharts';
 import {
     SLEEP_BAR_COLOR,
@@ -20,8 +21,6 @@ import {
 } from '../_lib/chartColors';
 import styles from './SleepChart.module.scss';
 
-const CHART_WIDTH = 452;
-const CHART_HEIGHT = 200;
 
 const fmtDate = (d) => {
     const [, m, day] = d.split('-');
@@ -53,12 +52,11 @@ function SleepTooltip({ active, payload, label }) {
 
 export default function SleepChart({ data, averageHours, symptomDays, xTicks, dateFormatter }) {
     return (
+        <ResponsiveContainer width="100%" height={200}>
         <BarChart
-            width={CHART_WIDTH}
-            height={CHART_HEIGHT}
             data={data}
             syncId="timeline"
-            margin={{ top: 4, right: 8, bottom: 0, left: -16 }}
+            margin={{ top: 4, right: 8, bottom: 0, left: 0 }}
         >
             <CartesianGrid vertical={false} stroke="#E5E7EB" strokeDasharray="0" />
 
@@ -102,18 +100,25 @@ export default function SleepChart({ data, averageHours, symptomDays, xTicks, da
 
             <Tooltip content={<SleepTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
 
-            {/* 평균 수면시간 기준선 — 직접 레이블 */}
+            {/* 평균 수면시간 기준선 — Badge 형태 라벨 */}
             <ReferenceLine
                 y={averageHours}
                 stroke={SLEEP_AVG_COLOR}
                 strokeWidth={1.5}
                 strokeDasharray="4 3"
-                label={{
-                    value: `평균 ${averageHours}h`,
-                    position: 'insideTopRight',
-                    fontSize: 11,
-                    fill: SLEEP_AVG_COLOR,
-                    dy: -6,
+                label={({ viewBox }) => {
+                    const text = `평균 ${averageHours}h`;
+                    const px = 6, py = 3, w = text.length * 7 + px * 2, h = 18;
+                    const x = viewBox.width + viewBox.x - w - 4;
+                    const y = viewBox.y - h - 4;
+                    return (
+                        <g>
+                            <rect x={x} y={y} width={w} height={h} rx={4} fill={SLEEP_AVG_COLOR} />
+                            <text x={x + w / 2} y={y + h / 2} textAnchor="middle" dominantBaseline="central" fill="#fff" fontSize={11} fontWeight={700}>
+                                {text}
+                            </text>
+                        </g>
+                    );
                 }}
             />
 
@@ -126,5 +131,6 @@ export default function SleepChart({ data, averageHours, symptomDays, xTicks, da
                 ))}
             </Bar>
         </BarChart>
+        </ResponsiveContainer>
     );
 }

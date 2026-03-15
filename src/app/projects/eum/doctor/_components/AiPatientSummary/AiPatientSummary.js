@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './AiPatientSummary.module.scss';
 import { AiIcon, WarningIcon } from '../../../_components/icons';
+import Badge from '../Badge/Badge';
 import AiWarningBanner from '../AiWarningBanner/AiWarningBanner';
 
 // D-001 섹션 4: AI 쉬운말 변환 결과 — 의사가 직접 편집 가능
@@ -43,7 +44,7 @@ export default function AiPatientSummary({ plainText, modelVersion, resultWarnin
                     <h2 className="section-title">AI Patient Summary</h2>
                 </div>
 
-                <span className={`model-tag ${styles['model-tag']}`}>{modelVersion}</span>
+                <Badge className={styles['model-tag']}>{modelVersion}</Badge>
 
                 {/* bordered 카드 — white bg, border 1px #E5E7EB, radius 16px */}
                 <div className={styles.card}>

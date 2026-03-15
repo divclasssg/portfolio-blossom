@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { HeartPulseIcon, WarningIcon, ArrowIcon } from '../../../_components/icons';
+import Badge from '../Badge/Badge';
+import Chip from '../Chip/Chip';
 import styles from './PatientProfile.module.scss';
 
 // chronic_conditions 문자열에서 ICD 코드 추출 — "역류성 식도염 (K21.0)" → "K21.0"
@@ -46,22 +48,22 @@ export default function PatientProfile({
 
             <div className={styles['identity-row']}>
                 <span className={styles['patient-name']}>{patientSummary.name}</span>
-                {genderLabel && <span className={styles['gender-badge']}>{genderLabel}</span>}
+                {genderLabel && <Chip className={styles['gender-chip']}>{genderLabel}</Chip>}
                 {patientSummary.age != null && (
                     <span className={styles.age}>만 {patientSummary.age}세</span>
                 )}
                 {firstIcdCode && (
-                    <span className={styles['icd-code']}>{firstIcdCode}</span>
+                    <Badge className={styles['icd-code']}>{firstIcdCode}</Badge>
                 )}
 
                 <div className={styles.chips}>
                     {/* 기저질환 칩 — 0건이면 미표시 */}
                     {chronicConditions?.length > 0 && (
                         <div className={styles['chip-wrapper']}>
-                            <span className={styles['chip-condition']} aria-describedby="cond-tooltip" tabIndex={0}>
+                            <Chip aria-describedby="cond-tooltip" tabIndex={0}>
                                 <HeartPulseIcon size={14} />
                                 <span>{chronicConditions.length}</span>
-                            </span>
+                            </Chip>
                             <ul className={styles.tooltip} id="cond-tooltip" role="tooltip" aria-label="기저질환 목록">
                                 {chronicConditions.map((name) => <li key={name}>{name}</li>)}
                             </ul>
@@ -71,10 +73,10 @@ export default function PatientProfile({
                     {/* 알레르기 칩 — 0건이면 미표시 */}
                     {allergies?.length > 0 && (
                         <div className={styles['chip-wrapper']}>
-                            <span className={styles['chip-allergy']} aria-describedby="allergy-tooltip" tabIndex={0}>
+                            <Chip variant="danger" aria-describedby="allergy-tooltip" tabIndex={0}>
                                 <WarningIcon size={14} variant="triangle-fill" />
                                 <span>{allergies.length}</span>
-                            </span>
+                            </Chip>
                             <ul className={styles['tooltip-danger']} id="allergy-tooltip" role="tooltip" aria-label="알레르기 목록">
                                 {allergies.map((item) => (
                                     <li key={item.allergen}>

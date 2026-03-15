@@ -1,4 +1,5 @@
 import styles from './ClinicalNotes.module.scss';
+import Badge from '../Badge/Badge';
 
 // D-001 섹션 3: 의사 소견 (의료 텍스트 원문)
 export default function ClinicalNotes({ findings }) {
@@ -7,7 +8,7 @@ export default function ClinicalNotes({ findings }) {
             <div className="section-content">
                 <h2 className={`section-title ${styles['title-row']}`}>
                     Clinical Notes
-                    <span className={styles['readonly-badge']}>읽기전용</span>
+                    <Badge className={styles['readonly-badge']}>읽기전용</Badge>
                 </h2>
                 <div className="card">
                     <p className={styles.findings}>{findings}</p>

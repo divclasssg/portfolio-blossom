@@ -4,9 +4,14 @@
 .subsection-title {
     font-size: t.$fs-subtitle;
     line-height: t.$line-height-body;
-    font-weight: 600;
+    font-weight: 500;
     color: t.$text-primary;
     margin-bottom: 4px;
+}
+
+// AI 모델 태그 — 둥근 pill이 아닌 사각형
+.model-tag {
+    border-radius: 4px;
 }
 
 // 기존 문단형 요약 (summary_items 없을 때 폴백)

@@ -14,9 +14,6 @@ import {
 import { NRS_CATEGORY_COLORS, SYMPTOM_DAY_BG } from '../_lib/chartColors';
 import styles from './NrsChart.module.scss';
 
-const CHART_WIDTH = 452;
-const CHART_HEIGHT = 200;
-
 // 날짜 문자열 → "2/5" 형식 (타임존 독립)
 const fmtDate = (d) => {
     const [, m, day] = d.split('-');
@@ -62,12 +59,11 @@ function NrsTooltip({ active, payload, label }) {
 
 export default function NrsChart({ data, symptomDays, xTicks, dateFormatter }) {
     return (
+        <ResponsiveContainer width="100%" height={200}>
         <BarChart
-            width={CHART_WIDTH}
-            height={CHART_HEIGHT}
             data={data}
             syncId="timeline"
-            margin={{ top: 4, right: 8, bottom: 0, left: -16 }}
+            margin={{ top: 4, right: 8, bottom: 0, left: 0 }}
         >
             <CartesianGrid vertical={false} stroke="#E5E7EB" strokeDasharray="0" />
 
@@ -110,5 +106,6 @@ export default function NrsChart({ data, symptomDays, xTicks, dateFormatter }) {
                 ))}
             </Bar>
         </BarChart>
+        </ResponsiveContainer>
     );
 }

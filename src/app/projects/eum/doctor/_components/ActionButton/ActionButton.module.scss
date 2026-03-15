@@ -4,13 +4,13 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 10px 20px;
+    padding: 4px 20px;
     border: 0;
     border-radius: 999px;
     background: t.$color-primary;
     font-size: t.$fs-regular;
     line-height: t.$line-height-regular;
-    font-weight: 600;
+    font-weight: 500;
     color: t.$header-fg;
     cursor: pointer;
     transition: background 0.15s ease;

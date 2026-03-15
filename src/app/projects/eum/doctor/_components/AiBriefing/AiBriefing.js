@@ -1,4 +1,5 @@
 import styles from './AiBriefing.module.scss';
+import Badge from '../Badge/Badge';
 
 // AI Pre-Consultation Brief — AiDataProvider 내 서브섹션
 export default function AiBriefing({ briefing }) {
@@ -8,7 +9,7 @@ export default function AiBriefing({ briefing }) {
         <div className={styles['subsection']}>
             <h3 className={styles['subsection-title']}>Pre-Consultation Brief</h3>
 
-            <span className="model-tag">{model_version}</span>
+            <Badge className={styles['model-tag']}>{model_version}</Badge>
 
             {/* summary_bullets가 있으면 불릿 리스트, 없으면 기존 문단 폴백 */}
             {summary_bullets?.length > 0 ? (

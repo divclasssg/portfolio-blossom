@@ -1,6 +1,7 @@
 @use '../../../_styles/tokens' as t;
 
 .filter-bar {
+border-bottom: 1px solid t.$neutral-border;
     display: flex;
     flex-direction: column;
     gap: 16px;

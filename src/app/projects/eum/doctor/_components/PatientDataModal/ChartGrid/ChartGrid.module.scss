@@ -10,9 +10,9 @@
 .subtitle {
     margin: 0;
     font-family: var(--font-noto-kr), sans-serif;
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
-    color: t.$text-secondary;
+    font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
+    color: t.$text-primary;
 }
 
 // ── 범례 ──
@@ -61,7 +61,7 @@
 .nav {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 32px;
     padding: 12px 20px 0;
 }
 
@@ -95,14 +95,6 @@
     }
 }
 
-.nav-center {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-}
-
 .nav-range {
     font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
@@ -111,29 +103,10 @@
     color: t.$text-primary;
 }
 
-.nav-track {
-    width: 100%;
-    max-width: 200px;
-    height: 4px;
-    background: t.$neutral-bg-tertiary;
-    border-radius: 2px;
-    position: relative;
-}
-
-.nav-thumb {
-    position: absolute;
-    top: -2px;
-    width: 24px;
-    height: 8px;
-    background: t.$text-secondary;
-    border-radius: 4px;
-    // JS가 left를 0~100%로 설정 — 12px(반너비)만큼 보정하여 오버플로 방지
-    // left는 inline style로 설정됨
-}
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, 484px);
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     padding: 20px;
     justify-content: center;
@@ -168,9 +141,9 @@
 .card-title {
     margin: 0;
     font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
-    font-weight: 600;
+    font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
+    font-weight: 500;
     color: t.$text-primary;
 }
 
@@ -183,27 +156,31 @@
     line-height: t.$line-height-small;
 }
 
+// Badge 오버라이드: 평균값 강조
 .card-avg {
+    font-size: t.$fs-body;
+    line-height: t.$line-height-body;
+    font-weight: 700;
     color: t.$text-primary;
-    font-weight: 500;
 }
 
+// 추세 Badge — 배경색은 inline style로 주입 (color + 8% opacity)
 .card-trend {
+    border: 1px solid t.$neutral-border;
     display: inline-flex;
     align-items: center;
     gap: 2px;
-    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-weight: 700;
     font-size: t.$fs-small;
-}
-
-.card-trend-icon {
-    font-size: t.$fs-small;
+    line-height: t.$line-height-small;
 }
 
 .card-date-range {
     margin: 0;
     font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
     font-size: t.$fs-small;
-    color: t.$text-secondary;
+    color: t.$text-primary;
     line-height: t.$line-height-small;
 }

@@ -31,7 +31,7 @@
     font-family: var(--font-roboto), sans-serif;
     font-size: t.$fs-title;
     line-height: t.$line-height-title;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.05em;
     color: t.$header-fg;
 }
@@ -56,20 +56,15 @@
     gap: 4px;
 }
 
-.badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+// Chip 오버라이드: 모달 헤더 — 더 큰 사이즈, 어두운 배경
+.modal-chip {
     height: 24px;
     padding: 0 12px;
     background: t.$neutral-border;
-    border: 1px solid t.$neutral-divider;
-    border-radius: 12px;
+    border-color: t.$neutral-divider;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
-    line-height: t.$line-height-regular;
     font-weight: 400;
-    color: t.$text-secondary;
 }
 
 .close-btn {

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import styles from './VisitHistory.module.scss';
+import Chip from '../../Chip/Chip';
 
 // "2025-11-28" → "2025. 11. 28."
 const formatDate = (dateStr) => {
@@ -111,9 +112,9 @@ export default function VisitHistory({ data }) {
                                         </td>
                                         <td className={styles['col-hospital']}>{visit.hospital}</td>
                                         <td className={styles['col-type']}>
-                                            <span className={styles['type-badge']}>
+                                            <Chip className={styles['type-chip']}>
                                                 {d.visitType}
-                                            </span>
+                                            </Chip>
                                         </td>
                                         <td className={styles['col-action']} aria-hidden="true">
                                             <span

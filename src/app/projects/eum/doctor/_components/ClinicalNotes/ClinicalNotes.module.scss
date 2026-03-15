@@ -6,16 +6,9 @@
     align-items: center;
 }
 
-// 읽기전용 배지
+// Badge 오버라이드: 제목 우측 배치
 .readonly-badge {
     margin-left: auto;
-    font-size: t.$fs-small;
-    font-weight: 500;
-    line-height: 1;
-    color: t.$text-secondary;
-    background: t.$neutral-bg;
-    padding: 4px 8px;
-    border-radius: 6px;
     letter-spacing: 0;
 }
 

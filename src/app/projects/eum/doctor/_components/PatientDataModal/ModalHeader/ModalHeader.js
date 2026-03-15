@@ -1,9 +1,6 @@
 import styles from './ModalHeader.module.scss';
 import { AiIcon } from '../../../../_components/icons';
-
-function PatientBadge({ children }) {
-    return <span className={styles.badge}>{children}</span>;
-}
+import Chip from '../../Chip/Chip';
 
 // 성별 코드를 한국어로 변환
 const GENDER_LABEL = { F: '여', M: '남' };
@@ -22,8 +19,8 @@ export default function ModalHeader({ patient, onClose }) {
                 <div className={styles['patient-group']}>
                     <span className={styles['patient-name']}>{patient.name}</span>
                     <div className={styles.badges}>
-                        <PatientBadge>{genderLabel}</PatientBadge>
-                        <PatientBadge>{ageLabel}</PatientBadge>
+                        <Chip className={styles['modal-chip']}>{genderLabel}</Chip>
+                        <Chip className={styles['modal-chip']}>{ageLabel}</Chip>
                     </div>
                 </div>
             </div>

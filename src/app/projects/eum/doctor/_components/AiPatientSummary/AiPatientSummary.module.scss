@@ -1,5 +1,10 @@
 @use '../../_styles/tokens' as t;
 
+// AI 모델 태그
+.model-tag {
+    border-radius: 4px;
+}
+
 .section-header {
     margin-bottom: 4px;
 }
@@ -10,10 +15,6 @@
     flex-shrink: 0;
 }
 
-// model-tag: section-header 밖으로 이동됨
-.model-tag {
-    white-space: nowrap;
-}
 
 // bordered 카드 — 와이어프레임: white bg, border 1px #E5E7EB, radius 16px
 // common의 neutral-bg 카드와 다름 (white + border)

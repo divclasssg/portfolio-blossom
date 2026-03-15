@@ -1,0 +1,36 @@
+@use '../../_styles/tokens' as t;
+
+// 기본 Chip — 아이콘+텍스트, 테두리, pill 형태
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: t.$fs-small;
+    font-weight: 500;
+    line-height: t.$line-height-small;
+    cursor: default;
+    user-select: none;
+}
+
+// default (회색)
+.chip--default {
+    background: t.$neutral-bg;
+    border: 1px solid t.$neutral-border;
+    color: t.$text-dark;
+}
+
+// danger (빨강 — 알레르기 등)
+.chip--danger {
+    background: t.$clinical-danger-bg;
+    border: 1px solid rgba(t.$color-danger, 0.2);
+    color: t.$color-danger;
+}
+
+// info (파랑 — referral 등)
+.chip--info {
+    background: t.$badge-blue-bg;
+    border: 1px solid rgba(t.$badge-blue-text, 0.2);
+    color: t.$badge-blue-text;
+}

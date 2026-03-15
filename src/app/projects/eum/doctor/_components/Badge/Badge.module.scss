@@ -1,0 +1,14 @@
+@use '../../_styles/tokens' as t;
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    background: t.$neutral-bg;
+    border: 1px solid t.$neutral-border;
+    border-radius: 999px;
+    font-size: t.$fs-small;
+    font-weight: 500;
+    line-height: t.$line-height-small;
+    color: t.$text-dark;
+}

@@ -1,5 +1,10 @@
 @use '../../_styles/tokens' as t;
 
+// AI 모델 태그
+.model-tag {
+    border-radius: 4px;
+}
+
 // 서브섹션 래퍼
 .subsection {
     padding-top: 16px;
@@ -15,7 +20,7 @@
 .subsection-title {
     font-size: t.$fs-subtitle;
     line-height: t.$line-height-body;
-    font-weight: 600;
+    font-weight: 500;
     color: t.$text-primary;
     flex: 1;
 }
@@ -76,7 +81,8 @@
 // 질환명 버튼 — 아코디언 토글 역할
 .item-name {
     flex: 1;
-    font-size: t.$fs-regular;
+    font-size: t.$fs-body;
+    line-height: t.$line-height-body;
     color: t.$text-primary;
     background: none;
     border: none;
@@ -89,32 +95,29 @@
     white-space: nowrap;
 }
 
+// Badge 오버라이드: 코드 전용 — 더 작은 패딩, 뮤트 색상
 .icd-tag {
-    font-size: t.$fs-small;
-    color: t.$text-muted;
-    background: t.$neutral-bg;
     padding: 1px 6px;
-    border-radius: 4px;
     white-space: nowrap;
 }
 
 .confidence-high {
     font-size: t.$fs-small;
-    font-weight: 600;
+    font-weight: 500;
     color: t.$clinical-normal;
     flex-shrink: 0;
 }
 
 .confidence-medium {
     font-size: t.$fs-small;
-    font-weight: 600;
+    font-weight: 500;
     color: t.$clinical-warning;
     flex-shrink: 0;
 }
 
 .confidence-low {
     font-size: t.$fs-small;
-    font-weight: 600;
+    font-weight: 500;
     color: t.$text-muted;
     flex-shrink: 0;
 }
@@ -147,7 +150,7 @@
 .judgment-trigger {
     font-size: t.$fs-small;
     line-height: t.$line-height-small;
-    font-weight: 600;
+    font-weight: 500;
     padding: 1px 6px;
     border-radius: 4px;
     border: 1px solid t.$neutral-border;
@@ -209,7 +212,7 @@
     }
 
     &[aria-selected='true'] {
-        font-weight: 600;
+        font-weight: 500;
         color: t.$color-primary;
     }
 }
@@ -227,18 +230,11 @@
     margin-bottom: 6px;
 }
 
-.evidence-chip {
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
-    color: t.$text-subtle;
-    background: t.$neutral-bg;
-    padding: 2px 8px;
-    border-radius: 6px;
-}
+// evidence-chip → Badge 컴포넌트로 이관됨
 
 .clinical-note {
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
+    font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
     color: t.$text-primary;
     word-break: keep-all;
 }

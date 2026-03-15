@@ -22,15 +22,10 @@
     color: t.$text-primary;
 }
 
-.gender-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 8px;
-    background: t.$neutral-bg;
-    border-radius: 999px;
-    font-size: t.$fs-small;
+// Chip 오버라이드: 성별 — 테두리 없음, 가벼운 폰트
+.gender-chip {
+    border: none;
     font-weight: 500;
-    color: t.$text-secondary;
 }
 
 .age {
@@ -40,14 +35,10 @@
 }
 
 // ICD-10 코드 — 나이 옆에 표시
+// Badge 오버라이드: ICD 코드 — 더 작은 패딩, 굵은 폰트
 .icd-code {
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
-    font-weight: 600;
-    color: t.$text-secondary;
-    background: t.$neutral-bg;
+    font-weight: 500;
     padding: 2px 6px;
-    border-radius: 4px;
 }
 
 .referral-badge {
@@ -59,7 +50,7 @@
     color: t.$badge-blue-text;
     font-size: t.$fs-small;
     line-height: t.$line-height-small;
-    font-weight: 600;
+    font-weight: 500;
     margin-left: auto;
 }
 
@@ -77,39 +68,7 @@
     position: relative;
 }
 
-// 기저질환 칩 (회색)
-.chip-condition {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 3px 8px;
-    background: t.$neutral-bg;
-    border: 1px solid t.$neutral-border;
-    border-radius: 999px;
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
-    font-weight: 600;
-    color: t.$text-secondary;
-    cursor: default;
-    user-select: none;
-}
-
-// 알레르기 칩 (빨강)
-.chip-allergy {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 3px 8px;
-    background: t.$clinical-danger-bg;
-    border: 1px solid rgba(t.$color-danger, 0.2);
-    border-radius: 999px;
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
-    font-weight: 600;
-    color: t.$color-danger;
-    cursor: default;
-    user-select: none;
-}
+// chip-condition, chip-allergy → Chip 컴포넌트로 이관됨
 
 // 펼치기/접기 토글 버튼
 .toggle-btn {
@@ -214,9 +173,9 @@
 
 .summary {
     margin: 0;
-    font-size: t.$fs-regular;
-    line-height: t.$line-height-regular;
-    color: t.$text-secondary;
+    font-size: t.$fs-body;
+    line-height: t.$line-height-body;
+    color: t.$text-primary;
 }
 
 .detail-group {
@@ -226,13 +185,12 @@
 }
 
 .detail-label {
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
-    font-weight: 600;
+    font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: t.$text-secondary;
-    opacity: 0.65;
+    color: t.$text-primary;
 }
 
 .detail-list {

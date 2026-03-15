@@ -35,16 +35,6 @@
     }
 }
 
-// AI 모델 태그 (GPT-4o mini 등)
-.model-tag {
-    font-size: t.$fs-small;
-    color: t.$text-muted;
-    padding: 2px 6px;
-    background: t.$neutral-bg;
-    border-radius: 4px;
-    flex-shrink: 0;
-}
-
 // ── 카드 ───────────────────────────────────────────────────────────────────────
 
 // neutral-bg 카드 (gray)
@@ -69,7 +59,7 @@
 }
 
 .chart-tooltip-date {
-    font-weight: 600;
+    font-weight: 500;
     color: t.$text-primary;
     margin: 0 0 4px;
 }

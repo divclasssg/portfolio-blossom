@@ -32,6 +32,7 @@
 
 // 탭 아래 콘텐츠 영역 — overflow:hidden으로 자식에게 스크롤 위임
 .content {
+    background-color: t.$neutral-bg;
     flex: 1;
     min-height: 0;
     overflow: hidden;

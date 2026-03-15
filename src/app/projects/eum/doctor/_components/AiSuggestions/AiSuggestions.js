@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import styles from './AiSuggestions.module.scss';
+import Badge from '../Badge/Badge';
 import ActionButton from '../ActionButton/ActionButton';
 import { ArrowIcon, DragHandleIcon } from '../../../_components/icons';
 import { usePatientDataModal } from '../PatientDataModal/PatientDataModalContext';
@@ -114,7 +115,7 @@ export default function AiSuggestions({ suggestions, modelVersion }) {
                 </ActionButton>
             </div>
 
-            <span className="model-tag">{modelVersion}</span>
+            <Badge className={styles['model-tag']}>{modelVersion}</Badge>
 
                 <div ref={liveRef} aria-live="polite" className="sr-only" />
 
@@ -184,7 +185,7 @@ export default function AiSuggestions({ suggestions, modelVersion }) {
                                     </button>
                                     {/* icd_code가 순수 숫자면 entity ID → 표시하지 않음 */}
                                     {item.icd_code && !/^\d+$/.test(item.icd_code) && (
-                                        <span className={styles['icd-tag']}>{item.icd_code}</span>
+                                        <Badge className={styles['icd-tag']}>{item.icd_code}</Badge>
                                     )}
                                     <span className={styles[conf.className]} aria-label={`신뢰도: ${conf.label}`}>
                                         {conf.icon} {conf.label}
@@ -241,7 +242,7 @@ export default function AiSuggestions({ suggestions, modelVersion }) {
                                         {item.evidence_symptoms?.length > 0 && (
                                             <ul className={styles['evidence-list']} aria-label="근거 증상">
                                                 {item.evidence_symptoms.map((ev) => (
-                                                    <li key={ev} className={styles['evidence-chip']}>{ev}</li>
+                                                    <Badge as="li" key={ev}>{ev}</Badge>
                                                 ))}
                                             </ul>
                                         )}

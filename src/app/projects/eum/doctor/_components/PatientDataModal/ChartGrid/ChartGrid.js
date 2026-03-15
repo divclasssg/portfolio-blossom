@@ -257,10 +257,10 @@ function calcTrend(values, threshold = 0.01) {
 // higherIsWorse: NRS/심박/혈압은 상승=부정적, 수면은 상승=긍정적
 function getTrendDisplay(trend, higherIsWorse) {
     if (trend.direction === 'insufficient') {
-        return { icon: '—', text: '데이터 부족', color: TREND_FLAT };
+        return { text: '데이터 부족', color: TREND_FLAT };
     }
     if (trend.direction === 'flat') {
-        return { icon: '—', text: '변화 없음', color: TREND_FLAT };
+        return { text: '변화 없음', color: TREND_FLAT };
     }
     const isUp = trend.direction === 'up';
     const isNegative = higherIsWorse ? isUp : !isUp;
@@ -281,13 +281,13 @@ function formatDateRange(domain) {
     return `${fmt(domain[0])} ~ ${fmt(domain[domain.length - 1])}`;
 }
 
-// 추세 표시 컴포넌트
+// 추세 표시 컴포넌트 — Badge 형태
 function TrendBadge({ trend, higherIsWorse }) {
     const { icon, text, color } = getTrendDisplay(trend, higherIsWorse);
     return (
-        <span className={styles['card-trend']} style={{ color }}>
-            <span className={styles['card-trend-icon']} aria-hidden="true">{icon}</span>
-            {' '}{text}
+        <span className={styles['card-trend']} style={{ background: `${color}14`, color, borderColor: `${color}40` }}>
+            <span aria-hidden="true">{icon}</span>
+            {text}
         </span>
     );
 }
@@ -356,11 +356,6 @@ export default function ChartGrid({ chartData, activePeriod, activeCategory, cus
     const dateFormatter = getDateFormatter(needsSlide ? '1month' : activePeriod);
     const xTicks = getXTicks(viewDomain);
     const dateRange = formatDateRange(viewDomain);
-
-    // 프로그레스 바 위치 (0~1)
-    const progressRatio = needsSlide
-        ? viewStartIdx / Math.max(1, domain.length - WINDOW_SIZE)
-        : 0;
 
     // ── 카테고리 필터 적용 후 증상 발생일 목록 ──
     const filterCode = CATEGORY_CODE[activeCategory];
@@ -441,23 +436,9 @@ export default function ChartGrid({ chartData, activePeriod, activeCategory, cus
                     >
                         <ArrowIcon variant="left" size={16} />
                     </button>
-                    <div className={styles['nav-center']}>
-                        <span className={styles['nav-range']}>
-                            {formatNavRange(viewDomain[0], viewDomain[viewDomain.length - 1])}
-                        </span>
-                        <div
-                            className={styles['nav-track']}
-                            role="progressbar"
-                            aria-valuenow={Math.round(progressRatio * 100)}
-                            aria-valuemin={0}
-                            aria-valuemax={100}
-                        >
-                            <div
-                                className={styles['nav-thumb']}
-                                style={{ left: `calc(12px + ${progressRatio} * (100% - 24px))` }}
-                            />
-                        </div>
-                    </div>
+                    <span className={styles['nav-range']}>
+                        {formatNavRange(viewDomain[0], viewDomain[viewDomain.length - 1])}
+                    </span>
                     <button
                         className={styles['nav-btn']}
                         onClick={goRight}

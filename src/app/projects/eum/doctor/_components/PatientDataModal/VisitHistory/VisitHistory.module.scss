@@ -31,7 +31,7 @@
         padding: 0 12px 10px;
         font-size: t.$fs-small;
         line-height: t.$line-height-small;
-        font-weight: 600;
+        font-weight: 500;
         color: t.$text-muted;
         letter-spacing: 0.04em;
         text-align: left;
@@ -90,7 +90,7 @@
     padding: 0;
     font-size: t.$fs-small;
     line-height: t.$line-height-small;
-    font-weight: 600;
+    font-weight: 500;
     color: t.$text-muted;
     letter-spacing: 0.04em;
     cursor: pointer;
@@ -105,18 +105,13 @@
     line-height: t.$line-height-small;
 }
 
-// 진료 유형 뱃지
-.type-badge {
-    display: inline-flex;
-    align-items: center;
+// Chip 오버라이드: 진료 유형 — 높이 고정, 테두리 없음
+.type-chip {
     height: 20px;
     padding: 0 8px;
-    border-radius: 10px;
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
+    border: none;
+    border-radius: 999px;
     font-weight: 500;
-    background: t.$neutral-bg;
-    color: t.$text-secondary;
     white-space: nowrap;
 }
 
@@ -217,7 +212,7 @@
     margin: 20px 0 10px;
     font-size: t.$fs-small;
     line-height: t.$line-height-small;
-    font-weight: 600;
+    font-weight: 500;
     color: t.$text-muted;
     letter-spacing: 0.04em;
 }

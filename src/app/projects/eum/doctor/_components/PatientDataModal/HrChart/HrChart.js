@@ -8,6 +8,7 @@ import {
     CartesianGrid,
     ReferenceArea,
     Tooltip,
+    ResponsiveContainer,
 } from 'recharts';
 import {
     HR_BOX_FILL,
@@ -18,8 +19,6 @@ import {
 } from '../_lib/chartColors';
 import styles from './HrChart.module.scss';
 
-const CHART_WIDTH = 452;
-const CHART_HEIGHT = 200;
 const WHISKER_CAP = 4; // 수염 캡 반너비 (px)
 
 const fmtDate = (d) => {
@@ -118,12 +117,11 @@ function HrTooltip({ active, payload, label }) {
 
 export default function HrChart({ data, symptomDays, xTicks, dateFormatter }) {
     return (
+        <ResponsiveContainer width="100%" height={200}>
         <BarChart
-            width={CHART_WIDTH}
-            height={CHART_HEIGHT}
             data={data}
             syncId="timeline"
-            margin={{ top: 4, right: 8, bottom: 0, left: -16 }}
+            margin={{ top: 4, right: 8, bottom: 0, left: 0 }}
         >
             <CartesianGrid vertical={false} stroke="#E5E7EB" strokeDasharray="0" />
 
@@ -176,5 +174,6 @@ export default function HrChart({ data, symptomDays, xTicks, dateFormatter }) {
                 legendType="none"
             />
         </BarChart>
+        </ResponsiveContainer>
     );
 }
