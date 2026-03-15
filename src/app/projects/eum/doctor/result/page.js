@@ -121,6 +121,7 @@ export default async function ResultPage() {
             <AiPatientSummary
                 plainText={resultPackage.doctor_note_plain}
                 modelVersion={resultPackage.plain_text_generation.model_version}
+                resultWarnings={resultWarnings}
             />
 
             {/* 섹션 4: 치료 계획 */}

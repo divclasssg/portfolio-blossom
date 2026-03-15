@@ -6,7 +6,7 @@ import { AiIcon } from '../../../_components/icons';
 import AiWarningBanner from '../AiWarningBanner/AiWarningBanner';
 
 // D-001 섹션 4: AI 쉬운말 변환 결과 — 의사가 직접 편집 가능
-export default function AiPatientSummary({ plainText, modelVersion }) {
+export default function AiPatientSummary({ plainText, modelVersion, resultWarnings }) {
     // 'generating' → 2.5초 → 'complete'
     const [generationState, setGenerationState] = useState('generating');
     const textareaRef = useRef(null);
