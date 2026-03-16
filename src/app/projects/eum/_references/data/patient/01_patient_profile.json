@@ -1,0 +1,42 @@
+{
+  "patient_id": "pat_yoon_001",
+  "basic_health": {
+    "birth_date": "1992-05-14",
+    "gender": "F",
+    "height_cm": 163,
+    "weight_kg": 52,
+    "chronic_conditions": [
+      "역류성 식도염 (K21.0)"
+    ],
+    "medications": [
+      "에소메프라졸 40mg (1일 1회, 아침 식전)",
+      "돔페리돈 10mg (1일 3회, 식전)",
+      "수크랄페이트 1g (1일 2회, 식전)",
+      "마그네슘 하이드록사이드 500mg (필요시)",
+      "오메가-3 1000mg (1일 1회)",
+      "비타민 D 1000IU (1일 1회)"
+    ],
+    "allergies": [
+      "아목시실린 (발진)",
+      "새우 (두드러기)"
+    ]
+  },
+  "profile": {
+    "name": "윤서진",
+    "phone": "010-1234-5678",
+    "emergency_contact": {
+      "name": "윤재호",
+      "relationship": "부",
+      "phone": "010-9876-5432"
+    },
+    "primary_hospital": {
+      "hospital_id": "hosp_seohyun_001",
+      "hospital_name": "서현내과의원",
+      "department": "내과",
+      "doctor_name": "김도현",
+      "address": "경기도 성남시 분당구 서현동 264-1"
+    },
+    "registered_at": "2025-12-01T10:00:00+09:00",
+    "app_version": "1.0.0-mvp"
+  }
+}

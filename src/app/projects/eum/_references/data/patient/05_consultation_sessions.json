@@ -1,0 +1,126 @@
+{
+  "patient_id": "pat_yoon_001",
+  "sessions": [
+    {
+      "session_id": "ses_001",
+      "hospital_id": "hosp_seohyun_001",
+      "hospital_name": "서현내과의원",
+      "doctor_name": "김도현",
+      "status": "completed",
+      "created_at": "2025-12-02T09:00:00+09:00",
+      "transmitted_at": "2025-12-02T09:05:00+09:00",
+      "started_at": "2025-12-02T14:00:00+09:00",
+      "completed_at": "2025-12-02T14:25:00+09:00",
+      "symptom_ids": ["sym_legacy_dec"],
+      "consent_status": {
+        "public_medical": true,
+        "health_platform": true
+      }
+    },
+    {
+      "session_id": "ses_002",
+      "hospital_id": "hosp_seohyun_001",
+      "hospital_name": "서현내과의원",
+      "doctor_name": "김도현",
+      "status": "completed",
+      "created_at": "2026-01-13T10:00:00+09:00",
+      "transmitted_at": "2026-01-13T10:03:00+09:00",
+      "started_at": "2026-01-13T15:30:00+09:00",
+      "completed_at": "2026-01-13T15:50:00+09:00",
+      "symptom_ids": ["sym_legacy_jan"],
+      "consent_status": {
+        "public_medical": true,
+        "health_platform": true
+      }
+    },
+    {
+      "session_id": "ses_003",
+      "hospital_id": "hosp_seohyun_001",
+      "hospital_name": "서현내과의원",
+      "doctor_name": "김도현",
+      "status": "completed",
+      "created_at": "2026-02-10T08:30:00+09:00",
+      "transmitted_at": "2026-02-10T08:35:00+09:00",
+      "started_at": "2026-02-10T11:00:00+09:00",
+      "completed_at": "2026-02-10T11:20:00+09:00",
+      "symptom_ids": ["sym_001", "sym_002"],
+      "consent_status": {
+        "public_medical": true,
+        "health_platform": true
+      }
+    },
+    {
+      "session_id": "ses_004",
+      "hospital_id": "hosp_seohyun_001",
+      "hospital_name": "서현내과의원",
+      "doctor_name": "김도현",
+      "status": "completed",
+      "created_at": "2026-02-17T09:00:00+09:00",
+      "transmitted_at": "2026-02-17T09:02:00+09:00",
+      "started_at": "2026-02-17T14:30:00+09:00",
+      "completed_at": "2026-02-17T14:55:00+09:00",
+      "symptom_ids": ["sym_003", "sym_004"],
+      "consent_status": {
+        "public_medical": true,
+        "health_platform": true
+      }
+    },
+    {
+      "session_id": "ses_005",
+      "hospital_id": "hosp_seohyun_001",
+      "hospital_name": "서현내과의원",
+      "doctor_name": "김도현",
+      "status": "cancelled_by_patient",
+      "created_at": "2026-02-24T07:00:00+09:00",
+      "transmitted_at": null,
+      "started_at": null,
+      "completed_at": null,
+      "cancelled_at": "2026-02-24T12:00:00+09:00",
+      "cancel_reason": "증상 호전으로 환자 자진 취소",
+      "symptom_ids": ["sym_006"],
+      "consent_status": {
+        "public_medical": true,
+        "health_platform": true
+      }
+    },
+    {
+      "session_id": "ses_006",
+      "hospital_id": "hosp_seohyun_001",
+      "hospital_name": "서현내과의원",
+      "doctor_name": "김도현",
+      "status": "expired",
+      "created_at": "2026-03-03T09:00:00+09:00",
+      "transmitted_at": "2026-03-03T09:04:00+09:00",
+      "started_at": null,
+      "completed_at": null,
+      "expired_at": "2026-03-03T23:59:59+09:00",
+      "symptom_ids": ["sym_008"],
+      "consent_status": {
+        "public_medical": true,
+        "health_platform": true
+      }
+    },
+    {
+      "session_id": "ses_007",
+      "hospital_id": "hosp_bundang_neuro_001",
+      "hospital_name": "분당신경과의원",
+      "doctor_name": "박지영",
+      "status": "waiting",
+      "created_at": "2026-03-09T08:30:00+09:00",
+      "transmitted_at": "2026-03-09T08:35:00+09:00",
+      "started_at": null,
+      "completed_at": null,
+      "symptom_ids": ["sym_009", "sym_010"],
+      "referral_from": {
+        "session_id": "ses_004",
+        "doctor_name": "김도현",
+        "hospital_name": "서현내과의원",
+        "referral_reason": "자율신경계 기능 평가 (기립경사검사, 심박변이도 분석)"
+      },
+      "consent_status": {
+        "public_medical": true,
+        "health_platform": true
+      }
+    }
+  ]
+}

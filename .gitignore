@@ -50,8 +50,9 @@ next-env.d.ts
 .mcp.json
 PLAN.md
 
-# references
-_references/
+# references (데이터 JSON은 빌드 필수이므로 유지)
+_references/*
+!_references/data/
 
 # Python
 __pycache__/

@@ -1,0 +1,79 @@
+{
+  "doctors": [
+    {
+      "doctor_id": "doc_kim_001",
+      "name": "김도현",
+      "age": 47,
+      "hospital": {
+        "hospital_id": "hosp_seohyun_001",
+        "hospital_name": "서현내과의원",
+        "department": "내과",
+        "address": "경기도 성남시 분당구 서현동 264-1",
+        "type": "1차 의료기관 (1인 의원)"
+      },
+      "license_number": "의사-12345",
+      "specialty": "내과 전문의",
+      "years_of_practice": 18,
+      "daily_patients": "40~70명",
+      "avg_consultation_minutes": "5~7분",
+      "emr_system": "비트컴퓨터 BESTCARE",
+      "eum_registered_at": "2025-11-01T09:00:00+09:00",
+      "persona": {
+        "tagline": "Relationship Before Records",
+        "quote": "처음 보는 사람간의 소통의 어려움과 다르지 않습니다. 시간이 지나서 그 사람을 이해하게 되면 전달이 가능한 것도 처음에는 많이 어렵습니다.",
+        "motivations": {
+          "relationship_first": "차트보다 환자와의 관계 형성이 납득의 선행 조건. 반복 방문을 통해 점진적으로 관계를 쌓아가는 것이 진료의 기본 전제",
+          "efficiency_based": "치료에 직결되는 정보만 우선 수집. 의사가 묻지 않은 정보는 당장 불필요한 것으로 판단",
+          "gradual_accuracy": "반복 방문을 통해 이해를 맞춰가는 접근. 초기 소통 실패를 관계 형성 과정으로 수용"
+        },
+        "frustrations": [
+          "환자가 질문의 요지를 파악하지 못하고 관계없는 이야기를 할 때 — 진료 시간 소모, 핵심 정보 수집 막힘",
+          "납득하지 못한 환자가 같은 설명을 반복 요구할 때 — 관계가 쌓이면 해결되나 초기에는 비효율",
+          "차트가 법적 문서라 요약·편집 불가 — 수십 줄이 쌓여 재방문 시 맥락 파악에 시간이 걸림",
+          "환자 메모의 품질 문제 — 일목요연하지 않고 빠진 정보·부정확한 정보로 판단이 조심스러워짐"
+        ],
+        "needs": [
+          "재방문 시 15~30초 안에 맥락을 파악할 수 있는 요약 구조",
+          "증상 부위·통증 변화·치료 경과가 날짜순 타임라인으로 한눈에 보이는 형식",
+          "고정 포맷 강제 없이 진료 목적에 따라 필요 정보만 유연하게 추출할 수 있는 구조",
+          "타과 의뢰를 뒷받침할 수 있는 증상 패턴 정보",
+          "환자 메모가 과별 정리, 시간순, 질병코드 기반으로 정리되어 제공되는 것"
+        ],
+        "behavioral_patterns": [
+          "기록이 차트에 쌓여 있어도 재방문 시 한눈에 파악하기 어려움",
+          "환자 말에만 의존하지 않고 직접 신체 검사로 검증하는 것이 원칙",
+          "환자가 메모를 가져오면 받아서 필요한 부분만 빠르게 체크하고 넘어가지만, 어떤 부분을 왜 참고했는지 환자에게 설명하지는 않음"
+        ],
+        "eum_adoption_reason": "윤서진처럼 검사 정상인데 증상 호소 환자에게 해줄 수 있는 게 제한적이라는 한계. 이음 앱이 환자의 일상 데이터를 15~30초 요약으로 제공하고, 타과 의뢰 판단을 뒷받침하는 패턴 정보를 보여줄 수 있다는 점에서 도입"
+      },
+      "eum_settings": {
+        "panel_position": { "x": 1560, "y": 100 },
+        "panel_pinned": true,
+        "notification_sound": true,
+        "auto_activate_on_chart_open": true
+      }
+    },
+    {
+      "doctor_id": "doc_park_001",
+      "name": "박지영",
+      "hospital": {
+        "hospital_id": "hosp_bundang_neuro_001",
+        "hospital_name": "분당신경과의원",
+        "department": "신경과",
+        "address": "경기도 성남시 분당구 정자동 158-3",
+        "type": "1차 의료기관 (이음 연계)"
+      },
+      "license_number": "의사-67890",
+      "specialty": "자율신경계 질환",
+      "years_of_practice": 8,
+      "emr_system": "비트컴퓨터 BESTCARE",
+      "eum_registered_at": "2025-10-15T09:00:00+09:00",
+      "eum_settings": {
+        "panel_position": { "x": 1480, "y": 80 },
+        "panel_pinned": true,
+        "notification_sound": true,
+        "auto_activate_on_chart_open": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "patient_id": "pat_yoon_001",
+  "consultation_results": [
+    {
+      "session_id": "ses_001",
+      "visit_date": "2025-12-02",
+      "doctor_name": "김도현",
+      "diagnosis_name": "위-식도 역류병 (지속)",
+      "ai_reference_keywords": ["역류성 식도염", "야간 역류", "PPI 반응 부분적"],
+      "ai_summary_for_doctor": "6년차 GERD 환자. PPI 40mg 유지 중이나 야간 증상 반복. 최근 내시경 정상(LA-N). 기능성 역류 가능성 고려 필요. 수면 자세 교정 및 취침 전 식이 제한 재교육 권장.",
+      "ai_disclaimer": "본 정보는 AI가 생성한 참고 키워드이며, 의학적 판단을 대체하지 않습니다. 반드시 의사의 체계적 검토가 필요합니다.",
+      "prescriptions": [
+        { "drug_name": "에소메프라졸", "dosage": "40mg", "days": 28, "plain_language": "위산을 줄여주는 약이에요. 아침 식사 30분 전에 드세요." },
+        { "drug_name": "수크랄페이트", "dosage": "1g", "days": 28, "plain_language": "위 점막을 보호하는 약이에요. 식사 1시간 전, 자기 전에 드세요." }
+      ],
+      "doctor_note_plain": "내시경 검사에서는 이상이 없지만 증상이 계속되고 있어요. 자기 전 3시간 이내 음식 섭취를 피하고, 베개를 높이 해서 주무시는 게 도움이 돼요. 다음 달에 한 번 더 방문해 주세요.",
+      "next_visit_date": "2026-01-13"
+    },
+    {
+      "session_id": "ses_002",
+      "visit_date": "2026-01-13",
+      "doctor_name": "김도현",
+      "diagnosis_name": "위-식도 역류병 (지속)",
+      "ai_reference_keywords": ["GERD 지속", "수면 장애 동반", "스트레스 관련 악화 패턴"],
+      "ai_summary_for_doctor": "전회 처방 후 야간 역류 빈도 감소(주 3회→1회)했으나 완전 소실 안 됨. 스트레스·수면 부족 시 소화기 증상 악화 패턴 관찰됨. 생활 습관 확인 권장.",
+      "ai_disclaimer": "본 정보는 AI가 생성한 참고 키워드이며, 의학적 판단을 대체하지 않습니다. 반드시 의사의 체계적 검토가 필요합니다.",
+      "prescriptions": [
+        { "drug_name": "에소메프라졸", "dosage": "40mg", "days": 28, "plain_language": "위산을 줄여주는 약이에요. 아침 식사 30분 전에 드세요." },
+        { "drug_name": "돔페리돈", "dosage": "10mg", "days": 28, "plain_language": "소화를 도와주는 약이에요. 식사 전에 드세요." }
+      ],
+      "doctor_note_plain": "야간 역류는 조금 나아졌지만 아직 남아있네요. 스트레스를 받으면 증상이 악화될 수 있어요. 수면 관리와 스트레스 관리가 중요해요.",
+      "next_visit_date": "2026-02-10"
+    },
+    {
+      "session_id": "ses_003",
+      "visit_date": "2026-02-10",
+      "doctor_name": "김도현",
+      "diagnosis_name": "위-식도 역류병 (악화 경향)",
+      "ai_reference_keywords": ["역류 악화", "식이 요인", "야간 증상 재발", "severity 3 에피소드"],
+      "ai_summary_for_doctor": "최근 2주간 severity 3 에피소드 발생(sym_001). 야식 후 야간 역류 패턴. 웨어러블 데이터상 수면 질 저하(평균 5.2시간) 동반. 식이 일지 작성 및 취침 전 금식 시간 연장 재강조 필요.",
+      "ai_disclaimer": "본 정보는 AI가 생성한 참고 키워드이며, 의학적 판단을 대체하지 않습니다. 반드시 의사의 체계적 검토가 필요합니다.",
+      "prescriptions": [
+        { "drug_name": "에소메프라졸", "dosage": "40mg", "days": 28, "plain_language": "위산을 줄여주는 약이에요. 아침 식사 30분 전에 드세요." },
+        { "drug_name": "돔페리돈", "dosage": "10mg", "days": 28, "plain_language": "소화를 도와주는 약이에요. 식사 전에 드세요." },
+        { "drug_name": "수크랄페이트", "dosage": "1g", "days": 28, "plain_language": "위 점막을 보호하는 약이에요. 식사 1시간 전, 자기 전에 드세요." }
+      ],
+      "doctor_note_plain": "야식을 드신 후에 증상이 심해진 것 같아요. 저녁 식사 후에는 최소 4시간은 눕지 마시고, 야식은 꼭 피해주세요. 약을 하나 더 추가했으니 점막 보호도 같이 해볼게요.",
+      "next_visit_date": "2026-02-17"
+    },
+    {
+      "session_id": "ses_004",
+      "visit_date": "2026-02-17",
+      "doctor_name": "김도현",
+      "diagnosis_name": "위-식도 역류병 + 자율신경계 이상 의심",
+      "ai_reference_keywords": ["소화기-자율신경 복합", "자율신경계 불균형 가능성", "미주신경 관련 패턴", "수면-증상 상관", "6년 반복 정상 소견"],
+      "ai_summary_for_doctor": "GERD 6년(내시경 정상). 공식 정신과 진단 없으나, 이음 앱 데이터에서 불안-자율신경 교차 패턴 최초 관찰. 3개월간 축적 데이터 종합 분석 결과: (1) 소화기 증상과 자율신경 반응의 교차 발현 패턴 확인 — 스트레스 에피소드 24~48시간 내 소화기 증상 악화, (2) 웨어러블 데이터상 증상 악화일에 심박수 상승(평균 +15bpm) + 수면 시간 급감(평균 3.8시간) 동반, (3) sym_004 카페인 섭취 후 자율신경 반응(오심+식은땀+심계항진) 관찰. 기능성 역류 + 자율신경계 조절 이상 가능성. 신경과 자율신경검사(기립경사검사, HRV 분석) 의뢰 권장.",
+      "ai_disclaimer": "본 정보는 AI가 생성한 참고 키워드이며, 의학적 판단을 대체하지 않습니다. 반드시 의사의 체계적 검토가 필요합니다.",
+      "prescriptions": [
+        { "drug_name": "에소메프라졸", "dosage": "40mg", "days": 28, "plain_language": "위산을 줄여주는 약이에요. 아침 식사 30분 전에 드세요." },
+        { "drug_name": "돔페리돈", "dosage": "10mg", "days": 28, "plain_language": "소화를 도와주는 약이에요. 식사 전에 드세요." },
+        { "drug_name": "알긴산나트륨", "dosage": "10mL", "days": 14, "plain_language": "위산이 목으로 올라오는 걸 막아주는 약이에요. 식후와 자기 전에 드세요." }
+      ],
+      "doctor_note_plain": "6년 동안 검사에서 이상이 안 나왔던 이유를 이번에 좀 더 이해하게 됐어요. 앱에 기록해주신 증상과 수면, 심박수 데이터를 같이 보니까, 스트레스를 받거나 긴장하실 때 자율신경이 과하게 반응하면서 위장 증상이 같이 나타나는 패턴이 보여요. 신경과에서 자율신경 검사를 한번 받아보시는 게 좋겠어요. 제가 의뢰서를 써드릴게요.",
+      "referral": {
+        "referral_to_department": "신경과",
+        "referral_to_hospital": "분당신경과의원",
+        "referral_reason": "자율신경계 기능 평가 (기립경사검사, 심박변이도 분석)",
+        "referral_date": "2026-02-17"
+      },
+      "next_visit_date": "2026-03-09"
+    }
+  ]
+}

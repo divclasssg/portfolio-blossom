@@ -1,0 +1,25 @@
+{
+  "nearby_hospitals": [
+    {
+      "hospital_id": "hosp_bundang_neuro_001",
+      "hospital_name": "분당신경과의원",
+      "address": "경기도 성남시 분당구 서현동 248-3",
+      "distance_m": 300,
+      "hospital_code": "482951"
+    },
+    {
+      "hospital_id": "hosp_bundang_ortho_001",
+      "hospital_name": "분당정형외과의원",
+      "address": "경기도 성남시 분당구 서현동 312-7",
+      "distance_m": 520,
+      "hospital_code": "173624"
+    },
+    {
+      "hospital_id": "hosp_bundang_ent_001",
+      "hospital_name": "서현이비인후과의원",
+      "address": "경기도 성남시 분당구 서현동 185-9",
+      "distance_m": 780,
+      "hospital_code": "659130"
+    }
+  ]
+}

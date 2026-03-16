@@ -1,0 +1,54 @@
+{
+  "screen_feature": "AI-COM-02",
+  "regulation": "KFDA 생성형 인공지능 의료기기 허가·심사 가이드라인",
+  "dismissable": false,
+  "placement": ["D-000 AI 섹션 하단", "D-001 결과 화면 상단"],
+  "warnings": [
+    {
+      "id": "warn_hallucination",
+      "order": 1,
+      "type": "hallucination",
+      "text": "AI는 오류를 생성할 수 있습니다",
+      "icon": "warning_triangle",
+      "icon_color": "#FFC000",
+      "background_color": "#FFF8E1",
+      "text_color": "#1A1A1A",
+      "style": "banner_persistent"
+    },
+    {
+      "id": "warn_review",
+      "order": 2,
+      "type": "review_obligation",
+      "text": "의사가 반드시 검토해야 합니다",
+      "icon": "warning_triangle",
+      "icon_color": "#FFC000",
+      "background_color": "#FFF8E1",
+      "text_color": "#1A1A1A",
+      "style": "banner_persistent"
+    },
+    {
+      "id": "warn_model",
+      "order": 3,
+      "type": "model_version",
+      "text_template": "모델: {model_name}",
+      "current_values": {
+        "F11_briefing": "모델: Claude Sonnet v20250304",
+        "F13_suggestions": "모델: MedGemma 27B v1.2",
+        "F16_plain_language": "모델: GPT-4o v2024-08"
+      },
+      "icon": "info_circle",
+      "icon_color": "#737373",
+      "background_color": "#F5F5F5",
+      "text_color": "#737373",
+      "style": "banner_persistent"
+    }
+  ],
+  "accessibility": {
+    "encoding": "triple",
+    "text": true,
+    "icon": true,
+    "color": true,
+    "aria_role": "alert",
+    "aria_live": "polite"
+  }
+}
