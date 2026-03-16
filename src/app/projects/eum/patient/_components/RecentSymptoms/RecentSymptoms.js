@@ -1,17 +1,23 @@
 import { calcLinePoints, toLinePath } from '../../_lib/sparkline';
-import { WEEKDAYS } from '../../_lib/constants';
 import styles from './RecentSymptoms.module.scss';
 
-// ISO 시간 문자열 → 와이어프레임 포맷: "YYYY. MM. DD 오전/오후 H:MM"
+// ISO/UTC → KST Date 객체
+function toKst(isoStr) {
+    const d = new Date(isoStr);
+    return new Date(d.getTime() + 9 * 60 * 60 * 1000);
+}
+
+// ISO 시간 문자열 → KST 기준 포맷: "YYYY. MM. DD 오전/오후 H:MM"
 function formatDateTime(isoStr) {
-    // ISO 파싱 (로컬 타임존 의존 없이 직접 분리)
-    const [datePart, timePart] = isoStr.split('T');
-    const [year, month, day] = datePart.split('-');
-    const [hourStr, minuteStr] = timePart.replace(/\+.*|Z$/, '').split(':');
-    const hour = parseInt(hourStr, 10);
+    const kst = toKst(isoStr);
+    const year = kst.getUTCFullYear();
+    const month = String(kst.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(kst.getUTCDate()).padStart(2, '0');
+    const hour = kst.getUTCHours();
+    const minute = String(kst.getUTCMinutes()).padStart(2, '0');
     const ampm = hour < 12 ? '오전' : '오후';
     const displayHour = hour % 12 === 0 ? 12 : hour % 12;
-    return `${year}. ${month}. ${day} ${ampm} ${displayHour}:${minuteStr}`;
+    return `${year}. ${month}. ${day} ${ampm} ${displayHour}:${minute}`;
 }
 
 const TREND_KO = {
@@ -26,23 +32,29 @@ const CHART_H = 32;
 const CHART_DIMS = { width: CHART_W, height: CHART_H, padX: 8, padY: 4, min: 0, max: 4 };
 const LINE_COLOR = '#007AFF';
 
-// 기준 날짜(most_recent.occurred_at)로부터 역산 7일, 날짜별 최대 severity 매핑
-function buildBarData(symptomRecords, referenceDate) {
-    const ref = new Date(referenceDate);
-    ref.setHours(23, 59, 59, 999); // 기준일 포함
+// KST 기준 YYYY-MM-DD
+function toKstDateKey(isoStr) {
+    const kst = toKst(isoStr);
+    return kst.toISOString().slice(0, 10);
+}
 
+// KST 기준 오늘로부터 역산 7일, 날짜별 최대 severity 매핑
+function buildBarData(symptomRecords) {
+    const now = toKst(new Date().toISOString());
     const days = [];
     for (let i = 6; i >= 0; i--) {
-        const d = new Date(ref);
-        d.setDate(ref.getDate() - i);
+        const d = new Date(now);
+        d.setUTCDate(now.getUTCDate() - i);
         const key = d.toISOString().slice(0, 10);
-        days.push({ key, weekday: WEEKDAYS[d.getDay()] });
+        const m = d.getUTCMonth() + 1;
+        const dd = d.getUTCDate();
+        days.push({ key, label: `${m}/${dd}` });
     }
 
-    // 날짜별 최대 severity
+    // 날짜별 최대 severity (KST 기준)
     const severityMap = {};
     for (const record of symptomRecords) {
-        const key = record.occurred_at.slice(0, 10);
+        const key = toKstDateKey(record.occurred_at);
         severityMap[key] = Math.max(severityMap[key] ?? 0, record.severity);
     }
 
@@ -54,7 +66,7 @@ function buildBarData(symptomRecords, referenceDate) {
 
 export default function RecentSymptoms({ summary, symptomRecords }) {
     const { last_7_days_count, avg_severity, trend, most_recent } = summary;
-    const bars = buildBarData(symptomRecords, new Date().toISOString());
+    const bars = buildBarData(symptomRecords);
 
     return (
         <section className="home-section" aria-labelledby="recent-symptoms-title">
@@ -107,7 +119,7 @@ export default function RecentSymptoms({ summary, symptomRecords }) {
                     <div className={styles['sparkline-labels']} aria-hidden="true">
                         {bars.map((bar) => (
                             <span key={bar.key} className={styles['sparkline-label']}>
-                                {bar.weekday}
+                                {bar.label}
                             </span>
                         ))}
                     </div>
