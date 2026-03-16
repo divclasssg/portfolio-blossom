@@ -1,7 +1,8 @@
 @use '../../_styles/tokens' as t;
 
 .section {
-    padding: 0 24px 32px;
+    border-bottom: 0;
+    padding: 32px 0 0;
 }
 
 // 복용약 리스트

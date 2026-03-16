@@ -78,9 +78,12 @@ export default async function ResultPage() {
         : dashboardState.patient_summary;
 
     // 기저질환: DB 우선, 폴백 → 정적 JSON
-    const conditionNames = (patient?.chronic_conditions ?? []).map((c) =>
-        typeof c === 'string' ? c : c.name
-    );
+    const conditionNames = (patient?.chronic_conditions ?? []).map((c) => {
+        if (typeof c === 'string') return c;
+        const name = c.condition_name || c.name || '';
+        const code = c.icd_code;
+        return code ? `${name} (${code})` : name;
+    });
     const chronicConditions = conditionNames.length > 0
         ? conditionNames
         : sections.basic_info.data.chronic_conditions;

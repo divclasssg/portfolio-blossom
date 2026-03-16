@@ -192,10 +192,13 @@ export default async function DoctorDashboard() {
           }
         : dashboardState.patient_summary;
 
-    // chronic_conditions: DB는 [{name: "..."}] 또는 ["..."] 형태 모두 허용
-    const conditionNames = (patient?.chronic_conditions ?? []).map((c) =>
-        typeof c === 'string' ? c : c.name
-    );
+    // chronic_conditions: DB는 [{condition_name, icd_code}] 또는 ["..."] 형태 모두 허용
+    const conditionNames = (patient?.chronic_conditions ?? []).map((c) => {
+        if (typeof c === 'string') return c;
+        const name = c.condition_name || c.name || '';
+        const code = c.icd_code;
+        return code ? `${name} (${code})` : name;
+    });
 
     // basicInfo: DB(신체 측정·기저질환) + 정적 JSON(검진·예방접종·의뢰서) 병합
     // chronic_conditions: DB 우선, 비어있으면 정적 JSON 폴백 (사용자 테스트용 디폴트 시나리오)

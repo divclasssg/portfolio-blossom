@@ -4,7 +4,9 @@
 // <640px: block — 단일 그리드 영역(chief-med)으로 동작
 // ≥640px: contents — 래퍼 박스 제거, 자식이 부모 그리드에 직접 참여
 .wrapper {
+    border-bottom: 1px solid t.$neutral-border;
     display: block;
+    padding: 0 t.$section-padding-x t.$section-padding-y;
 }
 
 @container panel (min-width: 640px) {
@@ -16,7 +18,6 @@
 // ── 탭 바 — 640px 미만에서만 표시 ──
 .tab-bar {
     border-bottom: 1px solid t.$neutral-border;
-    padding: 0 16px;
 }
 
 @container panel (min-width: 640px) {
@@ -28,7 +29,7 @@
 .tab-list {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -44,9 +45,9 @@
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
     font-family: var(--font-noto-kr), sans-serif;
-    font-size: t.$fs-regular;
-    line-height: t.$line-height-regular;
-    font-weight: 400;
+    font-size: t.$fs-title;
+    line-height: t.$line-height-title;
+    font-weight: 700;
     color: t.$text-muted;
     cursor: pointer;
 
@@ -63,8 +64,7 @@
 
 .tab--active {
     border-bottom-color: t.$color-dark;
-    color: t.$color-dark;
-    font-weight: 700;
+    color: t.$color-dark;    
 }
 
 // ── 탭 패널 ──

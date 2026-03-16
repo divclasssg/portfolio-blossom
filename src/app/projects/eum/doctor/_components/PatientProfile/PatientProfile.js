@@ -29,12 +29,6 @@ export default function PatientProfile({
     const conditions = chronicConditions?.length > 0 ? chronicConditions.join(' · ') : null;
     const showBloodType = basicInfo?.blood_type && basicInfo.blood_type !== '모름';
 
-    // 웨어러블: DB 값 → 표시명 변환
-    const wearableLabel =
-        basicInfo?.wearable_device === 'apple' ? 'Apple Watch'
-        : basicInfo?.wearable_device === 'galaxy' ? 'Galaxy Watch'
-        : null;
-
     const lastScreening = basicInfo?.last_screening;
 
     return (
@@ -106,14 +100,6 @@ export default function PatientProfile({
                             {bmi && <> / BMI {bmi}</>}
                             {showBloodType && ` · 혈액형 ${basicInfo.blood_type}`}
                         </p>
-
-                        {/* 웨어러블 기기 */}
-                        {wearableLabel && (
-                            <div className={styles['detail-group']}>
-                                <span className={styles['detail-label']}>웨어러블 기기</span>
-                                <p>{wearableLabel}</p>
-                            </div>
-                        )}
 
                         {/* 최근 검진 */}
                         {lastScreening && (

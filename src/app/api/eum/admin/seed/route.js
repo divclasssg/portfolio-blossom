@@ -15,7 +15,7 @@ const ADMIN_PATIENT_DATA = {
     height_cm: 163,
     weight_kg: 52,
     blood_type: null,
-    chronic_conditions: [{ name: '역류성 식도염' }],
+    chronic_conditions: [{ name: '역류성 식도염', icd_code: 'K21.0' }],
     allergies: [
         { allergen: '아목시실린', reaction: '발진' },
         { allergen: '새우', reaction: '두드러기' },

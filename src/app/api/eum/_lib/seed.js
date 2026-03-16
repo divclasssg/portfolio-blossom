@@ -97,7 +97,12 @@ async function seedPatients() {
         height_cm: profile.basic_health.height_cm,
         weight_kg: profile.basic_health.weight_kg,
         // JSON 문자열 배열 → 구조화된 JSONB (간단 변환)
-        chronic_conditions: profile.basic_health.chronic_conditions.map((c) => ({ name: c })),
+        chronic_conditions: profile.basic_health.chronic_conditions.map((c) => {
+            const match = c.match(/(.+?)\s*\(([A-Z]\d[\d.]*)\)$/);
+            return match
+                ? { name: match[1].trim(), icd_code: match[2] }
+                : { name: c };
+        }),
         medications: profile.basic_health.medications.map((m) => ({ name: m })),
         allergies: profile.basic_health.allergies.map((a) => {
             const [allergen, reaction] = a.split(' (');
