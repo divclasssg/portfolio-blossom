@@ -16,9 +16,10 @@ export default function ResultFooterCta({
     hospitalName,
     diagnosisName,
     resultData,
+    alreadyTransmitted = false,
 }) {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [isTransmitted, setIsTransmitted] = useState(false);
+    const [isTransmitted, setIsTransmitted] = useState(alreadyTransmitted);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const router = useRouter();

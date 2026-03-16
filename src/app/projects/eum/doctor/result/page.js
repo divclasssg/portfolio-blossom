@@ -3,8 +3,6 @@ import aiWarnings from '../../_references/data/doctor/08_ai_warnings.json';
 import dashboardState from '../../_references/data/doctor/03_dashboard_state.json';
 import timelineChartData from '../../_references/data/doctor/06_timeline_chart_data.json';
 import { getPatientId } from '../../_lib/getPatientId';
-import { getLatestSessionId } from '../../../../api/eum/_lib/getLatestSession';
-
 import { PatientDataModalProvider } from '../_components/PatientDataModal/PatientDataModalContext';
 import DoctorPanel from '../_components/DoctorPanel/DoctorPanel';
 import PatientProfile from '../_components/PatientProfile/PatientProfile';
@@ -23,21 +21,46 @@ export const metadata = {
     title: 'D-001 결과 확인 및 전송 — Eum',
 };
 
-// Supabase에서 환자 정보 + 최신 세션 ID 조회 (실패 시 null → 정적 JSON 폴백)
-async function fetchPatientAndSession(patientId) {
+// Supabase에서 환자 정보 + 해당 의사의 전송 가능 세션 ID 조회
+async function fetchPatientAndSession(patientId, doctorId) {
     try {
         const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
-        const [patientRes, sessionId] = await Promise.all([
+
+        // 해당 의사의 최신 세션
+        const sessionQuery = supabase
+            .from('sessions')
+            .select('id')
+            .eq('patient_id', patientId)
+            .eq('doctor_id', doctorId)
+            .order('created_at', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+
+        const [patientRes, sessionRes] = await Promise.all([
             supabase
                 .from('patients')
                 .select('name, birth_date, gender, chronic_conditions, allergies')
                 .eq('id', patientId)
                 .single(),
-            getLatestSessionId(supabase, patientId),
+            sessionQuery,
         ]);
         if (patientRes.error) throw patientRes.error;
-        return { patient: patientRes.data, sessionId };
+
+        const sessionId = sessionRes.data?.id ?? null;
+
+        // 이미 전송된 세션인지 확인
+        let alreadyTransmitted = false;
+        if (sessionId) {
+            const { data: existing } = await supabase
+                .from('consultation_results')
+                .select('id')
+                .eq('session_id', sessionId)
+                .maybeSingle();
+            alreadyTransmitted = !!existing;
+        }
+
+        return { patient: patientRes.data, sessionId, alreadyTransmitted };
     } catch {
         return { patient: null, sessionId: null };
     }
@@ -61,7 +84,7 @@ export default async function ResultPage() {
     const { sections } = dashboardState;
     // 쿠키 없으면 기본 환자(윤서진)로 폴백 — 의사 대시보드와 동일 패턴
     const patientId = (await getPatientId()) || 'pat_yoon_001';
-    const { patient, sessionId: dbSessionId } = await fetchPatientAndSession(patientId);
+    const { patient, sessionId: dbSessionId, alreadyTransmitted } = await fetchPatientAndSession(patientId, resultPackage.doctor_id);
     // DB 세션 ID 우선, 폴백 → 정적 JSON (ses_004)
     const activeSessionId = dbSessionId || resultPackage.session_id;
 
@@ -122,6 +145,7 @@ export default async function ResultPage() {
                     hospitalName={resultPackage.hospital_name}
                     diagnosisName={resultPackage.diagnosis_name}
                     resultData={resultPackage}
+                    alreadyTransmitted={alreadyTransmitted}
                 />
             }
         >
