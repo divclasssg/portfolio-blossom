@@ -11,6 +11,12 @@
     background: none;
     transition: opacity 0.15s ease;
 
+    // Link로 렌더될 때 필요
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
     &:disabled {
         opacity: 0.35;
         cursor: not-allowed;

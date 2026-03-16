@@ -48,14 +48,15 @@ export default function Toast({ message, subMessage, href, onDismiss, isVisible 
     if (animState === 'hidden' && !isVisible) return null;
 
     return (
-        <div
+        <button
+            type="button"
             className={`${styles['toast']} ${styles[animState] || ''}`}
-            role="status"
-            aria-live="polite"
             onClick={handleClick}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(); } }}
-            tabIndex={0}
         >
+            {/* 스크린리더 알림용 라이브 리전 */}
+            <span className="sr-only" role="status" aria-live="polite">
+                {message}{subMessage ? ` ${subMessage}` : ''}
+            </span>
             {/* 벨 아이콘 */}
             <div className={styles['icon']} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -75,6 +76,6 @@ export default function Toast({ message, subMessage, href, onDismiss, isVisible 
                     </svg>
                 </div>
             )}
-        </div>
+        </button>
     );
 }

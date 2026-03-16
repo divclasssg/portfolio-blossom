@@ -73,7 +73,7 @@ export default function ChatArea({ messages = [], onSeveritySelect, vitals }) {
     const dateLabel = messages[0]?.timestamp ? formatDateHeader(messages[0].timestamp) : null;
 
     return (
-        <div className={styles['chat-area']} aria-label="증상 기록 대화" aria-live="polite">
+        <section className={styles['chat-area']} aria-label="증상 기록 대화" aria-live="polite">
             <div className={styles['chat-area-container']}>
                 {dateLabel && (
                     <time className={styles['date-header']} dateTime={messages[0].timestamp} aria-label={`대화 날짜: ${dateLabel}`}>
@@ -116,6 +116,6 @@ export default function ChatArea({ messages = [], onSeveritySelect, vitals }) {
                 </div>
             ))}
             <div ref={bottomRef} />
-        </div>
+        </section>
     );
 }

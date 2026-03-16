@@ -1,12 +1,7 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
 import CtaButton from '../../_components/CtaButton/CtaButton';
 import styles from './page.module.scss';
 
 export default function WelcomePage() {
-    const router = useRouter();
-
     return (
         <main className={styles['page']}>
             {/* 로고 영역 */}
@@ -20,19 +15,19 @@ export default function WelcomePage() {
             <div className={styles['cta']}>
                 <CtaButton
                     variant="primary"
-                    onClick={() => router.push('/projects/eum/patient/onboarding/login-pin')}
+                    href="/projects/eum/patient/onboarding/login-pin"
                 >
                     로그인
                 </CtaButton>
                 <CtaButton
                     variant="secondary"
-                    onClick={() => router.push('/projects/eum/patient/onboarding/login-pin')}
+                    href="/projects/eum/patient/onboarding/login-pin"
                 >
                     생체인증 로그인
                 </CtaButton>
                 <CtaButton
                     variant="tertiary"
-                    onClick={() => router.push('/projects/eum/patient/onboarding/sandbox')}
+                    href="/projects/eum/patient/onboarding/sandbox"
                 >
                     회원가입
                 </CtaButton>

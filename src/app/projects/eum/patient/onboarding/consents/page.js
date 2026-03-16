@@ -111,6 +111,7 @@ export default function ConsentsPage() {
                     <hr className={styles['divider']} />
 
                     {/* 필수 항목 */}
+                    <h2 className="sr-only">필수 동의 항목</h2>
                     <ul className={styles['list']}>
                         {REQUIRED_ITEMS.map((item) => (
                             <li key={item.id}>
@@ -174,6 +175,7 @@ export default function ConsentsPage() {
                     <hr className={styles['divider']} />
 
                     {/* 선택 항목 */}
+                    <h2 className="sr-only">선택 동의 항목</h2>
                     <ul className={styles['list']}>
                         {OPTIONAL_ITEMS.map((item) => (
                             <li key={item.id}>

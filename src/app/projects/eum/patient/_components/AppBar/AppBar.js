@@ -4,7 +4,7 @@ import { ArrowIcon, BellIcon } from '../../../_components/icons';
 
 export default function AppBar({ backHref, unreadCount = 0 }) {
     return (
-        <header className={styles['app-bar']} role="banner">
+        <header className={styles['app-bar']}>
             {backHref && (
                 <Link href={backHref} className={styles['back-btn']} aria-label="뒤로 가기">
                     <ArrowIcon variant="left" size={24} />

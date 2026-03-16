@@ -9,7 +9,7 @@ export default function SummaryListItem({
     diagnosisName,
 }) {
     return (
-        <Link href={`/projects/eum/patient/summary/${sessionId}`} className={styles['item']}>
+        <Link href={`/projects/eum/patient/summary/${sessionId}`} className={styles['item']} aria-label={`${visitDate} ${hospitalName} ${doctorName} ${diagnosisName}`}>
             <p className={styles['meta']}>
                 {visitDate} · {hospitalName} · {doctorName}
             </p>

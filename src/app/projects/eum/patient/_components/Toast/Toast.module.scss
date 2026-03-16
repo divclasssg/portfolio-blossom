@@ -1,6 +1,13 @@
 @use '../../_styles/tokens' as *;
 
 .toast {
+    // button 리셋
+    appearance: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+
     position: fixed;
     top: calc($app-bar-height + 8px);
     left: 16px;
