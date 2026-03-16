@@ -6,10 +6,12 @@
 
 import rawSessions from '../../../projects/eum/_references/data/patient/05_consultation_sessions.json';
 import rawSymptoms from '../../../projects/eum/_references/data/patient/03_symptom_records.json';
+import rawResults from '../../../projects/eum/_references/data/patient/06_consultation_results.json';
 import { shiftDates } from '../../../projects/eum/_lib/dateShift';
 
 const sessionsJson = shiftDates(rawSessions);
 const symptomRecordsJson = shiftDates(rawSymptoms);
+const resultsJson = shiftDates(rawResults);
 import aiBriefing from '../../../projects/eum/_references/data/doctor/04_ai_briefing.json';
 import aiSuggestions from '../../../projects/eum/_references/data/doctor/05_ai_suggestions.json';
 import dashboardState from '../../../projects/eum/_references/data/doctor/03_dashboard_state.json';
@@ -117,6 +119,26 @@ export async function seedDemoScenario(supabase, patientId, suffix = null) {
 
     const { error: aiErr } = await supabase.from('ai_results').insert(aiRows);
     if (aiErr) throw new Error(`ai_results 시드 실패: ${aiErr.message}`);
+
+    // ── 5. consultation_results 삽입 (ses_004 제외 — 타과의뢰는 의사 전송 시에만) ──
+    const resultRows = resultsJson.consultation_results
+        .filter((r) => r.session_id !== 'ses_004')
+        .map((r) => ({
+            session_id: remapSessionId(r.session_id, effectiveSuffix),
+            doctor_name: r.doctor_name,
+            hospital_name: '서현내과의원',
+            diagnosis_name: r.diagnosis_name,
+            transmitted_at: r.visit_date + 'T16:00:00+09:00',
+            content: {
+                doctor_note_plain: r.doctor_note_plain,
+                prescriptions: r.prescriptions,
+                referral: r.referral ?? null,
+                next_visit_date: r.next_visit_date,
+            },
+        }));
+
+    const { error: resErr } = await supabase.from('consultation_results').upsert(resultRows, { onConflict: 'session_id' });
+    if (resErr) throw new Error(`consultation_results 시드 실패: ${resErr.message}`);
 
     return { latestSessionId };
 }

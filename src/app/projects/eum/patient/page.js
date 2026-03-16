@@ -139,11 +139,12 @@ export default async function PatientHome() {
     const dynamicSummary = dynamicData?.summary ?? null;
     const dbRecords = dynamicData?.records ?? null;
 
-    // 바이탈 스파크라인은 DB fallback 없으므로 항상 생성
-    const generatedVitals = generateVitals();
-    // DB 실패 시에만 생성 (불필요한 CPU 절약)
-    const fallbackDashboard = dynamicSummary ? null : generateDashboard();
-    const fallbackSymptoms = dbRecords ? null : generateSymptoms();
+    // 생성 데이터 (PRNG 기반이라 CPU 부담 미미, 항상 실행)
+    const generated = {
+        dashboard: generateDashboard(),
+        vitals: generateVitals(),
+        symptoms: generateSymptoms(),
+    };
 
     // 최신 전송 결과 → LastVisitResult용 변환
     const latestResult = transmittedResults[0]
@@ -167,15 +168,15 @@ export default async function PatientHome() {
                 <h1 className="sr-only">Eum 홈</h1>
                 <GreetingSection greeting={greeting} />
                 <RecentSymptoms
-                    summary={dynamicSummary ?? fallbackDashboard?.recent_symptoms_summary}
-                    symptomRecords={dbRecords ?? fallbackSymptoms?.symptom_records ?? []}
+                    summary={dynamicSummary ?? generated.dashboard.recent_symptoms_summary}
+                    symptomRecords={dbRecords ?? generated.symptoms.symptom_records}
                 />
                 <SymptomLogCta />
                 <VitalsToday
-                    vitals={fallbackDashboard?.vitals_today ?? generatedVitals.health_platform[generatedVitals.health_platform.length - 1]}
+                    vitals={generated.dashboard.vitals_today}
                     wearableDevice={patientInfo?.wearable_device ?? null}
-                    wearableHistory={generatedVitals.health_platform}
-                    symptomRecords={dbRecords ?? fallbackSymptoms?.symptom_records ?? []}
+                    wearableHistory={generated.vitals.health_platform}
+                    symptomRecords={dbRecords ?? generated.symptoms.symptom_records}
                 />
                 <LastVisitResult result={latestResult} />
             </main>

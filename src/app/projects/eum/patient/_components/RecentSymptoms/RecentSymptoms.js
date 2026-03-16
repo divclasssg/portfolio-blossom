@@ -114,14 +114,16 @@ export default function RecentSymptoms({ summary, symptomRecords }) {
                 </div>
 
                 {/* 최근 증상 */}
-                <div className={styles['recent-item']}>
-                    <time className={styles['recent-date']} dateTime={most_recent.occurred_at}>
-                        {formatDateTime(most_recent.occurred_at)}
-                    </time>
-                    <p className={styles['recent-preview']}>
-                        &ldquo;{most_recent.description_preview}&rdquo;
-                    </p>
-                </div>
+                {most_recent && (
+                    <div className={styles['recent-item']}>
+                        <time className={styles['recent-date']} dateTime={most_recent.occurred_at}>
+                            {formatDateTime(most_recent.occurred_at)}
+                        </time>
+                        <p className={styles['recent-preview']}>
+                            &ldquo;{most_recent.description_preview}&rdquo;
+                        </p>
+                    </div>
+                )}
 
                 {/* 추세 */}
                 <div className={styles['trend-row']}>

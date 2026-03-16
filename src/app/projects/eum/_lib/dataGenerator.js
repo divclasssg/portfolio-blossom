@@ -205,7 +205,9 @@ export function generateDashboard() {
             symptom_id: last.symptom_id,
             occurred_at: last.occurred_at,
             severity: last.severity,
-            description_preview: last.description.slice(0, 30) + '...',
+            description_preview: last.description.length > 30
+              ? last.description.slice(0, 30) + '...'
+              : last.description,
           }
         : null,
     },
