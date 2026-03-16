@@ -4,37 +4,6 @@
     padding: 0 24px 32px;
 }
 
-// 탭 바
-.tab-bar {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 16px;
-    border-bottom: 1px solid t.$neutral-border;
-}
-
-.tab {
-    padding: 8px 0;
-    border: none;
-    background: none;
-    font-size: t.$fs-title;
-    line-height: t.$line-height-title;
-    font-weight: 500;
-    color: t.$text-secondary;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px; // border-bottom과 겹치기
-
-    &--active {
-        color: t.$text-primary;
-        border-bottom-color: t.$text-primary;
-    }
-
-    &:focus-visible {
-        outline: 2px solid t.$color-primary;
-        outline-offset: -2px;
-    }
-}
-
 .meta {
     font-size: t.$fs-regular;
     line-height: t.$line-height-regular;
@@ -51,7 +20,7 @@
     overflow-wrap: break-word;
 
     &::before {
-        content: '"';
+        content: '\201C';
         font-size: t.$fs-title;
         line-height: t.$line-height-title;
         color: t.$neutral-placeholder;
@@ -59,43 +28,10 @@
     }
 
     &::after {
-        content: '"';
+        content: '\201D';
         font-size: t.$fs-title;
         line-height: t.$line-height-title;
         color: t.$neutral-placeholder;
         margin-left: 2px;
     }
-}
-
-// 복용약 리스트
-.med-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    li {
-        list-style: none;
-    }
-}
-
-.med-name {
-    display: block;
-    font-size: t.$fs-body;
-    color: t.$text-primary;
-    line-height: t.$line-height-body;
-}
-
-.med-meta {
-    display: block;
-    font-size: t.$fs-small;
-    line-height: t.$line-height-small;
-    color: t.$text-secondary;
-    margin-top: 2px;
-}
-
-.visit-history-btn {
-    margin-top: 16px;
 }

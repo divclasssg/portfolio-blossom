@@ -15,6 +15,8 @@
     flex-direction: column;
     overflow: hidden;
     z-index: 100;
+    container-type: inline-size;
+    container-name: doctor-panel;
 }
 
 // 드래그 중
@@ -159,50 +161,74 @@ $handle-corner: 10px;
     flex-direction: column;
 }
 
-// 그리드 — 패널 폭에 따라 1col → 2col → 3col (D-000)
+// 그리드 — 패널 폭에 따라 1col → 2col (D-000)
 .section-grid {
     position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        'chief'
+        'timeline'
+        'medications'
+        'ai';
+
+    [data-grid-area='chief']       { grid-area: chief; }
+    [data-grid-area='timeline']    { grid-area: timeline; }
+    [data-grid-area='medications'] { grid-area: medications; }
+    [data-grid-area='ai']          { grid-area: ai; }
 }
 
-// 640px 이상: 2열
+// 640px 이상: profile-wrapper에 항상 border-bottom 표시
+@container doctor-panel (min-width: 640px) {
+    .profile-wrapper {
+        border-bottom-color: t.$neutral-border;
+    }
+}
+
+// 640px 이상: D-001 단일 컬럼 → 2열 auto-flow 그리드
+@container panel (min-width: 640px) {
+    .section-single {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        background: t.$neutral-border;
+
+        > * {
+            background: t.$panel-bg;
+            border-bottom: none;
+        }
+
+        // Prescription(5번째) — 2행 스팬하여 NextVisit 옆 빈 셀 채움
+        > :nth-child(5) {
+            grid-row: span 2;
+        }
+
+        // NextVisit(마지막) — Referral 아래 우측 열 배치
+        > :last-child {
+            grid-column: 2;
+        }
+    }
+}
+
+// 640px 이상: 2열 (960px도 동일)
 @container panel (min-width: 640px) {
     .section-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            'chief       timeline'
+            'medications ai';
         gap: 1px;
         background: t.$neutral-border; // gap을 border처럼 사용
 
         > * {
             background: t.$panel-bg;
-            border-bottom: none !important; // 기존 section border-bottom 제거
+            border-bottom: none;
         }
 
-        // Patient Profile — 항상 전체 폭 (child 1)
-        > :nth-child(1) {
-            grid-column: 1 / -1;
-        }
-
-        // AI Analysis (통합 섹션) — 전체 폭 (child 3)
-        > :nth-child(3) {
-            grid-column: 1 / -1;
-        }
-    }
-}
-
-// 960px 이상: 3열
-@container panel (min-width: 960px) {
-    .section-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-
-        // Patient Profile — 전체 폭
-        > :nth-child(1) {
-            grid-column: 1 / -1;
-        }
-
-        // AI Analysis (통합 섹션) — 전체 폭 (child 3)
-        > :nth-child(3) {
-            grid-column: 1 / -1;
+        // 2열 우측 상단 셀과 정렬하기 위한 padding-top
+        [data-grid-area='chief'],
+        [data-grid-area='medications'] {
+            padding-top: 24px;
         }
     }
 }

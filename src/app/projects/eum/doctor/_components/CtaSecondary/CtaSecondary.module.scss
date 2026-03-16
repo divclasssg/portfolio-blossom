@@ -2,27 +2,34 @@
 
 .cta-secondary {
     display: block;
-    width: 100%;
-    padding: 10px;
-    background: none;
-    color: t.$text-secondary;
-    border: none;
-    font-size: t.$fs-regular;
-    font-weight: 400;
-    line-height: t.$line-height-regular;
+    width: 210px;
+    padding: 12px 20px;
+    background: t.$cta-button-secondary-bg;
+    color: t.$cta-button-secondary-text;
+    border: 1px solid t.$neutral-border;
+    border-radius: 12px;
+    font-size: t.$fs-body;
+    font-weight: 700;
+    line-height: t.$line-height-body;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     font-family: var(--font-roboto), var(--font-noto-kr), sans-serif;
+    letter-spacing: 0.02em;
+    transition: background 0.15s;
 
     &:hover {
-        color: t.$text-primary;
+        background: t.$cta-button-secondary-hover-bg;
+    }
+
+    &:active {
+        background: t.$cta-button-secondary-active-bg;
     }
 
     &:focus-visible {
         outline: 2px solid t.$color-primary;
         outline-offset: 2px;
-        border-radius: 8px;
+        border-radius: 12px;
     }
 
     &:disabled {

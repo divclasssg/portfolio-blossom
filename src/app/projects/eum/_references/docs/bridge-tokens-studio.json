@@ -1,0 +1,306 @@
+{
+  "$metadata": {
+    "tokenSetOrder": [
+      "global/color",
+      "semantic",
+      "theme/light",
+      "theme/dark"
+    ]
+  },
+
+  "$themes": [
+    {
+      "id": "light",
+      "name": "Light",
+      "selectedTokenSets": {
+        "global/color": "enabled",
+        "semantic": "enabled",
+        "theme/light": "enabled",
+        "theme/dark": "disabled"
+      }
+    },
+    {
+      "id": "dark",
+      "name": "Dark",
+      "selectedTokenSets": {
+        "global/color": "enabled",
+        "semantic": "enabled",
+        "theme/light": "disabled",
+        "theme/dark": "enabled"
+      }
+    }
+  ],
+
+  "global/color": {
+
+    "primary": {
+      "default": {
+        "$value": "#007AFF",
+        "$type": "color",
+        "$description": "iOS systemBlue | Bridge Primary #2E75B6 근거"
+      },
+      "dark": {
+        "$value": "#0A84FF",
+        "$type": "color"
+      }
+    },
+
+    "secondary": {
+      "default": {
+        "$value": "#5856D6",
+        "$type": "color",
+        "$description": "iOS systemIndigo | Bridge Secondary #1E3A8A 근거"
+      },
+      "dark": {
+        "$value": "#5E5CE6",
+        "$type": "color"
+      }
+    },
+
+    "tertiary": {
+      "default": {
+        "$value": "#5AC8FA",
+        "$type": "color",
+        "$description": "iOS systemTeal | Bridge Tertiary #0D9488 근거 | 신호등 색상 배제 원칙 준수"
+      },
+      "dark": {
+        "$value": "#64D2FF",
+        "$type": "color"
+      }
+    },
+
+    "neutral": {
+      "background-primary": {
+        "default": { "$value": "#FFFFFF", "$type": "color" },
+        "dark":    { "$value": "#1C1C1E", "$type": "color", "$description": "systemGray6 dark" }
+      },
+      "background-secondary": {
+        "default": { "$value": "#F2F2F7", "$type": "color", "$description": "systemGray6 light" },
+        "dark":    { "$value": "#1C1C1E", "$type": "color" }
+      },
+      "background-tertiary": {
+        "default": { "$value": "#E5E5EA", "$type": "color", "$description": "systemGray5 light" },
+        "dark":    { "$value": "#2C2C2E", "$type": "color" }
+      },
+      "surface": {
+        "default": { "$value": "#D1D1D6", "$type": "color", "$description": "systemGray4 light" },
+        "dark":    { "$value": "#3A3A3C", "$type": "color" }
+      },
+      "divider": {
+        "default": { "$value": "#C7C7CC", "$type": "color", "$description": "systemGray3 light" },
+        "dark":    { "$value": "#48484A", "$type": "color" }
+      },
+      "disabled": {
+        "default": { "$value": "#AEAEB2", "$type": "color", "$description": "systemGray2 light" },
+        "dark":    { "$value": "#636366", "$type": "color" }
+      },
+      "placeholder": {
+        "default": { "$value": "#8E8E93", "$type": "color", "$description": "systemGray light" },
+        "dark":    { "$value": "#8E8E93", "$type": "color" }
+      }
+    },
+
+    "text": {
+      "primary": {
+        "default": { "$value": "#000000", "$type": "color" },
+        "dark":    { "$value": "#FFFFFF", "$type": "color" }
+      },
+      "secondary": {
+        "default": { "$value": "#8E8E93", "$type": "color", "$description": "systemGray" },
+        "dark":    { "$value": "#8E8E93", "$type": "color" }
+      },
+      "on-primary": {
+        "default": { "$value": "#FFFFFF", "$type": "color" },
+        "dark":    { "$value": "#FFFFFF", "$type": "color" }
+      },
+      "on-tertiary": {
+        "default": { "$value": "#FFFFFF", "$type": "color" },
+        "dark":    { "$value": "#000000", "$type": "color" }
+      },
+      "disabled": {
+        "default": { "$value": "#AEAEB2", "$type": "color", "$description": "systemGray2" },
+        "dark":    { "$value": "#636366", "$type": "color" }
+      }
+    },
+
+    "clinical": {
+      "$description": "⚠️ 임상 전용 — UI 포인트 컬러 절대 사용 금지",
+      "danger": {
+        "default": { "$value": "#FF3B30", "$type": "color", "$description": "iOS systemRed | 위험·알레르기" },
+        "dark":    { "$value": "#FF453A", "$type": "color" }
+      },
+      "warning": {
+        "default": { "$value": "#FF9500", "$type": "color", "$description": "iOS systemOrange | 주의" },
+        "dark":    { "$value": "#FF9F0A", "$type": "color" }
+      },
+      "normal": {
+        "default": { "$value": "#34C759", "$type": "color", "$description": "iOS systemGreen | 정상" },
+        "dark":    { "$value": "#30D158", "$type": "color" }
+      },
+      "nrs": {
+        "$description": "⚠️ NRS 통증 척도 전용 — 임상 표시 외 사용 금지",
+        "1-3": {
+          "default": { "$value": "#34C759", "$type": "color", "$description": "경미 | iOS systemGreen | 원본 #548235" },
+          "dark":    { "$value": "#30D158", "$type": "color" }
+        },
+        "4-6": {
+          "default": { "$value": "#FF9500", "$type": "color", "$description": "중등 | iOS systemOrange | 원본 #FFC000" },
+          "dark":    { "$value": "#FF9F0A", "$type": "color" }
+        },
+        "7-8": {
+          "default": { "$value": "#FFCC00", "$type": "color", "$description": "심함 | iOS systemYellow | 원본 #E69F00" },
+          "dark":    { "$value": "#FFD60A", "$type": "color" }
+        },
+        "9-10": {
+          "default": { "$value": "#FF3B30", "$type": "color", "$description": "극심 | iOS systemRed | 원본 #C00000" },
+          "dark":    { "$value": "#FF453A", "$type": "color" }
+        }
+      }
+    }
+  },
+
+  "semantic": {
+
+    "button": {
+      "primary": {
+        "background":       { "$value": "{global/color.primary.default}",              "$type": "color" },
+        "background-hover": { "$value": "{global/color.secondary.default}",            "$type": "color" },
+        "text":             { "$value": "{global/color.text.on-primary.default}",      "$type": "color" },
+        "border":           { "$value": "{global/color.primary.default}",              "$type": "color" }
+      },
+      "secondary": {
+        "background": { "$value": "{global/color.neutral.background-primary.default}", "$type": "color" },
+        "text":       { "$value": "{global/color.secondary.default}",                  "$type": "color" },
+        "border":     { "$value": "{global/color.secondary.default}",                  "$type": "color" }
+      },
+      "tertiary": {
+        "background": { "$value": "{global/color.tertiary.default}",              "$type": "color" },
+        "text":       { "$value": "{global/color.text.on-tertiary.default}",      "$type": "color" },
+        "border":     { "$value": "{global/color.tertiary.default}",              "$type": "color" }
+      },
+      "disabled": {
+        "background": { "$value": "{global/color.neutral.surface.default}",   "$type": "color" },
+        "text":       { "$value": "{global/color.text.disabled.default}",      "$type": "color" },
+        "border":     { "$value": "{global/color.neutral.divider.default}",    "$type": "color" }
+      }
+    },
+
+    "input": {
+      "background":        { "$value": "{global/color.neutral.background-secondary.default}", "$type": "color" },
+      "background-focused":{ "$value": "{global/color.neutral.background-primary.default}",   "$type": "color" },
+      "border":            { "$value": "{global/color.neutral.divider.default}",              "$type": "color" },
+      "border-focused":    { "$value": "{global/color.primary.default}",                      "$type": "color" },
+      "text":              { "$value": "{global/color.text.primary.default}",                 "$type": "color" },
+      "placeholder":       { "$value": "{global/color.neutral.placeholder.default}",          "$type": "color" },
+      "label":             { "$value": "{global/color.text.secondary.default}",               "$type": "color" }
+    },
+
+    "card": {
+      "background":        { "$value": "{global/color.neutral.background-primary.default}",   "$type": "color" },
+      "background-nested": { "$value": "{global/color.neutral.background-secondary.default}", "$type": "color" },
+      "border":            { "$value": "{global/color.neutral.divider.default}",              "$type": "color" },
+      "title":             { "$value": "{global/color.text.primary.default}",                 "$type": "color" },
+      "subtitle":          { "$value": "{global/color.text.secondary.default}",               "$type": "color" }
+    },
+
+    "tab": {
+      "active-indicator": { "$value": "{global/color.primary.default}",             "$type": "color" },
+      "active-text":      { "$value": "{global/color.primary.default}",             "$type": "color" },
+      "inactive-text":    { "$value": "{global/color.neutral.placeholder.default}", "$type": "color" },
+      "background":       { "$value": "{global/color.neutral.background-primary.default}", "$type": "color" }
+    },
+
+    "toggle": {
+      "on-track":  { "$value": "{global/color.tertiary.default}",                    "$type": "color" },
+      "off-track": { "$value": "{global/color.neutral.surface.default}",             "$type": "color" },
+      "thumb":     { "$value": "{global/color.neutral.background-primary.default}",  "$type": "color" }
+    },
+
+    "chip": {
+      "default-background":  { "$value": "{global/color.neutral.background-tertiary.default}", "$type": "color" },
+      "selected-background": { "$value": "{global/color.secondary.default}",                   "$type": "color" },
+      "selected-text":       { "$value": "{global/color.text.on-primary.default}",             "$type": "color" },
+      "default-text":        { "$value": "{global/color.text.primary.default}",                "$type": "color" }
+    },
+
+    "notification-dot": {
+      "info": { "$value": "{global/color.tertiary.default}", "$type": "color", "$description": "신규 업데이트 알림 도트 (비위험성)" }
+    },
+
+    "divider": {
+      "default": { "$value": "{global/color.neutral.divider.default}", "$type": "color" }
+    },
+
+    "screen": {
+      "background": { "$value": "{global/color.neutral.background-secondary.default}", "$type": "color", "$description": "화면 전체 배경 60% 영역" }
+    },
+
+    "clinical": {
+      "$description": "⚠️ 임상 상태 표시 전용 컴포넌트",
+      "badge-danger":  {
+        "background": { "$value": "{global/color.clinical.danger.default}",  "$type": "color" },
+        "text":        { "$value": "#FFFFFF", "$type": "color" }
+      },
+      "badge-warning": {
+        "background": { "$value": "{global/color.clinical.warning.default}", "$type": "color" },
+        "text":        { "$value": "#FFFFFF", "$type": "color" }
+      },
+      "badge-normal":  {
+        "background": { "$value": "{global/color.clinical.normal.default}",  "$type": "color" },
+        "text":        { "$value": "#FFFFFF", "$type": "color" }
+      },
+      "nrs-1-3":  {
+        "$description": "NRS 1-3 경미",
+        "background": { "$value": "{global/color.clinical.nrs.1-3.default}", "$type": "color" },
+        "text":        { "$value": "#FFFFFF", "$type": "color" }
+      },
+      "nrs-4-6":  {
+        "$description": "NRS 4-6 중등",
+        "background": { "$value": "{global/color.clinical.nrs.4-6.default}", "$type": "color" },
+        "text":        { "$value": "#FFFFFF", "$type": "color" }
+      },
+      "nrs-7-8":  {
+        "$description": "NRS 7-8 심함",
+        "background": { "$value": "{global/color.clinical.nrs.7-8.default}", "$type": "color" },
+        "text":        { "$value": "#000000", "$type": "color", "$description": "Yellow 배경 → 가독성 위해 검정 텍스트" }
+      },
+      "nrs-9-10": {
+        "$description": "NRS 9-10 극심",
+        "background": { "$value": "{global/color.clinical.nrs.9-10.default}", "$type": "color" },
+        "text":        { "$value": "#FFFFFF", "$type": "color" }
+      }
+    }
+  },
+
+  "theme/light": {
+    "color-primary":            { "$value": "{global/color.primary.default}",                      "$type": "color" },
+    "color-secondary":          { "$value": "{global/color.secondary.default}",                    "$type": "color" },
+    "color-tertiary":           { "$value": "{global/color.tertiary.default}",                     "$type": "color" },
+    "color-bg-primary":         { "$value": "{global/color.neutral.background-primary.default}",   "$type": "color" },
+    "color-bg-secondary":       { "$value": "{global/color.neutral.background-secondary.default}", "$type": "color" },
+    "color-bg-tertiary":        { "$value": "{global/color.neutral.background-tertiary.default}",  "$type": "color" },
+    "color-surface":            { "$value": "{global/color.neutral.surface.default}",              "$type": "color" },
+    "color-divider":            { "$value": "{global/color.neutral.divider.default}",              "$type": "color" },
+    "color-text-primary":       { "$value": "{global/color.text.primary.default}",                 "$type": "color" },
+    "color-text-secondary":     { "$value": "{global/color.text.secondary.default}",               "$type": "color" },
+    "color-clinical-danger":    { "$value": "{global/color.clinical.danger.default}",              "$type": "color" },
+    "color-clinical-warning":   { "$value": "{global/color.clinical.warning.default}",             "$type": "color" },
+    "color-clinical-normal":    { "$value": "{global/color.clinical.normal.default}",              "$type": "color" }
+  },
+
+  "theme/dark": {
+    "color-primary":            { "$value": "{global/color.primary.dark}",                      "$type": "color" },
+    "color-secondary":          { "$value": "{global/color.secondary.dark}",                    "$type": "color" },
+    "color-tertiary":           { "$value": "{global/color.tertiary.dark}",                     "$type": "color" },
+    "color-bg-primary":         { "$value": "{global/color.neutral.background-primary.dark}",   "$type": "color" },
+    "color-bg-secondary":       { "$value": "{global/color.neutral.background-secondary.dark}", "$type": "color" },
+    "color-bg-tertiary":        { "$value": "{global/color.neutral.background-tertiary.dark}",  "$type": "color" },
+    "color-surface":            { "$value": "{global/color.neutral.surface.dark}",              "$type": "color" },
+    "color-divider":            { "$value": "{global/color.neutral.divider.dark}",              "$type": "color" },
+    "color-text-primary":       { "$value": "{global/color.text.primary.dark}",                 "$type": "color" },
+    "color-text-secondary":     { "$value": "{global/color.text.secondary.dark}",               "$type": "color" },
+    "color-clinical-danger":    { "$value": "{global/color.clinical.danger.dark}",              "$type": "color" },
+    "color-clinical-warning":   { "$value": "{global/color.clinical.warning.dark}",             "$type": "color" },
+    "color-clinical-normal":    { "$value": "{global/color.clinical.normal.dark}",              "$type": "color" }
+  }
+}

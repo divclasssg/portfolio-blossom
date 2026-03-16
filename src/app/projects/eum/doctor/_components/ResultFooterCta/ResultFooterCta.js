@@ -83,6 +83,12 @@ export default function ResultFooterCta({
 
     return (
         <footer className={`cta-footer ${styles.footer}`}>
+            <CtaSecondary
+                onClick={() => router.push('/projects/eum/doctor')}
+                aria-label="결과 작성 취소, 이전 화면으로 돌아가기"
+            >
+                취소
+            </CtaSecondary>
             <CtaPrimary
                 onClick={() => setIsDialogOpen(true)}
                 disabled={isLoading}
@@ -90,12 +96,6 @@ export default function ResultFooterCta({
             >
                 {isLoading ? '전송 중...' : '확인 및 전송 · 진료 종료'}
             </CtaPrimary>
-            <CtaSecondary
-                onClick={() => router.push('/projects/eum/doctor')}
-                aria-label="결과 작성 취소, 이전 화면으로 돌아가기"
-            >
-                취소
-            </CtaSecondary>
 
             <TransmissionDialog
                 isOpen={isDialogOpen}

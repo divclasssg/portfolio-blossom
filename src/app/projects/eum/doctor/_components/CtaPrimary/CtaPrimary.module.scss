@@ -2,15 +2,15 @@
 
 .cta-primary {
     display: block;
-    width: 100%;
-    padding: 16px;
+    width: 210px;
+    padding: 12px 20px;
     background: t.$color-dark;
     color: t.$header-fg;
     border: none;
-    border-radius: t.$card-radius;
-    font-size: t.$fs-title;
+    border-radius: 12px;
+    font-size: t.$fs-body;
     font-weight: 700;
-    line-height: t.$line-height-title;
+    line-height: t.$line-height-body;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -36,3 +36,4 @@
         cursor: not-allowed;
     }
 }
+

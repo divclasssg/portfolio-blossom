@@ -188,7 +188,7 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
     }
 
     return (
-        <section className={`section ${styles.section}`}>
+        <section className={`section ${styles.section}`} data-grid-area="timeline">
             <div className="section-content">
                 <div className={`section-header ${styles['section-header']}`}>
                     <AiIcon size={24} />

@@ -73,9 +73,18 @@ button {
 
 .cta-footer {
     flex-shrink: 0;
+    display: flex;
+    justify-content: center;
     padding: 16px 20px;
     background: t.$section-content-bg;
     border-top: 1px solid t.$neutral-border;
+}
+
+// 640px 이상: 우측 정렬
+@container doctor-panel (min-width: 640px) {
+    .cta-footer {
+        justify-content: flex-end;
+    }
 }
 
 // ── 접근성 ─────────────────────────────────────────────────────────────────────

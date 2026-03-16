@@ -1,11 +1,8 @@
 @use '../../_styles/tokens' as t;
 
-// footer: column layout + center align 추가 (공통은 기본 block)
+// footer: 버튼 간 gap만 담당 — 정렬은 common.scss .cta-footer가 처리
 .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 // 에러 메시지

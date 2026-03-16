@@ -8,8 +8,26 @@ const MIN_WIDTH = 480;
 const MAX_WIDTH = 1280;
 const MIN_HEIGHT = 200;
 const DEFAULT_WIDTH = 480;
+const STORAGE_KEY = 'eum-panel-state';
 
 const RESIZE_DIRS = ['n', 's', 'e', 'w', 'nw', 'ne', 'sw', 'se'];
+
+// sessionStorage에서 패널 상태 복원
+function loadPanelState() {
+    try {
+        const raw = sessionStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+    } catch {
+        return null;
+    }
+}
+
+// sessionStorage에 패널 상태 저장
+function savePanelState(state) {
+    try {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch { /* ignore */ }
+}
 
 // 이음 플로팅 패널 — 드래그 이동 / 8방향 리사이즈 / pin / opacity / 닫기
 // backHref: 헤더에 뒤로가기 링크 표시 (D-001 전용)
@@ -21,9 +39,9 @@ export default function DoctorPanel({
     backHref,
     singleColumn,
 }) {
-    const [pos, setPos] = useState(null); // null = 기본 right:0, top:0
+    const [pos, setPos] = useState(null);
     const [width, setWidth] = useState(DEFAULT_WIDTH);
-    const [height, setHeight] = useState(null); // null = CSS 90vh, 리사이즈 시 px 전환
+    const [height, setHeight] = useState(null);
     const [isPinned, setIsPinned] = useState(false);
     const [opacity, setOpacity] = useState(100);
     const [isVisible, setIsVisible] = useState(true);
@@ -31,10 +49,32 @@ export default function DoctorPanel({
     const [isResizing, setIsResizing] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
+    // mount 후 sessionStorage에서 패널 크기/위치 복원
+    const [isReady, setIsReady] = useState(false);
+    const didRestore = useRef(false);
+    useEffect(() => {
+        if (didRestore.current) return;
+        didRestore.current = true;
+        const saved = loadPanelState();
+        if (saved) {
+            if (saved.width) setWidth(saved.width);
+            if (saved.height) setHeight(saved.height);
+            if (saved.pos) setPos(saved.pos);
+            if (saved.opacity != null) setOpacity(saved.opacity);
+        }
+        // 복원 완료 후 렌더링 — requestAnimationFrame으로 한 프레임 대기
+        requestAnimationFrame(() => setIsReady(true));
+    }, []);
+
     const dragRef = useRef(null);
     const resizeRef = useRef(null);
     const panelRef = useRef(null);
     const scrollRef = useRef(null);
+
+    // 패널 크기/위치 변경 시 sessionStorage에 저장
+    useEffect(() => {
+        savePanelState({ pos, width, height, opacity });
+    }, [pos, width, height, opacity]);
 
     // ── 패널 이동 ──────────────────────────────────────
     const handleDragStart = useCallback(
@@ -154,6 +194,7 @@ export default function DoctorPanel({
                 width,
                 ...(height !== null ? { height } : {}),
                 opacity: opacity / 100,
+                ...(!isReady ? { visibility: 'hidden' } : {}),
             }}
             aria-label="Eum 의사 보조 패널"
         >

@@ -1,0 +1,38 @@
+@use '../../_styles/tokens' as t;
+
+.section {
+    padding: 0 24px 32px;
+}
+
+// 복용약 리스트
+.med-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    li {
+        list-style: none;
+    }
+}
+
+.med-name {
+    display: block;
+    font-size: t.$fs-body;
+    color: t.$text-primary;
+    line-height: t.$line-height-body;
+}
+
+.med-meta {
+    display: block;
+    font-size: t.$fs-small;
+    line-height: t.$line-height-small;
+    color: t.$text-secondary;
+    margin-top: 2px;
+}
+
+.visit-history-btn {
+    margin-top: 16px;
+}

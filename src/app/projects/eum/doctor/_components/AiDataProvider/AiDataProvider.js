@@ -110,7 +110,7 @@ export default function AiDataProvider({
     const activeSuggestions = suggestions || fallbackSuggestions;
 
     return (
-        <section className="section">
+        <section className="section" data-grid-area="ai">
             <div className="section-content">
                 <div className="section-header">
                     <AiIcon size={24} />
