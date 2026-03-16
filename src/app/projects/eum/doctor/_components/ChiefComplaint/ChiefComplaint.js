@@ -2,7 +2,7 @@ import styles from './ChiefComplaint.module.scss';
 
 export default function ChiefComplaint({ complaint }) {
     return (
-        <section className={`section ${styles.section}`} data-grid-area="chief">
+        <section className={`section ${styles.section}`}>
             <div className="section-content">
                 <h2 className="section-title">Chief Complaint</h2>
 

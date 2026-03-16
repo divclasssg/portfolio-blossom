@@ -8,6 +8,7 @@ import rawSessions from '../../../projects/eum/_references/data/patient/05_consu
 import rawSymptoms from '../../../projects/eum/_references/data/patient/03_symptom_records.json';
 import rawResults from '../../../projects/eum/_references/data/patient/06_consultation_results.json';
 import { shiftDates } from '../../../projects/eum/_lib/dateShift';
+import { generateDayVitals, generateDaySymptom, getKstToday, addDays } from '../../../projects/eum/_lib/dataGenerator';
 
 const sessionsJson = shiftDates(rawSessions);
 const symptomRecordsJson = shiftDates(rawSymptoms);
@@ -139,6 +140,44 @@ export async function seedDemoScenario(supabase, patientId, suffix = null) {
 
     const { error: resErr } = await supabase.from('consultation_results').upsert(resultRows, { onConflict: 'session_id' });
     if (resErr) throw new Error(`consultation_results 시드 실패: ${resErr.message}`);
+
+    // ── 6. 초기 30일 바이탈 + PRNG 증상 시드 ──────────────────────
+    const today = getKstToday();
+    const initialVitals = [];
+    const initialSymptoms = [];
+    let genIdx = 1;
+
+    for (let i = 29; i >= 0; i--) {
+        const dateStr = addDays(today, -i);
+        initialVitals.push({ patient_id: patientId, ...generateDayVitals(dateStr) });
+        const sym = generateDaySymptom(dateStr, genIdx);
+        if (sym) {
+            initialSymptoms.push({
+                symptom_id: `sym_${effectiveSuffix}_gen_${genIdx.toString().padStart(3, '0')}`,
+                patient_id: patientId,
+                session_id: null,
+                description: sym.description,
+                voice_transcript: null,
+                occurred_at: sym.occurred_at,
+                severity: sym.severity,
+                category_code: sym.category_code,
+                location_type: sym.location_type,
+            });
+            genIdx++;
+        }
+    }
+
+    const { error: vitErr } = await supabase
+        .from('vitals_records')
+        .upsert(initialVitals, { onConflict: 'patient_id,recorded_at' });
+    if (vitErr) throw new Error(`vitals_records 시드 실패: ${vitErr.message}`);
+
+    if (initialSymptoms.length > 0) {
+        const { error: genSymErr } = await supabase
+            .from('symptom_records')
+            .upsert(initialSymptoms, { onConflict: 'symptom_id' });
+        if (genSymErr) throw new Error(`생성 증상 시드 실패: ${genSymErr.message}`);
+    }
 
     return { latestSessionId };
 }

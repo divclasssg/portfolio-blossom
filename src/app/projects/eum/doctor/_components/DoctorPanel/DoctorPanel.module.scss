@@ -167,11 +167,13 @@ $handle-corner: 10px;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-        'chief'
+        'chief-med'
         'timeline'
-        'medications'
         'ai';
 
+    // <640px: ChiefMedTabs 래퍼가 단일 영역 차지
+    [data-grid-area='chief-med']   { grid-area: chief-med; }
+    // ≥640px: display:contents로 래퍼 해제 후 자식이 직접 참여
     [data-grid-area='chief']       { grid-area: chief; }
     [data-grid-area='timeline']    { grid-area: timeline; }
     [data-grid-area='medications'] { grid-area: medications; }
@@ -225,11 +227,6 @@ $handle-corner: 10px;
             border-bottom: none;
         }
 
-        // 2열 우측 상단 셀과 정렬하기 위한 padding-top
-        [data-grid-area='chief'],
-        [data-grid-area='medications'] {
-            padding-top: 24px;
-        }
     }
 }
 

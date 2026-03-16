@@ -91,12 +91,30 @@ CREATE TABLE IF NOT EXISTS consultation_results (
   created_at      TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- 바이탈 기록 (웨어러블 연동 — 매일 1건)
+CREATE TABLE IF NOT EXISTS vitals_records (
+  id              SERIAL PRIMARY KEY,
+  patient_id      TEXT REFERENCES patients(id) ON DELETE CASCADE,
+  recorded_at     TIMESTAMPTZ NOT NULL,
+  heart_rate_bpm  SMALLINT,
+  bp_systolic     SMALLINT,
+  bp_diastolic    SMALLINT,
+  sleep_hours     NUMERIC(3,1),
+  step_count      INTEGER,
+  body_temp_c     NUMERIC(3,1),
+  spo2_percent    SMALLINT,
+  source_platform TEXT DEFAULT 'APPLE_HEALTH',
+  created_at      TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(patient_id, recorded_at)
+);
+
 -- 인덱스
 CREATE INDEX IF NOT EXISTS idx_symptom_records_patient ON symptom_records(patient_id);
 CREATE INDEX IF NOT EXISTS idx_symptom_records_session ON symptom_records(session_id);
 CREATE INDEX IF NOT EXISTS idx_chat_messages_session ON chat_messages(session_id);
 CREATE INDEX IF NOT EXISTS idx_ai_results_session ON ai_results(session_id, result_type);
 CREATE INDEX IF NOT EXISTS idx_consultation_results_session ON consultation_results(session_id);
+CREATE INDEX IF NOT EXISTS idx_vitals_patient ON vitals_records(patient_id);
 
 -- ── sessions 컬럼 추가 마이그레이션 (1회 실행) ─────────────────
 -- ALTER TABLE sessions ADD COLUMN IF NOT EXISTS completed_at TIMESTAMPTZ;

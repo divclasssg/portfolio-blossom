@@ -30,12 +30,12 @@ function randFloat1(rng, min, max) {
 }
 
 // ── KST "오늘" 계산 ──
-function getKstToday() {
+export function getKstToday() {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
 }
 
 /** YYYY-MM-DD에서 n일 전 날짜 */
-function addDays(dateStr, n) {
+export function addDays(dateStr, n) {
   const d = new Date(dateStr + 'T00:00:00Z');
   d.setUTCDate(d.getUTCDate() + n);
   return d.toISOString().slice(0, 10);
@@ -80,7 +80,7 @@ const TEMPLATES_SEVERE = [
 const TIME_SLOTS = ['03:20:00', '04:15:00', '08:40:00', '13:45:00', '15:30:00', '18:00:00', '21:00:00'];
 
 // ── 바이탈 생성 ──
-function generateDayVitals(dateStr) {
+export function generateDayVitals(dateStr) {
   const rng = mulberry32(dateToSeed('v' + dateStr));
   const flare = isFlareDay(dateStr);
 
@@ -99,7 +99,7 @@ function generateDayVitals(dateStr) {
 }
 
 // ── 증상 생성 ──
-function generateDaySymptom(dateStr, index) {
+export function generateDaySymptom(dateStr, index) {
   const rng = mulberry32(dateToSeed('s' + dateStr));
   const flare = isFlareDay(dateStr);
 

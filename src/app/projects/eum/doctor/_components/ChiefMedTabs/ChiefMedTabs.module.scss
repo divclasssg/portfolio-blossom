@@ -1,0 +1,92 @@
+@use '../../_styles/tokens' as t;
+
+// ── 래퍼 ──
+// <640px: block — 단일 그리드 영역(chief-med)으로 동작
+// ≥640px: contents — 래퍼 박스 제거, 자식이 부모 그리드에 직접 참여
+.wrapper {
+    display: block;
+}
+
+@container panel (min-width: 640px) {
+    .wrapper {
+        display: contents;
+    }
+}
+
+// ── 탭 바 — 640px 미만에서만 표시 ──
+.tab-bar {
+    border-bottom: 1px solid t.$neutral-border;
+    padding: 0 16px;
+}
+
+@container panel (min-width: 640px) {
+    .tab-bar {
+        display: none;
+    }
+}
+
+.tab-list {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    font-family: var(--font-noto-kr), sans-serif;
+    font-size: t.$fs-regular;
+    line-height: t.$line-height-regular;
+    font-weight: 400;
+    color: t.$text-muted;
+    cursor: pointer;
+
+    &:hover {
+        color: t.$text-primary;
+    }
+
+    &:focus-visible {
+        outline: 2px solid t.$color-primary;
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
+}
+
+.tab--active {
+    border-bottom-color: t.$color-dark;
+    color: t.$color-dark;
+    font-weight: 700;
+}
+
+// ── 탭 패널 ──
+.tab-panel--hidden {
+    display: none;
+}
+
+// ≥640px: display:contents로 래퍼 해제 시
+// tabpanel은 DOM 상 section-grid의 직접 자식이 아니므로
+// > * { background, border-bottom:none } 규칙이 적용되지 않음 → 명시적으로 지정
+@container panel (min-width: 640px) {
+    .tab-panel,
+    .tab-panel--hidden {
+        display: block;
+        background: t.$panel-bg;
+
+        :global(.section) {
+            // 글로벌 .section의 border-bottom 제거 — gap border가 대체
+            border-bottom: none;
+            // 컴포넌트 .section이 padding-top:0으로 오버라이드하는 것을 복원
+            // 다른 섹션(Timeline, AI)과 동일한 32px top padding
+            padding-top: t.$section-padding-y;
+        }
+    }
+}

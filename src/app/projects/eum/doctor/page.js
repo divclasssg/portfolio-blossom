@@ -14,6 +14,7 @@ import PatientProfile from './_components/PatientProfile/PatientProfile';
 import ChiefComplaint from './_components/ChiefComplaint/ChiefComplaint';
 import Timeline from './_components/Timeline/Timeline';
 import Medications from './_components/Medications/Medications';
+import ChiefMedTabs from './_components/ChiefMedTabs/ChiefMedTabs';
 import FooterCta from './_components/FooterCta/FooterCta';
 import { PatientDataModalProvider } from './_components/PatientDataModal/PatientDataModalContext';
 import PatientDataModal from './_components/PatientDataModal/PatientDataModal';
@@ -231,17 +232,18 @@ export default async function DoctorDashboard() {
                     />
                 }
             >
-                {/* 섹션 4: 주호소 */}
-                <ChiefComplaint complaint={chiefComplaint} />
-{/* 섹션 7: 증상 타임라인 — Supabase에서 최신 데이터 */}
+                {/* 섹션 4+복용약: 640px 미만 탭, 이상 그리드 분리 */}
+                <ChiefMedTabs>
+                    <ChiefComplaint complaint={chiefComplaint} />
+                    <Medications medications={healthHistory.medications_current} />
+                </ChiefMedTabs>
+
+                {/* 섹션 7: 증상 타임라인 — Supabase에서 최신 데이터 */}
                 <Timeline
                     timeline={compactTimeline}
                     expandedTimeline={expandedTimeline}
                     healthPlatform={transmissionPkg.health_platform}
                 />
-
-                {/* 섹션: 복용약 */}
-                <Medications medications={healthHistory.medications_current} />
 
                 {/*
           섹션 5-6-8: AI 데이터 섹션

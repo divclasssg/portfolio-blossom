@@ -15,7 +15,7 @@ export default function Medications({ medications }) {
     const { open: openModal } = usePatientDataModal();
 
     return (
-        <section className={`section ${styles.section}`} data-grid-area="medications">
+        <section className={`section ${styles.section}`}>
             <div className="section-content">
                 <h2 className="section-title">복용약</h2>
 

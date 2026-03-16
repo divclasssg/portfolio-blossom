@@ -11,6 +11,7 @@ import VitalsToday from './_components/VitalsToday/VitalsToday';
 import LastVisitResult from './_components/LastVisitResult/LastVisitResult';
 import TabBar from './_components/TabBar/TabBar';
 import NewResultToast from './_components/NewResultToast/NewResultToast';
+import { backfillDailyData } from '../../../api/eum/_lib/backfillDailyData';
 
 export const metadata = {
     title: 'P-018 홈 대시보드 — Eum',
@@ -130,6 +131,9 @@ export default async function PatientHome() {
     const patientId = (await getPatientId()) || 'pat_yoon_001';
     const consentNotifications = shiftDates(rawNotifications);
     const unreadCount = consentNotifications.notifications.filter((n) => !n.read).length;
+
+    // 빈 날짜 바이탈/증상 자동 채움 (fire-and-forget — UI 블로킹 없음)
+    backfillDailyData(patientId).catch(() => {});
 
     const [patientInfo, dynamicData, transmittedResults] = await Promise.all([
         fetchPatientInfo(patientId),
