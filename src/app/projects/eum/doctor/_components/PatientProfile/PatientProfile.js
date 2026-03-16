@@ -4,13 +4,8 @@ import { useState } from 'react';
 import { HeartPulseIcon, WarningIcon, ArrowIcon } from '../../../_components/icons';
 import Badge from '../Badge/Badge';
 import Chip from '../Chip/Chip';
+import { extractIcdCode } from '../../_lib/extractIcdCode';
 import styles from './PatientProfile.module.scss';
-
-// chronic_conditions 문자열에서 ICD 코드 추출 — "역류성 식도염 (K21.0)" → "K21.0"
-function extractIcdCode(condition) {
-    const match = typeof condition === 'string' ? condition.match(/\(([A-Z]\d[\d.]*)\)/) : null;
-    return match ? match[1] : null;
-}
 
 export default function PatientProfile({
     patientSummary,

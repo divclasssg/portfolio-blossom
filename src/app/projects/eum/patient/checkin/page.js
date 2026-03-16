@@ -1,4 +1,5 @@
-import patientProfile from '../../_references/data/patient/01_patient_profile.json';
+import rawProfile from '../../_references/data/patient/01_patient_profile.json';
+import { shiftDates } from '../../_lib/dateShift';
 import AppBar from '../_components/AppBar/AppBar';
 import HospitalConfirm from '../_components/HospitalConfirm/HospitalConfirm';
 
@@ -7,6 +8,7 @@ export const metadata = {
 };
 
 export default function CheckinPage() {
+    const patientProfile = shiftDates(rawProfile);
     const { hospital_name, address } = patientProfile.profile.primary_hospital;
 
     return (

@@ -21,6 +21,6 @@ export async function POST(request) {
         return NextResponse.json({ success: true, latestSessionId });
     } catch (err) {
         console.error('[POST /api/eum/patients/seed]', err.message);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });
     }
 }

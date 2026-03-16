@@ -1,15 +1,25 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
+import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
+import { setPatientCookie } from '../_lib/cookie';
+import { isValidPatientId } from '../_lib/validate';
+
+const limiter = createRateLimiter({ windowMs: 60_000, max: 30 });
 
 // GET /api/eum/patients?patientId=pat_yoon_001
 // GET /api/eum/patients?phone=010-1234-5678 — 중복 가입 체크
 export async function GET(request) {
+    const { allowed } = limiter.check(getClientIp(request));
+    if (!allowed) return rateLimitResponse();
     const { searchParams } = new URL(request.url);
     const patientId = searchParams.get('patientId');
     const phone = searchParams.get('phone');
 
     if (!patientId && !phone) {
         return NextResponse.json({ error: 'patientId 또는 phone이 필요합니다' }, { status: 400 });
+    }
+    if (patientId && !isValidPatientId(patientId)) {
+        return NextResponse.json({ error: '잘못된 형식의 patientId입니다' }, { status: 400 });
     }
 
     try {
@@ -38,7 +48,7 @@ export async function GET(request) {
         return NextResponse.json({ patient: data });
     } catch (err) {
         console.error('[GET /api/eum/patients]', err.message);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });
     }
 }
 
@@ -103,10 +113,11 @@ export async function POST(request) {
         const { data, error } = await supabase.from('patients').insert(row).select('id').single();
 
         if (error) throw error;
-        return NextResponse.json({ patientId: data.id });
+        const res = NextResponse.json({ patientId: data.id });
+        return setPatientCookie(res, data.id);
     } catch (err) {
         console.error('[POST /api/eum/patients]', err.message);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });
     }
 }
 
@@ -161,6 +172,6 @@ export async function PATCH(request) {
         return NextResponse.json({ success: true });
     } catch (err) {
         console.error('[PATCH /api/eum/patients]', err.message);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });
     }
 }

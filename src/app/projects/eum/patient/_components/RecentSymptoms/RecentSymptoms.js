@@ -1,3 +1,5 @@
+import { calcLinePoints, toLinePath } from '../../_lib/sparkline';
+import { WEEKDAYS } from '../../_lib/constants';
 import styles from './RecentSymptoms.module.scss';
 
 // ISO 시간 문자열 → 와이어프레임 포맷: "YYYY. MM. DD 오전/오후 H:MM"
@@ -12,34 +14,17 @@ function formatDateTime(isoStr) {
     return `${year}. ${month}. ${day} ${ampm} ${displayHour}:${minuteStr}`;
 }
 
-const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
-
 const TREND_KO = {
     stable: '안정적',
     improving: '개선 중',
     worsening: '악화 중',
 };
 
-// SVG 꺾은선 차트 상수 (VitalsToday 패턴)
+// SVG 꺾은선 차트 상수
 const CHART_W = 200;
 const CHART_H = 32;
-const PAD_X = 8;
-const PAD_Y = 4;
-const MAX_SEVERITY = 4;
+const CHART_DIMS = { width: CHART_W, height: CHART_H, padX: 8, padY: 4, min: 0, max: 4 };
 const LINE_COLOR = '#007AFF';
-
-function calcLinePoints(severities) {
-    const chartW = CHART_W - PAD_X * 2;
-    const chartH = CHART_H - PAD_Y * 2;
-    return severities.map((sev, i) => ({
-        x: PAD_X + (i / (severities.length - 1)) * chartW,
-        y: PAD_Y + (1 - sev / MAX_SEVERITY) * chartH,
-    }));
-}
-
-function toLinePath(points) {
-    return points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
-}
 
 // 기준 날짜(most_recent.occurred_at)로부터 역산 7일, 날짜별 최대 severity 매핑
 function buildBarData(symptomRecords, referenceDate) {
@@ -96,9 +81,9 @@ export default function RecentSymptoms({ summary, symptomRecords }) {
                     >
                         {(() => {
                             const severities = bars.map((b) => b.severity);
-                            const points = calcLinePoints(severities);
+                            const points = calcLinePoints(severities, CHART_DIMS);
                             const linePath = toLinePath(points);
-                            const areaPath = `${linePath} L${points[points.length - 1].x},${CHART_H - PAD_Y} L${points[0].x},${CHART_H - PAD_Y} Z`;
+                            const areaPath = `${linePath} L${points[points.length - 1].x},${CHART_H - CHART_DIMS.padY} L${points[0].x},${CHART_H - CHART_DIMS.padY} Z`;
 
                             return (
                                 <>

@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import consultationResults from '../../../_references/data/patient/06_consultation_results.json';
-import sessions from '../../../_references/data/patient/05_consultation_sessions.json';
+import rawSessions from '../../../_references/data/patient/05_consultation_sessions.json';
 import medicalRecords from '../../../_references/data/patient/04_medical_records.json';
+import { shiftDates } from '../../../_lib/dateShift';
 import styles from './page.module.scss';
 import AppBar from '../../_components/AppBar/AppBar';
 import TabBar from '../../_components/TabBar/TabBar';
@@ -11,21 +11,16 @@ import { WarningIcon } from '../../../_components/icons';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata({ params }) {
-    const { id } = await params;
-    const result = consultationResults.consultation_results.find((r) => r.session_id === id);
-    if (result) return { title: `${result.visit_date} 진료 요약 — Eum` };
-    // DB 결과일 경우 기본 제목
+export async function generateMetadata() {
     return { title: '진료 요약 — Eum' };
 }
 
+const sessions = shiftDates(rawSessions);
 const sessionMap = Object.fromEntries(
     sessions.sessions.map((s) => [s.session_id, s.hospital_name])
 );
 
-function formatDate(dateStr) {
-    return dateStr.replace(/-/g, '.');
-}
+import { formatDate } from '../../../_lib/formatDate';
 
 // 진료일 이전 가장 최근 의료 기록 찾기 (공공 의료 데이터 연결)
 function findPriorMedicalRecord(visitDate) {
@@ -47,7 +42,7 @@ function transformForPatient(dbResult) {
         doctor_note_plain: c.doctor_note_plain,
         prescriptions: c.prescriptions?.map((rx) => ({
             drug_name: rx.name,
-            dosage: '',
+            dosage: rx.dosage || '',
             days: parseInt(rx.duration) || 0,
             plain_language: rx.plain_language,
         })),
@@ -84,17 +79,11 @@ async function fetchDbResult(sessionId) {
 export default async function SummaryDetailPage({ params }) {
     const { id } = await params;
 
-    // 정적 JSON에서 먼저 검색
-    let result = consultationResults.consultation_results.find((r) => r.session_id === id);
-    let hospitalName = sessionMap[id] ?? '—';
-
-    // 정적 JSON에 없으면 DB 조회
-    if (!result) {
-        const dbResult = await fetchDbResult(id);
-        if (!dbResult) notFound();
-        result = transformForPatient(dbResult);
-        hospitalName = dbResult.hospital_name ?? '—';
-    }
+    // DB에서만 조회 (의사가 전송한 결과만 환자에게 표시)
+    const dbResult = await fetchDbResult(id);
+    if (!dbResult) notFound();
+    const result = transformForPatient(dbResult);
+    const hospitalName = dbResult.hospital_name ?? sessionMap[id] ?? '—';
 
     const priorRecord = findPriorMedicalRecord(result.visit_date);
 
@@ -179,7 +168,7 @@ export default async function SummaryDetailPage({ params }) {
                         <div className={styles['card']}>
                             <ul className={styles['rx-list']}>
                                 {result.prescriptions.map((rx, i) => (
-                                    <li key={rx.drug_name} className={styles['rx-item']}>
+                                    <li key={`${i}-${rx.drug_name}`} className={styles['rx-item']}>
                                         {i > 0 && <hr className={styles['rx-divider']} />}
                                         <div className={styles['rx-header']}>
                                             <span className={styles['rx-name']}>
@@ -239,7 +228,7 @@ export default async function SummaryDetailPage({ params }) {
                 )}
 
                 {/* ⑥ AI 면책 — 영구 노출, 닫기 불가 */}
-                <div className={styles['warning-list']} role="alert" aria-live="polite">
+                <div className={styles['warning-list']} role="note">
                     <p className={styles['warning-item']}>
                         <span className={styles['warning-symbol']} style={{ color: '#FFC000' }} aria-hidden="true">
                             <WarningIcon variant="triangle" size={18} />

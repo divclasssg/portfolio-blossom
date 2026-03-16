@@ -1,12 +1,7 @@
 import Link from 'next/link';
 import styles from './LastVisitResult.module.scss';
 import { ArrowIcon } from '../../../_components/icons';
-
-// "YYYY-MM-DD" → "YYYY.MM.DD" (UX 가이드 준수)
-function formatDate(dateStr) {
-    const [year, month, day] = dateStr.split('-');
-    return `${year}.${month}.${day}`;
-}
+import { formatDate } from '../../../_lib/formatDate';
 
 export default function LastVisitResult({ result }) {
     if (!result) return null;

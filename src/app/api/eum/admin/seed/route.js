@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../../_lib/supabase';
 import { seedDemoScenario } from '../../_lib/seedDemoData';
+import { setPatientCookie } from '../../_lib/cookie';
 
 const ADMIN_PATIENT_ID = 'pat_admin_001';
 
@@ -55,20 +56,22 @@ export async function POST() {
                 .eq('patient_id', ADMIN_PATIENT_ID);
 
             if (count > 0) {
-                return NextResponse.json({
+                const res = NextResponse.json({
                     success: true,
                     patientId: ADMIN_PATIENT_ID,
                     seeded: false,
                 });
+                return setPatientCookie(res, ADMIN_PATIENT_ID);
             }
 
             // 데모 데이터 없음 → 시드 재실행
             await seedDemoScenario(supabase, ADMIN_PATIENT_ID, 'admin');
-            return NextResponse.json({
+            const reseed = NextResponse.json({
                 success: true,
                 patientId: ADMIN_PATIENT_ID,
                 seeded: true,
             });
+            return setPatientCookie(reseed, ADMIN_PATIENT_ID);
         }
 
         // 환자 레코드 생성
@@ -81,13 +84,14 @@ export async function POST() {
         // 데모 시나리오 시드 (suffix='admin')
         await seedDemoScenario(supabase, ADMIN_PATIENT_ID, 'admin');
 
-        return NextResponse.json({
+        const res = NextResponse.json({
             success: true,
             patientId: ADMIN_PATIENT_ID,
             seeded: true,
         });
+        return setPatientCookie(res, ADMIN_PATIENT_ID);
     } catch (err) {
         console.error('[POST /api/eum/admin/seed]', err.message);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });
     }
 }

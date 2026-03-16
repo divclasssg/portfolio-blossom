@@ -11,8 +11,13 @@
 
 import OpenAI from 'openai';
 import { getSupabaseClient } from '../_lib/supabase';
+import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
+import { requireEnv } from '../_lib/envCheck';
+import { isValidPatientId, isValidSessionId } from '../_lib/validate';
 
 export const maxDuration = 60;
+
+const limiter = createRateLimiter({ windowMs: 60_000, max: 20 });
 
 // 중괄호 깊이 카운팅으로 중첩 JSON 안전 추출
 function extractJsonTag(content, tagName) {
@@ -74,14 +79,16 @@ const SYSTEM_PROMPT = `당신은 이음(Eum) 의료 앱의 증상 수집 어시�
   categoryCode: SYM-01(전신/체질), SYM-02(근골격), SYM-03(신경), SYM-05(소화기), SYM-07(호흡기/이비인후), SYM-08(심리), SYM-09(피부), SYM-12(심혈관/자율신경)`;
 
 export async function POST(request) {
+    const envError = requireEnv('OPENAI_API_KEY');
+    if (envError) return envError;
+
+    const { allowed } = limiter.check(getClientIp(request));
+    if (!allowed) return rateLimitResponse();
+
     const { messages, patientId, sessionId } = await request.json();
 
-    if (!patientId || !sessionId) {
+    if (!patientId || !sessionId || !isValidPatientId(patientId) || !isValidSessionId(sessionId)) {
         return new Response('patientId and sessionId are required', { status: 400 });
-    }
-
-    if (!process.env.OPENAI_API_KEY) {
-        return new Response('OPENAI_API_KEY not configured', { status: 500 });
     }
 
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

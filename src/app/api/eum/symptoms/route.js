@@ -1,12 +1,18 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
 import { invalidatePipelineCache } from '../_lib/pipeline';
+import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
+import { isValidPatientId } from '../_lib/validate';
+
+const limiter = createRateLimiter({ windowMs: 60_000, max: 30 });
 
 // GET /api/eum/symptoms?patientId=pat_yoon_001
 export async function GET(request) {
+    const { allowed } = limiter.check(getClientIp(request));
+    if (!allowed) return rateLimitResponse();
     const { searchParams } = new URL(request.url);
     const patientId = searchParams.get('patientId');
-    if (!patientId) {
+    if (!patientId || !isValidPatientId(patientId)) {
         return NextResponse.json({ error: 'patientId is required' }, { status: 400 });
     }
 
@@ -22,7 +28,7 @@ export async function GET(request) {
         return NextResponse.json({ symptom_records: data });
     } catch (err) {
         console.error('[GET /api/eum/symptoms]', err.message);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });
     }
 }
 
@@ -78,14 +84,14 @@ export async function POST(request) {
             // FK 위반 구체적 메시지
             if (error.code === '23503') {
                 return NextResponse.json(
-                    { error: '환자 또는 세션이 존재하지 않습니다', detail: error.details },
+                    { error: '환자 또는 세션이 존재하지 않습니다' },
                     { status: 400 }
                 );
             }
             // 중복 키 위반
             if (error.code === '23505') {
                 return NextResponse.json(
-                    { error: '중복된 증상 ID', detail: error.details },
+                    { error: '중복된 증상 기록입니다' },
                     { status: 409 }
                 );
             }
@@ -129,6 +135,6 @@ export async function POST(request) {
         return NextResponse.json({ symptom_record: data }, { status: 201 });
     } catch (err) {
         console.error('[POST /api/eum/symptoms]', err.message);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });
     }
 }

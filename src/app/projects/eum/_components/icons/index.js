@@ -14,6 +14,7 @@ export { default as DragIcon } from './DragIcon';
 export { default as HeartIcon } from './HeartIcon';
 export { default as HeartPulseIcon } from './HeartPulseIcon';
 export { default as HomeIcon } from './HomeIcon';
+export { default as LocationIcon } from './LocationIcon';
 export { default as MapIcon } from './MapIcon';
 export { default as MicIcon } from './MicIcon';
 export { default as NoticeIcon } from './NoticeIcon';

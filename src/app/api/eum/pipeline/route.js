@@ -11,6 +11,11 @@ import {
 } from '../_lib/pipeline';
 import { getSupabaseClient } from '../_lib/supabase';
 import { getLatestSessionId } from '../_lib/getLatestSession';
+import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
+import { requireEnv } from '../_lib/envCheck';
+import { isValidPatientId } from '../_lib/validate';
+
+const limiter = createRateLimiter({ windowMs: 60_000, max: 3 });
 
 // 전체 파이프라인 타임아웃: 90초 (Next.js default route timeout 초과 방지)
 export const maxDuration = 90;
@@ -54,12 +59,19 @@ async function saveToDb(result, sessionId, patientId) {
 }
 
 export async function POST(request) {
+    const envError = requireEnv('OPENAI_API_KEY');
+    if (envError) return envError;
+
+    const { allowed } = limiter.check(getClientIp(request));
+    if (!allowed) return rateLimitResponse();
+
     // patientId 수신 → 동적 sessionId 조회
     let patientId = null;
     let sessionId = null;
     try {
         const body = await request.json();
-        patientId = body.patientId || null;
+        const rawId = body.patientId || null;
+        patientId = rawId && isValidPatientId(rawId) ? rawId : null;
     } catch {
         // body 없으면 무시
     }

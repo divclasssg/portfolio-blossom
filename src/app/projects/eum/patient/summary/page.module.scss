@@ -22,3 +22,10 @@
     gap: 12px;
     padding-bottom: $section-gap;
 }
+
+.empty-message {
+    font-size: $fs-body;
+    color: $text-secondary;
+    text-align: center;
+    padding: 48px 0;
+}

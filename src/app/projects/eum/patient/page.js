@@ -1,7 +1,6 @@
-import homeDashboard from '../_references/data/patient/08_home_dashboard.json';
-import wearableData from '../_references/data/patient/07_vitals_wearable.json';
-import symptomRecords from '../_references/data/patient/03_symptom_records.json';
-import consentNotifications from '../_references/data/patient/09_consent_notifications.json';
+import rawNotifications from '../_references/data/patient/09_consent_notifications.json';
+import { shiftDates } from '../_lib/dateShift';
+import { generateVitals, generateSymptoms, generateDashboard } from '../_lib/dataGenerator';
 import { getPatientId } from '../_lib/getPatientId';
 import styles from './page.module.scss';
 import AppBar from './_components/AppBar/AppBar';
@@ -71,17 +70,21 @@ async function fetchRecentSymptomsSummary(patientId) {
             : latest.voice_transcript || '';
 
         return {
-            last_7_days_count: last7DaysCount,
-            avg_severity: avgSeverity,
-            trend,
-            most_recent: {
-                symptom_id: latest.symptom_id,
-                occurred_at: latest.occurred_at,
-                severity: latest.severity,
-                description_preview: preview,
+            summary: {
+                last_7_days_count: last7DaysCount,
+                avg_severity: avgSeverity,
+                trend,
+                most_recent: {
+                    symptom_id: latest.symptom_id,
+                    occurred_at: latest.occurred_at,
+                    severity: latest.severity,
+                    description_preview: preview,
+                },
             },
+            records: data,
         };
-    } catch {
+    } catch (err) {
+        console.error('[PatientHome] 증상 요약 조회 실패:', err.message);
         return null;
     }
 }
@@ -98,7 +101,8 @@ async function fetchPatientInfo(patientId) {
             .single();
         if (error) throw error;
         return data ?? null;
-    } catch {
+    } catch (err) {
+        console.error('[PatientHome] 환자 정보 조회 실패:', err.message);
         return null;
     }
 }
@@ -110,12 +114,13 @@ async function fetchTransmittedResults() {
         const supabase = getSupabaseClient();
         const { data, error } = await supabase
             .from('consultation_results')
-            .select('session_id, doctor_name, hospital_name, transmitted_at')
+            .select('session_id, doctor_name, hospital_name, diagnosis_name, transmitted_at')
             .not('transmitted_at', 'is', null)
             .order('transmitted_at', { ascending: false });
         if (error) throw error;
         return data ?? [];
-    } catch {
+    } catch (err) {
+        console.error('[PatientHome] 전송 결과 조회 실패:', err.message);
         return [];
     }
 }
@@ -123,13 +128,32 @@ async function fetchTransmittedResults() {
 export default async function PatientHome() {
     // 쿠키 없으면 기본 환자(윤서진)로 폴백 — 환자 앱 직접 진입 허용
     const patientId = (await getPatientId()) || 'pat_yoon_001';
+    const consentNotifications = shiftDates(rawNotifications);
     const unreadCount = consentNotifications.notifications.filter((n) => !n.read).length;
 
-    const [patientInfo, dynamicSummary, transmittedResults] = await Promise.all([
+    const [patientInfo, dynamicData, transmittedResults] = await Promise.all([
         fetchPatientInfo(patientId),
         fetchRecentSymptomsSummary(patientId),
         fetchTransmittedResults(),
     ]);
+    const dynamicSummary = dynamicData?.summary ?? null;
+    const dbRecords = dynamicData?.records ?? null;
+
+    // 바이탈 스파크라인은 DB fallback 없으므로 항상 생성
+    const generatedVitals = generateVitals();
+    // DB 실패 시에만 생성 (불필요한 CPU 절약)
+    const fallbackDashboard = dynamicSummary ? null : generateDashboard();
+    const fallbackSymptoms = dbRecords ? null : generateSymptoms();
+
+    // 최신 전송 결과 → LastVisitResult용 변환
+    const latestResult = transmittedResults[0]
+        ? {
+              visit_date: transmittedResults[0].transmitted_at?.slice(0, 10),
+              hospital_name: transmittedResults[0].hospital_name,
+              summary_preview: `${transmittedResults[0].doctor_name} · ${transmittedResults[0].diagnosis_name ?? ''}`,
+          }
+        : null;
+
     // DB에서 이름을 읽으면 동적 인사말, 실패 시 이름 없이 인사
     const greeting = patientInfo?.name
         ? <>{patientInfo.name}님, <br />오늘도 건강한 하루 보내세요.</>
@@ -143,17 +167,17 @@ export default async function PatientHome() {
                 <h1 className="sr-only">Eum 홈</h1>
                 <GreetingSection greeting={greeting} />
                 <RecentSymptoms
-                    summary={dynamicSummary ?? homeDashboard.recent_symptoms_summary}
-                    symptomRecords={symptomRecords.symptom_records}
+                    summary={dynamicSummary ?? fallbackDashboard?.recent_symptoms_summary}
+                    symptomRecords={dbRecords ?? fallbackSymptoms?.symptom_records ?? []}
                 />
                 <SymptomLogCta />
                 <VitalsToday
-                    vitals={homeDashboard.vitals_today}
+                    vitals={fallbackDashboard?.vitals_today ?? generatedVitals.health_platform[generatedVitals.health_platform.length - 1]}
                     wearableDevice={patientInfo?.wearable_device ?? null}
-                    wearableHistory={wearableData.health_platform}
-                    symptomRecords={symptomRecords.symptom_records}
+                    wearableHistory={generatedVitals.health_platform}
+                    symptomRecords={dbRecords ?? fallbackSymptoms?.symptom_records ?? []}
                 />
-                <LastVisitResult result={homeDashboard.last_visit_result} />
+                <LastVisitResult result={latestResult} />
             </main>
             <TabBar activePath="home" />
         </>

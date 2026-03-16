@@ -50,5 +50,18 @@ next-env.d.ts
 .mcp.json
 PLAN.md
 
+# references
+_references/
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+
+# External services
+modal_app/
+
 # local AI config
 .claude/

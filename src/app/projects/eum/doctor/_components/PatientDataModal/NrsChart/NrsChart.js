@@ -12,24 +12,13 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 import { NRS_CATEGORY_COLORS, SYMPTOM_DAY_BG } from '../_lib/chartColors';
+import { CATEGORY_LABEL } from '../../../_lib/constants';
 import styles from './NrsChart.module.scss';
 
 // 날짜 문자열 → "2/5" 형식 (타임존 독립)
 const fmtDate = (d) => {
     const [, m, day] = d.split('-');
     return `${parseInt(m)}/${parseInt(day)}`;
-};
-
-// 카테고리 → 한국어 라벨
-const CATEGORY_LABEL = {
-    'SYM-01': '전신',
-    'SYM-02': '근골격',
-    'SYM-03': '신경',
-    'SYM-05': '소화기',
-    'SYM-07': '호흡기',
-    'SYM-08': '심리',
-    'SYM-09': '피부',
-    'SYM-12': '심혈관/자율',
 };
 
 function NrsTooltip({ active, payload, label }) {

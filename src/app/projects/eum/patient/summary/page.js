@@ -1,5 +1,5 @@
-import consultationResults from '../../_references/data/patient/06_consultation_results.json';
-import sessions from '../../_references/data/patient/05_consultation_sessions.json';
+import rawSessions from '../../_references/data/patient/05_consultation_sessions.json';
+import { shiftDates } from '../../_lib/dateShift';
 import styles from './page.module.scss';
 import AppBar from '../_components/AppBar/AppBar';
 import SummaryListItem from '../_components/SummaryListItem/SummaryListItem';
@@ -11,7 +11,8 @@ export const metadata = {
     title: '진료 요약 — Eum',
 };
 
-// session_id → hospital_name 매핑 (정적 JSON)
+// session_id → hospital_name 매핑 (날짜 시프트 적용)
+const sessions = shiftDates(rawSessions);
 const staticSessionMap = Object.fromEntries(
     sessions.sessions.map((s) => [s.session_id, s.hospital_name])
 );
@@ -39,36 +40,17 @@ function formatVisitDate(dateStr) {
 export default async function SummaryListPage() {
     const dbResults = await fetchDbResults();
 
-    // 정적 JSON 기반 목록 (기존)
-    const staticItems = consultationResults.consultation_results.map((r) => ({
-        session_id: r.session_id,
-        visit_date: r.visit_date,
-        doctor_name: r.doctor_name,
-        diagnosis_name: r.diagnosis_name,
-        hospital_name: staticSessionMap[r.session_id] ?? '—',
-    }));
-
-    // DB 결과 → 목록 아이템 변환
-    const dbItems = dbResults.map((row) => ({
+    // DB 결과만 사용 (의사가 전송한 결과만 환자에게 표시)
+    const items = dbResults.map((row) => ({
         session_id: row.session_id,
         visit_date: row.transmitted_at?.slice(0, 10) ?? '',
         doctor_name: row.doctor_name,
         diagnosis_name: row.diagnosis_name,
-        hospital_name: row.hospital_name ?? '—',
+        hospital_name: row.hospital_name ?? staticSessionMap[row.session_id] ?? '—',
     }));
 
-    // 병합: DB 우선 (session_id 기준 중복 제거)
-    const seen = new Set();
-    const merged = [];
-    for (const item of [...dbItems, ...staticItems]) {
-        if (!seen.has(item.session_id)) {
-            seen.add(item.session_id);
-            merged.push(item);
-        }
-    }
-
     // 최신순 정렬
-    merged.sort((a, b) => b.visit_date.localeCompare(a.visit_date));
+    items.sort((a, b) => b.visit_date.localeCompare(a.visit_date));
 
     return (
         <>
@@ -76,7 +58,12 @@ export default async function SummaryListPage() {
             <main className={styles['content']}>
                 <h1 className={styles['title']}>진료 요약</h1>
                 <ul className={styles['list']}>
-                    {merged.map((item) => (
+                    {items.length === 0 && (
+                        <li className={styles['empty-message']}>
+                            아직 전달받은 진료 결과가 없습니다.
+                        </li>
+                    )}
+                    {items.map((item) => (
                         <li key={item.session_id}>
                             <SummaryListItem
                                 sessionId={item.session_id}

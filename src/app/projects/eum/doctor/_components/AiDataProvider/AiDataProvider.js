@@ -76,6 +76,7 @@ export default function AiDataProvider({
             });
 
         return () => clearInterval(interval);
+        // 마운트 시 1회만 실행 (fire-and-forget). props 변경에 반응하지 않음.
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

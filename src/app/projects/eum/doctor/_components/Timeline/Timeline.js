@@ -6,17 +6,9 @@ import styles from './Timeline.module.scss';
 import { AiIcon, ArrowIcon } from '../../../_components/icons';
 import ActionButton from '../ActionButton/ActionButton';
 import Badge from '../Badge/Badge';
+import { SEVERITY_LABEL, getNrsColor } from '../../_lib/constants';
 
-const SEVERITY_LABEL = { 1: '낮음', 2: '중간', 3: '높음', 4: '심함' };
-
-// NRS 심각도별 색상 매핑
-function getNrsColor(severity) {
-    if (severity <= 3) return '#34C759';   // clinical.normal (초록)
-    if (severity <= 6) return '#FF9500';   // clinical.warning (주황)
-    return '#FF3B30';                       // clinical.danger (빨강)
-}
-
-const CATEGORY_LABEL = {
+const CATEGORY_LABEL_EN = {
     'SYM-01': 'General / Constitutional',
     'SYM-02': 'Musculoskeletal',
     'SYM-03': 'Neurological',
@@ -35,9 +27,10 @@ function getTrend(value, average) {
 }
 
 // healthPlatform 배열에서 특정 날짜(MM-DD) 레코드 찾기
+// 제한사항: MM-DD만으로 매칭하므로 연도가 다른 동일 날짜 충돌 가능
+// 포트폴리오 데모 데이터는 단일 연도이므로 문제 없음
 function findHealthRecord(date, healthPlatform) {
     if (!healthPlatform?.length) return null;
-    // MM-DD 접미사로 매칭 — 연도 하드코딩 제거
     return healthPlatform.find((h) => h.recorded_at.slice(5, 10) === date) ?? null;
 }
 
@@ -120,7 +113,7 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                     >
                         <time className={styles['item-date']} dateTime={`${year}-${month}-${day}`}>{dateLabel}</time>
                         <span className={styles['item-name']} title={item.preview}>
-                            {CATEGORY_LABEL[item.category] ?? item.preview}
+                            {CATEGORY_LABEL_EN[item.category] ?? item.preview}
                         </span>
                         <Badge
                             className={styles['nrs-badge']}
@@ -137,7 +130,7 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                     <button className={styles['item-main']} disabled aria-disabled="true">
                         <time className={styles['item-date']} dateTime={`${year}-${month}-${day}`}>{dateLabel}</time>
                         <span className={styles['item-name']} title={item.preview}>
-                            {CATEGORY_LABEL[item.category] ?? item.preview}
+                            {CATEGORY_LABEL_EN[item.category] ?? item.preview}
                         </span>
                         <Badge
                             className={styles['nrs-badge']}

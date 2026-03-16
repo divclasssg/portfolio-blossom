@@ -184,7 +184,7 @@ export default async function DoctorDashboard() {
     const patientSummary = patient
         ? {
               name: patient.name,
-              age: calcAge(patient.birth_date),
+              age: calcAge(patient.birth_date) ?? dashboardState.patient_summary.age,
               gender: patient.gender,
               patient_id: patientId,
           }

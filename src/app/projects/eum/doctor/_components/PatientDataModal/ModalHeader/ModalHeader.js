@@ -1,17 +1,11 @@
-import { HeartPulseIcon, WarningIcon } from '../../../../_components/icons';
-import { AiIcon } from '../../../../_components/icons';
+import { HeartPulseIcon, WarningIcon, AiIcon } from '../../../../_components/icons';
 import Badge from '../../Badge/Badge';
 import Chip from '../../Chip/Chip';
+import { extractIcdCode } from '../../../_lib/extractIcdCode';
 import styles from './ModalHeader.module.scss';
 
 // 성별 코드를 한국어로 변환
 const GENDER_LABEL = { F: '여', M: '남' };
-
-// chronic_conditions 문자열에서 ICD 코드 추출 — "역류성 식도염 (K21.0)" → "K21.0"
-function extractIcdCode(condition) {
-    const match = typeof condition === 'string' ? condition.match(/\(([A-Z]\d[\d.]*)\)/) : null;
-    return match ? match[1] : null;
-}
 
 export default function ModalHeader({ patient, chronicConditions, allergies, onClose }) {
     const genderLabel = GENDER_LABEL[patient.gender] ?? patient.gender;

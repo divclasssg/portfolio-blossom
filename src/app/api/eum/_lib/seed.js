@@ -46,9 +46,48 @@ function readJson(dir, filename) {
     return JSON.parse(readFileSync(path.join(dir, filename), 'utf8'));
 }
 
+// 날짜 시프트 (dateShift.js 로직 인라인 — CLI 스크립트에서 독립 실행용)
+const ANCHOR = '2026-03-08';
+const ISO_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$/;
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+function getOffsetDays() {
+    const kstToday = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
+    const todayUtc = Date.UTC(...kstToday.split('-').map((v, i) => (i === 1 ? +v - 1 : +v)));
+    const anchorUtc = Date.UTC(2026, 2, 8);
+    return Math.round((todayUtc - anchorUtc) / 86_400_000);
+}
+
+function shiftDates(val) {
+    const days = getOffsetDays();
+    if (days === 0) return val;
+    return (function walk(v) {
+        if (typeof v === 'string') {
+            if (ISO_RE.test(v)) {
+                const d = new Date(v.slice(0, 10) + 'T00:00:00Z');
+                d.setUTCDate(d.getUTCDate() + days);
+                return d.toISOString().slice(0, 10) + v.slice(10);
+            }
+            if (DATE_RE.test(v)) {
+                const d = new Date(v + 'T00:00:00Z');
+                d.setUTCDate(d.getUTCDate() + days);
+                return d.toISOString().slice(0, 10);
+            }
+            return v;
+        }
+        if (Array.isArray(v)) return v.map(walk);
+        if (v && typeof v === 'object') {
+            const out = {};
+            for (const [k, val] of Object.entries(v)) out[k] = walk(val);
+            return out;
+        }
+        return v;
+    })(val);
+}
+
 // ── patients 테이블 시드 ────────────────────────────────────────
 async function seedPatients() {
-    const profile = readJson(DATA_PATIENT, '01_patient_profile.json');
+    const profile = shiftDates(readJson(DATA_PATIENT, '01_patient_profile.json'));
 
     const row = {
         id: profile.patient_id,
@@ -73,7 +112,7 @@ async function seedPatients() {
 
 // ── sessions 테이블 시드 ────────────────────────────────────────
 async function seedSessions() {
-    const data = readJson(DATA_PATIENT, '05_consultation_sessions.json');
+    const data = shiftDates(readJson(DATA_PATIENT, '05_consultation_sessions.json'));
 
     const rows = data.sessions.map((s) => ({
         id: s.session_id,
@@ -94,10 +133,10 @@ async function seedSessions() {
 
 // ── symptom_records 테이블 시드 ────────────────────────────────
 async function seedSymptomRecords() {
-    const data = readJson(DATA_PATIENT, '03_symptom_records.json');
+    const data = shiftDates(readJson(DATA_PATIENT, '03_symptom_records.json'));
 
     // 세션-증상 매핑 (05_consultation_sessions.json 기준)
-    const sessions = readJson(DATA_PATIENT, '05_consultation_sessions.json');
+    const sessions = shiftDates(readJson(DATA_PATIENT, '05_consultation_sessions.json'));
     const symptomToSession = {};
     sessions.sessions.forEach((s) => {
         (s.symptom_ids || []).forEach((sid) => {

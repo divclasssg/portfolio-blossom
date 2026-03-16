@@ -6,8 +6,7 @@ import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAp
 import PinPad from '../../../_components/PinPad/PinPad';
 import styles from './page.module.scss';
 
-// 포트폴리오 목업: 고정 PIN
-const MOCK_PIN = '123456';
+// 포트폴리오 목업: 관리자 테스트 PIN
 const ADMIN_PIN = '147852';
 
 export default function LoginPinPage() {
@@ -30,16 +29,13 @@ export default function LoginPinPage() {
                         const body = await res.json().catch(() => ({}));
                         throw new Error(body.error || '시드 API 오류');
                     }
-                    document.cookie =
-                        'eum_patient_id=pat_admin_001; max-age=86400; path=/projects/eum; SameSite=Lax';
+                    // 쿠키는 admin/seed API 응답의 Set-Cookie 헤더로 설정됨 (HttpOnly)
                     router.push('/projects/eum/patient');
                 } catch {
                     setError('관리자 데이터 초기화에 실패했습니다.');
                     setTimeout(() => setPin(''), 600);
                     setLoading(false);
                 }
-            } else if (value === MOCK_PIN) {
-                router.push('/projects/eum/patient');
             } else {
                 setError('PIN 번호가 올바르지 않습니다. 다시 확인해 주세요.');
                 setTimeout(() => setPin(''), 600);

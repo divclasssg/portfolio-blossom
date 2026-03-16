@@ -177,7 +177,7 @@ export default function MydataItemsPage() {
                             aria-label="위의 전체 내용에 동의합니다"
                         />
                         <span className={styles['all-agree-text']}>
-                            위의 전체 내용에 동의 합니다.
+                            위의 전체 내용에 동의합니다.
                         </span>
                     </label>
                 </div>

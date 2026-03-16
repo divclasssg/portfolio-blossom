@@ -69,8 +69,7 @@ export default function CompletePage() {
 
             const { patientId } = await res.json();
 
-            // 쿠키 + sessionStorage에 환자 ID 설정
-            document.cookie = `eum_patient_id=${patientId}; max-age=86400; path=/projects/eum; SameSite=Lax`;
+            // 쿠키는 API 응답의 Set-Cookie 헤더로 설정됨 (HttpOnly)
             sessionStorage.setItem('eum_patient_id', patientId);
 
             // 데모 환자에 윤서진 시나리오 임상 데이터 시드 (실패해도 진행)

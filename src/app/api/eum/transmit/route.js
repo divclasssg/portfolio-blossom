@@ -1,14 +1,24 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
+import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
+import { isValidSessionId } from '../_lib/validate';
+
+const limiter = createRateLimiter({ windowMs: 60_000, max: 5 });
 
 // POST /api/eum/transmit — 의사 진료 결과 전송 (환자앱 조회용 저장)
 export async function POST(request) {
+    const { allowed } = limiter.check(getClientIp(request));
+    if (!allowed) return rateLimitResponse();
+
     try {
         const body = await request.json();
         const { sessionId, doctorId, doctorName, hospitalName, diagnosisName, content } = body;
 
         if (!sessionId || !doctorId || !doctorName || !content) {
             return NextResponse.json({ error: '필수 필드 누락' }, { status: 400 });
+        }
+        if (!isValidSessionId(sessionId)) {
+            return NextResponse.json({ error: '잘못된 형식의 sessionId입니다' }, { status: 400 });
         }
 
         const supabase = getSupabaseClient();
@@ -57,6 +67,6 @@ export async function POST(request) {
         return NextResponse.json({ success: true }, { status: 201 });
     } catch (err) {
         console.error('[POST /api/eum/transmit]', err.message);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });
     }
 }

@@ -11,6 +11,7 @@ import OpenAI from 'openai';
 import path from 'path';
 import { readFileSync } from 'fs';
 import { getSupabaseClient } from './supabase';
+import { shiftDates } from '../../../projects/eum/_lib/dateShift';
 
 // 정적 JSON 폴백 — 환경 변수 미설정 또는 전체 실패 시 사용
 import fallbackBriefing from '../../../projects/eum/_references/data/doctor/04_ai_briefing.json';
@@ -68,7 +69,7 @@ export async function loadPatientData(patientId) {
     const staticData = Object.fromEntries(
         staticFiles.map((f) => [
             f.replace('.json', ''),
-            JSON.parse(readFileSync(path.join(DATA_DIR, f), 'utf8')),
+            shiftDates(JSON.parse(readFileSync(path.join(DATA_DIR, f), 'utf8'))),
         ])
     );
 
@@ -114,12 +115,12 @@ export async function loadPatientData(patientId) {
     } catch (err) {
         // Supabase 미연결 시 정적 JSON 폴백
         console.warn('[loadPatientData] Supabase 조회 실패, 정적 JSON 사용:', err.message);
-        const patientProfile = JSON.parse(
+        const patientProfile = shiftDates(JSON.parse(
             readFileSync(path.join(DATA_DIR, '01_patient_profile.json'), 'utf8')
-        );
-        const symptomRecords = JSON.parse(
+        ));
+        const symptomRecords = shiftDates(JSON.parse(
             readFileSync(path.join(DATA_DIR, '03_symptom_records.json'), 'utf8')
-        );
+        ));
         return {
             ...staticData,
             '01_patient_profile': patientProfile,

@@ -4,8 +4,12 @@
  * 데모 환자 ID에 맞게 리매핑하여 삽입
  */
 
-import sessionsJson from '../../../projects/eum/_references/data/patient/05_consultation_sessions.json';
-import symptomRecordsJson from '../../../projects/eum/_references/data/patient/03_symptom_records.json';
+import rawSessions from '../../../projects/eum/_references/data/patient/05_consultation_sessions.json';
+import rawSymptoms from '../../../projects/eum/_references/data/patient/03_symptom_records.json';
+import { shiftDates } from '../../../projects/eum/_lib/dateShift';
+
+const sessionsJson = shiftDates(rawSessions);
+const symptomRecordsJson = shiftDates(rawSymptoms);
 import aiBriefing from '../../../projects/eum/_references/data/doctor/04_ai_briefing.json';
 import aiSuggestions from '../../../projects/eum/_references/data/doctor/05_ai_suggestions.json';
 import dashboardState from '../../../projects/eum/_references/data/doctor/03_dashboard_state.json';

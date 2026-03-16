@@ -1,4 +1,5 @@
-import sessions from '../../../_references/data/patient/05_consultation_sessions.json';
+import rawSessions from '../../../_references/data/patient/05_consultation_sessions.json';
+import { shiftDates } from '../../../_lib/dateShift';
 import styles from './page.module.scss';
 import AppBar from '../../_components/AppBar/AppBar';
 import CheckinHospitalCard from '../../_components/CheckinHospitalCard/CheckinHospitalCard';
@@ -11,6 +12,7 @@ export const metadata = {
 };
 
 // ses_004: 서현내과의원 / 김도현 / 2026-02-17
+const sessions = shiftDates(rawSessions);
 const session = sessions.sessions.find((s) => s.session_id === 'ses_004');
 
 function formatDate(isoString) {
