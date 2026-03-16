@@ -11,7 +11,7 @@
 |------|------|------|
 | 라우팅 | `patient/page.js` | P-018 홈 |
 | 반응형 | 완전 반응형 (`width: 100%`), 고정 폭 없음 | 실제 스마트폰 전체 화면 테스트 예정 |
-| Server Component | 전체 (탭바 포함) | 인터랙션 없음, 링크만 존재 |
+| Server Component | 페이지 자체는 Server Component | VitalsToday, NewResultToast는 `'use client'` |
 | 폰트 | Noto Sans KR | 환자 앱 기본 폰트 |
 
 ---
@@ -26,9 +26,10 @@
 | 앱바 | "Eum" 타이틀 + 벨 아이콘 | `AppBar` | — |
 | 인사말 | 이름 + 문구 | `GreetingSection` | `greeting` |
 | ① | 최근 증상 | `RecentSymptoms` | `recent_symptoms_summary` |
-| ② | 오늘의 건강 | `VitalsToday` | `vitals_today` |
-| ③ | 복약 알림 | `MedicationReminder` | `medication_reminder` + `active_medications_count` |
-| ④ | 지난 진료 결과 | `LastVisitResult` | `last_visit_result` |
+| CTA | 증상 기록 CTA | `SymptomLogCta` | — (증상 기록 페이지 링크) |
+| ② | 오늘의 건강 | `VitalsToday` (`'use client'`) | `vitals_today` |
+| ③ | 지난 진료 결과 | `LastVisitResult` | `last_visit_result` |
+| 토스트 | 전송 결과 알림 | `NewResultToast` (`'use client'`) | localStorage 기반 읽음 추적 |
 | 탭바 | 홈·증상기록·진료요약·마이페이지 | `TabBar` | — |
 
 ---
@@ -74,7 +75,7 @@
 
 | 형식 | 포맷 | 예시 |
 |------|------|------|
-| 날짜 | `YYYY. MM. DD` | `2026. 02. 10` |
+| 날짜 | `YYYY.MM.DD` | `2026.02.10` |
 | 시간 (12시간제) | `오전/오후 H:MM` | `오전 7:30`, `오후 6:00` |
 | ISO 문자열 → 시간 변환 | 로케일 없는 수동 포맷 | `HH:MM` → split(':') |
 
@@ -90,10 +91,10 @@
 
 ---
 
-## 8. 보류 사항 (미구현 탭 링크)
+## 8. 탭 링크 현황
 
 | 탭 | href | 상태 |
 |----|------|------|
-| 증상 기록 | `/projects/eum/patient/symptoms` | 미구현 |
-| 진료요약 | `/projects/eum/patient/summary` | 미구현 |
-| 마이페이지 | `/projects/eum/patient/mypage` | 미구현 |
+| 증상 기록 | `/projects/eum/patient/symptoms` | 구현 완료 |
+| 진료요약 | `/projects/eum/patient/summary` | 구현 완료 |
+| 마이페이지 | `/projects/eum/patient/mypage` | 구현 완료 |

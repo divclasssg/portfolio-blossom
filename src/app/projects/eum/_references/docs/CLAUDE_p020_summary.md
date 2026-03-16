@@ -28,12 +28,14 @@
 
 ## 데이터 소스
 
-| 파일 | 용도 |
-|---|---|
-| `06_consultation_results.json` | 진료 결과 (진단명, 처방, 의뢰, doctor_note_plain) |
-| `05_consultation_sessions.json` | hospital_name 매핑 (session_id 키) |
+| 소스 | 용도 | 비고 |
+|---|---|---|
+| Supabase `consultation_results` 테이블 | 진료 결과 (진단명, 처방, 의뢰, doctor_note_plain) | **우선** — DB 전송 완료된 결과만 환자에게 표시 |
+| `06_consultation_results.json` | 정적 JSON 폴백 | DB 조회 실패 시 사용 |
+| `05_consultation_sessions.json` | hospital_name 매핑 (session_id 키) | 폴백 시 세션 메타데이터 조인 |
+| `04_medical_records.json` | 이전 검사 수치 참조 | 상세 화면에서 lab_results 비교용 |
 
-consultation_results에 hospital_name 없음 → sessions에서 session_id로 조인.
+DB 우선, 정적 JSON 폴백 구조. `transformForPatient()`로 DB 스키마 → UI 스키마 변환.
 
 ---
 
@@ -79,4 +81,5 @@ TabBar (summary 활성)
 | 컴포넌트 | 위치 | 역할 |
 |---|---|---|
 | `SummaryListItem` | `patient/_components/SummaryListItem/` | 목록 항목 (Server, Link) |
+| `MarkResultSeen` | `patient/_components/MarkResultSeen/` | 읽음 추적 (`'use client'`, localStorage 기반 — NewResultToast와 연동) |
 | 상세 섹션 | `summary/[id]/page.js` 인라인 | 섹션별 마크업 직접 렌더링 |

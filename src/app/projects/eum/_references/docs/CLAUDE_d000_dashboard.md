@@ -27,19 +27,18 @@
 - 우측: 액션 아이콘들 (기능 컨트롤)
 - 차트 아이콘: D-F12 타임라인 모달로 바로가기 (타임라인 섹션이 하단에 있어 접근성 보완)
 
-## 4. 섹션 구조 (와이어프레임 기준 9개)
+## 4. 섹션 구조 (현재 구현 기준)
 
-| # | 섹션 | 내용 | 비고 |
-|---|------|------|------|
-| 1 | **Header** | 드래그핸들, 로고, 차트 아이콘, opacity, pin, 닫기 | 다크(#111827) |
-| 2 | **Patient Profile** | 환자명/나이/성별 + 환자 상세 + Allergy Warning(시각적 강조 유지, 고정/닫기 기능 없음) | #F3F4F6 카드 |
-| 3 | **Patient Overview** | 만성질환 + 신체정보 + 복용약 수 | 기본 요약 → [더보기]로 상세 펼침 |
-| 4 | **Chief Complaint** | 에피소드 건수 + 환자 원문 그대로 표시 | 수정 불가 |
-| 5 | **AI Risk Flags** | AI 패턴 카드 + 뱃지 + [근거 보기] | 근거 보기 목적지 **보류** (데이터 파악 후 결정) |
-| 6 | **AI Briefing** | AI 종합 분석 텍스트 + 하이라이트 + 다크 뱃지 | 스크롤 가능, AI 경고 포함 |
-| 7 | **Timeline** | 최근 기록 리스트 + [더보기](리스트 확장) + [데이터 보기](→D-F12) | 더보기: 패널 내 확장 / 데이터 보기: 차트 모달 |
-| 8 | **AI Suggestions** | 참고 키워드 목록 (진단 언어 금지) | 드래그앤드롭 우선순위 조정, AI 경고 아이콘 자동 삽입, 의사 판단으로 비활성화(불필요/확인완료), 모델 정보 표시 |
-| 9 | **Footer CTA** | [결과 작성] → D-001 | #111827 버튼 |
+| # | 섹션 | 컴포넌트 | 내용 | 비고 |
+|---|------|----------|------|------|
+| 1 | **Header** | `PanelHeader` (DoctorPanel 내장) | 드래그핸들, 로고, 차트 아이콘, opacity, pin, 닫기 | 다크(#111827) |
+| 2 | **Patient Profile** | `PatientProfile` | 환자명/나이/성별 + Allergy + 만성질환/신체정보/복용약 (확장 영역) | 구 Patient Overview 통합 |
+| 3 | **Chief + Meds** | `ChiefMedTabs` | ChiefComplaint + Medications 탭/그리드 배치 | <640px 탭, ≥640px 그리드 |
+| 4 | **Timeline** | `Timeline` | 최근 기록 리스트 + [더보기](리스트 확장) + [데이터 보기](→D-F12 모달) | 더보기: 패널 내 확장 |
+| 5 | **AI 영역** | `AiDataProvider` | AiBriefing + AiSuggestions + AiWarningBanner 프로그레시브 로딩 | 구 AI Risk Flags 기능 통합 |
+| 6 | **Footer CTA** | `FooterCta` | [결과 작성] → D-001 | #111827 버튼 |
+
+> **변경 이력**: 구 Patient Overview(#3)는 PatientProfile 확장 영역에 통합. 구 AI Risk Flags(#5)는 AiBriefing/AiSuggestions 내 경고로 대체 — 별도 컴포넌트 없음.
 
 ## 5. 그리드 레이아웃
 
@@ -50,9 +49,10 @@
 
 ### 배치 규칙
 - Header, Footer CTA: 항상 전체 폭
-- **섹션 배치 순서(중요도순): 보류** — 추후 검토
+- Profile: 스크롤 영역 상단 고정 (스크롤 섀도우)
+- 콘텐츠 영역: ≥640px 2col 그리드, <640px 1col
 
-## 6. 보류 사항
+## 6. 해소된 보류 사항
 
-1. **AI Risk Flags [근거 보기] 목적지** — 근거 데이터 종류 파악 후 결정
-2. **섹션 배치 순서(중요도)** — 1col/2col/3col에서 섹션 우선순위 배치 추후 검토
+1. ~~AI Risk Flags [근거 보기] 목적지~~ → AiSuggestions "데이터 보기" 버튼 → D-F12 PatientDataModal로 해소
+2. ~~섹션 배치 순서(중요도)~~ → 구현에서 확정: Profile → ChiefMedTabs → Timeline → AI 영역 → FooterCTA
