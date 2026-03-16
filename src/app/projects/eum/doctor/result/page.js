@@ -3,6 +3,7 @@ import aiWarnings from '../../_references/data/doctor/08_ai_warnings.json';
 import dashboardState from '../../_references/data/doctor/03_dashboard_state.json';
 import timelineChartData from '../../_references/data/doctor/06_timeline_chart_data.json';
 import { getPatientId } from '../../_lib/getPatientId';
+import { getLatestSessionId } from '../../../../api/eum/_lib/getLatestSession';
 
 import { PatientDataModalProvider } from '../_components/PatientDataModal/PatientDataModalContext';
 import DoctorPanel from '../_components/DoctorPanel/DoctorPanel';
@@ -22,20 +23,23 @@ export const metadata = {
     title: 'D-001 결과 확인 및 전송 — Eum',
 };
 
-// Supabase에서 환자 정보 조회 (실패 시 null → 정적 JSON 폴백)
-async function fetchPatient(patientId) {
+// Supabase에서 환자 정보 + 최신 세션 ID 조회 (실패 시 null → 정적 JSON 폴백)
+async function fetchPatientAndSession(patientId) {
     try {
         const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
-        const { data, error } = await supabase
-            .from('patients')
-            .select('name, birth_date, gender, chronic_conditions, allergies')
-            .eq('id', patientId)
-            .single();
-        if (error) throw error;
-        return data;
+        const [patientRes, sessionId] = await Promise.all([
+            supabase
+                .from('patients')
+                .select('name, birth_date, gender, chronic_conditions, allergies')
+                .eq('id', patientId)
+                .single(),
+            getLatestSessionId(supabase, patientId),
+        ]);
+        if (patientRes.error) throw patientRes.error;
+        return { patient: patientRes.data, sessionId };
     } catch {
-        return null;
+        return { patient: null, sessionId: null };
     }
 }
 
@@ -57,7 +61,9 @@ export default async function ResultPage() {
     const { sections } = dashboardState;
     // 쿠키 없으면 기본 환자(윤서진)로 폴백 — 의사 대시보드와 동일 패턴
     const patientId = (await getPatientId()) || 'pat_yoon_001';
-    const patient = await fetchPatient(patientId);
+    const { patient, sessionId: dbSessionId } = await fetchPatientAndSession(patientId);
+    // DB 세션 ID 우선, 폴백 → 정적 JSON (ses_004)
+    const activeSessionId = dbSessionId || resultPackage.session_id;
 
     // F16 경고: baseWarnings + 쉬운말 변환 모델 버전
     const baseWarnings = aiWarnings.warnings.filter((w) => w.id !== 'warn_model');
@@ -110,7 +116,7 @@ export default async function ResultPage() {
             footer={
                 <ResultFooterCta
                     patientName={patientSummary.name}
-                    sessionId={resultPackage.session_id}
+                    sessionId={activeSessionId}
                     doctorId={resultPackage.doctor_id}
                     doctorName={resultPackage.doctor_name}
                     hospitalName={resultPackage.hospital_name}
