@@ -47,9 +47,22 @@ export async function POST(request) {
             locationType,
         } = body;
 
-        if (!patientId || !occurredAt || !severity || !categoryCode) {
+        if (!patientId || !occurredAt || !categoryCode) {
             return NextResponse.json({ error: '필수 필드 누락' }, { status: 400 });
         }
+
+        // GPT가 문자열/NRS 범위를 반환할 수 있으므로 정수 변환
+        const SEVERITY_MAP = { '약함': 1, '보통': 2, '심함': 3, '극심': 4 };
+        let parsedSeverity = typeof severity === 'string'
+            ? (SEVERITY_MAP[severity] ?? parseInt(severity, 10))
+            : Number(severity);
+        if (!Number.isInteger(parsedSeverity) || parsedSeverity < 1 || parsedSeverity > 4) {
+            parsedSeverity = 2; // 파싱 실패 시 기본값
+        }
+
+        // locationType 한국어 → 영문 코드 변환
+        const LOCATION_MAP = { '집': 'HOME', '직장': 'WORK', '밖': 'OUTSIDE' };
+        const normalizedLocation = LOCATION_MAP[locationType] || locationType || 'HOME';
 
         const supabase = getSupabaseClient();
 
@@ -63,9 +76,9 @@ export async function POST(request) {
             description: description || null,
             voice_transcript: voiceTranscript || null,
             occurred_at: occurredAt,
-            severity,
+            severity: parsedSeverity,
             category_code: categoryCode,
-            location_type: locationType || 'HOME',
+            location_type: normalizedLocation,
         };
 
         const { data, error } = await supabase
