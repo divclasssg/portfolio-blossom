@@ -17,7 +17,7 @@
 
 .all-label {
     font-size: $fs-body;
-    font-weight: 600;
+    font-weight: 700;
     color: $text-primary;
 }
 
@@ -93,7 +93,7 @@
 
 .required-badge {
     font-size: $fs-small;
-    font-weight: 600;
+    font-weight: 700;
     color: $color-primary;
     background: rgba($color-primary, 0.1);
     padding: 2px 6px;
@@ -103,7 +103,7 @@
 
 .optional-badge {
     font-size: $fs-small;
-    font-weight: 600;
+    font-weight: 700;
     color: $text-secondary;
     background: rgba(0, 0, 0, 0.06);
     padding: 2px 6px;

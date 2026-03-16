@@ -25,7 +25,7 @@
 
 .section-title {
     font-size: $fs-regular;
-    font-weight: 600;
+    font-weight: 700;
     color: $color-primary;
     margin-bottom: 8px;
     letter-spacing: 0.01em;
@@ -126,13 +126,13 @@
 
 .badge-required {
     font-size: $fs-small;
-    font-weight: 600;
+    font-weight: 700;
     color: $color-danger;
 }
 
 .badge-optional {
     font-size: $fs-small;
-    font-weight: 600;
+    font-weight: 700;
     color: $color-primary;
 }
 
@@ -288,7 +288,7 @@
     border: none;
     border-radius: $card-radius;
     font-size: $fs-body;
-    font-weight: 600;
+    font-weight: 700;
     font-family: inherit;
     cursor: pointer;
     transition: opacity 0.15s ease;
