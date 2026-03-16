@@ -181,9 +181,7 @@ export default function useSymptomChat({ patientId, patientName, sessionId, init
                         : m
                 )
             );
-            const severityText = ['', '약함(1-3)', '보통(4-6)', '심함(7-8)', '극심(9-10)'][
-                severity
-            ] ?? '';
+            const severityText = ['', '약함', '보통', '심함', '극심'][severity] ?? '';
             await sendMessage(`증상 강도: ${severityText}`);
         },
         [sendMessage]

@@ -5,10 +5,10 @@ import styles from './SeverityChips.module.scss';
 // NRS 3중 인코딩: 텍스트 + 이모지 + 색상 (CLAUDE_ux_writing.md 필수 준수)
 // severity: DB 저장값 1-4 (1=약함, 2=보통, 3=심함, 4=극심)
 const CHIPS = [
-    { label: '약함(1-3)', colorClass: 'chip-mild', severity: 1 },
-    { label: '보통(4-6)', colorClass: 'chip-moderate', severity: 2 },
-    { label: '심함(7-8)', colorClass: 'chip-severe', severity: 3 },
-    { label: '극심(9-10)', colorClass: 'chip-extreme', severity: 4 },
+    { label: '약함', colorClass: 'chip-mild', severity: 1 },
+    { label: '보통', colorClass: 'chip-moderate', severity: 2 },
+    { label: '심함', colorClass: 'chip-severe', severity: 3 },
+    { label: '극심', colorClass: 'chip-extreme', severity: 4 },
 ];
 
 // onSelect: (severity: number) => void
