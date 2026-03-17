@@ -16,8 +16,8 @@ import styles from './VitalsToday.module.scss';
 
 // ── 날짜 포맷 (아코디언 상세용) ───────────────────────────────────────────────
 function formatShortDate(isoString) {
-    const d = new Date(isoString);
-    return `${d.getMonth() + 1}/${d.getDate()} (${WEEKDAYS[d.getDay()]})`;
+    const kst = new Date(new Date(isoString).getTime() + 9 * 60 * 60 * 1000);
+    return `${kst.getUTCMonth() + 1}/${kst.getUTCDate()} (${WEEKDAYS[kst.getUTCDay()]})`;
 }
 
 export default function VitalsToday({ vitals, wearableDevice, wearableHistory, symptomRecords }) {

@@ -31,7 +31,7 @@
         { "date": "2025-10-07", "severity": 2, "category": "SYM-12", "label": "흉부 불편감+두근거림", "color": "#FFC000", "icon": "face_neutral", "source": "patient_input" },
         { "date": "2025-10-21", "severity": 3, "category": "SYM-05", "label": "야간 역류+수면 방해", "color": "#E69F00", "icon": "face_pain", "source": "patient_input" },
         { "date": "2025-11-04", "severity": 4, "category": "SYM-05", "label": "심한 역류+오심+식은땀", "color": "#E65C00", "icon": "face_pain", "source": "patient_input" },
-        { "date": "2025-11-14", "severity": 5, "category": "SYM-12", "label": "흉부 압박감+심계항진 악화", "color": "#CC0000", "icon": "face_pain", "source": "voice_input" },
+        { "date": "2025-11-14", "severity": 4, "category": "SYM-12", "label": "흉부 압박감+심계항진 악화", "color": "#E65C00", "icon": "face_pain", "source": "voice_input" },
         { "date": "2025-11-25", "severity": 4, "category": "SYM-05", "label": "야간 가슴 쓰림 재발+인후 이물감", "color": "#E65C00", "icon": "face_pain", "source": "patient_input" },
         { "date": "2025-12-08", "severity": 3, "category": "SYM-05", "label": "식후 역류+더부룩", "color": "#E69F00", "icon": "face_pain", "source": "patient_input" },
         { "date": "2025-12-22", "severity": 2, "category": "SYM-05", "label": "식후 가슴 쓰림", "color": "#FFC000", "icon": "face_neutral", "source": "patient_input" },

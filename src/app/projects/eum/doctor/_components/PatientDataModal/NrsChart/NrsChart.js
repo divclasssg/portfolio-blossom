@@ -12,7 +12,7 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 import { NRS_CATEGORY_COLORS, SYMPTOM_DAY_BG } from '../_lib/chartColors';
-import { CATEGORY_LABEL } from '../../../_lib/constants';
+import { CATEGORY_LABEL, SEVERITY_LABEL } from '../../../_lib/constants';
 import styles from './NrsChart.module.scss';
 
 // 날짜 문자열 → "2/5" 형식 (타임존 독립)
@@ -27,7 +27,7 @@ function NrsTooltip({ active, payload, label }) {
     return (
         <div className="chart-tooltip">
             <p className="chart-tooltip-date">{fmtDate(label)}</p>
-            <p className={styles['tooltip-value']}>NRS {value}</p>
+            <p className={styles['tooltip-value']}>강도 {value} ({SEVERITY_LABEL[value] ?? `${value}단계`})</p>
             {entry.prevDelta != null && (
                 <p className={styles['tooltip-delta']}>
                     이전 대비 {entry.prevDelta > 0 ? `↑${entry.prevDelta}` : entry.prevDelta < 0 ? `↓${Math.abs(entry.prevDelta)}` : '변화 없음'}
@@ -76,8 +76,8 @@ export default function NrsChart({ data, symptomDays, xTicks, dateFormatter }) {
                 tickLine={false}
             />
             <YAxis
-                domain={[0, 10]}
-                ticks={[0, 2, 4, 6, 8, 10]}
+                domain={[0, 4]}
+                ticks={[0, 1, 2, 3, 4]}
                 tick={{ fontSize: 11, fill: '#9ca3af' }}
                 axisLine={false}
                 tickLine={false}
