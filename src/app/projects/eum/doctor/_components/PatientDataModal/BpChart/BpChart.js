@@ -11,11 +11,16 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from 'recharts';
-import { REFERENCE_RANGE_COLOR, SYMPTOM_DAY_BG } from '../_lib/chartColors';
+import {
+    REFERENCE_RANGE_COLOR,
+    SYMPTOM_DAY_BG,
+    CHART_AXIS_TICK,
+    CHART_GRID_STROKE,
+    CHART_CURSOR_FILL,
+    BP_COLOR,
+    BP_OUTLIER_COLOR,
+} from '../_lib/chartColors';
 import styles from './BpChart.module.scss';
-
-const BP_COLOR = '#009E73';
-const BP_OUTLIER_COLOR = '#FF3B30';
 
 const fmtDate = (d) => {
     const [, m, day] = d.split('-');
@@ -72,7 +77,7 @@ export default function BpChart({ data, symptomDays, xTicks, dateFormatter }) {
             syncId="timeline"
             margin={{ top: 4, right: 8, bottom: 0, left: 0 }}
         >
-            <CartesianGrid vertical={false} stroke="#E5E7EB" strokeDasharray="0" />
+            <CartesianGrid vertical={false} stroke={CHART_GRID_STROKE} strokeDasharray="0" />
 
             {/* 수축기 정상 범위 (90–120 mmHg) */}
             <ReferenceArea
@@ -106,20 +111,20 @@ export default function BpChart({ data, symptomDays, xTicks, dateFormatter }) {
                 dataKey="date"
                 ticks={xTicks}
                 tickFormatter={dateFormatter || fmtDate}
-                tick={{ fontSize: 11, fill: '#9ca3af' }}
+                tick={{ fontSize: 11, fill: CHART_AXIS_TICK }}
                 axisLine={false}
                 tickLine={false}
             />
             <YAxis
                 domain={[50, 145]}
                 ticks={[60, 80, 100, 120, 140]}
-                tick={{ fontSize: 11, fill: '#9ca3af' }}
+                tick={{ fontSize: 11, fill: CHART_AXIS_TICK }}
                 axisLine={false}
                 tickLine={false}
                 width={36}
             />
 
-            <Tooltip content={<BpTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} isAnimationActive={false} />
+            <Tooltip content={<BpTooltip />} cursor={{ fill: CHART_CURSOR_FILL }} isAnimationActive={false} />
 
             {/* 맥압 밴드 — 스택 Area로 이완기~수축기 구간 채움 */}
             {/* base: 이완기까지 투명 오프셋, band: 맥압(수축기-이완기) 높이 */}

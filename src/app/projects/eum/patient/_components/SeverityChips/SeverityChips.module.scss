@@ -36,20 +36,20 @@
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.12);
 }
 
-// NRS 강도별 배경색 (색상만으로 정보 전달 금지 → 이모지+텍스트 병행)
+// NRS 강도별 배경색 — 4단계 스케일 (색상만으로 정보 전달 금지 → 이모지+텍스트 병행)
 .chip-mild {
     border: 1px solid $color-success;
-    background: #e8f5e9;
-} // 약함(1-3) — 연녹색
+    background: rgba($color-success, 0.12);
+} // 1단계 — 연녹색
 .chip-moderate {
     border: 1px solid $color-warning;
-    background: #fff9c4;
-} // 보통(4-6) — 연노랑
+    background: rgba($color-warning, 0.12);
+} // 2단계 — 연노랑
 .chip-severe {
     border: 1px solid $color-warning;
-    background: #ffe0b2;
-} // 심함(7-8) — 연주황
+    background: rgba($color-warning, 0.20);
+} // 3단계 — 연주황
 .chip-extreme {
     border: 1px solid $color-danger;
-    background: #ffebee;
-} // 극심(9-10) — 연빨강
+    background: rgba($color-danger, 0.12);
+} // 4단계 — 연빨강

@@ -60,9 +60,9 @@
 .icd-code {
     font-weight: 500;
     padding: 2px 6px;
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.3);
+    background: t.$header-chip-bg;
+    color: t.$header-chip-text;
+    border-color: t.$header-chip-border;
 }
 
 // Chip 오버라이드: 모달 헤더 — 더 큰 사이즈, 어두운 배경
@@ -70,23 +70,23 @@
     height: 24px;
     padding: 0 12px;
     background: transparent;
-    border-color: #fff;
+    border-color: t.$header-chip-text;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
     font-weight: 400;
-    color: #fff;
+    color: t.$header-chip-text;
 }
 
 // 알레르기 칩 — danger variant 오버라이드 (어두운 배경)
 .modal-chip-danger {
     height: 24px;
     padding: 0 12px;
-    background: rgba(255, 59, 48, 0.2);
-    border-color: rgba(255, 59, 48, 0.5);
+    background: t.$header-chip-danger-bg;
+    border-color: t.$header-chip-danger-border;
     font-family: var(--font-noto-kr), sans-serif;
     font-size: t.$fs-regular;
     font-weight: 400;
-    color: #ff6961;
+    color: t.$header-chip-danger-text;
 }
 
 // 칩+툴팁 래퍼

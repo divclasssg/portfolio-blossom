@@ -30,7 +30,7 @@ function SymptomDots({ data, symptomMap, xPositions }) {
         const severity = symptomMap[toDateKey(d.recorded_at)];
         if (!severity) return null;
         return (
-            <circle key={`sym-${i}`} cx={xPositions[i]} cy={H - 1.5} r={1.5} fill={severity >= 4 ? '#FF3B30' : '#8E8E93'} />
+            <circle key={`sym-${i}`} cx={xPositions[i]} cy={H - 1.5} r={1.5} fill={severity >= 4 ? '#FF3B30' : '#6d6d72'} />
         );
     });
 }
@@ -66,7 +66,7 @@ export function SleepSparkline({ data, symptomMap }) {
 
     return (
         <Sparkline ariaLabel={`최근 7일 수면 추세, 권장 7시간${symptomDays > 0 ? `, 증상 발생일 ${symptomDays}일` : ''}`}>
-            <line x1={PAD_X} y1={refY} x2={W - PAD_X} y2={refY} stroke="#8E8E93" strokeWidth="0.5" strokeDasharray="2 1.5" />
+            <line x1={PAD_X} y1={refY} x2={W - PAD_X} y2={refY} stroke="#6d6d72" strokeWidth="0.5" strokeDasharray="2 1.5" />
             {values.map((v, i) => {
                 const barH = (v / max) * chartH;
                 const x = PAD_X + i * (barW + gap);

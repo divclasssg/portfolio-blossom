@@ -18,6 +18,9 @@ import {
     SLEEP_AVG_COLOR,
     REFERENCE_RANGE_COLOR,
     SYMPTOM_DAY_BG,
+    CHART_AXIS_TICK,
+    CHART_GRID_STROKE,
+    CHART_CURSOR_FILL,
 } from '../_lib/chartColors';
 import styles from './SleepChart.module.scss';
 
@@ -58,7 +61,7 @@ export default function SleepChart({ data, averageHours, symptomDays, xTicks, da
             syncId="timeline"
             margin={{ top: 4, right: 8, bottom: 0, left: 0 }}
         >
-            <CartesianGrid vertical={false} stroke="#E5E7EB" strokeDasharray="0" />
+            <CartesianGrid vertical={false} stroke={CHART_GRID_STROKE} strokeDasharray="0" />
 
             {/* 권장 수면 범위 (7-9h) 배경 */}
             <ReferenceArea
@@ -84,21 +87,21 @@ export default function SleepChart({ data, averageHours, symptomDays, xTicks, da
                 dataKey="date"
                 ticks={xTicks}
                 tickFormatter={dateFormatter || fmtDate}
-                tick={{ fontSize: 11, fill: '#9ca3af' }}
+                tick={{ fontSize: 11, fill: CHART_AXIS_TICK }}
                 axisLine={false}
                 tickLine={false}
             />
             <YAxis
                 domain={[0, 10]}
                 ticks={[0, 3, 6, 9]}
-                tick={{ fontSize: 11, fill: '#9ca3af' }}
+                tick={{ fontSize: 11, fill: CHART_AXIS_TICK }}
                 axisLine={false}
                 tickLine={false}
                 unit="h"
                 width={32}
             />
 
-            <Tooltip content={<SleepTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} isAnimationActive={false} />
+            <Tooltip content={<SleepTooltip />} cursor={{ fill: CHART_CURSOR_FILL }} isAnimationActive={false} />
 
             {/* 평균 수면시간 기준선 — Badge 형태 라벨 */}
             <ReferenceLine

@@ -25,7 +25,16 @@ export const SLEEP_AVG_COLOR = '#D55E00'; // 평균선
 export const REFERENCE_RANGE_COLOR = '#C7C7CC'; // 정상 참조 범위 (Neutral-divider)
 export const SYMPTOM_DAY_BG = 'rgba(209,209,214,0.30)'; // 증상 발생일 배경 ($neutral-surface 기반)
 
+// 차트 축·그리드 공통
+export const CHART_AXIS_TICK = '#6d6d72'; // $text-secondary (WCAG AA 보정)
+export const CHART_GRID_STROKE = '#E5E5EA'; // $neutral-bg-tertiary — iOS systemGray5
+export const CHART_CURSOR_FILL = 'rgba(0,0,0,0.04)';
+
+// 혈압 차트 (Okabe-Ito 기반)
+export const BP_COLOR = '#009E73'; // bluish green
+export const BP_OUTLIER_COLOR = '#FF3B30'; // clinical.danger
+
 // 추세 색상 — 3중 인코딩(아이콘+텍스트+색상)용
 export const TREND_POSITIVE = '#34C759'; // clinical.normal — 긍정적 변화
 export const TREND_NEGATIVE = '#FF3B30'; // clinical.danger — 부정적 변화
-export const TREND_FLAT = '#8E8E93'; // neutral — 변화 없음
+export const TREND_FLAT = '#6d6d72'; // neutral (WCAG AA 보정) — 변화 없음

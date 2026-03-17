@@ -7,7 +7,7 @@
     background: t.$color-dark;
     color: t.$header-fg;
     border: none;
-    border-radius: 12px;
+    border-radius: t.$cta-button-radius;
     font-size: t.$fs-body;
     font-weight: 700;
     line-height: t.$line-height-body;

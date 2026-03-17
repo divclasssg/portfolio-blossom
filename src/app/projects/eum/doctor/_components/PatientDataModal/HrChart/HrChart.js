@@ -16,6 +16,9 @@ import {
     HR_MEDIAN_COLOR,
     REFERENCE_RANGE_COLOR,
     SYMPTOM_DAY_BG,
+    CHART_AXIS_TICK,
+    CHART_GRID_STROKE,
+    CHART_CURSOR_FILL,
 } from '../_lib/chartColors';
 import styles from './HrChart.module.scss';
 
@@ -123,7 +126,7 @@ export default function HrChart({ data, symptomDays, xTicks, dateFormatter }) {
             syncId="timeline"
             margin={{ top: 4, right: 8, bottom: 0, left: 0 }}
         >
-            <CartesianGrid vertical={false} stroke="#E5E7EB" strokeDasharray="0" />
+            <CartesianGrid vertical={false} stroke={CHART_GRID_STROKE} strokeDasharray="0" />
 
             {/* 정상 심박 범위 (60–100 bpm) */}
             <ReferenceArea
@@ -149,20 +152,20 @@ export default function HrChart({ data, symptomDays, xTicks, dateFormatter }) {
                 dataKey="date"
                 ticks={xTicks}
                 tickFormatter={dateFormatter || fmtDate}
-                tick={{ fontSize: 11, fill: '#9ca3af' }}
+                tick={{ fontSize: 11, fill: CHART_AXIS_TICK }}
                 axisLine={false}
                 tickLine={false}
             />
             <YAxis
                 domain={[50, 115]}
                 ticks={[60, 70, 80, 90, 100, 110]}
-                tick={{ fontSize: 11, fill: '#9ca3af' }}
+                tick={{ fontSize: 11, fill: CHART_AXIS_TICK }}
                 axisLine={false}
                 tickLine={false}
                 width={32}
             />
 
-            <Tooltip content={<HrTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} isAnimationActive={false} />
+            <Tooltip content={<HrTooltip />} cursor={{ fill: CHART_CURSOR_FILL }} isAnimationActive={false} />
 
             {/* 투명 base (0→q1) — boxSpan의 y 오프셋용 */}
             <Bar dataKey="q1" stackId="hr" fill="none" legendType="none" />

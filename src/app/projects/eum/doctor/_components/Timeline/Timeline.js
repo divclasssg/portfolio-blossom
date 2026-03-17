@@ -7,6 +7,7 @@ import { AiIcon, ArrowIcon } from '../../../_components/icons';
 import ActionButton from '../ActionButton/ActionButton';
 import Badge from '../Badge/Badge';
 import { SEVERITY_LABEL, getNrsColor } from '../../_lib/constants';
+import { TREND_POSITIVE, TREND_NEGATIVE, TREND_FLAT } from '../PatientDataModal/_lib/chartColors';
 
 const CATEGORY_LABEL_EN = {
     'SYM-01': 'General / Constitutional',
@@ -21,9 +22,9 @@ const CATEGORY_LABEL_EN = {
 
 // 웨어러블 평균 대비 트렌드 화살표
 function getTrend(value, average) {
-    if (value > average * 1.05) return { arrow: '↑', color: '#ef4444' };
-    if (value < average * 0.95) return { arrow: '↓', color: '#3b82f6' };
-    return { arrow: '→', color: '#9ca3af' };
+    if (value > average * 1.05) return { arrow: '↑', color: TREND_NEGATIVE };
+    if (value < average * 0.95) return { arrow: '↓', color: TREND_POSITIVE };
+    return { arrow: '→', color: TREND_FLAT };
 }
 
 // healthPlatform 배열에서 특정 날짜(MM-DD) 레코드 찾기

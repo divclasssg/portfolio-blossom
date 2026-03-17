@@ -34,14 +34,14 @@ $neutral-bg: #f2f2f7; // neutral.background-secondary — iOS systemGray6
 $neutral-border: #c7c7cc; // neutral.divider — iOS systemGray3
 $neutral-surface: #d1d1d6; // neutral.surface — iOS systemGray4
 $neutral-divider: #c7c7cc; // neutral.divider — iOS systemGray3
-$neutral-placeholder: #8e8e93; // neutral.placeholder — iOS systemGray
+$neutral-placeholder: #6d6d72; // neutral.placeholder — iOS systemGray (WCAG AA 보정)
 $neutral-disabled: #aeaeb2; // neutral.disabled — iOS systemGray2
 $neutral-bg-tertiary: #e5e5ea; // neutral.background-tertiary — iOS systemGray5
 
 // 텍스트 — bridge-tokens-studio.json 기준
 $text-primary: #1f1f1d; // 근사 블랙 (사용자 지정)
-$text-secondary: #8e8e93; // text.secondary — iOS systemGray
-$text-muted: #8e8e93; // text.secondary — iOS systemGray (= $text-secondary)
+$text-secondary: #6d6d72; // text.secondary — iOS systemGray (WCAG AA 보정, ~5.0:1 on white)
+$text-muted: #6d6d72; // text.secondary alias (= $text-secondary)
 $text-subtle: #4b5563; // gray-600 — 부제목, 보조 설명
 $text-dark: #374151; // gray-700 — 경고 배너 텍스트
 
@@ -96,7 +96,7 @@ $card-radius: 16px;
 $card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
 // CTA 버튼
-$cta-button-radius: 16px;
+$cta-button-radius: 12px;
 $cta-button-primary-bg: #007aff;
 $cta-button-primary-text: #fff;
 $cta-button-primary-hover-bg: #007aff;
@@ -115,7 +115,7 @@ $cta-button-secondary-disabled-bg: transparent;
 $cta-button-secondary-disabled-text: #1d1d1f;
 
 // 일반 버튼
-$button-radius: 16px;
+$button-radius: 12px;
 $button-primary-bg: #007aff;
 $button-primary-text: #fff;
 $button-primary-hover-bg: #007aff;
@@ -124,6 +124,14 @@ $button-primary-active-bg: #007aff;
 $button-primary-active-text: #fff;
 $button-primary-disabled-bg: #007aff;
 $button-primary-disabled-text: #fff;
+
+// 다크 헤더 칩 (ModalHeader 등 어두운 배경용)
+$header-chip-bg: rgba(255, 255, 255, 0.15);
+$header-chip-border: rgba(255, 255, 255, 0.3);
+$header-chip-text: #ffffff;
+$header-chip-danger-bg: rgba(255, 59, 48, 0.2);
+$header-chip-danger-border: rgba(255, 59, 48, 0.5);
+$header-chip-danger-text: #ff6b6b;
 
 // 배지
 $badge-blue-bg: #dbeafe; // blue-100 — 성별 배지 등
