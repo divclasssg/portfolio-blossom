@@ -1,11 +1,11 @@
-import rawSessions from '../../../_references/data/patient/05_consultation_sessions.json';
-import { shiftDates } from '../../../_lib/dateShift';
+import rawSessions from '../../../../_references/data/patient/05_consultation_sessions.json';
+import { shiftDates } from '../../../../_lib/dateShift';
 import styles from './page.module.scss';
-import AppBar from '../../_components/AppBar/AppBar';
-import CheckinHospitalCard from '../../_components/CheckinHospitalCard/CheckinHospitalCard';
-import CheckinScopeList from '../../_components/CheckinScopeList/CheckinScopeList';
-import CheckinActions from '../../_components/CheckinActions/CheckinActions';
-import { CheckmarkIcon, WarningIcon } from '../../../_components/icons';
+import AppBar from '../../../_components/AppBar/AppBar';
+import CheckinHospitalCard from '../../../_components/CheckinHospitalCard/CheckinHospitalCard';
+import CheckinScopeList from '../../../_components/CheckinScopeList/CheckinScopeList';
+import CheckinActions from '../../../_components/CheckinActions/CheckinActions';
+import { CheckmarkIcon, WarningIcon } from '../../../../_components/icons';
 
 export const metadata = {
     title: 'P-017 진료 체크인 — Eum',
@@ -20,10 +20,11 @@ function formatDate(isoString) {
     return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
 }
 
-export default function CheckinConsentPage() {
+export default async function CheckinConsentPage({ params }) {
+    const { patientId } = await params;
     return (
         <>
-            <AppBar backHref="/projects/eum/patient/checkin" />
+            <AppBar backHref={`/projects/eum/patient/${patientId}/checkin`} />
             <main className={styles['content']}>
                 {/* 동심원 아이콘 + 타이틀 */}
                 <div className={styles['title-section']}>
@@ -48,7 +49,7 @@ export default function CheckinConsentPage() {
                     </p>
                 </div>
 
-                <CheckinActions />
+                <CheckinActions patientId={patientId} />
             </main>
         </>
     );

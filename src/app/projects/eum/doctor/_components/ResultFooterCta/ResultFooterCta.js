@@ -10,6 +10,7 @@ import TransmissionDialog from '../TransmissionDialog/TransmissionDialog';
 // D-001 하단 CTA — 확인 및 전송 / 취소
 export default function ResultFooterCta({
     patientName,
+    patientId,
     sessionId,
     doctorId,
     doctorName,
@@ -85,7 +86,7 @@ export default function ResultFooterCta({
     return (
         <footer className={`cta-footer ${styles.footer}`}>
             <CtaSecondary
-                onClick={() => router.push('/projects/eum/doctor')}
+                onClick={() => router.push(`/projects/eum/doctor/${patientId}`)}
                 aria-label="결과 작성 취소, 이전 화면으로 돌아가기"
             >
                 취소

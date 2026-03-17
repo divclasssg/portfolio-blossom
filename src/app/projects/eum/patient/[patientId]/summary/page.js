@@ -1,11 +1,9 @@
-import rawSessions from '../../_references/data/patient/05_consultation_sessions.json';
-import { shiftDates } from '../../_lib/dateShift';
+import rawSessions from '../../../_references/data/patient/05_consultation_sessions.json';
+import { shiftDates } from '../../../_lib/dateShift';
 import styles from './page.module.scss';
-import AppBar from '../_components/AppBar/AppBar';
-import SummaryListItem from '../_components/SummaryListItem/SummaryListItem';
-import TabBar from '../_components/TabBar/TabBar';
-
-export const dynamic = 'force-dynamic';
+import AppBar from '../../_components/AppBar/AppBar';
+import SummaryListItem from '../../_components/SummaryListItem/SummaryListItem';
+import TabBar from '../../_components/TabBar/TabBar';
 
 export const metadata = {
     title: '진료 요약 — Eum',
@@ -20,7 +18,7 @@ const staticSessionMap = Object.fromEntries(
 // DB에서 전송된 진료 결과 조회
 async function fetchDbResults() {
     try {
-        const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
+        const { getSupabaseClient } = await import('../../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
         const { data, error } = await supabase
             .from('consultation_results')
@@ -37,7 +35,8 @@ function formatVisitDate(dateStr) {
     return dateStr.replace(/-/g, '.');
 }
 
-export default async function SummaryListPage() {
+export default async function SummaryListPage({ params }) {
+    const { patientId } = await params;
     const dbResults = await fetchDbResults();
 
     // DB 결과만 사용 (의사가 전송한 결과만 환자에게 표시)
@@ -54,7 +53,7 @@ export default async function SummaryListPage() {
 
     return (
         <>
-            <AppBar backHref="/projects/eum/patient" />
+            <AppBar backHref={`/projects/eum/patient/${patientId}`} />
             <main className={styles['content']}>
                 <h1 className={styles['title']}>진료 요약</h1>
                 <ul className={styles['list']}>
@@ -66,6 +65,7 @@ export default async function SummaryListPage() {
                     {items.map((item) => (
                         <li key={item.session_id}>
                             <SummaryListItem
+                                patientId={patientId}
                                 sessionId={item.session_id}
                                 visitDate={formatVisitDate(item.visit_date)}
                                 hospitalName={item.hospital_name}
@@ -76,7 +76,7 @@ export default async function SummaryListPage() {
                     ))}
                 </ul>
             </main>
-            <TabBar activePath="summary" />
+            <TabBar activePath="summary" patientId={patientId} />
         </>
     );
 }

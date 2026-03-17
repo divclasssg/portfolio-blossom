@@ -14,6 +14,7 @@ import { getLatestSessionId } from '../_lib/getLatestSession';
 import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
 import { requireEnv } from '../_lib/envCheck';
 import { isValidPatientId } from '../_lib/validate';
+import { revalidateDoctor } from '../_lib/revalidate';
 
 const limiter = createRateLimiter({ windowMs: 60_000, max: 3 });
 
@@ -108,7 +109,10 @@ export async function POST(request) {
             setCachedResult(result);
             clearRunningPipeline();
             // DB 저장 (비동기, 응답 차단 안 함)
-            if (patientId) saveToDb(result, sessionId, patientId);
+            if (patientId) {
+                saveToDb(result, sessionId, patientId);
+                revalidateDoctor(patientId);
+            }
             return result;
         })
         .catch((e) => {

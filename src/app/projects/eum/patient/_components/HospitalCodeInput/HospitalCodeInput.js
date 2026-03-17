@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './HospitalCodeInput.module.scss';
 
-export default function HospitalCodeInput({ validCodes }) {
+export default function HospitalCodeInput({ validCodes, patientId }) {
     const router = useRouter();
     const [code, setCode] = useState('');
     const [error, setError] = useState(false);
@@ -18,7 +18,7 @@ export default function HospitalCodeInput({ validCodes }) {
 
     function handleSubmit() {
         if (validCodes.includes(code)) {
-            router.push('/projects/eum/patient/checkin/consent');
+            router.push(`/projects/eum/patient/${patientId}/checkin/consent`);
         } else {
             setError(true);
         }

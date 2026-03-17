@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { ploc } from '../fixtures/patientSelectors.js';
 
-const CHECKIN_URL = '/projects/eum/patient/checkin';
+const CHECKIN_URL = '/projects/eum/patient/pat_yoon_001/checkin';
 
 test.describe('환자 체크인 플로우', () => {
     test('병원 확인 → 동의 → 체크인', async ({ page }) => {
@@ -21,7 +21,7 @@ test.describe('환자 체크인 플로우', () => {
 
         // 체크인 버튼
         await page.getByText('체크인', { exact: true }).click();
-        await expect(page).toHaveURL(/\/patient$/);
+        await expect(page).toHaveURL(/\/patient\/pat_yoon_001$/);
     });
 
     test('다른 병원 → 코드 입력 → 체크인', async ({ page }) => {
@@ -42,7 +42,7 @@ test.describe('환자 체크인 플로우', () => {
     });
 
     test('잘못된 코드 → 에러 메시지', async ({ page }) => {
-        await page.goto('/projects/eum/patient/checkin/find');
+        await page.goto('/projects/eum/patient/pat_yoon_001/checkin/find');
         await expect(page.getByText('병원 코드로 체크인하기')).toBeVisible({ timeout: 15_000 });
 
         await ploc(page, 'hospitalCode').fill('000000');

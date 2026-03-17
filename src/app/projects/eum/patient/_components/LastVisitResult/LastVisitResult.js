@@ -3,7 +3,7 @@ import styles from './LastVisitResult.module.scss';
 import { ArrowIcon } from '../../../_components/icons';
 import { formatDate } from '../../../_lib/formatDate';
 
-export default function LastVisitResult({ result }) {
+export default function LastVisitResult({ result, patientId }) {
     if (!result) return null;
 
     const { visit_date, hospital_name, summary_preview = '진료 결과를 확인해 주세요.' } = result;
@@ -20,7 +20,7 @@ export default function LastVisitResult({ result }) {
                         {formatDate(visit_date)} · {hospital_name}
                     </span>
                     <Link
-                        href="/projects/eum/patient/summary"
+                        href={`/projects/eum/patient/${patientId}/summary`}
                         className="home-link"
                         aria-label="지난 진료 결과 상세 보기"
                     >

@@ -8,7 +8,7 @@ export default defineConfig({
     retries: 1,
     reporter: 'html',
     use: {
-        baseURL: 'https://portfolio-blossom-d8hc.vercel.app',
+        baseURL: process.env.PLAYWRIGHT_BASE_URL || 'https://portfolio-blossom-d8hc.vercel.app',
         viewport: { width: 1440, height: 900 },
         trace: 'on-first-retry',
     },

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { ploc } from '../fixtures/patientSelectors.js';
 
-const SYMPTOMS_URL = '/projects/eum/patient/symptoms';
+const SYMPTOMS_URL = '/projects/eum/patient/pat_yoon_001/symptoms';
 
 // SSE 스트리밍 mock 응답 생성
 function mockChatSSE() {

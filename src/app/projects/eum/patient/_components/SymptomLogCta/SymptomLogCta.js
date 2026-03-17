@@ -2,14 +2,14 @@ import Link from 'next/link';
 import styles from './SymptomLogCta.module.scss';
 import { SendIcon, ArrowIcon } from '../../../_components/icons';
 
-export default function SymptomLogCta() {
+export default function SymptomLogCta({ patientId }) {
     return (
         <section className="home-section" aria-labelledby="symptom-log-cta-title">
             <h2 id="symptom-log-cta-title" className="sr-only">
                 증상 기록하기
             </h2>
             <Link
-                href="/projects/eum/patient/symptoms"
+                href={`/projects/eum/patient/${patientId}/symptoms`}
                 className={styles['cta-link']}
                 aria-label="증상 기록하기"
             >

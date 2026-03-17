@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../../_lib/supabase';
 import { seedDemoScenario } from '../../_lib/seedDemoData';
+import { revalidateAll } from '../../_lib/revalidate';
 
 // POST /api/eum/patients/seed
 // 온보딩 완료 후 데모 환자에 윤서진 시나리오 임상 데이터 시드
@@ -17,6 +18,7 @@ export async function POST(request) {
 
         const supabase = getSupabaseClient();
         const { latestSessionId } = await seedDemoScenario(supabase, patientId);
+        revalidateAll(patientId);
 
         return NextResponse.json({ success: true, latestSessionId });
     } catch (err) {

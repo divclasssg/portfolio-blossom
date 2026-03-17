@@ -36,7 +36,7 @@ test.describe('Doctor 패널 전체 플로우', () => {
 
         // ── "결과 작성" 클릭 → D-001 ──
         await loc(page, 'resultWriteBtn').click();
-        await expect(page).toHaveURL(/\/doctor\/result/);
+        await expect(page).toHaveURL(/\/doctor\/[^/]+\/result/);
         await expect(loc(page, 'panel')).toBeVisible({ timeout: 30_000 });
 
         // D-001 주요 섹션 존재 확인

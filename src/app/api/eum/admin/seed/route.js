@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../../_lib/supabase';
 import { seedDemoScenario } from '../../_lib/seedDemoData';
 import { setPatientCookie } from '../../_lib/cookie';
+import { revalidateAll } from '../../_lib/revalidate';
 
 const ADMIN_PATIENT_ID = 'pat_admin_001';
 
@@ -66,6 +67,7 @@ export async function POST() {
 
             // 데모 데이터 없음 → 시드 재실행
             await seedDemoScenario(supabase, ADMIN_PATIENT_ID, 'admin');
+            revalidateAll(ADMIN_PATIENT_ID);
             const reseed = NextResponse.json({
                 success: true,
                 patientId: ADMIN_PATIENT_ID,
@@ -83,6 +85,7 @@ export async function POST() {
 
         // 데모 시나리오 시드 (suffix='admin')
         await seedDemoScenario(supabase, ADMIN_PATIENT_ID, 'admin');
+        revalidateAll(ADMIN_PATIENT_ID);
 
         const res = NextResponse.json({
             success: true,

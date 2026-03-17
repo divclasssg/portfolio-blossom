@@ -30,7 +30,7 @@ export function markResultAsSeen(sessionId) {
 
 // 서버에서 전달받은 전송 완료된 결과 목록 중
 // localStorage에 없는 가장 최신 1건만 토스트로 표시
-export default function NewResultToast({ transmittedResults }) {
+export default function NewResultToast({ transmittedResults, patientId }) {
     const [unseenResult, setUnseenResult] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -60,7 +60,7 @@ export default function NewResultToast({ transmittedResults }) {
         <Toast
             message="진료 결과가 도착했습니다"
             subMessage={`${unseenResult.hospital_name} · ${unseenResult.doctor_name}`}
-            href={`/projects/eum/patient/summary/${unseenResult.session_id}`}
+            href={`/projects/eum/patient/${patientId}/summary/${unseenResult.session_id}`}
             onDismiss={handleDismiss}
             isVisible={isVisible}
         />

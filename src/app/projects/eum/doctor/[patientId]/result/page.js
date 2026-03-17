@@ -1,21 +1,20 @@
-import resultPackage from '../../_references/data/doctor/07_result_package.json';
-import aiWarnings from '../../_references/data/doctor/08_ai_warnings.json';
-import dashboardState from '../../_references/data/doctor/03_dashboard_state.json';
-import timelineChartData from '../../_references/data/doctor/06_timeline_chart_data.json';
-import { getPatientId } from '../../_lib/getPatientId';
-import { PatientDataModalProvider } from '../_components/PatientDataModal/PatientDataModalContext';
-import DoctorPanel from '../_components/DoctorPanel/DoctorPanel';
-import PatientProfile from '../_components/PatientProfile/PatientProfile';
-import ClinicalNotes from '../_components/ClinicalNotes/ClinicalNotes';
-import AiPatientSummary from '../_components/AiPatientSummary/AiPatientSummary';
-import TreatmentPlan from '../_components/TreatmentPlan/TreatmentPlan';
-import ActionItems from '../_components/ActionItems/ActionItems';
-import Prescription from '../_components/Prescription/Prescription';
-import Referral from '../_components/Referral/Referral';
-import NextVisit from '../_components/NextVisit/NextVisit';
-import AiWarningBanner from '../_components/AiWarningBanner/AiWarningBanner';
-import PatientDataModal from '../_components/PatientDataModal/PatientDataModal';
-import ResultFooterCta from '../_components/ResultFooterCta/ResultFooterCta';
+import resultPackage from '../../../_references/data/doctor/07_result_package.json';
+import aiWarnings from '../../../_references/data/doctor/08_ai_warnings.json';
+import dashboardState from '../../../_references/data/doctor/03_dashboard_state.json';
+import timelineChartData from '../../../_references/data/doctor/06_timeline_chart_data.json';
+import { PatientDataModalProvider } from '../../_components/PatientDataModal/PatientDataModalContext';
+import DoctorPanel from '../../_components/DoctorPanel/DoctorPanel';
+import PatientProfile from '../../_components/PatientProfile/PatientProfile';
+import ClinicalNotes from '../../_components/ClinicalNotes/ClinicalNotes';
+import AiPatientSummary from '../../_components/AiPatientSummary/AiPatientSummary';
+import TreatmentPlan from '../../_components/TreatmentPlan/TreatmentPlan';
+import ActionItems from '../../_components/ActionItems/ActionItems';
+import Prescription from '../../_components/Prescription/Prescription';
+import Referral from '../../_components/Referral/Referral';
+import NextVisit from '../../_components/NextVisit/NextVisit';
+import AiWarningBanner from '../../_components/AiWarningBanner/AiWarningBanner';
+import PatientDataModal from '../../_components/PatientDataModal/PatientDataModal';
+import ResultFooterCta from '../../_components/ResultFooterCta/ResultFooterCta';
 
 export const metadata = {
     title: 'D-001 결과 확인 및 전송 — Eum',
@@ -24,7 +23,7 @@ export const metadata = {
 // Supabase에서 환자 정보 + 해당 의사의 전송 가능 세션 ID 조회
 async function fetchPatientAndSession(patientId, doctorId) {
     try {
-        const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
+        const { getSupabaseClient } = await import('../../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
 
         // 해당 의사의 최신 세션
@@ -78,12 +77,9 @@ function calcAge(birthDate) {
     return age;
 }
 
-export const dynamic = 'force-dynamic';
-
-export default async function ResultPage() {
+export default async function ResultPage({ params }) {
+    const { patientId } = await params;
     const { sections } = dashboardState;
-    // 쿠키 없으면 기본 환자(윤서진)로 폴백 — 의사 대시보드와 동일 패턴
-    const patientId = (await getPatientId()) || 'pat_yoon_001';
     const { patient, sessionId: dbSessionId, alreadyTransmitted } = await fetchPatientAndSession(patientId, resultPackage.doctor_id);
     // DB 세션 ID 우선, 폴백 → 정적 JSON (ses_004)
     const activeSessionId = dbSessionId || resultPackage.session_id;
@@ -125,7 +121,7 @@ export default async function ResultPage() {
         <h1 className="sr-only">결과 작성</h1>
         <PatientDataModalProvider>
         <DoctorPanel
-            backHref="/projects/eum/doctor"
+            backHref={`/projects/eum/doctor/${patientId}`}
             singleColumn
             profile={
                 <PatientProfile
@@ -139,6 +135,7 @@ export default async function ResultPage() {
             footer={
                 <ResultFooterCta
                     patientName={patientSummary.name}
+                    patientId={patientId}
                     sessionId={activeSessionId}
                     doctorId={resultPackage.doctor_id}
                     doctorName={resultPackage.doctor_name}

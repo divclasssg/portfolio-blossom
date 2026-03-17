@@ -5,7 +5,7 @@ import { BuildingIcon, LocationIcon } from '../../../_components/icons';
 import CtaButton from '../CtaButton/CtaButton';
 import styles from './HospitalConfirm.module.scss';
 
-export default function HospitalConfirm({ hospitalName, address }) {
+export default function HospitalConfirm({ hospitalName, address, patientId }) {
     const router = useRouter();
 
     return (
@@ -27,12 +27,12 @@ export default function HospitalConfirm({ hospitalName, address }) {
 
             {/* CTA 영역 — 하단 고정 */}
             <div className={`footer ${styles['footer']}`}>
-                <CtaButton onClick={() => router.push('/projects/eum/patient/checkin/consent')}>
+                <CtaButton onClick={() => router.push(`/projects/eum/patient/${patientId}/checkin/consent`)}>
                     맞아요, 체크인 할게요
                 </CtaButton>
                 <CtaButton
                     variant="tertiary"
-                    onClick={() => router.push('/projects/eum/patient/checkin/find')}
+                    onClick={() => router.push(`/projects/eum/patient/${patientId}/checkin/find`)}
                 >
                     아니오, 다른 병원이에요
                 </CtaButton>

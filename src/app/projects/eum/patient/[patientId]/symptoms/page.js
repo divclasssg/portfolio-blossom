@@ -1,20 +1,15 @@
-import { redirect } from 'next/navigation';
-import { generateDashboard, generateSymptoms } from '../../_lib/dataGenerator';
-import { getPatientId } from '../../_lib/getPatientId';
-import { getLatestSessionId } from '../../../../api/eum/_lib/getLatestSession';
-import SymptomsContent from '../_components/SymptomsContent/SymptomsContent';
+import { generateDashboard, generateSymptoms } from '../../../_lib/dataGenerator';
+import { getLatestSessionId } from '../../../../../api/eum/_lib/getLatestSession';
+import SymptomsContent from '../../_components/SymptomsContent/SymptomsContent';
 
 export const metadata = {
     title: 'P-019 증상 기록 — Eum',
 };
 
-// DB 데이터가 업데이트될 때마다 반영
-export const dynamic = 'force-dynamic';
-
 // Supabase에서 환자 이름 조회 (실패 시 null → 정적 폴백)
 async function fetchPatientName(patientId) {
     try {
-        const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
+        const { getSupabaseClient } = await import('../../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
         const { data, error } = await supabase
             .from('patients')
@@ -31,7 +26,7 @@ async function fetchPatientName(patientId) {
 // Supabase에서 증상 기록 조회 (실패 시 null → 정적 JSON 폴백)
 async function fetchSymptomRecords(patientId) {
     try {
-        const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
+        const { getSupabaseClient } = await import('../../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
         const { data, error } = await supabase
             .from('symptom_records')
@@ -45,9 +40,8 @@ async function fetchSymptomRecords(patientId) {
     }
 }
 
-export default async function SymptomsPage() {
-    const patientId = await getPatientId();
-    if (!patientId) redirect('/projects/eum/patient/onboarding/welcome');
+export default async function SymptomsPage({ params }) {
+    const { patientId } = await params;
     const homeDashboard = generateDashboard();
     const generatedSymptoms = generateSymptoms();
     const vitals = homeDashboard.vitals_today;
@@ -55,7 +49,7 @@ export default async function SymptomsPage() {
     // 최신 세션 ID 동적 조회
     let latestSessionId = null;
     try {
-        const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
+        const { getSupabaseClient } = await import('../../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
         latestSessionId = await getLatestSessionId(supabase, patientId);
     } catch {

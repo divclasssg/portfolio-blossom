@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { SELECTORS, loc } from '../fixtures/selectors.js';
 
-const RESULT_URL = '/projects/eum/doctor/result';
-const DOCTOR_URL = '/projects/eum/doctor';
+const RESULT_URL = '/projects/eum/doctor/pat_yoon_001/result';
+const DOCTOR_URL = '/projects/eum/doctor/pat_yoon_001';
 
 test.describe('D-001 결과 확인 및 전송', () => {
     test.beforeEach(async ({ page }) => {
@@ -35,12 +35,12 @@ test.describe('D-001 결과 확인 및 전송', () => {
         const backBtn = loc(page, 'headerBack');
         await expect(backBtn).toBeVisible();
         await backBtn.click();
-        await expect(page).toHaveURL(new RegExp(DOCTOR_URL + '/?$'));
+        await expect(page).toHaveURL(new RegExp('/doctor/pat_yoon_001/?$'));
     });
 
     test('취소 버튼 → D-000', async ({ page }) => {
         await loc(page, 'cancelBtn').click();
-        await expect(page).toHaveURL(new RegExp(DOCTOR_URL + '/?$'));
+        await expect(page).toHaveURL(new RegExp('/doctor/pat_yoon_001/?$'));
     });
 
     test('전송 다이얼로그 열기 → 취소로 닫기', async ({ page }) => {

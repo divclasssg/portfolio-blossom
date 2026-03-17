@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
 import { invalidatePipelineCache } from '../_lib/pipeline';
+import { revalidateDoctor, revalidatePatientHome, revalidatePatientSymptoms } from '../_lib/revalidate';
 import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
 import { isValidPatientId } from '../_lib/validate';
 
@@ -144,6 +145,11 @@ export async function POST(request) {
 
         // 인메모리 파이프라인 캐시도 무효화 → 다음 요청 시 재분석
         invalidatePipelineCache();
+
+        // 관련 페이지 캐시 무효화
+        revalidateDoctor(patientId);
+        revalidatePatientHome(patientId);
+        revalidatePatientSymptoms(patientId);
 
         return NextResponse.json({ symptom_record: data }, { status: 201 });
     } catch (err) {

@@ -163,7 +163,10 @@ export default function CompletePage() {
                     ) : (
                         <CtaButton
                             disabled={saveStatus === 'saving'}
-                            onClick={() => router.push('/projects/eum/patient')}
+                            onClick={() => {
+                                const pid = sessionStorage.getItem('eum_patient_id') || 'pat_yoon_001';
+                                router.push(`/projects/eum/patient/${pid}`);
+                            }}
                         >
                             {saveStatus === 'saving' ? '저장 중...' : 'Eum 시작하기'}
                         </CtaButton>

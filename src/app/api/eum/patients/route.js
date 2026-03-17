@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
+import { revalidateAll } from '../_lib/revalidate';
 import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
 import { setPatientCookie } from '../_lib/cookie';
 import { isValidPatientId } from '../_lib/validate';
@@ -113,6 +114,7 @@ export async function POST(request) {
         const { data, error } = await supabase.from('patients').insert(row).select('id').single();
 
         if (error) throw error;
+        revalidateAll(data.id);
         const res = NextResponse.json({ patientId: data.id });
         return setPatientCookie(res, data.id);
     } catch (err) {
@@ -169,6 +171,7 @@ export async function PATCH(request) {
         const { error } = await supabase.from('patients').update(safeUpdate).eq('id', patientId);
 
         if (error) throw error;
+        revalidateAll(patientId);
         return NextResponse.json({ success: true });
     } catch (err) {
         console.error('[PATCH /api/eum/patients]', err.message);

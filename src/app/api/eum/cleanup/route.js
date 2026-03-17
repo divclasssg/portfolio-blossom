@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
+import { revalidateAll } from '../_lib/revalidate';
 
 // GET /api/eum/cleanup — Vercel cron: 매일 KST 00:00 (UTC 15:00)
 // pat_demo_* 환자 삭제 (CASCADE로 sessions, symptom_records, chat_messages, ai_results 자동 삭제)
@@ -21,6 +22,10 @@ export async function GET(request) {
         if (error) throw error;
 
         const count = data?.length ?? 0;
+        // 삭제된 환자 캐시 무효화
+        for (const row of data ?? []) {
+            revalidateAll(row.id);
+        }
         console.log(`[cleanup] ${count}명의 데모 환자 삭제 완료`);
         return NextResponse.json({ deleted: count });
     } catch (err) {

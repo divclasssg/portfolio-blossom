@@ -31,7 +31,7 @@ export default function SymptomsContent({
 
     return (
         <>
-            <AppBar backHref="/projects/eum/patient" />
+            <AppBar backHref={`/projects/eum/patient/${patientId}`} />
 
             <SegmentedControl tabs={TABS} activeTab={activeTab} onTabChange={setActiveTab} />
             <div

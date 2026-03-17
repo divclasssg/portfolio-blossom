@@ -52,7 +52,7 @@ test.describe('환자 앱 전체 플로우', () => {
         for (const digit of '123456') {
             await page.getByRole('button', { name: digit, exact: true }).click();
         }
-        await expect(page).toHaveURL(/\/patient$/, { timeout: 15_000 });
+        await expect(page).toHaveURL(/\/patient\/pat_yoon_001$/, { timeout: 15_000 });
 
         // ── 2. 홈 확인 ──
         await expect(page.getByText('건강한 하루 보내세요')).toBeVisible({ timeout: 15_000 });
@@ -74,10 +74,10 @@ test.describe('환자 앱 전체 플로우', () => {
 
         // ── 4. 홈으로 복귀 ──
         await page.locator('[aria-label="뒤로 가기"]').click();
-        await expect(page).toHaveURL(/\/patient$/, { timeout: 10_000 });
+        await expect(page).toHaveURL(/\/patient\/pat_yoon_001$/, { timeout: 10_000 });
 
         // ── 5. 체크인 플로우 ──
-        await page.goto(PATIENT_URL + '/checkin');
+        await page.goto(PATIENT_URL + '/pat_yoon_001/checkin');
         await expect(page.getByText('서현내과의원')).toBeVisible({ timeout: 15_000 });
 
         // 맞아요 → 동의 → 체크인
@@ -85,6 +85,6 @@ test.describe('환자 앱 전체 플로우', () => {
         await expect(page).toHaveURL(/\/checkin\/consent/);
         await expect(page.getByRole('heading', { name: '진료 체크인' })).toBeVisible();
         await page.getByText('체크인', { exact: true }).click();
-        await expect(page).toHaveURL(/\/patient$/, { timeout: 10_000 });
+        await expect(page).toHaveURL(/\/patient\/pat_yoon_001$/, { timeout: 10_000 });
     });
 });

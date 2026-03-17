@@ -1,15 +1,13 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import rawSessions from '../../../_references/data/patient/05_consultation_sessions.json';
-import medicalRecords from '../../../_references/data/patient/04_medical_records.json';
-import { shiftDates } from '../../../_lib/dateShift';
+import rawSessions from '../../../../_references/data/patient/05_consultation_sessions.json';
+import medicalRecords from '../../../../_references/data/patient/04_medical_records.json';
+import { shiftDates } from '../../../../_lib/dateShift';
 import styles from './page.module.scss';
-import AppBar from '../../_components/AppBar/AppBar';
-import TabBar from '../../_components/TabBar/TabBar';
-import MarkResultSeen from '../../_components/MarkResultSeen/MarkResultSeen';
-import { WarningIcon } from '../../../_components/icons';
-
-export const dynamic = 'force-dynamic';
+import AppBar from '../../../_components/AppBar/AppBar';
+import TabBar from '../../../_components/TabBar/TabBar';
+import MarkResultSeen from '../../../_components/MarkResultSeen/MarkResultSeen';
+import { WarningIcon } from '../../../../_components/icons';
 
 export async function generateMetadata() {
     return { title: '진료 요약 — Eum' };
@@ -20,7 +18,7 @@ const sessionMap = Object.fromEntries(
     sessions.sessions.map((s) => [s.session_id, s.hospital_name])
 );
 
-import { formatDate } from '../../../_lib/formatDate';
+import { formatDate } from '../../../../_lib/formatDate';
 
 // 진료일 이전 가장 최근 의료 기록 찾기 (공공 의료 데이터 연결)
 function findPriorMedicalRecord(visitDate) {
@@ -61,7 +59,7 @@ function transformForPatient(dbResult) {
 // DB에서 진료 결과 조회
 async function fetchDbResult(sessionId) {
     try {
-        const { getSupabaseClient } = await import('../../../../../api/eum/_lib/supabase');
+        const { getSupabaseClient } = await import('../../../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
         const { data, error } = await supabase
             .from('consultation_results')
@@ -77,7 +75,7 @@ async function fetchDbResult(sessionId) {
 }
 
 export default async function SummaryDetailPage({ params }) {
-    const { id } = await params;
+    const { patientId, id } = await params;
 
     // DB에서만 조회 (의사가 전송한 결과만 환자에게 표시)
     const dbResult = await fetchDbResult(id);
@@ -89,7 +87,7 @@ export default async function SummaryDetailPage({ params }) {
 
     return (
         <>
-            <AppBar backHref="/projects/eum/patient/summary" />
+            <AppBar backHref={`/projects/eum/patient/${patientId}/summary`} />
             <MarkResultSeen sessionId={id} />
             <main className={styles['content']}>
                 {/* 페이지 제목 + 공유 버튼 */}
@@ -250,11 +248,11 @@ export default async function SummaryDetailPage({ params }) {
                 </div>
 
                 {/* 확인 버튼 */}
-                <Link href="/projects/eum/patient/summary" className={styles['confirm-btn']}>
+                <Link href={`/projects/eum/patient/${patientId}/summary`} className={styles['confirm-btn']}>
                     확인
                 </Link>
             </main>
-            <TabBar activePath="summary" />
+            <TabBar activePath="summary" patientId={patientId} />
         </>
     );
 }

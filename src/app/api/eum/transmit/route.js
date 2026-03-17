@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
+import { revalidateDoctorResult, revalidatePatientHome, revalidatePatientSummary } from '../_lib/revalidate';
 import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
 import { isValidSessionId } from '../_lib/validate';
 
@@ -62,6 +63,18 @@ export async function POST(request) {
                 { success: true, warning: '결과 저장 완료, 세션 상태 갱신 실패' },
                 { status: 201 }
             );
+        }
+
+        // 관련 페이지 캐시 무효화 — sessions에서 patient_id 조회
+        const { data: sessionData } = await supabase
+            .from('sessions')
+            .select('patient_id')
+            .eq('id', sessionId)
+            .maybeSingle();
+        if (sessionData?.patient_id) {
+            revalidateDoctorResult(sessionData.patient_id);
+            revalidatePatientHome(sessionData.patient_id);
+            revalidatePatientSummary(sessionData.patient_id);
         }
 
         return NextResponse.json({ success: true }, { status: 201 });

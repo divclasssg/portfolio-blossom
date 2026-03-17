@@ -1,4 +1,4 @@
-@use '../_styles/tokens' as *;
+@use '../../_styles/tokens' as *;
 
 .content {
     padding-bottom: calc(#{$content-padding-bottom} + env(safe-area-inset-bottom));

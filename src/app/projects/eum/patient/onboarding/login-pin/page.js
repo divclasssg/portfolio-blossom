@@ -30,6 +30,7 @@ export default function LoginPinPage() {
                         throw new Error(body.error || '시드 API 오류');
                     }
                     // 쿠키는 admin/seed API 응답의 Set-Cookie 헤더로 설정됨 (HttpOnly)
+                    // 쿠키가 설정되므로 redirect를 통해 [patientId]로 이동
                     router.push('/projects/eum/patient');
                 } catch {
                     setError('관리자 데이터 초기화에 실패했습니다.');

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styles from './SummaryListItem.module.scss';
 
 export default function SummaryListItem({
+    patientId,
     sessionId,
     visitDate,
     hospitalName,
@@ -9,7 +10,7 @@ export default function SummaryListItem({
     diagnosisName,
 }) {
     return (
-        <Link href={`/projects/eum/patient/summary/${sessionId}`} className={styles['item']} aria-label={`${visitDate} ${hospitalName} ${doctorName} ${diagnosisName}`}>
+        <Link href={`/projects/eum/patient/${patientId}/summary/${sessionId}`} className={styles['item']} aria-label={`${visitDate} ${hospitalName} ${doctorName} ${diagnosisName}`}>
             <p className={styles['meta']}>
                 {visitDate} · {hospitalName} · {doctorName}
             </p>

@@ -1,10 +1,20 @@
 import { test, expect } from '@playwright/test';
 import { ploc } from '../fixtures/patientSelectors.js';
 
+// redirect를 통해 /patient/[patientId]로 이동 (쿠키 없으면 onboarding)
 const PATIENT_URL = '/projects/eum/patient';
 
 test.describe('환자 홈 대시보드', () => {
-    test.beforeEach(async ({ page }) => {
+    test.beforeEach(async ({ page, context }) => {
+        // 환자 쿠키 설정 (redirect 페이지에서 patientId 결정용)
+        const baseURL = page.context()._options?.baseURL || 'https://portfolio-blossom-d8hc.vercel.app';
+        const domain = new URL(baseURL).hostname;
+        await context.addCookies([{
+            name: 'eum_patient_id',
+            value: 'pat_yoon_001',
+            domain,
+            path: '/projects/eum',
+        }]);
         await page.goto(PATIENT_URL);
         // 페이지 로드 대기 — 환자 홈 고유 텍스트로 확인
         await expect(page.getByText('건강한 하루 보내세요')).toBeVisible({ timeout: 30_000 });

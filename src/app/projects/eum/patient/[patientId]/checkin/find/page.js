@@ -1,21 +1,22 @@
-import nearbyData from '../../../_references/data/patient/10_nearby_hospitals.json';
-import AppBar from '../../_components/AppBar/AppBar';
-import NearbyHospitalCard from '../../_components/NearbyHospitalCard/NearbyHospitalCard';
-import HospitalCodeInput from '../../_components/HospitalCodeInput/HospitalCodeInput';
-import { MapIcon } from '../../../_components/icons';
+import nearbyData from '../../../../_references/data/patient/10_nearby_hospitals.json';
+import AppBar from '../../../_components/AppBar/AppBar';
+import NearbyHospitalCard from '../../../_components/NearbyHospitalCard/NearbyHospitalCard';
+import HospitalCodeInput from '../../../_components/HospitalCodeInput/HospitalCodeInput';
+import { MapIcon } from '../../../../_components/icons';
 import styles from './page.module.scss';
 
 export const metadata = {
     title: 'P-016 병원 찾기 — Eum',
 };
 
-export default function FindHospitalPage() {
+export default async function FindHospitalPage({ params }) {
+    const { patientId } = await params;
     const { nearby_hospitals } = nearbyData;
     const validCodes = nearby_hospitals.map((h) => h.hospital_code);
 
     return (
         <>
-            <AppBar backHref="/projects/eum/patient/checkin" />
+            <AppBar backHref={`/projects/eum/patient/${patientId}/checkin`} />
             <main className={styles['content']}>
                 {/* 동심원 아이콘 + 타이틀 */}
                 <div className={styles['title-section']}>
@@ -35,7 +36,7 @@ export default function FindHospitalPage() {
                                     hospitalName={h.hospital_name}
                                     address={h.address}
                                     distanceM={h.distance_m}
-                                    href="/projects/eum/patient/checkin/consent"
+                                    href={`/projects/eum/patient/${patientId}/checkin/consent`}
                                 />
                             </li>
                         ))}
@@ -43,7 +44,7 @@ export default function FindHospitalPage() {
                 </div>
 
                 {/* 코드 입력 섹션 */}
-                <HospitalCodeInput validCodes={validCodes} />
+                <HospitalCodeInput validCodes={validCodes} patientId={patientId} />
             </main>
         </>
     );

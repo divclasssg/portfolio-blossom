@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
+import { revalidateDoctor } from '../_lib/revalidate';
 import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
 import { isValidSessionId } from '../_lib/validate';
 
@@ -60,6 +61,17 @@ export async function POST(request) {
             .single();
 
         if (error) throw error;
+
+        // 관련 페이지 캐시 무효화
+        const { data: sessionData } = await supabase
+            .from('sessions')
+            .select('patient_id')
+            .eq('id', sessionId)
+            .maybeSingle();
+        if (sessionData?.patient_id) {
+            revalidateDoctor(sessionData.patient_id);
+        }
+
         return NextResponse.json({ ai_result: data }, { status: 201 });
     } catch (err) {
         console.error('[POST /api/eum/ai-results]', err.message);
