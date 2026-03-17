@@ -49,6 +49,7 @@ next-env.d.ts
 /specs/
 .mcp.json
 PLAN.md
+/_document/
 
 # references (데이터 JSON은 빌드 필수이므로 유지)
 _references/*
