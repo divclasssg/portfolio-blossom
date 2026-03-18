@@ -24,6 +24,9 @@ export const metadata = {
     title: 'D-000 의사 대시보드 — Eum',
 };
 
+// 매 요청마다 서버 렌더링 강제 — Supabase 실시간 데이터 조회 보장
+export const dynamic = 'force-dynamic';
+
 // birth_date → 만 나이 계산
 function calcAge(birthDate) {
     if (!birthDate) return null;
