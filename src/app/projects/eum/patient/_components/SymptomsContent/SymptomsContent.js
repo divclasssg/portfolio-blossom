@@ -20,6 +20,7 @@ export default function SymptomsContent({
     patientId,
     patientName,
     sessionId,
+    serverTimestamp,
 }) {
     const [activeTab, setActiveTab] = useState('chat');
     const { messages, isStreaming, records, sendMessage, handleSeveritySelect } = useSymptomChat({
@@ -27,6 +28,7 @@ export default function SymptomsContent({
         patientName,
         sessionId,
         initialRecords,
+        serverTimestamp,
     });
 
     return (

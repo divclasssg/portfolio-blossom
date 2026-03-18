@@ -84,8 +84,8 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
         });
     }
 
-    function renderItem(item) {
-        const itemKey = `${item.date}-${item.category}`;
+    function renderItem(item, index) {
+        const itemKey = `${item.date}-${item.category}-${index}`;
         const health = findHealthRecord(item.date, healthPlatform);
         const hasHealth = !!health;
         const isExpanded = expandedItems.has(itemKey);
@@ -204,7 +204,7 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                 </div>
 
                 <ul className={styles.items} aria-label="최근 증상 기록">
-                    {compactItems.map((item) => renderItem(item))}
+                    {compactItems.map((item, i) => renderItem(item, i))}
                 </ul>
 
                 {/* 확장 영역 — 높이 애니메이션 */}
@@ -213,7 +213,7 @@ export default function Timeline({ timeline, expandedTimeline, healthPlatform })
                     className={`${styles['expand-area']} ${showAll ? styles['expand-area--open'] : ''}`}
                 >
                     <ul className={styles.items} aria-label="추가 증상 기록">
-                        {expandedOnly.map((item) => renderItem(item))}
+                        {expandedOnly.map((item, i) => renderItem(item, i))}
                     </ul>
                 </div>
 

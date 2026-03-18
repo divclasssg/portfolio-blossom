@@ -89,7 +89,6 @@ export function generateDayVitals(dateStr) {
     heart_rate_bpm: flare ? randInt(rng, 85, 94) : randInt(rng, 71, 82),
     bp_systolic: flare ? randInt(rng, 126, 134) : randInt(rng, 110, 122),
     bp_diastolic: flare ? randInt(rng, 80, 88) : randInt(rng, 70, 78),
-    blood_glucose: null,
     sleep_hours: flare ? randFloat1(rng, 3.5, 5.0) : randFloat1(rng, 5.5, 7.5),
     step_count: flare ? randInt(rng, 3000, 5500) : randInt(rng, 6000, 11000),
     body_temp_c: flare ? randFloat1(rng, 36.6, 36.8) : randFloat1(rng, 36.3, 36.6),

@@ -68,6 +68,7 @@ export default async function SymptomsPage({ params }) {
             patientId={patientId}
             patientName={patientName}
             sessionId={latestSessionId}
+            serverTimestamp={new Date().toISOString()}
         />
     );
 }

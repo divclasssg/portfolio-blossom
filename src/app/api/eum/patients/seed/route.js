@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../../_lib/supabase';
-import { seedDemoScenario } from '../../_lib/seedDemoData';
+import { seedDemoScenario, mergeChronicConditions } from '../../_lib/seedDemoData';
 import { revalidateAll } from '../../_lib/revalidate';
 
 // POST /api/eum/patients/seed
@@ -17,10 +17,22 @@ export async function POST(request) {
         }
 
         const supabase = getSupabaseClient();
-        const { latestSessionId } = await seedDemoScenario(supabase, patientId);
+
+        // 기저질환 병합은 시드 성공 여부와 무관하게 항상 실행
+        let seedResult = null;
+        try {
+            seedResult = await seedDemoScenario(supabase, patientId);
+        } catch (seedErr) {
+            console.error('[POST /api/eum/patients/seed] 시드 실패:', seedErr.message);
+        }
+
+        await mergeChronicConditions(supabase, patientId);
         revalidateAll(patientId);
 
-        return NextResponse.json({ success: true, latestSessionId });
+        return NextResponse.json({
+            success: true,
+            latestSessionId: seedResult?.latestSessionId ?? null,
+        });
     } catch (err) {
         console.error('[POST /api/eum/patients/seed]', err.message);
         return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });

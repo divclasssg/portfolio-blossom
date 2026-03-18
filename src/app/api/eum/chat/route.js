@@ -183,12 +183,11 @@ export async function POST(request) {
                 let donePayload = { type: 'done', completed: false };
                 if (doneParsed) {
                     donePayload = { type: 'done', ...doneParsed };
-                } else {
-                    console.warn(
-                        '[chat/route] DONE 태그 미발견. fullContent 끝:',
-                        fullContent.slice(-200)
-                    );
+                } else if (fullContent.includes('[DONE')) {
+                    // 태그는 있지만 파싱 실패
+                    console.warn('[chat/route] DONE 태그 파싱 실패. fullContent:', fullContent.slice(-500));
                 }
+                // 중간 응답(심각도 질문 등)에서는 DONE 태그 없는 게 정상 — 경고 생략
                 send(donePayload);
 
                 // 메시지 DB 저장 (비동기, 스트림 응답 차단 안 함)

@@ -1,22 +1,25 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 // 초기 인사 메시지 생성 (환자 이름 동적 반영)
-function makeInitialMessages(name) {
+function makeInitialMessages(name, timestamp) {
     const greeting = name ? `안녕하세요 ${name}님!` : '안녕하세요!';
-    return [{ type: 'bot', text: `${greeting}\n어떤 증상이 있으신가요?`, timestamp: new Date().toISOString() }];
+    return [{ type: 'bot', text: `${greeting}\n어떤 증상이 있으신가요?`, timestamp }];
 }
 
-// AI에 보낼 히스토리 형식 (role/content 배열) — 첫 인사 메시지 제외
-function buildChatHistory(msgs) {
+// AI에 보낼 히스토리 — aiStartIndex 이후 메시지만 전달 (이전 증상 대화 제외)
+function buildChatHistory(msgs, startIdx) {
     return msgs
-        .slice(1)
+        .slice(startIdx)
+        .filter((m) => m.type === 'user' || m.type === 'bot')
         .map((m) => ({ role: m.type === 'bot' ? 'assistant' : 'user', content: m.text }));
 }
 
-export default function useSymptomChat({ patientId, patientName, sessionId, initialRecords }) {
-    const [messages, setMessages] = useState(() => makeInitialMessages(patientName));
+export default function useSymptomChat({ patientId, patientName, sessionId, initialRecords, serverTimestamp }) {
+    const [messages, setMessages] = useState(() => makeInitialMessages(patientName, serverTimestamp));
     const [isStreaming, setIsStreaming] = useState(false);
     const [records, setRecords] = useState(initialRecords);
+    // AI 컨텍스트 시작점 — 증상 완료 시 갱신하여 이전 대화 제외
+    const aiStartIndexRef = useRef(0);
 
     // 증상 레코드 DB 저장 후 기록 탭 갱신
     async function saveSymptomRecord(symptomRecord) {
@@ -44,11 +47,14 @@ export default function useSymptomChat({ patientId, patientName, sessionId, init
                     const { symptom_records } = await updatedRes.json();
                     setRecords(symptom_records);
                 }
-                // 대화 히스토리 리셋 — 다음 증상 수집 시 이전 대화 누적 방지
-                setMessages([
-                    makeInitialMessages(patientName)[0],
-                    { type: 'bot', text: '증상이 기록됐어요.\n다른 증상이 있으면 말씀해 주세요.', timestamp: new Date().toISOString() },
-                ]);
+                // 완료 메시지 추가 (기존 대화 유지)
+                const doneMsg = { type: 'bot', text: '증상이 기록됐어요.\n다른 증상이 있으면 말씀해 주세요.', timestamp: new Date().toISOString() };
+                setMessages((prev) => {
+                    const next = [...prev, doneMsg];
+                    // AI 컨텍스트 시작점을 완료 메시지 위치로 갱신
+                    aiStartIndexRef.current = next.length - 1;
+                    return next;
+                });
             } else {
                 console.error('[useSymptomChat] 증상 저장 실패:', res.status, resText);
                 setMessages((prev) => [
@@ -79,7 +85,7 @@ export default function useSymptomChat({ patientId, patientName, sessionId, init
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    messages: buildChatHistory(currentMessages),
+                    messages: buildChatHistory(currentMessages, aiStartIndexRef.current),
                     patientId,
                     sessionId,
                 }),

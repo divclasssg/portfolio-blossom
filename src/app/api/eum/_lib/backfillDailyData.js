@@ -34,14 +34,15 @@ export async function backfillDailyData(patientId) {
         let symIdx = 1;
         let d = startDate;
 
+        const now = new Date();
         while (d <= today) {
             // 바이탈: 매일 1건
             const v = generateDayVitals(d);
             vitalsRows.push({ patient_id: patientId, ...v });
 
-            // 증상: 확률적
+            // 증상: 확률적 (미래 시각 제외)
             const sym = generateDaySymptom(d, symIdx);
-            if (sym) {
+            if (sym && new Date(sym.occurred_at) <= now) {
                 symptomRows.push({
                     symptom_id: `sym_daily_${patientId}_${d}`,
                     patient_id: patientId,

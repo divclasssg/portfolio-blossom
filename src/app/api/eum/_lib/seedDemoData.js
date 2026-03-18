@@ -78,18 +78,21 @@ export async function seedDemoScenario(supabase, patientId, suffix = null) {
         });
     });
 
-    // ── 3. symptom_records 삽입 ──────────────────────────────────
-    const symptomRows = symptomRecordsJson.symptom_records.map((r) => ({
-        symptom_id: remapSymptomId(r.symptom_id, effectiveSuffix),
-        patient_id: patientId,
-        session_id: symptomToSession[r.symptom_id] || null,
-        description: r.description,
-        voice_transcript: r.voice_transcript,
-        occurred_at: r.occurred_at,
-        severity: r.severity,
-        category_code: r.category_code,
-        location_type: r.location_type,
-    }));
+    // ── 3. symptom_records 삽입 (미래 시각 필터링) ──────────────────
+    const now = new Date();
+    const symptomRows = symptomRecordsJson.symptom_records
+        .filter((r) => new Date(r.occurred_at) <= now)
+        .map((r) => ({
+            symptom_id: remapSymptomId(r.symptom_id, effectiveSuffix),
+            patient_id: patientId,
+            session_id: symptomToSession[r.symptom_id] || null,
+            description: r.description,
+            voice_transcript: r.voice_transcript,
+            occurred_at: r.occurred_at,
+            severity: r.severity,
+            category_code: r.category_code,
+            location_type: r.location_type,
+        }));
 
     const { error: symErr } = await supabase
         .from('symptom_records')
@@ -126,6 +129,7 @@ export async function seedDemoScenario(supabase, patientId, suffix = null) {
         .filter((r) => r.session_id !== 'ses_004')
         .map((r) => ({
             session_id: remapSessionId(r.session_id, effectiveSuffix),
+            doctor_id: r.doctor_name === '박지영' ? 'doc_park_001' : 'doc_kim_001',
             doctor_name: r.doctor_name,
             hospital_name: '서현내과의원',
             diagnosis_name: r.diagnosis_name,
@@ -141,13 +145,13 @@ export async function seedDemoScenario(supabase, patientId, suffix = null) {
     const { error: resErr } = await supabase.from('consultation_results').upsert(resultRows, { onConflict: 'session_id' });
     if (resErr) throw new Error(`consultation_results 시드 실패: ${resErr.message}`);
 
-    // ── 6. 초기 30일 바이탈 + PRNG 증상 시드 ──────────────────────
+    // ── 6. 초기 30일 바이탈 + PRNG 증상 시드 (오늘 제외 — 미래 시각 방지) ──
     const today = getKstToday();
     const initialVitals = [];
     const initialSymptoms = [];
     let genIdx = 1;
 
-    for (let i = 29; i >= 0; i--) {
+    for (let i = 29; i >= 1; i--) {
         const dateStr = addDays(today, -i);
         initialVitals.push({ patient_id: patientId, ...generateDayVitals(dateStr) });
         const sym = generateDaySymptom(dateStr, genIdx);
@@ -180,4 +184,100 @@ export async function seedDemoScenario(supabase, patientId, suffix = null) {
     }
 
     return { latestSessionId };
+}
+
+/**
+ * 기저질환 병합: 역류성 식도염 추가 + ICD 코드 자동 부여
+ * seedDemoScenario와 독립적으로 실행 — 시드 실패해도 항상 동작
+ */
+export async function mergeChronicConditions(supabase, patientId) {
+    const DEMO_CONDITION = { name: '역류성 식도염', icd_code: 'K21.0' };
+    const { data: pt } = await supabase
+        .from('patients')
+        .select('chronic_conditions')
+        .eq('id', patientId)
+        .single();
+
+    const existing = pt?.chronic_conditions ?? [];
+
+    // ICD 코드 없는 항목에 코드 부여
+    const needsCoding = existing.filter((c) => !c.icd_code);
+    let codeMap = {};
+    if (needsCoding.length > 0) {
+        codeMap = await assignIcdCodes(needsCoding.map((c) => c.name));
+    }
+
+    const coded = existing.map((c) => {
+        if (c.icd_code) return c;
+        const code = codeMap[c.name];
+        return code ? { ...c, icd_code: code } : c;
+    });
+
+    // 역류성 식도염 없으면 맨 앞에 추가
+    const hasGerd = coded.some(
+        (c) => (c.name || '').includes('역류성') || c.icd_code === 'K21.0'
+    );
+    const merged = hasGerd ? coded : [DEMO_CONDITION, ...coded];
+
+    const { error } = await supabase
+        .from('patients')
+        .update({ chronic_conditions: merged })
+        .eq('id', patientId);
+    if (error) console.warn('[mergeChronicConditions] 실패:', error.message);
+}
+
+// 정적 매핑 (API 호출 없이 즉시 반환)
+const ICD_STATIC = {
+    '역류성 식도염': 'K21.0', '고혈압': 'I10', '당뇨': 'E11', '당뇨병': 'E11',
+    '제2형 당뇨병': 'E11', '제1형 당뇨병': 'E10', '천식': 'J45', '우울증': 'F32',
+    '불안장애': 'F41', '골다공증': 'M81', '고지혈증': 'E78', '이상지질혈증': 'E78',
+    '갑상선기능저하증': 'E03', '갑상선기능항진증': 'E05', '부정맥': 'I49',
+    '심부전': 'I50', '협심증': 'I20', '뇌졸중': 'I63', '통풍': 'M10',
+    '빈혈': 'D64', '편두통': 'G43', '아토피 피부염': 'L20', '건선': 'L40',
+    '만성콩팥병': 'N18', '과민성 대장 증후군': 'K58', 'COPD': 'J44',
+};
+
+/**
+ * 질환명 → ICD-10 코드 매핑
+ * 정적 맵에 없는 항목만 GPT-4o mini로 조회
+ */
+async function assignIcdCodes(names) {
+    const result = {};
+    const unknown = [];
+
+    for (const name of names) {
+        if (ICD_STATIC[name]) {
+            result[name] = ICD_STATIC[name];
+        } else {
+            unknown.push(name);
+        }
+    }
+
+    // 정적 맵으로 모두 해결되면 API 호출 생략
+    if (unknown.length === 0) return result;
+
+    try {
+        const OpenAI = (await import('openai')).default;
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+        const res = await openai.chat.completions.create({
+            model: 'gpt-4o-mini',
+            temperature: 0,
+            response_format: { type: 'json_object' },
+            messages: [
+                {
+                    role: 'system',
+                    content: '한국어 질환명을 ICD-10 코드로 매핑하세요. JSON 형태로 반환: {"질환명": "코드", ...}. 가장 일반적인 코드 하나만 반환.',
+                },
+                { role: 'user', content: JSON.stringify(unknown) },
+            ],
+        });
+
+        const parsed = JSON.parse(res.choices[0].message.content);
+        Object.assign(result, parsed);
+    } catch (err) {
+        console.warn('[seed] ICD 코드 AI 매핑 실패:', err.message);
+    }
+
+    return result;
 }
