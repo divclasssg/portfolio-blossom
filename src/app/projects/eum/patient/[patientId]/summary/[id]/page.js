@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import rawSessions from '../../../../_references/data/patient/05_consultation_sessions.json';
+import rawResults from '../../../../_references/data/patient/06_consultation_results.json';
 import medicalRecords from '../../../../_references/data/patient/04_medical_records.json';
 import { shiftDates } from '../../../../_lib/dateShift';
 import styles from './page.module.scss';
@@ -14,6 +15,7 @@ export async function generateMetadata() {
 }
 
 const sessions = shiftDates(rawSessions);
+const staticResults = shiftDates(rawResults);
 const sessionMap = Object.fromEntries(
     sessions.sessions.map((s) => [s.session_id, s.hospital_name])
 );
@@ -77,11 +79,23 @@ async function fetchDbResult(sessionId) {
 export default async function SummaryDetailPage({ params }) {
     const { patientId, id } = await params;
 
-    // DB에서만 조회 (의사가 전송한 결과만 환자에게 표시)
+    // DB 조회 → 실패 시 정적 JSON 폴백
     const dbResult = await fetchDbResult(id);
-    if (!dbResult) notFound();
-    const result = transformForPatient(dbResult);
-    const hospitalName = dbResult.hospital_name ?? sessionMap[id] ?? '—';
+    let result;
+    let hospitalName;
+
+    if (dbResult) {
+        result = transformForPatient(dbResult);
+        hospitalName = dbResult.hospital_name ?? sessionMap[id] ?? '—';
+    } else {
+        // 정적 JSON에서 해당 session_id 검색
+        const staticEntry = staticResults.consultation_results.find(
+            (r) => r.session_id === id
+        );
+        if (!staticEntry) notFound();
+        result = staticEntry;
+        hospitalName = sessionMap[id] ?? '—';
+    }
 
     const priorRecord = findPriorMedicalRecord(result.visit_date);
 
