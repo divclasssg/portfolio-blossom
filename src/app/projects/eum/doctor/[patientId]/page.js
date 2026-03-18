@@ -64,8 +64,10 @@ async function fetchLiveData(patientId) {
         const supabase = getSupabaseClient();
 
         // active 세션 ID 조회 (체크인 완료된 세션만)
+        // active 세션이 없으면 → null 반환 → 정적 JSON 폴백
         const { getActiveSessionId } = await import('../../../../api/eum/_lib/getLatestSession');
         const latestSessionId = await getActiveSessionId(supabase, patientId);
+        if (!latestSessionId) return null;
 
         const [symptomsRes, aiRes, patientRes, sessionRes, vitalsRes] = await Promise.all([
             supabase
