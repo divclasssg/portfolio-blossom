@@ -58,7 +58,7 @@ function transformForPatient(dbResult) {
     };
 }
 
-// DB에서 진료 결과 조회
+// DB에서 진료 결과 조회 (없으면 null → 정적 JSON 폴백)
 async function fetchDbResult(sessionId) {
     try {
         const { getSupabaseClient } = await import('../../../../../../api/eum/_lib/supabase');
@@ -67,11 +67,11 @@ async function fetchDbResult(sessionId) {
             .from('consultation_results')
             .select('*')
             .eq('session_id', sessionId)
-            .single();
+            .maybeSingle();
         if (error) throw error;
         return data;
     } catch (err) {
-        console.error('[SummaryDetail] DB 조회 실패:', sessionId, err);
+        console.warn('[SummaryDetail] DB 조회 실패, 정적 JSON 폴백:', sessionId);
         return null;
     }
 }
