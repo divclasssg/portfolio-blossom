@@ -57,50 +57,52 @@ function symptomToTimelineItem(record) {
     };
 }
 
-// Supabase에서 환자 데이터 + AI 결과 조회 (실패 시 null 반환 → 정적 JSON 폴백)
-async function fetchLiveData(patientId) {
+// Supabase에서 환자 프로필 조회 (체크인 무관, 항상 DB 우선)
+async function fetchPatientProfile(patientId) {
+    try {
+        const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
+        const supabase = getSupabaseClient();
+        const { data, error } = await supabase
+            .from('patients')
+            .select(
+                'name, birth_date, gender, height_cm, weight_kg, blood_type, wearable_device, chronic_conditions, allergies'
+            )
+            .eq('id', patientId)
+            .single();
+        if (error) return null;
+        return data;
+    } catch {
+        return null;
+    }
+}
+
+// Supabase에서 세션 데이터 조회 (active 세션 필요 — 체크인 후에만 반환)
+async function fetchSessionData(patientId) {
     try {
         const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
 
-        // active 세션 ID 조회 (체크인 완료된 세션만)
-        // active 세션이 없으면 → null 반환 → 정적 JSON 폴백
+        // active 세션 없으면 → null (정적 JSON 폴백)
         const { getActiveSessionId } = await import('../../../../api/eum/_lib/getLatestSession');
-        const latestSessionId = await getActiveSessionId(supabase, patientId);
-        if (!latestSessionId) return null;
+        const activeSessionId = await getActiveSessionId(supabase, patientId);
+        if (!activeSessionId) return null;
 
-        const [symptomsRes, aiRes, patientRes, sessionRes, vitalsRes] = await Promise.all([
+        const [symptomsRes, aiRes, sessionRes, vitalsRes] = await Promise.all([
             supabase
                 .from('symptom_records')
                 .select('*')
                 .eq('patient_id', patientId)
                 .order('occurred_at', { ascending: false }),
-            latestSessionId
-                ? supabase
-                      .from('ai_results')
-                      .select('*')
-                      .eq('session_id', latestSessionId)
-                      .order('created_at', { ascending: false })
-                : supabase
-                      .from('ai_results')
-                      .select('*')
-                      .eq('patient_id', patientId)
-                      .order('created_at', { ascending: false })
-                      .limit(2),
             supabase
-                .from('patients')
-                .select(
-                    'name, birth_date, gender, height_cm, weight_kg, blood_type, wearable_device, chronic_conditions, allergies'
-                )
-                .eq('id', patientId)
+                .from('ai_results')
+                .select('*')
+                .eq('session_id', activeSessionId)
+                .order('created_at', { ascending: false }),
+            supabase
+                .from('sessions')
+                .select('chief_complaint')
+                .eq('id', activeSessionId)
                 .single(),
-            latestSessionId
-                ? supabase
-                      .from('sessions')
-                      .select('chief_complaint')
-                      .eq('id', latestSessionId)
-                      .single()
-                : { data: null, error: null },
             supabase
                 .from('vitals_records')
                 .select('recorded_at, heart_rate_bpm, bp_systolic, bp_diastolic, sleep_hours')
@@ -112,22 +114,16 @@ async function fetchLiveData(patientId) {
             console.warn('[doctor/page] symptom_records 조회 실패:', symptomsRes.error.message);
         if (sessionRes.error)
             console.warn('[doctor/page] sessions 조회 실패:', sessionRes.error.message);
-        if (patientRes.error)
-            console.warn('[doctor/page] patients 조회 실패:', patientRes.error.message);
 
         const symptoms = symptomsRes.error ? [] : (symptomsRes.data ?? []);
         const aiData = aiRes.data ?? [];
-        const patient = patientRes.error ? null : patientRes.data;
         const chiefComplaint = sessionRes.error ? null : (sessionRes.data?.chief_complaint ?? null);
 
-        // 최신 브리핑/서제스천 각 1개
-        // summary_bullets 없는 옛 결과는 stale → null 처리하여 파이프라인 재실행 유도
         const rawBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
         const dbBriefing = rawBriefing?.summary_bullets?.length > 0 ? rawBriefing : null;
         const rawSuggestions = aiData.find((r) => r.result_type === 'suggestions')?.content ?? null;
         const dbSuggestions = rawSuggestions?.suggestions?.length > 0 ? rawSuggestions : null;
 
-        // 타임라인 변환: 최신 3개 → compact, 나머지 → expanded
         const timelineItems = symptoms.map(symptomToTimelineItem).filter(Boolean);
         const compactItems = timelineItems.slice(0, 3);
         const expandedItems = timelineItems.slice(3);
@@ -140,13 +136,12 @@ async function fetchLiveData(patientId) {
             expandedItems,
             dbBriefing,
             dbSuggestions,
-            patient,
             chiefComplaint,
-            latestSessionId,
+            activeSessionId,
             vitals,
         };
     } catch (err) {
-        console.warn('[doctor/page] Supabase 조회 실패, 정적 JSON 사용:', err.message);
+        console.warn('[doctor/page] 세션 데이터 조회 실패:', err.message);
         return null;
     }
 }
@@ -172,26 +167,29 @@ export default async function DoctorDashboard({ params }) {
     const { sections } = dashboardState;
 
     const { patientId } = await params;
-    const liveData = await fetchLiveData(patientId);
 
-    // 타임라인 데이터: Supabase에 데이터가 있을 때만 우선, 없으면 정적 JSON 폴백
-    const hasLiveSymptoms = (liveData?.symptoms?.length ?? 0) > 0;
+    // 환자 프로필(항상 DB) + 세션 데이터(체크인 후만) 병렬 조회
+    const [patient, sessionData] = await Promise.all([
+        fetchPatientProfile(patientId),
+        fetchSessionData(patientId),
+    ]);
+
+    // 타임라인: active 세션 있을 때만 라이브, 없으면 정적 JSON 폴백
+    const hasLiveSymptoms = (sessionData?.symptoms?.length ?? 0) > 0;
 
     const compactTimeline = hasLiveSymptoms
         ? {
               ...sections.symptom_timeline_compact,
-              items: liveData.compactItems,
-              remaining_count: Math.max(0, liveData.symptoms.length - 3),
+              items: sessionData.compactItems,
+              remaining_count: Math.max(0, sessionData.symptoms.length - 3),
           }
         : sections.symptom_timeline_compact;
 
     const expandedTimeline = hasLiveSymptoms
-        ? { items: liveData.expandedItems }
+        ? { items: sessionData.expandedItems }
         : sections.symptom_timeline_expanded;
 
-    // 환자 프로필: Supabase 우선, 폴백 → 정적 JSON (윤서진 데모 시나리오)
-    const patient = liveData?.patient ?? null;
-
+    // 환자 프로필: DB 우선 (체크인 무관), 폴백 → 정적 JSON
     const patientSummary = patient
         ? {
               name: patient.name,
@@ -210,7 +208,6 @@ export default async function DoctorDashboard({ params }) {
     });
 
     // basicInfo: DB(신체 측정·기저질환) + 정적 JSON(검진·예방접종·의뢰서) 병합
-    // chronic_conditions: DB 우선, 비어있으면 정적 JSON 폴백 (사용자 테스트용 디폴트 시나리오)
     const basicInfo = patient
         ? {
               ...sections.basic_info.data,
@@ -225,8 +222,8 @@ export default async function DoctorDashboard({ params }) {
     // allergies: DB 우선, 폴백 → 정적 JSON
     const allergies = patient?.allergies ?? sections.allergies.items;
 
-    // chief complaint: sessions.chief_complaint 우선, 폴백 → 정적 JSON
-    const chiefComplaint = liveData?.chiefComplaint ?? sections.chief_complaint;
+    // chief complaint: active 세션 우선, 폴백 → 정적 JSON
+    const chiefComplaint = sessionData?.chiefComplaint ?? sections.chief_complaint;
 
     return (
         <>
@@ -267,8 +264,8 @@ export default async function DoctorDashboard({ params }) {
                     fallbackBriefing={aiBriefing}
                     fallbackSuggestions={aiSuggestions}
                     warnings={aiAnalysisWarnings}
-                    initialBriefing={liveData?.dbBriefing ?? null}
-                    initialSuggestions={liveData?.dbSuggestions ?? null}
+                    initialBriefing={sessionData?.dbBriefing ?? null}
+                    initialSuggestions={sessionData?.dbSuggestions ?? null}
                     patientId={patientId}
                 />
 
@@ -281,8 +278,8 @@ export default async function DoctorDashboard({ params }) {
                 chronicConditions={basicInfo.chronic_conditions}
                 allergies={allergies}
                 chartData={shiftDates(rawTimelineChartData)}
-                liveSymptoms={liveData?.symptoms}
-                liveVitals={liveData?.vitals}
+                liveSymptoms={sessionData?.symptoms}
+                liveVitals={sessionData?.vitals}
             />
         </PatientDataModalProvider>
         </>
