@@ -1,6 +1,9 @@
 import { TREND_POSITIVE, TREND_NEGATIVE, TREND_FLAT } from './chartColors';
+import { shiftDates } from '../../../../_lib/dateShift';
 
-export const END_DATE = '2026-02-17';
+// shiftDates로 기준일 시프트 — 원본 END_DATE를 오늘 기준으로 이동
+const shifted = shiftDates({ date: '2026-02-17' });
+export const END_DATE = shifted.date;
 
 // 카테고리 칩 ID → JSON category 코드 매핑
 export const CATEGORY_CODE = {
@@ -14,14 +17,14 @@ export const CATEGORY_CODE = {
     autonomic: 'SYM-12',
 };
 
-// 기간 선택 → 도메인 시작일
-export const PERIOD_FROM = {
+// 기간 선택 → 도메인 시작일 (shiftDates로 동적 계산)
+export const PERIOD_FROM = shiftDates({
     '1day': '2026-02-17',
     '1week': '2026-02-11',
     '1month': '2026-01-18',
     '6months': '2025-08-17',
     '1year': '2025-02-17',
-};
+});
 
 export const WINDOW_SIZE = 30;
 

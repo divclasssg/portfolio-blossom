@@ -132,8 +132,8 @@ export default async function PatientHome({ params }) {
     const consentNotifications = shiftDates(rawNotifications);
     const unreadCount = consentNotifications.notifications.filter((n) => !n.read).length;
 
-    // 빈 날짜 바이탈/증상 자동 채움 (fire-and-forget — UI 블로킹 없음)
-    backfillDailyData(patientId).catch(() => {});
+    // 빈 날짜 바이탈/증상 자동 채움 — 완료 후 DB 조회해야 오늘 데이터 반영
+    await backfillDailyData(patientId).catch(() => {});
 
     const [patientInfo, dynamicData, allResults] = await Promise.all([
         fetchPatientInfo(patientId),

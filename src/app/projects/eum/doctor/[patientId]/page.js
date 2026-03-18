@@ -6,7 +6,8 @@ import healthHistory from '../../_references/data/patient/02_health_history.json
 import aiBriefing from '../../_references/data/doctor/04_ai_briefing.json';
 import aiSuggestions from '../../_references/data/doctor/05_ai_suggestions.json';
 import aiWarnings from '../../_references/data/doctor/08_ai_warnings.json';
-import timelineChartData from '../../_references/data/doctor/06_timeline_chart_data.json';
+import rawTimelineChartData from '../../_references/data/doctor/06_timeline_chart_data.json';
+import { shiftDates } from '../../_lib/dateShift';
 
 import DoctorPanel from '../_components/DoctorPanel/DoctorPanel';
 import PatientProfile from '../_components/PatientProfile/PatientProfile';
@@ -266,7 +267,7 @@ export default async function DoctorDashboard({ params }) {
                 patient={patientSummary}
                 chronicConditions={basicInfo.chronic_conditions}
                 allergies={allergies}
-                chartData={timelineChartData}
+                chartData={shiftDates(rawTimelineChartData)}
                 liveSymptoms={liveData?.symptoms}
             />
         </PatientDataModalProvider>
