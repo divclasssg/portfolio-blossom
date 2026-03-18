@@ -81,11 +81,13 @@ export default function ChartGrid({ chartData, activePeriod, activeCategory, cus
     // ── 카테고리 필터 적용 후 증상 발생일 목록 ──
     const filterCode = CATEGORY_CODE[activeCategory];
     const viewDomainSet = new Set(viewDomain);
-    const symptomDays = symptoms.data
-        .filter((d) => activeCategory === 'all' || d.category === filterCode)
-        .map((d) => d.date)
-        .filter((d) => viewDomainSet.has(d));
-    const symptomDaySet = new Set(symptomDays);
+    const symptomDaySet = new Set(
+        symptoms.data
+            .filter((d) => activeCategory === 'all' || d.category === filterCode)
+            .map((d) => d.date)
+            .filter((d) => viewDomainSet.has(d))
+    );
+    const symptomDays = [...symptomDaySet];
 
     // ── 뷰포트 기준 데이터 빌드 ──
     const nrsData = buildNrsData(symptoms, viewDomain, activeCategory);
