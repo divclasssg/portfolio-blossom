@@ -3,6 +3,10 @@
 .section {
     border-bottom: 0;
     padding: 32px 0 0;
+
+    @container panel (min-width: 640px) {
+        padding: t.$section-padding-y t.$section-padding-x;
+    }
 }
 
 // 복용약 리스트

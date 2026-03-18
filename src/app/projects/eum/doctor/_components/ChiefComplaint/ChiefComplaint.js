@@ -4,7 +4,7 @@ export default function ChiefComplaint({ complaint }) {
     return (
         <section className={`section ${styles.section}`}>
             <div className="section-content">
-                <h2 className="sr-only">Chief Complaint</h2>
+                <h2 className={styles.title}>Chief Complaint</h2>
 
                 <p className={styles.meta}>
                     {complaint.symptom_count} Episodes ({complaint.symptom_period})

@@ -3,6 +3,42 @@
 .section {
     border-bottom: 0;
     padding: 24px 0 0 0;
+
+    @container panel (min-width: 640px) {
+        padding: t.$section-padding-y t.$section-padding-x;
+    }
+}
+
+// 640px 미만: 탭이 타이틀 역할 → 숨김
+// 640px 이상: 그리드 분리 → 타이틀 표시
+.title {
+    // 기본: sr-only 동등
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@container panel (min-width: 640px) {
+    .title {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0;
+        margin: 0 0 8px;
+        overflow: visible;
+        clip: unset;
+        white-space: normal;
+        font-size: t.$fs-title;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: t.$text-primary;
+    }
 }
 
 .meta {
