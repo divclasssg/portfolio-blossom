@@ -93,7 +93,7 @@ async function fetchPatientInfo(patientId) {
         const supabase = getSupabaseClient();
         const { data, error } = await supabase
             .from('patients')
-            .select('name, wearable_device')
+            .select('name, wearable_device, onboarded_at')
             .eq('id', patientId)
             .single();
         if (error) throw error;
@@ -104,15 +104,20 @@ async function fetchPatientInfo(patientId) {
     }
 }
 
-// 전송 완료된 진료 결과 목록 조회 (토스트 알림용)
-async function fetchTransmittedResults() {
+// 전송 완료된 진료 결과 목록 조회 (토스트 알림 + 최근 진료 카드용)
+async function fetchTransmittedResults(patientId) {
     try {
         const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
         const { data, error } = await supabase
             .from('consultation_results')
-            .select('session_id, doctor_name, hospital_name, diagnosis_name, transmitted_at')
+            .select(`
+                session_id, doctor_name, hospital_name,
+                diagnosis_name, transmitted_at,
+                sessions!inner(patient_id)
+            `)
             .not('transmitted_at', 'is', null)
+            .eq('sessions.patient_id', patientId)
             .order('transmitted_at', { ascending: false });
         if (error) throw error;
         return data ?? [];
@@ -130,10 +135,10 @@ export default async function PatientHome({ params }) {
     // 빈 날짜 바이탈/증상 자동 채움 (fire-and-forget — UI 블로킹 없음)
     backfillDailyData(patientId).catch(() => {});
 
-    const [patientInfo, dynamicData, transmittedResults] = await Promise.all([
+    const [patientInfo, dynamicData, allResults] = await Promise.all([
         fetchPatientInfo(patientId),
         fetchRecentSymptomsSummary(patientId),
-        fetchTransmittedResults(),
+        fetchTransmittedResults(patientId),
     ]);
     const dynamicSummary = dynamicData?.summary ?? null;
     const dbRecords = dynamicData?.records ?? null;
@@ -145,12 +150,18 @@ export default async function PatientHome({ params }) {
         symptoms: generateSymptoms(),
     };
 
-    // 최신 전송 결과 → LastVisitResult용 변환
-    const latestResult = transmittedResults[0]
+    // 토스트 알림용: onboarded_at 이후 전송된 결과만 (시드 데이터 제외)
+    const onboardedAt = patientInfo?.onboarded_at;
+    const newResults = onboardedAt
+        ? allResults.filter((r) => r.transmitted_at > onboardedAt)
+        : allResults;
+
+    // LastVisitResult 카드용: 시드 포함 전체 결과 중 최신 1건
+    const latestResult = allResults[0]
         ? {
-              visit_date: transmittedResults[0].transmitted_at?.slice(0, 10),
-              hospital_name: transmittedResults[0].hospital_name,
-              summary_preview: `${transmittedResults[0].doctor_name} · ${transmittedResults[0].diagnosis_name ?? ''}`,
+              visit_date: allResults[0].transmitted_at?.slice(0, 10),
+              hospital_name: allResults[0].hospital_name,
+              summary_preview: `${allResults[0].doctor_name} · ${allResults[0].diagnosis_name ?? ''}`,
           }
         : null;
 
@@ -162,7 +173,7 @@ export default async function PatientHome({ params }) {
     return (
         <>
             <AppBar unreadCount={unreadCount} />
-            <NewResultToast transmittedResults={transmittedResults} patientId={patientId} />
+            <NewResultToast transmittedResults={newResults} patientId={patientId} />
             <main className={styles['content']}>
                 <h1 className="sr-only">Eum 홈</h1>
                 <GreetingSection greeting={greeting} />
