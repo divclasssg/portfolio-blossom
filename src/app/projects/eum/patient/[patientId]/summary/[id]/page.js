@@ -46,7 +46,7 @@ function transformForPatient(dbResult) {
             days: parseInt(rx.duration) || 0,
             plain_language: rx.plain_language,
         })),
-        referral: c.referral
+        referral: c.referral && c.referral.to_hospital
             ? {
                   referral_to_department: c.referral.to_department ?? '',
                   referral_to_hospital: c.referral.to_hospital,

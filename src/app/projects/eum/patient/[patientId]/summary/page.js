@@ -1,5 +1,5 @@
-import rawSessions from '../../../_references/data/patient/05_consultation_sessions.json';
 import rawResults from '../../../_references/data/patient/06_consultation_results.json';
+import rawSessions from '../../../_references/data/patient/05_consultation_sessions.json';
 import { shiftDates } from '../../../_lib/dateShift';
 import styles from './page.module.scss';
 import AppBar from '../../_components/AppBar/AppBar';
@@ -10,23 +10,21 @@ export const metadata = {
     title: '진료 요약 — Eum',
 };
 
-// 날짜 시프트 적용
-const sessions = shiftDates(rawSessions);
+// 정적 JSON 폴백용
 const staticResults = shiftDates(rawResults);
-
-// session_id → hospital_name 매핑
 const staticSessionMap = Object.fromEntries(
-    sessions.sessions.map((s) => [s.session_id, s.hospital_name])
+    shiftDates(rawSessions).sessions.map((s) => [s.session_id, s.hospital_name])
 );
 
-// DB에서 전송된 진료 결과 조회
-async function fetchDbResults() {
+// DB에서 해당 환자의 진료 결과만 조회 (sessions 조인으로 patient_id 필터링)
+async function fetchDbResults(patientId) {
     try {
         const { getSupabaseClient } = await import('../../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
         const { data, error } = await supabase
             .from('consultation_results')
-            .select('session_id, doctor_name, hospital_name, diagnosis_name, transmitted_at')
+            .select('session_id, doctor_name, hospital_name, diagnosis_name, transmitted_at, sessions!inner(patient_id)')
+            .eq('sessions.patient_id', patientId)
             .order('transmitted_at', { ascending: false });
         if (error) throw error;
         return data || [];
@@ -41,33 +39,30 @@ function formatVisitDate(dateStr) {
 
 export default async function SummaryListPage({ params }) {
     const { patientId } = await params;
-    const dbResults = await fetchDbResults();
+    const dbResults = await fetchDbResults(patientId);
 
-    // DB 결과 → items 변환
-    const dbItems = dbResults.map((row) => ({
-        session_id: row.session_id,
-        visit_date: row.transmitted_at?.slice(0, 10) ?? '',
-        doctor_name: row.doctor_name,
-        diagnosis_name: row.diagnosis_name,
-        hospital_name: row.hospital_name ?? staticSessionMap[row.session_id] ?? '—',
-    }));
+    // DB에 해당 환자 결과가 있으면 DB만 사용, 없으면 정적 JSON 폴백
+    // (DB 세션 ID는 리매핑되어 정적 JSON과 다르므로 혼합 불가)
+    let items;
 
-    // DB에 이미 있는 session_id 집합
-    const dbSessionIds = new Set(dbItems.map((item) => item.session_id));
-
-    // 정적 JSON 과거 기록 → DB에 없는 것만 추가
-    const staticItems = staticResults.consultation_results
-        .filter((r) => !dbSessionIds.has(r.session_id))
-        .map((r) => ({
+    if (dbResults.length > 0) {
+        items = dbResults.map((row) => ({
+            session_id: row.session_id,
+            visit_date: row.transmitted_at?.slice(0, 10) ?? '',
+            doctor_name: row.doctor_name,
+            diagnosis_name: row.diagnosis_name,
+            hospital_name: row.hospital_name ?? '—',
+        }));
+    } else {
+        items = staticResults.consultation_results.map((r) => ({
             session_id: r.session_id,
             visit_date: r.visit_date,
             doctor_name: r.doctor_name,
             diagnosis_name: r.diagnosis_name,
             hospital_name: staticSessionMap[r.session_id] ?? '—',
         }));
+    }
 
-    // 병합 후 최신순 정렬
-    const items = [...dbItems, ...staticItems];
     items.sort((a, b) => b.visit_date.localeCompare(a.visit_date));
 
     return (

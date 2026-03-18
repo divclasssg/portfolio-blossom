@@ -24,6 +24,22 @@ export async function POST(request) {
 
         const supabase = getSupabaseClient();
 
+        // 전송 시점 기준으로 동적 날짜 설정
+        const now = new Date();
+        const nextVisit = new Date(now);
+        nextVisit.setDate(nextVisit.getDate() + 7);
+        const nextVisitDate = nextVisit.toISOString().slice(0, 10);
+        const todayDate = now.toISOString().slice(0, 10);
+
+        const adjustedContent = {
+            ...content,
+            next_visit_date: nextVisitDate,
+        };
+        // 타과의뢰가 있으면 의뢰일 추가
+        if (adjustedContent.referral) {
+            adjustedContent.referral = { ...adjustedContent.referral, referral_date: todayDate };
+        }
+
         // consultation_results INSERT
         const { error: insertError } = await supabase.from('consultation_results').insert({
             session_id: sessionId,
@@ -31,7 +47,7 @@ export async function POST(request) {
             doctor_name: doctorName,
             hospital_name: hospitalName || null,
             diagnosis_name: diagnosisName || null,
-            content,
+            content: adjustedContent,
         });
 
         if (insertError) {
