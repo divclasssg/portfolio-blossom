@@ -130,13 +130,15 @@ export default function VisitHistory({ data }) {
                     </table>
                 </div>
 
-                {/* 상세 패널 — 행 선택 시 표시 */}
+                {/* 상세 패널 — 행 선택 시 슬라이드 표시 */}
+                <div
+                    className={`${styles['detail-panel']} ${selectedVisit && detail ? styles['detail-panel--open'] : ''}`}
+                    role="complementary"
+                    aria-label="진료 상세 정보"
+                    aria-hidden={!selectedVisit}
+                >
                 {selectedVisit && detail && (
-                    <div
-                        className={styles['detail-panel']}
-                        role="complementary"
-                        aria-label="진료 상세 정보"
-                    >
+                    <>
                         <h3 className={styles['detail-name']}>{detail.shortName}</h3>
                         {/* 주호소 — 있을 때만 표시 */}
                         {selectedVisit.chief_complaint && (
@@ -171,8 +173,9 @@ export default function VisitHistory({ data }) {
                                 </ul>
                             </>
                         )}
-                    </div>
+                    </>
                 )}
+                </div>
             </div>
 
             {/* 데이터 출처 푸터 */}
