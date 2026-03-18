@@ -67,7 +67,7 @@ async function fetchLiveData(patientId) {
         const { getLatestSessionId } = await import('../../../../api/eum/_lib/getLatestSession');
         const latestSessionId = await getLatestSessionId(supabase, patientId);
 
-        const [symptomsRes, aiRes, patientRes, sessionRes] = await Promise.all([
+        const [symptomsRes, aiRes, patientRes, sessionRes, vitalsRes] = await Promise.all([
             supabase
                 .from('symptom_records')
                 .select('*')
@@ -99,6 +99,11 @@ async function fetchLiveData(patientId) {
                       .eq('id', latestSessionId)
                       .single()
                 : { data: null, error: null },
+            supabase
+                .from('vitals_records')
+                .select('recorded_at, heart_rate_bpm, bp_systolic, bp_diastolic, sleep_hours')
+                .eq('patient_id', patientId)
+                .order('recorded_at', { ascending: true }),
         ]);
 
         if (symptomsRes.error)
@@ -125,6 +130,8 @@ async function fetchLiveData(patientId) {
         const compactItems = timelineItems.slice(0, 3);
         const expandedItems = timelineItems.slice(3);
 
+        const vitals = vitalsRes.error ? [] : (vitalsRes.data ?? []);
+
         return {
             symptoms,
             compactItems,
@@ -134,6 +141,7 @@ async function fetchLiveData(patientId) {
             patient,
             chiefComplaint,
             latestSessionId,
+            vitals,
         };
     } catch (err) {
         console.warn('[doctor/page] Supabase 조회 실패, 정적 JSON 사용:', err.message);
@@ -272,6 +280,7 @@ export default async function DoctorDashboard({ params }) {
                 allergies={allergies}
                 chartData={shiftDates(rawTimelineChartData)}
                 liveSymptoms={liveData?.symptoms}
+                liveVitals={liveData?.vitals}
             />
         </PatientDataModalProvider>
         </>

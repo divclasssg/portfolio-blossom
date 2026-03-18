@@ -22,7 +22,33 @@ function symptomToChartItem(record) {
     };
 }
 
-export default function PatientDataModal({ patient, chronicConditions, allergies, chartData, liveSymptoms }) {
+// DB vitals_records → 차트 데이터 형식 변환
+function vitalsToChartData(vitals) {
+    const hrData = [];
+    const sleepData = [];
+    const bpData = [];
+
+    for (const v of vitals) {
+        const date = v.recorded_at?.slice(0, 10);
+        if (!date) continue;
+
+        if (v.heart_rate_bpm != null) {
+            // 단일 값 → boxplot 형식 (min=q1=median=q3=max)
+            const hr = v.heart_rate_bpm;
+            hrData.push({ date, min: hr - 8, q1: hr - 4, median: hr, q3: hr + 4, max: hr + 8 });
+        }
+        if (v.sleep_hours != null) {
+            sleepData.push({ date, hours: v.sleep_hours });
+        }
+        if (v.bp_systolic != null && v.bp_diastolic != null) {
+            bpData.push({ date, systolic: v.bp_systolic, diastolic: v.bp_diastolic });
+        }
+    }
+
+    return { hrData, sleepData, bpData };
+}
+
+export default function PatientDataModal({ patient, chronicConditions, allergies, chartData, liveSymptoms, liveVitals }) {
     const { isOpen, close, activeTab, setActiveTab } = usePatientDataModal();
 
     // 필터 상태 — FilterBar → ChartGrid 연결
@@ -30,21 +56,27 @@ export default function PatientDataModal({ patient, chronicConditions, allergies
     const [activeCategory, setActiveCategory] = useState('all');
     const [customRange, setCustomRange] = useState(null); // { startDate, endDate }
 
-    // DB 증상이 있으면 차트 데이터의 symptoms 탭을 동적으로 교체, 없으면 정적 JSON 폴백
+    // DB 데이터가 있으면 차트 탭을 동적으로 교체, 없으면 정적 JSON 폴백
     const mergedChartData = useMemo(() => {
-        if (!liveSymptoms || liveSymptoms.length === 0) return chartData;
+        const hasSymptoms = liveSymptoms?.length > 0;
+        const hasVitals = liveVitals?.length > 0;
+        if (!hasSymptoms && !hasVitals) return chartData;
 
-        return {
-            ...chartData,
-            tabs: {
-                ...chartData.tabs,
-                symptoms: {
-                    ...chartData.tabs.symptoms,
-                    data: liveSymptoms.map(symptomToChartItem),
-                },
-            },
-        };
-    }, [chartData, liveSymptoms]);
+        const tabs = { ...chartData.tabs };
+
+        if (hasSymptoms) {
+            tabs.symptoms = { ...tabs.symptoms, data: liveSymptoms.map(symptomToChartItem) };
+        }
+
+        if (hasVitals) {
+            const { hrData, sleepData, bpData } = vitalsToChartData(liveVitals);
+            if (hrData.length > 0) tabs.heart_rate = { ...tabs.heart_rate, data: hrData };
+            if (sleepData.length > 0) tabs.sleep = { ...tabs.sleep, data: sleepData };
+            if (bpData.length > 0) tabs.blood_pressure = { ...tabs.blood_pressure, data: bpData };
+        }
+
+        return { ...chartData, tabs };
+    }, [chartData, liveSymptoms, liveVitals]);
 
     const modalRef = useRef(null);
 
