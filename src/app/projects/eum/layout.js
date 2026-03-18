@@ -15,6 +15,15 @@ const notoSansKR = Noto_Sans_KR({
     display: 'swap',
 });
 
+export const metadata = {
+    manifest: '/eum/patient/manifest.json',
+    appleWebApp: {
+        capable: true,
+        statusBarStyle: 'default',
+        title: 'Eum',
+    },
+};
+
 export default function EumLayout({ children }) {
     return (
         <div
