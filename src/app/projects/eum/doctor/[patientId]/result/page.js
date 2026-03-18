@@ -174,8 +174,8 @@ export default async function ResultPage({ params }) {
             {/* 섹션 7: 타과의뢰 */}
             <Referral referral={resultPackage.referral} />
 
-            {/* 섹션 8: 다음 방문 */}
-            <NextVisit date={resultPackage.next_visit_date} />
+            {/* 섹션 8: 다음 방문 — 오늘 + 7일 */}
+            <NextVisit date={new Date(Date.now() + 7 * 86400000).toISOString().slice(0, 10)} />
 
 
         </DoctorPanel>
