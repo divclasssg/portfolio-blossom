@@ -94,6 +94,12 @@
     margin: 0;
 }
 
+.card--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 .card-arrow {
     flex-shrink: 0;
     color: $neutral-placeholder;
