@@ -44,8 +44,9 @@ export default function useSymptomChat({ patientId, patientName, sessionId, init
                     const { symptom_records } = await updatedRes.json();
                     setRecords(symptom_records);
                 }
-                setMessages((prev) => [
-                    ...prev,
+                // 대화 히스토리 리셋 — 다음 증상 수집 시 이전 대화 누적 방지
+                setMessages([
+                    makeInitialMessages(patientName)[0],
                     { type: 'bot', text: '증상이 기록됐어요.\n다른 증상이 있으면 말씀해 주세요.', timestamp: new Date().toISOString() },
                 ]);
             } else {
