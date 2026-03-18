@@ -63,9 +63,9 @@ async function fetchLiveData(patientId) {
         const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
 
-        // 최신 세션 ID 동적 조회
-        const { getLatestSessionId } = await import('../../../../api/eum/_lib/getLatestSession');
-        const latestSessionId = await getLatestSessionId(supabase, patientId);
+        // active 세션 ID 조회 (체크인 완료된 세션만)
+        const { getActiveSessionId } = await import('../../../../api/eum/_lib/getLatestSession');
+        const latestSessionId = await getActiveSessionId(supabase, patientId);
 
         const [symptomsRes, aiRes, patientRes, sessionRes, vitalsRes] = await Promise.all([
             supabase

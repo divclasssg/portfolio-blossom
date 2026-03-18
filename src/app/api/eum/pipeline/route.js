@@ -10,7 +10,7 @@ import {
     clearRunningPipeline,
 } from '../_lib/pipeline';
 import { getSupabaseClient } from '../_lib/supabase';
-import { getLatestSessionId } from '../_lib/getLatestSession';
+import { getActiveSessionId } from '../_lib/getLatestSession';
 import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
 import { requireEnv } from '../_lib/envCheck';
 import { isValidPatientId } from '../_lib/validate';
@@ -80,7 +80,7 @@ export async function POST(request) {
     if (patientId) {
         try {
             const supabase = getSupabaseClient();
-            sessionId = await getLatestSessionId(supabase, patientId);
+            sessionId = await getActiveSessionId(supabase, patientId);
         } catch {
             // sessionId 조회 실패 → null (저장 스킵)
         }
