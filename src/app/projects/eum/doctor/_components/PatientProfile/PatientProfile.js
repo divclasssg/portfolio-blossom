@@ -18,8 +18,10 @@ export default function PatientProfile({
     const genderLabel =
         patientSummary.gender === 'F' ? '여' : patientSummary.gender === 'M' ? '남' : null;
 
-    // ICD-10 코드: 첫 번째 기저질환에서 추출
-    const firstIcdCode = chronicConditions?.length > 0 ? extractIcdCode(chronicConditions[0]) : null;
+    // ICD-10 코드: 모든 기저질환에서 추출
+    const icdCodes = (chronicConditions ?? [])
+        .map(extractIcdCode)
+        .filter(Boolean);
 
     // 펼침 영역 데이터 (basicInfo가 있을 때만)
     const h = basicInfo ? parseFloat(basicInfo.height) : 0;
@@ -41,9 +43,9 @@ export default function PatientProfile({
                 {patientSummary.age != null && (
                     <span className={styles.age}>만 {patientSummary.age}세</span>
                 )}
-                {firstIcdCode && (
-                    <Badge className={styles['icd-code']}>{firstIcdCode}</Badge>
-                )}
+                {icdCodes.map((code) => (
+                    <Badge key={code} className={styles['icd-code']}>{code}</Badge>
+                ))}
 
                 <div className={styles.chips}>
                     {/* 기저질환 칩 — 0건이면 미표시 */}
