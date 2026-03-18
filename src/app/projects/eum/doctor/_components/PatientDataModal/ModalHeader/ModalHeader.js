@@ -10,7 +10,7 @@ const GENDER_LABEL = { F: '여', M: '남' };
 export default function ModalHeader({ patient, chronicConditions, allergies, onClose }) {
     const genderLabel = GENDER_LABEL[patient.gender] ?? patient.gender;
     const ageLabel = `만 ${patient.age}세`;
-    const firstIcdCode = chronicConditions?.length > 0 ? extractIcdCode(chronicConditions[0]) : null;
+    const icdCodes = (chronicConditions ?? []).map(extractIcdCode).filter(Boolean);
 
     return (
         <header className={styles.header}>
@@ -24,9 +24,9 @@ export default function ModalHeader({ patient, chronicConditions, allergies, onC
                     <div className={styles.badges}>
                         <Chip className={styles['modal-chip']}>{genderLabel}</Chip>
                         <Chip className={styles['modal-chip']}>{ageLabel}</Chip>
-                        {firstIcdCode && (
-                            <Badge className={styles['icd-code']}>{firstIcdCode}</Badge>
-                        )}
+                        {icdCodes.map((code) => (
+                            <Badge key={code} className={styles['icd-code']}>{code}</Badge>
+                        ))}
                     </div>
                 </div>
             </div>
