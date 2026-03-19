@@ -20,8 +20,11 @@ async function getLatestPatientId() {
     }
 }
 
-// 1순위: 쿠키 → 2순위: DB 최신 환자 → 3순위: 정적 JSON 데모
+// 1순위: 쿠키 → 2순위: DB 최신 환자 → 3순위: UT 허브로 이동
 export default async function DoctorRedirect() {
-    const patientId = (await getPatientId()) || (await getLatestPatientId()) || 'pat_yoon_001';
+    const patientId = (await getPatientId()) || (await getLatestPatientId());
+    if (!patientId) {
+        redirect('/projects/eum/usability-testing/patients');
+    }
     redirect(`/projects/eum/doctor/${patientId}`);
 }

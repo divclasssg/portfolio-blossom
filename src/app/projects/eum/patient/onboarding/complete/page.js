@@ -42,6 +42,7 @@ export default function CompletePage() {
     const [saveStatus, setSaveStatus] = useState('idle'); // 'saving' | 'done' | 'error'
     const [errorMsg, setErrorMsg] = useState('');
     const [summaryItems, setSummaryItems] = useState([]);
+    const [seedFailed, setSeedFailed] = useState(false);
 
     async function saveOnboarding() {
         const raw = sessionStorage.getItem('eum_onboarding');
@@ -73,16 +74,25 @@ export default function CompletePage() {
             document.cookie = `eum_patient_id=${patientId}; path=/projects/eum; max-age=86400; SameSite=Lax`;
             sessionStorage.setItem('eum_patient_id', patientId);
 
-            // 데모 환자에 윤서진 시나리오 임상 데이터 시드 (실패해도 진행)
-            try {
-                await fetch('/api/eum/patients/seed', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ patientId }),
-                });
-            } catch (e) {
-                console.warn('[complete] 시드 실패 (정적 JSON 폴백 유지):', e.message);
+            // 데모 환자에 윤서진 시나리오 임상 데이터 시드 (실패 시 1회 재시도)
+            let seedOk = false;
+            for (let attempt = 0; attempt < 2 && !seedOk; attempt++) {
+                try {
+                    const seedRes = await fetch('/api/eum/patients/seed', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ patientId }),
+                    });
+                    if (seedRes.ok) {
+                        seedOk = true;
+                    } else {
+                        console.warn(`[complete] 시드 실패 (${attempt + 1}/2):`, seedRes.status);
+                    }
+                } catch (e) {
+                    console.warn(`[complete] 시드 요청 오류 (${attempt + 1}/2):`, e.message);
+                }
             }
+            if (!seedOk) setSeedFailed(true);
 
             sessionStorage.removeItem('eum_onboarding');
             setSaveStatus('done');
@@ -147,6 +157,11 @@ export default function CompletePage() {
                 </section>
 
                 <div className="footer">
+                    {seedFailed && (
+                        <p className={styles['seed-warning']} role="status">
+                            데모 데이터 로드에 실패했습니다. 앱은 정상 작동합니다.
+                        </p>
+                    )}
                     {saveStatus === 'error' && (
                         <p className={styles['error-msg']} role="alert">
                             {errorMsg} — 잠시 후 다시 시도해 주세요.
@@ -165,7 +180,14 @@ export default function CompletePage() {
                         <CtaButton
                             disabled={saveStatus === 'saving'}
                             onClick={() => {
-                                const pid = sessionStorage.getItem('eum_patient_id') || 'pat_yoon_001';
+                                // 쿠키 → sessionStorage 순으로 시도, 둘 다 없으면 진행 불가
+                                const cookieMatch = document.cookie.match(/eum_patient_id=([^;]+)/);
+                                const pid = cookieMatch?.[1] || sessionStorage.getItem('eum_patient_id');
+                                if (!pid) {
+                                    setErrorMsg('환자 정보를 찾을 수 없습니다. 온보딩을 다시 진행해 주세요.');
+                                    setSaveStatus('error');
+                                    return;
+                                }
                                 router.push(`/projects/eum/patient/${pid}`);
                             }}
                         >

@@ -74,6 +74,15 @@ export default function useSymptomChat({ patientId, patientName, sessionId, init
     // SSE 스트리밍 처리 — 메시지 전송 후 호출
     // currentMessages: 사용자 메시지가 이미 포함된 배열
     async function startStreaming(currentMessages) {
+        // sessionId 없으면 서버 요청 불가 — 사용자 안내
+        if (!sessionId) {
+            setMessages((prev) => [
+                ...prev,
+                { type: 'bot', text: '세션 연결에 실패했습니다. 페이지를 새로고침해 주세요.', timestamp: new Date().toISOString() },
+            ]);
+            return;
+        }
+
         setIsStreaming(true);
 
         // 봇 슬롯 인덱스 = currentMessages.length (봇 메시지가 추가될 위치)

@@ -76,6 +76,14 @@
     flex-shrink: 0;
 }
 
+.seed-warning {
+    font-size: $fs-small;
+    color: $text-secondary;
+    text-align: center;
+    margin-bottom: 8px;
+    line-height: $line-height-body;
+}
+
 .error-msg {
     font-size: $fs-small;
     color: $color-danger;

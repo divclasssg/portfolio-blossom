@@ -46,14 +46,31 @@ export default async function SymptomsPage({ params }) {
     const generatedSymptoms = generateSymptoms();
     const vitals = homeDashboard.vitals_today;
 
-    // 최신 세션 ID 동적 조회
+    // 최신 세션 ID 동적 조회 — 없으면 자동 생성 (체크인 없이도 증상 기록 가능)
     let latestSessionId = null;
     try {
         const { getSupabaseClient } = await import('../../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
         latestSessionId = await getLatestSessionId(supabase, patientId);
+
+        if (!latestSessionId) {
+            const { data, error } = await supabase
+                .from('sessions')
+                .insert({
+                    patient_id: patientId,
+                    doctor_id: 'doc_kim_001',
+                    status: 'active',
+                })
+                .select('id')
+                .single();
+            if (!error && data) {
+                latestSessionId = data.id;
+            } else {
+                console.error('[SymptomsPage] 세션 자동 생성 실패:', error?.message);
+            }
+        }
     } catch {
-        // 조회 실패 시 null
+        // Supabase 불가 시 null — 정적 폴백으로 진행
     }
 
     const [dbRecords, patientName] = await Promise.all([
