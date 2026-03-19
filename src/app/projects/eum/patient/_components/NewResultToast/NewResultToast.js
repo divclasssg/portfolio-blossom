@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Toast from '../Toast/Toast';
+import { getSupabaseBrowser } from '../../_lib/supabaseBrowser';
 
 const STORAGE_KEY = 'eum_seen_results';
 
@@ -31,8 +33,26 @@ export function markResultAsSeen(sessionId) {
 // 서버에서 전달받은 전송 완료된 결과 목록 중
 // localStorage에 없는 가장 최신 1건만 토스트로 표시
 export default function NewResultToast({ transmittedResults, patientId }) {
+    const router = useRouter();
     const [unseenResult, setUnseenResult] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
+
+    // Realtime 구독: 의사가 결과 전송 시 서버 컴포넌트 재실행
+    useEffect(() => {
+        const supabase = getSupabaseBrowser();
+        const channel = supabase
+            .channel('new-results')
+            .on(
+                'postgres_changes',
+                { event: 'INSERT', schema: 'public', table: 'consultation_results' },
+                () => router.refresh()
+            )
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(channel);
+        };
+    }, [router]);
 
     useEffect(() => {
         if (!transmittedResults || transmittedResults.length === 0) return;
