@@ -87,6 +87,10 @@ async function fetchSessionData(patientId) {
         const activeSessionId = await getActiveSessionId(supabase, patientId);
         if (!activeSessionId) return null;
 
+        // DB 일일 데이터 백필 — 차트 도메인 안에 최신 데이터 보장
+        const { backfillDailyData } = await import('../../../../api/eum/_lib/backfillDailyData');
+        await backfillDailyData(patientId).catch(() => {});
+
         const [symptomsRes, aiRes, sessionRes, vitalsRes] = await Promise.all([
             supabase
                 .from('symptom_records')
