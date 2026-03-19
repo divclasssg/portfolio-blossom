@@ -40,6 +40,7 @@ export default function NewResultToast({ transmittedResults, patientId }) {
     // Realtime 구독: 의사가 결과 전송 시 서버 컴포넌트 재실행
     useEffect(() => {
         const supabase = getSupabaseBrowser();
+        if (!supabase) return; // 환경 변수 누락 시 Realtime 구독 스킵
         const channel = supabase
             .channel('new-results')
             .on(
