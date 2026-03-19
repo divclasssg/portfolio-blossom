@@ -2,6 +2,8 @@
 
 // input: 주민등록번호용 letter-spacing (글로벌에 없음)
 .input {
+    flex: 6;
+    min-width: 0;
     letter-spacing: 0.1em;
 
     &::placeholder {
@@ -41,7 +43,8 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    flex-shrink: 0;
+    flex: 4;
+    min-width: 0;
 }
 
 .input-back1 {
