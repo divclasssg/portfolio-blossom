@@ -41,7 +41,7 @@ export default function Toast({ message, subMessage, href, onDismiss, isVisible 
 
     function handleClick() {
         if (timerRef.current) clearTimeout(timerRef.current);
-        onDismiss?.();
+        handleDismiss();
         if (href) router.push(href);
     }
 

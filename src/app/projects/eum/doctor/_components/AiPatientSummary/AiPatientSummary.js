@@ -5,12 +5,14 @@ import styles from './AiPatientSummary.module.scss';
 import { AiIcon, WarningIcon } from '../../../_components/icons';
 import Badge from '../Badge/Badge';
 import AiWarningBanner from '../AiWarningBanner/AiWarningBanner';
+import { useResultEdit } from '../ResultEditContext/ResultEditContext';
 
 // D-001 섹션 4: AI 쉬운말 변환 결과 — 의사가 직접 편집 가능
 export default function AiPatientSummary({ plainText, modelVersion, resultWarnings }) {
     // 'generating' → 2.5초 → 'complete'
     const [generationState, setGenerationState] = useState('generating');
     const textareaRef = useRef(null);
+    const editRef = useResultEdit();
 
     // 마운트 시 생성 시뮬레이션 시작
     useEffect(() => {
@@ -29,12 +31,13 @@ export default function AiPatientSummary({ plainText, modelVersion, resultWarnin
         }
     }, [generationState]);
 
-    // textarea 입력 시 높이 자동 조정
+    // textarea 입력 시 높이 자동 조정 + 수정값을 context ref에 저장
     const handleInput = useCallback((e) => {
         const el = e.target;
         el.style.height = 'auto';
         el.style.height = `${el.scrollHeight}px`;
-    }, []);
+        if (editRef) editRef.current.doctor_note_plain = el.value;
+    }, [editRef]);
 
     return (
         <section className="section">

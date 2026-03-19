@@ -3,6 +3,7 @@ import aiWarnings from '../../../_references/data/doctor/08_ai_warnings.json';
 import dashboardState from '../../../_references/data/doctor/03_dashboard_state.json';
 import timelineChartData from '../../../_references/data/doctor/06_timeline_chart_data.json';
 import { PatientDataModalProvider } from '../../_components/PatientDataModal/PatientDataModalContext';
+import { ResultEditProvider } from '../../_components/ResultEditContext/ResultEditContext';
 import DoctorPanel from '../../_components/DoctorPanel/DoctorPanel';
 import PatientProfile from '../../_components/PatientProfile/PatientProfile';
 import ClinicalNotes from '../../_components/ClinicalNotes/ClinicalNotes';
@@ -120,6 +121,7 @@ export default async function ResultPage({ params }) {
         <>
         <h1 className="sr-only">결과 작성</h1>
         <PatientDataModalProvider>
+        <ResultEditProvider>
         <DoctorPanel
             backHref={`/projects/eum/doctor/${patientId}`}
             singleColumn
@@ -179,6 +181,7 @@ export default async function ResultPage({ params }) {
 
 
         </DoctorPanel>
+        </ResultEditProvider>
 
         <PatientDataModal
             patient={patientSummary}

@@ -6,6 +6,7 @@ import styles from './ResultFooterCta.module.scss';
 import CtaPrimary from '../CtaPrimary/CtaPrimary';
 import CtaSecondary from '../CtaSecondary/CtaSecondary';
 import TransmissionDialog from '../TransmissionDialog/TransmissionDialog';
+import { useResultEdit } from '../ResultEditContext/ResultEditContext';
 
 // D-001 하단 CTA — 확인 및 전송 / 취소
 export default function ResultFooterCta({
@@ -19,6 +20,7 @@ export default function ResultFooterCta({
     resultData,
     alreadyTransmitted = false,
 }) {
+    const editRef = useResultEdit();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isTransmitted, setIsTransmitted] = useState(alreadyTransmitted);
     const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +42,9 @@ export default function ResultFooterCta({
                     doctorName,
                     hospitalName,
                     diagnosisName,
-                    content: resultData,
+                    content: editRef?.current && Object.keys(editRef.current).length > 0
+                    ? { ...resultData, ...editRef.current }
+                    : resultData,
                 }),
             });
 
