@@ -78,6 +78,7 @@
 // input: flex: 1 (글로벌은 width: 100%), 숫자 화살표 제거 — 모듈 유지
 .input {
     flex: 1;
+    min-width: 0;
     height: 48px;
     padding: 11px 14px;
     border: 1.5px solid $card-border;

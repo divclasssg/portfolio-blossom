@@ -29,6 +29,7 @@
 // input: flex: 1 추가 (input-row 내에서 버튼과 함께 배치되므로)
 .input {
     flex: 1;
+    min-width: 0;
 }
 
 .gender-row {
