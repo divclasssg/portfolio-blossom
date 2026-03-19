@@ -38,10 +38,12 @@ export async function POST(request) {
         chiefComplaint = data?.chief_complaint ?? null;
     }
 
-    // 새 active 세션 생성
+    // 새 active 세션 생성 (id는 TEXT PK이므로 직접 생성)
+    const sessionId = `ses_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}`;
     const { data: newSession, error } = await supabase
         .from('sessions')
         .insert({
+            id: sessionId,
             patient_id: patientId,
             doctor_id: 'doc_kim_001',
             status: 'active',

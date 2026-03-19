@@ -54,9 +54,11 @@ export default async function SymptomsPage({ params }) {
         latestSessionId = await getLatestSessionId(supabase, patientId);
 
         if (!latestSessionId) {
+            const newId = `ses_${crypto.randomUUID().replace(/-/g, '').slice(0, 12)}`;
             const { data, error } = await supabase
                 .from('sessions')
                 .insert({
+                    id: newId,
                     patient_id: patientId,
                     doctor_id: 'doc_kim_001',
                     status: 'active',
