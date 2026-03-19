@@ -76,37 +76,28 @@ async function fetchPatientProfile(patientId) {
     }
 }
 
-// Supabase에서 세션 데이터 조회 (active 세션 필요 — 체크인 후에만 반환)
+// Supabase에서 환자 단위 데이터(증상·바이탈) + 세션 단위 데이터(AI·chief complaint) 조회
+// 증상·바이탈은 active 세션 없이도 항상 DB에서 조회
 async function fetchSessionData(patientId) {
     try {
         const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
         const supabase = getSupabaseClient();
 
-        // active 세션 없으면 → null (정적 JSON 폴백)
-        const { getActiveSessionId } = await import('../../../../api/eum/_lib/getLatestSession');
-        const activeSessionId = await getActiveSessionId(supabase, patientId);
-        if (!activeSessionId) return null;
-
         // DB 일일 데이터 백필 — 차트 도메인 안에 최신 데이터 보장
         const { backfillDailyData } = await import('../../../../api/eum/_lib/backfillDailyData');
         await backfillDailyData(patientId).catch(() => {});
 
-        const [symptomsRes, aiRes, sessionRes, vitalsRes] = await Promise.all([
+        // active 세션 조회 (AI 결과·chief complaint 용)
+        const { getActiveSessionId, getLatestSessionId } = await import('../../../../api/eum/_lib/getLatestSession');
+        const activeSessionId = await getActiveSessionId(supabase, patientId);
+
+        // 환자 단위 데이터: active 세션 무관하게 항상 조회
+        const [symptomsRes, vitalsRes] = await Promise.all([
             supabase
                 .from('symptom_records')
                 .select('*')
                 .eq('patient_id', patientId)
                 .order('occurred_at', { ascending: false }),
-            supabase
-                .from('ai_results')
-                .select('*')
-                .eq('session_id', activeSessionId)
-                .order('created_at', { ascending: false }),
-            supabase
-                .from('sessions')
-                .select('chief_complaint')
-                .eq('id', activeSessionId)
-                .single(),
             supabase
                 .from('vitals_records')
                 .select('recorded_at, heart_rate_bpm, bp_systolic, bp_diastolic, sleep_hours')
@@ -116,23 +107,55 @@ async function fetchSessionData(patientId) {
 
         if (symptomsRes.error)
             console.warn('[doctor/page] symptom_records 조회 실패:', symptomsRes.error.message);
-        if (sessionRes.error)
-            console.warn('[doctor/page] sessions 조회 실패:', sessionRes.error.message);
 
         const symptoms = symptomsRes.error ? [] : (symptomsRes.data ?? []);
-        const aiData = aiRes.data ?? [];
-        const chiefComplaint = sessionRes.error ? null : (sessionRes.data?.chief_complaint ?? null);
+        const vitals = vitalsRes.error ? [] : (vitalsRes.data ?? []);
 
-        const rawBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
-        const dbBriefing = rawBriefing?.summary_bullets?.length > 0 ? rawBriefing : null;
-        const rawSuggestions = aiData.find((r) => r.result_type === 'suggestions')?.content ?? null;
-        const dbSuggestions = rawSuggestions?.suggestions?.length > 0 ? rawSuggestions : null;
+        // DB에 환자 데이터가 전혀 없으면 정적 JSON 폴백
+        if (symptoms.length === 0 && vitals.length === 0 && !activeSessionId) return null;
 
         const timelineItems = symptoms.map(symptomToTimelineItem).filter(Boolean);
         const compactItems = timelineItems.slice(0, 3);
         const expandedItems = timelineItems.slice(3);
 
-        const vitals = vitalsRes.error ? [] : (vitalsRes.data ?? []);
+        // 세션 단위 데이터: active 세션 있을 때만 AI 결과·chief complaint 조회
+        // active 없으면 최신 세션에서 chief_complaint만 조회
+        let dbBriefing = null;
+        let dbSuggestions = null;
+        let chiefComplaint = null;
+        const effectiveSessionId = activeSessionId || await getLatestSessionId(supabase, patientId);
+
+        if (effectiveSessionId) {
+            const queries = [
+                supabase
+                    .from('sessions')
+                    .select('chief_complaint')
+                    .eq('id', effectiveSessionId)
+                    .single(),
+            ];
+            // AI 결과는 active 세션에서만 조회
+            if (activeSessionId) {
+                queries.push(
+                    supabase
+                        .from('ai_results')
+                        .select('*')
+                        .eq('session_id', activeSessionId)
+                        .order('created_at', { ascending: false })
+                );
+            }
+
+            const results = await Promise.all(queries);
+            const sessionRes = results[0];
+            chiefComplaint = sessionRes.error ? null : (sessionRes.data?.chief_complaint ?? null);
+
+            if (activeSessionId && results[1]) {
+                const aiData = results[1].data ?? [];
+                const rawBriefing = aiData.find((r) => r.result_type === 'briefing')?.content ?? null;
+                dbBriefing = rawBriefing?.summary_bullets?.length > 0 ? rawBriefing : null;
+                const rawSuggestions = aiData.find((r) => r.result_type === 'suggestions')?.content ?? null;
+                dbSuggestions = rawSuggestions?.suggestions?.length > 0 ? rawSuggestions : null;
+            }
+        }
 
         return {
             symptoms,
@@ -141,7 +164,7 @@ async function fetchSessionData(patientId) {
             dbBriefing,
             dbSuggestions,
             chiefComplaint,
-            activeSessionId,
+            activeSessionId: activeSessionId || effectiveSessionId,
             vitals,
         };
     } catch (err) {
