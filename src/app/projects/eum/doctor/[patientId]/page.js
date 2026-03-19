@@ -195,25 +195,28 @@ export default async function DoctorDashboard({ params }) {
 
     const { patientId } = await params;
 
-    // 환자 프로필(항상 DB) + 세션 데이터(체크인 후만) 병렬 조회
+    // 환자 프로필(항상 DB) + 세션 데이터 병렬 조회
     const [patient, sessionData] = await Promise.all([
         fetchPatientProfile(patientId),
         fetchSessionData(patientId),
     ]);
 
-    // 타임라인: active 세션 있을 때만 라이브, 없으면 정적 JSON 폴백
-    const hasLiveSymptoms = (sessionData?.symptoms?.length ?? 0) > 0;
+    // DB에 환자가 존재하면 정적 JSON 폴백 금지 — 빈 데이터라도 라이브 표시
+    // (정적 JSON은 pat_yoon_001 데모 전용)
+    const isLivePatient = !!patient;
+    const liveSymptoms = sessionData?.compactItems ?? [];
+    const hasLiveSymptoms = isLivePatient || liveSymptoms.length > 0;
 
     const compactTimeline = hasLiveSymptoms
         ? {
               ...sections.symptom_timeline_compact,
-              items: sessionData.compactItems,
-              remaining_count: Math.max(0, sessionData.symptoms.length - 3),
+              items: liveSymptoms,
+              remaining_count: Math.max(0, (sessionData?.symptoms?.length ?? 0) - 3),
           }
         : sections.symptom_timeline_compact;
 
     const expandedTimeline = hasLiveSymptoms
-        ? { items: sessionData.expandedItems }
+        ? { items: sessionData?.expandedItems ?? [] }
         : sections.symptom_timeline_expanded;
 
     // 환자 프로필: DB 우선 (체크인 무관), 폴백 → 정적 JSON
@@ -249,8 +252,11 @@ export default async function DoctorDashboard({ params }) {
     // allergies: DB 우선, 폴백 → 정적 JSON
     const allergies = patient?.allergies ?? sections.allergies.items;
 
-    // chief complaint: active 세션 우선, 폴백 → 정적 JSON
-    const chiefComplaint = sessionData?.chiefComplaint ?? sections.chief_complaint;
+    // chief complaint: active 세션 우선, DB 환자면 빈 상태, 아니면 정적 JSON
+    const chiefComplaint = sessionData?.chiefComplaint
+        ?? (isLivePatient
+            ? { patient_text: '아직 기록된 증상이 없습니다', symptom_count: 0, symptom_period: '-' }
+            : sections.chief_complaint);
 
     return (
         <>
