@@ -41,7 +41,7 @@ export default function NewResultToast({ transmittedResults, patientId }) {
     // 환자 필터링은 서버 사이드 fetchTransmittedResults에서 처리
     useEffect(() => {
         const supabase = getSupabaseBrowser();
-        if (!supabase) return; // 환경 변수 누락 시 Realtime 구독 스킵
+        if (!supabase) return;
         const channel = supabase
             .channel('new-results')
             .on(
@@ -55,6 +55,14 @@ export default function NewResultToast({ transmittedResults, patientId }) {
             supabase.removeChannel(channel);
         };
     }, [router]);
+
+    // Polling fallback: Realtime이 RLS/publication 미설정으로 실패할 경우 대비
+    // 미확인 결과가 없을 때만 8초 간격으로 서버 데이터 새로고침
+    useEffect(() => {
+        if (unseenResult) return;
+        const id = setInterval(() => router.refresh(), 8000);
+        return () => clearInterval(id);
+    }, [unseenResult, router]);
 
     useEffect(() => {
         if (!transmittedResults || transmittedResults.length === 0) return;
