@@ -7,7 +7,12 @@ import { getSupabaseBrowser } from '../../_lib/supabaseBrowser';
 
 const STORAGE_KEY = 'eum_seen_results';
 
-// localStorage에서 이미 확인한 session_id 목록 조회
+// 복합키: session_id + transmitted_at (재전송 시 새 토스트 표시용)
+function unseenKey(result) {
+    return `${result.session_id}:${result.transmitted_at}`;
+}
+
+// localStorage에서 이미 확인한 결과 키 목록 조회
 function getSeenResults() {
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -17,12 +22,13 @@ function getSeenResults() {
     }
 }
 
-// session_id를 확인 목록에 추가
-export function markResultAsSeen(sessionId) {
+// 결과를 확인 목록에 추가 (복합키: session_id:transmitted_at)
+export function markResultAsSeen(sessionId, transmittedAt) {
     try {
         const seen = getSeenResults();
-        if (!seen.includes(sessionId)) {
-            seen.push(sessionId);
+        const key = transmittedAt ? `${sessionId}:${transmittedAt}` : sessionId;
+        if (!seen.includes(key)) {
+            seen.push(key);
             localStorage.setItem(STORAGE_KEY, JSON.stringify(seen));
         }
     } catch {
@@ -46,7 +52,7 @@ export default function NewResultToast({ transmittedResults, patientId }) {
             .channel('new-results')
             .on(
                 'postgres_changes',
-                { event: 'INSERT', schema: 'public', table: 'consultation_results' },
+                { event: '*', schema: 'public', table: 'consultation_results' },
                 () => router.refresh()
             )
             .subscribe();
@@ -69,7 +75,7 @@ export default function NewResultToast({ transmittedResults, patientId }) {
 
         const seen = getSeenResults();
         // transmitted_at 기준 최신순 정렬된 상태로 전달됨 → 첫 번째 미확인 결과
-        const unseen = transmittedResults.find((r) => !seen.includes(r.session_id));
+        const unseen = transmittedResults.find((r) => !seen.includes(unseenKey(r)));
 
         if (unseen) {
             setUnseenResult(unseen);
@@ -80,7 +86,7 @@ export default function NewResultToast({ transmittedResults, patientId }) {
     function handleDismiss() {
         setIsVisible(false);
         if (unseenResult) {
-            markResultAsSeen(unseenResult.session_id);
+            markResultAsSeen(unseenResult.session_id, unseenResult.transmitted_at);
         }
     }
 

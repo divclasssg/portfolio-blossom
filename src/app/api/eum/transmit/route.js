@@ -40,9 +40,9 @@ export async function POST(request) {
             adjustedContent.referral = { ...adjustedContent.referral, referral_date: todayDate };
         }
 
-        // consultation_results INSERT
+        // consultation_results UPSERT (재전송 시 기존 행 덮어쓰기)
         const transmittedAt = new Date().toISOString();
-        const { error: insertError } = await supabase.from('consultation_results').insert({
+        const { error: upsertError } = await supabase.from('consultation_results').upsert({
             session_id: sessionId,
             doctor_id: doctorId,
             doctor_name: doctorName,
@@ -50,18 +50,11 @@ export async function POST(request) {
             diagnosis_name: diagnosisName || null,
             content: adjustedContent,
             transmitted_at: transmittedAt,
-        });
+        }, { onConflict: 'session_id' });
 
-        if (insertError) {
-            // 중복 전송 (session_id UNIQUE 위반)
-            if (insertError.code === '23505') {
-                return NextResponse.json(
-                    { error: '이미 전송된 세션입니다' },
-                    { status: 409 }
-                );
-            }
-            console.error('[POST /api/eum/transmit] INSERT 에러:', insertError.message);
-            throw insertError;
+        if (upsertError) {
+            console.error('[POST /api/eum/transmit] UPSERT 에러:', upsertError.message);
+            throw upsertError;
         }
 
         // sessions 상태 업데이트

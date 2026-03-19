@@ -102,7 +102,7 @@ export default async function SummaryDetailPage({ params }) {
     return (
         <>
             <AppBar backHref={`/projects/eum/patient/${patientId}/summary`} />
-            <MarkResultSeen sessionId={id} />
+            <MarkResultSeen sessionId={id} transmittedAt={dbResult?.transmitted_at} />
             <main className={styles['content']}>
                 {/* 페이지 제목 + 공유 버튼 */}
                 <div className={styles['page-title-row']}>

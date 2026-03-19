@@ -63,6 +63,15 @@ export default function ResultFooterCta({
                 <p className={styles['transmitted-msg']} role="status">
                     전송이 완료되었습니다.
                 </p>
+                <CtaSecondary
+                    onClick={() => {
+                        setIsTransmitted(false);
+                        setIsError(false);
+                    }}
+                    aria-label="결과를 수정한 후 다시 전송합니다"
+                >
+                    수정 후 재전송
+                </CtaSecondary>
             </footer>
         );
     }
