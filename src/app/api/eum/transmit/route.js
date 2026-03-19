@@ -41,6 +41,7 @@ export async function POST(request) {
         }
 
         // consultation_results INSERT
+        const transmittedAt = new Date().toISOString();
         const { error: insertError } = await supabase.from('consultation_results').insert({
             session_id: sessionId,
             doctor_id: doctorId,
@@ -48,6 +49,7 @@ export async function POST(request) {
             hospital_name: hospitalName || null,
             diagnosis_name: diagnosisName || null,
             content: adjustedContent,
+            transmitted_at: transmittedAt,
         });
 
         if (insertError) {
