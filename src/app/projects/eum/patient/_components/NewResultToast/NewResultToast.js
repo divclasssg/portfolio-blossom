@@ -37,7 +37,8 @@ export default function NewResultToast({ transmittedResults, patientId }) {
     const [unseenResult, setUnseenResult] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
 
-    // Realtime 구독: 의사가 결과 전송 시 해당 환자만 서버 컴포넌트 재실행
+    // Realtime 구독: 의사가 결과 전송 시 서버 컴포넌트 재실행
+    // 환자 필터링은 서버 사이드 fetchTransmittedResults에서 처리
     useEffect(() => {
         const supabase = getSupabaseBrowser();
         if (!supabase) return; // 환경 변수 누락 시 Realtime 구독 스킵
@@ -46,31 +47,14 @@ export default function NewResultToast({ transmittedResults, patientId }) {
             .on(
                 'postgres_changes',
                 { event: 'INSERT', schema: 'public', table: 'consultation_results' },
-                async (payload) => {
-                    // session_id로 해당 세션의 patient_id 확인
-                    const sessionId = payload.new?.session_id;
-                    if (!sessionId) { router.refresh(); return; }
-                    try {
-                        const { data } = await supabase
-                            .from('sessions')
-                            .select('patient_id')
-                            .eq('id', sessionId)
-                            .maybeSingle();
-                        if (data?.patient_id === patientId) {
-                            router.refresh();
-                        }
-                    } catch {
-                        // 조회 실패 시 안전하게 새로고침
-                        router.refresh();
-                    }
-                }
+                () => router.refresh()
             )
             .subscribe();
 
         return () => {
             supabase.removeChannel(channel);
         };
-    }, [router, patientId]);
+    }, [router]);
 
     useEffect(() => {
         if (!transmittedResults || transmittedResults.length === 0) return;
