@@ -70,7 +70,8 @@ export default function CompletePage() {
 
             const { patientId } = await res.json();
 
-            // 클라이언트에서 직접 쿠키 설정
+            // 기존 httpOnly 쿠키와 동명 충돌 방지: 삭제 후 재설정
+            document.cookie = 'eum_patient_id=; path=/projects/eum; max-age=0; SameSite=Lax';
             document.cookie = `eum_patient_id=${patientId}; path=/projects/eum; max-age=86400; SameSite=Lax`;
             sessionStorage.setItem('eum_patient_id', patientId);
 

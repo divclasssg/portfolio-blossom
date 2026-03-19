@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../_lib/supabase';
 import { revalidateAll } from '../_lib/revalidate';
 import { createRateLimiter, getClientIp, rateLimitResponse } from '../_lib/rateLimit';
-import { setPatientCookie } from '../_lib/cookie';
+import { clearPatientCookie } from '../_lib/cookie';
 import { isValidPatientId } from '../_lib/validate';
 
 const limiter = createRateLimiter({ windowMs: 60_000, max: 30 });
@@ -116,7 +116,7 @@ export async function POST(request) {
         if (error) throw error;
         revalidateAll(data.id);
         const res = NextResponse.json({ patientId: data.id });
-        return setPatientCookie(res, data.id);
+        return clearPatientCookie(res);
     } catch (err) {
         console.error('[POST /api/eum/patients]', err.message);
         return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });

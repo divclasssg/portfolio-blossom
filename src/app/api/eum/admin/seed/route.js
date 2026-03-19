@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseClient } from '../../_lib/supabase';
 import { seedDemoScenario } from '../../_lib/seedDemoData';
-import { setPatientCookie } from '../../_lib/cookie';
+import { clearPatientCookie } from '../../_lib/cookie';
 import { revalidateAll } from '../../_lib/revalidate';
 
 const ADMIN_PATIENT_ID = 'pat_admin_001';
@@ -62,7 +62,7 @@ export async function POST() {
                     patientId: ADMIN_PATIENT_ID,
                     seeded: false,
                 });
-                return setPatientCookie(res, ADMIN_PATIENT_ID);
+                return clearPatientCookie(res);
             }
 
             // 데모 데이터 없음 → 시드 재실행
@@ -73,7 +73,7 @@ export async function POST() {
                 patientId: ADMIN_PATIENT_ID,
                 seeded: true,
             });
-            return setPatientCookie(reseed, ADMIN_PATIENT_ID);
+            return clearPatientCookie(reseed);
         }
 
         // 환자 레코드 생성
@@ -92,7 +92,7 @@ export async function POST() {
             patientId: ADMIN_PATIENT_ID,
             seeded: true,
         });
-        return setPatientCookie(res, ADMIN_PATIENT_ID);
+        return clearPatientCookie(res);
     } catch (err) {
         console.error('[POST /api/eum/admin/seed]', err.message);
         return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 });

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getPatientId } from '../../_lib/getPatientId';
+import ResetButton from '../_components/ResetButton/ResetButton';
 import styles from './page.module.scss';
 
 export const metadata = {
@@ -89,6 +90,8 @@ export default async function PatientUtPage() {
                     )
                 )}
             </nav>
+
+            <ResetButton />
         </main>
     );
 }
