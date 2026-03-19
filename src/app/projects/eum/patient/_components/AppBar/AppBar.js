@@ -10,7 +10,8 @@ export default function AppBar({ backHref, unreadCount = 0 }) {
                     <ArrowIcon variant="left" size={24} />
                 </Link>
             )}
-            <span className={styles['title']}>Eum</span>
+            {/* UT 종료 후 홈화면으로 이동 처리 필요 */}
+            <Link href="/projects/eum/usability-testing/patients" className={styles['title']}>Eum</Link>
             <button
                 className={styles['bell-btn']}
                 aria-label={unreadCount > 0 ? `알림 ${unreadCount}개 (준비 중)` : '알림 (준비 중)'}
