@@ -9,7 +9,7 @@ import SymptomLogCta from '../_components/SymptomLogCta/SymptomLogCta';
 import VitalsToday from '../_components/VitalsToday/VitalsToday';
 import LastVisitResult from '../_components/LastVisitResult/LastVisitResult';
 import TabBar from '../_components/TabBar/TabBar';
-import NewResultToast from '../_components/NewResultToast/NewResultToast';
+import { fetchPatientInfo, fetchTransmittedResults } from '../_lib/fetchResults';
 import { backfillDailyData } from '../../../../api/eum/_lib/backfillDailyData';
 
 export const metadata = {
@@ -86,47 +86,6 @@ async function fetchRecentSymptomsSummary(patientId) {
     }
 }
 
-// Supabase에서 환자 정보 조회 (실패 시 null 반환 → 정적 JSON 폴백)
-async function fetchPatientInfo(patientId) {
-    try {
-        const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
-        const supabase = getSupabaseClient();
-        const { data, error } = await supabase
-            .from('patients')
-            .select('name, wearable_device, onboarded_at')
-            .eq('id', patientId)
-            .single();
-        if (error) throw error;
-        return data ?? null;
-    } catch (err) {
-        console.error('[PatientHome] 환자 정보 조회 실패:', err.message);
-        return null;
-    }
-}
-
-// 전송 완료된 진료 결과 목록 조회 (토스트 알림 + 최근 진료 카드용)
-async function fetchTransmittedResults(patientId) {
-    try {
-        const { getSupabaseClient } = await import('../../../../api/eum/_lib/supabase');
-        const supabase = getSupabaseClient();
-        const { data, error } = await supabase
-            .from('consultation_results')
-            .select(`
-                session_id, doctor_name, hospital_name,
-                diagnosis_name, transmitted_at,
-                sessions!inner(patient_id)
-            `)
-            .not('transmitted_at', 'is', null)
-            .eq('sessions.patient_id', patientId)
-            .order('transmitted_at', { ascending: false });
-        if (error) throw error;
-        return data ?? [];
-    } catch (err) {
-        console.error('[PatientHome] 전송 결과 조회 실패:', err.message);
-        return [];
-    }
-}
-
 export default async function PatientHome({ params }) {
     const { patientId } = await params;
     const consentNotifications = shiftDates(rawNotifications);
@@ -150,12 +109,6 @@ export default async function PatientHome({ params }) {
         symptoms: generateSymptoms(),
     };
 
-    // 토스트 알림용: onboarded_at 이후 전송된 결과만 (시드 데이터 제외)
-    const onboardedAt = patientInfo?.onboarded_at;
-    const newResults = onboardedAt
-        ? allResults.filter((r) => r.transmitted_at > onboardedAt)
-        : allResults;
-
     // LastVisitResult 카드용: 시드 포함 전체 결과 중 최신 1건
     const latestResult = allResults[0]
         ? {
@@ -173,7 +126,6 @@ export default async function PatientHome({ params }) {
     return (
         <>
             <AppBar unreadCount={unreadCount} />
-            <NewResultToast transmittedResults={newResults} patientId={patientId} />
             <main className={styles['content']}>
                 <h1 className="sr-only">Eum 홈</h1>
                 <GreetingSection greeting={greeting} />
