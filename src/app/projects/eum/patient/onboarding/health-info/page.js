@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import OnboardingAppBar from '../../../_components/OnboardingAppBar/OnboardingAppBar';
 import CtaButton from '../../_components/CtaButton/CtaButton';
@@ -32,6 +32,21 @@ export default function HealthInfoPage() {
     const [allergyDupError, setAllergyDupError] = useState('');
 
     const isValid = height.length > 0 && weight.length > 0 && !heightError && !weightError;
+
+    // 웨어러블 연동 시 윤서진 시나리오 건강정보 자동 입력
+    useEffect(() => {
+        const data = JSON.parse(sessionStorage.getItem('eum_onboarding') || '{}');
+        if (!data.wearable_prefill) return;
+
+        setHeight('163');
+        setWeight('52');
+        setBloodType('A+');
+        setConditions([{ name: '역류성 식도염 (K21.0)' }]);
+        setAllergies([
+            { allergen: '아목시실린', reaction: '발진' },
+            { allergen: '새우', reaction: '두드러기' },
+        ]);
+    }, []);
 
     function handleHeightBlur() {
         const val = parseFloat(height);

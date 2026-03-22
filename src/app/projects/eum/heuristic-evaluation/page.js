@@ -5,34 +5,36 @@ export const metadata = {
     title: '휴리스틱 평가 바로가기 — 이음',
 };
 
+const PATIENT_ID = 'pat_admin_001';
+
 const SHORTCUTS = [
     {
         href: '/projects/eum/patient/onboarding/welcome',
         icon: '📋',
         iconClass: 'card-icon-onboarding',
         title: '온보딩',
-        desc: '환자 온보딩 플로우 (회원가입~완료)',
+        desc: '환자 회원가입 플로우 (면책고지~가입완료)',
     },
     {
-        href: '/projects/eum/patient/checkin',
-        icon: '🏥',
-        iconClass: 'card-icon-checkin',
-        title: '체크인',
-        desc: '병원 체크인 플로우 (접수~동의)',
-    },
-    {
-        href: '/projects/eum/patient',
+        href: `/projects/eum/patient/${PATIENT_ID}`,
         icon: '📱',
         iconClass: 'card-icon-patient',
-        title: '환자 앱 홈',
-        desc: '환자 홈 대시보드',
+        title: '환자앱 둘러보기',
+        desc: '홈 · 증상 기록 · 진료 결과 확인',
     },
     {
-        href: '/projects/eum/doctor',
+        href: `/projects/eum/doctor/${PATIENT_ID}`,
         icon: '🩺',
         iconClass: 'card-icon-doctor',
         title: '의사 대시보드',
-        desc: '의사 패널 (환자 목록·AI 분석 결과)',
+        desc: 'AI 분석 확인 · 결과 전송 화면',
+    },
+    {
+        href: '/projects/eum/heuristic-evaluation/prepare-result',
+        icon: '🔔',
+        iconClass: 'card-icon-result',
+        title: '결과 알림 확인',
+        desc: '진료 결과 토스트 알림 체험',
     },
 ];
 

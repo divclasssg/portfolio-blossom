@@ -84,6 +84,24 @@
     background: #ede9fe;
 }
 
+.card-icon-result {
+    background: #fce7f3;
+}
+
+.status-text {
+    font: $font-regular;
+    font-size: 14px;
+    color: $text-secondary;
+    text-align: center;
+}
+
+.error-text {
+    font: $font-regular;
+    font-size: 14px;
+    color: #ef4444;
+    text-align: center;
+}
+
 .card-body {
     flex: 1;
     min-width: 0;

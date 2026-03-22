@@ -101,7 +101,11 @@ export default function WearablePage() {
                             );
                             sessionStorage.setItem(
                                 'eum_onboarding',
-                                JSON.stringify({ ...existing, wearable_device: selected })
+                                JSON.stringify({
+                                    ...existing,
+                                    wearable_device: selected,
+                                    wearable_prefill: true,
+                                })
                             );
                             router.push('/projects/eum/patient/onboarding/health-info');
                         }}
