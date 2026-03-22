@@ -19,12 +19,17 @@ export async function POST() {
                 doctor_id: 'doc_park_001',
                 doctor_name: '박지영',
                 hospital_name: '분당신경과의원',
-                diagnosis_name: '자율신경 이상 의심',
+                diagnosis_name: '자율신경 기능 이상 (경도)',
                 transmitted_at: new Date().toISOString(),
                 content: {
                     doctor_note_plain:
-                        '자율신경 검사 결과 경미한 이상 소견이 있습니다. 스트레스 관리와 규칙적 수면이 중요하며, 3개월 후 재검을 권합니다.',
+                        '서현내과의원 김도현 선생님의 의뢰로 자율신경 검사를 진행했습니다. 기립경사검사와 심박변이도(HRV) 분석 결과, 경미한 자율신경 조절 이상이 확인되었어요. 스트레스 상황에서 교감신경이 과하게 반응하는 패턴이 보여요. 지금 당장 치료가 필요한 수준은 아니지만, 규칙적인 수면과 스트레스 관리가 중요합니다. 3개월 후에 한 번 더 검사해볼게요.',
                     prescriptions: [],
+                    referral: {
+                        referral_from_doctor: '김도현',
+                        referral_from_hospital: '서현내과의원',
+                        referral_reason: '자율신경계 기능 평가 (기립경사검사, 심박변이도 분석)',
+                    },
                     next_visit_date: null,
                 },
             },
