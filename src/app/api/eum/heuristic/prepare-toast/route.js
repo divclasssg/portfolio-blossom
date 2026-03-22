@@ -16,19 +16,20 @@ export async function POST() {
         const { error } = await supabase.from('consultation_results').upsert(
             {
                 session_id: SESSION_ID,
-                doctor_id: 'doc_park_001',
-                doctor_name: '박지영',
-                hospital_name: '분당신경과의원',
+                doctor_id: 'doc_kim_001',
+                doctor_name: '김도현',
+                hospital_name: '서현내과의원',
                 diagnosis_name: '자율신경 기능 이상 (경도)',
                 transmitted_at: new Date().toISOString(),
                 content: {
                     doctor_note_plain:
-                        '서현내과의원 김도현 선생님의 의뢰로 자율신경 검사를 진행했습니다. 기립경사검사와 심박변이도(HRV) 분석 결과, 경미한 자율신경 조절 이상이 확인되었어요. 스트레스 상황에서 교감신경이 과하게 반응하는 패턴이 보여요. 지금 당장 치료가 필요한 수준은 아니지만, 규칙적인 수면과 스트레스 관리가 중요합니다. 3개월 후에 한 번 더 검사해볼게요.',
+                        '분당신경과의원 박지영 선생님께서 자율신경 검사를 진행해 주셨어요. 기립경사검사와 심박변이도(HRV) 분석 결과, 경미한 자율신경 조절 이상이 확인되었습니다. 스트레스 상황에서 교감신경이 과하게 반응하는 패턴이 보여요. 지금 당장 치료가 필요한 수준은 아니지만, 규칙적인 수면과 스트레스 관리가 중요합니다. 3개월 후에 한 번 더 검사해볼게요.',
                     prescriptions: [],
                     referral: {
-                        referral_from_doctor: '김도현',
-                        referral_from_hospital: '서현내과의원',
+                        to_hospital: '분당신경과의원',
+                        to_department: '신경과',
                         referral_reason: '자율신경계 기능 평가 (기립경사검사, 심박변이도 분석)',
+                        referral_date: new Date().toISOString().slice(0, 10),
                     },
                     next_visit_date: null,
                 },
