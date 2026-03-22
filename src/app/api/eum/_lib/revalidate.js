@@ -11,7 +11,7 @@ export function revalidateDoctorResult(patientId) {
 }
 
 export function revalidatePatientHome(patientId) {
-    revalidatePath(`${BASE}/patient/${patientId}`);
+    revalidatePath(`${BASE}/patient/${patientId}`, 'layout');
 }
 
 export function revalidatePatientSymptoms(patientId) {

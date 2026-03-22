@@ -12,7 +12,7 @@ export default async function PatientIdLayout({ children, params }) {
     // onboarded_at 이후 전송된 결과만 (시드 데이터 제외)
     const onboardedAt = patientInfo?.onboarded_at;
     const newResults = onboardedAt
-        ? allResults.filter((r) => r.transmitted_at > onboardedAt)
+        ? allResults.filter((r) => r.transmitted_at >= onboardedAt)
         : allResults;
 
     return (

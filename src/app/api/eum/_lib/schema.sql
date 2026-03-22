@@ -116,6 +116,14 @@ CREATE INDEX IF NOT EXISTS idx_ai_results_session ON ai_results(session_id, resu
 CREATE INDEX IF NOT EXISTS idx_consultation_results_session ON consultation_results(session_id);
 CREATE INDEX IF NOT EXISTS idx_vitals_patient ON vitals_records(patient_id);
 
+-- ── Realtime 활성화 마이그레이션 (1회 실행) ─────────────────────
+-- consultation_results는 supabase_realtime publication에 이미 등록됨
+--
+-- RLS: anon key로 Realtime 이벤트 수신 허용
+-- ALTER TABLE consultation_results ENABLE ROW LEVEL SECURITY;
+-- CREATE POLICY "anon_read_consultation_results"
+--   ON consultation_results FOR SELECT TO anon USING (true);
+
 -- ── sessions 컬럼 추가 마이그레이션 (1회 실행) ─────────────────
 -- ALTER TABLE sessions ADD COLUMN IF NOT EXISTS completed_at TIMESTAMPTZ;
 -- ALTER TABLE sessions ADD COLUMN IF NOT EXISTS transmitted_at TIMESTAMPTZ;

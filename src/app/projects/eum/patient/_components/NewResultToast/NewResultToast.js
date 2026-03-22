@@ -70,6 +70,11 @@ export default function NewResultToast({ transmittedResults, patientId }) {
         return () => clearInterval(id);
     }, [unseenResult, router]);
 
+    // 참조 비교 대신 내용 기반 키로 변경 감지
+    const resultsKey = JSON.stringify(
+        (transmittedResults || []).map((r) => unseenKey(r))
+    );
+
     useEffect(() => {
         if (!transmittedResults || transmittedResults.length === 0) return;
 
@@ -81,7 +86,7 @@ export default function NewResultToast({ transmittedResults, patientId }) {
             setUnseenResult(unseen);
             setIsVisible(true);
         }
-    }, [transmittedResults]);
+    }, [resultsKey]);
 
     function handleDismiss() {
         setIsVisible(false);
