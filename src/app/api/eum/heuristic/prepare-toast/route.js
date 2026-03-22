@@ -3,8 +3,8 @@ import { getSupabaseClient } from '../../_lib/supabase';
 import { revalidatePatientHome } from '../../_lib/revalidate';
 
 const PATIENT_ID = 'pat_admin_001';
-// ses_007 리매핑 — 의사 대시보드 활성 세션(ses_004)과 분리
-const SESSION_ID = 'ses_admin_001_007';
+// ses_007 리매핑 (suffix='admin') — 의사 대시보드 활성 세션(ses_admin_004)과 분리
+const SESSION_ID = 'ses_admin_007';
 
 // POST /api/eum/heuristic/prepare-toast
 // 휴리스틱 평가용: 토스트 알림 트리거를 위한 consultation_result UPSERT
