@@ -48,7 +48,7 @@ export default function HeuristicEvaluationPage() {
 
             <nav className={styles['card-list']} aria-label="평가 바로가기">
                 {SHORTCUTS.map((item) => (
-                    <Link key={item.href} href={item.href} className={styles['card']}>
+                    <Link key={item.href} href={item.href} target="_blank" className={styles['card']}>
                         <span
                             className={`${styles['card-icon']} ${styles[item.iconClass]}`}
                             aria-hidden="true"
