@@ -1,6 +1,0 @@
-@use '../../_styles/tokens' as *;
-
-// error: $fs-body (글로벌: $fs-small)
-.error {
-    font-size: $fs-body;
-}
