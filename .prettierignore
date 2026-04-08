@@ -1,0 +1,24 @@
+# dependencies
+node_modules
+.pnp
+.pnp.*
+
+# next.js
+.next
+out
+build
+
+# assets
+public/fonts
+public/images
+
+# lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# misc
+.vercel
+.cache
+*.log
+coverage

@@ -1,20 +1,20 @@
 export const metadata = {
     metadataBase: new URL("https://example.com"),
     title: {
-        default: "Portfolio",
-        template: "%s | Portfolio",
+        default: "parkseik",
+        template: "%s | parkseik Portfolio",
     },
-    description: "포트폴리오 사이트입니다.",
+    description: "parkseik's portfolio",
     keywords: ["portfolio", "frontend", "web", "developer"],
-    authors: [{ name: "Your Name" }],
-    creator: "Your Name",
+    authors: [{ name: "PARK Seik" }],
+    creator: "PARK Seik",
     openGraph: {
         type: "website",
         locale: "ko_KR",
         url: "https://example.com",
-        siteName: "Portfolio",
-        title: "Portfolio",
-        description: "포트폴리오 사이트입니다.",
+        siteName: "parkseik's Portfolio",
+        title: "parkseik Portfolio",
+        description: "parkseik's portfolio",
         images: [
             {
                 url: "/og-image.png",
@@ -26,7 +26,7 @@ export const metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Portfolio",
+        title: "parkseik's Portfolio",
         description: "포트폴리오 사이트입니다.",
         images: ["/og-image.png"],
     },
@@ -47,7 +47,7 @@ export const metadata = {
 export const viewport = {
     width: "device-width",
     initialScale: 1,
-    themeColor: "#ffffff",
+    themeColor: "#1d1d1f",
 };
 
 export default function RootLayout({ children }) {
