@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async rewrites() {
-    return [
-      { source: '/projects/:path*', destination: '/caseStudies/:path*' },
-    ];
-  },
+  /* config options here */
+  reactCompiler: true,
 };
 
 export default nextConfig;

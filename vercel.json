@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/api/eum/cleanup",
-      "schedule": "0 15 * * *"
-    }
-  ]
-}
