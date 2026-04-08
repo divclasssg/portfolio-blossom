@@ -10,180 +10,299 @@ export default function EumPage() {
     return (
         <main id="main" className="main">
             <section className="section section-hero">
-                <h1>Eum</h1>
-                <p>환자와 의사를 이음.</p>
-                <p>기록이 진료가 되고, 진료가 이해로 남는.</p>
-                <Link href="#" target="_blank" rel="noopener noreferrer">
-                    Eum Demo 체험하기
-                </Link>
+                <div className="content-container">
+                    <div className="marquee-header">
+                        <h1 className="header-eyebrow">Eum</h1>
+                        <p className="header-headline">환자와 의사를 이음.</p>
+                        <p className="header-violator">기록이 진료가 되고, 진료가 이해로 남는.</p>
+                    </div>
+                    <div className="marquee-detail">
+                        <Link
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="button-elevated"
+                        >
+                            Eum Demo 체험하기
+                        </Link>
+                    </div>
+                    <div className="hero-asset"></div>
+                </div>
             </section>
             <section className="section section-highlight">
-                <h2>Eum highlight</h2>
-                <p>
-                    환자 기록을 진료에 연결하고, 의사의 판단과 환자의 이해를 잇는 AI 보조
-                    커뮤니케이션 서비스
-                </p>
-                <h2>Project Snapshot</h2>
-                <dl>
-                    <dt>Duration</dt>
-                    <dd>10 Weeks</dd>
-                    <dt>Type</dt>
-                    <dd>End-to-End Project</dd>
-                    <dt>My Role</dt>
-                    <dd>
-                        Product Engineer &middot; Product Designer &middot; AI-Assisted Prototyping
-                        &middot; Vibe-coded prototype development
-                    </dd>
-                    <dt>Focus</dt>
-                    <dd>Patient–Doctor Communication &middot; Medical UX</dd>
-                    <dt>Contribution</dt>
-                    <dd>
-                        Service Flow Design &middot; AI Workflow Design &middot; Multi-model
-                        Pipeline &middot; Prototype Validation
-                    </dd>
-                </dl>
+                <div className="section-content">
+                    <div className="highlight">
+                        <h2 className="visuallyhidden">Eum highlight</h2>
+                        <p className="typography-highlight">
+                            환자 기록을 진료에 연결하고, 의사의 판단과 환자의 이해를 잇는 AI 보조
+                            커뮤니케이션 서비스
+                        </p>
+                    </div>
+                    <div className="project-snapshot">
+                        <h2 className="visuallyhidden">Project Snapshot</h2>
+                        <dl className="project-snapshot-list">
+                            <div className="project-snapshot-item">
+                                <dt>Duration</dt>
+                                <dd>10 Weeks</dd>
+                            </div>
+                            <div className="project-snapshot-item">
+                                <dt>Type</dt>
+                                <dd>End-to-End Project</dd>
+                            </div>
+                            <div className="project-snapshot-item">
+                                <dt>My Role</dt>
+                                <dd>
+                                    Product Engineer &middot; Product Designer &middot; AI-Assisted
+                                    Prototyping &middot; Vibe-coded prototype development
+                                </dd>
+                            </div>
+                            <div className="project-snapshot-item">
+                                <dt>Focus</dt>
+                                <dd>Patient–Doctor Communication &middot; Medical UX</dd>
+                            </div>
+                            <div className="project-snapshot-item">
+                                <dt>Contribution</dt>
+                                <dd>
+                                    Service Flow Design &middot; AI Workflow Design &middot;
+                                    Multi-model Pipeline &middot; Prototype Validation
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
             </section>
             <section className="section section-keyscreens">
-                <h2>Eum Final Key Screens</h2>
-                <h3>#01 Key Screen</h3>
-                <p>환자가 남긴 기록을 의사가 진료 전에 읽을 수 있게.</p>
-                <p>
-                    환자가 자연어로 남긴 증상을 AI가 구조화해, 의사가 진료 전에 확인할 수 있는
-                    기록으로 바꿉니다.
-                </p>
-                <h3>#02 Key Screen</h3>
-                <p>의사가 판단에 필요한 핵심 정보를 한눈에 볼 수 있게.</p>
-                <p>
-                    환자 기록, 증상 변화, 핵심 요약을 통합해 짧은 진료 시간 안에서 빠르게 판단할 수
-                    있도록 돕습니다.
-                </p>
-                <h3>#03 Key Screen</h3>
-                <p>환자가 진료 결과와 치료 계획을 다시 볼 수 있게.</p>
-                <p>
-                    진단, 치료 계획, 처방, 주의사항을 환자가 다시 이해하고 참고할 수 있는 형태로
-                    정리합니다.
-                </p>
+                <div className="keyscreen-container">
+                    <h2 className="visuallyhidden">Eum Final Key Screens</h2>
+                    <div className="keyscreen-content">
+                        <div className="keyscreen-callout">
+                            <h3 className="keyscreen-callout-header">
+                                #01
+                                <span className="visuallyhidden">Key Screen</span>
+                            </h3>
+                            <p className="keyscreen-callout-headline">
+                                환자가 남긴 기록을 의사가 진료 전에 읽을 수 있게.
+                            </p>
+                            <p className="keyscreen-callout-copy">
+                                환자가 자연어로 남긴 증상을 AI가 구조화해, 의사가 진료 전에 확인할
+                                수 있는 기록으로 바꿉니다.
+                            </p>
+                        </div>
+                        <div className="keyscreen-overview"></div>
+                    </div>
+                    <div className="keyscreen-content">
+                        <div className="keyscreen-callout">
+                            <h3 className="keyscreen-callout-header">
+                                #02
+                                <span className="visuallyhidden">Key Screen</span>
+                            </h3>
+                            <p className="keyscreen-callout-headline">
+                                의사가 판단에 필요한 핵심 정보를 한눈에 볼 수 있게.
+                            </p>
+                            <p className="keyscreen-callout-copy">
+                                환자 기록, 증상 변화, 핵심 요약을 통합해 짧은 진료 시간 안에서
+                                빠르게 판단할 수 있도록 돕습니다.
+                            </p>
+                        </div>
+                        <div className="keyscreen-overview"></div>
+                    </div>
+                    <div className="keyscreen-content">
+                        <div className="keyscreen-callout">
+                            <h3 className="keyscreen-callout-header">
+                                #03
+                                <span className="visuallyhidden">Key Screen</span>
+                            </h3>
+                            <p className="keyscreen-callout-headline">
+                                환자가 진료 결과와 치료 계획을 다시 볼 수 있게.
+                            </p>
+                            <p className="keyscreen-callout-copy">
+                                진단, 치료 계획, 처방, 주의사항을 환자가 다시 이해하고 참고할 수
+                                있는 형태로 정리합니다.
+                            </p>
+                        </div>
+                        <div className="keyscreen-overview"></div>
+                    </div>
+                </div>
             </section>
             <section className="section section-project-overview">
-                <h2>Project Overview</h2>
-                <p>바이브 코딩으로 직접 설계 &middot; 구현한 AI 보조 진료 서비스.</p>
-                <p>
-                    환자기록을 정리해 의사는 빨리 판단하고, 환자는 결과를 쉽게 이해할 수 있도록
-                    했습니다.
-                </p>
+                <div className="project-overview-content">
+                    <h2 className="section-eyebrow">Project Overview</h2>
+                    <p className="section-headline-large">
+                        바이브 코딩으로 직접 설계 &middot; 구현한 AI 보조 진료 서비스.
+                    </p>
+                    <p className="section-headline">
+                        환자기록을 정리해 의사는 빨리 판단하고, 환자는 결과를 쉽게 이해할 수 있도록
+                        했습니다.
+                    </p>
+                </div>
             </section>
             <section className="section section-project-background">
-                <h2>Background</h2>
-                <p>
-                    진료 결과는 정상이었지만, 환자의 증상은 계속 됐고 병원을 전전하는 계기가 됐다.
-                </p>
-                <p>
-                    의사는 판단을 마쳤지만, 검사 결과는 정상인데 증상이 계속되는(PPS/MUS) 환자는 왜
-                    그런 판단인지, 이후 어떻게 관리해야 하는지 모른 채 돌아갔습니다. 이 문제가 가장
-                    선명한 곳은 1차의료기관이었습니다. 동네 의원은 환자의 첫 접점이고, 지속 증상이
-                    자주 모이며, 5분이라는 진료 시간이 환자와 의사 모두에게 소통의 제약이 되기
-                    때문입니다.
-                </p>
+                <div className="section-content">
+                    <h2 className="section-eyebrow">Background</h2>
+                    <p className="section-headline-large">
+                        진료 결과는 정상이었지만, 환자의 증상은 계속 됐고 병원을 전전하는 계기가
+                        됐다.
+                    </p>
+                    <p className="typography-copy">
+                        의사는 판단을 마쳤지만, 검사 결과는 정상인데 증상이 계속되는(PPS/MUS) 환자는
+                        왜 그런 판단인지, 이후 어떻게 관리해야 하는지 모른 채 돌아갔습니다. 이
+                        문제가 가장 선명한 곳은 1차의료기관이었습니다. 동네 의원은 환자의 첫
+                        접점이고, 지속 증상이 자주 모이며, 5분이라는 진료 시간이 환자와 의사
+                        모두에게 소통의 제약이 되기 때문입니다.
+                    </p>
+                </div>
             </section>
             <section className="section section-double-diamond">
-                <h2>Double Diamond</h2>
-                <p>문제를 넓게 보고 핵심만 남긴 뒤, 바이브 코딩으로 프로토타입까지.</p>
-                <p>
-                    병명이나 기능부터 정하지 않고, 환자와 의사 사이에서 무엇이 끊기는지 먼저
-                    찾았습니다. 그 끊김을 줄이는 최소 진료 연결 서비스로 좁혔습니다.
-                </p>
+                <div className="section-content">
+                    <h2 className="section-eyebrow">Double Diamond</h2>
+                    <p className="section-headline-large">
+                        문제를 넓게 보고 핵심만 남긴 뒤, 바이브 코딩으로 프로토타입까지.
+                    </p>
+                    <p className="typography-copy">
+                        병명이나 기능부터 정하지 않고, 환자와 의사 사이에서 무엇이 끊기는지 먼저
+                        찾았습니다. 그 끊김을 줄이는 최소 진료 연결 서비스로 좁혔습니다.
+                    </p>
+                </div>
             </section>
             <section className="section section-dd-discover">
-                <h2>Double Diamond 01. Discover &middot; 답답함을 읽음.</h2>
-                <p>
-                    환자는 정상인데 증상이 계속되는 답답함과 막막함이, 의사는 짧은 시간안에 파악할
-                    정보 구조의 부족이 문제.
-                </p>
-                <p>
-                    문헌 15개, 환자 텍스트 데이터, 환자 &middot; 의사 인터뷰를 함께 보니 환자
-                    쪽에서는 &apos;정상&apos;이라는 결과가 안심이 아니라 답답함으로 이어졌고, 의사
-                    쪽에서는 짧은 진료 안에 핵심을 파악할 수 있는 정보 구조가 부족했습니다.
-                </p>
-                <dl className="ai-workflow">
-                    <dt>AI 워크플로우</dt>
-                    <dd>
-                        AI로 리서치 자료를 빠르게 정리 &middot; 비교해, 핵심 문제를 찾는 속도를
-                        높였습니다.
-                    </dd>
-                </dl>
-                <div>
-                    <div>
-                        <button type="button">Secondary Research</button>
-                        <button type="button">Primary Research</button>
-                    </div>
-                    <div>
-                        <div>
-                            <h3>문헌 분석</h3>
-                            <p>시간 제약 안에서 의사와 환자는 충분히 소통하지 못했다.</p>
-                            <p>
-                                핵심 문제는 정보 부족이 아니라, 환자 경험이 임상 정보로 번역되지
-                                않는 데 있었습니다. 15개 문헌에서 안심 실패, 번역 실패, 시간 압박을
-                                핵심 문제로 정리한 뒤, 환자 텍스트와 인터뷰로 검증했습니다.
-                            </p>
-                            <div>
-                                <h4>UX Research Methodology keywords</h4>
-                                <ul className="tags">
-                                    <li>#문헌조사</li>
-                                    <li>#키워드도출</li>
-                                    <li>#코딩프레임설계</li>
-                                </ul>
-                            </div>
-                            <Link href="#" target="_blank" rel="noopener noreferrer">
-                                원문 데이터 보기
-                            </Link>
-                            <Image src="" alt="문헌 분석 원본 자료 캡쳐본" />
+                <div className="section-content">
+                    <h2 className="section-eyebrow">
+                        <span className="visuallyhidden">Double Diamond</span>
+                        01. Discover &middot; 답답함을 읽음.
+                    </h2>
+                    <p className="section-headline-small">
+                        환자는 정상인데 증상이 계속되는 답답함과 막막함이, 의사는 짧은 시간안에
+                        파악할 정보 구조의 부족이 문제.
+                    </p>
+                    <p className="typography-copy">
+                        문헌 15개, 환자 텍스트 데이터, 환자 &middot; 의사 인터뷰를 함께 보니 환자
+                        쪽에서는 &apos;정상&apos;이라는 결과가 안심이 아니라 답답함으로 이어졌고,
+                        의사 쪽에서는 짧은 진료 안에 핵심을 파악할 수 있는 정보 구조가 부족했습니다.
+                    </p>
+                    <dl className="ai-workflow">
+                        <dt>AI 워크플로우</dt>
+                        <dd>
+                            AI로 리서치 자료를 빠르게 정리 &middot; 비교해, 핵심 문제를 찾는 속도를
+                            높였습니다.
+                        </dd>
+                    </dl>
+                    <div className="tabnav-box">
+                        <div className="tabnav-list">
+                            <button type="button" className="tabnav-button">
+                                Secondary Research
+                            </button>
+                            <button type="button" className="tabnav-button">
+                                Primary Research
+                            </button>
                         </div>
-                        <div>
-                            <h3>환자 데이터 마이닝</h3>
-                            <p>
-                                진료 결과를 받아들이지 못한 환자는 스스로 답을 찾아 검색을 반복했다.
-                            </p>
-                            <p>
-                                가장 자주 나타난 문제는 진료 결과가 환자에게 이해되지 않는다는
-                                것이었고, 환자는 답을 찾아 같은 검색을 반복했습니다.
-                            </p>
-                            <div>
-                                <h4>UX Research Methodology keywords</h4>
-                                <ul className="tags">
-                                    <li>#온라인텍스트코딩</li>
-                                    <li>#Python</li>
-                                </ul>
+                        <div className="tabnav-panel-wrapper">
+                            <div className="tabnav-panel-content">
+                                <div className="tabnav-panel">
+                                    <h3 className="tabnav-panel-eyebrow">문헌 분석</h3>
+                                    <p className="tabnav-panel-headline">
+                                        시간 제약 안에서 의사와 환자는 충분히 소통하지 못했다.
+                                    </p>
+                                    <p className="tabnav-panel-typography-copy">
+                                        핵심 문제는 정보 부족이 아니라, 환자 경험이 임상 정보로
+                                        번역되지 않는 데 있었습니다. 15개 문헌에서 안심 실패, 번역
+                                        실패, 시간 압박을 핵심 문제로 정리한 뒤, 환자 텍스트와
+                                        인터뷰로 검증했습니다.
+                                    </p>
+                                    <div className="tabnav-keywords">
+                                        <h4 className="visuallyhidden">
+                                            UX Research Methodology keywords
+                                        </h4>
+                                        <ul className="tags">
+                                            <li className="tags-item">#문헌조사</li>
+                                            <li className="tags-item">#키워드도출</li>
+                                            <li className="tags-item">#코딩프레임설계</li>
+                                        </ul>
+                                    </div>
+                                    <Link
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="link-secondary"
+                                    >
+                                        원문 데이터 보기
+                                    </Link>
+                                </div>
+                                <div className="tabnav-panel-screenshots">
+                                    <Image src="" alt="문헌 분석 원본 자료 캡쳐본" />
+                                </div>
                             </div>
-                            <Link href="#" target="_blank" rel="noopener noreferrer">
-                                원문 데이터 보기
-                            </Link>
-                            <Image src="" alt="환자 데이터 마이닝 원본 자료 캡쳐본" />
+                            <div className="tabnav-panel-content">
+                                <div className="tabnav-panel">
+                                    <h3 className="tabnav-panel-eyebrow">환자 데이터 마이닝</h3>
+                                    <p className="tabnav-panel-headline">
+                                        진료 결과를 받아들이지 못한 환자는 스스로 답을 찾아 검색을
+                                        반복했다.
+                                    </p>
+                                    <p className="tabnav-panel-typography-copy">
+                                        가장 자주 나타난 문제는 진료 결과가 환자에게 이해되지
+                                        않는다는 것이었고, 환자는 답을 찾아 같은 검색을
+                                        반복했습니다.
+                                    </p>
+                                    <div className="tabnav-keywords">
+                                        <h4 className="visuallyhidden">
+                                            UX Research Methodology keywords
+                                        </h4>
+                                        <ul className="tags">
+                                            <li className="tags-item">#온라인텍스트코딩</li>
+                                            <li className="tags-item">#Python</li>
+                                        </ul>
+                                    </div>
+                                    <Link
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="link-secondary"
+                                    >
+                                        원문 데이터 보기
+                                    </Link>
+                                </div>
+                                <div className="tabnav-panel-screenshots">
+                                    <Image src="" alt="환자 데이터 마이닝 원본 자료 캡쳐본" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div>
-                            <h3>사용자 인터뷰</h3>
-                            <p>
-                                환자는 병원을 전전하며 답을 찾았지만 달라지지 않았고, 의사는 짧은
-                                시간 안에 환자를 온전히 파악하기 어려워했다.
-                            </p>
-                            <p>
-                                문헌과 온라인 데이터만으로는 이 상황이 진료 현장에서 실제로 어떻게
-                                벌어지는지 확인하기 어려웠습니다. 그래서 사전 인터뷰로 질문을
-                                다듬고, 환자와 의사를 1:1로 만나 실제 경험을 들었습니다. 다음으로
-                                환자와 의료진 관점을 따로 정리한 뒤, 어디서 어긋나는지 비교했습니다.
-                            </p>
-                            <div>
-                                <h4>UX Research Methodology keywords</h4>
-                                <ul className="tags">
-                                    <li>#사전서면인터뷰</li>
-                                    <li>#1:1심층인터뷰</li>
-                                </ul>
+                        <div className="tabnav-panel-wrapper">
+                            <div className="tabnav-panel-content">
+                                <div className="tabnav-panel">
+                                    <h3 className="tabnav-panel-eyebrow">사용자 인터뷰</h3>
+                                    <p className="tabnav-panel-headline">
+                                        환자는 병원을 전전하며 답을 찾았지만 달라지지 않았고, 의사는
+                                        짧은 시간 안에 환자를 온전히 파악하기 어려워했다.
+                                    </p>
+                                    <p className="tabnav-panel-typography-copy">
+                                        문헌과 온라인 데이터만으로는 이 상황이 진료 현장에서 실제로
+                                        어떻게 벌어지는지 확인하기 어려웠습니다. 그래서 사전
+                                        인터뷰로 질문을 다듬고, 환자와 의사를 1:1로 만나 실제 경험을
+                                        들었습니다. 다음으로 환자와 의료진 관점을 따로 정리한 뒤,
+                                        어디서 어긋나는지 비교했습니다.
+                                    </p>
+                                    <div className="tabnav-keywords">
+                                        <h4 className="visuallyhidden">
+                                            UX Research Methodology keywords
+                                        </h4>
+                                        <ul className="tags">
+                                            <li className="tags-item">#사전서면인터뷰</li>
+                                            <li className="tags-item">#1:1심층인터뷰</li>
+                                        </ul>
+                                    </div>
+                                    <Link
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="link-secondary"
+                                    >
+                                        원문 데이터 보기
+                                    </Link>
+                                </div>
+                                <div className="tabnav-panel-screenshots">
+                                    <Image src="" alt="사용자 인터뷰 원본 자료 캡쳐본" />
+                                </div>
                             </div>
-                            <Link href="#" target="_blank" rel="noopener noreferrer">
-                                원문 데이터 보기
-                            </Link>
-                            <Image src="" alt="사용자 인터뷰 원본 자료 캡쳐본" />
                         </div>
                     </div>
                 </div>
