@@ -1,7 +1,11 @@
+import path from "path";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
+    reactCompiler: true,
+    sassOptions: {
+        includePaths: [path.join(process.cwd(), "src/_style")],
+    },
 };
 
 export default nextConfig;

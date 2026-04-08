@@ -39,6 +39,25 @@ yarn-error.log*
 # claude code local settings
 .claude/settings.local.json
 
+# IDE / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# logs
+*.log
+
+# misc temp
+*.bak
+*.tmp
+.cache/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
