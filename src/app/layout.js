@@ -1,3 +1,5 @@
+import "@/_style/style.scss";
+
 export const metadata = {
     metadataBase: new URL("https://example.com"),
     title: {
