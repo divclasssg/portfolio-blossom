@@ -1,0 +1,57 @@
+.section-highlight {
+    padding: 96px 0;
+
+    .highlight-content {
+        width: 960px;
+        margin: 0 auto;
+    }
+
+    .highlight {
+        
+        padding-bottom: 36px;
+
+        .typography-highlight {
+            font: {
+                family: var(--font-family-spoqa);
+                size: var(--font-size-xxlarge);
+                weight: 700;
+            }
+    
+            ;
+            line-height: 130%;
+            color: var(--color-text-primary);
+        }
+    }    
+
+    .project-snapshot {
+        .project-snapshot-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .project-snapshot-item {
+            display: flex;
+            gap: 16px;
+
+            dt {
+                width: 112px;
+                color: var(--color-text-secondary);
+                font-family: var(--font-family-spoqa);
+                font-size: var(--font-size-small);
+                font-style: normal;
+                font-weight: 700;
+                line-height: 140%;
+            }
+
+            dd {
+                color: var(--color-text-secondary);
+                font-family: var(--font-family-spoqa);
+                font-size: var(--font-size-small);
+                font-style: normal;
+                font-weight: 400;
+                line-height: 140%;
+            }
+        }
+    }
+}

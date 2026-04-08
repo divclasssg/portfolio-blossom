@@ -1,0 +1,73 @@
+.section-hero {
+    padding: 96px 0;
+
+    .content-container {
+        .marquee-header {
+            text-align: center;
+
+            .header-eyebrow {
+                color: var(--color-text-primary);
+                font-family: var(--font-family-spoqa);
+                font-size: 28px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 100%;
+                padding-bottom: 16px;
+            }
+
+            .header-headline {
+                color: var(--color-text-primary);
+                font-family: var(--font-family-spoqa);
+                font-size: 64px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 100%;
+                text-transform: capitalize;
+                padding-bottom: 16px;
+            }
+
+            .header-violator {
+                color: var(--color-text-tertiary);
+                font-family: var(--font-family-spoqa);
+                font-size: 28px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 100%;
+                padding-bottom: 32px;
+            }
+        }
+
+        .marquee-detail {
+            text-align: center;
+        }
+
+        .hero-asset {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            padding-top: 64px;
+
+            // 두 이미지 모두 같은 높이를 공유. 화면이 좁아지면 자동 축소.
+            .doctor,
+            .patient {
+                position: relative;
+                height: clamp(200px, 40vw, 550px);
+
+                img {
+                    object-fit: contain;
+                }
+            }
+
+            .doctor {
+                aspect-ratio: 7258 / 5388;
+            }
+
+            .patient {
+                aspect-ratio: 2600 / 5388;
+            }
+        }
+    }
+}

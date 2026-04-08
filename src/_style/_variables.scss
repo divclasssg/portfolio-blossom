@@ -28,7 +28,7 @@
     --color-text-secondary: var(--color-secondary);
     --color-text-tertiary: var(--color-tertiary);
 
-    --color-border-dafult: var(--color-gray-scale-4);
+    --color-border-default: var(--color-gray-scale-4);
     --color-border-subtle: var(--color-gray-scale-5);
 
     --color-surface-default: var(--color-white);
@@ -36,6 +36,7 @@
     
     --space-4: 4px;
     --space-8: 8px;
+    --space-12: 12px;
     --space-16: 16px;
     --space-24: 24px;
     --space-28: 28px;
@@ -55,4 +56,22 @@
 
     --radius-8: 8px;
     --radius-12: 12px;
+
+    --font-family-spoqa: "Spoqa Han Sans Neo",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    --font-family-suit: "SUIT",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
 }

@@ -1,0 +1,634 @@
+// Eum 케이스 스터디 공통 스타일
+// 섹션 단위가 아닌, 여러 컴포넌트에서 공통으로 쓰는 클래스만 모읍니다.
+// (섹션 고유 클래스 section-dd-*, section-hero 등은 각 섹션 파일에서 별도 관리)
+
+:root {
+    --font-size-xxlarge: 36px;
+    --font-size-xlarge: 28px;
+    --font-size-large: 20px;
+    --font-size-regular: 18px;
+    --font-size-small: 16px;
+    --font-size-xsmall: 14px;
+}
+
+// ─────────────────────────────────────────────
+// Section primitives
+// ─────────────────────────────────────────────
+.section-content {
+    width: 1024px;
+    margin: 0 auto;
+}
+.section-content-wide {
+    width: 1200px;
+    margin: 0 auto;
+}
+.section-standalone {}
+.standalone-content {}
+
+// ─────────────────────────────────────────────
+// Typography
+// ─────────────────────────────────────────────
+.section-eyebrow {
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-regular);
+        weight: 700;
+    } 
+    line-height: 100%;
+    text-transform: capitalize;
+    color: var(--color-text-tertiary);
+}
+.section-headline-large {
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-xxlarge);
+        weight: 700;
+    };
+    line-height: 120%;
+    color: var(--color-text-primary);
+}
+.section-headline-small {
+    font: {
+            family: var(--font-family-spoqa);
+            size: var(--font-size-xlarge);
+            weight: 700;
+        };
+        line-height: 110%;
+        color: var(--color-text-primary);
+}
+.section-label {
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-large);
+        weight: 700;
+    };
+    line-height: 120%;
+    color: var(--color-text-tertiary);
+}
+.section-callout {
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-xsmall);
+        weight: 500;
+    };
+    color: var(--color-text-primary);
+}
+
+.typography-copy {
+    font: {
+        family: var(--font-family-suit);
+        size: var(--font-size-regular);
+        weight: 400;
+    }
+    line-height: 130%;
+    color: var(--color-text-secondary);
+}
+.typography-copy-bold {
+    font: {
+            family: var(--font-family-suit);
+            size: var(--font-size-regular);
+            weight: 700;
+        }    
+        line-height: 130%;
+        color: var(--color-text-secondary);
+}
+.typography-callout-headline {
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-regular);
+        weight: 700;
+    };
+    line-height: 130%;
+    color: var(--color-text-primary);
+}
+.typography-callout-copy {
+    font: {
+        family: var(--font-family-suit);
+        size: var(--font-size-regular);
+        weight: 400;
+    };
+    line-height: 130%;
+    color: var(--color-text-secondary);
+}
+
+// ─────────────────────────────────────────────
+// Links & buttons
+// ─────────────────────────────────────────────
+.link-primary {
+    border-radius: var(--radius-8);
+    background: var(--color-primary);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-xsmall);
+        weight: 400;
+    };
+    line-height: 100%;
+    color: var(--color-white);
+    padding: 0 var(--space-16);
+}
+.link-secondary {
+    border-radius: var(--radius-8);
+    border: 1px solid var(--color-primary);
+    background: transparent;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-xsmall);
+        weight: 400;
+    };
+    line-height: 100%;
+    color: var(--color-primary);
+    padding: 0 var(--space-16);
+}
+.button-elevated {
+    border-radius: var(--radius-8, 8px);
+    background: linear-gradient(99deg, #48E770 2.31%, #D985E4 57.92%, var(--color-doctor, #00C0E8) 121.55%);
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    display: inline-flex;
+    height: 48px;
+    padding: 0 var(--space-24);
+    align-items: center;
+    gap: var(--space-8, 8px);
+    align-self: stretch;
+    color: var(--color-white, #FFF);
+    font-family: var(--font-family-spoqa);
+    font-size: var(--font-size-regular);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    animation: button-elevated-gradient 4s ease-in-out infinite;
+}
+
+@keyframes button-elevated-gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+// ─────────────────────────────────────────────
+// Tags
+// ─────────────────────────────────────────────
+.tags-item {
+    border-radius: var(--radius-12);
+    background: var(--color-border-subtle);
+    display: inline-flex;
+    height: 36px;
+    padding: 0 var(--space-12);
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text-primary);
+    text-align: center;    
+    font-family: var(--font-family-spoqa);
+    font-size: var(--font-size-xsmall);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+// ─────────────────────────────────────────────
+// AI workflow 블록 (dl)
+// ─────────────────────────────────────────────
+.ai-workflow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    dt {
+        border-radius: var(--radius-8);
+        border: 1px solid var(--color-ai);
+        background: var(--color-bg-ai);
+        display: flex;
+        width: 120px;
+        height: 24px;
+        justify-content: center;
+        align-items: center;
+        color: var(--color-ai);
+        text-align: center;
+        font-family: var(--font-family-spoqa);
+        font-size: var(--font-size-xsmall);
+        font-style: normal;
+        font-weight: 500;
+        line-height: 100%;
+    }
+    dd {
+        color: var(--color-text-tertiary);
+        font-family: "Spoqa Han Sans Neo";
+        font-size: var(--font-size-small);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 120%;
+    }
+}
+
+// ─────────────────────────────────────────────
+// Spec list (dl + dt/dd 쌍)
+// ─────────────────────────────────────────────
+.spec-list {
+
+    .spec-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        dt {
+            width: 80px;
+            color: var(--color-text-tertiary);
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-small);
+            font-style: normal;
+            font-weight: 700;
+            line-height: 140%;
+        }
+
+        dd {
+            color: var(--color-gray-scale-5);
+            font-family: var(--font-family-suit);
+            font-size: var(--font-size-small);
+            font-style: normal;
+            font-weight: 400;
+            line-height: 140%;
+        }
+    }
+}
+
+
+// ─────────────────────────────────────────────
+// Card: row (텍스트 + 스크린샷 가로 배치)
+// ─────────────────────────────────────────────
+.card-row {
+    .card-row-content {}
+    
+    .card-row-eyebrow {
+        color: var(--color-text-tertiary);
+        font-family: var(--font-family-spoqa);
+        font-size: var(--font-size-regular);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 130%;
+        padding-bottom: 16px;
+    }
+
+    .card-row-headline {
+        color: var(--color-white);
+        font-family: var(--font-family-suit);
+        font-size: var(--font-size-regular);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 130%;
+        padding-bottom: 16px;
+    }
+
+    .card-row-typography-copy {
+        color: var(--color-gray-scale-4);
+        font-family: var(--font-family-suit);
+        font-size: var(--font-size-regular);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 130%;
+        padding-bottom: 24px;
+    }
+
+    .card-row-keywords {}
+
+    .card-row-screenshots {}
+}
+
+// ─────────────────────────────────────────────
+// Card: process (가로 나열)
+// ─────────────────────────────────────────────
+.card-process {
+    .card-process-headline {
+        display: inline-block;
+        color: var(--color-text-primary);
+        font-family: var(--font-family-spoqa);
+        font-size: var(--font-size-small);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+    }
+    
+    .card-process-typography-copy {
+        display: inline-block;
+        color: var(--color-text-secondary);
+        font-family: var(--font-family-suit);
+        font-size: var(--font-size-small);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+        padding-left: 4px;
+    }
+    
+    .card-process-screenshot {}
+}
+
+// ─────────────────────────────────────────────
+// Card: column (세로형 키 스크린 카드)
+// ─────────────────────────────────────────────
+.card-column {
+    .card-column-eyebrow {
+        span {
+            display: block;
+            color: var(--color-text-tertiary);
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-xsmall);
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+            padding-bottom: 4px;
+        }
+
+        color: var(--color-white);
+        font-family: var(--font-family-spoqa);
+        font-size: var(--font-size-large);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        padding-bottom: var(--space-24);
+    }
+    
+    .card-column-bottom {
+        display: flex;
+        flex-direction: column-reverse;
+
+        figure {}
+
+        figcaption {
+            border-radius: var(--radius-8);
+            background: var(--color-text-tertiary);
+            display: inline-flex;
+            height: 32px;
+            padding: 0 var(--space-12);
+            justify-content: center;
+            align-items: center;
+            color: var(--color-text-primary);
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-small);
+            font-style: normal;
+            font-weight: 500;
+            line-height: 150%;
+        }
+    }
+}
+
+// ─────────────────────────────────────────────
+// Tabnav (Discover 탭)
+// ─────────────────────────────────────────────
+.tabnav-box {
+    .tabnav-list {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .tabnav-button {
+            border-radius: var(--space-8);
+            background: var(--color-surface-subtle);
+            display: flex;
+            padding: 12px;
+            align-items: center;
+            color: var(--color-text-primary);
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-regular);
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+            transition: all 0.15s;
+
+            &:hover {
+                background: var(--color-primary);
+                color: var(--color-white);
+            }
+
+            &.active {
+                background: var(--color-primary);
+                color: var(--color-white);
+                font-weight: 700;
+            }
+        }
+    }
+
+    .tabnav-panel {}
+}
+
+// ─────────────────────────────────────────────
+// Auto slider (Wireframe → Prototype 슬라이더)
+// ─────────────────────────────────────────────
+.auto-slider {}
+.auto-slider-content {}
+.auto-slider-item {}
+
+// ─────────────────────────────────────────────
+// Keyscreen callout (Highlight / KeyScreens 공용)
+// ─────────────────────────────────────────────
+.keyscreen-container {
+    .keyscreen-content {}
+    
+    .keyscreen-overview {}
+
+    .keyscreen-callout {
+        .keyscreen-callout-header {
+            color: var(--color-text-tertiary);
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-small);
+            font-style: normal;
+            font-weight: 700;
+            line-height: 100%;
+            padding-bottom: 4px;
+        }
+        
+        .keyscreen-callout-headline {
+            color: var(--color-text-primary);
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-large);
+            font-style: normal;
+            font-weight: 700;
+            line-height: 120%;
+            padding-bottom: 4px;
+        }
+    
+        .keyscreen-callout-copy {
+            color: var(--color-text-secondary);
+            font-family: var(--font-family-suit);
+            font-size: var(--font-size-regular);
+            font-style: normal;
+            font-weight: 400;
+            line-height: 120%;
+        }
+    }
+}
+
+// ─────────────────────────────────────────────
+// Define — UX Research Methodology 블록
+// ─────────────────────────────────────────────
+.define-methodology {}
+.define-methodology-content {}
+.define-methodology-screenshots {}
+
+// ─────────────────────────────────────────────
+// Key Change (Deliver)
+// ─────────────────────────────────────────────
+.key-change-item {
+    .key-change-content {}
+    
+    .key-change-headline {
+        color: var(--color-text-tertiary);
+        font-family: var(--font-family-spoqa);
+        font-size: var(--font-size-regular);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+        padding-bottom: 16px;
+    }
+
+    .key-change-summary {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .key-change-item {
+            display: flex;
+            gap: 16px;
+
+            dt {
+                width: 95px;
+                color: var(--color-text-secondary);
+                font-feature-settings: 'ss18' on;
+                font-family: var(--font-family-suit);
+                font-size: var(--font-size-regular);
+                font-style: normal;
+                font-weight: 700;
+                line-height: 130%;
+            }
+
+            dd {
+                color: var(--color-text-secondary);
+                font-feature-settings: 'ss18' on;
+                font-family: var(--font-family-suit);
+                font-size: var(--font-size-regular);
+                font-style: normal;
+                font-weight: 400;
+                line-height: 130%;
+            }
+        }
+    }
+
+    .key-change-assets {}
+}
+
+// ─────────────────────────────────────────────
+// Usability Testing (UT)
+// ─────────────────────────────────────────────
+.ut-results-item {
+    .ut-results-headline {
+        color: var(--color-text-primary);
+        font-family: var(--font-family-spoqa);
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 130%;
+        /* 31.2px */
+        padding-bottom: 12px;
+    }
+
+    .ut-results-screenshot {
+        figcaption {
+            color: var(--color-text-tertiary);
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-small);
+            font-style: normal;
+            font-weight: 400;
+            line-height: 140%;
+        }
+    }
+}
+
+
+.ut-overview {
+    border-top: 1px solid var(--color-primary);
+    padding-top: var(--space-64);
+
+    .ut-meta-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: var(--layout-paragraph-width);
+        margin: 0 auto;
+        padding-bottom: 64px;
+
+        .ut-meta-info-item {
+            display: flex;
+            gap: 16px;
+    
+            dt {
+                width: 50px;
+                color: var(--color-text-secondary);
+                font-feature-settings: 'ss18' on;
+                font-family: var(--font-family-suit);
+                font-size: var(--font-size-regular);
+                font-style: normal;
+                font-weight: 700;
+                line-height: 130%;
+            }
+    
+            dd {
+                color: var(--color-text-secondary);
+                font-feature-settings: 'ss18' on;
+                font-family: var(--font-family-suit);
+                font-size: var(--font-size-regular);
+                font-style: normal;
+                font-weight: 400;
+                line-height: 130%;
+    
+                li:first-child {
+                    padding-bottom: 4px;
+                }
+            }
+        }
+    }    
+
+    .ut-interview {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-32) var(--space-24 );
+        
+        figure {
+            width: calc((100% - 24px) / 2);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+
+            figcaption {
+                strong { 
+                    color: var(--color-text-tertiary); 
+                    font-family: var(--font-family-spoqa);
+                    font-size: var(--font-size-regular);
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 130%;
+                }
+
+                display: block;
+                color: var(--color-text-primary);
+                font-family: var(--font-family-suit);
+                font-size: var(--font-size-regular);
+                font-style: normal;
+                font-weight: 400;
+                line-height: 130%;
+                padding: 0 8px;
+            }
+        }
+        
+    }
+}
+
+// ─────────────────────────────────────────────
+// 기타 단일 사용 (향후 공용화 후보)
+// ─────────────────────────────────────────────
+.iteration-and-redesign-screenshot {}

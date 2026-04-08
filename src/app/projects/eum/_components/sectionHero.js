@@ -1,4 +1,8 @@
+"use client";
+
+import "../_style/eum.heroSection.scss";
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
 
 export default function SectionHero() {
     return (
@@ -19,7 +23,26 @@ export default function SectionHero() {
                         Eum Demo 체험하기
                     </Link>
                 </div>
-                <div className="hero-asset"></div>
+                <div className="hero-asset">
+                    <div className="doctor">
+                        <CldImage
+                            src="hero-section-image-width-frame_1_u73y0d"
+                            fill
+                            sizes="(max-width: 768px) 90vw, 1200px"
+                            quality={100}
+                            alt="Eum 메인 히어로 — 의사 일러스트"
+                        />
+                    </div>
+                    <div className="patient">
+                        <CldImage
+                            src="main-hero-asset-patient_sa44wl"
+                            fill
+                            sizes="(max-width: 768px) 60vw, 600px"
+                            quality={100}
+                            alt="Eum 메인 히어로 — 환자 일러스트"
+                        />
+                    </div>
+                </div>
             </div>
         </section>
     );

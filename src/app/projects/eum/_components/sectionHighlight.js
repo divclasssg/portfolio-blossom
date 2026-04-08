@@ -1,7 +1,10 @@
+import "../_style/eum.highlightSection.scss";
+import projectSnapshot from "../_data/projectSnapshot";
+
 export default function SectionHighlight() {
     return (
         <section className="section section-highlight">
-            <div className="section-content">
+            <div className="highlight-content">
                 <div className="highlight">
                     <h2 className="visuallyhidden">Eum highlight</h2>
                     <p className="typography-highlight">
@@ -12,32 +15,12 @@ export default function SectionHighlight() {
                 <div className="project-snapshot">
                     <h2 className="visuallyhidden">Project Snapshot</h2>
                     <dl className="project-snapshot-list">
-                        <div className="project-snapshot-item">
-                            <dt>Duration</dt>
-                            <dd>10 Weeks</dd>
-                        </div>
-                        <div className="project-snapshot-item">
-                            <dt>Type</dt>
-                            <dd>End-to-End Project</dd>
-                        </div>
-                        <div className="project-snapshot-item">
-                            <dt>My Role</dt>
-                            <dd>
-                                Product Engineer &middot; Product Designer &middot; AI-Assisted
-                                Prototyping &middot; Vibe-coded prototype development
-                            </dd>
-                        </div>
-                        <div className="project-snapshot-item">
-                            <dt>Focus</dt>
-                            <dd>Patient–Doctor Communication &middot; Medical UX</dd>
-                        </div>
-                        <div className="project-snapshot-item">
-                            <dt>Contribution</dt>
-                            <dd>
-                                Service Flow Design &middot; AI Workflow Design &middot; Multi-model
-                                Pipeline &middot; Prototype Validation
-                            </dd>
-                        </div>
+                        {projectSnapshot.map((item) => (
+                            <div className="project-snapshot-item" key={item.term}>
+                                <dt>{item.term}</dt>
+                                <dd>{item.desc}</dd>
+                            </div>
+                        ))}
                     </dl>
                 </div>
             </div>
