@@ -1,4 +1,5 @@
 import Image from "next/image";
+import emphasize from "../_utils/emphasize";
 
 export default function SectionDeliver() {
     return (
@@ -9,8 +10,9 @@ export default function SectionDeliver() {
                     04. Deliver &middot; 더 선명하게 이음.
                 </h2>
                 <p className="section-headline-small">
-                    환자에게는 나에게 맞는 설명과 데이터를, 의사에게는 바로 훑을 수 있는 요약으로
-                    빠르게 환자를 파악할 수 있게.
+                    {emphasize(
+                        "환자에게는 나에게 맞는 설명과 데이터를, 의사에게는 바로 훑을 수 있는 요약으로 빠르게 환자를 파악할 수 있게."
+                    )}
                 </p>
                 <p className="typography-copy">
                     사용성 테스트에서 확인된 핵심 문제는 기능 부족이 아니라, 환자에게는 설명이,

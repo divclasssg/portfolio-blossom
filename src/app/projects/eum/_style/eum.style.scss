@@ -46,6 +46,11 @@
     };
     line-height: 120%;
     color: var(--color-text-primary);
+                
+    .emphasis {
+        background: var(--color-primary);
+        color: var(--color-white);
+    }
 }
 .section-headline-small {
     font: {
@@ -55,6 +60,11 @@
         };
         line-height: 110%;
         color: var(--color-text-primary);
+
+    .emphasis {
+        background: var(--color-primary);
+        color: var(--color-white);
+    }
 }
 .section-label {
     font: {
@@ -205,7 +215,7 @@
         border: 1px solid var(--color-ai);
         background: var(--color-bg-ai);
         display: flex;
-        width: 120px;
+        width: 100px;
         height: 24px;
         justify-content: center;
         align-items: center;
@@ -218,6 +228,7 @@
         line-height: 100%;
     }
     dd {
+        flex: 1;
         color: var(--color-text-tertiary);
         font-family: "Spoqa Han Sans Neo";
         font-size: var(--font-size-small);
@@ -450,6 +461,11 @@
             font-weight: 700;
             line-height: 120%;
             padding-bottom: 4px;
+
+            .emphasis {
+                background: var(--color-primary);
+                color: var(--color-white);
+            }
         }
     
         .keyscreen-callout-copy {
@@ -534,6 +550,11 @@
         line-height: 130%;
         /* 31.2px */
         padding-bottom: 12px;
+
+        .emphasis {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
     }
 
     .ut-results-screenshot {
@@ -577,6 +598,7 @@
             }
     
             dd {
+                flex: 1;
                 color: var(--color-text-secondary);
                 font-feature-settings: 'ss18' on;
                 font-family: var(--font-family-suit);

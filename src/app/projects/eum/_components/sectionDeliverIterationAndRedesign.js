@@ -1,4 +1,5 @@
 import Image from "next/image";
+import emphasize from "../_utils/emphasize";
 
 export default function SectionDeliverIterationAndRedesign() {
     return (
@@ -10,9 +11,9 @@ export default function SectionDeliverIterationAndRedesign() {
                         Iteration & Redesign &middot; 전달을 다시 이음.
                     </h2>
                     <p className="section-headline-large">
-                        환자에게는 진료 결과의 이유와 다음에 무엇을 해야 하는지, 의사에게는 짧은
-                        요약이 먼저 보이도록 다시 설계했습니다. 새 기능을 더한 것이 아니라, 이미
-                        만든 구조가 더 잘 이해되도록 다듬는 과정이었습니다.
+                        {emphasize(
+                            "환자에게는 진료 결과의 이유와 다음에 무엇을 해야 하는지, 의사에게는 짧은 요약이 먼저 보이도록 다시 설계했습니다. 새 기능을 더한 것이 아니라, 이미 만든 구조가 더 잘 이해되도록 다듬는 과정이었습니다."
+                        )}
                     </p>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import defineMethodology from "../_data/defineMethodology";
+import emphasize from "../_utils/emphasize";
 
 export default function SectionDefine() {
     return (
@@ -11,7 +12,7 @@ export default function SectionDefine() {
                     02. Define &middot; 소통의 끊김을 읽음.
                 </h2>
                 <p className="section-headline-small">
-                    진료시간 5분은 환자와 의사 모두에게 소통하기 부족한 시간.
+                    {emphasize("진료시간 5분은 환자와 의사 모두에게 소통하기 부족한 시간.")}
                 </p>
                 <p className="typography-copy">
                     검사 결과가 정상이어도 환자에겐 불안이 남았고, 환자 경험은 짧은 진료 안에서
@@ -48,7 +49,7 @@ export default function SectionDefine() {
                     <div className="define-methodology" key={item.title}>
                         <div className="define-methodology-content">
                             <h4 className="section-label">{item.title}</h4>
-                            <p className="section-headline-small">{item.headline}</p>
+                            <p className="section-headline-small">{emphasize(item.headline)}</p>
                             {item.paragraphs.map((paragraph, index) => (
                                 <p className="typography-copy" key={index}>
                                     {paragraph}

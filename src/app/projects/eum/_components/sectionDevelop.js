@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import developProcess from "../_data/developProcess";
+import emphasize from "../_utils/emphasize";
 
 export default function SectionDevelop() {
     return (
@@ -11,7 +12,9 @@ export default function SectionDevelop() {
                     03. Develop &middot; 판단과 이해를 이음.
                 </h2>
                 <p className="section-headline-small">
-                    기능을 줄이고, 환자 기록 → 의사 판단 → 환자 이해로 이어지는 최소 구조만.
+                    {emphasize(
+                        "기능을 줄이고, 환자 기록 → 의사 판단 → 환자 이해로 이어지는 최소 구조만."
+                    )}
                 </p>
                 <p className="typography-copy">
                     기능 수가 아니라 핵심 루프가 기준이었습니다. 기록이 진료로 연결되고, 판단이 환자

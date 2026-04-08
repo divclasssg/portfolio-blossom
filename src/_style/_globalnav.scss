@@ -1,0 +1,47 @@
+.globalnav {
+    font-family: var(--font-family-suit);
+
+    &.is-sub {
+        .globalnav-content {
+            max-width: 1024px;
+            padding: 24px 32px;
+            margin: 0 auto;
+        }
+    }
+
+    .globalnav-content {
+        display: flex;
+        padding: 24px 64px;
+
+        .globalnav-home {
+            display: flex;
+            align-items: ceneter;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 100%;
+            letter-spacing: 1.2%;
+            color: var(--color-text-primary);
+        }
+
+        .globalnav-list {
+            margin-left: auto;
+            display: flex;
+            gap: 24px;
+
+            .globalnav-link {
+                font-size: 18px;
+                font-weight: 400;
+                color: var(--color-text-tertiary);
+
+                &:hover {
+                    color: var(--color-text-primary);
+                }
+
+                &.active {
+                    font-weight: 700;
+                    color: var(--color-text-primary);
+                }
+            }
+        }
+    }
+}

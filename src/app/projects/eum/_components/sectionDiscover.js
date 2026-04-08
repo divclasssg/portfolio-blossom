@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import discoverPanels from "../_data/discoverPanels";
+import emphasize from "../_utils/emphasize";
 
 export default function SectionDiscover() {
     return (
@@ -11,8 +12,9 @@ export default function SectionDiscover() {
                     01. Discover &middot; 답답함을 읽음.
                 </h2>
                 <p className="section-headline-small">
-                    환자는 정상인데 증상이 계속되는 답답함과 막막함이, 의사는 짧은 시간안에 파악할
-                    정보 구조의 부족이 문제.
+                    {emphasize(
+                        "환자는 정상인데 증상이 계속되는 답답함과 막막함이, 의사는 짧은 시간안에 파악할 정보 구조의 부족이 문제."
+                    )}
                 </p>
                 <p className="typography-copy">
                     문헌 15개, 환자 텍스트 데이터, 환자 &middot; 의사 인터뷰를 함께 보니 환자

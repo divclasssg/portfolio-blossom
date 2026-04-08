@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import emphasize from "../_utils/emphasize";
 
 export default function SectionAiPipeline() {
     return (
@@ -9,7 +10,7 @@ export default function SectionAiPipeline() {
                     AI 파이프라인 &middot; 기록에서 설명까지 이음.
                 </h2>
                 <p className="section-headline-small">
-                    AI가 기록을 정리하고 설명까지 이어지도록 설계.
+                    {emphasize("AI가 기록을 정리하고 설명까지 이어지도록 설계.")}
                 </p>
                 <p className="typography-copy">
                     AI는 세 단계에서 각각 다른 역할을 합니다. 환자가 남긴 자연어 기록을 의사가

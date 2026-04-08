@@ -1,5 +1,6 @@
 import Image from "next/image";
 import wireframeKeyScreens from "../_data/wireframeKeyScreens";
+import emphasize from "../_utils/emphasize";
 
 export default function SectionDevelopWireframe() {
     return (
@@ -10,7 +11,9 @@ export default function SectionDevelopWireframe() {
                     Wireframe → prototype &middot; 프로토타입까지 이음.
                 </h2>
                 <p className="section-headline-small">
-                    손스케치로 구조를 잡고, 바이브 코딩으로 실제 AI가 작동하는 프로토타입까지.
+                    {emphasize(
+                        "손스케치로 구조를 잡고, 바이브 코딩으로 실제 AI가 작동하는 프로토타입까지."
+                    )}
                 </p>
                 <p className="typography-copy">
                     손스케치와 로우파이로 구조를 잡은 뒤, 바이브 코딩으로 실제 AI가 연결된

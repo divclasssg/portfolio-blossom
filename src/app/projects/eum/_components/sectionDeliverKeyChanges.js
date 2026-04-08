@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import keyChanges from "../_data/keyChanges";
+import emphasize from "../_utils/emphasize";
 
 export default function SectionDeliverKeyChanges() {
     return (
@@ -10,7 +11,7 @@ export default function SectionDeliverKeyChanges() {
                 <div className="key-change-item" key={item.title}>
                     <div className="key-change-content">
                         <h3 className="key-change-headline">{item.title}</h3>
-                        <p className="section-headline-small">{item.headline}</p>
+                        <p className="section-headline-small">{emphasize(item.headline)}</p>
                         <p className="typography-copy">{item.copy}</p>
                         <dl className="key-change-summary">
                             {item.spec.map((row) => (

@@ -1,3 +1,4 @@
+import Globalnav from "@/_components/globalnav";
 import "@/_style/style.scss";
 
 export const metadata = {
@@ -55,7 +56,10 @@ export const viewport = {
 export default function RootLayout({ children }) {
     return (
         <html lang="ko">
-            <body>{children}</body>
+            <body>
+                <Globalnav />
+                {children}
+            </body>
         </html>
     );
 }

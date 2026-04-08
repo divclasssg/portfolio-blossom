@@ -3,6 +3,7 @@ import Link from "next/link";
 import utFindings from "../_data/utFindings";
 import utInterviews from "../_data/utInterviews";
 import utOverview from "../_data/utOverview";
+import emphasize from "../_utils/emphasize";
 
 export default function SectionDevelopUsabilityTesting() {
     return (
@@ -13,7 +14,7 @@ export default function SectionDevelopUsabilityTesting() {
                     usability Testing &middot; 더 선명하게 잇길.
                 </h2>
                 <p className="section-headline-small">
-                    환자는 더 개인화된 설명을, 의사는 더 빠른 요약을.
+                    {emphasize("환자는 더 개인화된 설명을, 의사는 더 빠른 요약을.")}
                 </p>
                 <p className="typography-copy">
                     핵심 문제는 기능 부족이 아니라, 기록 &middot; AI &middot; 진료가 연결돼도
@@ -32,7 +33,7 @@ export default function SectionDevelopUsabilityTesting() {
                 <h3 className="visuallyhidden">UT Results</h3>
                 {utFindings.map((finding) => (
                     <div className="ut-results-item" key={finding.headline}>
-                        <h4 className="ut-results-headline">{finding.headline}</h4>
+                        <h4 className="ut-results-headline">{emphasize(finding.headline)}</h4>
                         <p className="typography-copy">{finding.copy}</p>
                         {finding.figure && (
                             <figure className="ut-results-screenshot">

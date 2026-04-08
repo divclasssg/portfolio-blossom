@@ -1,4 +1,17 @@
-const finalKeyScreens = [
+const highlight = (text) => {
+    const parts = text.split(/(환자|의사|AI)/g);
+    return parts.map((part, i) =>
+        part === "환자" || part === "의사" || part === "AI" ? (
+            <em key={i} className="emphasis">
+                {part}
+            </em>
+        ) : (
+            part
+        )
+    );
+};
+
+const raw = [
     {
         index: "#01",
         headline: "환자가 남긴 기록을 의사가 진료 전에 읽을 수 있게.",
@@ -15,5 +28,11 @@ const finalKeyScreens = [
         copy: "진단, 치료 계획, 처방, 주의사항을 환자가 다시 이해하고 참고할 수 있는 형태로 정리합니다.",
     },
 ];
+
+const finalKeyScreens = raw.map((screen) => ({
+    ...screen,
+    headline: highlight(screen.headline),
+    copy: screen.copy,
+}));
 
 export default finalKeyScreens;

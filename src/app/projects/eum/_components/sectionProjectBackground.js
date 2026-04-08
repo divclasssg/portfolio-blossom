@@ -1,10 +1,14 @@
+import emphasize from "../_utils/emphasize";
+
 export default function SectionProjectBackground() {
     return (
         <section className="section section-project-background">
             <div className="section-content">
                 <h2 className="section-eyebrow">Background</h2>
                 <p className="section-headline-large">
-                    진료 결과는 정상이었지만, 환자의 증상은 계속 됐고 병원을 전전하는 계기가 됐다.
+                    {emphasize(
+                        "진료 결과는 정상이었지만, 환자의 증상은 계속 됐고 병원을 전전하는 계기가 됐다."
+                    )}
                 </p>
                 <p className="typography-copy">
                     의사는 판단을 마쳤지만, 검사 결과는 정상인데 증상이 계속되는(PPS/MUS) 환자는 왜

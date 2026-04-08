@@ -1,11 +1,14 @@
+import emphasize from "../_utils/emphasize";
+
 export default function SectionFinalResult() {
     return (
         <section className="section section-final-result">
             <div className="section-content">
                 <h2 className="section-eyebrow">최종 결과 &middot; 환자와 의사를 이음.</h2>
                 <p className="section-headline-large">
-                    환자는 왜 그런 결과인지와 앞으로 할 일을, 의사는 핵심 요약을 바로 볼 수 있는
-                    최소 진료 연결 서비스 완성.
+                    {emphasize(
+                        "환자는 왜 그런 결과인지와 앞으로 할 일을, 의사는 핵심 요약을 바로 볼 수 있는 최소 진료 연결 서비스 완성."
+                    )}
                 </p>
                 <p className="typography-copy">
                     이 프로젝트는 환자 기록이 진료에 쓰이고, 의사의 판단이 다시 환자의 이해와
