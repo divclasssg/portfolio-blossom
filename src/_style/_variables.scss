@@ -1,28 +1,28 @@
 :root {
     --color-bg: #fff;
-    --color-bg-accent: #1C1C1E;
+    --color-bg-accent: #1c1c1e;
     --color-text: #1d1d1f;
     --color-accent: #0071e3;
     --color-muted: #6e6e73;
 
     --color-white: #fff;
-    --color-patients: #34C759;
-    --color-bg-patients: #EBFAEF;
-    --color-doctor: #00C0E8;
-    --color-bg-doctor: #E6F9FD;
-    --color-ai: #CB30E0;
-    --color-bg-ai: #FAEAFC;
+    --color-patients: #34c759;
+    --color-bg-patients: #ebfaef;
+    --color-doctor: #00c0e8;
+    --color-bg-doctor: #e6f9fd;
+    --color-ai: #cb30e0;
+    --color-bg-ai: #faeafc;
 
     --color-primary: #1d1d1f;
     --color-secondary: #3d3d54;
     --color-tertiary: #66666f;
 
-    --color-gray-scale-1: #8E8E93;
-    --color-gray-scale-2: #AEAEB2;
-    --color-gray-scale-3: #C7C7CC;
-    --color-gray-scale-4: #D1D1D6;
-    --color-gray-scale-5: #E5E5EA;
-    --color-gray-scale-6: #F2F2F7;
+    --color-gray-scale-1: #8e8e93;
+    --color-gray-scale-2: #aeaeb2;
+    --color-gray-scale-3: #c7c7cc;
+    --color-gray-scale-4: #d1d1d6;
+    --color-gray-scale-5: #e5e5ea;
+    --color-gray-scale-6: #f2f2f7;
 
     --color-text-primary: var(--color-primary);
     --color-text-secondary: var(--color-secondary);
@@ -33,7 +33,7 @@
 
     --color-surface-default: var(--color-white);
     --color-surface-subtle: var(--color-gray-scale-6);
-    
+
     --space-4: 4px;
     --space-8: 8px;
     --space-12: 12px;
@@ -57,21 +57,14 @@
     --radius-8: 8px;
     --radius-12: 12px;
 
-    --font-family-spoqa: "Spoqa Han Sans Neo",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        "Helvetica Neue",
-        Arial,
+    --font-family-spoqa:
+        "Spoqa Han Sans Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+
+    --font-family-suit:
+        "SUIT", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
         sans-serif;
 
-    --font-family-suit: "SUIT",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        "Helvetica Neue",
-        Arial,
-        sans-serif;
+    --globalnav-height: 44px;
+    --localnav-height: 52px;
 }

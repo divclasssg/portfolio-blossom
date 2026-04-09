@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import discoverPanels from "../_data/discoverPanels";
 import emphasize from "../_utils/emphasize";
+import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
+import ExternalLink from "./_shared/ExternalLink";
 
 export default function SectionDiscover() {
     return (
@@ -21,13 +22,10 @@ export default function SectionDiscover() {
                     쪽에서는 &apos;정상&apos;이라는 결과가 안심이 아니라 답답함으로 이어졌고, 의사
                     쪽에서는 짧은 진료 안에 핵심을 파악할 수 있는 정보 구조가 부족했습니다.
                 </p>
-                <dl className="ai-workflow">
-                    <dt>AI 워크플로우</dt>
-                    <dd>
-                        AI로 리서치 자료를 빠르게 정리 &middot; 비교해, 핵심 문제를 찾는 속도를
-                        높였습니다.
-                    </dd>
-                </dl>
+                <AiWorkflowCallout>
+                    AI로 리서치 자료를 빠르게 정리 &middot; 비교해, 핵심 문제를 찾는 속도를
+                    높였습니다.
+                </AiWorkflowCallout>
                 <div className="tabnav-box">
                     <div className="tabnav-list">
                         {discoverPanels.map((panel, index) => (
@@ -60,14 +58,9 @@ export default function SectionDiscover() {
                                                 ))}
                                             </ul>
                                         </div>
-                                        <Link
-                                            href={card.link.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="link-secondary"
-                                        >
+                                        <ExternalLink href={card.link.href} variant="secondary">
                                             {card.link.label}
-                                        </Link>
+                                        </ExternalLink>
                                     </div>
                                     <div className="card-row-screenshots">
                                         <Image src={card.image.src} alt={card.image.alt} />

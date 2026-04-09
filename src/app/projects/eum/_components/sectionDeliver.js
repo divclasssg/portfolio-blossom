@@ -1,5 +1,6 @@
 import Image from "next/image";
 import emphasize from "../_utils/emphasize";
+import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 
 export default function SectionDeliver() {
     return (
@@ -20,14 +21,11 @@ export default function SectionDeliver() {
                     환자 기록 → 의사 판단 → 환자 이해와 다음 행동으로 이어지는 전달 구조를 다시
                     설계했습니다.
                 </p>
-                <dl className="ai-workflow">
-                    <dt>AI 워크플로우</dt>
-                    <dd>
-                        사용성 테스트 결과와 화면 비교, 기능 정의, 로직 구조를 함께 보며 무엇을
-                        유지하고 무엇을 바꿀지 정리한 뒤, 실제 AI가 연결된 바이브 코딩
-                        프로토타입에 바로 반영했습니다.
-                    </dd>
-                </dl>
+                <AiWorkflowCallout>
+                    사용성 테스트 결과와 화면 비교, 기능 정의, 로직 구조를 함께 보며 무엇을
+                    유지하고 무엇을 바꿀지 정리한 뒤, 실제 AI가 연결된 바이브 코딩 프로토타입에
+                    바로 반영했습니다.
+                </AiWorkflowCallout>
                 <figure>
                     <Image src="" alt="사용성 테스트 환자 의사별 인사이트 모음" />
                     <figcaption>사용성 테스트 환자 및 의사별 인사이트</figcaption>

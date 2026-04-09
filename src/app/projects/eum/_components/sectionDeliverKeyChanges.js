@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import keyChanges from "../_data/keyChanges";
 import emphasize from "../_utils/emphasize";
+import ExternalLink from "./_shared/ExternalLink";
 
 export default function SectionDeliverKeyChanges() {
     return (
@@ -21,14 +21,7 @@ export default function SectionDeliverKeyChanges() {
                                 </div>
                             ))}
                         </dl>
-                        <Link
-                            href={item.link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="link-primary"
-                        >
-                            {item.link.label}
-                        </Link>
+                        <ExternalLink href={item.link.href}>{item.link.label}</ExternalLink>
                     </div>
                     <div className="key-change-assets">
                         <figure>

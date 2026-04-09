@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
+import ExternalLink from "./_shared/ExternalLink";
 
 export default function SectionSystemDefinition() {
     return (
@@ -22,38 +23,14 @@ export default function SectionSystemDefinition() {
                     기능 &middot; 로직으로 분리해 다시 하나의 흐름으로 연결함으로써 이후 개발을
                     이어갈 수 있는 구조로 정리했습니다.
                 </p>
-                <dl className="ai-workflow">
-                    <dt>AI 워크플로우</dt>
-                    <dd>
-                        화면 수정과 로직 수정을 함께 다뤄, 작동 흐름과 문서 정의가 어긋나지
-                        않도록 정리했습니다.
-                    </dd>
-                </dl>
+                <AiWorkflowCallout>
+                    화면 수정과 로직 수정을 함께 다뤄, 작동 흐름과 문서 정의가 어긋나지 않도록
+                    정리했습니다.
+                </AiWorkflowCallout>
                 <div className="button-wrapper">
-                    <Link
-                        href=""
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="link-primary"
-                    >
-                        기능 상세 정의서 보기
-                    </Link>
-                    <Link
-                        href=""
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="link-primary"
-                    >
-                        화면 상세 정의서 보기
-                    </Link>
-                    <Link
-                        href=""
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="link-primary"
-                    >
-                        로직 보기
-                    </Link>
+                    <ExternalLink href="">기능 상세 정의서 보기</ExternalLink>
+                    <ExternalLink href="">화면 상세 정의서 보기</ExternalLink>
+                    <ExternalLink href="">로직 보기</ExternalLink>
                 </div>
                 <Image src="" alt="기능상세정의서, 화면상세정의서, 로직 정리표 캡쳐본" />
             </div>

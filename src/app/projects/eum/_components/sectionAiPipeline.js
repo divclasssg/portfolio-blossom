@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import emphasize from "../_utils/emphasize";
+import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
+import ExternalLink from "./_shared/ExternalLink";
 
 export default function SectionAiPipeline() {
     return (
@@ -24,22 +25,12 @@ export default function SectionAiPipeline() {
                     입력부터 의사 판단 지원, 환자용 설명까지 하나의 흐름으로 연결되도록
                     설계했습니다.
                 </p>
-                <dl className="ai-workflow">
-                    <dt>AI 워크플로우</dt>
-                    <dd>
-                        환자 기록 → 의사 판단 지원 → 환자 이해와 다음 행동으로 이어지는 흐름을
-                        설계하고, Claude Code를 활용한 바이브 코딩으로 실제 프로토타입에
-                        구현했습니다.
-                    </dd>
-                </dl>
-                <Link
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-primary"
-                >
-                    기능 상세 정의서 보기
-                </Link>
+                <AiWorkflowCallout>
+                    환자 기록 → 의사 판단 지원 → 환자 이해와 다음 행동으로 이어지는 흐름을
+                    설계하고, Claude Code를 활용한 바이브 코딩으로 실제 프로토타입에
+                    구현했습니다.
+                </AiWorkflowCallout>
+                <ExternalLink href="">기능 상세 정의서 보기</ExternalLink>
                 <Image src="" alt="AI 파이프라인 정리표 캡쳐본" />
             </div>
         </section>

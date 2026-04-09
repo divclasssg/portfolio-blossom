@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import developProcess from "../_data/developProcess";
 import emphasize from "../_utils/emphasize";
+import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
+import ExternalLink from "./_shared/ExternalLink";
 
 export default function SectionDevelop() {
     return (
@@ -20,13 +21,10 @@ export default function SectionDevelop() {
                     기능 수가 아니라 핵심 루프가 기준이었습니다. 기록이 진료로 연결되고, 판단이 환자
                     이해로 이어지는 흐름만 남겼습니다.
                 </p>
-                <dl className="ai-workflow">
-                    <dt>AI 워크플로우</dt>
-                    <dd>AI로 흩어진 인사이트를 묶고 비교해, 가장 먼저 풀 문제를 정의했습니다.</dd>
-                </dl>
-                <Link href="#" target="_blank" rel="noopener noreferrer" className="link-primary">
-                    원문 데이터 보기
-                </Link>
+                <AiWorkflowCallout>
+                    AI로 흩어진 인사이트를 묶고 비교해, 가장 먼저 풀 문제를 정의했습니다.
+                </AiWorkflowCallout>
+                <ExternalLink href="#">원문 데이터 보기</ExternalLink>
             </div>
             <div className="section-content-wide">
                 <div className="card-wrapper">

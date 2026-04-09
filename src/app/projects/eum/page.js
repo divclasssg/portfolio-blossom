@@ -19,6 +19,7 @@ import SectionDeliverFinalPrototype from "./_components/sectionDeliverFinalProto
 import SectionSystemDefinition from "./_components/sectionSystemDefinition";
 import SectionAiPipeline from "./_components/sectionAiPipeline";
 import SectionFinalResult from "./_components/sectionFinalResult";
+import Localnav from "../_components/localnav";
 
 export const metadata = {
     title: "Eum",
@@ -27,27 +28,30 @@ export const metadata = {
 
 export default function EumPage() {
     return (
-        <main id="main" className="main">
-            <SectionHero />
-            <SectionHighlight />
-            <SectionKeyScreens />
-            <SectionProjectOverview />
-            <SectionProjectBackground />
-            <SectionDoubleDiamond />
-            <SectionDiscover />
-            <SectionDefine />
-            <SectionDevelop />
-            <SectionDevelopMvp />
-            <SectionDevelopWireframe />
-            <SectionDevelopUsabilityTesting />
-            <SectionDeliver />
-            <SectionDeliverIterationAndRedesign />
-            <SectionDeliverKeyChanges />
-            <SectionDeliverStructureUpdate />
-            <SectionDeliverFinalPrototype />
-            <SectionSystemDefinition />
-            <SectionAiPipeline />
-            <SectionFinalResult />
-        </main>
+        <>
+            <Localnav />
+            <main id="main" className="main">
+                <SectionHero />
+                <SectionHighlight />
+                <SectionKeyScreens />
+                <SectionProjectOverview />
+                <SectionProjectBackground />
+                <SectionDoubleDiamond />
+                <SectionDiscover />
+                <SectionDefine />
+                <SectionDevelop />
+                <SectionDevelopMvp />
+                <SectionDevelopWireframe />
+                <SectionDevelopUsabilityTesting />
+                <SectionDeliver />
+                <SectionDeliverIterationAndRedesign />
+                <SectionDeliverKeyChanges />
+                <SectionDeliverStructureUpdate />
+                <SectionDeliverFinalPrototype />
+                <SectionSystemDefinition />
+                <SectionAiPipeline />
+                <SectionFinalResult />
+            </main>
+        </>
     );
 }

@@ -1,17 +1,22 @@
 .globalnav {
     font-family: var(--font-family-suit);
+    height: var(--globalnav-height);
 
     &.is-sub {
         .globalnav-content {
             max-width: 1024px;
-            padding: 24px 32px;
+            padding: 0 32px;
             margin: 0 auto;
+            box-sizing: border-box;
         }
     }
 
     .globalnav-content {
         display: flex;
-        padding: 24px 64px;
+        align-items: center;
+        height: 100%;
+        padding: 0 64px;
+        box-sizing: border-box;
 
         .globalnav-home {
             display: flex;
@@ -29,7 +34,7 @@
             gap: 24px;
 
             .globalnav-link {
-                font-size: 18px;
+                font-size: var(--font-size-small);
                 font-weight: 400;
                 color: var(--color-text-tertiary);
 

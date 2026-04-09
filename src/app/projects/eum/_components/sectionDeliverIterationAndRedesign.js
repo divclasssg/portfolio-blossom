@@ -3,11 +3,11 @@ import emphasize from "../_utils/emphasize";
 
 export default function SectionDeliverIterationAndRedesign() {
     return (
-        <section className="section section-standalone section-dd-deliver-iteration-and-redesign">
+        <section className="section section-dd-deliver-iteration-and-redesign">
             <div className="section-standalone">
                 <div className="standalone-content">
                     <h2 className="section-eyebrow">
-                        <span>Double Diamond 04. Deliver</span>
+                        <span className="visuallyhidden">Double Diamond 04. Deliver</span>
                         Iteration & Redesign &middot; 전달을 다시 이음.
                     </h2>
                     <p className="section-headline-large">

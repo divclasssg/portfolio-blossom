@@ -1,8 +1,8 @@
 "use client";
 
 import "../_style/section.hero.scss";
-import Link from "next/link";
 import { CldImage } from "next-cloudinary";
+import ExternalLink from "./_shared/ExternalLink";
 
 export default function SectionHero() {
     return (
@@ -14,14 +14,9 @@ export default function SectionHero() {
                     <p className="header-violator">기록이 진료가 되고, 진료가 이해로 남는.</p>
                 </div>
                 <div className="marquee-detail">
-                    <Link
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="button-elevated"
-                    >
+                    <ExternalLink href="#" variant="elevated">
                         Eum Demo 체험하기
-                    </Link>
+                    </ExternalLink>
                 </div>
                 <div className="hero-asset">
                     <div className="doctor">
