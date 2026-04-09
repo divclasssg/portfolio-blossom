@@ -1,10 +1,15 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { CldImage } from "next-cloudinary";
 import discoverPanels from "../_data/discoverPanels";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 import ExternalLink from "./_shared/ExternalLink";
 
 export default function SectionDiscover() {
+    const [activeTab, setActiveTab] = useState(0);
+
     return (
         <section className="section section-dd-discover">
             <div className="section-content">
@@ -31,17 +36,25 @@ export default function SectionDiscover() {
                         {discoverPanels.map((panel, index) => (
                             <button
                                 type="button"
-                                className={`tabnav-button${index === 0 ? " active" : ""}`}
+                                className={`tabnav-button${index === activeTab ? " active" : ""}`}
                                 key={panel.tabLabel}
+                                onClick={() => setActiveTab(index)}
                             >
                                 {panel.tabLabel}
                             </button>
                         ))}
                     </div>
-                    {discoverPanels.map((panel) => (
-                        <div className="tabnav-panel" key={panel.tabLabel}>
-                            {panel.cards.map((card) => (
-                                <div className="card-row" key={card.eyebrow}>
+                    {discoverPanels.map((panel, index) => (
+                        <div
+                            className={`tabnav-panel${index === activeTab ? " active" : ""}`}
+                            key={panel.tabLabel}
+                            hidden={index !== activeTab}
+                        >
+                            {panel.cards.map((card, cardIndex) => (
+                                <div
+                                    className={`card-row card-row--${panel.tabLabel.toLowerCase().replace(/\s+/g, "-")}-${cardIndex + 1}`}
+                                    key={card.eyebrow}
+                                >
                                     <div className="card-row-content">
                                         <h3 className="card-row-eyebrow">{card.eyebrow}</h3>
                                         <p className="card-row-headline">{card.headline}</p>
@@ -63,7 +76,12 @@ export default function SectionDiscover() {
                                         </ExternalLink>
                                     </div>
                                     <div className="card-row-screenshots">
-                                        <Image src={card.image.src} alt={card.image.alt} />
+                                        <CldImage
+                                            src={card.image.src}
+                                            alt={card.image.alt}
+                                            width={card.image.width}
+                                            height={card.image.height}
+                                        />
                                     </div>
                                 </div>
                             ))}

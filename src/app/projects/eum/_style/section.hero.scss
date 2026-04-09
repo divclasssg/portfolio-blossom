@@ -1,5 +1,7 @@
 .page-eum .section-hero {
-    padding: 96px 0;
+    // margin-top: calc(var(--globalnav-height) * -1 + var(--localnav-height) * -1);
+    height: 100svh;
+    padding: 48px 0 96px;
 
     .content-container {
         .marquee-header {

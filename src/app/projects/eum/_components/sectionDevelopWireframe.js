@@ -1,9 +1,26 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+import { CldImage } from "next-cloudinary";
 import wireframeKeyScreens from "../_data/wireframeKeyScreens";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 
+const AUTO_SLIDE_INTERVAL = 4000;
+
 export default function SectionDevelopWireframe() {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const total = wireframeKeyScreens.length;
+
+    useEffect(() => {
+        if (isPaused) return;
+        const timer = setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % total);
+        }, AUTO_SLIDE_INTERVAL);
+        return () => clearInterval(timer);
+    }, [isPaused, total]);
+
     return (
         <section className="section section-dd-develop-wireframe-to-prototype">
             <div className="section-content">
@@ -25,10 +42,20 @@ export default function SectionDevelopWireframe() {
                 </AiWorkflowCallout>
             </div>
             <h3 className="visuallyhidden">Prototype Key Screens</h3>
-            <div className="auto-slider">
-                <div className="auto-slider-content">
-                    {wireframeKeyScreens.map((screen) => (
-                        <div className="auto-slider-item card-column" key={screen.index}>
+            <div
+                className="auto-slider"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+            >
+                <div
+                    className="auto-slider-content"
+                    style={{ transform: `translateX(calc(-${activeIndex} * (696px + 24px)))` }}
+                >
+                    {wireframeKeyScreens.map((screen, i) => (
+                        <div
+                            className={`auto-slider-item card-column${i === activeIndex ? " active" : ""}`}
+                            key={screen.index}
+                        >
                             <h4 className="card-column-eyebrow">
                                 <span>{screen.index}</span>
                                 {screen.title}
@@ -43,17 +70,27 @@ export default function SectionDevelopWireframe() {
                                 ))}
                             </dl>
                             <div className="card-column-bottom">
-                                {screen.figures.map((figure) => (
-                                    <figure key={figure.caption}>
-                                        <Image src={figure.src} alt={figure.alt} />
-                                        <figcaption>{figure.caption}</figcaption>
-                                    </figure>
-                                ))}
+                                <CldImage
+                                    src={screen.image.src}
+                                    alt={screen.image.alt}
+                                    width={screen.image.width}
+                                    height={screen.image.height}
+                                />
                             </div>
                         </div>
                     ))}
                 </div>
-                <div>슬라이드 컨트롤러 </div>
+                <div className="auto-slider-controller">
+                    {wireframeKeyScreens.map((screen, i) => (
+                        <button
+                            type="button"
+                            key={screen.index}
+                            className={`auto-slider-dot${i === activeIndex ? " active" : ""}`}
+                            onClick={() => setActiveIndex(i)}
+                            aria-label={`${screen.index} ${screen.title}`}
+                        />
+                    ))}
+                </div>
             </div>
         </section>
     );

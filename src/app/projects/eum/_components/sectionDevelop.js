@@ -1,4 +1,6 @@
-import Image from "next/image";
+"use client";
+
+import { CldImage } from "next-cloudinary";
 import developProcess from "../_data/developProcess";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
@@ -30,10 +32,17 @@ export default function SectionDevelop() {
                 <div className="card-wrapper">
                     {developProcess.map((item) => (
                         <div className="card-process" key={item.title}>
-                            <h3 className="card-process-headline">{item.title}</h3>
-                            <p className="card-process-typography-copy">{item.copy}</p>
+                            <div className="card-process-content">
+                                <h3 className="card-process-headline">{item.title}</h3>
+                                <p className="card-process-typography-copy">{item.copy}</p>
+                            </div>
                             <div className="card-process-screenshot">
-                                <Image src={item.image.src} alt={item.image.alt} />
+                                <CldImage
+                                    src={item.image.src}
+                                    alt={item.image.alt}
+                                    width={item.image.width}
+                                    height={item.image.height}
+                                />
                             </div>
                         </div>
                     ))}

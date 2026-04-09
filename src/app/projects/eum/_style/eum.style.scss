@@ -46,7 +46,7 @@
 
 .section-project-background {
     background: var(--color-surface-subtle);
-    margin-top: 28px;
+    margin-top: 8px;
     padding: var(--space-48) 0;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .section-dd-develop-wireframe-to-prototype {
-    padding: 64px 0 96px;
+    padding: 96px 0;
 }
 
 .section-dd-develop-usability-testing {
@@ -223,7 +223,7 @@
 }
 .link-secondary {
     border-radius: var(--radius-8);
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-white);
     background: transparent;
     display: inline-flex;
     justify-content: center;
@@ -235,7 +235,7 @@
         weight: 400;
     }
     line-height: 100%;
-    color: var(--color-primary);
+    color: var(--color-white);
     padding: 0 var(--space-16);
 }
 .button-elevated {
@@ -403,7 +403,20 @@
 // Card: row (텍스트 + 스크린샷 가로 배치)
 // ─────────────────────────────────────────────
 .card-row {
+    border-radius: var(--radius-12);
+    background: var(--color-primary);
+    position: relative;
+    display: flex;
+    height: 540px;
+    padding: 36px 0 0 36px;
+    overflow: hidden;
+
+    &.card-row--secondary-research-1 {
+        margin-bottom: 24px;
+    }
+
     .card-row-content {
+        width: 306px;
     }
 
     .card-row-eyebrow {
@@ -440,13 +453,44 @@
     }
 
     .card-row-screenshots {
+        position: absolute;
+        bottom: 0;
+        right: 36px;
+
+        img {
+
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+        }
     }
+}
+
+.card-row--secondary-research-2 .card-row-screenshots {
+    right: 0 !important;
+}
+
+.card-row--primary-research-1 .card-row-screenshots img {
+    max-width: 540px;
 }
 
 // ─────────────────────────────────────────────
 // Card: process (가로 나열)
 // ─────────────────────────────────────────────
+.card-wrapper {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0 64px;
+}
 .card-process {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 28px;
+
+    .card-process-content {
+        padding: 0 8px;
+    }
+
     .card-process-headline {
         display: inline-block;
         color: var(--color-text-primary);
@@ -465,10 +509,21 @@
         font-style: normal;
         font-weight: 400;
         line-height: 140%;
-        padding-left: 4px;
     }
 
     .card-process-screenshot {
+        border-radius: var(--radius-12);
+        background: var(--color-primary);
+        display: flex;
+        height: 512px;
+        justify-content: flex-end;
+        align-items: flex-end;
+        align-self: stretch;
+
+        img {
+            width: 328px;
+            height: 456px;
+        }
     }
 }
 
@@ -476,6 +531,17 @@
 // Card: column (세로형 키 스크린 카드)
 // ─────────────────────────────────────────────
 .card-column {
+    border-radius: var(--radius-12);
+    background: var(--color-primary);
+    display: flex;
+    width: 696px;
+    height: 548px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    aspect-ratio: 174/137;
+    box-sizing: border-box;
+
     .card-column-eyebrow {
         span {
             display: block;
@@ -498,10 +564,30 @@
     }
 
     .card-column-bottom {
+        border-radius: var(--radius-12);
         display: flex;
-        flex-direction: column-reverse;
+        width: 100%;
+        height: 237px;
+        margin-top: auto;
+        overflow: hidden;
+
+        img {
+            // width: auto;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
 
         figure {
+            display: flex;
+            flex-direction: column;
+
+            img {
+                // width: auto;
+                height: auto;
+                object-fit: cover;
+                display: block;
+            }
         }
 
         figcaption {
@@ -530,6 +616,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        padding: 12px 0 24px;
 
         .tabnav-button {
             border-radius: var(--space-8);
@@ -570,6 +657,12 @@
 .auto-slider {
 }
 .auto-slider-content {
+    display: flex;
+    gap: 24px;
+    padding-left: calc((100vw - 1024px) / 2);
+    padding-right: calc((100vw - 696px) / 2);
+    transition: transform 0.6s ease;
+    will-change: transform;
 }
 .auto-slider-item {
 }
@@ -579,12 +672,31 @@
 // ─────────────────────────────────────────────
 .keyscreen-container {
     .keyscreen-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:nth-child(3) {
+            flex-direction: row-reverse;
+            gap: 24px;
+        }
     }
 
     .keyscreen-overview {
+        border-radius: 12px;
+        width: 320px;
+        overflow:hidden;
+
+        .video-js,
+        .vjs-tech,
+        .vjs-poster {
+            background: transparent !important;
+        }
     }
 
     .keyscreen-callout {
+        width: 300px;
+
         .keyscreen-callout-header {
             color: var(--color-text-tertiary);
             font-family: var(--font-family-spoqa);
@@ -633,6 +745,10 @@
 .define-methodology-content {
 }
 .define-methodology-screenshots {
+    img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 // ─────────────────────────────────────────────

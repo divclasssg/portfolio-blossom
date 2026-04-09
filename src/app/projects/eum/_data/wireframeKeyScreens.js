@@ -11,11 +11,12 @@ const wireframeKeyScreens = [
                 desc: "바이브 코딩으로 실제 입력과 구조화 저장이 작동하도록 구현.",
             },
         ],
-        figures: [
-            { src: "", alt: "증상 기록 스케치 캡쳐본", caption: "Sketch" },
-            { src: "", alt: "증상 기록 로우파이 캡쳐본", caption: "Low-fi" },
-            { src: "", alt: "증상 기록 프로토타입 캡쳐본", caption: "Prototype" },
-        ],
+        image: {
+            src: "img-keyscreens-01_hodl0f",
+            alt: "증상 기록 키스크린 캡쳐본",
+            width: 1296,
+            height: 474,
+        },
     },
     {
         index: "Key Screen 02.",
@@ -26,11 +27,12 @@ const wireframeKeyScreens = [
             { term: "Low-fi", desc: "프로필, 기록, AI 참고 정보를 읽는 순서를 정리." },
             { term: "Prototype", desc: "바이브 코딩으로 실제 AI 브리핑이 연결된 상태로 구현." },
         ],
-        figures: [
-            { src: "", alt: "의사 대시보드 스케치 캡쳐본", caption: "Sketch" },
-            { src: "", alt: "의사 대시보드 로우파이 캡쳐본", caption: "Low-fi" },
-            { src: "", alt: "의사 대시보드 프로토타입 캡쳐본", caption: "Prototype" },
-        ],
+        image: {
+            src: "img-keyscreens-02_te2jdq",
+            alt: "의사 대시보드 키스크린 캡쳐본",
+            width: 1296,
+            height: 474,
+        },
     },
     {
         index: "Key Screen 03.",
@@ -44,11 +46,12 @@ const wireframeKeyScreens = [
                 desc: "바이브 코딩으로 결과와 다음 안내를 다시 볼 수 있는 화면으로 구현.",
             },
         ],
-        figures: [
-            { src: "", alt: "환자 진료 요약 스케치 캡쳐본", caption: "Sketch" },
-            { src: "", alt: "환자 진료 요약 로우파이 캡쳐본", caption: "Low-fi" },
-            { src: "", alt: "환자 진료 요약 프로토타입 캡쳐본", caption: "Prototype" },
-        ],
+        image: {
+            src: "img-keyscreens-03_dvgeex",
+            alt: "환자 진료 요약 키스크린 캡쳐본",
+            width: 1296,
+            height: 474,
+        },
     },
 ];
 

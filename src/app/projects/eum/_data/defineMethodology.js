@@ -14,7 +14,12 @@ const defineMethodology = [
             "#테마도출",
         ],
         link: { href: "#", label: "원문 데이터 보기" },
-        image: { src: "", alt: "환자 통합 분석 원본 자료 캡쳐본" },
+        image: {
+            src: "patient-synthesis_kzlfhx",
+            alt: "환자 통합 분석 원본 자료 캡쳐본",
+            width: 2340,
+            height: 1558,
+        },
     },
     {
         title: "의료진 심층 인터뷰 분석",
@@ -26,7 +31,12 @@ const defineMethodology = [
         ],
         tags: ["#Affinity_Diagram"],
         link: { href: "#", label: "원문 데이터 보기" },
-        image: { src: "", alt: "의료진 심층 인터뷰 분석 원본 자료 캡쳐본" },
+        image: {
+            src: "medical_indepth_interview_iv9h6w",
+            alt: "의료진 심층 인터뷰 분석 원본 자료 캡쳐본",
+            width: 2400,
+            height: 1411,
+        },
     },
     {
         title: "환자 · 의료진 통합 분석",
@@ -38,7 +48,12 @@ const defineMethodology = [
         ],
         tags: ["#비교분석", "#통합해석", "#교차해석", "#문제재정의", "#설계시사점"],
         link: { href: "#", label: "원문 데이터 보기" },
-        image: { src: "", alt: "환자 및 의료진 통합 분석 원본 자료 캡쳐본" },
+        image: {
+            src: "patient_and_medical_ypqh6z",
+            alt: "환자 및 의료진 통합 분석 원본 자료 캡쳐본",
+            width: 3038,
+            height: 636,
+        },
     },
     {
         title: "UX 전략 및 문제 정의",
@@ -56,7 +71,12 @@ const defineMethodology = [
             "#How_Might_We",
         ],
         link: { href: "#", label: "원문 데이터 보기" },
-        image: { src: "", alt: "UX 전략 및 문제 정의 원본 자료 캡쳐본" },
+        image: {
+            src: "ux_strategy_aztnz2",
+            alt: "UX 전략 및 문제 정의 원본 자료 캡쳐본",
+            width: 2400,
+            height: 744,
+        },
     },
 ];
 
