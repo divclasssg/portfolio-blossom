@@ -2,14 +2,15 @@
 // 섹션 단위가 아닌, 여러 컴포넌트에서 공통으로 쓰는 클래스만 모읍니다.
 // (섹션 고유 클래스 section-dd-*, section-hero 등은 각 섹션 파일에서 별도 관리)
 
-:root {
+// 모든 eum 전용 클래스는 .page-eum 스코프 안에서만 적용되도록 감쌉니다.
+// (다른 페이지의 동일 클래스명과 충돌 방지)
+.page-eum {
     --font-size-xxlarge: 36px;
     --font-size-xlarge: 28px;
     --font-size-large: 20px;
     --font-size-regular: 18px;
     --font-size-small: 16px;
     --font-size-xsmall: 14px;
-}
 
 // ─────────────────────────────────────────────
 // Section primitives
@@ -814,3 +815,5 @@
 // ─────────────────────────────────────────────
 .iteration-and-redesign-screenshot {
 }
+
+} // .page-eum

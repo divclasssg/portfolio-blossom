@@ -1,0 +1,88 @@
+:root {
+    --content-padding-left: 64px;
+    --homefooter-height: 48px;
+    --homefooter-padding-bottom: 24px;
+}
+
+.home,
+.homefooter {
+    font-family: var(--font-family-suit);
+    font-feature-settings: "ss18" on;
+}
+
+.home {
+    position: fixed;
+    bottom: var(--homefooter-height);
+    left: 0;
+    height: 50svh;
+    padding-left: var(--content-padding-left);
+    box-sizing: border-box;
+}
+
+.section-hero {
+    padding-bottom: 64px;
+
+    .hero-header {
+        .hero-headline {
+            color: var(--color-text-primary);
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+            padding-bottom: 4px;
+        }
+
+        .hero-subhead {
+            color: var(--color-text-primary);
+            font-kerning: none;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+            letter-spacing: 0.27px;
+            text-transform: lowercase;
+        }
+    }
+}
+
+.homenav {
+    .homenav-content {
+        .homenav-list {
+            .homenav-item {
+                margin-top: -1px;
+                .homenav-link {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    color: var(--color-text-primary);
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 100%;
+                    text-transform: lowercase;
+                }
+
+                &:hover {
+                    .homenav-link {
+                        background: var(--color-primary);
+                        color: var(--color-white);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.homefooter {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: var(--homefooter-height);
+    color: var(--color-text-primary);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    text-transform: capitalize;
+    padding-left: var(--content-padding-left);
+}

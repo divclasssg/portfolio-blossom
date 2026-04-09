@@ -30,7 +30,7 @@ export default function EumPage() {
     return (
         <>
             <Localnav />
-            <main id="main" className="main">
+            <main id="main" className="main page-eum">
                 <SectionHero />
                 <SectionHighlight />
                 <SectionKeyScreens />
