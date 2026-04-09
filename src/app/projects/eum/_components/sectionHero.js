@@ -1,6 +1,6 @@
 "use client";
 
-import "../_style/eum.heroSection.scss";
+import "../_style/section.hero.scss";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
 

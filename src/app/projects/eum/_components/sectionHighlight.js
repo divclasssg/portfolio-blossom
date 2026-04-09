@@ -1,4 +1,4 @@
-import "../_style/eum.highlightSection.scss";
+import "../_style/section.highlight.scss";
 import projectSnapshot from "../_data/projectSnapshot";
 
 export default function SectionHighlight() {
