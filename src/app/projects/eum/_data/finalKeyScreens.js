@@ -1,15 +1,4 @@
-const highlight = (text) => {
-    const parts = text.split(/(환자|의사|AI)/g);
-    return parts.map((part, i) =>
-        part === "환자" || part === "의사" || part === "AI" ? (
-            <em key={i} className="emphasis">
-                {part}
-            </em>
-        ) : (
-            part
-        )
-    );
-};
+import emphasize from "../_utils/emphasize";
 
 const raw = [
     {
@@ -41,7 +30,7 @@ const raw = [
 
 const finalKeyScreens = raw.map((screen) => ({
     ...screen,
-    headline: highlight(screen.headline),
+    headline: emphasize(screen.headline),
     copy: screen.copy,
 }));
 

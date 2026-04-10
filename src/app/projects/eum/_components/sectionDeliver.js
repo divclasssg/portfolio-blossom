@@ -1,4 +1,6 @@
-import Image from "next/image";
+"use client";
+
+import { CldImage } from "next-cloudinary";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 
@@ -27,7 +29,13 @@ export default function SectionDeliver() {
                     바로 반영했습니다.
                 </AiWorkflowCallout>
                 <figure>
-                    <Image src="" alt="사용성 테스트 환자 의사별 인사이트 모음" />
+                    <CldImage
+                        src="5c57984005bd8f73f6aaf31aa249b3036f958a1b_pu4cjy"
+                        alt="사용성 테스트 환자 의사별 인사이트 모음"
+                        width={2886}
+                        height={634}
+                        style={{ width: 1024, height: "auto" }}
+                    />
                     <figcaption>사용성 테스트 환자 및 의사별 인사이트</figcaption>
                 </figure>
             </div>

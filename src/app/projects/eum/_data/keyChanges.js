@@ -19,8 +19,8 @@ const keyChanges = [
             },
         ],
         link: { href: "", label: "원문 데이터 보기" },
-        asIs: { src: "", alt: "환자 앱 메인 화면 as-is" },
-        toBe: { src: "", alt: "환자 앱 메인 화면 to-be" },
+        asIs: { src: "key_change_01_asis_qeuusd", alt: "환자 앱 메인 화면 as-is", width: 221, height: 479, imgWidth: 221 },
+        toBe: { src: "key_change_01_htjkj0", alt: "환자 앱 메인 화면 to-be", width: 1440, height: 2560, imgWidth: 300, isVideo: true },
     },
     {
         title: "Key Change 02. 의사 패널 메인 화면 · Eum Doctor Plug-in",
@@ -45,8 +45,8 @@ const keyChanges = [
             },
         ],
         link: { href: "", label: "원문 데이터 보기" },
-        asIs: { src: "", alt: "의사 패널 메인 화면 as-is" },
-        toBe: { src: "", alt: "의사 패널 메인 화면 to-be" },
+        asIs: { src: "key_change_02_asis_fuhr7p", alt: "의사 패널 메인 화면 as-is", width: 498, height: 1319, imgWidth: 248 },
+        toBe: null,
     },
     {
         title: "Key Change 03. 환자 진료 요약 상세 화면 · Eum Patient Application",
@@ -69,8 +69,8 @@ const keyChanges = [
             },
         ],
         link: { href: "", label: "원문 데이터 보기" },
-        asIs: { src: "", alt: "환자 진료 요약 상세 화면 as-is" },
-        toBe: { src: "", alt: "환자 진료 요약 상세 화면 to-be" },
+        asIs: { src: "key_change_03_asis_vbttth", alt: "환자 진료 요약 상세 화면 as-is", width: 496, height: 1732, imgWidth: 248 },
+        toBe: { src: "key_change_03_go7khf", alt: "환자 진료 요약 상세 화면 to-be", width: 1440, height: 2560, imgWidth: 300, isVideo: true },
     },
 ];
 

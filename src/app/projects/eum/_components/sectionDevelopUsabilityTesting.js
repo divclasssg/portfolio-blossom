@@ -1,4 +1,6 @@
-import Image from "next/image";
+"use client";
+
+import { CldImage } from "next-cloudinary";
 import utFindings from "../_data/utFindings";
 import utInterviews from "../_data/utInterviews";
 import utOverview from "../_data/utOverview";
@@ -36,9 +38,37 @@ export default function SectionDevelopUsabilityTesting() {
                         <div className="ut-results-item" key={finding.headline}>
                             <h4 className="ut-results-headline">{emphasize(finding.headline)}</h4>
                             <p className="typography-copy">{finding.copy}</p>
+                            {finding.figures && (
+                                <figure className="ut-results-screenshot">
+                                    <div className="image-wrapper">
+                                        {finding.figures.map((fig) => (
+                                            <CldImage
+                                                key={fig.src}
+                                                src={fig.src}
+                                                alt={fig.alt}
+                                                width={fig.width}
+                                                height={fig.height}
+                                                style={{ width: fig.imgWidth, height: "auto" }}
+                                            />
+                                        ))}
+                                    </div>
+                                    <figcaption>{finding.caption}</figcaption>
+                                </figure>
+                            )}
                             {finding.figure && (
                                 <figure className="ut-results-screenshot">
-                                    <Image src={finding.figure.src} alt={finding.figure.alt} />
+                                    <div className="image-wrapper">
+                                        <CldImage
+                                            src={finding.figure.src}
+                                            alt={finding.figure.alt}
+                                            width={finding.figure.width}
+                                            height={finding.figure.height}
+                                            style={{
+                                                width: finding.figure.imgWidth,
+                                                height: "auto",
+                                            }}
+                                        />
+                                    </div>
                                     <figcaption>{finding.figure.caption}</figcaption>
                                 </figure>
                             )}
@@ -69,7 +99,15 @@ export default function SectionDevelopUsabilityTesting() {
                     <div className="ut-interview">
                         {utInterviews.map((interview) => (
                             <figure key={interview.image.alt}>
-                                <Image src={interview.image.src} alt={interview.image.alt} />
+                                <CldImage
+                                    src={interview.image.src}
+                                    alt={interview.image.alt}
+                                    width={interview.image.width}
+                                    height={interview.image.height}
+                                    style={{ width: interview.image.imgWidth, height: "auto" }}
+                                    {...(interview.image.crop && { crop: interview.image.crop })}
+                                    {...(interview.image.gravity && { gravity: interview.image.gravity })}
+                                />
                                 <figcaption>
                                     <strong>{interview.person}</strong>
                                     <span>{interview.quote}</span>

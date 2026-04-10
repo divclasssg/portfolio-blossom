@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Home() {
     return (
         <>
-            <main id="main" class="main home">
+            <main id="main" className="main home">
                 <section className="section section-hero">
                     <div className="hero-header">
                         <h1 className="hero-headline">세익 -- 世益 · [ se.ik ]</h1>

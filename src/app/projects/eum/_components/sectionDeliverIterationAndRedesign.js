@@ -1,4 +1,6 @@
-import Image from "next/image";
+"use client";
+
+import { CldImage } from "next-cloudinary";
 import emphasize from "../_utils/emphasize";
 
 export default function SectionDeliverIterationAndRedesign() {
@@ -19,7 +21,14 @@ export default function SectionDeliverIterationAndRedesign() {
             </div>
             <div className="iteration-and-redesign-screenshot">
                 <figure>
-                    <Image src="" alt="핵심 루프 플로우차트" />
+                    <div className="img-wrapper">
+                        <CldImage
+                            src="f0f12db6b5f1e276a2f0bce2fa4173dcc2d071cb_e6olgq"
+                            alt="핵심 루프 플로우차트"
+                            width={4096}
+                            height={2522}
+                        />
+                    </div>
                     <figcaption>
                         <strong>핵심 루프 재설계 방향.</strong>
                         <span>

@@ -1,4 +1,6 @@
-import Image from "next/image";
+"use client";
+
+import { CldImage } from "next-cloudinary";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 import ExternalLink from "./_shared/ExternalLink";
 
@@ -25,7 +27,15 @@ export default function SectionDeliverStructureUpdate() {
                     나눴습니다.
                 </AiWorkflowCallout>
                 <ExternalLink href="">원문 데이터 보기</ExternalLink>
-                <Image src="" alt="유저플로우 캡쳐본" />
+                <div className="img-wrapper">
+                    <CldImage
+                        src="a90df6dd2909a5d3a10150ae1124584a8dadfdd9_bqwlct"
+                        alt="유저플로우 캡쳐본"
+                        width={4096}
+                        height={2440}
+                        style={{ width: 1024, height: "auto" }}
+                    />
+                </div>
             </div>
         </section>
     );

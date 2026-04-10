@@ -1,25 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CldImage } from "next-cloudinary";
 import wireframeKeyScreens from "../_data/wireframeKeyScreens";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 
-const AUTO_SLIDE_INTERVAL = 4000;
-
 export default function SectionDevelopWireframe() {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
-    const total = wireframeKeyScreens.length;
-
-    useEffect(() => {
-        if (isPaused) return;
-        const timer = setInterval(() => {
-            setActiveIndex((prev) => (prev + 1) % total);
-        }, AUTO_SLIDE_INTERVAL);
-        return () => clearInterval(timer);
-    }, [isPaused, total]);
 
     return (
         <section className="section section-dd-develop-wireframe-to-prototype">
@@ -42,18 +30,14 @@ export default function SectionDevelopWireframe() {
                 </AiWorkflowCallout>
             </div>
             <h3 className="visuallyhidden">Prototype Key Screens</h3>
-            <div
-                className="auto-slider"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-            >
+            <div className="slider">
                 <div
-                    className="auto-slider-content"
+                    className="slider-content"
                     style={{ transform: `translateX(calc(-${activeIndex} * (696px + 24px)))` }}
                 >
                     {wireframeKeyScreens.map((screen, i) => (
                         <div
-                            className={`auto-slider-item card-column${i === activeIndex ? " active" : ""}`}
+                            className={`slider-item card-column${i === activeIndex ? " active" : ""}`}
                             key={screen.index}
                         >
                             <h4 className="card-column-eyebrow">
@@ -80,16 +64,40 @@ export default function SectionDevelopWireframe() {
                         </div>
                     ))}
                 </div>
-                <div className="auto-slider-controller">
-                    {wireframeKeyScreens.map((screen, i) => (
+                <div className="slider-controller">
+                    <div className="slider-dots">
+                        {wireframeKeyScreens.map((screen, i) => (
+                            <button
+                                type="button"
+                                key={screen.index}
+                                className={`slider-dot${i === activeIndex ? " active" : ""}`}
+                                onClick={() => setActiveIndex(i)}
+                                aria-label={`${screen.index} ${screen.title}`}
+                            />
+                        ))}
+                    </div>
+                    <div className="slider-arrows">
                         <button
                             type="button"
-                            key={screen.index}
-                            className={`auto-slider-dot${i === activeIndex ? " active" : ""}`}
-                            onClick={() => setActiveIndex(i)}
-                            aria-label={`${screen.index} ${screen.title}`}
-                        />
-                    ))}
+                            className={`slider-arrow${activeIndex > 0 ? " active" : ""}`}
+                            onClick={() => setActiveIndex((prev) => Math.max(prev - 1, 0))}
+                            aria-label="이전 슬라이드"
+                        >
+                            <span aria-hidden="true">{"<"}</span>
+                        </button>
+                        <button
+                            type="button"
+                            className={`slider-arrow${activeIndex < wireframeKeyScreens.length - 1 ? " active" : ""}`}
+                            onClick={() =>
+                                setActiveIndex((prev) =>
+                                    Math.min(prev + 1, wireframeKeyScreens.length - 1)
+                                )
+                            }
+                            aria-label="다음 슬라이드"
+                        >
+                            <span aria-hidden="true">{">"}</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

@@ -6,7 +6,7 @@ export default function SectionProjectOverview() {
             <div className="standalone-content">
                 <h2 className="section-eyebrow">Project Overview</h2>
                 <p className="section-headline-large">
-                    바이브 코딩으로 직접 설계 &middot; 구현한 <em className="emphasis">AI</em> 보조
+                    바이브 코딩으로 직접 설계 &middot; 구현한 <em className="emphasis emphasis-ai">AI</em> 보조
                     진료 서비스.
                     <br />
                     {emphasize(
