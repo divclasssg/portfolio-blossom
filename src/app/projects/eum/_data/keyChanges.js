@@ -19,8 +19,21 @@ const keyChanges = [
             },
         ],
         link: { href: "", label: "원문 데이터 보기" },
-        asIs: { src: "key_change_01_asis_qeuusd", alt: "환자 앱 메인 화면 as-is", width: 221, height: 479, imgWidth: 221 },
-        toBe: { src: "key_change_01_htjkj0", alt: "환자 앱 메인 화면 to-be", width: 1440, height: 2560, imgWidth: 300, isVideo: true },
+        asIs: {
+            src: "key_change_01_asis_qeuusd",
+            alt: "환자 앱 메인 화면 as-is",
+            width: 221,
+            height: 479,
+            imgWidth: 221,
+        },
+        toBe: {
+            src: "key_change_01_htjkj0",
+            alt: "환자 앱 메인 화면 to-be",
+            width: 1440,
+            height: 2560,
+            imgWidth: 300,
+            isVideo: true,
+        },
     },
     {
         title: "Key Change 02. 의사 패널 메인 화면 · Eum Doctor Plug-in",
@@ -45,8 +58,25 @@ const keyChanges = [
             },
         ],
         link: { href: "", label: "원문 데이터 보기" },
-        asIs: { src: "key_change_02_asis_fuhr7p", alt: "의사 패널 메인 화면 as-is", width: 498, height: 1319, imgWidth: 248 },
-        toBe: null,
+        asIs: {
+            src: "key_change_02_asis_fuhr7p",
+            alt: "의사 패널 메인 화면 as-is",
+            width: 498,
+            height: 1319,
+            imgWidth: 248,
+        },
+        toBe: {
+            src: "key_change_02_gkuxhi",
+            alt: "의사 패널 메인 화면 to-be",
+            width: 4096,
+            height: 2304,
+            imgWidth: 300,
+            isVideo: true,
+            cropX: 3196,
+            cropY: 100,
+            cropWidth: 850,
+            cropHeight: 2230,
+        },
     },
     {
         title: "Key Change 03. 환자 진료 요약 상세 화면 · Eum Patient Application",
@@ -54,7 +84,10 @@ const keyChanges = [
             "환자 관점에서 기본적인 다음 단계 안내를 넘어, 왜 이런 판단인지와 이후 무엇을 해야 하는지를 이해할 수 있도록.",
         copy: "환자는 결과를 받았지만, 왜 그런 판단인지와 다음에 무엇을 해야 하는지가 충분히 이해되지 않았습니다. 초기 프로토타입에도 기본적인 다음 단계 안내는 있었지만, 환자 관점의 설명으로는 부족했습니다. 그래서 의사의 판단을 환자 관점의 요약으로 다시 풀고, 치료 계획 · 처방 · 주의사항 · 다음 단계를 한 번에 읽히도록 정리했습니다.",
         spec: [
-            { term: "문제", desc: "결과는 전달됐지만, 이해와 다음 행동으로 충분히 이어지지 않았다." },
+            {
+                term: "문제",
+                desc: "결과는 전달됐지만, 이해와 다음 행동으로 충분히 이어지지 않았다.",
+            },
             {
                 term: "원칙",
                 desc: "의사의 판단을 환자 관점의 설명으로 다시 풀고, 기본 안내를 더 구체적인 다음 단계로 연결한다.",
@@ -69,8 +102,21 @@ const keyChanges = [
             },
         ],
         link: { href: "", label: "원문 데이터 보기" },
-        asIs: { src: "key_change_03_asis_vbttth", alt: "환자 진료 요약 상세 화면 as-is", width: 496, height: 1732, imgWidth: 248 },
-        toBe: { src: "key_change_03_go7khf", alt: "환자 진료 요약 상세 화면 to-be", width: 1440, height: 2560, imgWidth: 300, isVideo: true },
+        asIs: {
+            src: "key_change_03_asis_vbttth",
+            alt: "환자 진료 요약 상세 화면 as-is",
+            width: 496,
+            height: 1732,
+            imgWidth: 248,
+        },
+        toBe: {
+            src: "key_change_03_go7khf",
+            alt: "환자 진료 요약 상세 화면 to-be",
+            width: 1440,
+            height: 2560,
+            imgWidth: 300,
+            isVideo: true,
+        },
     },
 ];
 

@@ -16,14 +16,16 @@
     // Emphasis (키워드 강조)
     // ─────────────────────────────────────────────
     .emphasis-patient {
-        background: var(--color-bg-patients) !important;
+        background: #AEE9BD !important;
+        color: var(--color-text-primary) !important;
     }
     .emphasis-doctor {
-        background: rgba(0, 192, 232, 0.6) !important;
+        background: #99E6F6 !important;
         color: var(--color-text-primary) !important;
     }
     .emphasis-ai {
-        background: var(--color-ai) !important;
+        background: #E597EF !important;
+        color: var(--color-text-primary) !important;
     }
 
     // ─────────────────────────────────────────────
@@ -60,7 +62,6 @@
 
     .section-project-background {
         background: var(--color-surface-subtle);
-        margin-top: 8px;
         padding: var(--space-48) 0;
     }
 
@@ -854,6 +855,17 @@
         margin: 0 auto;
         padding: 96px 0;
 
+        &.key-change-02 {
+            .video-js,
+            .vjs-tech,
+            .vjs-poster,
+            .vjs-text-track-display,
+            .vjs-control-bar,
+            div[data-vjs-player] {
+                border-radius: 32px !important;
+            }
+        }
+
         .key-change-content {
             max-width: var(--layout-paragraph-width);
         }
@@ -1179,6 +1191,86 @@
             padding: 24px;
             overflow: hidden;
             margin-top: 36px;
+        }
+    }
+
+    .section-dd-deliver-final-prototype {
+        background: #202022;
+
+        .auto-slider-item div > div {
+            width: 100% !important;
+            height: 100% !important;
+            background: transparent !important;
+        }
+
+        .auto-slider-item .video-js {
+            background: transparent !important;
+        }
+
+        .auto-slider-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .slider-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .slider-progress {
+            display: flex;
+            gap: 6px;
+            width: 320px;
+        }
+
+        .slider-progress-segment {
+            flex: 1;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .slider-progress-fill {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 2px;
+            transition: width 0.2s linear;
+        }
+
+        .slider-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slider-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            background: none;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+
+            &:hover:not(:disabled) {
+                border-color: rgba(255, 255, 255, 0.7);
+                color: #fff;
+            }
+
+            &:disabled {
+                opacity: 0.3;
+                cursor: default;
+            }
         }
     }
 } // .page-eum

@@ -11,8 +11,8 @@ export default function SectionDeliverKeyChanges() {
     return (
         <section className="section section-dd-deliver-key-changes">
             <h2 className="visuallyhidden">Eum Key Changes</h2>
-            {keyChanges.map((item) => (
-                <div className="key-change-wrapper" key={item.title}>
+            {keyChanges.map((item, index) => (
+                <div className={`key-change-wrapper key-change-${String(index + 1).padStart(2, "0")}`} key={item.title}>
                     <div className="key-change-content">
                         <h3 className="key-change-headline">{item.title}</h3>
                         <p className="section-headline-small">{emphasize(item.headline)}</p>
@@ -45,8 +45,8 @@ export default function SectionDeliverKeyChanges() {
                                         <CldVideoPlayer
                                             id={`tobe-video-${item.toBe.src}`}
                                             src={item.toBe.src}
-                                            width={item.toBe.width - 100}
-                                            height={item.toBe.height}
+                                            width={item.toBe.cropWidth ?? item.toBe.width - 100}
+                                            height={item.toBe.cropHeight ?? item.toBe.height}
                                             autoplay={true}
                                             loop={true}
                                             muted={true}
@@ -55,10 +55,14 @@ export default function SectionDeliverKeyChanges() {
                                             transformation={[
                                                 {
                                                     crop: "crop",
-                                                    x: 110,
-                                                    y: 0,
-                                                    width: item.toBe.width - 200,
-                                                    height: item.toBe.height,
+                                                    x: item.toBe.cropX ?? 110,
+                                                    y: item.toBe.cropY ?? 0,
+                                                    width: item.toBe.cropWidth ?? item.toBe.width - 200,
+                                                    height: item.toBe.cropHeight ?? item.toBe.height,
+                                                },
+                                                {
+                                                    quality: "auto",
+                                                    fetch_format: "auto",
                                                 },
                                             ]}
                                         />
