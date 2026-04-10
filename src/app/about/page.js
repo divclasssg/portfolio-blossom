@@ -14,6 +14,12 @@ export default function AboutPage() {
                     <p>문제를 발견하는 데서 멈추지 않고, 실제 경험으로 연결합니다.</p>
                 </div>
             </section>
+            <section>
+                <div className="section-content">
+                    웹 퍼블리싱과 UI &middot; 프론트엔드 개발로 시작해, HCI 석사 과정을 통해 UX
+                    리서치까지 확장해
+                </div>
+            </section>
         </main>
     );
 }

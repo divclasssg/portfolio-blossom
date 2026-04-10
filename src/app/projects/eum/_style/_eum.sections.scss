@@ -1,0 +1,68 @@
+.page-eum {
+    // ─────────────────────────────────────────────
+    // Section primitives
+    // ─────────────────────────────────────────────
+    .section-standalone {
+        background: var(--color-primary);
+        padding: var(--space-96) 0;
+
+        .standalone-content {
+            width: var(--layout-section-content-wide);
+            margin: 0 auto;
+
+            .section-headline-large {
+                color: var(--color-white);
+                width: 100%;
+
+                .emphasis {
+                    background: var(--color-gray-scale-1);
+                    display: inline-block;
+                    color: var(--color-text-primary);
+                }
+            }
+        }
+    }
+
+    .section-project-background {
+        background: var(--color-surface-subtle);
+        padding: var(--space-48) 0;
+    }
+
+    .section-double-diamond {
+        padding: 96px 0 32px;
+    }
+
+    .section-dd-discover,
+    .section-dd-define,
+    .section-dd-develop,
+    .section-dd-deliver {
+        padding: 32px 0;
+    }
+
+    .section-dd-develop-wireframe-to-prototype {
+        padding: 96px 0 0;
+    }
+
+    .section-dd-develop-usability-testing {
+        padding: 96px 0 32px;
+    }
+
+    .section-dd-deliver-structure-update {
+        padding: 96px 0;
+    }
+
+    .section-system-definition,
+    .section-ai-pipeline {
+        background: var(--color-surface-subtle);
+    }
+    .section-system-definition {
+        padding: 96px 0 36px;
+    }
+    .section-ai-pipeline {
+        padding: 36px 0 96px;
+    }
+
+    .section-final-result {
+        padding: 96px 0;
+    }
+}

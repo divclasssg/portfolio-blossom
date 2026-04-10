@@ -1,0 +1,108 @@
+.section-eyebrow {
+    width: var(--layout-paragraph-width);
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-regular);
+        weight: 700;
+    }
+    line-height: 100%;
+    text-transform: capitalize;
+    color: var(--color-text-tertiary);
+    padding-bottom: 16px;
+}
+.section-headline-large {
+    width: var(--layout-paragraph-width);
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-xxlarge);
+        weight: 700;
+    }
+    line-height: 120%;
+    color: var(--color-text-primary);
+    padding-bottom: 24px;
+
+    .emphasis {
+        background: var(--color-primary);
+        display: inline-block;
+        color: var(--color-white);
+    }
+}
+.section-headline-small {
+    width: var(--layout-paragraph-width);
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-xlarge);
+        weight: 700;
+    }
+    line-height: 130%;
+    color: var(--color-text-primary);
+    padding-bottom: 24px;
+
+    .emphasis {
+        background: var(--color-primary);
+        display: inline-block;
+        color: var(--color-white);
+    }
+}
+.section-label {
+    width: var(--layout-paragraph-width);
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-large);
+        weight: 700;
+    }
+    line-height: 120%;
+    color: var(--color-text-tertiary);
+    padding-bottom: 16px;
+}
+.section-callout {
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-xsmall);
+        weight: 500;
+    }
+    color: var(--color-text-primary);
+    padding-bottom: 8px;
+}
+
+.typography-copy {
+    width: var(--layout-paragraph-width);
+    font-feature-settings: "ss18" on;
+    font: {
+        family: var(--font-family-suit);
+        size: var(--font-size-regular);
+        weight: 400;
+    }
+    line-height: 120%;
+    color: var(--color-text-secondary);
+    padding-bottom: 8px;
+}
+.typography-copy-bold {
+    font: {
+        family: var(--font-family-suit);
+        size: var(--font-size-regular);
+        weight: 700;
+    }
+    line-height: 130%;
+    color: var(--color-text-secondary);
+    padding-bottom: 16px;
+}
+.typography-callout-headline {
+    font: {
+        family: var(--font-family-spoqa);
+        size: var(--font-size-regular);
+        weight: 700;
+    }
+    line-height: 130%;
+    color: var(--color-text-primary);
+    padding-bottom: 16px;
+}
+.typography-callout-copy {
+    font: {
+        family: var(--font-family-suit);
+        size: var(--font-size-regular);
+        weight: 400;
+    }
+    line-height: 130%;
+    color: var(--color-text-secondary);
+}

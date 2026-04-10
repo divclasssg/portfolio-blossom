@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { CldVideoPlayer } from "next-cloudinary";
-import "next-cloudinary/dist/cld-video-player.css";
+const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
 const videos = [
     { id: "final-proto-01", src: "final_prototype_01_n646a3", width: 1440, height: 2560 },
-    { id: "final-proto-02", src: "final_prototype_02_scu1bk", width: 2560, height: 1440 },
+    { id: "final-proto-02", src: "output_zjqkog", width: 1920, height: 1080 },
     { id: "final-proto-03", src: "final_prototype_03_etbu1q", width: 1440, height: 2560 },
 ];
 
@@ -58,10 +57,9 @@ export default function SectionDeliverFinalPrototype() {
         const section = sectionRef.current;
         if (!section) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => setVisible(entry.isIntersecting),
-            { threshold: 0.1 }
-        );
+        const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), {
+            threshold: 0.1,
+        });
         observer.observe(section);
         return () => observer.disconnect();
     }, []);
@@ -140,7 +138,10 @@ export default function SectionDeliverFinalPrototype() {
     }, [current, advance]);
 
     return (
-        <section ref={sectionRef} className="section section-standalone section-dd-deliver-final-prototype">
+        <section
+            ref={sectionRef}
+            className="section section-standalone section-dd-deliver-final-prototype"
+        >
             <div className="standalone-content">
                 <h2 className="section-eyebrow">
                     <span className="visuallyhidden">Double Diamond 04. Deliver</span>
@@ -175,17 +176,17 @@ export default function SectionDeliverFinalPrototype() {
                                     aspectRatio: `${v.width} / ${v.height}`,
                                 }}
                             >
-                                <CldVideoPlayer
-                                    id={v.id}
-                                    src={v.src}
+                                <video
+                                    src={`https://res.cloudinary.com/${CLOUD_NAME}/video/upload/${v.src}.mp4`}
                                     width={v.width}
                                     height={v.height}
-                                    autoplay={v.id === videos[0].id}
-                                    loop={false}
-                                    muted={true}
-                                    controls={false}
-                                    playsinline={true}
-                                    transformation={[{ quality: "auto", fetch_format: "auto" }]}
+                                    muted
+                                    playsInline
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "contain",
+                                    }}
                                 />
                             </div>
                         </div>
@@ -218,7 +219,13 @@ export default function SectionDeliverFinalPrototype() {
                         aria-label="이전 영상"
                     >
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path
+                                d="M12.5 15L7.5 10L12.5 5"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
                         </svg>
                     </button>
                     <button
@@ -232,8 +239,22 @@ export default function SectionDeliverFinalPrototype() {
                             </svg>
                         ) : (
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <rect x="5" y="4" width="3.5" height="12" rx="0.5" fill="currentColor" />
-                                <rect x="11.5" y="4" width="3.5" height="12" rx="0.5" fill="currentColor" />
+                                <rect
+                                    x="5"
+                                    y="4"
+                                    width="3.5"
+                                    height="12"
+                                    rx="0.5"
+                                    fill="currentColor"
+                                />
+                                <rect
+                                    x="11.5"
+                                    y="4"
+                                    width="3.5"
+                                    height="12"
+                                    rx="0.5"
+                                    fill="currentColor"
+                                />
                             </svg>
                         )}
                     </button>
@@ -244,7 +265,13 @@ export default function SectionDeliverFinalPrototype() {
                         aria-label="다음 영상"
                     >
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path
+                                d="M7.5 5L12.5 10L7.5 15"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
                         </svg>
                     </button>
                 </div>

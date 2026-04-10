@@ -1,0 +1,30 @@
+.page-eum {
+    // 환자/의사/AI 기본 컬러
+    --color-patients: #34c759;
+    --color-bg-patients: #ebfaef;
+    --color-doctor: #00c0e8;
+    --color-bg-doctor: #e6f9fd;
+    --color-ai: #cb30e0;
+    --color-bg-ai: #faeafc;
+
+    // emphasis 강조 컬러
+    --color-emphasis-patient: #AEE9BD;
+    --color-emphasis-doctor: #99E6F6;
+    --color-emphasis-ai: #E597EF;
+
+    // ─────────────────────────────────────────────
+    // Emphasis (키워드 강조)
+    // ─────────────────────────────────────────────
+    .emphasis-patient {
+        background: transparent !important;
+        color: var(--color-gray-scale-1) !important;
+    }
+    .emphasis-doctor {
+        background: transparent !important;
+        color: var(--color-gray-scale-1) !important;
+    }
+    .emphasis-ai {
+        background: transparent !important;
+        color: var(--color-gray-scale-1) !important;
+    }
+}

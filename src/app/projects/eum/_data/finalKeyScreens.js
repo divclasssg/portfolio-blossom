@@ -5,9 +5,9 @@ const raw = [
         index: "#01",
         headline: "환자가 남긴 기록을 의사가 진료 전에 읽을 수 있게.",
         copy: "환자가 자연어로 남긴 증상을 AI가 구조화해, 의사가 진료 전에 확인할 수 있는 기록으로 바꿉니다.",
-        video: "key_screen_01_snkwjp",
-        width: 1440,
-        height: 2560,
+        video: "key_screen_01_c0phbs",
+        width: 1080,
+        height: 1920,
     },
     {
         index: "#02",
@@ -17,6 +17,7 @@ const raw = [
         width: 750,
         height: 1960,
         crop: { x: 3010, y: 100, width: 750, height: 1960 },
+        wide: true,
     },
     {
         index: "#03",

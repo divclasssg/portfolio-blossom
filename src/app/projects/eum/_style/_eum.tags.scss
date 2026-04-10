@@ -1,0 +1,27 @@
+.page-eum {
+    // ─────────────────────────────────────────────
+    // Tags
+    // ─────────────────────────────────────────────
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 16px 0 32px;
+    }
+    .tags-item {
+        border-radius: var(--radius-12);
+        background: var(--color-border-subtle);
+        display: inline-flex;
+        height: 36px;
+        padding: 0 var(--space-12);
+        justify-content: center;
+        align-items: center;
+        color: var(--color-text-primary);
+        text-align: center;
+        font-family: var(--font-family-spoqa);
+        font-size: var(--font-size-xsmall);
+        font-style: normal;
+        font-weight: 500;
+        line-height: 100%;
+    }
+}

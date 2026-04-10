@@ -1,0 +1,163 @@
+.page-eum {
+    // ─────────────────────────────────────────────
+    // Keyscreen — Sticky scroll + slide-up text
+    // ─────────────────────────────────────────────
+    .keyscreen-scroll-container {
+        position: relative;
+        height: 1200vh;
+    }
+
+    .keyscreen-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+    }
+
+    // ─── 텍스트 영역: 슬라이드 업 ───
+    .keyscreen-callout-area {
+        position: relative;
+        width: 300px;
+        height: 50vh;
+        overflow: hidden;
+        mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 20%,
+            black 80%,
+            transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 20%,
+            black 80%,
+            transparent 100%
+        );
+    }
+
+    .keyscreen-callout {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        margin-top: -60px;
+        will-change: transform, opacity;
+
+        .keyscreen-callout-header {
+            color: var(--color-text-tertiary);
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-small);
+            font-style: normal;
+            font-weight: 700;
+            line-height: 100%;
+            padding-bottom: 4px;
+        }
+
+        .keyscreen-callout-headline {
+            color: var(--color-text-primary);
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-large);
+            font-style: normal;
+            font-weight: 700;
+            line-height: 120%;
+            padding-bottom: 4px;
+
+            .emphasis {
+                background: var(--color-primary);
+                display: inline-block;
+                color: var(--color-white);
+            }
+        }
+
+        .keyscreen-callout-copy {
+            color: var(--color-text-secondary);
+            font-family: var(--font-family-suit);
+            font-size: var(--font-size-regular);
+            font-style: normal;
+            font-weight: 400;
+            line-height: 120%;
+        }
+    }
+
+    // ─── 영상 영역: fade ───
+    .keyscreen-video-area {
+        position: relative;
+        height: 100vh;
+        width: calc(100vh * 9 / 16);
+        flex-shrink: 0;
+        overflow: hidden;
+
+        // 영상들을 세로로 나열하는 래퍼
+        .keyscreen-video-track {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            will-change: transform;
+        }
+    }
+
+    .keyscreen-overview {
+        width: 100%;
+        height: 100vh;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40vh;
+
+        > div {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .video-js {
+            width: 100% !important;
+            height: 100% !important;
+            background: transparent !important;
+        }
+
+        .vjs-tech,
+        .vjs-poster {
+            background: transparent !important;
+        }
+
+        video {
+            width: auto;
+            height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        &.keyscreen-overview-wide {
+            align-items: flex-start;
+            padding-top: calc(var(--localnav-height) + 64px);
+
+            video {
+                width: calc(85vh * 9 / 16);
+                height: auto;
+                object-fit: cover;
+                object-position: top;
+            }
+        }
+    }
+
+    // ─── 스크롤 트리거 ───
+    .keyscreen-triggers {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+    }
+
+    .keyscreen-trigger {
+        flex: 1;
+    }
+}

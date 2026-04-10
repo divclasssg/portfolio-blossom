@@ -1,0 +1,92 @@
+.page-eum {
+    // ─────────────────────────────────────────────
+    // Slider (Wireframe → Prototype 슬라이더)
+    // ─────────────────────────────────────────────
+    .slider {
+    }
+    .slider-content {
+        display: flex;
+        gap: 24px;
+        padding-left: calc((100vw - 1024px) / 2);
+        padding-right: calc((100vw - 696px) / 2);
+        transition: transform 0.6s ease;
+        will-change: transform;
+    }
+    .slider-item {
+        .typography-copy-bold {
+            color: var(--color-white);
+        }
+    }
+    .slider-controller {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        width: 1024px;
+        margin: 0 auto;
+        padding-top: 32px;
+    }
+    .slider-dots {
+        display: flex;
+        align-items: center;
+    }
+    .slider-arrows {
+        display: flex;
+        gap: 8px;
+    }
+    .slider-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: 3px solid var(--color-gray-scale-1);
+        border-radius: 50%;
+        background: none;
+        color: var(--color-gray-scale-1);
+        font-family: var(--font-family-suit);
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+
+        &.active {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+    }
+    .slider-dot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--color-gray-scale-1);
+            transition: all 0.3s ease;
+        }
+
+        &.active {
+            width: 48px;
+            height: 40px;
+
+            &::after {
+                width: 48px;
+                height: 16px;
+                border-radius: 24px;
+                background: var(--color-primary);
+            }
+        }
+    }
+}
