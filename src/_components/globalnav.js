@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 export default function Globalnav() {
     const pathname = usePathname();
-    const isHome = pathname === "/";
+    const isHome = pathname === "/" || pathname === "/about";
 
     return (
         <nav className={`globalnav ${isHome ? "is-home" : "is-sub"}`}>
