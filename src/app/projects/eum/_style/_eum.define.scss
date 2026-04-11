@@ -1,18 +1,113 @@
 .page-eum {
     // ─────────────────────────────────────────────
-    // Define — UX Research Methodology 블록
+    // Define — UX Research Methodology 스크롤 스크럽
     // ─────────────────────────────────────────────
-    .define-methodology-wrapper {
-        padding: 96px 0;
+    .define-methodology-scroll {
+        position: relative;
+        height: 1600vh; // 4 items × 400vh
     }
-    .define-methodology {
+
+    .define-methodology-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: hidden; // 프레임 밖 이미지/텍스트 클립
     }
-    .define-methodology-content {
+
+    // ─── 이미지 레이어 ───
+    .define-methodology-image-frame {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
     }
-    .define-methodology-screenshots {
+
+    .define-methodology-image {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        will-change: transform, opacity;
+        transform: translate3d(0, 15vh, 0);
+
         img {
-            width: 100%;
+            max-width: 90vw;
+            max-height: 88vh;
             height: auto;
+            object-fit: contain;
+        }
+    }
+
+    // ─── 텍스트 레이어 ───
+    .define-methodology-callout-frame {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 18%,
+            black 82%,
+            transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 18%,
+            black 82%,
+            transparent 100%
+        );
+        pointer-events: none;
+    }
+
+    .define-methodology-content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 0 24px;
+        box-sizing: border-box;
+        opacity: 0;
+        will-change: transform, opacity;
+        transform: translate3d(0, 120px, 0);
+        pointer-events: none;
+
+        > * {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .section-label {
+            margin-bottom: 8px;
+        }
+
+        .section-headline-small {
+            margin-bottom: 16px;
+        }
+
+        .typography-copy + .typography-copy {
+            margin-top: 12px;
+        }
+
+        .tag-wrapper {
+            margin-top: 20px;
+        }
+
+        .link-primary,
+        .link-secondary {
+            margin-top: 16px;
+            display: inline-flex;
+            width: auto;
+            align-self: flex-start;
         }
     }
 }
