@@ -8,11 +8,13 @@ const ITEM_COUNT = finalKeyScreens.length;
 
 function getVideoUrl(screen) {
     const base = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload`;
+    // 스크럽 최적화: 키프레임 간격을 1초로 단축 → seek 비용 최소화
+    const scrub = "ki_1";
     if (screen.crop) {
         const { x, y, width, height } = screen.crop;
-        return `${base}/c_crop,x_${x},y_${y},w_${width},h_${height}/${screen.video}.mp4`;
+        return `${base}/c_crop,x_${x},y_${y},w_${width},h_${height},${scrub}/${screen.video}.mp4`;
     }
-    return `${base}/${screen.video}.mp4`;
+    return `${base}/${scrub}/${screen.video}.mp4`;
 }
 
 // Apple 패턴: 진입 25% → 고정+스크럽 50% → 퇴출 25%
@@ -82,11 +84,10 @@ export default function SectionKeyScreens() {
             el.style.opacity = Math.max(0, Math.min(1, opacity));
         });
 
-        // 영상 스크럽: 고정 구간(25%~75%) 동안만 재생
-        videoRefs.current.forEach((video, i) => {
-            if (!video || !video.duration) return;
-
-            const segStart = i * segmentSize;
+        // 영상 스크럽: 활성 영상에만 currentTime 적용 (비활성 영상 seek 방지)
+        const activeVideo = videoRefs.current[activeIndex];
+        if (activeVideo && activeVideo.duration) {
+            const segStart = activeIndex * segmentSize;
             const local = (totalProgress - segStart) / segmentSize;
 
             const scrubProgress = Math.max(
@@ -94,8 +95,8 @@ export default function SectionKeyScreens() {
                 Math.min(1, (local - ENTER) / HOLD)
             );
 
-            video.currentTime = scrubProgress * video.duration;
-        });
+            activeVideo.currentTime = scrubProgress * activeVideo.duration;
+        }
 
         // 영상 트랙: 세로 슬라이드
         if (trackRef.current) {

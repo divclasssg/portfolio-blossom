@@ -5,15 +5,16 @@ import { usePathname } from "next/navigation";
 
 export default function Globalnav() {
     const pathname = usePathname();
-    const isHome = pathname === "/" || pathname === "/about";
+    const isHome = pathname === "/";
+    const isAbout = pathname === "/about";
 
     return (
-        <nav className={`globalnav ${isHome ? "is-home" : "is-sub"}`}>
+        <nav className={`globalnav ${isHome ? "is-home" : isAbout ? "is-about" : "is-sub"}`}>
             <div className="globalnav-content">
                 <Link href="/" target="_self" className="globalnav-home">
                     parkseik
                 </Link>
-                {!isHome && (
+                {!isHome && !isAbout && (
                     <ul className="globalnav-list">
                         <li className="globalnav-item">
                             <Link
