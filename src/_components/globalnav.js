@@ -14,6 +14,44 @@ export default function Globalnav() {
                 <Link href="/" target="_self" className="globalnav-home">
                     parkseik
                 </Link>
+                {isAbout && (
+                    <div className="globalnav-about">
+                        <ul className="globalnav-about-list">
+                            <li className="globalnav-about-item">
+                                projects
+                                <ul className="project-list">
+                                    <li className="project-item">
+                                        <Link
+                                            href="/projects/eum"
+                                            target="_self"
+                                            className="project-link"
+                                        >
+                                            eum, 2026
+                                        </Link>
+                                    </li>
+                                    <li className="project-item">
+                                        <Link
+                                            href="/projects/cronometer"
+                                            target="_self"
+                                            className="project-link"
+                                        >
+                                            cronometer, 2025 -- 2026
+                                        </Link>
+                                    </li>
+                                    <li className="project-item">
+                                        <Link
+                                            href="/projects/liverpoolfc"
+                                            target="_self"
+                                            className="project-link"
+                                        >
+                                            liverpool fc, 2025
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                )}
                 {!isHome && !isAbout && (
                     <ul className="globalnav-list">
                         <li className="globalnav-item">

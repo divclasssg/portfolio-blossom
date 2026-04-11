@@ -11,6 +11,28 @@
         }
     }
 
+    &.is-about {
+        .globalnav-about {
+            margin-left: auto;
+            padding-top: 92px;
+            font-weight: 500;
+            
+            .project-list {
+                padding-top: 12px;
+            }
+
+            .project-item {
+                padding-bottom: 4px;
+
+                .project-link {
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
     .globalnav-content {
         display: flex;
         align-items: center;
