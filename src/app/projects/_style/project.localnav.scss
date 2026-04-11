@@ -3,11 +3,19 @@
     background: rgba(255, 255, 255, 0.8);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     height: var(--localnav-height);
     z-index: 100;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+
+    &.is-visible {
+        transform: translateY(0);
+    }
 
     .localnav-content {
         display: flex;
