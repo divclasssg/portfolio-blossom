@@ -26,9 +26,15 @@ export default function Localnav() {
         <nav className={`localnav${visible ? " is-visible" : ""}`}>
             <div className="localnav-content">
                 <div className="localnav-title">
-                    <Link href="/" target="_self">
+                    <a
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                    >
                         Eum
-                    </Link>
+                    </a>
                 </div>
                 <div className="localnav-menu">
                     <ul className="localnav-list">
@@ -38,9 +44,9 @@ export default function Localnav() {
                             </Link>
                         </li>
                         <li className="localnav-item">
-                            <Link href="/" target="_self" className="localnav-link active">
+                            <span className="localnav-link active">
                                 Eum
-                            </Link>
+                            </span>
                         </li>
                         <li className="localnav-item">
                             <Link
