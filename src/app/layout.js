@@ -1,4 +1,5 @@
 import Globalnav from "@/_components/globalnav";
+import PageTransitionProvider from "@/_components/page-transition";
 import "@/_style/style.scss";
 
 export const metadata = {
@@ -57,8 +58,10 @@ export default function RootLayout({ children }) {
     return (
         <html lang="ko">
             <body>
-                <Globalnav />
-                {children}
+                <PageTransitionProvider>
+                    <Globalnav />
+                    {children}
+                </PageTransitionProvider>
             </body>
         </html>
     );

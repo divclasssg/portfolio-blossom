@@ -75,6 +75,14 @@
 
     .intro-content {
         background: transparent;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+
+        &.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
     }
 
     .intro-image-wrapper {
