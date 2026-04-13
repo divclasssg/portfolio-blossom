@@ -67,6 +67,31 @@
     }
 }
 
+.section-portfolio-intro {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: transparent;
+
+    .intro-content {
+        background: transparent;
+    }
+
+    .intro-image-wrapper {
+        position: relative;
+        width: 1344px;
+        height: 756px;
+        max-width: 65vw;
+        max-height: calc(65vw * 9 / 16);
+        background: transparent;
+    }
+
+    .intro-image-wrapper img {
+        object-fit: cover;
+        object-position: center bottom;
+    }
+}
+
 .homefooter {
     position: fixed;
     bottom: 0;

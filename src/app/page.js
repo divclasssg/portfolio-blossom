@@ -1,6 +1,7 @@
 import IconArrow from "@/_components/icons/arrow";
 import "../_style/home.scss";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
     return (
@@ -58,6 +59,18 @@ export default function Home() {
                         </ul>
                     </div>
                 </nav>
+                <section className="section section-portfolio-intro">
+                    <div className="intro-content eum">
+                        <div className="intro-image-wrapper">
+                            <Image
+                                src="https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/images/main/eum.jpg"
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1344px"
+                                alt="prjects Eum"
+                            />
+                        </div>
+                    </div>
+                </section>
             </main>
             <footer className="homefooter">
                 &copy; 2025 -- 2026 parkseik. All rights reserved.
