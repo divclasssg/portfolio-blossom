@@ -216,6 +216,7 @@ export default function SectionDefine() {
                                     width={item.image.width}
                                     height={item.image.height}
                                     sizes="90vw"
+                                    loading="eager"
                                 />
                             </div>
                         ))}

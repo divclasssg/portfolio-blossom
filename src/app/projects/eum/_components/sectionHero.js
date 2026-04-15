@@ -26,6 +26,7 @@ export default function SectionHero() {
                             fill
                             sizes="(max-width: 768px) 90vw, 1200px"
                             quality={100}
+                            priority
                             alt="Eum 메인 히어로 — 의사 일러스트"
                         />
                     </div>
@@ -35,6 +36,7 @@ export default function SectionHero() {
                             fill
                             sizes="(max-width: 768px) 60vw, 600px"
                             quality={100}
+                            priority
                             alt="Eum 메인 히어로 — 환자 일러스트"
                         />
                     </div>
