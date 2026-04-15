@@ -61,31 +61,8 @@ export default function SectionDeliverKeyChanges() {
 }
 
 function CroppedVideo({ toBe }) {
-    const hasCrop =
-        toBe.cropX !== undefined ||
-        toBe.cropY !== undefined ||
-        toBe.cropWidth !== undefined ||
-        toBe.cropHeight !== undefined;
-
-    const videoProps = {
-        src: asset(toBe.src),
-        autoPlay: true,
-        loop: true,
-        muted: true,
-        playsInline: true,
-    };
-
-    if (!hasCrop) {
-        return (
-            <div style={{ width: toBe.imgWidth }}>
-                <video
-                    {...videoProps}
-                    style={{ width: "100%", height: "auto", display: "block" }}
-                />
-            </div>
-        );
-    }
-
+    // 과거 CldVideoPlayer는 isVideo인 경우 기본값(110, 0, W-200, H)으로 항상 크롭했음.
+    // 동일 동작 유지 — cropX/Y/W/H 명시가 없어도 디폴트로 좌우 100px씩 제거.
     const cropX = toBe.cropX ?? 110;
     const cropY = toBe.cropY ?? 0;
     const cropWidth = toBe.cropWidth ?? toBe.width - 200;
@@ -102,13 +79,18 @@ function CroppedVideo({ toBe }) {
                 }}
             >
                 <video
-                    {...videoProps}
+                    src={asset(toBe.src)}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     style={{
                         position: "absolute",
                         left: `${(-cropX / cropWidth) * 100}%`,
                         top: `${(-cropY / cropHeight) * 100}%`,
                         width: `${(toBe.width / cropWidth) * 100}%`,
                         height: `${(toBe.height / cropHeight) * 100}%`,
+                        maxWidth: "none",
                         display: "block",
                     }}
                 />

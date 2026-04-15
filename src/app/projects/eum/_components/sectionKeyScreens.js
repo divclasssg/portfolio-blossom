@@ -6,6 +6,53 @@ import finalKeyScreens from "../_data/finalKeyScreens";
 
 const ITEM_COUNT = finalKeyScreens.length;
 
+// R2 비디오는 Cloudinary 변환이 없어, 원본 해상도를 런타임에 측정해 크롭 스케일을 계산.
+function CroppedScrubVideo({ screen, refSetter }) {
+    const [dims, setDims] = useState(null);
+    const { crop } = screen;
+
+    return (
+        <div
+            style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: `${crop.width} / ${crop.height}`,
+                overflow: "hidden",
+            }}
+        >
+            <video
+                ref={refSetter}
+                src={asset(screen.video)}
+                muted
+                playsInline
+                preload="auto"
+                onLoadedMetadata={(e) => {
+                    setDims({
+                        w: e.currentTarget.videoWidth,
+                        h: e.currentTarget.videoHeight,
+                    });
+                }}
+                style={
+                    dims
+                        ? {
+                              position: "absolute",
+                              left: `${(-crop.x / crop.width) * 100}%`,
+                              top: `${(-crop.y / crop.height) * 100}%`,
+                              width: `${(dims.w / crop.width) * 100}%`,
+                              height: `${(dims.h / crop.height) * 100}%`,
+                              maxWidth: "none",
+                          }
+                        : {
+                              position: "absolute",
+                              inset: 0,
+                              opacity: 0,
+                          }
+                }
+            />
+        </div>
+    );
+}
+
 // Apple 패턴: 진입 25% → 고정+스크럽 50% → 퇴출 25%
 const ENTER = 0.25;
 const HOLD = 0.50;
@@ -153,30 +200,10 @@ export default function SectionKeyScreens() {
                                     key={screen.index}
                                 >
                                     {screen.crop ? (
-                                        <div
-                                            style={{
-                                                position: "relative",
-                                                width: "100%",
-                                                aspectRatio: `${screen.crop.width} / ${screen.crop.height}`,
-                                                overflow: "hidden",
-                                            }}
-                                        >
-                                            <video
-                                                ref={(el) => (videoRefs.current[i] = el)}
-                                                src={asset(screen.video)}
-                                                muted
-                                                playsInline
-                                                preload="auto"
-                                                style={{
-                                                    position: "absolute",
-                                                    left: `${(-screen.crop.x / screen.crop.width) * 100}%`,
-                                                    top: `${(-screen.crop.y / screen.crop.height) * 100}%`,
-                                                    height: "100%",
-                                                    width: "auto",
-                                                    maxWidth: "none",
-                                                }}
-                                            />
-                                        </div>
+                                        <CroppedScrubVideo
+                                            screen={screen}
+                                            refSetter={(el) => (videoRefs.current[i] = el)}
+                                        />
                                     ) : (
                                         <video
                                             ref={(el) => (videoRefs.current[i] = el)}
