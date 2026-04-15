@@ -109,23 +109,8 @@
         justify-content: center;
         margin-bottom: 40vh;
 
-        > div {
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-        .video-js {
-            width: 100% !important;
-            height: 100% !important;
-            background: transparent !important;
-        }
-
-        .vjs-tech,
-        .vjs-poster {
-            background: transparent !important;
-        }
-
-        video {
+        // 크롭 없는 기본 비디오
+        > video {
             width: auto;
             height: 85vh;
             object-fit: contain;
@@ -135,13 +120,6 @@
         &.keyscreen-overview-wide {
             align-items: flex-start;
             padding-top: calc(var(--localnav-height) + 64px);
-
-            video {
-                width: calc(85vh * 9 / 16);
-                height: auto;
-                object-fit: cover;
-                object-position: top;
-            }
         }
     }
 

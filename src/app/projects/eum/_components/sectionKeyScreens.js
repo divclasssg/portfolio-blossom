@@ -15,9 +15,10 @@ function CroppedScrubVideo({ screen, refSetter }) {
         <div
             style={{
                 position: "relative",
-                width: "100%",
+                height: "85vh",
                 aspectRatio: `${crop.width} / ${crop.height}`,
                 overflow: "hidden",
+                borderRadius: 12,
             }}
         >
             <video
