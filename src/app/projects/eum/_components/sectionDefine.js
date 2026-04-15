@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import defineMethodology from "../_data/defineMethodology";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
@@ -209,8 +210,8 @@ export default function SectionDefine() {
                                     imageRefs.current[i] = el;
                                 }}
                             >
-                                <CldImage
-                                    src={item.image.src}
+                                <Image
+                                    src={asset(item.image.src)}
                                     alt={item.image.alt}
                                     width={item.image.width}
                                     height={item.image.height}

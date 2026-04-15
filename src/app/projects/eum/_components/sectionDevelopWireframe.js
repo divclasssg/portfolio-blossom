@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import wireframeKeyScreens from "../_data/wireframeKeyScreens";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
@@ -54,8 +55,8 @@ export default function SectionDevelopWireframe() {
                                 ))}
                             </dl>
                             <div className="card-column-bottom">
-                                <CldImage
-                                    src={screen.image.src}
+                                <Image
+                                    src={asset(screen.image.src)}
                                     alt={screen.image.alt}
                                     width={screen.image.width}
                                     height={screen.image.height}

@@ -1,6 +1,7 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import utFindings from "../_data/utFindings";
 import utInterviews from "../_data/utInterviews";
 import utOverview from "../_data/utOverview";
@@ -42,9 +43,9 @@ export default function SectionDevelopUsabilityTesting() {
                                 <figure className="ut-results-screenshot">
                                     <div className="image-wrapper">
                                         {finding.figures.map((fig) => (
-                                            <CldImage
+                                            <Image
                                                 key={fig.src}
-                                                src={fig.src}
+                                                src={asset(fig.src)}
                                                 alt={fig.alt}
                                                 width={fig.width}
                                                 height={fig.height}
@@ -58,8 +59,8 @@ export default function SectionDevelopUsabilityTesting() {
                             {finding.figure && (
                                 <figure className="ut-results-screenshot">
                                     <div className="image-wrapper">
-                                        <CldImage
-                                            src={finding.figure.src}
+                                        <Image
+                                            src={asset(finding.figure.src)}
                                             alt={finding.figure.alt}
                                             width={finding.figure.width}
                                             height={finding.figure.height}
@@ -99,14 +100,12 @@ export default function SectionDevelopUsabilityTesting() {
                     <div className="ut-interview">
                         {utInterviews.map((interview) => (
                             <figure key={interview.image.alt}>
-                                <CldImage
-                                    src={interview.image.src}
+                                <Image
+                                    src={asset(interview.image.src)}
                                     alt={interview.image.alt}
                                     width={interview.image.width}
                                     height={interview.image.height}
                                     style={{ width: interview.image.imgWidth, height: "auto" }}
-                                    {...(interview.image.crop && { crop: interview.image.crop })}
-                                    {...(interview.image.gravity && { gravity: interview.image.gravity })}
                                 />
                                 <figcaption>
                                     <strong>{interview.person}</strong>

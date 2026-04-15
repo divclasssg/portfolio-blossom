@@ -3,7 +3,7 @@ const developProcess = [
         title: "브레인스토밍.",
         copy: "가능한 기능을 먼저 넓게 펼쳤습니다. 처음부터 답을 좁히면 핵심 가치보다 개별 기능에 끌릴 위험이 커서, 환자와 의사 양쪽의 아이디어를 폭넓게 수집했습니다.",
         image: {
-            src: "develop-method-brainstorming_dfkavp",
+            src: "eum/screenshots/develop/develop-method-brainstorming_dfkavp.png",
             alt: "브레인스토밍 원본 자료 캡쳐본",
             width: 656,
             height: 912,
@@ -13,7 +13,7 @@ const developProcess = [
         title: "MoSCoW.",
         copy: "핵심 루프에 필요한 기능만 다시 좁혔습니다. 모든 기능을 같은 무게로 두지 않고, 준비 -- 연결 -- 판단 -- 이해 흐름을 직접 만드는 기능을 우선순위 기준으로 걸러냈습니다.",
         image: {
-            src: "develop-method-moscow_ii0qvn",
+            src: "eum/screenshots/develop/develop-method-moscow_ii0qvn.png",
             alt: "MoSCoW 원본 자료 캡쳐본",
             width: 656,
             height: 912,
@@ -23,7 +23,7 @@ const developProcess = [
         title: "최종 MVP 요약.",
         copy: "끝가지 남길 최소 범위를 확정했습니다. 우선순위 결과를 다시 정리해, 판단과 이해를 잇는 핵심 루프만 MVP에 남기고 나머지는 보류하거나 확장 범위로 분리했습니다.",
         image: {
-            src: "develop-method-mvp_lsl3nn",
+            src: "eum/screenshots/develop/develop-method-mvp_lsl3nn.png",
             alt: "최종 MVP 요약 원본 자료 캡쳐본",
             width: 656,
             height: 912,

@@ -9,7 +9,7 @@ const discoverPanels = [
                 tags: ["#문헌조사", "#키워드도출", "#코딩프레임설계"],
                 link: { href: "#", label: "원문 데이터 보기" },
                 image: {
-                    src: "secondary_research_01_o6zgrd",
+                    src: "eum/screenshots/discover/secondary_research/secondary_research_01_o6zgrd.png",
                     alt: "문헌 분석 원본 자료 캡쳐본",
                     width: 1178,
                     height: 1008,
@@ -23,7 +23,7 @@ const discoverPanels = [
                 tags: ["#온라인텍스트코딩", "#Python"],
                 link: { href: "#", label: "원문 데이터 보기" },
                 image: {
-                    src: "secondary_research_02_dkrjye",
+                    src: "eum/screenshots/discover/secondary_research/secondary_research_02_dkrjye.png",
                     alt: "환자 데이터 마이닝 원본 자료 캡쳐본",
                     width: 1164,
                     height: 1008,
@@ -42,7 +42,7 @@ const discoverPanels = [
                 tags: ["#사전서면인터뷰", "#1:1심층인터뷰"],
                 link: { href: "#", label: "원문 데이터 보기" },
                 image: {
-                    src: "primary_research_cshxll",
+                    src: "eum/screenshots/discover/primary_research/primary_research_cshxll.png",
                     alt: "사용자 인터뷰 원본 자료 캡쳐본",
                     width: 1050,
                     height: 1008,

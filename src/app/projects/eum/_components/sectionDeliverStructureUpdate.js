@@ -1,6 +1,7 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 import ExternalLink from "./_shared/ExternalLink";
 
@@ -28,8 +29,8 @@ export default function SectionDeliverStructureUpdate() {
                 </AiWorkflowCallout>
                 <ExternalLink href="">원문 데이터 보기</ExternalLink>
                 <div className="img-wrapper">
-                    <CldImage
-                        src="a90df6dd2909a5d3a10150ae1124584a8dadfdd9_bqwlct"
+                    <Image
+                        src={asset("eum/screenshots/deliver/a90df6dd2909a5d3a10150ae1124584a8dadfdd9_bqwlct.png")}
                         alt="유저플로우 캡쳐본"
                         width={4096}
                         height={2440}

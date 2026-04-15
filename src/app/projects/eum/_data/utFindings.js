@@ -4,14 +4,14 @@ const utFindings = [
         copy: "환자 앱의 사용성 점수는 76.5점, 의사용 패널은 75점. 기본 사용성은 나쁘지 않았지만, 핵심은 어떤 가치로 읽히는가였습니다.",
         figures: [
             {
-                src: "ut-sus-results-patients_p8whel",
+                src: "eum/screenshots/develop/ut-sus-results-patients_p8whel.png",
                 alt: "환자 SUS 종합 평가표",
                 width: 1912,
                 height: 224,
                 imgWidth: 956,
             },
             {
-                src: "ut-sus-results-doctor_k0jisg",
+                src: "eum/screenshots/develop/ut-sus-results-doctor_k0jisg.png",
                 alt: "의사 SUS 종합 평가표",
                 width: 1912,
                 height: 346,
@@ -25,7 +25,7 @@ const utFindings = [
         headline: "02. 환자는 더 개인화된 설명과 치료 계획을 원했습니다.",
         copy: '환자는 기록 기능보다 진료 연결에서 가치를 느꼈고, 메인 화면 · 기록 이해 과업은 4.6점으로 가장 낮았습니다. 반복된 질문은 "왜 이런 판단인지"와 "어떻게 관리해야 하는지"였습니다.',
         figure: {
-            src: "ut-patients-seq-result-img_tsvid0",
+            src: "eum/screenshots/develop/ut-patients-seq-result-img_tsvid0.png",
             alt: "환자 SEQ 종합 평가표",
             width: 1312,
             height: 446,
@@ -38,7 +38,7 @@ const utFindings = [
         headline: "03. 의사는 더 빠르게 훑을 수 있는 요약을 원했습니다.",
         copy: "중요 정보 확인 과업 2점(최저), AI 후보 · 근거 검토 7점(최고). 필요한 것은 AI 기능 추가가 아니라 출처가 분명한 짧은 요약이었습니다.",
         figure: {
-            src: "ut-doctor-seq-result-img_tv079e",
+            src: "eum/screenshots/develop/ut-doctor-seq-result-img_tv079e.png",
             alt: "의사 SEQ 종합 평가표",
             width: 1312,
             height: 214,

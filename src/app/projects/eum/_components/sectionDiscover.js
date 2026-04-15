@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import discoverPanels from "../_data/discoverPanels";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
@@ -76,8 +77,8 @@ export default function SectionDiscover() {
                                         </ExternalLink>
                                     </div>
                                     <div className="card-row-screenshots">
-                                        <CldImage
-                                            src={card.image.src}
+                                        <Image
+                                            src={asset(card.image.src)}
                                             alt={card.image.alt}
                                             width={card.image.width}
                                             height={card.image.height}

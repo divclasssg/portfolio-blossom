@@ -1,7 +1,8 @@
 "use client";
 
 import "../_style/section.hero.scss";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import ExternalLink from "./_shared/ExternalLink";
 
 export default function SectionHero() {
@@ -20,8 +21,8 @@ export default function SectionHero() {
                 </div>
                 <div className="hero-asset">
                     <div className="doctor">
-                        <CldImage
-                            src="hero-section-image-width-frame_1_u73y0d"
+                        <Image
+                            src={asset("eum/hero-section-image-width-frame_1_u73y0d.png")}
                             fill
                             sizes="(max-width: 768px) 90vw, 1200px"
                             quality={100}
@@ -29,8 +30,8 @@ export default function SectionHero() {
                         />
                     </div>
                     <div className="patient">
-                        <CldImage
-                            src="main-hero-asset-patient_sa44wl"
+                        <Image
+                            src={asset("eum/main-hero-asset-patient_sa44wl.png")}
                             fill
                             sizes="(max-width: 768px) 60vw, 600px"
                             quality={100}

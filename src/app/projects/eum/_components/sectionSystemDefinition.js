@@ -1,6 +1,7 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 import ExternalLink from "./_shared/ExternalLink";
 
@@ -33,8 +34,8 @@ export default function SectionSystemDefinition() {
                     <ExternalLink href="">로직 보기</ExternalLink>
                 </div>
                 <div className="img-wrapper">
-                    <CldImage
-                        src="c7d1a83f70ea22a27576d0f19f3ff62098cb0277_utod9a"
+                    <Image
+                        src={asset("eum/screenshots/deliver/c7d1a83f70ea22a27576d0f19f3ff62098cb0277_utod9a.png")}
                         alt="기능상세정의서, 화면상세정의서, 로직 정리표 캡쳐본"
                         width={2056}
                         height={1721}

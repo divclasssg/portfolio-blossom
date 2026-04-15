@@ -12,7 +12,7 @@ const wireframeKeyScreens = [
             },
         ],
         image: {
-            src: "img-keyscreens-01_hodl0f",
+            src: "eum/screenshots/develop/img-keyscreens-01_hodl0f.png",
             alt: "증상 기록 키스크린 캡쳐본",
             width: 1296,
             height: 474,
@@ -28,7 +28,7 @@ const wireframeKeyScreens = [
             { term: "Prototype", desc: "바이브 코딩으로 실제 AI 브리핑이 연결된 상태로 구현." },
         ],
         image: {
-            src: "img-keyscreens-02_te2jdq",
+            src: "eum/screenshots/develop/img-keyscreens-02_te2jdq.png",
             alt: "의사 대시보드 키스크린 캡쳐본",
             width: 1296,
             height: 474,
@@ -47,7 +47,7 @@ const wireframeKeyScreens = [
             },
         ],
         image: {
-            src: "img-keyscreens-03_dvgeex",
+            src: "eum/screenshots/develop/img-keyscreens-03_dvgeex.png",
             alt: "환자 진료 요약 키스크린 캡쳐본",
             width: 1296,
             height: 474,

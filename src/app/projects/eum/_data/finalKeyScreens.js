@@ -1,11 +1,13 @@
 import emphasize from "../_utils/emphasize";
 
+// TODO(mov→mp4): key_screen_01_c0phbs, key_screen_02_wme50b 는 현재 .mov
+// R2 재업로드 시 .mp4로 교체 후 아래 확장자를 바꿀 것
 const raw = [
     {
         index: "#01",
         headline: "환자가 남긴 기록을 의사가 진료 전에 읽을 수 있게.",
         copy: "환자가 자연어로 남긴 증상을 AI가 구조화해, 의사가 진료 전에 확인할 수 있는 기록으로 바꿉니다.",
-        video: "key_screen_01_c0phbs",
+        video: "eum/videos/key_screen/key_screen_01_c0phbs.mov",
         width: 1080,
         height: 1920,
     },
@@ -13,7 +15,7 @@ const raw = [
         index: "#02",
         headline: "의사가 판단에 필요한 핵심 정보를 한눈에 볼 수 있게.",
         copy: "환자 기록, 증상 변화, 핵심 요약을 통합해 짧은 진료 시간 안에서 빠르게 판단할 수 있도록 돕습니다.",
-        video: "key_screen_02_wme50b",
+        video: "eum/videos/key_screen/key_screen_02_wme50b.mov",
         width: 750,
         height: 1960,
         crop: { x: 3010, y: 100, width: 750, height: 1960 },
@@ -23,7 +25,7 @@ const raw = [
         index: "#03",
         headline: "환자가 진료 결과와 치료 계획을 다시 볼 수 있게.",
         copy: "진단, 치료 계획, 처방, 주의사항을 환자가 다시 이해하고 참고할 수 있는 형태로 정리합니다.",
-        video: "key_screen_03_zrrlrq",
+        video: "eum/videos/key_screen/key_screen_03_zrrlrq.mp4",
         width: 1440,
         height: 2560,
     },

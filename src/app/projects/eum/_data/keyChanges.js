@@ -20,14 +20,14 @@ const keyChanges = [
         ],
         link: { href: "", label: "원문 데이터 보기" },
         asIs: {
-            src: "key_change_01_asis_qeuusd",
+            src: "eum/screenshots/deliver/key_change_01_asis_qeuusd.png",
             alt: "환자 앱 메인 화면 as-is",
             width: 221,
             height: 479,
             imgWidth: 221,
         },
         toBe: {
-            src: "key_change_01_htjkj0",
+            src: "eum/videos/key_change/key_change_01_htjkj0.mp4",
             alt: "환자 앱 메인 화면 to-be",
             width: 1440,
             height: 2560,
@@ -59,14 +59,15 @@ const keyChanges = [
         ],
         link: { href: "", label: "원문 데이터 보기" },
         asIs: {
-            src: "key_change_02_asis_fuhr7p",
+            src: "eum/screenshots/deliver/key_change_02_asis_fuhr7p.png",
             alt: "의사 패널 메인 화면 as-is",
             width: 498,
             height: 1319,
             imgWidth: 248,
         },
+        // TODO(mov→mp4): key_change_02_gkuxhi 는 현재 .mov (재인코딩 후 확장자 교체 예정)
         toBe: {
-            src: "key_change_02_gkuxhi",
+            src: "eum/videos/key_change/key_change_02_gkuxhi.mov",
             alt: "의사 패널 메인 화면 to-be",
             width: 4096,
             height: 2304,
@@ -103,14 +104,14 @@ const keyChanges = [
         ],
         link: { href: "", label: "원문 데이터 보기" },
         asIs: {
-            src: "key_change_03_asis_vbttth",
+            src: "eum/screenshots/deliver/key_change_03_asis_vbttth.png",
             alt: "환자 진료 요약 상세 화면 as-is",
             width: 496,
             height: 1732,
             imgWidth: 248,
         },
         toBe: {
-            src: "key_change_03_go7khf",
+            src: "eum/videos/key_change/key_change_03_go7khf.mp4",
             alt: "환자 진료 요약 상세 화면 to-be",
             width: 1440,
             height: 2560,

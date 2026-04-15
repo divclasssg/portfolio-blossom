@@ -1,21 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { asset } from "../_lib/media";
 import finalKeyScreens from "../_data/finalKeyScreens";
 
-const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const ITEM_COUNT = finalKeyScreens.length;
-
-function getVideoUrl(screen) {
-    const base = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload`;
-    // 스크럽 최적화: 키프레임 간격을 1초로 단축 → seek 비용 최소화
-    const scrub = "ki_1";
-    if (screen.crop) {
-        const { x, y, width, height } = screen.crop;
-        return `${base}/c_crop,x_${x},y_${y},w_${width},h_${height},${scrub}/${screen.video}.mp4`;
-    }
-    return `${base}/${scrub}/${screen.video}.mp4`;
-}
 
 // Apple 패턴: 진입 25% → 고정+스크럽 50% → 퇴출 25%
 const ENTER = 0.25;
@@ -159,14 +148,44 @@ export default function SectionKeyScreens() {
                     <div className="keyscreen-video-area">
                         <div className="keyscreen-video-track" ref={trackRef}>
                             {finalKeyScreens.map((screen, i) => (
-                                <div className={`keyscreen-overview${screen.wide ? " keyscreen-overview-wide" : ""}`} key={screen.index}>
-                                    <video
-                                        ref={(el) => (videoRefs.current[i] = el)}
-                                        src={getVideoUrl(screen)}
-                                        muted
-                                        playsInline
-                                        preload="auto"
-                                    />
+                                <div
+                                    className={`keyscreen-overview${screen.wide ? " keyscreen-overview-wide" : ""}`}
+                                    key={screen.index}
+                                >
+                                    {screen.crop ? (
+                                        <div
+                                            style={{
+                                                position: "relative",
+                                                width: "100%",
+                                                aspectRatio: `${screen.crop.width} / ${screen.crop.height}`,
+                                                overflow: "hidden",
+                                            }}
+                                        >
+                                            <video
+                                                ref={(el) => (videoRefs.current[i] = el)}
+                                                src={asset(screen.video)}
+                                                muted
+                                                playsInline
+                                                preload="auto"
+                                                style={{
+                                                    position: "absolute",
+                                                    left: `${(-screen.crop.x / screen.crop.width) * 100}%`,
+                                                    top: `${(-screen.crop.y / screen.crop.height) * 100}%`,
+                                                    height: "100%",
+                                                    width: "auto",
+                                                    maxWidth: "none",
+                                                }}
+                                            />
+                                        </div>
+                                    ) : (
+                                        <video
+                                            ref={(el) => (videoRefs.current[i] = el)}
+                                            src={asset(screen.video)}
+                                            muted
+                                            playsInline
+                                            preload="auto"
+                                        />
+                                    )}
                                 </div>
                             ))}
                         </div>

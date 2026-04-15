@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+import { asset } from "../_lib/media";
 
 const videos = [
-    { id: "final-proto-01", src: "final_prototype_01_n646a3", width: 1440, height: 2560 },
-    { id: "final-proto-02", src: "output_zjqkog", width: 1920, height: 1080 },
-    { id: "final-proto-03", src: "final_prototype_03_etbu1q", width: 1440, height: 2560 },
+    { id: "final-proto-01", src: "eum/videos/final_prototype/final_prototype_01_n646a3.mp4", width: 1440, height: 2560 },
+    { id: "final-proto-02", src: "eum/videos/final_prototype/output_zjqkog.mp4", width: 1920, height: 1080 },
+    { id: "final-proto-03", src: "eum/videos/final_prototype/final_prototype_03_etbu1q.mp4", width: 1440, height: 2560 },
 ];
 
 export default function SectionDeliverFinalPrototype() {
@@ -177,7 +177,7 @@ export default function SectionDeliverFinalPrototype() {
                                 }}
                             >
                                 <video
-                                    src={`https://res.cloudinary.com/${CLOUD_NAME}/video/upload/${v.src}.mp4`}
+                                    src={asset(v.src)}
                                     width={v.width}
                                     height={v.height}
                                     muted

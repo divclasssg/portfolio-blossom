@@ -1,8 +1,7 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
-import { CldVideoPlayer } from "next-cloudinary";
-import "next-cloudinary/dist/cld-video-player.css";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import keyChanges from "../_data/keyChanges";
 import emphasize from "../_utils/emphasize";
 import ExternalLink from "./_shared/ExternalLink";
@@ -29,8 +28,8 @@ export default function SectionDeliverKeyChanges() {
                     </div>
                     <div className="key-change-assets">
                         <figure>
-                            <CldImage
-                                src={item.asIs.src}
+                            <Image
+                                src={asset(item.asIs.src)}
                                 alt={item.asIs.alt}
                                 width={item.asIs.width}
                                 height={item.asIs.height}
@@ -41,35 +40,10 @@ export default function SectionDeliverKeyChanges() {
                         {item.toBe && (
                             <figure className="to-be">
                                 {item.toBe.isVideo ? (
-                                    <div style={{ width: item.toBe.imgWidth }}>
-                                        <CldVideoPlayer
-                                            id={`tobe-video-${item.toBe.src}`}
-                                            src={item.toBe.src}
-                                            width={item.toBe.cropWidth ?? item.toBe.width - 100}
-                                            height={item.toBe.cropHeight ?? item.toBe.height}
-                                            autoplay={true}
-                                            loop={true}
-                                            muted={true}
-                                            controls={false}
-                                            playsinline={true}
-                                            transformation={[
-                                                {
-                                                    crop: "crop",
-                                                    x: item.toBe.cropX ?? 110,
-                                                    y: item.toBe.cropY ?? 0,
-                                                    width: item.toBe.cropWidth ?? item.toBe.width - 200,
-                                                    height: item.toBe.cropHeight ?? item.toBe.height,
-                                                },
-                                                {
-                                                    quality: "auto",
-                                                    fetch_format: "auto",
-                                                },
-                                            ]}
-                                        />
-                                    </div>
+                                    <CroppedVideo toBe={item.toBe} />
                                 ) : (
-                                    <CldImage
-                                        src={item.toBe.src}
+                                    <Image
+                                        src={asset(item.toBe.src)}
                                         alt={item.toBe.alt}
                                         width={item.toBe.width}
                                         height={item.toBe.height}
@@ -83,5 +57,62 @@ export default function SectionDeliverKeyChanges() {
                 </div>
             ))}
         </section>
+    );
+}
+
+function CroppedVideo({ toBe }) {
+    const hasCrop =
+        toBe.cropX !== undefined ||
+        toBe.cropY !== undefined ||
+        toBe.cropWidth !== undefined ||
+        toBe.cropHeight !== undefined;
+
+    const videoProps = {
+        src: asset(toBe.src),
+        autoPlay: true,
+        loop: true,
+        muted: true,
+        playsInline: true,
+    };
+
+    if (!hasCrop) {
+        return (
+            <div style={{ width: toBe.imgWidth }}>
+                <video
+                    {...videoProps}
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                />
+            </div>
+        );
+    }
+
+    const cropX = toBe.cropX ?? 110;
+    const cropY = toBe.cropY ?? 0;
+    const cropWidth = toBe.cropWidth ?? toBe.width - 200;
+    const cropHeight = toBe.cropHeight ?? toBe.height;
+
+    return (
+        <div style={{ width: toBe.imgWidth }}>
+            <div
+                style={{
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: `${cropWidth} / ${cropHeight}`,
+                    overflow: "hidden",
+                }}
+            >
+                <video
+                    {...videoProps}
+                    style={{
+                        position: "absolute",
+                        left: `${(-cropX / cropWidth) * 100}%`,
+                        top: `${(-cropY / cropHeight) * 100}%`,
+                        width: `${(toBe.width / cropWidth) * 100}%`,
+                        height: `${(toBe.height / cropHeight) * 100}%`,
+                        display: "block",
+                    }}
+                />
+            </div>
+        </div>
     );
 }

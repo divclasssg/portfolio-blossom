@@ -1,6 +1,7 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import developProcess from "../_data/developProcess";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
@@ -37,8 +38,8 @@ export default function SectionDevelop() {
                                 <p className="card-process-typography-copy">{item.copy}</p>
                             </div>
                             <div className="card-process-screenshot">
-                                <CldImage
-                                    src={item.image.src}
+                                <Image
+                                    src={asset(item.image.src)}
                                     alt={item.image.alt}
                                     width={item.image.width}
                                     height={item.image.height}

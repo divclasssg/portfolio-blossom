@@ -1,6 +1,7 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 import ExternalLink from "./_shared/ExternalLink";
@@ -31,8 +32,8 @@ export default function SectionAiPipeline() {
                 </AiWorkflowCallout>
                 <ExternalLink href="">기능 상세 정의서 보기</ExternalLink>
                 <div className="img-wrapper">
-                    <CldImage
-                        src="89cc14e98c484571668488158c054f951bf2d4ff_vbngsf"
+                    <Image
+                        src={asset("eum/screenshots/deliver/89cc14e98c484571668488158c054f951bf2d4ff_vbngsf.png")}
                         alt="AI 파이프라인 정리표 캡쳐본"
                         width={2282}
                         height={2290}

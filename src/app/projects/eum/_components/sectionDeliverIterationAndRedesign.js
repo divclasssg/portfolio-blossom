@@ -1,6 +1,7 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { asset } from "../_lib/media";
 import emphasize from "../_utils/emphasize";
 
 export default function SectionDeliverIterationAndRedesign() {
@@ -22,8 +23,8 @@ export default function SectionDeliverIterationAndRedesign() {
             <div className="iteration-and-redesign-screenshot">
                 <figure>
                     <div className="img-wrapper">
-                        <CldImage
-                            src="f0f12db6b5f1e276a2f0bce2fa4173dcc2d071cb_e6olgq"
+                        <Image
+                            src={asset("eum/screenshots/deliver/f0f12db6b5f1e276a2f0bce2fa4173dcc2d071cb_e6olgq.jpg")}
                             alt="핵심 루프 플로우차트"
                             width={4096}
                             height={2522}
