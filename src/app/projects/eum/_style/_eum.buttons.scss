@@ -43,12 +43,9 @@
     }
     .button-elevated {
         border-radius: var(--radius-8, 8px);
-        background: linear-gradient(
-            99deg,
-            #48e770 2.31%,
-            #d985e4 57.92%,
-            var(--color-doctor, #00c0e8) 121.55%
-        );
+        // background: linear-gradient(93deg, var(--color-text-primary, #1C1C1E) 0%, var(--color-ink-700, #4D4D54) 48.88%, var(--color-ink-500, #66666F) 97.76%);
+        background: linear-gradient(94deg, var(--color-text-primary, #1C1C1E) 29.2%, #0071E3 72.46%);
+        // background: #0071E3;
         background-size: 200% 200%;
         background-position: 0% 50%;
         display: inline-flex;
