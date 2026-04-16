@@ -12,11 +12,32 @@
     }
 
     &.is-about {
-        position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
         color: var(--color-white);
+        transition:
+            color 0.3s ease,
+            background-color 0.3s ease;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: calc(var(--globalnav-height) + 40px);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+            pointer-events: none;
+            z-index: -1;
+            transition: background 0.3s ease;
+        }
 
         .globalnav-home {
-            color: var(--color-white);
+            color: inherit;
+            transition: color 0.3s ease;
         }
 
         .globalnav-about {
