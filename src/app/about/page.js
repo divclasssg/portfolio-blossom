@@ -1,4 +1,6 @@
 import Link from "next/link";
+import BackgroundVideo from "@/_components/background-video";
+import { asset } from "@/_lib/media";
 import CopyEmailButton from "./_components/copyEmailButton";
 import "./_style/about.style.scss";
 
@@ -11,6 +13,12 @@ export const metadata = {
 export default function AboutPage() {
     return (
         <>
+            <BackgroundVideo
+                className="about-bg"
+                base="about/about"
+                poster={asset("about/about_poster.jpg")}
+            />
+            <div className="about-bg-overlay" aria-hidden="true" />
             <main className="main-about">
                 <h1 className="visuallyhidden">About</h1>
                 <section className="section section-about" aria-labelledby="about-title">

@@ -12,11 +12,18 @@
     }
 
     &.is-about {
+        position: relative;
+        color: var(--color-white);
+
+        .globalnav-home {
+            color: var(--color-white);
+        }
+
         .globalnav-about {
             margin-left: auto;
             padding-top: 92px;
             font-weight: 500;
-            
+
             .project-list {
                 padding-top: 12px;
             }
