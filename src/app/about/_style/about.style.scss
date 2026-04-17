@@ -1,3 +1,7 @@
+body.is-about-page {
+    overflow: hidden;
+}
+
 .about-video-wrap {
     position: fixed;
     top: 0;
@@ -7,7 +11,7 @@
     z-index: -2;
     overflow: hidden;
     pointer-events: none;
-    will-change: top, left, right, bottom, border-radius;
+    will-change: top, left, right, bottom;
 }
 
 .about-bg {
@@ -26,15 +30,21 @@
     will-change: opacity;
 }
 
-.about-outer {
-    position: relative;
-}
-
 .main-about {
+    position: fixed;
+    top: var(--globalnav-height);
+    left: 0;
+    right: 0;
+    bottom: var(--homefooter-height);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
     color: var(--color-white);
-    position: relative;
-    padding-top: var(--globalnav-height);
-    padding-bottom: calc(var(--homefooter-height) + 72px);
+    padding-top: calc(
+        100vh - var(--globalnav-height) - var(--homefooter-height) - 300px
+    );
+    padding-bottom: 72px;
+    outline: none;
     transition: color 0.3s ease;
 
     .section-about {
@@ -93,25 +103,11 @@
         }
     }
 
-    .reveal {
-        opacity: 0;
-        transform: translateY(40px);
-        transition:
-            opacity 0.8s ease,
-            transform 0.8s ease;
-    }
-
-    &.is-visible .reveal {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .main-about .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
+    .main-about {
+        padding-top: 0;
     }
 }
 
@@ -219,29 +215,11 @@
     transition:
         color 0.3s ease,
         background-color 0.3s ease;
-
-    &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: calc(var(--homefooter-height) + 40px);
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-        pointer-events: none;
-        z-index: -1;
-        transition: background 0.3s ease;
-    }
 }
 
 body.is-about-bg-light {
     .globalnav.is-about {
         color: var(--color-text-primary);
-        background-color: var(--color-bg);
-
-        &::after {
-            background: linear-gradient(to bottom, var(--color-bg), transparent);
-        }
     }
 
     .main-about {
@@ -250,10 +228,5 @@ body.is-about-bg-light {
 
     .aboutfooter {
         color: var(--color-text-primary);
-        background-color: var(--color-bg);
-
-        &::before {
-            background: linear-gradient(to top, var(--color-bg), transparent);
-        }
     }
 }

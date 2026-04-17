@@ -4,10 +4,10 @@ import { useCallback, useEffect, useRef } from "react";
 import BackgroundVideo from "@/_components/background-video";
 import { asset } from "@/_lib/media";
 
-const LIGHT_BG_THRESHOLD = 0.15;
-const FOOTER_HEIGHT = 48;
-const GLOBALNAV_HEIGHT = 44;
-const easeOut = (t) => 1 - (1 - t) * (1 - t);
+const HOLD_START = 0.15;
+const HOLD_END = 0.85;
+const CONTENT_PADDING_LEFT = 64;
+const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 const lerp = (a, b, t) => a + (b - a) * t;
 
 export default function AboutHero() {
@@ -20,10 +20,8 @@ export default function AboutHero() {
     const apply = useCallback(() => {
         const wrap = wrapRef.current;
         const overlay = overlayRef.current;
-        if (!wrap || !overlay) return;
-
-        const main = document.querySelector(".main-about");
-        if (!main) return;
+        const container = document.querySelector(".main-about");
+        if (!wrap || !overlay || !container) return;
 
         const vw = window.innerWidth;
         const vh = window.innerHeight;
@@ -45,30 +43,39 @@ export default function AboutHero() {
             wrap.style.left = `${targetLeft}px`;
             wrap.style.right = `${targetRight}px`;
             wrap.style.bottom = `${targetBottom}px`;
-            wrap.style.borderRadius = "12px";
             overlay.style.opacity = "0";
-            main.classList.add("is-visible");
             setLight(true);
             return;
         }
 
-        const effectiveHeight = Math.max(1, vh - FOOTER_HEIGHT - GLOBALNAV_HEIGHT);
-        const progress = Math.max(0, Math.min(1, window.scrollY / effectiveHeight));
-        const t = easeOut(progress);
+        const paddingTop = parseFloat(getComputedStyle(container).paddingTop) || 1;
+        const progress = Math.max(0, Math.min(1, container.scrollTop / paddingTop));
 
-        wrap.style.top = `${lerp(0, targetTop, t)}px`;
-        wrap.style.left = `${lerp(0, targetLeft, t)}px`;
-        wrap.style.right = `${lerp(0, targetRight, t)}px`;
-        wrap.style.bottom = `${lerp(0, targetBottom, t)}px`;
-        wrap.style.borderRadius = `${lerp(0, 12, t)}px`;
-        overlay.style.opacity = String(lerp(0.5, 0, t));
+        let scrubT;
+        if (progress <= HOLD_START) {
+            scrubT = 0;
+        } else if (progress >= HOLD_END) {
+            scrubT = 1;
+        } else {
+            scrubT = easeInOut((progress - HOLD_START) / (HOLD_END - HOLD_START));
+        }
 
-        setLight(t >= LIGHT_BG_THRESHOLD);
+        const currentLeft = lerp(0, targetLeft, scrubT);
+        wrap.style.top = `${lerp(0, targetTop, scrubT)}px`;
+        wrap.style.left = `${currentLeft}px`;
+        wrap.style.right = `${lerp(0, targetRight, scrubT)}px`;
+        wrap.style.bottom = `${lerp(0, targetBottom, scrubT)}px`;
+        overlay.style.opacity = String(lerp(0.5, 0, scrubT));
 
-        main.classList.toggle("is-visible", window.scrollY > FOOTER_HEIGHT);
+        setLight(currentLeft > CONTENT_PADDING_LEFT);
     }, []);
 
     useEffect(() => {
+        document.body.classList.add("is-about-page");
+
+        const container = document.querySelector(".main-about");
+        if (container) container.focus({ preventScroll: true });
+
         const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
         reduceMotionRef.current = mq.matches;
         const onMq = () => {
@@ -81,19 +88,18 @@ export default function AboutHero() {
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
             rafRef.current = requestAnimationFrame(apply);
         };
-        window.addEventListener("scroll", onScroll, { passive: true });
+        if (container) container.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", onScroll);
         apply();
 
         return () => {
             mq.removeEventListener("change", onMq);
-            window.removeEventListener("scroll", onScroll);
+            if (container) container.removeEventListener("scroll", onScroll);
             window.removeEventListener("resize", onScroll);
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
             document.body.classList.remove("is-about-bg-light");
+            document.body.classList.remove("is-about-page");
             lightBgRef.current = false;
-            const main = document.querySelector(".main-about");
-            if (main) main.classList.remove("is-visible");
         };
     }, [apply]);
 
