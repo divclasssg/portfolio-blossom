@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef } from "react";
 import BackgroundVideo from "@/_components/background-video";
 import { asset } from "@/_lib/media";
 
+const DESKTOP_QUERY = "(min-width: 1025px)";
 const HOLD_START = 0.15;
 const HOLD_END = 0.85;
 const CONTENT_PADDING_LEFT = 64;
@@ -15,9 +16,11 @@ export default function AboutHero() {
     const overlayRef = useRef(null);
     const rafRef = useRef(null);
     const reduceMotionRef = useRef(false);
+    const isDesktopRef = useRef(false);
     const lightBgRef = useRef(false);
 
     const apply = useCallback(() => {
+        if (!isDesktopRef.current) return;
         const wrap = wrapRef.current;
         const overlay = overlayRef.current;
         const container = document.querySelector(".main-about");
@@ -25,10 +28,13 @@ export default function AboutHero() {
 
         const vw = window.innerWidth;
         const vh = window.innerHeight;
-        const targetWidth = Math.min(420, Math.max(260, vw * 0.28));
-        const targetHeight = (targetWidth * 9) / 16;
         const targetRight = 64;
         const targetBottom = 72;
+        const bodyGap = 40;
+        const bodyRightEdge = CONTENT_PADDING_LEFT + 680;
+        const maxByBody = vw - targetRight - bodyRightEdge - bodyGap;
+        const targetWidth = Math.max(420, Math.min(960, maxByBody));
+        const targetHeight = (targetWidth * 9) / 16;
         const targetTop = vh - targetBottom - targetHeight;
         const targetLeft = vw - targetRight - targetWidth;
 
@@ -71,29 +77,59 @@ export default function AboutHero() {
     }, []);
 
     useEffect(() => {
-        document.body.classList.add("is-about-page");
+        const desktopMq = window.matchMedia(DESKTOP_QUERY);
+        const reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+        reduceMotionRef.current = reduceMq.matches;
+        isDesktopRef.current = desktopMq.matches;
 
-        const container = document.querySelector(".main-about");
-        if (container) container.focus({ preventScroll: true });
+        const clearInlineStyles = () => {
+            const wrap = wrapRef.current;
+            const overlay = overlayRef.current;
+            if (wrap) wrap.style.cssText = "";
+            if (overlay) overlay.style.cssText = "";
+        };
 
-        const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-        reduceMotionRef.current = mq.matches;
-        const onMq = () => {
-            reduceMotionRef.current = mq.matches;
+        const enterDesktop = () => {
+            document.body.classList.add("is-about-page");
+            const container = document.querySelector(".main-about");
+            if (container) container.focus({ preventScroll: true });
             apply();
         };
-        mq.addEventListener("change", onMq);
+
+        const exitDesktop = () => {
+            document.body.classList.remove("is-about-page");
+            document.body.classList.remove("is-about-bg-light");
+            lightBgRef.current = false;
+            clearInlineStyles();
+        };
+
+        const onDesktopChange = () => {
+            isDesktopRef.current = desktopMq.matches;
+            if (desktopMq.matches) enterDesktop();
+            else exitDesktop();
+        };
+
+        const onReduce = () => {
+            reduceMotionRef.current = reduceMq.matches;
+            apply();
+        };
 
         const onScroll = () => {
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
             rafRef.current = requestAnimationFrame(apply);
         };
+
+        const container = document.querySelector(".main-about");
         if (container) container.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", onScroll);
-        apply();
+        desktopMq.addEventListener("change", onDesktopChange);
+        reduceMq.addEventListener("change", onReduce);
+
+        if (desktopMq.matches) enterDesktop();
 
         return () => {
-            mq.removeEventListener("change", onMq);
+            desktopMq.removeEventListener("change", onDesktopChange);
+            reduceMq.removeEventListener("change", onReduce);
             if (container) container.removeEventListener("scroll", onScroll);
             window.removeEventListener("resize", onScroll);
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -108,6 +144,7 @@ export default function AboutHero() {
             <BackgroundVideo
                 className="about-bg"
                 base="about/about"
+                mobileBase="about/about_mobile"
                 poster={asset("about/about_poster.jpg")}
             />
             <div className="about-bg-overlay" ref={overlayRef} />

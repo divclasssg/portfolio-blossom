@@ -230,3 +230,80 @@ body.is-about-bg-light {
         color: var(--color-text-primary);
     }
 }
+
+@media (max-width: 1024px) {
+    :root {
+        --content-padding-left: 40px;
+    }
+
+    body.is-about-page {
+        overflow: visible;
+    }
+
+    .about-video-wrap {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        margin-top: var(--globalnav-height);
+        height: clamp(320px, 56svh, 560px);
+        z-index: 0;
+        will-change: auto;
+    }
+
+    .main-about {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        overflow: visible;
+        scrollbar-gutter: auto;
+        padding-top: 32px;
+        padding-bottom: 48px;
+        color: var(--color-text-primary);
+
+        .section-about .about-content {
+            width: 100%;
+            max-width: 680px;
+        }
+    }
+
+    .globalnav.is-about {
+        color: var(--color-text-primary);
+    }
+
+    .aboutfooter {
+        position: static;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        z-index: auto;
+        color: var(--color-text-primary);
+        padding-top: 16px;
+        padding-bottom: 24px;
+    }
+}
+
+@media (max-width: 640px) {
+    :root {
+        --content-padding-left: 24px;
+    }
+
+    .about-video-wrap {
+        height: auto;
+        aspect-ratio: 9 / 16;
+        max-height: 85svh;
+    }
+
+    .main-about {
+        .section-about .about-content {
+            font-size: 15px;
+
+            .subtitle {
+                font-size: 17px;
+            }
+        }
+    }
+}
