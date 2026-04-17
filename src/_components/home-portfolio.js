@@ -1,13 +1,21 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import BackgroundVideo from "@/_components/background-video";
 import IconArrow from "@/_components/icons/arrow";
-import { usePageTransition } from "@/_components/page-transition";
+import { asset } from "@/_lib/media";
 
 const projects = [
-    { key: "about", label: "about", href: "/about" },
+    {
+        key: "about",
+        label: "about",
+        href: "/about",
+        video: "home/home_about",
+        poster: "about/about_poster.jpg",
+        alt: "about preview",
+    },
     {
         key: "eum",
         label: "eum, 2026",
@@ -21,16 +29,6 @@ const projects = [
 
 export default function HomePortfolio() {
     const [hovered, setHovered] = useState(null);
-    const { startTransition } = usePageTransition();
-
-    const handleClick = useCallback(
-        (e, project) => {
-            if (!project.image) return;
-            e.preventDefault();
-            startTransition(project.href, project.image, project.alt);
-        },
-        [startTransition]
-    );
 
     return (
         <>
@@ -48,7 +46,6 @@ export default function HomePortfolio() {
                                     href={project.href}
                                     target="_self"
                                     className="homenav-link"
-                                    onClick={(e) => handleClick(e, project)}
                                 >
                                     {project.label}
                                     <span>
@@ -62,19 +59,29 @@ export default function HomePortfolio() {
             </nav>
             <section className="section section-portfolio-intro">
                 {projects
-                    .filter((p) => p.image)
+                    .filter((p) => p.image || p.video)
                     .map((project) => (
                         <div
                             key={project.key}
                             className={`intro-content ${project.key}${hovered === project.key ? " is-visible" : ""}`}
                         >
                             <div className="intro-image-wrapper">
-                                <Image
-                                    src={project.image}
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1344px"
-                                    alt={project.alt}
-                                />
+                                {project.video ? (
+                                    <>
+                                        <BackgroundVideo
+                                            base={project.video}
+                                            poster={asset(project.poster)}
+                                        />
+                                        <div className="intro-video-overlay" />
+                                    </>
+                                ) : (
+                                    <Image
+                                        src={project.image}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1344px"
+                                        alt={project.alt}
+                                    />
+                                )}
                             </div>
                         </div>
                     ))}
