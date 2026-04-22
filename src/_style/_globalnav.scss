@@ -52,7 +52,7 @@
         display: flex;
         align-items: center;
         height: 100%;
-        padding: 0 64px;
+        padding: 0 var(--globalnav-padding-x);
         box-sizing: border-box;
 
         .globalnav-home {
@@ -63,6 +63,17 @@
             line-height: 100%;
             letter-spacing: 1.2%;
             color: var(--color-text-primary);
+        }
+
+        .globalnav-menu-button {
+            display: none;
+            margin-left: auto;
+            padding: 0;
+            background: none;
+            border: 0;
+            color: inherit;
+            line-height: 0;
+            cursor: pointer;
         }
 
         .globalnav-list {
@@ -85,5 +96,38 @@
                 }
             }
         }
+    }
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --globalnav-padding-x: 40px;
+    }
+
+    .globalnav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background: var(--color-white);
+        color: var(--color-text-primary);
+
+        &.is-sub .globalnav-list,
+        &.is-about .globalnav-about {
+            display: none;
+        }
+
+        .globalnav-content .globalnav-menu-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    :root {
+        --globalnav-padding-x: 24px;
     }
 }

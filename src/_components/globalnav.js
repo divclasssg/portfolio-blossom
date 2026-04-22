@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import IconMenu from "./icons/menu";
 
 export default function Globalnav() {
     const pathname = usePathname();
@@ -14,6 +15,15 @@ export default function Globalnav() {
                 <Link href="/" target="_self" className="globalnav-home">
                     parkseik
                 </Link>
+                {!isHome && (
+                    <button
+                        type="button"
+                        className="globalnav-menu-button"
+                        aria-label="menu"
+                    >
+                        <IconMenu size={24} />
+                    </button>
+                )}
                 {isAbout && (
                     <div className="globalnav-about">
                         <ul className="globalnav-about-list">

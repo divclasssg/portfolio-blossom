@@ -1,3 +1,7 @@
+html:has(body.is-about-page) {
+    scrollbar-gutter: auto;
+}
+
 body.is-about-page {
     overflow: hidden;
 }
@@ -292,9 +296,9 @@ body.is-about-bg-light {
     }
 
     .about-video-wrap {
+        width: 100%;
         height: auto;
         aspect-ratio: 9 / 16;
-        max-height: 85svh;
     }
 
     .main-about {
