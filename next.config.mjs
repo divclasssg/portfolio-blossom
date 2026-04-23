@@ -14,6 +14,18 @@ const nextConfig = {
             },
         ],
     },
+    async rewrites() {
+        return [
+            {
+                source: "/liverpool",
+                destination: "https://portfolio-tan-five-60.vercel.app/liverpool",
+            },
+            {
+                source: "/liverpool/:path*",
+                destination: "https://portfolio-tan-five-60.vercel.app/liverpool/:path*",
+            },
+        ];
+    },
 };
 
 export default nextConfig;
