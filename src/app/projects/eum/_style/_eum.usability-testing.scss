@@ -111,6 +111,9 @@
 
                 img {
                     border-radius: var(--radius-12);
+                    aspect-ratio: 16 / 9;
+                    object-fit: cover;
+                    object-position: right center;
                 }
 
                 figcaption {

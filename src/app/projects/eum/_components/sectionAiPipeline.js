@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { asset } from "../_lib/media";
+import { asset, sizes, QUALITY_UI } from "../_lib/media";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 import ExternalLink from "./_shared/ExternalLink";
@@ -38,6 +38,8 @@ export default function SectionAiPipeline() {
                         width={2282}
                         height={2290}
                         style={{ width: 1024, height: "auto" }}
+                        sizes={sizes.wide}
+                        quality={QUALITY_UI}
                     />
                 </div>
             </div>

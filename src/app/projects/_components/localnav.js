@@ -44,9 +44,7 @@ export default function Localnav() {
                             </Link>
                         </li>
                         <li className="localnav-item">
-                            <span className="localnav-link active">
-                                Eum
-                            </span>
+                            <span className="localnav-link active">Eum</span>
                         </li>
                         <li className="localnav-item">
                             <Link
@@ -58,11 +56,7 @@ export default function Localnav() {
                             </Link>
                         </li>
                         <li className="localnav-item">
-                            <Link
-                                href="/project/liverpoolfc"
-                                target="_self"
-                                className="localnav-link"
-                            >
+                            <Link href="/liverpoolfc" target="_self" className="localnav-link">
                                 Liverpool FC
                             </Link>
                         </li>

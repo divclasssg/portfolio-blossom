@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { asset } from "../_lib/media";
+import { asset, sizes, QUALITY_UI } from "../_lib/media";
 import keyChanges from "../_data/keyChanges";
 import emphasize from "../_utils/emphasize";
 import ExternalLink from "./_shared/ExternalLink";
@@ -34,6 +34,8 @@ export default function SectionDeliverKeyChanges() {
                                 width={item.asIs.width}
                                 height={item.asIs.height}
                                 style={{ width: item.asIs.imgWidth, height: "auto" }}
+                                sizes={sizes.fixed(item.asIs.imgWidth)}
+                                quality={QUALITY_UI}
                             />
                             <figcaption>AS-IS</figcaption>
                         </figure>
@@ -48,6 +50,8 @@ export default function SectionDeliverKeyChanges() {
                                         width={item.toBe.width}
                                         height={item.toBe.height}
                                         style={{ width: item.toBe.imgWidth, height: "auto" }}
+                                        sizes={sizes.fixed(item.toBe.imgWidth)}
+                                        quality={QUALITY_UI}
                                     />
                                 )}
                                 <figcaption>TO-BE</figcaption>

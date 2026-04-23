@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { asset } from "../_lib/media";
+import { asset, sizes, QUALITY_UI } from "../_lib/media";
 import wireframeKeyScreens from "../_data/wireframeKeyScreens";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
@@ -60,6 +60,8 @@ export default function SectionDevelopWireframe() {
                                     alt={screen.image.alt}
                                     width={screen.image.width}
                                     height={screen.image.height}
+                                    sizes={sizes.fixed(696)}
+                                    quality={QUALITY_UI}
                                 />
                             </div>
                         </div>

@@ -1,4 +1,5 @@
 import Globalnav from "@/_components/globalnav";
+import { R2_ORIGIN } from "@/_lib/media";
 import "@/_style/style.scss";
 
 export const metadata = {
@@ -56,6 +57,10 @@ export const viewport = {
 export default function RootLayout({ children }) {
     return (
         <html lang="ko">
+            <head>
+                <link rel="preconnect" href={R2_ORIGIN} crossOrigin="" />
+                <link rel="dns-prefetch" href={R2_ORIGIN} />
+            </head>
             <body>
                 <Globalnav />
                 {children}

@@ -25,6 +25,11 @@
                 border: 1px solid var(--color-doctor);
                 background: var(--color-bg-doctor);
             }
+
+            &.neutral {
+                border: 1px solid var(--color-border-default);
+                background: var(--color-surface-subtle);
+            }
         }
     }
 

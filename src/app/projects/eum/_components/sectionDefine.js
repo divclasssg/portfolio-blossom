@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
-import { asset } from "../_lib/media";
+import { asset, QUALITY_UI } from "../_lib/media";
 import defineMethodology from "../_data/defineMethodology";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
@@ -216,7 +216,7 @@ export default function SectionDefine() {
                                     width={item.image.width}
                                     height={item.image.height}
                                     sizes="90vw"
-                                    loading="eager"
+                                    quality={QUALITY_UI}
                                 />
                             </div>
                         ))}

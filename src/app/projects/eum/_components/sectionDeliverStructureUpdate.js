@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { asset } from "../_lib/media";
+import { asset, sizes, QUALITY_UI } from "../_lib/media";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 import ExternalLink from "./_shared/ExternalLink";
 
@@ -35,6 +35,8 @@ export default function SectionDeliverStructureUpdate() {
                         width={4096}
                         height={2440}
                         style={{ width: 1024, height: "auto" }}
+                        sizes={sizes.wide}
+                        quality={QUALITY_UI}
                     />
                 </div>
             </div>

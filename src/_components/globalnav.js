@@ -16,11 +16,7 @@ export default function Globalnav() {
                     parkseik
                 </Link>
                 {!isHome && (
-                    <button
-                        type="button"
-                        className="globalnav-menu-button"
-                        aria-label="menu"
-                    >
+                    <button type="button" className="globalnav-menu-button" aria-label="menu">
                         <IconMenu size={24} />
                     </button>
                 )}
@@ -50,7 +46,7 @@ export default function Globalnav() {
                                     </li>
                                     <li className="project-item">
                                         <Link
-                                            href="/projects/liverpoolfc"
+                                            href="/liverpoolfc"
                                             target="_self"
                                             className="project-link"
                                         >

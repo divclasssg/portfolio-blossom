@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { asset } from "../_lib/media";
+import { asset, sizes, QUALITY_UI } from "../_lib/media";
 import utFindings from "../_data/utFindings";
 import utInterviews from "../_data/utInterviews";
 import utOverview from "../_data/utOverview";
@@ -50,6 +50,8 @@ export default function SectionDevelopUsabilityTesting() {
                                                 width={fig.width}
                                                 height={fig.height}
                                                 style={{ width: fig.imgWidth, height: "auto" }}
+                                                sizes={sizes.fixed(fig.imgWidth)}
+                                                quality={QUALITY_UI}
                                             />
                                         ))}
                                     </div>
@@ -68,6 +70,8 @@ export default function SectionDevelopUsabilityTesting() {
                                                 width: finding.figure.imgWidth,
                                                 height: "auto",
                                             }}
+                                            sizes={sizes.fixed(finding.figure.imgWidth)}
+                                            quality={QUALITY_UI}
                                         />
                                     </div>
                                     <figcaption>{finding.figure.caption}</figcaption>
@@ -106,6 +110,7 @@ export default function SectionDevelopUsabilityTesting() {
                                     width={interview.image.width}
                                     height={interview.image.height}
                                     style={{ width: interview.image.imgWidth, height: "auto" }}
+                                    sizes={sizes.fixed(interview.image.imgWidth)}
                                 />
                                 <figcaption>
                                     <strong>{interview.person}</strong>

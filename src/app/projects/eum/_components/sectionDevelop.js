@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { asset } from "../_lib/media";
+import { asset, sizes, QUALITY_UI } from "../_lib/media";
 import developProcess from "../_data/developProcess";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
@@ -43,6 +43,8 @@ export default function SectionDevelop() {
                                     alt={item.image.alt}
                                     width={item.image.width}
                                     height={item.image.height}
+                                    sizes="(max-width: 768px) 90vw, 800px"
+                                    quality={QUALITY_UI}
                                 />
                             </div>
                         </div>

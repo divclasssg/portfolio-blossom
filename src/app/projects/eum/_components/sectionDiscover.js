@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { asset } from "../_lib/media";
+import { asset, sizes, QUALITY_UI } from "../_lib/media";
 import discoverPanels from "../_data/discoverPanels";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
@@ -82,6 +82,8 @@ export default function SectionDiscover() {
                                             alt={card.image.alt}
                                             width={card.image.width}
                                             height={card.image.height}
+                                            sizes={sizes.card}
+                                            quality={QUALITY_UI}
                                         />
                                     </div>
                                 </div>

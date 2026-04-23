@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { asset } from "../_lib/media";
+import { asset, sizes, QUALITY_UI } from "../_lib/media";
 import emphasize from "../_utils/emphasize";
 import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 
@@ -36,6 +36,8 @@ export default function SectionDeliver() {
                         width={2886}
                         height={634}
                         style={{ width: 1024, height: "auto" }}
+                        sizes={sizes.wide}
+                        quality={QUALITY_UI}
                     />
                     <figcaption>사용성 테스트 환자 및 의사별 인사이트</figcaption>
                 </figure>

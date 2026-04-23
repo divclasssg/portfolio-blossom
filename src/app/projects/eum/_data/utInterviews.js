@@ -25,7 +25,7 @@ const utInterviews = [
         quote: "“기능성 특별 질환 의심, 자율신경계 평가 필요 이런 건 사실 저는 잘 몰라요. 아니면은 언제 꼭 와라, 이거는 정말 지켜봐야 된다 이런 식으로 아무것도 모르는 나도 좀 이해할 수 있을 법한 그냥 한 줄 요약 정도가 좀 있으면 참 좋을 것 같아요.”",
     },
     {
-        image: { src: "eum/screenshots/develop/7698da2c8d3c587d61c5ef3902943f2253db563e_j4ecc8.jpg", alt: "의사 참여군 1 인터뷰 장면", width: 2048, height: 1152, imgWidth: 500 },
+        image: { src: "eum/screenshots/develop/7698da2c8d3c587d61c5ef3902943f2253db563e_j4ecc8.jpg", alt: "의사 참여군 1 인터뷰 장면", width: 1994, height: 788, imgWidth: 500 },
         person: "의사 참여군 1. 여성 · 한의사.",
         quote: "“환자가 이 병원에 한 50번 오셨으면 진료 기록이 50개가 있는데 이거는 어떻게 막 스크롤 내리다가 다 끝날 것 같아가지고...”",
     },

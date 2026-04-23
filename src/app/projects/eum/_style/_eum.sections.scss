@@ -35,8 +35,13 @@
     .section-dd-discover,
     .section-dd-define,
     .section-dd-develop,
+    .section-dd-develop-review,
     .section-dd-deliver {
         padding: 32px 0;
+    }
+
+    .section-dd-develop-review .callout-wrapper {
+        flex-direction: column;
     }
 
     .section-dd-develop-wireframe-to-prototype {
