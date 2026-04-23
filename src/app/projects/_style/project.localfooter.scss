@@ -1,0 +1,42 @@
+.localfooter {
+    background: var(--color-primary);
+    padding: 96px 0 32px;
+
+    &-content {
+        max-width: 1024px;
+        padding: 0 32px;
+        font-family: var(--font-family-suit);
+        color: var(--color-white);
+        margin: 0 auto;
+        box-sizing: border-box;
+        
+        h2 {
+            font: {
+                size: var(--font-size-large);
+                wieght: 700;
+            };
+            padding-bottom: 24px;
+        }
+
+        ul {
+            li {
+                padding-bottom: 8px;
+
+                a:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .info {
+            display: flex;
+            gap: 8px;
+            padding-top: 64px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            padding-top: 12px;
+        }
+    }
+}
