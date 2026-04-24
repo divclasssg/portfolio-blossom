@@ -1,6 +1,6 @@
 .localfooter {
     background: var(--color-primary);
-    padding: 96px 0 32px;
+    padding: 48px 0 24px;
 
     &-content {
         max-width: 1024px;
@@ -45,12 +45,13 @@
             display: flex;
             gap: 8px;
             font-size: var(--font-size-small);
-            padding-top: 96px;
+            padding-top: 40px;
         }
 
         .copyright {
             font-size: 12px;
-            padding-top: 12px;
+            padding-top: 32px;
+            color: var(--color-gray-scale-1);
         }
     }
 }

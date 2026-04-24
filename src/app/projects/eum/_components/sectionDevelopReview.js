@@ -1,4 +1,5 @@
 import emphasize from "../_utils/emphasize";
+import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 
 export default function SectionDevelopReview() {
     return (
@@ -20,6 +21,10 @@ export default function SectionDevelopReview() {
                     환자 설명과 건강 문해력 측면에서 어떤 기준을 요구하는지를 먼저 검토한 뒤, 이를
                     바탕으로 와이어프레임과 프로토타입의 정보 구조와 문구 체계를 설계했습니다.
                 </p>
+                <AiWorkflowCallout>
+                    법&middot;규제, 데이터 위계, 설명 원칙을 먼저 검토해 AI의 역할 범위와 단계적
+                    구조를 확정한 뒤, 그 위에 화면 설계를 올렸습니다.
+                </AiWorkflowCallout>
 
                 <div className="card-white-wrapper">
                     <h3 className="visuallyhidden">검토한 세 가지 기준</h3>
