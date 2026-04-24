@@ -282,22 +282,24 @@
     // Final Prototype (디바이스 목업 + 블러 배경 + 썸네일)
     // ─────────────────────────────────────────────
     .section-dd-deliver-final-prototype {
-        background: #202022;
+        position: relative;
+        overflow: hidden;
         padding-bottom: 64px;
 
         // Stage ------------------------------------------------
         .proto-stage {
             position: relative;
+            z-index: 1;
             height: 80svh;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+        // 블러 배경 영상: 섹션 전체를 덮는다
         .proto-stage-bg {
             position: absolute;
-            inset: -8%;
+            inset: 0;
             z-index: 0;
             overflow: hidden;
             pointer-events: none;
@@ -309,6 +311,14 @@
                 filter: blur(40px) brightness(0.45) saturate(1.2);
                 transform: scale(1.2);
             }
+        }
+
+        // 섹션 내 모든 콘텐츠를 배경 위로
+        .standalone-content,
+        .proto-controls,
+        .proto-thumbs {
+            position: relative;
+            z-index: 1;
         }
 
         .proto-hero {
@@ -326,45 +336,22 @@
                 width: auto;
             }
 
-            .device-laptop {
+            .device-monitor {
                 width: min(90%, 1100px);
             }
         }
 
         // Device: Phone ----------------------------------------
+        // 영상 자체에 폰 프레임이 포함됨. 1440×2560 캔버스 양옆의 검정
+        // 여백(≈8.3% × 2)은 aspect-ratio를 좁혀 cover crop으로 잘라낸다.
         .device {
             position: relative;
         }
 
         .device-phone {
-            aspect-ratio: 1440 / 2560;
-            padding: 2.4%;
-            background: linear-gradient(145deg, #2d2d30, #131315);
-            border-radius: 12% / 7%;
-            box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.55),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-
-            &::before {
-                content: "";
-                position: absolute;
-                top: 2.8%;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 28%;
-                height: 2.4%;
-                background: #000;
-                border-radius: 999px;
-                z-index: 2;
-            }
-
-            .device-screen {
-                width: 100%;
-                height: 100%;
-                border-radius: 10% / 5.5%;
-                overflow: hidden;
-                background: #000;
-            }
+            aspect-ratio: 1200 / 2500;
+            overflow: hidden;
+            border-radius: 22% / 8%;
 
             video {
                 width: 100%;
@@ -374,25 +361,25 @@
             }
         }
 
-        // Device: Laptop ---------------------------------------
-        .device-laptop {
+        // Device: Monitor --------------------------------------
+        .device-monitor {
             display: flex;
             flex-direction: column;
             align-items: center;
 
-            .device-laptop-screen {
+            .device-monitor-screen {
                 width: 100%;
-                padding: 1.4%;
+                padding: 1.2%;
                 background: linear-gradient(145deg, #2d2d30, #131315);
-                border-radius: 10px 10px 4px 4px;
+                border-radius: 10px;
                 box-shadow:
-                    0 20px 50px rgba(0, 0, 0, 0.5),
+                    0 25px 60px rgba(0, 0, 0, 0.5),
                     inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 
                 > .device-screen {
                     aspect-ratio: 1920 / 1080;
                     width: 100%;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     overflow: hidden;
                     background: #000;
 
@@ -405,25 +392,18 @@
                 }
             }
 
-            .device-laptop-base {
-                position: relative;
-                width: 108%;
-                height: 10px;
-                background: linear-gradient(to bottom, #3a3a3c, #1a1a1c);
-                border-radius: 0 0 8px 8px;
-                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+            .device-monitor-neck {
+                width: 8%;
+                height: 22px;
+                background: linear-gradient(to bottom, #2d2d30, #1a1a1c);
+            }
 
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 14%;
-                    height: 3px;
-                    background: rgba(0, 0, 0, 0.55);
-                    border-radius: 0 0 4px 4px;
-                }
+            .device-monitor-base {
+                width: 34%;
+                height: 6px;
+                background: linear-gradient(to bottom, #3a3a3c, #1a1a1c);
+                border-radius: 6px;
+                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
             }
         }
 
@@ -515,7 +495,7 @@
                 width: 72px;
             }
 
-            &.proto-thumb-laptop .device-laptop {
+            &.proto-thumb-monitor .device-monitor {
                 width: 160px;
             }
 
@@ -547,7 +527,7 @@
                 &.proto-thumb-phone .device-phone {
                     width: 56px;
                 }
-                &.proto-thumb-laptop .device-laptop {
+                &.proto-thumb-monitor .device-monitor {
                     width: 120px;
                 }
             }

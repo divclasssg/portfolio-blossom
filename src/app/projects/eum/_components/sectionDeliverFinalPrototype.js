@@ -16,7 +16,7 @@ const videos = [
         src: "eum/videos/final_prototype/output_zjqkog.mp4",
         width: 1920,
         height: 1080,
-        device: "laptop",
+        device: "monitor",
     },
     {
         id: "final-proto-03",
@@ -28,21 +28,18 @@ const videos = [
 ];
 
 function DeviceFrame({ type, children }) {
-    if (type === "laptop") {
+    if (type === "monitor") {
         return (
-            <div className="device device-laptop">
-                <div className="device-laptop-screen">
+            <div className="device device-monitor">
+                <div className="device-monitor-screen">
                     <div className="device-screen">{children}</div>
                 </div>
-                <div className="device-laptop-base" />
+                <div className="device-monitor-neck" />
+                <div className="device-monitor-base" />
             </div>
         );
     }
-    return (
-        <div className="device device-phone">
-            <div className="device-screen">{children}</div>
-        </div>
-    );
+    return <div className="device device-phone">{children}</div>;
 }
 
 export default function SectionDeliverFinalPrototype() {
@@ -113,6 +110,10 @@ export default function SectionDeliverFinalPrototype() {
             ref={sectionRef}
             className="section section-standalone section-dd-deliver-final-prototype"
         >
+            <div className="proto-stage-bg" key={`bg-${currentVideo.id}`} aria-hidden="true">
+                <video src={asset(currentVideo.src)} muted playsInline autoPlay loop />
+            </div>
+
             <div className="standalone-content">
                 <h2 className="section-eyebrow subhead">
                     <span className="visuallyhidden">Double Diamond 04. Deliver</span>
@@ -121,9 +122,6 @@ export default function SectionDeliverFinalPrototype() {
             </div>
 
             <div className={`proto-stage proto-stage-${currentVideo.device}`}>
-                <div className="proto-stage-bg" key={`bg-${currentVideo.id}`} aria-hidden="true">
-                    <video src={asset(currentVideo.src)} muted playsInline autoPlay loop />
-                </div>
                 <div className="proto-hero">
                     <DeviceFrame type={currentVideo.device}>
                         <video
