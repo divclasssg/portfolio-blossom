@@ -4,13 +4,13 @@ export default function SectionDevelopReview() {
     return (
         <section className="section section-dd-develop-review">
             <div className="section-content">
-                <h2 className="section-eyebrow">
+                <h2 className="section-eyebrow subhead">
                     <span className="visuallyhidden">Double Diamond 03. Develop</span>
                     검토 기준 &middot; 규제와 원칙 먼저.
                 </h2>
                 <p className="section-headline-small">
                     {emphasize(
-                        "의료는 작은 오해도 위험할 수 있고 법·규제가 AI 역할과 환자 데이터 처리를 제한하므로, 화면보다 AI의 역할 범위·의사 판단의 정보 위계·환자 설명 원칙을 먼저 검토."
+                        "의료는 작은 오해도 위험할 수 있고 법 · 규제가 AI 역할과 환자 데이터 처리를 제한하므로, 화면보다 AI의 역할 범위 · 의사 판단의 정보 위계 · 환자 설명 원칙을 먼저 검토."
                     )}
                 </p>
                 <p className="typography-copy">
@@ -21,9 +21,9 @@ export default function SectionDevelopReview() {
                     바탕으로 와이어프레임과 프로토타입의 정보 구조와 문구 체계를 설계했습니다.
                 </p>
 
-                <div className="callout-wrapper">
+                <div className="card-white-wrapper">
                     <h3 className="visuallyhidden">검토한 세 가지 기준</h3>
-                    <div className="callout-content neutral">
+                    <div className="card-white">
                         <h4 className="section-label">관련 법과 규제 검토</h4>
                         <p className="typography-copy">
                             AI는 진단이 아니라 참고 정보 범위로 제한해야 했고, 민감한 건강정보와
@@ -31,7 +31,7 @@ export default function SectionDevelopReview() {
                             책임 고지가 계속 노출되어야 했습니다.
                         </p>
                     </div>
-                    <div className="callout-content neutral">
+                    <div className="card-white">
                         <h4 className="section-label">의료 데이터 하이어라키 검토</h4>
                         <p className="typography-copy">
                             의사용 패널은 좁은 플로팅 구조 안에서 핵심 판단 정보를 먼저 보여줘야
@@ -39,7 +39,7 @@ export default function SectionDevelopReview() {
                             나머지 데이터는 단계적으로 확인할 수 있는 구조로 정리했습니다.
                         </p>
                     </div>
-                    <div className="callout-content neutral">
+                    <div className="card-white">
                         <h4 className="section-label">의료 UX writing 원칙 검토</h4>
                         <p className="typography-copy">
                             환자용 문구는 의학적으로 정확해야 할 뿐 아니라, 건강 문해력을 고려해

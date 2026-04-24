@@ -12,7 +12,7 @@ export default function SectionDevelopUsabilityTesting() {
     return (
         <section className="section section-dd-develop-usability-testing">
             <div className="section-content">
-                <h2 className="section-eyebrow">
+                <h2 className="section-eyebrow subhead">
                     <span className="visuallyhidden">Double Diamond 03. Develop</span>
                     Usability Testing &middot; 더 선명하게 잇길.
                 </h2>

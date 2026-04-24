@@ -1,0 +1,20 @@
+.page-eum {
+    .card-white-wrapper {
+        display: flex;
+        gap: 24px;
+        width: 100%;
+        padding-top: 48px;
+
+        .card-white {
+            width: calc(100% / 3);
+
+            .section-label {
+                width: auto;
+            }
+
+            .typography-copy {
+                width: auto;
+            }
+        }
+    }
+}

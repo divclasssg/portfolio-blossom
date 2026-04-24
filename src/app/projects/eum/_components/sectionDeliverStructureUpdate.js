@@ -9,7 +9,7 @@ export default function SectionDeliverStructureUpdate() {
     return (
         <section className="section section-dd-deliver-structure-update">
             <div className="section-content">
-                <h2 className="section-eyebrow">
+                <h2 className="section-eyebrow subhead">
                     <span className="visuallyhidden">Double Diamond 04. Deliver</span>
                     구조 업데이트 &middot; 흐름으로 이음.
                 </h2>

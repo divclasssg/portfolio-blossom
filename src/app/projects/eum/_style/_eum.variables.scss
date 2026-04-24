@@ -13,18 +13,21 @@
     --color-emphasis-ai: #E597EF;
 
     // ─────────────────────────────────────────────
-    // Emphasis (키워드 강조)
+    // Emphasis (키워드 강조) — 회색 텍스트
+    // 기본(밝은 배경): gray-scale-1 / 다크(.section-standalone): gray-scale-2
     // ─────────────────────────────────────────────
-    .emphasis-patient {
-        background: transparent !important;
-        color: var(--color-gray-scale-1) !important;
-    }
-    .emphasis-doctor {
-        background: transparent !important;
-        color: var(--color-gray-scale-1) !important;
-    }
+    .emphasis-patient,
+    .emphasis-doctor,
     .emphasis-ai {
         background: transparent !important;
         color: var(--color-gray-scale-1) !important;
+    }
+
+    .section-standalone {
+        .emphasis-patient,
+        .emphasis-doctor,
+        .emphasis-ai {
+            color: var(--color-gray-scale-2) !important;
+        }
     }
 }

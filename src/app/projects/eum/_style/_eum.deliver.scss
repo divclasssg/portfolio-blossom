@@ -2,57 +2,109 @@
     // ─────────────────────────────────────────────
     // Key Change (Deliver)
     // ─────────────────────────────────────────────
-    .key-change-wrapper {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 96px 0;
-
-        &.key-change-02 {
-            .video-js,
-            .vjs-tech,
-            .vjs-poster,
-            .vjs-text-track-display,
-            .vjs-control-bar,
-            div[data-vjs-player] {
-                border-radius: 32px !important;
-            }
+    // ─────────────────────────────────────────────
+    // Key Changes — Sticky scroll (Key Screen 패턴)
+    // 항목당 400vh, 총 (N × 400vh). ENTER → AS-IS 홀드 → 크로스페이드 → TO-BE 홀드+스크럽 → EXIT
+    // ─────────────────────────────────────────────
+    .section-dd-deliver-key-changes {
+        .key-changes-scroll-container {
+            position: relative;
+            height: 1200vh; // 3 items × 400vh
         }
 
-        .key-change-content {
-            max-width: var(--layout-paragraph-width);
-        }
-
-        .key-change-headline {
-            color: var(--color-text-tertiary);
-            font-family: var(--font-family-spoqa);
-            font-size: var(--font-size-regular);
-            font-style: normal;
-            font-weight: 700;
-            line-height: 140%;
-            padding-bottom: 16px;
-        }
-
-        .key-change-summary {
+        .key-changes-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: var(--layout-paragraph-width);
-            padding: 16px 0 48px;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
+            gap: 96px;
+        }
 
-            .key-change-item {
+        // ─── 좌측: 텍스트 콜아웃 (mask로 상하 페이드) ───
+        .key-changes-callout-area {
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: min(760px, 45vw);
+            height: 92vh;
+            overflow: hidden;
+            mask-image: linear-gradient(
+                to bottom,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
+        }
+
+        .key-changes-callout {
+            grid-area: 1 / 1;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(120px);
+            will-change: transform, opacity;
+
+            .key-changes-callout-title {
+                color: var(--color-text-tertiary);
+                font-family: var(--font-family-spoqa);
+                font-size: var(--font-size-regular);
+                font-weight: 700;
+                line-height: 140%;
+                padding-bottom: 8px;
+            }
+
+            .key-changes-callout-headline {
+                color: var(--color-text-primary);
+                font-family: var(--font-family-spoqa);
+                font-size: var(--font-size-xlarge);
+                font-weight: 700;
+                line-height: 130%;
+                padding-bottom: 16px;
+
+                .emphasis {
+                    background: var(--color-primary);
+                    display: inline-block;
+                    color: var(--color-white);
+                }
+            }
+
+            .key-changes-callout-copy {
+                color: var(--color-text-secondary);
+                font-family: var(--font-family-suit);
+                font-size: var(--font-size-regular);
+                font-weight: 400;
+                line-height: 120%;
+                padding-bottom: 24px;
+            }
+
+            .key-changes-callout-spec {
                 display: flex;
-                gap: 16px;
+                flex-direction: column;
+                gap: 8px;
+                padding-bottom: 24px;
+
+                > div {
+                    display: flex;
+                    gap: 16px;
+                }
 
                 dt {
+                    flex-shrink: 0;
                     width: 95px;
                     color: var(--color-text-secondary);
                     font-feature-settings: "ss18" on;
                     font-family: var(--font-family-suit);
                     font-size: var(--font-size-regular);
-                    font-style: normal;
                     font-weight: 700;
                     line-height: 130%;
                 }
@@ -63,55 +115,69 @@
                     font-feature-settings: "ss18" on;
                     font-family: var(--font-family-suit);
                     font-size: var(--font-size-regular);
-                    font-style: normal;
                     font-weight: 400;
                     line-height: 130%;
                 }
             }
         }
 
-        .key-change-assets {
-            flex: 1;
+        // ─── 우측(row-reverse라 실제론 좌측): AS-IS + TO-BE 병렬 비주얼 ───
+        .key-changes-visual-area {
+            position: relative;
+            height: 100vh;
+            width: min(640px, 38vw);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .key-changes-visual-track {
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+
+        .key-changes-visual {
+            width: 100%;
+            height: 100vh;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
+            justify-content: center;
+        }
 
-            figure {
-                display: flex;
-                flex-direction: column-reverse;
-
-                &.to-be {
-                    margin-left: -100px;
-
-                    figcaption {
-                        text-align: center;
-                        font-size: var(--font-size-xlarge);
-                        font-weight: 700;
-                        color: var(--color-text-primary);
-                        padding-left: 0;
-                    }
-                }
-            }
+        .key-changes-visual-asis,
+        .key-changes-visual-tobe {
+            margin: 0;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 12px;
+            flex-shrink: 0;
 
             figcaption {
+                text-align: center;
                 font-size: var(--font-size-large);
                 font-weight: 500;
                 color: var(--color-text-tertiary);
-                text-align: left;
-                padding-left: 24px;
+                padding: 8px 0 0;
             }
+        }
 
-            .video-js,
-            .vjs-tech,
-            .vjs-poster,
-            .vjs-text-track-display,
-            .vjs-control-bar,
-            div[data-vjs-player] {
-                border-radius: 58px;
-                overflow: hidden;
-                outline: none !important;
-                box-shadow: none !important;
-                background: transparent !important;
-                margin: 0 !important;
+        .key-changes-visual-asis {
+            opacity: 0;
+            will-change: opacity;
+        }
+
+        .key-changes-visual-tobe {
+            position: relative;
+            margin-left: -80px;
+            z-index: 1;
+            transform: translateY(100vh);
+            will-change: transform;
+
+            figcaption {
+                color: var(--color-text-primary);
+                font-weight: 700;
+                font-size: var(--font-size-xlarge);
             }
         }
     }
@@ -213,33 +279,161 @@
     }
 
     // ─────────────────────────────────────────────
-    // Final Prototype (자동 슬라이드)
+    // Final Prototype (디바이스 목업 + 블러 배경 + 썸네일)
     // ─────────────────────────────────────────────
     .section-dd-deliver-final-prototype {
         background: #202022;
+        padding-bottom: 64px;
 
-        .auto-slider-item div > div {
-            width: 100% !important;
-            height: 100% !important;
-            background: transparent !important;
+        // Stage ------------------------------------------------
+        .proto-stage {
+            position: relative;
+            height: 80svh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .auto-slider-item .video-js {
-            background: transparent !important;
+        .proto-stage-bg {
+            position: absolute;
+            inset: -8%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+
+            video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: blur(40px) brightness(0.45) saturate(1.2);
+                transform: scale(1.2);
+            }
         }
 
-        .auto-slider-item video {
+        .proto-hero {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            padding: 40px 24px;
+
+            .device-phone {
+                height: 100%;
+                width: auto;
+            }
+
+            .device-laptop {
+                width: min(90%, 1100px);
+            }
         }
 
-        .slider-controls {
+        // Device: Phone ----------------------------------------
+        .device {
+            position: relative;
+        }
+
+        .device-phone {
+            aspect-ratio: 1440 / 2560;
+            padding: 2.4%;
+            background: linear-gradient(145deg, #2d2d30, #131315);
+            border-radius: 12% / 7%;
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.55),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 2.8%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 28%;
+                height: 2.4%;
+                background: #000;
+                border-radius: 999px;
+                z-index: 2;
+            }
+
+            .device-screen {
+                width: 100%;
+                height: 100%;
+                border-radius: 10% / 5.5%;
+                overflow: hidden;
+                background: #000;
+            }
+
+            video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        // Device: Laptop ---------------------------------------
+        .device-laptop {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            margin-top: 24px;
+
+            .device-laptop-screen {
+                width: 100%;
+                padding: 1.4%;
+                background: linear-gradient(145deg, #2d2d30, #131315);
+                border-radius: 10px 10px 4px 4px;
+                box-shadow:
+                    0 20px 50px rgba(0, 0, 0, 0.5),
+                    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+                > .device-screen {
+                    aspect-ratio: 1920 / 1080;
+                    width: 100%;
+                    border-radius: 2px;
+                    overflow: hidden;
+                    background: #000;
+
+                    video {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+                }
+            }
+
+            .device-laptop-base {
+                position: relative;
+                width: 108%;
+                height: 10px;
+                background: linear-gradient(to bottom, #3a3a3c, #1a1a1c);
+                border-radius: 0 0 8px 8px;
+                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 14%;
+                    height: 3px;
+                    background: rgba(0, 0, 0, 0.55);
+                    border-radius: 0 0 4px 4px;
+                }
+            }
+        }
+
+        // Controls ---------------------------------------------
+        .proto-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-top: 28px;
         }
 
         .slider-progress {
@@ -258,15 +452,9 @@
 
         .slider-progress-fill {
             height: 100%;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 2px;
             transition: width 0.2s linear;
-        }
-
-        .slider-buttons {
-            display: flex;
-            align-items: center;
-            gap: 12px;
         }
 
         .slider-btn {
@@ -281,16 +469,87 @@
             background: none;
             color: rgba(255, 255, 255, 0.8);
             cursor: pointer;
-            transition: border-color 0.2s, color 0.2s;
+            transition:
+                border-color 0.2s,
+                color 0.2s;
 
-            &:hover:not(:disabled) {
+            &:hover {
                 border-color: rgba(255, 255, 255, 0.7);
                 color: #fff;
             }
+        }
 
-            &:disabled {
-                opacity: 0.3;
-                cursor: default;
+        // Thumbnails -------------------------------------------
+        .proto-thumbs {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 28px;
+            margin-top: 32px;
+            padding: 0 24px;
+            list-style: none;
+
+            li {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+            }
+        }
+
+        .proto-thumb {
+            padding: 0;
+            margin: 0;
+            background: none;
+            border: 0;
+            cursor: pointer;
+            opacity: 0.5;
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+
+            .device {
+                pointer-events: none;
+            }
+
+            &.proto-thumb-phone .device-phone {
+                width: 72px;
+            }
+
+            &.proto-thumb-laptop .device-laptop {
+                width: 160px;
+            }
+
+            &:hover {
+                opacity: 0.85;
+            }
+
+            &.is-active {
+                opacity: 1;
+                transform: translateY(-4px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .proto-stage {
+                height: 70svh;
+            }
+
+            .proto-hero {
+                padding: 24px 16px;
+            }
+
+            .proto-thumbs {
+                gap: 16px;
+                margin-top: 24px;
+            }
+
+            .proto-thumb {
+                &.proto-thumb-phone .device-phone {
+                    width: 56px;
+                }
+                &.proto-thumb-laptop .device-laptop {
+                    width: 120px;
+                }
             }
         }
     }

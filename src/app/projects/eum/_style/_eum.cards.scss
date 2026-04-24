@@ -25,11 +25,6 @@
                 border: 1px solid var(--color-doctor);
                 background: var(--color-bg-doctor);
             }
-
-            &.neutral {
-                border: 1px solid var(--color-border-default);
-                background: var(--color-surface-subtle);
-            }
         }
     }
 
@@ -239,5 +234,15 @@
                 line-height: 150%;
             }
         }
+    }
+
+    // ─────────────────────────────────────────────
+    // Card white
+    // ─────────────────────────────────────────────
+    .card-white {
+        border: 1px solid var(--color-gray-scale-4);
+        border-radius: var(--radius-12);
+        background: var(--color-white);
+        padding: 24px;
     }
 }

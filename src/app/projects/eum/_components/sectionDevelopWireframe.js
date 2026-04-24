@@ -13,7 +13,7 @@ export default function SectionDevelopWireframe() {
     return (
         <section className="section section-dd-develop-wireframe-to-prototype">
             <div className="section-content">
-                <h2 className="section-eyebrow">
+                <h2 className="section-eyebrow subhead">
                     <span className="visuallyhidden">Double Diamond 03. Develop</span>
                     Wireframe → prototype &middot; 프로토타입까지 이음.
                 </h2>

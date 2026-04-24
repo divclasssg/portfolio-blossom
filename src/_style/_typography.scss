@@ -8,7 +8,28 @@
     line-height: 100%;
     text-transform: capitalize;
     color: var(--color-text-tertiary);
-    padding-bottom: 16px;
+    padding-bottom: 12px;
+
+    &:not(.subhead) {
+        background: linear-gradient(90deg, #0071e3 0%, #1d1d1f 40%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+}
+
+.section-dd-discover .section-eyebrow,
+.section-dd-define .section-eyebrow,
+.section-dd-develop .section-eyebrow,
+.section-dd-deliver .section-eyebrow {
+    background-image: linear-gradient(90deg, #1d1d1f 0%, #0071e3 40%);
+}
+
+.section-standalone .section-eyebrow {
+    background: linear-gradient(135deg, #aeaeb2 0%, #f2f2f7 50%, #aeaeb2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 .section-headline-large {
     width: var(--layout-paragraph-width);
@@ -53,7 +74,7 @@
     }
     line-height: 120%;
     color: var(--color-text-tertiary);
-    padding-bottom: 16px;
+    padding-bottom: 12px;
 }
 .section-callout {
     font: {

@@ -9,7 +9,7 @@ export default function SectionDeliverIterationAndRedesign() {
         <section className="section section-dd-deliver-iteration-and-redesign">
             <div className="section-standalone">
                 <div className="standalone-content">
-                    <h2 className="section-eyebrow">
+                    <h2 className="section-eyebrow subhead">
                         <span className="visuallyhidden">Double Diamond 04. Deliver</span>
                         Iteration & Redesign &middot; 전달을 다시 이음.
                     </h2>

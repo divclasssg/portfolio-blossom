@@ -9,21 +9,34 @@
         color: var(--color-white);
         margin: 0 auto;
         box-sizing: border-box;
-        
+
         h2 {
             font: {
                 size: var(--font-size-large);
                 wieght: 700;
-            };
-            padding-bottom: 24px;
+            }
+            padding-bottom: 8px;
         }
 
-        ul {
-            li {
-                padding-bottom: 8px;
+        .localfooternav {
+            margin-left: auto;
+            .localfooternav-list {
+                display: flex;
+                gap: 24px;
+                .localfooternav-item {
+                    padding-bottom: 8px;
 
-                a:hover {
-                    text-decoration: underline;
+                    .localfooternav-item-projects {
+                        padding-top: 8px;
+                    }
+
+                    .localfooternav-link {
+                        font-size: var(--font-size-small);
+                    }
+
+                    .localfooternav-link:hover {
+                        text-decoration: underline;
+                    }
                 }
             }
         }
@@ -31,7 +44,8 @@
         .info {
             display: flex;
             gap: 8px;
-            padding-top: 64px;
+            font-size: var(--font-size-small);
+            padding-top: 96px;
         }
 
         .copyright {

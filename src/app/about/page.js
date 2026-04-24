@@ -1,5 +1,5 @@
 import AboutHero from "./_components/aboutHero";
-import CopyEmailButton from "./_components/copyEmailButton";
+import CopyEmailButton from "@/_components/copyEmailButton";
 import "./_style/about.style.scss";
 
 export const metadata = {
