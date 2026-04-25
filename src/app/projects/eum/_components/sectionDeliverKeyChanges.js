@@ -247,7 +247,12 @@ export default function SectionDeliverKeyChanges() {
                                             alt={item.asIs.alt}
                                             width={item.asIs.width}
                                             height={item.asIs.height}
-                                            style={{ width: item.asIs.imgWidth, height: "auto" }}
+                                            style={{
+                                                width: "auto",
+                                                height: "auto",
+                                                maxWidth: `${item.asIs.imgWidth}px`,
+                                                maxHeight: "calc(100vh - var(--localnav-height) - 52px)",
+                                            }}
                                             sizes={sizes.fixed(item.asIs.imgWidth)}
                                             quality={QUALITY_UI}
                                         />
