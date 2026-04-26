@@ -1,0 +1,86 @@
+.section-reference {
+    padding: 96px 0;
+
+    .reference-list {
+        border-top: 1px solid var(--color-border-default);
+        padding: 16px 0;
+        interpolate-size: allow-keywords;
+
+        &:nth-child(2) {
+            border-top: 0;
+        }
+
+        &::details-content {
+            block-size: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition:
+                content-visibility 0.35s allow-discrete,
+                block-size 0.35s ease,
+                opacity 0.25s ease;
+        }
+
+        &[open]::details-content {
+            block-size: auto;
+            opacity: 1;
+        }
+
+        summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-size: var(--font-size-regular);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            list-style: none;
+
+            &::-webkit-details-marker {
+                display: none;
+            }
+
+            .reference-marker {
+                flex-shrink: 0;
+                transition: transform 0.2s ease;
+                font-family: var(--font-family-suit);
+                font-weight: 400;
+            }
+        }
+
+        &[open] summary .reference-marker {
+            transform: rotate(90deg);
+        }
+
+        ol {
+            margin: 24px 0;
+
+            li {
+                counter-increment: item;
+                position: relative;
+                padding-left: 2em;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: var(--font-size-small);
+                color: var(--color-text-primary);
+                box-sizing: border-box;
+                margin-top: 8px;
+
+                em {
+                    font-style: italic;
+                }
+
+                &::before {
+                    content: "[" counter(item) "]";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
+

@@ -23,6 +23,7 @@ import SectionFinalResult from "./_components/sectionFinalResult";
 import Localnav from "../_components/localnav";
 import Localfooter from "../_components/localfooter";
 import SectionKeyTakeaways from "./_components/sectionKeyTakeaways";
+import SectionReference from "./_components/sectionReference";
 
 export const metadata = {
     title: "Eum",
@@ -56,6 +57,7 @@ export default function EumPage() {
                 <SectionAiPipeline />
                 <SectionFinalResult />
                 <SectionKeyTakeaways />
+                <SectionReference />
             </main>
             <Localfooter />
         </>
