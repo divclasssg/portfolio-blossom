@@ -20,7 +20,8 @@ const projects = [
         key: "eum",
         label: "eum, 2026",
         href: "/projects/eum",
-        image: "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/images/main/eum.jpg",
+        videoSrc: "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/home/home_eum.mp4",
+        poster: "home/home_eum_poster.jpg",
         alt: "projects Eum",
     },
     { key: "cronometer", label: "cronometer, 2025 -- 2026", href: "/projects/cronometer" },
@@ -59,7 +60,7 @@ export default function HomePortfolio() {
             </nav>
             <section className="section section-portfolio-intro">
                 {projects
-                    .filter((p) => p.image || p.video)
+                    .filter((p) => p.image || p.video || p.videoSrc)
                     .map((project) => (
                         <div
                             key={project.key}
@@ -71,6 +72,20 @@ export default function HomePortfolio() {
                                         <BackgroundVideo
                                             base={project.video}
                                             poster={asset(project.poster)}
+                                        />
+                                        <div className="intro-video-overlay" />
+                                    </>
+                                ) : project.videoSrc ? (
+                                    <>
+                                        <video
+                                            src={project.videoSrc}
+                                            poster={asset(project.poster)}
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            preload="auto"
+                                            aria-hidden="true"
                                         />
                                         <div className="intro-video-overlay" />
                                     </>
