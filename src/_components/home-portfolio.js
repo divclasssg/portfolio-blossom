@@ -23,6 +23,11 @@ const projects = [
         videoSrc: "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/home/home_eum.mp4",
         poster: "home/home_eum_poster.jpg",
         alt: "projects Eum",
+        caption: {
+            eyebrow: "Eum",
+            headline: "환자와 의사를 이음.",
+            body: "환자 기록을 진료에 연결하고, 의사의 판단과 환자의 이해를 잇는 AI 보조 커뮤니케이션 서비스.",
+        },
     },
     { key: "cronometer", label: "cronometer, 2025 -- 2026", href: "/projects/cronometer" },
     { key: "liverpoolfc", label: "liverpool fc, 2025", href: "/projects/liverpoolfc" },
@@ -88,6 +93,25 @@ export default function HomePortfolio() {
                                             aria-hidden="true"
                                         />
                                         <div className="intro-video-overlay" />
+                                        {project.caption && (
+                                            <div className="intro-video-caption">
+                                                {project.caption.eyebrow && (
+                                                    <p className="caption-eyebrow">
+                                                        {project.caption.eyebrow}
+                                                    </p>
+                                                )}
+                                                {project.caption.headline && (
+                                                    <p className="caption-headline">
+                                                        {project.caption.headline}
+                                                    </p>
+                                                )}
+                                                {project.caption.body && (
+                                                    <p className="caption-body">
+                                                        {project.caption.body}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        )}
                                     </>
                                 ) : (
                                     <Image
