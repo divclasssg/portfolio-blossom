@@ -42,7 +42,7 @@ export default function Localfooter() {
                                 </li>
                                 <li>
                                     <Link
-                                        href="/liverpoolfc"
+                                        href="/projects/liverpoolfc"
                                         target="_self"
                                         className="localfooternav-link"
                                     >

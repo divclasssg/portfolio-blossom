@@ -2,10 +2,33 @@
 
 import "../_style/project.localnav.scss";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+const PROJECTS = [
+    { slug: "eum", label: "Eum", demoHref: "/eum", demoLabel: "Eum Demo 체험하기" },
+    {
+        slug: "cronometer",
+        label: "Cronometer",
+        demoHref: "/cronometer",
+        demoLabel: "Cronometer 체험하기",
+    },
+    {
+        slug: "liverpoolfc",
+        label: "Liverpool FC",
+        demoHref: "/liverpoolfc",
+        demoLabel: "Liverpool FC 체험하기",
+    },
+];
+
 export default function Localnav() {
+    const pathname = usePathname();
     const [visible, setVisible] = useState(false);
+
+    const currentSlug =
+        PROJECTS.find((p) => pathname?.startsWith(`/projects/${p.slug}`))?.slug ??
+        PROJECTS[0].slug;
+    const current = PROJECTS.find((p) => p.slug === currentSlug) ?? PROJECTS[0];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,37 +56,42 @@ export default function Localnav() {
                             window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
                     >
-                        Eum
+                        {current.label}
                     </a>
                 </div>
                 <div className="localnav-menu">
                     <ul className="localnav-list">
                         <li className="localnav-item">
-                            <Link href="/" target="_self" className="localnav-link">
+                            <Link href="/" className="localnav-link">
                                 HOME
                             </Link>
                         </li>
-                        <li className="localnav-item">
-                            <span className="localnav-link active">Eum</span>
-                        </li>
-                        <li className="localnav-item">
-                            <Link
-                                href="/projects/cronometer"
-                                target="_self"
-                                className="localnav-link"
-                            >
-                                Cronometer
-                            </Link>
-                        </li>
-                        <li className="localnav-item">
-                            <Link href="/liverpoolfc" target="_self" className="localnav-link">
-                                Liverpool FC
-                            </Link>
-                        </li>
+                        {PROJECTS.map((p) =>
+                            p.slug === currentSlug ? (
+                                <li className="localnav-item" key={p.slug}>
+                                    <span className="localnav-link active">
+                                        {p.label}
+                                    </span>
+                                </li>
+                            ) : (
+                                <li className="localnav-item" key={p.slug}>
+                                    <Link
+                                        href={`/projects/${p.slug}`}
+                                        className="localnav-link"
+                                    >
+                                        {p.label}
+                                    </Link>
+                                </li>
+                            )
+                        )}
                     </ul>
                     <div className="localnav-actions">
-                        <Link href="/eum" target="_blank" rel="noopener noreferrer">
-                            Eum Demo 체험하기
+                        <Link
+                            href={current.demoHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {current.demoLabel}
                         </Link>
                     </div>
                 </div>

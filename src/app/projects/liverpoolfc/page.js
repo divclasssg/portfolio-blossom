@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Localfooter from "../_components/localfooter";
 import Localnav from "../_components/localnav";
+import SectionFinalDesign from "./_components/sectionFinalDesign";
 import "./_style/liverpool.scss";
 import Link from "next/link";
+import IconArrow from "@/_components/icons/arrow";
+// import IconArrow from ""
 
 export const metadata = {
     title: "Liverpool FC",
@@ -409,7 +412,7 @@ export default function LiverpooplPage() {
                         </div>
                         <div className="ia-transition-map">
                             <div className="ia-transition-map-as-is">
-                                <h3>AS-IS</h3>
+                                <h3 className="visuallyhidden">AS-IS</h3>
                                 <ul>
                                     <li>Top News Grid</li>
                                     <li>Mixed Main Stories</li>
@@ -428,7 +431,7 @@ export default function LiverpooplPage() {
                                 </ul>
                             </div>
                             <div className="ia-transition-map-to-be">
-                                <h3>TO-BE</h3>
+                                <h3 className="visuallyhidden">TO-BE</h3>
                                 <ul>
                                     <li>Hero</li>
                                     <li>Featured</li>
@@ -449,66 +452,7 @@ export default function LiverpooplPage() {
                         </div>
                     </div>
                 </section>
-                <section className="section section-final-design">
-                    <div className="section-content">
-                        <h2 className="section-eyebrow">Final Design</h2>
-                        <div>
-                            <h3>Hero</h3>
-                            <p className="section-headline-large">
-                                HERO Hero는 뉴스보다 클럽 정체성을 먼저 전달해야 했습니다.
-                            </p>
-                            <p className="typography-copy">
-                                Hero의 역할은 최신 뉴스를 보여주는 것이 아니라, Liverpool FC라는
-                                클럽의 감정적 진입점을 만드는 것이었습니다. 동시에 멤버십, 티켓,
-                                스토어를 배치하여 팬 경험의 가치를 높였습니다.
-                            </p>
-                        </div>
-                        <div>
-                            <h3>Fixtures & Standings</h3>
-                            <p className="section-headline-large">
-                                팬이 가장 자주 찾는 정보를 상단으로 끌어올렸습니다.
-                            </p>
-                            <p className="typography-copy">
-                                팬은 경기 일정, 다음 경기, 순위, 라인업, 티켓 정보를 빠르게 확인하고
-                                싶어 했습니다. 그래서 Fixtures & Standings를 뉴스나 상품보다 이른
-                                위치에 배치했습니다.
-                            </p>
-                        </div>
-                        <div>
-                            <h3>Players</h3>
-                            <p className="section-headline-large">
-                                Players는 경기 정보 이후 팬의 관심을 선수로 확장시킵니다.
-                            </p>
-                            <p className="typography-copy">
-                                Players 섹션은 팬의 관심을 팀 단위 정보에서 선수 개인으로 확장시키는
-                                역할을 합니다. 1군, 여성팀, 유스팀을 함께 탐색할 수 있도록 구성해
-                                클럽 생태계를 더 넓게 보여주도록 했습니다.
-                            </p>
-                        </div>
-                        <div>
-                            <h3>History / Brand Heritage</h3>
-                            <p className="section-headline-large">
-                                History는 기록 나열이 아니라 팬의 자부심을 만드는 영역입니다.
-                            </p>
-                            <p className="typography-copy">
-                                History 섹션은 클럽의 우승 기록을 보여주는 데서 끝나지 않습니다.
-                                Liverpool FC가 어떤 역사를 가진 클럽인지 보여주고, 팬의 자부심과
-                                공동체 의식을 강화하는 Brand Heritage 영역으로 다뤘습니다.
-                            </p>
-                        </div>
-                        <div>
-                            <h3>Club & Community</h3>
-                            <p className="section-headline-large">
-                                Club & Community는 클럽이 팬과 사회에 연결되는 방식을 보여줍니다
-                            </p>
-                            <p className="typography-copy">
-                                이 섹션은 Liverpool FC가 단순한 축구팀이 아니라 지역사회와 팬, 미래
-                                세대와 연결된 브랜드라는 점을 보여주는 영역입니다. The Red Way와
-                                같은 사회적 가치와 커뮤니티 활동을 통해 신뢰를 강화했습니다.
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                <SectionFinalDesign />
                 <section className="section section-outcome">
                     <div className="section-content">
                         <h2 className="section-eyebrow">Outcome</h2>
@@ -524,7 +468,8 @@ export default function LiverpooplPage() {
                     <div className="section-content">
                         <h2 className="section-eyebrow">Reflection</h2>
                         <p className="section-headline-large">
-                            강조를 더하는 것이 아니라, 강조를 줄이는 방식.
+                            강조를 더하는 것이 아니라, <br />
+                            강조를 줄이는 방식.
                         </p>
                         <p className="typography-copy">
                             이번 프로젝트의 핵심 학습은 브랜드 컬러와 CTA를 많이 사용하는 것이 항상
