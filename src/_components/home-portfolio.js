@@ -18,9 +18,10 @@ const projects = [
     },
     {
         key: "eum",
-        label: "eum, 2026",
+        label: "eum",
         href: "/projects/eum",
-        videoSrc1x: "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/home/home_eum.mp4",
+        videoSrc1x:
+            "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/home/home_eum.mp4",
         videoSrc2x:
             "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/home/home_eum_2x.mp4",
         poster: "home/home_eum_poster.jpg",
@@ -31,10 +32,10 @@ const projects = [
             body: "환자 기록을 진료에 연결하고, 의사의 판단과 환자의 이해를 잇는 AI 보조 커뮤니케이션 서비스.",
         },
     },
-    { key: "cronometer", label: "cronometer, 2025 -- 2026", href: "/projects/cronometer" },
+    { key: "cronometer", label: "cronometer", href: "/projects/cronometer" },
     {
         key: "liverpoolfc",
-        label: "liverpool fc, 2025",
+        label: "liverpool fc",
         href: "/projects/liverpoolfc",
         video: "home/home_liverpoolfc",
         alt: "projects Liverpool FC",
@@ -71,11 +72,7 @@ export default function HomePortfolio() {
                                 onMouseEnter={() => setHovered(project.key)}
                                 onMouseLeave={() => setHovered(null)}
                             >
-                                <Link
-                                    href={project.href}
-                                    target="_self"
-                                    className="homenav-link"
-                                >
+                                <Link href={project.href} target="_self" className="homenav-link">
                                     {project.label}
                                     <span>
                                         <IconArrow size={12} />
@@ -102,9 +99,7 @@ export default function HomePortfolio() {
                                             src1x={project.videoSrc1x}
                                             src2x={project.videoSrc2x}
                                             poster={
-                                                project.poster
-                                                    ? asset(project.poster)
-                                                    : undefined
+                                                project.poster ? asset(project.poster) : undefined
                                             }
                                             isActive={hovered === project.key}
                                         />

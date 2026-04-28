@@ -31,7 +31,7 @@ export default function Localfooter() {
                                         target="_self"
                                         className="localfooternav-link"
                                     >
-                                        eum, 2026
+                                        eum
                                     </Link>
                                 </li>
                                 <li>
@@ -40,7 +40,7 @@ export default function Localfooter() {
                                         target="_self"
                                         className="localfooternav-link"
                                     >
-                                        cronometer, 2025 -- 2026
+                                        cronometer
                                     </Link>
                                 </li>
                                 <li>
@@ -49,7 +49,7 @@ export default function Localfooter() {
                                         target="_self"
                                         className="localfooternav-link"
                                     >
-                                        liverpool fc, 2025
+                                        liverpool fc
                                     </Link>
                                 </li>
                             </ul>

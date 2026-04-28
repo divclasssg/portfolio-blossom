@@ -9,15 +9,15 @@ import IconClose from "./icons/close";
 const MENU_ITEMS = [
     { href: "/", label: "home", match: (p) => p === "/" },
     { href: "/about", label: "about", match: (p) => p === "/about" },
-    { href: "/projects/eum", label: "eum, 2026 ", match: (p) => p.startsWith("/projects/eum") },
+    { href: "/projects/eum", label: "eum", match: (p) => p.startsWith("/projects/eum") },
     {
         href: "/projects/cronometer",
-        label: "cronometer, 2025 -- 2026 ",
+        label: "cronometer",
         match: (p) => p.startsWith("/projects/cronometer"),
     },
     {
         href: "/projects/liverpoolfc",
-        label: "liverpool fc, 2025 ",
+        label: "liverpool fc",
         match: (p) => p.startsWith("/projects/liverpoolfc"),
     },
 ];
