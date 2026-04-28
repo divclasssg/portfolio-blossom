@@ -51,7 +51,7 @@ export default function Globalnav() {
     }, [isOpen]);
 
     return (
-        <nav className={`globalnav ${isHome ? "is-home" : isAbout ? "is-about" : "is-sub"}`}>
+        <nav className={`globalnav${isHome ? " is-home" : isAbout ? " is-about" : ""}`}>
             <div className="globalnav-content">
                 <Link href="/" target="_self" className="globalnav-home">
                     parkseik
