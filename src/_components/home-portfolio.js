@@ -20,7 +20,9 @@ const projects = [
         key: "eum",
         label: "eum, 2026",
         href: "/projects/eum",
-        videoSrc: "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/home/home_eum.mp4",
+        videoSrc1x: "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/home/home_eum.mp4",
+        videoSrc2x:
+            "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/home/home_eum_2x.mp4",
         poster: "home/home_eum_poster.jpg",
         alt: "projects Eum",
         caption: {
@@ -30,8 +32,29 @@ const projects = [
         },
     },
     { key: "cronometer", label: "cronometer, 2025 -- 2026", href: "/projects/cronometer" },
-    { key: "liverpoolfc", label: "liverpool fc, 2025", href: "/projects/liverpoolfc" },
+    {
+        key: "liverpoolfc",
+        label: "liverpool fc, 2025",
+        href: "/projects/liverpoolfc",
+        video: "home/home_liverpoolfc",
+        alt: "projects Liverpool FC",
+        caption: {
+            eyebrow: "Liverpool FC",
+            headline: "콘텐츠 피드형 홈을 팬 여정 중심 클럽 허브로 재구성.",
+            body: "팬의 방문 목적과 클럽 정체성을 기준으로 메인 페이지의 구조를 다시 설계한 리디자인 프로젝트.",
+        },
+    },
 ];
+
+function IntroCaption({ caption }) {
+    return (
+        <div className="intro-video-caption">
+            {caption.eyebrow && <p className="caption-eyebrow">{caption.eyebrow}</p>}
+            {caption.headline && <p className="caption-headline">{caption.headline}</p>}
+            {caption.body && <p className="caption-body">{caption.body}</p>}
+        </div>
+    );
+}
 
 export default function HomePortfolio() {
     const [hovered, setHovered] = useState(null);
@@ -65,52 +88,28 @@ export default function HomePortfolio() {
             </nav>
             <section className="section section-portfolio-intro">
                 {projects
-                    .filter((p) => p.image || p.video || p.videoSrc)
+                    .filter((p) => p.image || p.video || p.videoSrc1x)
                     .map((project) => (
                         <div
                             key={project.key}
                             className={`intro-content ${project.key}${hovered === project.key ? " is-visible" : ""}`}
                         >
                             <div className="intro-image-wrapper">
-                                {project.video ? (
+                                {project.video || project.videoSrc1x ? (
                                     <>
                                         <BackgroundVideo
                                             base={project.video}
-                                            poster={asset(project.poster)}
-                                        />
-                                        <div className="intro-video-overlay" />
-                                    </>
-                                ) : project.videoSrc ? (
-                                    <>
-                                        <video
-                                            src={project.videoSrc}
-                                            poster={asset(project.poster)}
-                                            autoPlay
-                                            muted
-                                            loop
-                                            playsInline
-                                            preload="auto"
-                                            aria-hidden="true"
+                                            src1x={project.videoSrc1x}
+                                            src2x={project.videoSrc2x}
+                                            poster={
+                                                project.poster
+                                                    ? asset(project.poster)
+                                                    : undefined
+                                            }
                                         />
                                         <div className="intro-video-overlay" />
                                         {project.caption && (
-                                            <div className="intro-video-caption">
-                                                {project.caption.eyebrow && (
-                                                    <p className="caption-eyebrow">
-                                                        {project.caption.eyebrow}
-                                                    </p>
-                                                )}
-                                                {project.caption.headline && (
-                                                    <p className="caption-headline">
-                                                        {project.caption.headline}
-                                                    </p>
-                                                )}
-                                                {project.caption.body && (
-                                                    <p className="caption-body">
-                                                        {project.caption.body}
-                                                    </p>
-                                                )}
-                                            </div>
+                                            <IntroCaption caption={project.caption} />
                                         )}
                                     </>
                                 ) : (

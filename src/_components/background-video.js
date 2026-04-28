@@ -30,14 +30,26 @@ const getSnapshot = () => {
 
 const getServerSnapshot = () => "none";
 
-export default function BackgroundVideo({ base, mobileBase, poster, className }) {
+export default function BackgroundVideo({
+    base,
+    mobileBase,
+    src1x,
+    src2x,
+    poster,
+    className,
+}) {
     const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
     let src;
     if (snapshot !== "none") {
-        const useMobile = snapshot.startsWith("m") && mobileBase;
-        const variant = snapshot.endsWith("2") ? "_2x" : "_1x";
-        src = asset(`${useMobile ? mobileBase : base}${variant}.mp4`);
+        if (src1x) {
+            // 직접 URL 모드 — 파일명 _1x/_2x 패턴이 아닌 케이스용
+            src = snapshot.endsWith("2") && src2x ? src2x : src1x;
+        } else if (base) {
+            const useMobile = snapshot.startsWith("m") && mobileBase;
+            const variant = snapshot.endsWith("2") ? "_2x" : "_1x";
+            src = asset(`${useMobile ? mobileBase : base}${variant}.mp4`);
+        }
     }
 
     return (
