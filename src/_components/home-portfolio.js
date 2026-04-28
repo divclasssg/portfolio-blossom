@@ -106,6 +106,7 @@ export default function HomePortfolio() {
                                                     ? asset(project.poster)
                                                     : undefined
                                             }
+                                            isActive={hovered === project.key}
                                         />
                                         <div className="intro-video-overlay" />
                                         {project.caption && (

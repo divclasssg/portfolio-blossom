@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { asset } from "@/_lib/media";
 
 const REDUCE_MOTION = "(prefers-reduced-motion: reduce)";
@@ -37,8 +37,10 @@ export default function BackgroundVideo({
     src2x,
     poster,
     className,
+    isActive = true,
 }) {
     const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+    const videoRef = useRef(null);
 
     let src;
     if (snapshot !== "none") {
@@ -52,12 +54,23 @@ export default function BackgroundVideo({
         }
     }
 
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+        if (isActive) {
+            video.currentTime = 0;
+            video.play().catch(() => {});
+        } else {
+            video.pause();
+        }
+    }, [isActive, src]);
+
     return (
         <video
+            ref={videoRef}
             className={className}
             src={src}
             poster={poster}
-            autoPlay
             muted
             loop
             playsInline
