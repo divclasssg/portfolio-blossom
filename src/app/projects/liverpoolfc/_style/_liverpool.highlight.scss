@@ -1,0 +1,26 @@
+.page-liverpoolfc {
+    .section-highlight {
+        background-color: var(--color-surface-subtle);
+        padding: var(--space-96) 0;
+
+        .highlight-content {
+            max-width: var(--layout-section-content-wide);
+            margin: 0 auto;
+
+            .typography-highlight {
+                font-family: var(--font-family-spoqa);
+                font-size: var(--font-size-xxlarge);
+                color: var(--color-text-primary);
+                font-weight: 700;
+                line-height: 130%;
+                padding-bottom: 0.333em;
+            }
+
+            .typography-copy {
+                padding-bottom: 2em;
+            }
+
+            // .project-snapshot is defined in projects/_style/project.snapshot.scss
+        }
+    }
+}

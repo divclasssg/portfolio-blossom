@@ -1,0 +1,29 @@
+.page-liverpoolfc {
+    .section-eyebrow {
+        background: none;
+        color: var(--color-liverpool-red);
+    }
+
+    // Problem / Key Insights 섹션이 공유하는 콘텐츠 리스트
+    .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        margin-top: 1.5em;
+
+        .content-item {
+            h3 {
+                font-size: var(--font-size-large);
+                font-weight: 700;
+                padding-bottom: 0.2em;
+
+                span {
+                    display: block;
+                    font-size: var(--font-size-small);
+                    font-weight: 700;
+                    color: var(--color-gray-scale-1);
+                }
+            }
+        }
+    }
+}

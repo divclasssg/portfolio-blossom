@@ -1,3 +1,4 @@
+import "../../_style/project.snapshot.scss";
 import projectSnapshot from "../_data/projectSnapshot";
 
 export default function SectionHighlight() {

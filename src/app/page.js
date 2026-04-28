@@ -1,4 +1,4 @@
-import "../_style/home.scss";
+import "./_style/home.scss";
 import HomePortfolio from "@/_components/home-portfolio";
 
 export default function Home() {

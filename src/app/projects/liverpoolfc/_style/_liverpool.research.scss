@@ -1,0 +1,70 @@
+.page-liverpoolfc {
+    .section-research {
+        padding: 0 0 var(--space-96);
+
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-24);
+            padding-top: var(--space-24);
+
+            .card-item {
+                border-radius: var(--radius-12);
+                background-color: var(--color-surface-subtle);
+                display: flex;
+                flex-direction: column-reverse;
+                height: 640px;
+                padding: var(--space-24);
+                box-sizing: border-box;
+                overflow: hidden;
+
+                .img-wrapper {
+                    flex: 1;
+                    align-self: end;
+                    border-radius: var(--radius-8);
+                    background: var(--color-white);
+                    position: relative;
+                    width: calc(4 * 200);
+                    padding: var(--space-24);
+                    overflow: hidden;
+                    box-sizing: border-box;
+
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+
+                .caption-content {
+                    width: 616px;
+                    padding-bottom: 1.78em;
+
+                    h3 {
+                        font-size: var(--font-size-small);
+                        font-weight: 700;
+                        color: var(--color-gray-scale-1);
+                    }
+
+                    .section-headline-small,
+                    .typography-copy {
+                        width: auto;
+                    }
+
+                    .section-headline-small {
+                        padding-bottom: 0.429em;
+                    }
+                }
+
+                &.reference {
+                    .img-wrapper {
+                        img {
+                            position: absolute;
+                            top: -460px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

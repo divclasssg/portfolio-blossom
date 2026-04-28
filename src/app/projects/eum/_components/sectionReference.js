@@ -1,4 +1,4 @@
-import "../../_style/project.reference.scss";
+import "../_style/section.reference.scss";
 
 export default function SectionReference() {
     return (

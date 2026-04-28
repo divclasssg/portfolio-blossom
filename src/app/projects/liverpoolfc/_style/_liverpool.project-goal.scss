@@ -1,0 +1,25 @@
+.page-liverpoolfc {
+    .section-project-goal {
+        padding: var(--space-96) 0;
+
+        .section-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-24);
+
+            .card-default {
+                border-radius: var(--radius-12);
+                background-color: var(--color-surface-subtle);
+                width: calc((var(--layout-section-content-default) / 2) - var(--space-24));
+                padding: var(--space-24);
+                box-sizing: border-box;
+
+                .section-eyebrow,
+                .section-headline-small,
+                .typography-copy {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
