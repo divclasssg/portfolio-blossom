@@ -59,7 +59,11 @@ export default function Localfooter() {
                 <div className="info">
                     <CopyEmailButton email="parkseik@gmail.com" />
                     &middot;
-                    <a href="/" download>
+                    <a
+                        href="/download/resume_parkseik.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         resume
                     </a>
                 </div>

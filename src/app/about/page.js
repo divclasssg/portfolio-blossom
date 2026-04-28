@@ -14,10 +14,7 @@ export default function AboutPage() {
             <AboutHero />
             <main className="main-about" tabIndex={-1}>
                 <h1 className="visuallyhidden">About</h1>
-                <section
-                    className="section section-about"
-                    aria-labelledby="about-title"
-                >
+                <section className="section section-about" aria-labelledby="about-title">
                     <div className="about-content">
                         <h2 id="about-title" lang="en">
                             Better Experiences, for a Better World.
@@ -46,9 +43,7 @@ export default function AboutPage() {
                                 </dd>
                             </div>
                             <div className="about-summary-item">
-                                <dt>
-                                    HCI 연구 3편 &middot; KCI 1편 &middot; HCI 학회 우수논문상
-                                </dt>
+                                <dt>HCI 연구 3편 &middot; KCI 1편 &middot; HCI 학회 우수논문상</dt>
                                 <dd>
                                     자율주행 신뢰 형성, 청각 UX, 헬스케어 UX를 중심으로 사용자
                                     경험을 근거 기반으로 연구해 왔습니다.
@@ -96,7 +91,11 @@ export default function AboutPage() {
                             <div>
                                 <CopyEmailButton email="parkseik@gmail.com" />
                                 &middot;
-                                <a href="/" download>
+                                <a
+                                    href="/download/resume_parkseik.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     resume
                                 </a>
                             </div>
