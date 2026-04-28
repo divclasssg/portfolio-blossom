@@ -30,6 +30,8 @@
     }
 
     .globalnav-content {
+        position: relative;
+        z-index: 30;
         display: flex;
         align-items: center;
         height: 100%;
