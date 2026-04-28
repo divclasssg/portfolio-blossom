@@ -22,29 +22,10 @@
             color 0.3s ease,
             background-color 0.3s ease;
 
-        .globalnav-content .globalnav-home {
+        .globalnav-content .globalnav-home,
+        .globalnav-content .globalnav-menu-button {
             color: inherit;
             transition: color 0.3s ease;
-        }
-
-        .globalnav-about {
-            margin-left: auto;
-            padding-top: 92px;
-            font-weight: 500;
-
-            .project-list {
-                padding-top: 12px;
-            }
-
-            .project-item {
-                padding-bottom: 4px;
-
-                .project-link {
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
         }
     }
 
@@ -57,7 +38,7 @@
 
         .globalnav-home {
             display: flex;
-            align-items: ceneter;
+            align-items: center;
             font-size: 18px;
             font-weight: 600;
             line-height: 100%;
@@ -66,7 +47,6 @@
         }
 
         .globalnav-menu-button {
-            display: none;
             margin-left: auto;
             padding: 0;
             background: none;
@@ -74,26 +54,56 @@
             color: inherit;
             line-height: 0;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .globalnav-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        background: var(--color-bg);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            opacity 0.25s ease,
+            visibility 0s linear 0.25s;
+
+        &.is-open {
+            opacity: 1;
+            visibility: visible;
+            transition:
+                opacity 0.25s ease,
+                visibility 0s;
         }
 
-        .globalnav-list {
-            margin-left: auto;
+        .globalnav-overlay-list {
             display: flex;
+            flex-direction: column;
             gap: 24px;
+            padding: 0 var(--globalnav-padding-x);
+            margin: 0 auto;
+            max-width: 1024px;
+            box-sizing: border-box;
+            padding-top: calc(var(--globalnav-height) + 80px);
+        }
 
-            .globalnav-link {
-                font-size: var(--font-size-small);
-                font-weight: 400;
-                color: var(--color-text-tertiary);
+        .globalnav-overlay-link {
+            font-family: var(--font-family-suit);
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--color-text-primary);
+            display: inline-block;
 
-                &:hover {
-                    color: var(--color-text-primary);
-                }
+            &:hover {
+                color: var(--color-primary);
+            }
 
-                &.active {
-                    font-weight: 700;
-                    color: var(--color-text-primary);
-                }
+            &.active {
+                color: var(--color-primary);
             }
         }
     }
@@ -104,7 +114,7 @@
         --globalnav-padding-x: 40px;
     }
 
-    .globalnav {
+    .globalnav:not(.is-home) {
         position: fixed;
         top: 0;
         left: 0;
@@ -112,22 +122,15 @@
         z-index: 10;
         background: var(--color-white);
         color: var(--color-text-primary);
-
-        &.is-sub .globalnav-list,
-        &.is-about .globalnav-about {
-            display: none;
-        }
-
-        .globalnav-content .globalnav-menu-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
     }
 }
 
 @media (max-width: 640px) {
     :root {
         --globalnav-padding-x: 24px;
+    }
+
+    .globalnav .globalnav-overlay .globalnav-overlay-link {
+        font-size: 36px;
     }
 }

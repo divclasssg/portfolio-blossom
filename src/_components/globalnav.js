@@ -1,13 +1,44 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import IconMenu from "./icons/menu";
+import IconClose from "./icons/close";
+
+const MENU_ITEMS = [
+    { href: "/", label: "home", match: (p) => p === "/" },
+    { href: "/about", label: "about", match: (p) => p === "/about" },
+    { href: "/projects", label: "projects", match: (p) => p.startsWith("/projects") },
+];
 
 export default function Globalnav() {
     const pathname = usePathname();
     const isHome = pathname === "/";
     const isAbout = pathname === "/about";
+    const [isOpen, setIsOpen] = useState(false);
+    const [trackedPath, setTrackedPath] = useState(pathname);
+
+    // 라우트 이동 시 오버레이 닫기 (파생 상태 패턴 — useEffect 미사용)
+    if (trackedPath !== pathname) {
+        setTrackedPath(pathname);
+        if (isOpen) setIsOpen(false);
+    }
+
+    // ESC + body scroll lock
+    useEffect(() => {
+        if (!isOpen) return;
+        const onKey = (e) => {
+            if (e.key === "Escape") setIsOpen(false);
+        };
+        const prevOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        window.addEventListener("keydown", onKey);
+        return () => {
+            document.body.style.overflow = prevOverflow;
+            window.removeEventListener("keydown", onKey);
+        };
+    }, [isOpen]);
 
     return (
         <nav className={`globalnav ${isHome ? "is-home" : isAbout ? "is-about" : "is-sub"}`}>
@@ -16,69 +47,48 @@ export default function Globalnav() {
                     parkseik
                 </Link>
                 {!isHome && (
-                    <button type="button" className="globalnav-menu-button" aria-label="menu">
-                        <IconMenu size={24} />
+                    <button
+                        type="button"
+                        className="globalnav-menu-button"
+                        aria-label={isOpen ? "메뉴 닫기" : "메뉴 열기"}
+                        aria-expanded={isOpen}
+                        aria-controls="globalnav-overlay"
+                        onClick={() => setIsOpen((v) => !v)}
+                    >
+                        {isOpen ? <IconClose size={24} /> : <IconMenu size={24} />}
                     </button>
                 )}
-                {isAbout && (
-                    <div className="globalnav-about">
-                        <ul className="globalnav-about-list">
-                            <li className="globalnav-about-item">
-                                projects
-                                <ul className="project-list">
-                                    <li className="project-item">
-                                        <Link
-                                            href="/projects/eum"
-                                            target="_self"
-                                            className="project-link"
-                                        >
-                                            eum, 2026
-                                        </Link>
-                                    </li>
-                                    <li className="project-item">
-                                        <Link
-                                            href="/projects/cronometer"
-                                            target="_self"
-                                            className="project-link"
-                                        >
-                                            cronometer, 2025 -- 2026
-                                        </Link>
-                                    </li>
-                                    <li className="project-item">
-                                        <Link
-                                            href="/liverpoolfc"
-                                            target="_self"
-                                            className="project-link"
-                                        >
-                                            liverpool fc, 2025
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                )}
-                {!isHome && !isAbout && (
-                    <ul className="globalnav-list">
-                        <li className="globalnav-item">
-                            <Link
-                                href="/about"
-                                className={`globalnav-link${pathname.startsWith("/about") ? " active" : ""}`}
-                            >
-                                about
-                            </Link>
-                        </li>
-                        <li className="globalnav-item">
-                            <Link
-                                href="/projects"
-                                className={`globalnav-link${pathname.startsWith("/projects") ? " active" : ""}`}
-                            >
-                                projects
-                            </Link>
-                        </li>
-                    </ul>
-                )}
             </div>
+            {!isHome && (
+                <div
+                    id="globalnav-overlay"
+                    className={`globalnav-overlay${isOpen ? " is-open" : ""}`}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="전역 메뉴"
+                    aria-hidden={!isOpen}
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) setIsOpen(false);
+                    }}
+                >
+                    <ul className="globalnav-overlay-list">
+                        {MENU_ITEMS.map((item) => {
+                            const active = item.match(pathname);
+                            return (
+                                <li className="globalnav-overlay-item" key={item.href}>
+                                    <Link
+                                        href={item.href}
+                                        className={`globalnav-overlay-link${active ? " active" : ""}`}
+                                        aria-current={active ? "page" : undefined}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            )}
         </nav>
     );
 }
