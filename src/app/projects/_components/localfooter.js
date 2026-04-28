@@ -67,7 +67,7 @@ export default function Localfooter() {
                         resume
                     </a>
                 </div>
-                <p className="copyright">&copy; 2025 -- 2026 parkseik. All rights reserved.</p>
+                <p className="copyright">&copy; 2026 parkseik. All rights reserved.</p>
             </div>
         </footer>
     );

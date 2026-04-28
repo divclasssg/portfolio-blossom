@@ -104,7 +104,7 @@ export default function AboutPage() {
                 </section>
             </main>
             <footer className="aboutfooter">
-                &copy; 2025 -- 2026 parkseik. All rights reserved.
+                &copy; 2026 parkseik. All rights reserved.
             </footer>
         </>
     );

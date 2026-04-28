@@ -14,7 +14,7 @@ export default function Home() {
                 <HomePortfolio />
             </main>
             <footer className="homefooter">
-                &copy; 2025 -- 2026 parkseik. All rights reserved.
+                &copy; 2026 parkseik. All rights reserved.
             </footer>
         </>
     );
