@@ -20,8 +20,11 @@ export default function Localfooter() {
                             </Link>
                         </li>
                         <li className="localfooternav-item">
-                            <span>projects</span>
-                            <ul className="localfooternav-item-projects">
+                            <span id="localfooternav-projects-label">projects</span>
+                            <ul
+                                className="localfooternav-item-projects"
+                                aria-labelledby="localfooternav-projects-label"
+                            >
                                 <li>
                                     <Link
                                         href="/projects/eum"

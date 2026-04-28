@@ -46,18 +46,21 @@ export default function Localnav() {
     }, []);
 
     return (
-        <nav className={`localnav${visible ? " is-visible" : ""}`}>
+        <nav
+            aria-label="프로젝트 내비게이션"
+            className={`localnav${visible ? " is-visible" : ""}`}
+        >
             <div className="localnav-content">
                 <div className="localnav-title">
-                    <a
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                        }}
+                    <button
+                        type="button"
+                        className="localnav-title-button"
+                        onClick={() =>
+                            window.scrollTo({ top: 0, behavior: "smooth" })
+                        }
                     >
                         {current.label}
-                    </a>
+                    </button>
                 </div>
                 <div className="localnav-menu">
                     <ul className="localnav-list">
@@ -69,9 +72,13 @@ export default function Localnav() {
                         {PROJECTS.map((p) =>
                             p.slug === currentSlug ? (
                                 <li className="localnav-item" key={p.slug}>
-                                    <span className="localnav-link active">
+                                    <Link
+                                        href={`/projects/${p.slug}`}
+                                        aria-current="page"
+                                        className="localnav-link active"
+                                    >
                                         {p.label}
-                                    </span>
+                                    </Link>
                                 </li>
                             ) : (
                                 <li className="localnav-item" key={p.slug}>

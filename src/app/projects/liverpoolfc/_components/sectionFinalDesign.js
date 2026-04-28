@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import finalDesigns from "../_data/finalDesigns";
 
 const ITEM_COUNT = finalDesigns.length;
@@ -33,6 +33,7 @@ export default function SectionFinalDesign() {
     const aspectRefs = useRef([]); // 이미지 자연 비율 (W/H)
     const rafRef = useRef(null);
     const scrollHandlerRef = useRef(null);
+    const [reduceMotion, setReduceMotion] = useState(false);
 
     const handleImageLoad = (i, img) => {
         if (img && img.naturalWidth && img.naturalHeight) {
@@ -42,6 +43,36 @@ export default function SectionFinalDesign() {
     };
 
     useEffect(() => {
+        const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const update = () => setReduceMotion(mq.matches);
+        update();
+        mq.addEventListener("change", update);
+        return () => mq.removeEventListener("change", update);
+    }, []);
+
+    useEffect(() => {
+        if (reduceMotion) {
+            // 정적 모드: 인라인 transform/opacity 제거 → SCSS의 .is-reduce-motion 룰이 처리
+            slideRefs.current.forEach((slide, i) => {
+                if (slide) slide.style.opacity = "";
+                const image = imageRefs.current[i];
+                if (image) {
+                    image.style.transform = "";
+                    image.style.filter = "";
+                    image.style.width = "";
+                }
+                const overlay = overlayRefs.current[i];
+                if (overlay) overlay.style.opacity = "";
+                const text = textRefs.current[i];
+                if (text) {
+                    text.style.opacity = "";
+                    text.style.transform = "";
+                }
+            });
+            scrollHandlerRef.current = null;
+            return;
+        }
+
         const handleScroll = () => {
             const container = containerRef.current;
             if (!container) return;
@@ -186,12 +217,20 @@ export default function SectionFinalDesign() {
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
             scrollHandlerRef.current = null;
         };
-    }, []);
+    }, [reduceMotion]);
 
     return (
-        <section className="section section-final-design">
-            <h2 className="section-eyebrow">Final Design</h2>
-            <div className="finaldesign-scroll-container" ref={containerRef}>
+        <section
+            className="section section-final-design"
+            aria-labelledby="finaldesign-heading"
+        >
+            <h2 id="finaldesign-heading" className="section-eyebrow">
+                Final Design
+            </h2>
+            <div
+                className={`finaldesign-scroll-container${reduceMotion ? " is-reduce-motion" : ""}`}
+                ref={containerRef}
+            >
                 <div className="finaldesign-sticky">
                     {finalDesigns.map((item, i) => (
                         <div

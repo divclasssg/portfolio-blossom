@@ -562,6 +562,54 @@
                 }
             }
         }
+
+        // prefers-reduced-motion fallback: 시네마틱 스크롤 비활성화 → 슬라이드 정적 스택
+        .finaldesign-scroll-container.is-reduce-motion {
+            height: auto;
+
+            .finaldesign-sticky {
+                position: static;
+                height: auto;
+                overflow: visible;
+            }
+
+            .finaldesign-slide {
+                position: relative;
+                inset: auto;
+                opacity: 1;
+                padding: 96px 32px;
+                background: #000;
+
+                & + .finaldesign-slide {
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+                }
+            }
+
+            .finaldesign-image {
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
+                max-width: 1024px;
+                margin: 0 auto 32px;
+                transform: none;
+                filter: none;
+            }
+
+            .finaldesign-overlay {
+                display: none;
+            }
+
+            .finaldesign-text {
+                position: relative;
+                inset: auto;
+                opacity: 1;
+                transform: none;
+                padding: 0;
+                max-width: 1024px;
+                margin: 0 auto;
+            }
+        }
     }
     .section-outcome {
         padding-bottom: 96px;

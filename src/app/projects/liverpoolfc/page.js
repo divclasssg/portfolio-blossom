@@ -17,7 +17,7 @@ export default function LiverpooplPage() {
         <>
             <Localnav />
             <main id="main" className="main page-liverpoolfc">
-                <section className="section section-hero">
+                <section className="section section-hero" aria-labelledby="hero-heading">
                     <div className="hero-content">
                         <div className="hero-background-image-wrapper">
                             <picture className="hero-background-image">
@@ -25,12 +25,16 @@ export default function LiverpooplPage() {
                                     src="https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/liverpool/liverpool_hero_img_1x.png"
                                     srcSet="https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/liverpool/liverpool_hero_img_1x.png 1x, https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/liverpool/liverpool_hero_img_2x.png 2x"
                                     alt="Liverpool FC 리뉴얼 히어로 이미지"
+                                    width="1920"
+                                    height="1169"
                                 />
                             </picture>
                         </div>
                         <div className="marquee-header">
                             <span>Redesign</span>
-                            <h1 className="header-eyebrow">Liverpool FC</h1>
+                            <h1 id="hero-heading" className="header-eyebrow">
+                                Liverpool FC
+                            </h1>
                             <Link
                                 href="/liverpoolfc"
                                 target="_blank"
@@ -42,10 +46,15 @@ export default function LiverpooplPage() {
                         </div>
                     </div>
                 </section>
-                <section className="section section-highlight">
+                <section
+                    className="section section-highlight"
+                    aria-labelledby="highlight-heading"
+                >
                     <div className="highlight-content">
                         <div className="hightlight">
-                            <h2 className="visuallyhidden">Liverpool FC Highlight</h2>
+                            <h2 id="highlight-heading" className="visuallyhidden">
+                                Liverpool FC Highlight
+                            </h2>
                             <p className="typography-highlight">
                                 콘텐츠 피드형 홈을 팬 여정 중심 클럽 허브로 재구성.
                             </p>
@@ -56,7 +65,7 @@ export default function LiverpooplPage() {
                                 페이지의 구조를 다시 설계했습니다.
                             </p>
                             <div className="project-snapshot">
-                                <h2 className="visuallyhidden">Project Snapshot</h2>
+                                <h3 className="visuallyhidden">Project Snapshot</h3>
                                 <dl className="project-snapshot-list">
                                     <div className="project-snapshot-item">
                                         <dt>Duration</dt>
@@ -85,10 +94,15 @@ export default function LiverpooplPage() {
                         </div>
                     </div>
                 </section>
-                <section className="section section-project-goal">
+                <section
+                    className="section section-project-goal"
+                    aria-labelledby="project-goal-heading"
+                >
                     <div className="section-content">
                         <div className="card-default">
-                            <h2 className="section-eyebrow">Project Goal</h2>
+                            <h2 id="project-goal-heading" className="section-eyebrow">
+                                Project Goal
+                            </h2>
                             <p className="section-headline-small">
                                 뉴스 중심 홈페이지를 팬이 클럽과 관계 맺는 허브로 재정의했습니다.
                             </p>
@@ -109,9 +123,14 @@ export default function LiverpooplPage() {
                         </div>
                     </div>
                 </section>
-                <section className="section section-problem">
+                <section
+                    className="section section-problem"
+                    aria-labelledby="problem-heading"
+                >
                     <div className="section-content">
-                        <h2 className="section-eyebrow">Problem</h2>
+                        <h2 id="problem-heading" className="section-eyebrow">
+                            Problem
+                        </h2>
                         <p className="section-headline-large">
                             콘텐츠는 많았지만, 팬이 따라갈 흐름은 약했습니다.
                         </p>
@@ -159,9 +178,14 @@ export default function LiverpooplPage() {
                         </div>
                     </div>
                 </section>
-                <section className="section section-research">
+                <section
+                    className="section section-research"
+                    aria-labelledby="research-heading"
+                >
                     <div className="section-content">
-                        <h2 className="section-eyebrow">Research</h2>
+                        <h2 id="research-heading" className="section-eyebrow">
+                            Research
+                        </h2>
                         <p className="section-headline-large">
                             팬은 공식 홈페이지에서 목적성 정보를 먼저 찾고 있었습니다.
                         </p>
@@ -174,7 +198,7 @@ export default function LiverpooplPage() {
                                 <div className="img-wrapper">
                                     <Image
                                         src="https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/liverpool/liverpool_research_brand.jpg"
-                                        alt="brand research"
+                                        alt="Brand Research — 클럽 정체성 자산 정리"
                                         width={3254}
                                         height={4002}
                                         sizes="(max-width: 1024px) 100vw, 50vw"
@@ -196,7 +220,7 @@ export default function LiverpooplPage() {
                                 <div className="img-wrapper">
                                     <Image
                                         src="https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/liverpool/liverpool_research_traffic.jpg"
-                                        alt="brand research"
+                                        alt="Traffic & Keyword — fixtures · lineups · tickets 등 유입 키워드 집계"
                                         width={3760}
                                         height={1706}
                                         sizes="(max-width: 1024px) 100vw, 50vw"
@@ -218,7 +242,7 @@ export default function LiverpooplPage() {
                                 <div className="img-wrapper">
                                     <Image
                                         src="https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/liverpool/liverpool_research_user.png"
-                                        alt="brand research"
+                                        alt="User Interview — 팬 사용성 인터뷰 정리 노트"
                                         width={6716}
                                         height={18278}
                                         sizes="(max-width: 1024px) 100vw, 50vw"
@@ -240,7 +264,7 @@ export default function LiverpooplPage() {
                                 <div className="img-wrapper">
                                     <Image
                                         src="https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/liverpool/liverpool_research_aida.jpg"
-                                        alt="brand research"
+                                        alt="AIDA Analysis — 기존 홈페이지의 Attention→Action 단계별 분석"
                                         width={2136}
                                         height={1417}
                                         sizes="(max-width: 1024px) 100vw, 50vw"
@@ -263,7 +287,7 @@ export default function LiverpooplPage() {
                                 <div className="img-wrapper">
                                     <Image
                                         src="https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/liverpool/liverpool_research_reference.png"
-                                        alt="brand research"
+                                        alt="Reference Analysis — Real Madrid · Arsenal · Bayern Munich 비교 보드"
                                         width={1555}
                                         height={1773}
                                         sizes="(max-width: 1024px) 100vw, 50vw"
@@ -285,9 +309,14 @@ export default function LiverpooplPage() {
                         </div>
                     </div>
                 </section>
-                <section className="section section-key-insights">
+                <section
+                    className="section section-key-insights"
+                    aria-labelledby="key-insights-heading"
+                >
                     <div className="section-content">
-                        <h2 className="section-eyebrow">Key Insights</h2>
+                        <h2 id="key-insights-heading" className="section-eyebrow">
+                            Key Insights
+                        </h2>
                         <p className="section-headline-large">
                             리디자인의 핵심은 더 많이 보여주는 것이 아니라, 무엇을 먼저 보여줄지
                             결정하는 것이었습니다.
@@ -329,9 +358,14 @@ export default function LiverpooplPage() {
                         </div>
                     </div>
                 </section>
-                <section className="section section-design-strategy">
+                <section
+                    className="section section-design-strategy"
+                    aria-labelledby="design-strategy-heading"
+                >
                     <div className="section-content">
-                        <h2 className="section-eyebrow">Design Strategy</h2>
+                        <h2 id="design-strategy-heading" className="section-eyebrow">
+                            Design Strategy
+                        </h2>
                         <p className="section-headline-large">
                             리디자인의 기준은
                             <br />
@@ -383,9 +417,14 @@ export default function LiverpooplPage() {
                         </div>
                     </div>
                 </section>
-                <section className="section section-information-architecture">
+                <section
+                    className="section section-information-architecture"
+                    aria-labelledby="ia-heading"
+                >
                     <div className="section-content">
-                        <h2 className="section-eyebrow">Information Architecture</h2>
+                        <h2 id="ia-heading" className="section-eyebrow">
+                            Information Architecture
+                        </h2>
                         <p className="section-headline-large">
                             페이지 구조는 콘텐츠 피드에서
                             <br />팬 여정으로 재편했습니다.
@@ -453,9 +492,14 @@ export default function LiverpooplPage() {
                     </div>
                 </section>
                 <SectionFinalDesign />
-                <section className="section section-outcome">
+                <section
+                    className="section section-outcome"
+                    aria-labelledby="outcome-heading"
+                >
                     <div className="section-content">
-                        <h2 className="section-eyebrow">Outcome</h2>
+                        <h2 id="outcome-heading" className="section-eyebrow">
+                            Outcome
+                        </h2>
                         <p className="typography-copy">
                             리디자인의 핵심 결과는 시각 스타일 변경이 아니라 정보 구조의
                             전환이었습니다. 팬의 주요 방문 목적과 클럽의 정체성 자산을 함께 반영해,
@@ -464,9 +508,14 @@ export default function LiverpooplPage() {
                         </p>
                     </div>
                 </section>
-                <section className="section section-reflection">
+                <section
+                    className="section section-reflection"
+                    aria-labelledby="reflection-heading"
+                >
                     <div className="section-content">
-                        <h2 className="section-eyebrow">Reflection</h2>
+                        <h2 id="reflection-heading" className="section-eyebrow">
+                            Reflection
+                        </h2>
                         <p className="section-headline-large">
                             강조를 더하는 것이 아니라, <br />
                             강조를 줄이는 방식.
