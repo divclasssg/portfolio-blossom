@@ -31,7 +31,7 @@ export default function SectionReference() {
                         </li>
                         <li>
                             McDonald, I. G., Daly, J., Jelinek, V. M., Panetta, F., & Gutman, J. M.
-                            (1996). Opening Pandora's box: The unpredictability of reassurance by a
+                            (1996). Opening Pandora&rsquo;s box: The unpredictability of reassurance by a
                             normal test result. <em>BMJ, 313</em>(7053), 329–332.
                         </li>
                         <li>
@@ -158,7 +158,7 @@ export default function SectionReference() {
                                 Fundamentals of data visualization: A primer on making informative
                                 and compelling figures
                             </em>{" "}
-                            (pp. 33–35, 145–151, 238–253). O'Reilly Media.
+                            (pp. 33–35, 145–151, 238–253). O&rsquo;Reilly Media.
                         </li>
                         <li>
                             Stone, M., Albers Szafir, D., & Setlur, V. (2014). An engineering model
@@ -190,7 +190,7 @@ export default function SectionReference() {
                         <li>
                             Merriweather, C. A., Jr., Lyytinen, K., Aron, D., & Cauley, M. R.
                             (2025). When better data meets better design: How EHR data usability and
-                            system usability shape physicians' cognitive load.{" "}
+                            system usability shape physicians&rsquo; cognitive load.{" "}
                             <em>npj Digital Medicine.</em>
                             https://doi.org/10.1038/s41746-025-02243-4
                         </li>
