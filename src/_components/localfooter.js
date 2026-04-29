@@ -1,4 +1,3 @@
-import "./localfooter.scss";
 import Link from "next/link";
 import CopyEmailButton from "@/_components/copyEmailButton";
 
