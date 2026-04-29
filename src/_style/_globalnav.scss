@@ -24,6 +24,13 @@
         }
     }
 
+    &.is-open {
+        .globalnav-content {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
     .globalnav-content {
         position: relative;
         z-index: 30;
@@ -32,6 +39,7 @@
         height: 100%;
         padding: 0 var(--globalnav-padding-x);
         box-sizing: border-box;
+        transition: opacity 0.2s ease;
 
         .globalnav-home {
             display: flex;
@@ -76,6 +84,31 @@
                 visibility 0s;
         }
 
+        .globalnav-overlay-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--globalnav-height);
+            padding: 0 var(--globalnav-padding-x);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            box-sizing: border-box;
+
+            .globalnav-overlay-close {
+                padding: 0;
+                background: none;
+                border: 0;
+                color: var(--color-text-primary);
+                line-height: 0;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
         .globalnav-overlay-list {
             display: flex;
             flex-direction: column;
@@ -93,12 +126,30 @@
             color: var(--color-text-primary);
             display: inline-block;
 
-            &:hover {
-                color: var(--color-primary);
+            &.is-indent {
+                margin-left: 32px;
             }
 
+            &:hover,
             &.active {
-                color: var(--color-primary);
+                background: var(--color-primary);
+                color: var(--color-white);
+            }
+        }
+
+        .globalnav-overlay-label {
+            font-family: var(--font-family-suit);
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--color-text-primary);
+            display: inline-block;
+            cursor: default;
+            user-select: none;
+
+            &.active {
+                background: var(--color-primary);
+                color: var(--color-white);
             }
         }
     }
@@ -125,7 +176,14 @@
         --globalnav-padding-x: 24px;
     }
 
-    .globalnav .globalnav-overlay .globalnav-overlay-link {
-        font-size: 36px;
+    .globalnav .globalnav-overlay {
+        .globalnav-overlay-link,
+        .globalnav-overlay-label {
+            font-size: 36px;
+        }
+
+        .globalnav-overlay-link.is-indent {
+            margin-left: 24px;
+        }
     }
 }

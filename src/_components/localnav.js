@@ -102,9 +102,9 @@ export default function Localnav() {
         <>
             <nav
                 aria-label="페이지 내비게이션"
-                className={`localnav${visible ? " is-visible" : ""}`}
+                className={`localnav${visible ? " is-visible" : ""}${isOpen ? " is-open" : ""}`}
             >
-                <div className="localnav-content">
+                <div className="localnav-content" aria-hidden={isOpen}>
                     <div className="localnav-title">
                         <button
                             type="button"
@@ -134,12 +134,12 @@ export default function Localnav() {
                         <button
                             type="button"
                             className="localnav-toggle"
-                            aria-label={isOpen ? "메뉴 닫기" : "메뉴 열기"}
+                            aria-label="메뉴 열기"
                             aria-expanded={isOpen}
                             aria-controls="localnav-overlay"
-                            onClick={() => setIsOpen((v) => !v)}
+                            onClick={() => setIsOpen(true)}
                         >
-                            {isOpen ? <IconClose size={24} /> : <IconMenu size={24} />}
+                            <IconMenu size={24} />
                         </button>
                     </div>
                 </div>
@@ -155,14 +155,46 @@ export default function Localnav() {
                     if (e.target === e.currentTarget) setIsOpen(false);
                 }}
             >
+                <div className="localnav-overlay-header">
+                    <button
+                        type="button"
+                        className="localnav-overlay-title"
+                        onClick={() => {
+                            setIsOpen(false);
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                    >
+                        {current.label}
+                    </button>
+                    <button
+                        type="button"
+                        className="localnav-overlay-close"
+                        aria-label="메뉴 닫기"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <IconClose size={24} />
+                    </button>
+                </div>
                 <ul className="localnav-overlay-list">
                     {MENU_ITEMS.map((item) => {
                         const active = item.match(pathname);
+                        if (item.type === "label") {
+                            return (
+                                <li className="localnav-overlay-item" key={item.label}>
+                                    <span
+                                        className={`localnav-overlay-label${active ? " active" : ""}`}
+                                        aria-hidden="true"
+                                    >
+                                        {item.label}
+                                    </span>
+                                </li>
+                            );
+                        }
                         return (
                             <li className="localnav-overlay-item" key={item.href}>
                                 <Link
                                     href={item.href}
-                                    className={`localnav-overlay-link${active ? " active" : ""}`}
+                                    className={`localnav-overlay-link${item.indent ? " is-indent" : ""}${active ? " active" : ""}`}
                                     aria-current={active ? "page" : undefined}
                                 >
                                     {item.label}

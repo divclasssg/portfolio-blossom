@@ -36,8 +36,10 @@ export default function Globalnav() {
     }, [isOpen]);
 
     return (
-        <nav className={`globalnav${isHome ? " is-home" : isAbout ? " is-about" : ""}`}>
-            <div className="globalnav-content">
+        <nav
+            className={`globalnav${isHome ? " is-home" : isAbout ? " is-about" : ""}${isOpen ? " is-open" : ""}`}
+        >
+            <div className="globalnav-content" aria-hidden={isOpen}>
                 <Link href="/" target="_self" className="globalnav-home">
                     parkseik
                 </Link>
@@ -45,12 +47,12 @@ export default function Globalnav() {
                     <button
                         type="button"
                         className="globalnav-menu-button"
-                        aria-label={isOpen ? "메뉴 닫기" : "메뉴 열기"}
+                        aria-label="메뉴 열기"
                         aria-expanded={isOpen}
                         aria-controls="globalnav-overlay"
-                        onClick={() => setIsOpen((v) => !v)}
+                        onClick={() => setIsOpen(true)}
                     >
-                        {isOpen ? <IconClose size={24} /> : <IconMenu size={24} />}
+                        <IconMenu size={24} />
                     </button>
                 )}
             </div>
@@ -66,14 +68,36 @@ export default function Globalnav() {
                         if (e.target === e.currentTarget) setIsOpen(false);
                     }}
                 >
+                    <div className="globalnav-overlay-header">
+                        <button
+                            type="button"
+                            className="globalnav-overlay-close"
+                            aria-label="메뉴 닫기"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <IconClose size={24} />
+                        </button>
+                    </div>
                     <ul className="globalnav-overlay-list">
                         {MENU_ITEMS.map((item) => {
                             const active = item.match(pathname);
+                            if (item.type === "label") {
+                                return (
+                                    <li className="globalnav-overlay-item" key={item.label}>
+                                        <span
+                                            className={`globalnav-overlay-label${active ? " active" : ""}`}
+                                            aria-hidden="true"
+                                        >
+                                            {item.label}
+                                        </span>
+                                    </li>
+                                );
+                            }
                             return (
                                 <li className="globalnav-overlay-item" key={item.href}>
                                     <Link
                                         href={item.href}
-                                        className={`globalnav-overlay-link${active ? " active" : ""}`}
+                                        className={`globalnav-overlay-link${item.indent ? " is-indent" : ""}${active ? " active" : ""}`}
                                         aria-current={active ? "page" : undefined}
                                     >
                                         {item.label}

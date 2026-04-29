@@ -17,6 +17,13 @@
         transform: translateY(0);
     }
 
+    &.is-open {
+        .localnav-content {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
     .localnav-content {
         display: flex;
         align-items: center;
@@ -25,6 +32,7 @@
         margin: 0 auto;
         padding: 0 32px;
         box-sizing: border-box;
+        transition: opacity 0.2s ease;
 
         .localnav-title {
             font-family: var(--font-family-spoqa);
@@ -104,6 +112,46 @@
             visibility 0s;
     }
 
+    .localnav-overlay-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--localnav-height);
+        width: 1024px;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+
+        .localnav-overlay-title {
+            background: none;
+            border: 0;
+            padding: 0;
+            font-family: var(--font-family-spoqa);
+            font-size: var(--font-size-regular);
+            font-weight: 500;
+            line-height: 100%;
+            color: var(--color-text-primary);
+            cursor: pointer;
+        }
+
+        .localnav-overlay-close {
+            margin-left: auto;
+            padding: 0;
+            background: none;
+            border: 0;
+            color: var(--color-text-primary);
+            line-height: 0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
     .localnav-overlay-list {
         display: flex;
         flex-direction: column;
@@ -121,18 +169,43 @@
         color: var(--color-text-primary);
         display: inline-block;
 
-        &:hover {
-            color: var(--color-primary);
+        &.is-indent {
+            margin-left: 32px;
         }
 
+        &:hover,
         &.active {
-            color: var(--color-primary);
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+    }
+
+    .localnav-overlay-label {
+        font-family: var(--font-family-suit);
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1.1;
+        color: var(--color-text-primary);
+        display: inline-block;
+        cursor: default;
+        user-select: none;
+
+        &.active {
+            background: var(--color-primary);
+            color: var(--color-white);
         }
     }
 }
 
 @media (max-width: 640px) {
-    .localnav-overlay .localnav-overlay-link {
-        font-size: 36px;
+    .localnav-overlay {
+        .localnav-overlay-link,
+        .localnav-overlay-label {
+            font-size: 36px;
+        }
+
+        .localnav-overlay-link.is-indent {
+            margin-left: 24px;
+        }
     }
 }
