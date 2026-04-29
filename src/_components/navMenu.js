@@ -12,4 +12,9 @@ export const MENU_ITEMS = [
         label: "liverpool fc",
         match: (p) => p.startsWith("/projects/liverpoolfc"),
     },
+    {
+        href: "/research/autonomous-vehicle-trust-ux",
+        label: "research",
+        match: (p) => p.startsWith("/research/autonomous-vehicle-trust-ux"),
+    },
 ];

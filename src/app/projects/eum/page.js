@@ -20,8 +20,8 @@ import SectionDeliverFinalPrototype from "./_components/sectionDeliverFinalProto
 import SectionSystemDefinition from "./_components/sectionSystemDefinition";
 import SectionAiPipeline from "./_components/sectionAiPipeline";
 import SectionFinalResult from "./_components/sectionFinalResult";
-import Localnav from "../_components/localnav";
-import Localfooter from "../_components/localfooter";
+import Localnav from "@/_components/localnav";
+import Localfooter from "@/_components/localfooter";
 import SectionKeyTakeaways from "./_components/sectionKeyTakeaways";
 import SectionReference from "./_components/sectionReference";
 

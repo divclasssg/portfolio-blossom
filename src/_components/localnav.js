@@ -1,6 +1,6 @@
 "use client";
 
-import "../_style/project.localnav.scss";
+import "./localnav.scss";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,19 +8,31 @@ import IconMenu from "@/_components/icons/menu";
 import IconClose from "@/_components/icons/close";
 import { MENU_ITEMS } from "@/_components/navMenu";
 
-const PROJECTS = [
-    { slug: "eum", label: "Eum", demoHref: "/eum", demoLabel: "Eum Demo 체험하기" },
+const SECTIONS = [
     {
-        slug: "cronometer",
-        label: "Cronometer",
-        demoHref: "/cronometer",
-        demoLabel: "Cronometer 체험하기",
+        label: "Eum",
+        match: (p) => p?.startsWith("/projects/eum"),
+        ctaHref: "/eum",
+        ctaLabel: "Eum Demo 체험하기",
+        ctaTarget: "_blank",
     },
     {
-        slug: "liverpoolfc",
+        label: "Cronometer",
+        match: (p) => p?.startsWith("/projects/cronometer"),
+        ctaHref: "/cronometer",
+        ctaLabel: "Cronometer 체험하기",
+        ctaTarget: "_blank",
+    },
+    {
         label: "Liverpool FC",
-        demoHref: "/liverpoolfc",
-        demoLabel: "Liverpool FC 체험하기",
+        match: (p) => p?.startsWith("/projects/liverpoolfc"),
+        ctaHref: "/liverpoolfc",
+        ctaLabel: "Liverpool FC 체험하기",
+        ctaTarget: "_blank",
+    },
+    {
+        label: "Research",
+        match: (p) => p?.startsWith("/research"),
     },
 ];
 
@@ -35,23 +47,33 @@ export default function Localnav() {
         if (isOpen) setIsOpen(false);
     }
 
-    const currentSlug =
-        PROJECTS.find((p) => pathname?.startsWith(`/projects/${p.slug}`))?.slug ??
-        PROJECTS[0].slug;
-    const current = PROJECTS.find((p) => p.slug === currentSlug) ?? PROJECTS[0];
+    const current = SECTIONS.find((s) => s.match(pathname)) ?? SECTIONS[0];
+    const hasCta = Boolean(current.ctaHref && current.ctaLabel);
 
     useEffect(() => {
+        const readGlobalnavHeight = () => {
+            const raw = getComputedStyle(document.documentElement).getPropertyValue(
+                "--globalnav-height"
+            );
+            return parseInt(raw, 10) || 44;
+        };
+
+        let threshold = readGlobalnavHeight();
         const handleScroll = () => {
-            setVisible(window.scrollY > window.innerHeight / 2);
+            setVisible(window.scrollY > threshold);
+        };
+        const handleResize = () => {
+            threshold = readGlobalnavHeight();
+            handleScroll();
         };
 
         handleScroll();
         window.addEventListener("scroll", handleScroll, { passive: true });
-        window.addEventListener("resize", handleScroll);
+        window.addEventListener("resize", handleResize);
 
         return () => {
             window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("resize", handleScroll);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
 
@@ -72,7 +94,7 @@ export default function Localnav() {
     return (
         <>
             <nav
-                aria-label="프로젝트 내비게이션"
+                aria-label="페이지 내비게이션"
                 className={`localnav${visible ? " is-visible" : ""}`}
             >
                 <div className="localnav-content">
@@ -88,14 +110,20 @@ export default function Localnav() {
                         </button>
                     </div>
                     <div className="localnav-actions">
-                        <Link
-                            href={current.demoHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="localnav-demo"
-                        >
-                            {current.demoLabel}
-                        </Link>
+                        {hasCta && (
+                            <Link
+                                href={current.ctaHref}
+                                target={current.ctaTarget ?? "_self"}
+                                rel={
+                                    current.ctaTarget === "_blank"
+                                        ? "noopener noreferrer"
+                                        : undefined
+                                }
+                                className="localnav-demo"
+                            >
+                                {current.ctaLabel}
+                            </Link>
+                        )}
                         <button
                             type="button"
                             className="localnav-toggle"
@@ -114,7 +142,7 @@ export default function Localnav() {
                 className={`localnav-overlay${isOpen ? " is-open" : ""}`}
                 role="dialog"
                 aria-modal="true"
-                aria-label="프로젝트 메뉴"
+                aria-label="페이지 메뉴"
                 aria-hidden={!isOpen}
                 onClick={(e) => {
                     if (e.target === e.currentTarget) setIsOpen(false);

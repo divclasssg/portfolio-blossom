@@ -7,6 +7,7 @@ export default function AutonomousVehicleTrustUX() {
             <section className="section section-hero" aria-labelledby="hero-heading">
                 <div className="section-content">
                     <div className="hero-headline">
+                        <h1 className="label">논문</h1>
                         <h2 id="hero-heading" className="headline">
                             완전자율주행차는 어떤 정보를 보여줘야 할까?
                         </h2>
@@ -45,6 +46,16 @@ export default function AutonomousVehicleTrustUX() {
                                 <dd>Journal of Digital Contents Society, 2025</dd>
                             </div>
                         </dl>
+                    </div>
+                    <div className="button-wrapper">
+                        <a
+                            href="/download/Importance of In-Vehicle Information and Driving Context Characteristics for Building Trust in Fully Autonomous Vehicles.pdf"
+                            target="_blank"
+                            rel="noopenner noreferrer"
+                            className="button-primary"
+                        >
+                            논문 다운로드
+                        </a>
                     </div>
                 </div>
             </section>

@@ -1,6 +1,6 @@
 import "./_style/liverpool.scss";
-import Localnav from "../_components/localnav";
-import Localfooter from "../_components/localfooter";
+import Localnav from "@/_components/localnav";
+import Localfooter from "@/_components/localfooter";
 import SectionHero from "./_components/sectionHero";
 import SectionHighlight from "./_components/sectionHighlight";
 import SectionProjectGoal from "./_components/sectionProjectGoal";

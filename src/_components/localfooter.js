@@ -1,4 +1,4 @@
-import "../_style/project.localfooter.scss";
+import "./localfooter.scss";
 import Link from "next/link";
 import CopyEmailButton from "@/_components/copyEmailButton";
 
@@ -53,6 +53,15 @@ export default function Localfooter() {
                                     </Link>
                                 </li>
                             </ul>
+                        </li>
+                        <li className="localfooternav-item">
+                            <Link
+                                href="/research/autonomous-vehicle-trust-ux"
+                                target="_self"
+                                className="localfooternav-link"
+                            >
+                                research
+                            </Link>
                         </li>
                     </ul>
                 </nav>

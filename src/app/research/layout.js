@@ -1,5 +1,5 @@
-import Localnav from "../projects/_components/localnav";
-import Localfooter from "../projects/_components/localfooter";
+import Localnav from "@/_components/localnav";
+import Localfooter from "@/_components/localfooter";
 
 export default function ResearchLayout({ children }) {
     return (
