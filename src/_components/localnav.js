@@ -32,6 +32,14 @@ const SECTIONS = [
     },
     {
         label: "Research",
+        match: (p) => p?.startsWith("/research/autonomous-vehicle-trust-ux"),
+        ctaHref:
+            "/download/Importance of In-Vehicle Information and Driving Context Characteristics for Building Trust in Fully Autonomous Vehicles.pdf",
+        ctaLabel: "논문 다운로드",
+        ctaTarget: "_blank",
+    },
+    {
+        label: "Research",
         match: (p) => p?.startsWith("/research"),
     },
 ];
