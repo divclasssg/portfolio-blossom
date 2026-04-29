@@ -54,6 +54,23 @@
                     font-weight: 400;
                     line-height: 100%;
                     text-transform: lowercase;
+
+                    &.is-indent {
+                        margin-left: 16px;
+                    }
+                }
+
+                .homenav-label {
+                    display: inline-flex;
+                    align-items: center;
+                    color: var(--color-text-primary);
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 100%;
+                    text-transform: lowercase;
+                    cursor: default;
+                    user-select: none;
                 }
 
                 &:hover {

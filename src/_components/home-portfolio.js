@@ -17,9 +17,15 @@ const projects = [
         alt: "about preview",
     },
     {
+        key: "projects",
+        type: "label",
+        label: "projects",
+    },
+    {
         key: "eum",
         label: "eum",
         href: "/projects/eum",
+        indent: true,
         videoSrc1x:
             "https://pub-e26b73e054cf43faa65ef7ee77476e58.r2.dev/portfolio/home/home_eum.mp4",
         videoSrc2x:
@@ -32,11 +38,17 @@ const projects = [
             body: "환자 기록을 진료에 연결하고, 의사의 판단과 환자의 이해를 잇는 AI 보조 커뮤니케이션 서비스.",
         },
     },
-    { key: "cronometer", label: "cronometer", href: "/projects/cronometer" },
+    {
+        key: "cronometer",
+        label: "cronometer",
+        href: "/projects/cronometer",
+        indent: true,
+    },
     {
         key: "liverpoolfc",
         label: "liverpool fc",
         href: "/projects/liverpoolfc",
+        indent: true,
         video: "home/home_liverpoolfc",
         alt: "projects Liverpool FC",
         caption: {
@@ -44,6 +56,11 @@ const projects = [
             headline: "콘텐츠 피드형 홈을 팬 여정 중심 클럽 허브로 재구성.",
             body: "팬의 방문 목적과 클럽 정체성을 기준으로 메인 페이지의 구조를 다시 설계한 리디자인 프로젝트.",
         },
+    },
+    {
+        key: "research",
+        label: "research",
+        href: "/research/autonomous-vehicle-trust-ux",
     },
 ];
 
@@ -65,21 +82,36 @@ export default function HomePortfolio() {
             <nav className="homenav">
                 <div className="homenav-content">
                     <ul className="homenav-list">
-                        {projects.map((project) => (
-                            <li
-                                key={project.key}
-                                className="homenav-item"
-                                onMouseEnter={() => setHovered(project.key)}
-                                onMouseLeave={() => setHovered(null)}
-                            >
-                                <Link href={project.href} target="_self" className="homenav-link">
-                                    {project.label}
-                                    <span>
-                                        <IconArrow size={12} />
-                                    </span>
-                                </Link>
-                            </li>
-                        ))}
+                        {projects.map((project) => {
+                            if (project.type === "label") {
+                                return (
+                                    <li key={project.key} className="homenav-item">
+                                        <span className="homenav-label" aria-hidden="true">
+                                            {project.label}
+                                        </span>
+                                    </li>
+                                );
+                            }
+                            return (
+                                <li
+                                    key={project.key}
+                                    className="homenav-item"
+                                    onMouseEnter={() => setHovered(project.key)}
+                                    onMouseLeave={() => setHovered(null)}
+                                >
+                                    <Link
+                                        href={project.href}
+                                        target="_self"
+                                        className={`homenav-link${project.indent ? " is-indent" : ""}`}
+                                    >
+                                        {project.label}
+                                        <span>
+                                            <IconArrow size={12} />
+                                        </span>
+                                    </Link>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </nav>
