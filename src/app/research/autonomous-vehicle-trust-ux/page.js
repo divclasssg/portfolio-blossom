@@ -1,4 +1,10 @@
 import "../_style/style.scss";
+import { asset } from "@/_lib/media";
+
+const FIGURE_BASE = "research/autonomous-vehicle-trust-ux";
+const figureSrcSet = (name) =>
+    `${asset(`${FIGURE_BASE}/${name}_1x.jpg`)} 1x, ${asset(`${FIGURE_BASE}/${name}_2x.jpg`)} 2x`;
+const figureSrc = (name) => asset(`${FIGURE_BASE}/${name}_1x.jpg`);
 
 export default function AutonomousVehicleTrustUX() {
     return (
@@ -169,7 +175,19 @@ export default function AutonomousVehicleTrustUX() {
                     <p className="section-typography-body-emp">
                         무엇을 보여줄까요? → 언제, 어떤 상황에서, 얼마나 보여줄까요?
                     </p>
-                    {/* TODO: figure - 완전자율주행 신뢰특성의 연구 모델 */}
+                    <figure>
+                        <picture>
+                            <source srcSet={figureSrcSet("figure3")} />
+                            <img
+                                src={figureSrc("figure3")}
+                                alt="완전자율주행 신뢰특성의 연구 모델"
+                                width={1574}
+                                height={1061}
+                                loading="lazy"
+                            />
+                        </picture>
+                        <figcaption>완전자율주행 신뢰특성의 연구 모델</figcaption>
+                    </figure>
                     <div className="ux-takeaway">
                         <h3>UX Takeaway</h3>
                         <p>
@@ -253,7 +271,19 @@ export default function AutonomousVehicleTrustUX() {
                             <span>빠르고 짧은 알림이 중요했습니다.</span>
                         </li>
                     </ul>
-                    {/* TODO: figure - 포커스 그룹 인터뷰 분석 결과 */}
+                    <figure>
+                        <picture>
+                            <source srcSet={figureSrcSet("table3")} />
+                            <img
+                                src={figureSrc("table3")}
+                                alt="포커스 그룹 인터뷰 분석 결과"
+                                width={921}
+                                height={1034}
+                                loading="lazy"
+                            />
+                        </picture>
+                        <figcaption>포커스 그룹 인터뷰 분석 결과</figcaption>
+                    </figure>
                     <div className="ux-takeaway">
                         <h3>UX Takeaway</h3>
                         <p>
@@ -299,7 +329,19 @@ export default function AutonomousVehicleTrustUX() {
                         이 분류 작업이 단순한 정리가 아닌 이유가 있습니다. 사용자의 말을 UX 화면과
                         알림 설계에 바로 쓸 수 있는 형태로 바꾸는 단계이기 때문입니다.
                     </p>
-                    {/* TODO: figure - 포커스 그룹 인터뷰에서 도출된 정보들의 유형화 */}
+                    <figure>
+                        <picture>
+                            <source srcSet={figureSrcSet("table4")} />
+                            <img
+                                src={figureSrc("table4")}
+                                alt="포커스 그룹 인터뷰에서 도출된 정보들의 유형화"
+                                width={632}
+                                height={1292}
+                                loading="lazy"
+                            />
+                        </picture>
+                        <figcaption>포커스 그룹 인터뷰에서 도출된 정보들의 유형화</figcaption>
+                    </figure>
                     <div className="ux-takeaway">
                         <h3>UX Takeaway</h3>
                         <p>
@@ -439,10 +481,58 @@ export default function AutonomousVehicleTrustUX() {
                             </tr>
                         </tbody>
                     </table>
-                    {/* TODO: figure - 출발 전 정보 중요도 분석 결과 */}
-                    {/* TODO: figure - 주행 중 정보 중요도 분석 결과 */}
-                    {/* TODO: figure - 도착 전 정보 중요도 분석 결과 */}
-                    {/* TODO: figure - 도착 후 정보 중요도 분석 결과 */}
+                    <figure>
+                        <picture>
+                            <source srcSet={figureSrcSet("figure4")} />
+                            <img
+                                src={figureSrc("figure4")}
+                                alt="출발 전 정보 중요도 분석 결과"
+                                width={1826}
+                                height={688}
+                                loading="lazy"
+                            />
+                        </picture>
+                        <figcaption>출발 전 정보 중요도 분석 결과</figcaption>
+                    </figure>
+                    <figure>
+                        <picture>
+                            <source srcSet={figureSrcSet("figure5")} />
+                            <img
+                                src={figureSrc("figure5")}
+                                alt="주행 중 정보 중요도 분석 결과"
+                                width={1826}
+                                height={687}
+                                loading="lazy"
+                            />
+                        </picture>
+                        <figcaption>주행 중 정보 중요도 분석 결과</figcaption>
+                    </figure>
+                    <figure>
+                        <picture>
+                            <source srcSet={figureSrcSet("figure6")} />
+                            <img
+                                src={figureSrc("figure6")}
+                                alt="도착 전 정보 중요도 분석 결과"
+                                width={1826}
+                                height={683}
+                                loading="lazy"
+                            />
+                        </picture>
+                        <figcaption>도착 전 정보 중요도 분석 결과</figcaption>
+                    </figure>
+                    <figure>
+                        <picture>
+                            <source srcSet={figureSrcSet("figure7")} />
+                            <img
+                                src={figureSrc("figure7")}
+                                alt="도착 후 정보 중요도 분석 결과"
+                                width={1826}
+                                height={428}
+                                loading="lazy"
+                            />
+                        </picture>
+                        <figcaption>도착 후 정보 중요도 분석 결과</figcaption>
+                    </figure>
                 </div>
                 <div className="section-content">
                     <h3>UX Guideline Summary</h3>
