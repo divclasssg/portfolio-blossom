@@ -1,3 +1,4 @@
+import ClarityInit from "@/_components/clarity-init";
 import Globalnav from "@/_components/globalnav";
 import { R2_ORIGIN } from "@/_lib/media";
 import "@/_style/style.scss";
@@ -62,6 +63,7 @@ export default function RootLayout({ children }) {
                 <link rel="dns-prefetch" href={R2_ORIGIN} />
             </head>
             <body>
+                <ClarityInit />
                 <Globalnav />
                 {children}
             </body>
