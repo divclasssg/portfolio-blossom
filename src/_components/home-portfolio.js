@@ -43,6 +43,8 @@ const projects = [
         label: "cronometer",
         href: "/projects/cronometer",
         indent: true,
+        video: "home/home_cronometer",
+        alt: "projects Cronometer",
     },
     {
         key: "liverpoolfc",
