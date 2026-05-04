@@ -89,8 +89,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: var(--globalnav-height);
-            padding: 0 var(--globalnav-padding-x);
+            padding: clamp(24px, 3.5vh, 48px) var(--globalnav-padding-x)
+                clamp(12px, 2vh, 24px);
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -115,7 +115,7 @@
             gap: clamp(16px, 2.5vh, 40px);
             padding: 0 var(--globalnav-padding-x);
             box-sizing: border-box;
-            padding-top: calc(var(--globalnav-height) + clamp(48px, 12vh, 160px));
+            padding-top: calc(var(--globalnav-height) + clamp(72px, 14vh, 180px));
             padding-bottom: clamp(48px, 8vh, 120px);
         }
 

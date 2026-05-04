@@ -75,7 +75,7 @@ export default function Globalnav() {
                             aria-label="메뉴 닫기"
                             onClick={() => setIsOpen(false)}
                         >
-                            <IconClose size={24} />
+                            <IconClose size={40} />
                         </button>
                     </div>
                     <ul className="globalnav-overlay-list">
