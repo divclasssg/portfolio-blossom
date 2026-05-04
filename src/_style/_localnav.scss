@@ -155,22 +155,23 @@
     .localnav-overlay-list {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: clamp(16px, 2.5vh, 40px);
         padding: 0 var(--globalnav-padding-x);
         box-sizing: border-box;
-        padding-top: calc(var(--localnav-height) + 80px);
+        padding-top: calc(var(--localnav-height) + clamp(48px, 12vh, 160px));
+        padding-bottom: clamp(48px, 8vh, 120px);
     }
 
     .localnav-overlay-link {
         font-family: var(--font-family-suit);
-        font-size: 48px;
+        font-size: clamp(28px, 5vw, 72px);
         font-weight: 700;
         line-height: 1.1;
         color: var(--color-text-primary);
         display: inline-block;
 
         &.is-indent {
-            margin-left: 32px;
+            margin-left: clamp(20px, 2.5vw, 48px);
         }
 
         &:hover,
@@ -182,7 +183,7 @@
 
     .localnav-overlay-label {
         font-family: var(--font-family-suit);
-        font-size: 48px;
+        font-size: clamp(28px, 5vw, 72px);
         font-weight: 700;
         line-height: 1.1;
         color: var(--color-text-primary);
@@ -193,19 +194,6 @@
         &.active {
             background: var(--color-primary);
             color: var(--color-white);
-        }
-    }
-}
-
-@media (max-width: 640px) {
-    .localnav-overlay {
-        .localnav-overlay-link,
-        .localnav-overlay-label {
-            font-size: 36px;
-        }
-
-        .localnav-overlay-link.is-indent {
-            margin-left: 24px;
         }
     }
 }
