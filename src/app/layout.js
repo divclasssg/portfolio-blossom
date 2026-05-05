@@ -43,10 +43,6 @@ export const metadata = {
             follow: false,
         },
     },
-    icons: {
-        icon: "/favicon.ico",
-        apple: "/apple-touch-icon.png",
-    },
 };
 
 export const viewport = {

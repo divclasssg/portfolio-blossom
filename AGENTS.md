@@ -67,7 +67,8 @@ docs/              # 작업 로그 문서
 - `themeColor`: `#1d1d1f`
 - 현재 placeholder 값이 남아 있음. 사용자 확인 없이 임의로 채우지 말 것:
     - `metadataBase` URL (`https://example.com`)
-    - `public/og-image.png`, `public/apple-touch-icon.png` (아직 없음)
+    - `public/og-image.png` (아직 없음)
+- favicon은 App Router 자동 주입 컨벤션 사용 — `src/app/icon.svg`, `src/app/apple-icon.png`, `src/app/favicon.ico`. `metadata.icons` 수동 선언 금지(중복).
 
 ## 문서 관리 규칙
 
