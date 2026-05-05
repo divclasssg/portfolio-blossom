@@ -7,7 +7,7 @@ export const metadata = {
     metadataBase: new URL("https://example.com"),
     title: {
         default: "parkseik",
-        template: "%s | parkseik Portfolio",
+        template: "%s | parkseik's Portfolio",
     },
     description: "parkseik's portfolio",
     keywords: ["portfolio", "frontend", "web", "developer"],
@@ -32,7 +32,7 @@ export const metadata = {
     twitter: {
         card: "summary_large_image",
         title: "parkseik's Portfolio",
-        description: "포트폴리오 사이트입니다.",
+        description: "프로덕트 디자이너 박세익입니다.",
         images: ["/og-image.png"],
     },
     robots: {
