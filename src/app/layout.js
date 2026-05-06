@@ -1,7 +1,9 @@
 import ClarityInit from "@/_components/clarity-init";
 import Globalnav from "@/_components/globalnav";
+import SmoothScroll from "@/_components/smooth-scroll";
 import { R2_ORIGIN } from "@/_lib/media";
 import "@/_style/style.scss";
+import "lenis/dist/lenis.css";
 
 export const metadata = {
     metadataBase: new URL("https://example.com"),
@@ -59,6 +61,7 @@ export default function RootLayout({ children }) {
                 <link rel="dns-prefetch" href={R2_ORIGIN} />
             </head>
             <body>
+                <SmoothScroll />
                 <ClarityInit />
                 <Globalnav />
                 {children}

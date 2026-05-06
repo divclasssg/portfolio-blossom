@@ -7,9 +7,9 @@ const raw = [
         copy: "환자가 자연어로 남긴 증상을 AI가 구조화해, 의사가 진료 전에 확인할 수 있는 기록으로 바꿉니다.",
         src: "eum/videos/key_screens/key_screen_01.mp4",
         poster: "eum/posters/key_screen_01.webp",
-        duration: 84.32,
-        width: 1320,
-        height: 2868,
+        duration: 12.0,
+        width: 660,
+        height: 1434,
         framed: true,
     },
     {
