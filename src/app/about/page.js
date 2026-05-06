@@ -3,7 +3,7 @@ import CopyEmailButton from "@/_components/copyEmailButton";
 import "./_style/about.style.scss";
 
 export const metadata = {
-    title: "About | Park Seik",
+    title: "About",
     description:
         "8년간의 웹 퍼블리싱·프론트엔드 경험 위에 HCI 연구와 UX 리서치를 더해, 문제 정의부터 실제 경험까지 함께 다루는 Park Seik의 소개.",
 };
@@ -103,9 +103,7 @@ export default function AboutPage() {
                     </div>
                 </section>
             </main>
-            <footer className="aboutfooter">
-                &copy; 2026 parkseik. All rights reserved.
-            </footer>
+            <footer className="aboutfooter">&copy; 2026 parkseik. All rights reserved.</footer>
         </>
     );
 }
