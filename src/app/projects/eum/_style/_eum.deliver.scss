@@ -180,6 +180,62 @@
                 font-size: var(--font-size-xlarge);
             }
         }
+
+        // ─── 모바일: scroll-scrub 비활성, 세로 스택 ───
+        @media (max-width: 640px) {
+            .key-changes-scroll-container {
+                height: auto;
+            }
+
+            .key-changes-sticky {
+                position: static;
+                height: auto;
+                flex-direction: column;
+                gap: 32px;
+                padding: 32px 16px;
+            }
+
+            .key-changes-callout-area {
+                width: 100%;
+                height: auto;
+                mask-image: none;
+                -webkit-mask-image: none;
+                display: flex;
+                flex-direction: column;
+                gap: 64px;
+            }
+
+            .key-changes-callout {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .key-changes-visual-area {
+                width: 100%;
+                height: auto;
+                overflow: visible;
+            }
+
+            .key-changes-visual-track {
+                transform: none !important;
+            }
+
+            .key-changes-visual {
+                height: auto;
+                flex-direction: column;
+                gap: 24px;
+                padding-bottom: 48px;
+            }
+
+            .key-changes-visual-asis {
+                opacity: 1 !important;
+            }
+
+            .key-changes-visual-tobe {
+                margin-left: 0;
+                transform: none !important;
+            }
+        }
     }
 
     // ─────────────────────────────────────────────

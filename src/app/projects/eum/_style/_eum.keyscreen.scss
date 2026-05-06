@@ -109,12 +109,20 @@
         justify-content: center;
         margin-bottom: 40vh;
 
-        // 크롭 없는 기본 비디오
-        > video {
+        > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 85vh;
+        }
+
+        video,
+        img {
             width: auto;
             height: 85vh;
             object-fit: contain;
             border-radius: 12px;
+            display: block;
         }
 
         &.keyscreen-overview-wide {
@@ -137,5 +145,68 @@
 
     .keyscreen-trigger {
         flex: 1;
+    }
+
+    // ─── 모바일: scroll-scrub 비활성, 세로 스택 ───
+    @media (max-width: 640px) {
+        .keyscreen-scroll-container {
+            height: auto;
+        }
+
+        .keyscreen-sticky {
+            position: static;
+            height: auto;
+            flex-direction: column;
+            gap: 24px;
+            padding: 32px 0;
+        }
+
+        .keyscreen-callout-area {
+            width: 100%;
+            height: auto;
+            mask-image: none;
+            -webkit-mask-image: none;
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+
+        .keyscreen-callout {
+            position: static;
+            margin-top: 0;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .keyscreen-video-area {
+            width: 100%;
+            height: auto;
+
+            .keyscreen-video-track {
+                transform: none !important;
+            }
+        }
+
+        .keyscreen-overview {
+            height: auto;
+            margin-bottom: 32px;
+            padding-top: 0 !important;
+
+            > div {
+                height: auto;
+            }
+
+            video,
+            img {
+                width: 100%;
+                height: auto;
+                max-width: 480px;
+            }
+
+            &.keyscreen-overview-wide {
+                align-items: center;
+                padding-top: 0;
+            }
+        }
     }
 }

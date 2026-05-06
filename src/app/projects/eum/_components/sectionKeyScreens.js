@@ -1,71 +1,37 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { asset } from "../_lib/media";
+import { useEffect, useRef, useCallback } from "react";
+import ScrubVideo from "@/_components/scrub-video";
 import finalKeyScreens from "../_data/finalKeyScreens";
 
 const ITEM_COUNT = finalKeyScreens.length;
 
-// R2 비디오는 Cloudinary 변환이 없어, 원본 해상도를 런타임에 측정해 크롭 스케일을 계산.
-function CroppedScrubVideo({ screen, refSetter }) {
-    const [dims, setDims] = useState(null);
-    const { crop } = screen;
-
-    return (
-        <div
-            style={{
-                position: "relative",
-                height: "85vh",
-                aspectRatio: `${crop.width} / ${crop.height}`,
-                overflow: "hidden",
-                borderRadius: 12,
-            }}
-        >
-            <video
-                ref={refSetter}
-                src={asset(screen.video)}
-                muted
-                playsInline
-                preload="auto"
-                onLoadedMetadata={(e) => {
-                    setDims({
-                        w: e.currentTarget.videoWidth,
-                        h: e.currentTarget.videoHeight,
-                    });
-                }}
-                style={
-                    dims
-                        ? {
-                              position: "absolute",
-                              left: `${(-crop.x / crop.width) * 100}%`,
-                              top: `${(-crop.y / crop.height) * 100}%`,
-                              width: `${(dims.w / crop.width) * 100}%`,
-                              height: `${(dims.h / crop.height) * 100}%`,
-                              maxWidth: "none",
-                          }
-                        : {
-                              position: "absolute",
-                              inset: 0,
-                              opacity: 0,
-                          }
-                }
-            />
-        </div>
-    );
-}
-
 // Apple 패턴: 진입 25% → 고정+스크럽 50% → 퇴출 25%
 const ENTER = 0.25;
-const HOLD = 0.50;
+const HOLD = 0.5;
 const EXIT = 0.25;
 
+// 항목별 segment 크기를 duration 비례로 분배 → 모든 항목의 스크럽 속도(time/px)가 동일
+const TOTAL_WEIGHT = finalKeyScreens.reduce((s, x) => s + x.duration, 0);
+const SEGMENT_BOUNDS = (() => {
+    const bounds = [];
+    let cum = 0;
+    for (const item of finalKeyScreens) {
+        const start = cum / TOTAL_WEIGHT;
+        cum += item.duration;
+        const end = cum / TOTAL_WEIGHT;
+        bounds.push({ start, end, size: end - start });
+    }
+    return bounds;
+})();
+
 const easeOut = (t) => 1 - (1 - t) * (1 - t);
+const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 
 export default function SectionKeyScreens() {
-    const [current, setCurrent] = useState(0);
     const containerRef = useRef(null);
     const calloutRefs = useRef([]);
-    const videoRefs = useRef([]);
+    const canvasFrameRefs = useRef([]);
     const trackRef = useRef(null);
     const rafRef = useRef(null);
 
@@ -76,78 +42,62 @@ export default function SectionKeyScreens() {
         const rect = container.getBoundingClientRect();
         const scrollTop = -rect.top;
         const scrollHeight = container.offsetHeight - window.innerHeight;
-
         if (scrollHeight <= 0) return;
 
-        const totalProgress = Math.max(0, Math.min(1, scrollTop / scrollHeight));
-        const segmentSize = 1 / ITEM_COUNT;
+        const totalProgress = clamp01(scrollTop / scrollHeight);
 
-        const activeIndex = Math.min(
-            Math.floor(totalProgress / segmentSize),
-            ITEM_COUNT - 1
-        );
-        setCurrent(activeIndex);
-
-        // 텍스트: 진입 slide-up+fade → 고정 → 퇴출 slide-up+fade
-        calloutRefs.current.forEach((el, i) => {
-            if (!el) return;
-
-            const segStart = i * segmentSize;
-            const local = (totalProgress - segStart) / segmentSize;
-
-            let translateY = 0;
-            let opacity = 0;
-
-            if (local < 0) {
-                translateY = 120;
-                opacity = 0;
-            } else if (local < ENTER) {
-                const t = easeOut(local / ENTER);
-                translateY = (1 - t) * 120;
-                opacity = t;
-            } else if (local < ENTER + HOLD) {
-                translateY = 0;
-                opacity = 1;
-            } else if (local < 1) {
-                const t = easeOut((local - ENTER - HOLD) / EXIT);
-                translateY = -t * 120;
-                opacity = 1 - t;
-            } else {
-                translateY = -120;
-                opacity = 0;
-            }
-
-            el.style.transform = `translateY(${translateY}px)`;
-            el.style.opacity = Math.max(0, Math.min(1, opacity));
-        });
-
-        // 영상 스크럽: 활성 영상에만 currentTime 적용 (비활성 영상 seek 방지)
-        const activeVideo = videoRefs.current[activeIndex];
-        if (activeVideo && activeVideo.duration) {
-            const segStart = activeIndex * segmentSize;
-            const local = (totalProgress - segStart) / segmentSize;
-
-            const scrubProgress = Math.max(
-                0,
-                Math.min(1, (local - ENTER) / HOLD)
-            );
-
-            activeVideo.currentTime = scrubProgress * activeVideo.duration;
+        let activeIndex = 0;
+        for (let i = 0; i < ITEM_COUNT; i++) {
+            if (totalProgress >= SEGMENT_BOUNDS[i].start) activeIndex = i;
         }
 
-        // 영상 트랙: 세로 슬라이드
-        if (trackRef.current) {
-            const segStart = activeIndex * segmentSize;
-            const local = (totalProgress - segStart) / segmentSize;
+        for (let i = 0; i < ITEM_COUNT; i++) {
+            const seg = SEGMENT_BOUNDS[i];
+            const local = (totalProgress - seg.start) / seg.size;
 
+            const el = calloutRefs.current[i];
+            if (el) {
+                let translateY;
+                let opacity;
+                if (local < 0) {
+                    translateY = 120;
+                    opacity = 0;
+                } else if (local < ENTER) {
+                    const t = easeOut(local / ENTER);
+                    translateY = (1 - t) * 120;
+                    opacity = t;
+                } else if (local < ENTER + HOLD) {
+                    translateY = 0;
+                    opacity = 1;
+                } else if (local < 1) {
+                    const t = easeOut((local - ENTER - HOLD) / EXIT);
+                    translateY = -t * 120;
+                    opacity = 1 - t;
+                } else {
+                    translateY = -120;
+                    opacity = 0;
+                }
+                el.style.transform = `translateY(${translateY}px)`;
+                el.style.opacity = clamp01(opacity);
+            }
+
+            const canvas = canvasFrameRefs.current[i];
+            if (canvas) {
+                canvas.setProgress(clamp01((local - ENTER) / HOLD));
+            }
+        }
+
+        if (trackRef.current) {
+            const seg = SEGMENT_BOUNDS[activeIndex];
+            const local = (totalProgress - seg.start) / seg.size;
             let offset = activeIndex;
             if (local > ENTER + HOLD) {
-                // 퇴출 구간: 다음 영상으로 슬라이드 업
                 const t = easeOut((local - ENTER - HOLD) / EXIT);
                 offset = activeIndex + t;
             }
-
-            trackRef.current.style.transform = `translateY(-${offset * 100 / ITEM_COUNT}%)`;
+            trackRef.current.style.transform = `translateY(-${
+                (offset * 100) / ITEM_COUNT
+            }%)`;
         }
     }, []);
 
@@ -172,7 +122,6 @@ export default function SectionKeyScreens() {
                 <h2 className="visuallyhidden">Eum Final Key Screens</h2>
 
                 <div className="keyscreen-sticky">
-                    {/* 텍스트 — 스크롤 연동 슬라이드 */}
                     <div className="keyscreen-callout-area">
                         {finalKeyScreens.map((screen, i) => (
                             <div
@@ -192,28 +141,23 @@ export default function SectionKeyScreens() {
                         ))}
                     </div>
 
-                    {/* 영상 — 스크롤 스크럽 + 세로 슬라이드 */}
                     <div className="keyscreen-video-area">
                         <div className="keyscreen-video-track" ref={trackRef}>
                             {finalKeyScreens.map((screen, i) => (
                                 <div
-                                    className={`keyscreen-overview${screen.wide ? " keyscreen-overview-wide" : ""}`}
+                                    className={`keyscreen-overview${
+                                        screen.wide ? " keyscreen-overview-wide" : ""
+                                    }`}
                                     key={screen.index}
                                 >
-                                    {screen.crop ? (
-                                        <CroppedScrubVideo
-                                            screen={screen}
-                                            refSetter={(el) => (videoRefs.current[i] = el)}
-                                        />
-                                    ) : (
-                                        <video
-                                            ref={(el) => (videoRefs.current[i] = el)}
-                                            src={asset(screen.video)}
-                                            muted
-                                            playsInline
-                                            preload="auto"
-                                        />
-                                    )}
+                                    <ScrubVideo
+                                        ref={(el) => (canvasFrameRefs.current[i] = el)}
+                                        src={screen.src}
+                                        poster={screen.poster}
+                                        width={screen.width}
+                                        height={screen.height}
+                                        framed={screen.framed}
+                                    />
                                 </div>
                             ))}
                         </div>
