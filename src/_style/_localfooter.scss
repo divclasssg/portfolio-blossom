@@ -20,11 +20,17 @@
 
         .localfooternav {
             margin-left: auto;
+
             .localfooternav-list {
                 display: flex;
                 gap: 24px;
+
                 .localfooternav-item {
                     padding-bottom: 8px;
+
+                    #localfooternav-projects-label {
+                        color: var(--color-gray-scale-1);
+                    }
 
                     .localfooternav-item-projects {
                         padding-top: 8px;

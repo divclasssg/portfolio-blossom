@@ -185,13 +185,13 @@
         font-size: clamp(28px, 5vw, 72px);
         font-weight: 700;
         line-height: 1.1;
-        color: var(--color-text-primary);
+        color: var(--color-gray-scale-1);
         display: inline-block;
         cursor: default;
         user-select: none;
 
         &.active {
-            background: var(--color-primary);
+            background: var(--color-gray-scale-1);
             color: var(--color-white);
         }
     }

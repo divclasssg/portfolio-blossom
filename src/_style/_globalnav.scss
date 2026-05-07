@@ -89,8 +89,7 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: clamp(24px, 3.5vh, 48px) var(--globalnav-padding-x)
-                clamp(12px, 2vh, 24px);
+            padding: clamp(24px, 3.5vh, 48px) var(--globalnav-padding-x) clamp(12px, 2vh, 24px);
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -143,13 +142,13 @@
             font-size: clamp(28px, 5vw, 72px);
             font-weight: 700;
             line-height: 1.1;
-            color: var(--color-text-primary);
+            color: var(--color-gray-scale-1);
             display: inline-block;
             cursor: default;
             user-select: none;
 
             &.active {
-                background: var(--color-primary);
+                background: var(--color-gray-scale-1);
                 color: var(--color-white);
             }
         }
