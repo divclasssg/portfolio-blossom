@@ -6,12 +6,12 @@ import finalKeyScreens from "../_data/finalKeyScreens";
 
 const ITEM_COUNT = finalKeyScreens.length;
 
-// Apple 패턴: 진입 25% → 고정+스크럽 50% → 퇴출 25% (video scrub + track 슬라이드 전용)
-const ENTER = 0.25;
-const HOLD = 0.5;
+// video scrub + track 슬라이드 — 영상은 callout이 opacity 1이 되는 0.15에서 시작, 0.75에서 종료
+const ENTER = 0.15;
+const HOLD = 0.6;
 const EXIT = 0.25;
 
-// callout 텍스트 전용 — video scrub 보다 빠르게 올라와 오래 머무르게 (15/70/15)
+// callout 텍스트 전용 — 진입은 video와 동기, hold만 더 오래 (15/70/15)
 const CALLOUT_ENTER = 0.15;
 const CALLOUT_HOLD = 0.7;
 const CALLOUT_EXIT = 0.15;
