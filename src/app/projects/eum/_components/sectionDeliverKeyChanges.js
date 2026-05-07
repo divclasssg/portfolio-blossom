@@ -10,7 +10,9 @@ import ExternalLink from "./_shared/ExternalLink";
 
 const ITEM_COUNT = keyChanges.length;
 
-const CALLOUT_ENTER_END = 0.2;
+// callout 텍스트만 빠르게 올라와 길게 머무르게 — visual(AS-IS/TO-BE)은 HOLD_END(0.8) 유지
+const CALLOUT_ENTER_END = 0.15;
+const CALLOUT_HOLD_END = 0.85;
 const ASIS_ENTER_END = 0.15;
 const TOBE_ENTER_START = 0.15;
 const TOBE_ENTER_END = 0.3;
@@ -73,11 +75,13 @@ export default function SectionDeliverKeyChanges() {
                     const t = easeOut(local / CALLOUT_ENTER_END);
                     translateY = (1 - t) * 120;
                     opacity = t;
-                } else if (local < HOLD_END) {
+                } else if (local < CALLOUT_HOLD_END) {
                     translateY = 0;
                     opacity = 1;
                 } else if (local < 1) {
-                    const t = easeOut((local - HOLD_END) / (1 - HOLD_END));
+                    const t = easeOut(
+                        (local - CALLOUT_HOLD_END) / (1 - CALLOUT_HOLD_END)
+                    );
                     translateY = -t * 120;
                     opacity = 1 - t;
                 } else {

@@ -6,10 +6,15 @@ import finalKeyScreens from "../_data/finalKeyScreens";
 
 const ITEM_COUNT = finalKeyScreens.length;
 
-// Apple 패턴: 진입 25% → 고정+스크럽 50% → 퇴출 25%
+// Apple 패턴: 진입 25% → 고정+스크럽 50% → 퇴출 25% (video scrub + track 슬라이드 전용)
 const ENTER = 0.25;
 const HOLD = 0.5;
 const EXIT = 0.25;
+
+// callout 텍스트 전용 — video scrub 보다 빠르게 올라와 오래 머무르게 (15/70/15)
+const CALLOUT_ENTER = 0.15;
+const CALLOUT_HOLD = 0.7;
+const CALLOUT_EXIT = 0.15;
 
 // 항목별 segment 크기를 duration 비례로 분배 → 모든 항목의 스크럽 속도(time/px)가 동일
 const TOTAL_WEIGHT = finalKeyScreens.reduce((s, x) => s + x.duration, 0);
@@ -62,15 +67,17 @@ export default function SectionKeyScreens() {
                 if (local < 0) {
                     translateY = 120;
                     opacity = 0;
-                } else if (local < ENTER) {
-                    const t = easeOut(local / ENTER);
+                } else if (local < CALLOUT_ENTER) {
+                    const t = easeOut(local / CALLOUT_ENTER);
                     translateY = (1 - t) * 120;
                     opacity = t;
-                } else if (local < ENTER + HOLD) {
+                } else if (local < CALLOUT_ENTER + CALLOUT_HOLD) {
                     translateY = 0;
                     opacity = 1;
                 } else if (local < 1) {
-                    const t = easeOut((local - ENTER - HOLD) / EXIT);
+                    const t = easeOut(
+                        (local - CALLOUT_ENTER - CALLOUT_HOLD) / CALLOUT_EXIT
+                    );
                     translateY = -t * 120;
                     opacity = 1 - t;
                 } else {
