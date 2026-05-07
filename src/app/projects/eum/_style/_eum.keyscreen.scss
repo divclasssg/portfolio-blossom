@@ -15,6 +15,12 @@
         align-items: center;
         justify-content: center;
         gap: 48px;
+        transition: background-color 0.4s ease;
+
+        // 02 segment 진입 시 옅은 표면 톤으로 전환
+        &.is-bg-subtle {
+            background-color: var(--color-surface-subtle);
+        }
     }
 
     // ─── 텍스트 영역: 슬라이드 업 ───

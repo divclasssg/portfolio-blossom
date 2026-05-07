@@ -35,14 +35,19 @@ const SEGMENT_BOUNDS = (() => {
 const easeOut = (t) => 1 - (1 - t) * (1 - t);
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 
+// 02 segment 진입 시 sticky 배경을 --color-surface-subtle로 전환
+const SUBTLE_BG_INDEX = 1;
+
 export default function SectionDeliverKeyChanges() {
     const containerRef = useRef(null);
+    const stickyRef = useRef(null);
     const calloutRefs = useRef([]);
     const asIsRefs = useRef([]);
     const toBeRefs = useRef([]);
     const canvasFrameRefs = useRef([]);
     const trackRef = useRef(null);
     const rafRef = useRef(null);
+    const subtleBgActiveRef = useRef(false);
 
     const handleScroll = useCallback(() => {
         const container = containerRef.current;
@@ -58,6 +63,14 @@ export default function SectionDeliverKeyChanges() {
         let activeIndex = 0;
         for (let i = 0; i < ITEM_COUNT; i++) {
             if (totalProgress >= SEGMENT_BOUNDS[i].start) activeIndex = i;
+        }
+
+        const subtleBgActive = activeIndex === SUBTLE_BG_INDEX;
+        if (subtleBgActive !== subtleBgActiveRef.current) {
+            subtleBgActiveRef.current = subtleBgActive;
+            if (stickyRef.current) {
+                stickyRef.current.classList.toggle("is-bg-subtle", subtleBgActive);
+            }
         }
 
         for (let i = 0; i < ITEM_COUNT; i++) {
@@ -172,7 +185,7 @@ export default function SectionDeliverKeyChanges() {
         <section className="section section-dd-deliver-key-changes">
             <h2 className="visuallyhidden">Eum Key Changes</h2>
             <div className="key-changes-scroll-container" ref={containerRef}>
-                <div className="key-changes-sticky">
+                <div className="key-changes-sticky" ref={stickyRef}>
                     <div className="key-changes-callout-area">
                         {keyChanges.map((item, i) => (
                             <div

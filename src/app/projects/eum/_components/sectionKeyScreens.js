@@ -33,12 +33,17 @@ const SEGMENT_BOUNDS = (() => {
 const easeOut = (t) => 1 - (1 - t) * (1 - t);
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 
+// 02 segment 진입 시 sticky 배경을 --color-surface-subtle로 전환
+const SUBTLE_BG_INDEX = 1;
+
 export default function SectionKeyScreens() {
     const containerRef = useRef(null);
+    const stickyRef = useRef(null);
     const calloutRefs = useRef([]);
     const canvasFrameRefs = useRef([]);
     const trackRef = useRef(null);
     const rafRef = useRef(null);
+    const subtleBgActiveRef = useRef(false);
 
     const handleScroll = useCallback(() => {
         const container = containerRef.current;
@@ -54,6 +59,14 @@ export default function SectionKeyScreens() {
         let activeIndex = 0;
         for (let i = 0; i < ITEM_COUNT; i++) {
             if (totalProgress >= SEGMENT_BOUNDS[i].start) activeIndex = i;
+        }
+
+        const subtleBgActive = activeIndex === SUBTLE_BG_INDEX;
+        if (subtleBgActive !== subtleBgActiveRef.current) {
+            subtleBgActiveRef.current = subtleBgActive;
+            if (stickyRef.current) {
+                stickyRef.current.classList.toggle("is-bg-subtle", subtleBgActive);
+            }
         }
 
         for (let i = 0; i < ITEM_COUNT; i++) {
@@ -128,7 +141,7 @@ export default function SectionKeyScreens() {
             <div className="keyscreen-scroll-container" ref={containerRef}>
                 <h2 className="visuallyhidden">Eum Final Key Screens</h2>
 
-                <div className="keyscreen-sticky">
+                <div className="keyscreen-sticky" ref={stickyRef}>
                     <div className="keyscreen-callout-area">
                         {finalKeyScreens.map((screen, i) => (
                             <div
