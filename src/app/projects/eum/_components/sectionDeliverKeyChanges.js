@@ -215,59 +215,90 @@ export default function SectionDeliverKeyChanges() {
 
                     <div className="key-changes-visual-area">
                         <div className="key-changes-visual-track" ref={trackRef}>
-                            {keyChanges.map((item, i) => (
-                                <div className="key-changes-visual" key={item.title}>
-                                    <figure
-                                        className="key-changes-visual-asis"
-                                        ref={(el) => (asIsRefs.current[i] = el)}
+                            {keyChanges.map((item, i) => {
+                                const asisAspect =
+                                    item.asIs.width / item.asIs.height;
+                                const tobeAspect = item.toBe.framed
+                                    ? 1470 / 3000
+                                    : item.toBe.width / item.toBe.height;
+                                // group multiplier: 그룹 너비 = TO-BE 너비 + (1 - 0.6) × AS-IS 너비
+                                //   = (tobeAspect + 0.4 × 0.7 × asisAspect) × TO-BE 높이
+                                //   = (tobeAspect + 0.28 × asisAspect) × TO-BE 높이
+                                // 비주얼 영역 너비 / multiplier = 허용 가능한 최대 TO-BE 높이
+                                const groupMultiplier =
+                                    tobeAspect + 0.28 * asisAspect;
+                                return (
+                                    <div
+                                        className="key-changes-visual"
+                                        key={item.title}
+                                        style={{
+                                            "--asis-aspect": asisAspect,
+                                            "--group-multiplier": groupMultiplier,
+                                        }}
                                     >
-                                        <Image
-                                            src={asset(item.asIs.src)}
-                                            alt={item.asIs.alt}
-                                            width={item.asIs.width}
-                                            height={item.asIs.height}
-                                            style={{
-                                                width: "auto",
-                                                height: "auto",
-                                                maxWidth: `${item.asIs.imgWidth}px`,
-                                                maxHeight:
-                                                    "calc(100vh - var(--localnav-height) - 52px)",
-                                            }}
-                                            sizes={sizes.fixed(item.asIs.imgWidth)}
-                                            quality={QUALITY_UI}
-                                        />
-                                        <figcaption>AS-IS</figcaption>
-                                    </figure>
-                                    <figure
-                                        className="key-changes-visual-tobe"
-                                        ref={(el) => (toBeRefs.current[i] = el)}
-                                    >
-                                        <ScrubVideo
-                                            ref={(el) => (canvasFrameRefs.current[i] = el)}
-                                            src={item.toBe.src}
-                                            poster={item.toBe.poster}
-                                            width={item.toBe.width}
-                                            height={item.toBe.height}
-                                            alt={item.toBe.alt}
-                                            framed={item.toBe.framed}
-                                            style={{ width: item.toBe.imgWidth }}
-                                            videoStyle={{
-                                                width: "100%",
-                                                height: "auto",
-                                                display: "block",
-                                                borderRadius: 12,
-                                            }}
-                                            imgStyle={{
-                                                width: "100%",
-                                                height: "auto",
-                                                display: "block",
-                                                borderRadius: 12,
-                                            }}
-                                        />
-                                        <figcaption>TO-BE</figcaption>
-                                    </figure>
-                                </div>
-                            ))}
+                                        <figure
+                                            className="key-changes-visual-asis"
+                                            ref={(el) => (asIsRefs.current[i] = el)}
+                                        >
+                                            <Image
+                                                src={asset(item.asIs.src)}
+                                                alt={item.asIs.alt}
+                                                width={item.asIs.width}
+                                                height={item.asIs.height}
+                                                style={{
+                                                    width: "auto",
+                                                    height: "calc(var(--tobe-effective-height) * 0.7)",
+                                                    maxWidth: "100%",
+                                                }}
+                                                sizes={sizes.fixed(
+                                                    item.asIs.imgWidth
+                                                )}
+                                                quality={QUALITY_UI}
+                                            />
+                                            <figcaption>AS-IS</figcaption>
+                                        </figure>
+                                        <figure
+                                            className="key-changes-visual-tobe"
+                                            ref={(el) => (toBeRefs.current[i] = el)}
+                                        >
+                                            <ScrubVideo
+                                                ref={(el) =>
+                                                    (canvasFrameRefs.current[i] =
+                                                        el)
+                                                }
+                                                src={item.toBe.src}
+                                                poster={item.toBe.poster}
+                                                width={item.toBe.width}
+                                                height={item.toBe.height}
+                                                alt={item.toBe.alt}
+                                                framed={item.toBe.framed}
+                                                style={
+                                                    item.toBe.framed
+                                                        ? undefined
+                                                        : {
+                                                              aspectRatio: `${item.toBe.width} / ${item.toBe.height}`,
+                                                          }
+                                                }
+                                                videoStyle={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    display: "block",
+                                                    borderRadius: 12,
+                                                    objectFit: "cover",
+                                                }}
+                                                imgStyle={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    display: "block",
+                                                    borderRadius: 12,
+                                                    objectFit: "cover",
+                                                }}
+                                            />
+                                            <figcaption>TO-BE</figcaption>
+                                        </figure>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

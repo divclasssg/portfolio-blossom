@@ -33,7 +33,6 @@ const keyChanges = [
             alt: "환자 앱 메인 화면 to-be",
             width: 774,
             height: 1678,
-            imgWidth: 300,
             framed: true,
         },
     },
@@ -74,7 +73,6 @@ const keyChanges = [
             alt: "의사 패널 메인 화면 to-be",
             width: 960,
             height: 1672,
-            imgWidth: 300,
         },
     },
     {
@@ -115,7 +113,6 @@ const keyChanges = [
             alt: "환자 진료 요약 상세 화면 to-be",
             width: 774,
             height: 1678,
-            imgWidth: 300,
             framed: true,
         },
     },
