@@ -1,4 +1,4 @@
-import "../style/style.scss";
+import "../_style/style.scss";
 
 export default function HabitTogetherHealthcareUX() {
     return (
