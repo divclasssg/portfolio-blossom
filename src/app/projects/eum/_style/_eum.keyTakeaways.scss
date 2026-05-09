@@ -6,6 +6,10 @@
 
         .typography-copy {
             padding-bottom: 48px;
+
+            &:last-child {
+                padding-bottom: 0;
+            }
         }
     }
 }

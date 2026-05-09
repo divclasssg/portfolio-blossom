@@ -2,9 +2,29 @@
     // ─────────────────────────────────────────────
     // Section primitives
     // ─────────────────────────────────────────────
+    .section-standalone,
+    .section-project-background,
+    .section-dd-develop,
+    .section-dd-develop-review,
+    .section-dd-develop-wireframe-to-prototype,
+    .section-dd-deliver,
+    .section-dd-deliver-structure-update,
+    .section-system-definition {
+        padding: var(--space-96) 0;
+    }
+
+    .section-double-diamond,
+    .section-dd-discover,
+    .section-dd-define {
+        padding: var(--space-96) 0 0;
+    }
+
+    .section-ai-pipeline {
+        padding: 0 0 var(--space-96)
+    }
+
     .section-standalone {
         background: var(--color-primary);
-        padding: var(--space-96) 0;
 
         .standalone-content {
             width: var(--layout-section-content-wide);
@@ -25,49 +45,18 @@
 
     .section-project-background {
         background: var(--color-surface-subtle);
-        padding: var(--space-48) 0;
-    }
-
-    .section-double-diamond {
-        padding: 96px 0 32px;
-    }
-
-    .section-dd-discover,
-    .section-dd-define,
-    .section-dd-develop,
-    .section-dd-deliver {
-        padding: 32px 0;
     }
 
     .section-dd-develop-review {
         background: var(--color-surface-subtle);
-        padding: 96px 0;
     }
     .section-dd-develop-review .callout-wrapper {
         flex-direction: column;
     }
 
-    .section-dd-develop-wireframe-to-prototype {
-        padding: 96px 0 0;
-    }
-
-    .section-dd-develop-usability-testing {
-        padding: 96px 0 32px;
-    }
-
-    .section-dd-deliver-structure-update {
-        padding: 96px 0;
-    }
-
     .section-system-definition,
     .section-ai-pipeline {
         background: var(--color-surface-subtle);
-    }
-    .section-system-definition {
-        padding: 96px 0 36px;
-    }
-    .section-ai-pipeline {
-        padding: 36px 0 96px;
     }
 
     .section-final-result {

@@ -304,8 +304,6 @@
     // 기타 Deliver 섹션
     // ─────────────────────────────────────────────
     .section-dd-deliver {
-        padding-bottom: 96px;
-
         figure {
             img {
                 border-radius: var(--radius-12);
@@ -328,7 +326,7 @@
     .iteration-and-redesign-screenshot {
         max-width: 1024px;
         margin: 0 auto;
-        padding: 96px 0;
+        padding: 96px 0 0;
 
         .img-wrapper {
             border-radius: var(--radius-12);
@@ -402,7 +400,6 @@
     .section-dd-deliver-final-prototype {
         position: relative;
         overflow: hidden;
-        padding-bottom: 64px;
 
         // Stage ------------------------------------------------
         .proto-stage {
