@@ -211,10 +211,6 @@ export default function SectionDeliverKeyChanges() {
                                 // AS-IS 박스 비율 = TO-BE 비율, 크기 = TO-BE × ASIS_SCALE.
                                 // 자연 비율 다른 이미지는 object-fit:cover 로 폰 상단이 보이고 아래는 잘림.
                                 const asisDisplayAspect = tobeAspect;
-                                // phone-shape (item.toBe.framed) 만 iPhone radius 적용, 그 외(KC02 의사 패널)는 0.
-                                const asisRadius = item.toBe.framed
-                                    ? "22% / 8%"
-                                    : "0";
                                 const groupMultiplier =
                                     tobeAspect +
                                     (1 - TOBE_OVERLAP) *
@@ -230,7 +226,6 @@ export default function SectionDeliverKeyChanges() {
                                                 asisDisplayAspect,
                                             "--asis-scale": ASIS_SCALE,
                                             "--tobe-overlap": TOBE_OVERLAP,
-                                            "--asis-radius": asisRadius,
                                             "--group-multiplier": groupMultiplier,
                                         }}
                                     >
