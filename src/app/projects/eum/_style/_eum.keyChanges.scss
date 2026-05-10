@@ -190,6 +190,8 @@
                 max-width: 100%;
                 object-fit: cover;
                 object-position: top center;
+                // iPhone 프레임 동일 radius (.device-phone 와 일치)
+                border-radius: 22% / 8%;
             }
 
             // AS-IS 라벨은 TO-BE에 가려지지 않는 좌측 40% 영역에 노출.
