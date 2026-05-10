@@ -10,11 +10,11 @@ import ExternalLink from "./_shared/ExternalLink";
 
 const ITEM_COUNT = keyChanges.length;
 
-// AS-IS 박스 크기를 모든 KC 에 통일하기 위한 상수.
-// KC01 자연 종횡비(768/1664 ≈ 0.4615)를 기준으로, KC02/03 도 같은 박스에 object-fit:cover 로 표시.
-const ASIS_DISPLAY_ASPECT = 768 / 1664;
+// AS-IS 박스를 TO-BE 의 ~90% 크기로 표시하기 위한 상수.
+// 박스 비율을 각 KC 의 TO-BE 비율과 동일하게 맞춰 AS-IS 가 TO-BE 와 동일 형태·90% 크기.
+// 자연 비율이 다른 phone-tall 이미지는 object-fit:cover + object-position:top 로 폰 상단이 보이고 아래 잘림.
 const ASIS_SCALE = 0.9;
-const TOBE_OVERLAP = 0.6;
+const TOBE_OVERLAP = 0;
 
 // callout 텍스트만 빠르게 올라와 길게 머무르게 — visual(AS-IS/TO-BE)은 HOLD_END(0.8) 유지
 const CALLOUT_ENTER_END = 0.15;
@@ -208,14 +208,14 @@ export default function SectionDeliverKeyChanges() {
                                 const tobeAspect = item.toBe.framed
                                     ? 1470 / 3000
                                     : item.toBe.width / item.toBe.height;
-                                // 모든 KC 의 AS-IS 박스 크기를 KC01 의 자연 종횡비로 통일.
-                                // KC02/03 처럼 자연 비율이 다른 이미지는 object-fit:cover + object-position:top
-                                // 로 박스를 채우면서 폰 상단이 보이고 아래쪽은 잘림.
+                                // AS-IS 박스 비율 = TO-BE 비율, 크기 = TO-BE × ASIS_SCALE.
+                                // 자연 비율 다른 이미지는 object-fit:cover 로 폰 상단이 보이고 아래는 잘림.
+                                const asisDisplayAspect = tobeAspect;
                                 const groupMultiplier =
                                     tobeAspect +
                                     (1 - TOBE_OVERLAP) *
                                         ASIS_SCALE *
-                                        ASIS_DISPLAY_ASPECT;
+                                        asisDisplayAspect;
                                 return (
                                     <div
                                         className="key-changes-asset"
@@ -223,7 +223,7 @@ export default function SectionDeliverKeyChanges() {
                                         style={{
                                             "--asis-aspect": asisAspect,
                                             "--asis-display-aspect":
-                                                ASIS_DISPLAY_ASPECT,
+                                                asisDisplayAspect,
                                             "--asis-scale": ASIS_SCALE,
                                             "--tobe-overlap": TOBE_OVERLAP,
                                             "--group-multiplier": groupMultiplier,
