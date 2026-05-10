@@ -14,7 +14,7 @@ const ITEM_COUNT = keyChanges.length;
 // 박스 비율을 각 KC 의 TO-BE 비율과 동일하게 맞춰 AS-IS 가 TO-BE 와 동일 형태·90% 크기.
 // 자연 비율이 다른 phone-tall 이미지는 object-fit:cover + object-position:top 로 폰 상단이 보이고 아래 잘림.
 const ASIS_SCALE = 0.9;
-const TOBE_OVERLAP = 0;
+const TOBE_OVERLAP = 0.6;
 
 // callout 텍스트만 빠르게 올라와 길게 머무르게 — visual(AS-IS/TO-BE)은 HOLD_END(0.8) 유지
 const CALLOUT_ENTER_END = 0.15;
