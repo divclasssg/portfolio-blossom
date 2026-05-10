@@ -202,24 +202,31 @@ export default function SectionDeliverKeyChanges() {
                                 const tobeAspect = item.toBe.framed
                                     ? 1470 / 3000
                                     : item.toBe.width / item.toBe.height;
-                                // 좁은 phone aspect(< 0.4)는 AS-IS 가시 영역이 좁아 보이므로
-                                // height 를 더 키우고 TO-BE 덮임을 줄여 콘텐츠 가독성 보강.
-                                // (asis 가 viewport 보다 약간 더 커져 상하 살짝 클립되지만 가시 너비 우선)
+                                // 좁은 phone aspect(< 0.4)는 자연 너비가 좁아 콘텐츠 식별이 어려움.
+                                // display-aspect 를 강제 0.6 으로 키워 박스를 더 정사각으로 만들고,
+                                // object-fit:cover + object-position:top 로 폰 상단을 큰 너비로 표시.
                                 const isTallPhone = asisAspect < 0.4;
-                                const asisScale = isTallPhone ? 1.4 : 0.9;
+                                const asisScale = isTallPhone ? 1.0 : 0.9;
                                 const tobeOverlap = isTallPhone ? 0.2 : 0.6;
-                                // group multiplier: 그룹 너비 = TO-BE 너비 + (1 - overlap) × AS-IS 너비
-                                //   = (tobeAspect + (1 - overlap) × scale × asisAspect) × TO-BE 높이
+                                const asisDisplayAspect = isTallPhone
+                                    ? 0.6
+                                    : asisAspect;
+                                // group multiplier: 그룹 너비 = TO-BE 너비 + (1 - overlap) × AS-IS 박스 너비
+                                //   = (tobeAspect + (1 - overlap) × scale × display-aspect) × TO-BE 높이
                                 // 비주얼 영역 너비 / multiplier = 허용 가능한 최대 TO-BE 높이
                                 const groupMultiplier =
                                     tobeAspect +
-                                    (1 - tobeOverlap) * asisScale * asisAspect;
+                                    (1 - tobeOverlap) *
+                                        asisScale *
+                                        asisDisplayAspect;
                                 return (
                                     <div
                                         className="key-changes-asset"
                                         key={item.title}
                                         style={{
                                             "--asis-aspect": asisAspect,
+                                            "--asis-display-aspect":
+                                                asisDisplayAspect,
                                             "--asis-scale": asisScale,
                                             "--tobe-overlap": tobeOverlap,
                                             "--group-multiplier": groupMultiplier,
@@ -231,11 +238,6 @@ export default function SectionDeliverKeyChanges() {
                                                 alt={item.asIs.alt}
                                                 width={item.asIs.width}
                                                 height={item.asIs.height}
-                                                style={{
-                                                    width: "auto",
-                                                    height: "calc(var(--tobe-effective-height) * 0.7)",
-                                                    maxWidth: "100%",
-                                                }}
                                                 unoptimized
                                             />
                                             <figcaption>AS-IS</figcaption>
