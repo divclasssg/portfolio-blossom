@@ -19,21 +19,34 @@
     --color-monitor-base-dark: #1a1a1c;
 
     // ─────────────────────────────────────────────
-    // Emphasis (키워드 강조) — 회색 텍스트
-    // 기본(밝은 배경): gray-scale-1 / 다크(.section-standalone): gray-scale-2
+    // Emphasis (키워드 강조) — 회색 텍스트 변형
+    // black-box 적용 부모(.section-headline-*, scroll-scrub callout headline,
+    // ut-results headline) 안에서 검정 박스 대신 회색 텍스트로 오버라이드.
+    // .emphasis.emphasis-* 체인 selector 로 specificity 를 올려 !important 없이
+    // 글로벌 typography / sections.scss 의 black-box 규칙을 이긴다.
     // ─────────────────────────────────────────────
-    .emphasis-patient,
-    .emphasis-doctor,
-    .emphasis-ai {
-        background: transparent !important;
-        color: var(--color-gray-scale-1) !important;
+    .section-headline-large,
+    .section-headline-small,
+    .keyscreen-callout-headline,
+    .key-changes-callout-headline,
+    .ut-results-headline {
+        .emphasis.emphasis-patient,
+        .emphasis.emphasis-doctor,
+        .emphasis.emphasis-ai {
+            background: transparent;
+            color: var(--color-gray-scale-1);
+        }
     }
 
-    .section-standalone {
-        .emphasis-patient,
-        .emphasis-doctor,
-        .emphasis-ai {
-            color: var(--color-gray-scale-2) !important;
+    // .section-standalone 다크 배경에서는 한 단계 더 옅은 회색(gray-scale-2)
+    .section-standalone .standalone-content {
+        .section-headline-large,
+        .section-headline-small {
+            .emphasis.emphasis-patient,
+            .emphasis.emphasis-doctor,
+            .emphasis.emphasis-ai {
+                color: var(--color-gray-scale-2);
+            }
         }
     }
 
