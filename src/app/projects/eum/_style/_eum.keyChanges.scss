@@ -180,9 +180,6 @@
         }
 
         .key-changes-asset-asis {
-            opacity: 0;
-            will-change: opacity;
-
             img {
                 height: calc(var(--tobe-effective-height) * var(--asis-scale));
                 width: auto;
@@ -269,8 +266,6 @@
             }
 
             .key-changes-asset-asis {
-                opacity: 1 !important;
-
                 img {
                     height: auto !important;
                     max-width: min(240px, 60vw);

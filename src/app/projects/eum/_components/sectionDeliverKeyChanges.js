@@ -13,7 +13,6 @@ const ITEM_COUNT = keyChanges.length;
 // callout 텍스트만 빠르게 올라와 길게 머무르게 — visual(AS-IS/TO-BE)은 HOLD_END(0.8) 유지
 const CALLOUT_ENTER_END = 0.15;
 const CALLOUT_HOLD_END = 0.85;
-const ASIS_ENTER_END = 0.15;
 const TOBE_ENTER_START = 0.15;
 const TOBE_ENTER_END = 0.3;
 const HOLD_END = 0.8;
@@ -42,7 +41,6 @@ export default function SectionDeliverKeyChanges() {
     const containerRef = useRef(null);
     const stickyRef = useRef(null);
     const calloutRefs = useRef([]);
-    const asIsRefs = useRef([]);
     const toBeRefs = useRef([]);
     const canvasFrameRefs = useRef([]);
     const trackRef = useRef(null);
@@ -103,23 +101,6 @@ export default function SectionDeliverKeyChanges() {
                 }
                 callout.style.transform = `translateY(${translateY}px)`;
                 callout.style.opacity = clamp01(opacity);
-            }
-
-            const asIs = asIsRefs.current[i];
-            if (asIs) {
-                let opacity;
-                if (local < 0) {
-                    opacity = 0;
-                } else if (local < ASIS_ENTER_END) {
-                    opacity = easeOut(local / ASIS_ENTER_END);
-                } else if (local < HOLD_END) {
-                    opacity = 1;
-                } else if (local < 1) {
-                    opacity = 1 - easeOut((local - HOLD_END) / (1 - HOLD_END));
-                } else {
-                    opacity = 0;
-                }
-                asIs.style.opacity = clamp01(opacity);
             }
 
             const toBe = toBeRefs.current[i];
@@ -243,10 +224,7 @@ export default function SectionDeliverKeyChanges() {
                                             "--group-multiplier": groupMultiplier,
                                         }}
                                     >
-                                        <figure
-                                            className="key-changes-asset-asis"
-                                            ref={(el) => (asIsRefs.current[i] = el)}
-                                        >
+                                        <figure className="key-changes-asset-asis">
                                             <Image
                                                 src={asset(item.asIs.src)}
                                                 alt={item.asIs.alt}
