@@ -213,8 +213,8 @@ export default function SectionDeliverKeyChanges() {
                         ))}
                     </div>
 
-                    <div className="key-changes-visual-area">
-                        <div className="key-changes-visual-track" ref={trackRef}>
+                    <div className="key-changes-asset-area">
+                        <div className="key-changes-asset-track" ref={trackRef}>
                             {keyChanges.map((item, i) => {
                                 const asisAspect =
                                     item.asIs.width / item.asIs.height;
@@ -229,7 +229,7 @@ export default function SectionDeliverKeyChanges() {
                                     tobeAspect + 0.28 * asisAspect;
                                 return (
                                     <div
-                                        className="key-changes-visual"
+                                        className="key-changes-asset"
                                         key={item.title}
                                         style={{
                                             "--asis-aspect": asisAspect,
@@ -237,7 +237,7 @@ export default function SectionDeliverKeyChanges() {
                                         }}
                                     >
                                         <figure
-                                            className="key-changes-visual-asis"
+                                            className="key-changes-asset-asis"
                                             ref={(el) => (asIsRefs.current[i] = el)}
                                         >
                                             <Image
@@ -258,7 +258,7 @@ export default function SectionDeliverKeyChanges() {
                                             <figcaption>AS-IS</figcaption>
                                         </figure>
                                         <figure
-                                            className="key-changes-visual-tobe"
+                                            className="key-changes-asset-tobe"
                                             ref={(el) => (toBeRefs.current[i] = el)}
                                         >
                                             <ScrubVideo

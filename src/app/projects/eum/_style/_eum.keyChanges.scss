@@ -119,7 +119,7 @@
         }
 
         // ─── 우측(row-reverse라 실제론 좌측): AS-IS + TO-BE 병렬 비주얼 ───
-        .key-changes-visual-area {
+        .key-changes-asset-area {
             position: relative;
             height: calc(100vh - var(--localnav-height));
             width: min(640px, 38vw);
@@ -127,7 +127,7 @@
             overflow: hidden;
         }
 
-        .key-changes-visual-track {
+        .key-changes-asset-track {
             display: flex;
             flex-direction: column;
             will-change: transform;
@@ -141,7 +141,7 @@
         // --tobe-effective-height = min(의도된 높이, 비주얼 영역 너비 / group-multiplier)
         //   group-multiplier = tobeAspect + 0.4 × 0.7 × asisAspect = tobeAspect + 0.28 × asisAspect
         //   → 그룹 너비가 비주얼 영역(min(640px, 38vw))을 절대 초과하지 않도록 캡.
-        .key-changes-visual {
+        .key-changes-asset {
             position: relative;
             width: 100%;
             height: calc(100vh - var(--localnav-height));
@@ -159,8 +159,8 @@
             );
         }
 
-        .key-changes-visual-asis,
-        .key-changes-visual-tobe {
+        .key-changes-asset-asis,
+        .key-changes-asset-tobe {
             margin: 0;
             display: flex;
             flex-direction: column-reverse;
@@ -177,7 +177,7 @@
             }
         }
 
-        .key-changes-visual-asis {
+        .key-changes-asset-asis {
             opacity: 0;
             will-change: opacity;
 
@@ -194,7 +194,7 @@
             }
         }
 
-        .key-changes-visual-tobe {
+        .key-changes-asset-tobe {
             // 60% × AS-IS 너비만큼 좌측으로 당겨 AS-IS의 좌측 40%만 보이게.
             // AS-IS 너비 = effective × 0.7 × asis-aspect → overlap = 0.42 × asis-aspect × effective.
             margin-left: calc(
@@ -247,24 +247,24 @@
                 transform: none !important;
             }
 
-            .key-changes-visual-area {
+            .key-changes-asset-area {
                 width: 100%;
                 height: auto;
                 overflow: visible;
             }
 
-            .key-changes-visual-track {
+            .key-changes-asset-track {
                 transform: none !important;
             }
 
-            .key-changes-visual {
+            .key-changes-asset {
                 height: auto;
                 flex-direction: column;
                 gap: var(--space-24);
                 padding-bottom: var(--space-48);
             }
 
-            .key-changes-visual-asis {
+            .key-changes-asset-asis {
                 opacity: 1 !important;
 
                 img {
@@ -277,7 +277,7 @@
                 }
             }
 
-            .key-changes-visual-tobe {
+            .key-changes-asset-tobe {
                 margin-left: 0;
                 transform: none !important;
 
