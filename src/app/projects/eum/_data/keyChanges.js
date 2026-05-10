@@ -24,7 +24,6 @@ const keyChanges = [
             alt: "환자 앱 메인 화면 as-is",
             width: 1290,
             height: 2796,
-            imgWidth: 248,
         },
         toBe: {
             src: "eum/videos/key_changes/key_change_01.mp4",
@@ -64,7 +63,6 @@ const keyChanges = [
             alt: "의사 패널 메인 화면 as-is",
             width: 952,
             height: 3223,
-            imgWidth: 248,
         },
         toBe: {
             src: "eum/videos/key_changes/key_change_02.mp4",
@@ -104,7 +102,6 @@ const keyChanges = [
             alt: "환자 진료 요약 상세 화면 as-is",
             width: 1290,
             height: 4428,
-            imgWidth: 248,
         },
         toBe: {
             src: "eum/videos/key_changes/key_change_03.mp4",
