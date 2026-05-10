@@ -122,7 +122,7 @@
         .key-changes-asset-area {
             position: relative;
             height: calc(100vh - var(--localnav-height));
-            width: min(640px, 38vw);
+            width: min(900px, 50vw);
             flex-shrink: 0;
             overflow: hidden;
         }
@@ -142,7 +142,7 @@
         //
         // --tobe-effective-height = min(의도된 높이, 비주얼 영역 너비 / group-multiplier)
         //   group-multiplier = tobeAspect + (1 - overlap) × scale × asisAspect
-        //   → 그룹 너비가 비주얼 영역(min(640px, 38vw))을 절대 초과하지 않도록 캡.
+        //   → 그룹 너비가 비주얼 영역(min(900px, 50vw))을 절대 초과하지 않도록 캡.
         .key-changes-asset {
             position: relative;
             width: 100%;
@@ -157,7 +157,7 @@
             );
             --tobe-effective-height: min(
                 var(--tobe-intended-height),
-                calc(min(640px, 38vw) / var(--group-multiplier))
+                calc(min(900px, 50vw) / var(--group-multiplier))
             );
         }
 

@@ -204,9 +204,10 @@ export default function SectionDeliverKeyChanges() {
                                     : item.toBe.width / item.toBe.height;
                                 // 좁은 phone aspect(< 0.4)는 AS-IS 가시 영역이 좁아 보이므로
                                 // height 를 더 키우고 TO-BE 덮임을 줄여 콘텐츠 가독성 보강.
+                                // (asis 가 viewport 보다 약간 더 커져 상하 살짝 클립되지만 가시 너비 우선)
                                 const isTallPhone = asisAspect < 0.4;
-                                const asisScale = isTallPhone ? 1.0 : 0.9;
-                                const tobeOverlap = isTallPhone ? 0.3 : 0.6;
+                                const asisScale = isTallPhone ? 1.4 : 0.9;
+                                const tobeOverlap = isTallPhone ? 0.2 : 0.6;
                                 // group multiplier: 그룹 너비 = TO-BE 너비 + (1 - overlap) × AS-IS 너비
                                 //   = (tobeAspect + (1 - overlap) × scale × asisAspect) × TO-BE 높이
                                 // 비주얼 영역 너비 / multiplier = 허용 가능한 최대 TO-BE 높이
