@@ -10,6 +10,12 @@ import ExternalLink from "./_shared/ExternalLink";
 
 const ITEM_COUNT = keyChanges.length;
 
+// AS-IS 박스 크기를 모든 KC 에 통일하기 위한 상수.
+// KC01 자연 종횡비(768/1664 ≈ 0.4615)를 기준으로, KC02/03 도 같은 박스에 object-fit:cover 로 표시.
+const ASIS_DISPLAY_ASPECT = 768 / 1664;
+const ASIS_SCALE = 0.9;
+const TOBE_OVERLAP = 0.6;
+
 // callout 텍스트만 빠르게 올라와 길게 머무르게 — visual(AS-IS/TO-BE)은 HOLD_END(0.8) 유지
 const CALLOUT_ENTER_END = 0.15;
 const CALLOUT_HOLD_END = 0.85;
@@ -202,23 +208,14 @@ export default function SectionDeliverKeyChanges() {
                                 const tobeAspect = item.toBe.framed
                                     ? 1470 / 3000
                                     : item.toBe.width / item.toBe.height;
-                                // 좁은 phone aspect(< 0.4)는 자연 너비가 좁아 콘텐츠 식별이 어려움.
-                                // display-aspect 를 강제 0.6 으로 키워 박스를 더 정사각으로 만들고,
-                                // object-fit:cover + object-position:top 로 폰 상단을 큰 너비로 표시.
-                                const isTallPhone = asisAspect < 0.4;
-                                const asisScale = isTallPhone ? 1.0 : 0.9;
-                                const tobeOverlap = isTallPhone ? 0.2 : 0.6;
-                                const asisDisplayAspect = isTallPhone
-                                    ? 0.6
-                                    : asisAspect;
-                                // group multiplier: 그룹 너비 = TO-BE 너비 + (1 - overlap) × AS-IS 박스 너비
-                                //   = (tobeAspect + (1 - overlap) × scale × display-aspect) × TO-BE 높이
-                                // 비주얼 영역 너비 / multiplier = 허용 가능한 최대 TO-BE 높이
+                                // 모든 KC 의 AS-IS 박스 크기를 KC01 의 자연 종횡비로 통일.
+                                // KC02/03 처럼 자연 비율이 다른 이미지는 object-fit:cover + object-position:top
+                                // 로 박스를 채우면서 폰 상단이 보이고 아래쪽은 잘림.
                                 const groupMultiplier =
                                     tobeAspect +
-                                    (1 - tobeOverlap) *
-                                        asisScale *
-                                        asisDisplayAspect;
+                                    (1 - TOBE_OVERLAP) *
+                                        ASIS_SCALE *
+                                        ASIS_DISPLAY_ASPECT;
                                 return (
                                     <div
                                         className="key-changes-asset"
@@ -226,9 +223,9 @@ export default function SectionDeliverKeyChanges() {
                                         style={{
                                             "--asis-aspect": asisAspect,
                                             "--asis-display-aspect":
-                                                asisDisplayAspect,
-                                            "--asis-scale": asisScale,
-                                            "--tobe-overlap": tobeOverlap,
+                                                ASIS_DISPLAY_ASPECT,
+                                            "--asis-scale": ASIS_SCALE,
+                                            "--tobe-overlap": TOBE_OVERLAP,
                                             "--group-multiplier": groupMultiplier,
                                         }}
                                     >
