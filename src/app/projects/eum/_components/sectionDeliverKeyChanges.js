@@ -222,11 +222,11 @@ export default function SectionDeliverKeyChanges() {
                                     ? 1470 / 3000
                                     : item.toBe.width / item.toBe.height;
                                 // group multiplier: 그룹 너비 = TO-BE 너비 + (1 - 0.6) × AS-IS 너비
-                                //   = (tobeAspect + 0.4 × 0.7 × asisAspect) × TO-BE 높이
-                                //   = (tobeAspect + 0.28 × asisAspect) × TO-BE 높이
+                                //   = (tobeAspect + 0.4 × 0.9 × asisAspect) × TO-BE 높이
+                                //   = (tobeAspect + 0.36 × asisAspect) × TO-BE 높이
                                 // 비주얼 영역 너비 / multiplier = 허용 가능한 최대 TO-BE 높이
                                 const groupMultiplier =
-                                    tobeAspect + 0.28 * asisAspect;
+                                    tobeAspect + 0.36 * asisAspect;
                                 return (
                                     <div
                                         className="key-changes-asset"
