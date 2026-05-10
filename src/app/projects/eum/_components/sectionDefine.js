@@ -196,15 +196,15 @@ export default function SectionDefine() {
                 </div>
             </div>
 
-            <div className="define-methodology-scroll" ref={containerRef}>
+            <div className="define-methodology-scroll-container" ref={containerRef}>
                 <h3 className="visuallyhidden">UX Research Methodology</h3>
 
                 <div className="define-methodology-sticky">
                     {/* 이미지 레이어 — 아래에서 슬라이드 업, 블러 처리 */}
-                    <div className="define-methodology-image-frame">
+                    <div className="define-methodology-asset-area">
                         {defineMethodology.map((item, i) => (
                             <div
-                                className="define-methodology-image"
+                                className="define-methodology-asset"
                                 key={item.title}
                                 ref={(el) => {
                                     imageRefs.current[i] = el;
@@ -223,10 +223,10 @@ export default function SectionDefine() {
                     </div>
 
                     {/* 텍스트 레이어 — 이미지 위로 겹쳐 슬라이드 업 */}
-                    <div className="define-methodology-callout-frame">
+                    <div className="define-methodology-callout-area">
                         {defineMethodology.map((item, i) => (
                             <div
-                                className="define-methodology-content"
+                                className="define-methodology-callout"
                                 key={item.title}
                                 ref={(el) => {
                                     contentRefs.current[i] = el;

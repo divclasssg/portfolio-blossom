@@ -2,7 +2,7 @@
     // ─────────────────────────────────────────────
     // Define — UX Research Methodology 스크롤 스크럽
     // ─────────────────────────────────────────────
-    .define-methodology-scroll {
+    .define-methodology-scroll-container {
         position: relative;
         height: 1600vh; // 4 items × 400vh
     }
@@ -17,14 +17,14 @@
     // ─── 이미지 레이어 ───
     // localnav(52px) 이 상단에 떠 있으므로, 가시 영역 중앙 정렬을 위해
     // 프레임의 top 을 localnav 높이만큼 내려 배치한다.
-    .define-methodology-image-frame {
+    .define-methodology-asset-area {
         position: absolute;
         inset: var(--localnav-height) 0 0 0;
         z-index: 1;
         pointer-events: none;
     }
 
-    .define-methodology-image {
+    .define-methodology-asset {
         position: absolute;
         inset: 0;
         display: flex;
@@ -43,7 +43,7 @@
     }
 
     // ─── 텍스트 레이어 ───
-    .define-methodology-callout-frame {
+    .define-methodology-callout-area {
         position: absolute;
         inset: var(--localnav-height) 0 0 0;
         z-index: 2;
@@ -67,7 +67,7 @@
         pointer-events: none;
     }
 
-    .define-methodology-content {
+    .define-methodology-callout {
         position: absolute;
         inset: 0;
         display: flex;
