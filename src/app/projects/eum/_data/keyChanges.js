@@ -20,11 +20,11 @@ const keyChanges = [
         ],
         link: { href: "", label: "원문 데이터 보기" },
         asIs: {
-            src: "eum/screenshots/deliver/key_change_01_asis_qeuusd.png",
+            src: "eum/screenshots/deliver/key_change_01_asis.webp",
             alt: "환자 앱 메인 화면 as-is",
-            width: 221,
-            height: 479,
-            imgWidth: 221,
+            width: 1290,
+            height: 2796,
+            imgWidth: 248,
         },
         toBe: {
             src: "eum/videos/key_changes/key_change_01.mp4",
@@ -60,10 +60,10 @@ const keyChanges = [
         ],
         link: { href: "", label: "원문 데이터 보기" },
         asIs: {
-            src: "eum/screenshots/deliver/key_change_02_asis_fuhr7p.png",
+            src: "eum/screenshots/deliver/key_change_02_asis.webp",
             alt: "의사 패널 메인 화면 as-is",
-            width: 498,
-            height: 1319,
+            width: 952,
+            height: 3223,
             imgWidth: 248,
         },
         toBe: {
@@ -100,10 +100,10 @@ const keyChanges = [
         ],
         link: { href: "", label: "원문 데이터 보기" },
         asIs: {
-            src: "eum/screenshots/deliver/key_change_03_asis_vbttth.png",
+            src: "eum/screenshots/deliver/key_change_03_asis.webp",
             alt: "환자 진료 요약 상세 화면 as-is",
-            width: 496,
-            height: 1732,
+            width: 1290,
+            height: 4428,
             imgWidth: 248,
         },
         toBe: {
