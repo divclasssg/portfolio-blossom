@@ -22,8 +22,8 @@ const keyChanges = [
         asIs: {
             src: "eum/screenshots/deliver/key_change_01_asis.webp",
             alt: "환자 앱 메인 화면 as-is",
-            width: 1290,
-            height: 2796,
+            width: 768,
+            height: 1664,
         },
         toBe: {
             src: "eum/videos/key_changes/key_change_01.mp4",
@@ -61,8 +61,8 @@ const keyChanges = [
         asIs: {
             src: "eum/screenshots/deliver/key_change_02_asis.webp",
             alt: "의사 패널 메인 화면 as-is",
-            width: 952,
-            height: 3223,
+            width: 768,
+            height: 2600,
         },
         toBe: {
             src: "eum/videos/key_changes/key_change_02.mp4",
@@ -100,8 +100,8 @@ const keyChanges = [
         asIs: {
             src: "eum/screenshots/deliver/key_change_03_asis.webp",
             alt: "환자 진료 요약 상세 화면 as-is",
-            width: 1290,
-            height: 4428,
+            width: 768,
+            height: 2636,
         },
         toBe: {
             src: "eum/videos/key_changes/key_change_03.mp4",
