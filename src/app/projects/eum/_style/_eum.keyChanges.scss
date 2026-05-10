@@ -1,0 +1,293 @@
+.page-eum {
+    // ─────────────────────────────────────────────
+    // Key Changes — Sticky scroll (Key Screen 패턴)
+    // 항목당 400vh, 총 (N × 400vh). ENTER → AS-IS 홀드 → 크로스페이드 → TO-BE 홀드+스크럽 → EXIT
+    // ─────────────────────────────────────────────
+    .section-dd-deliver-key-changes {
+        .key-changes-scroll-container {
+            position: relative;
+            height: 4800vh; // 3 items × 1600vh
+        }
+
+        .key-changes-sticky {
+            position: sticky;
+            top: var(--localnav-height);
+            height: calc(100vh - var(--localnav-height));
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
+            gap: 2vw;
+            transition: background-color 0.4s ease;
+
+            // 02 segment 진입 시 옅은 표면 톤으로 전환
+            &.is-bg-subtle {
+                background-color: var(--color-surface-subtle);
+            }
+        }
+
+        // ─── 좌측: 텍스트 콜아웃 (mask로 상하 페이드) ───
+        .key-changes-callout-area {
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: min(760px, 45vw);
+            height: 92vh;
+            overflow: hidden;
+            mask-image: linear-gradient(
+                to bottom,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
+        }
+
+        .key-changes-callout {
+            grid-area: 1 / 1;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(120px);
+            will-change: transform, opacity;
+
+            .key-changes-callout-title {
+                color: var(--color-text-tertiary);
+                font-family: var(--font-family-spoqa);
+                font-size: var(--font-size-regular);
+                font-weight: 700;
+                line-height: 140%;
+                padding-bottom: var(--space-8);
+            }
+
+            .key-changes-callout-headline {
+                color: var(--color-text-primary);
+                font-family: var(--font-family-spoqa);
+                font-size: var(--font-size-xlarge);
+                font-weight: 700;
+                line-height: 130%;
+                padding-bottom: var(--space-16);
+            }
+
+            .key-changes-callout-copy {
+                color: var(--color-text-secondary);
+                font-family: var(--font-family-suit);
+                font-size: var(--font-size-regular);
+                font-weight: 400;
+                line-height: 120%;
+                padding-bottom: var(--space-24);
+            }
+
+            .key-changes-callout-spec {
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-8);
+                padding-bottom: var(--space-24);
+
+                > div {
+                    display: flex;
+                    gap: var(--space-16);
+                }
+
+                dt {
+                    flex-shrink: 0;
+                    width: 95px;
+                    color: var(--color-text-secondary);
+                    font-feature-settings: "ss18" on;
+                    font-family: var(--font-family-suit);
+                    font-size: var(--font-size-regular);
+                    font-weight: 700;
+                    line-height: 130%;
+                }
+
+                dd {
+                    flex: 1;
+                    color: var(--color-text-secondary);
+                    font-feature-settings: "ss18" on;
+                    font-family: var(--font-family-suit);
+                    font-size: var(--font-size-regular);
+                    font-weight: 400;
+                    line-height: 130%;
+                }
+            }
+        }
+
+        // ─── 우측(row-reverse라 실제론 좌측): AS-IS + TO-BE 병렬 비주얼 ───
+        .key-changes-visual-area {
+            position: relative;
+            height: calc(100vh - var(--localnav-height));
+            width: min(640px, 38vw);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .key-changes-visual-track {
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+
+        // AS-IS와 TO-BE를 가로 flex 그룹으로 배치하되,
+        // - TO-BE는 효과적 높이(--tobe-effective-height)에 맞춰 90vh 가까이 차지.
+        // - AS-IS는 TO-BE 높이의 70%, 자체 종횡비로 너비 결정.
+        // - TO-BE의 margin-left: -(60% × AS-IS 너비)로 좌측을 덮어 AS-IS 좌측 40%만 노출.
+        //
+        // --tobe-effective-height = min(의도된 높이, 비주얼 영역 너비 / group-multiplier)
+        //   group-multiplier = tobeAspect + 0.4 × 0.7 × asisAspect = tobeAspect + 0.28 × asisAspect
+        //   → 그룹 너비가 비주얼 영역(min(640px, 38vw))을 절대 초과하지 않도록 캡.
+        .key-changes-visual {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - var(--localnav-height));
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            --tobe-intended-height: calc(
+                100vh - var(--localnav-height) - var(--space-64)
+            );
+            --tobe-effective-height: min(
+                var(--tobe-intended-height),
+                calc(min(640px, 38vw) / var(--group-multiplier))
+            );
+        }
+
+        .key-changes-visual-asis,
+        .key-changes-visual-tobe {
+            margin: 0;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: var(--space-12);
+            flex-shrink: 0;
+
+            figcaption {
+                text-align: center;
+                font-size: var(--font-size-large);
+                font-weight: 500;
+                color: var(--color-text-tertiary);
+                padding: var(--space-8) 0 0;
+            }
+        }
+
+        .key-changes-visual-asis {
+            opacity: 0;
+            will-change: opacity;
+
+            img {
+                height: calc(var(--tobe-effective-height) * 0.7);
+                width: auto;
+                max-width: 100%;
+            }
+
+            // AS-IS 라벨은 TO-BE에 가려지지 않는 좌측 40% 영역에 노출.
+            figcaption {
+                width: 100%;
+                text-align: left;
+            }
+        }
+
+        .key-changes-visual-tobe {
+            // 60% × AS-IS 너비만큼 좌측으로 당겨 AS-IS의 좌측 40%만 보이게.
+            // AS-IS 너비 = effective × 0.7 × asis-aspect → overlap = 0.42 × asis-aspect × effective.
+            margin-left: calc(
+                -0.42 * var(--asis-aspect) * var(--tobe-effective-height)
+            );
+            z-index: 1;
+            transform: translateY(100vh);
+            will-change: transform;
+
+            figcaption {
+                color: var(--color-text-primary);
+                font-weight: 700;
+                font-size: var(--font-size-xlarge);
+            }
+
+            // ScrubVideo outer wrapper
+            > div {
+                height: var(--tobe-effective-height);
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        // ─── 모바일: scroll-scrub 비활성, 세로 스택 ───
+        @media (max-width: 640px) {
+            .key-changes-scroll-container {
+                height: auto;
+            }
+
+            .key-changes-sticky {
+                position: static;
+                height: auto;
+                flex-direction: column;
+                gap: var(--space-32);
+                padding: var(--space-32) var(--space-16);
+            }
+
+            .key-changes-callout-area {
+                width: 100%;
+                height: auto;
+                mask-image: none;
+                -webkit-mask-image: none;
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-64);
+            }
+
+            .key-changes-callout {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .key-changes-visual-area {
+                width: 100%;
+                height: auto;
+                overflow: visible;
+            }
+
+            .key-changes-visual-track {
+                transform: none !important;
+            }
+
+            .key-changes-visual {
+                height: auto;
+                flex-direction: column;
+                gap: var(--space-24);
+                padding-bottom: var(--space-48);
+            }
+
+            .key-changes-visual-asis {
+                opacity: 1 !important;
+
+                img {
+                    height: auto !important;
+                    max-width: min(240px, 60vw);
+                }
+
+                figcaption {
+                    text-align: center;
+                }
+            }
+
+            .key-changes-visual-tobe {
+                margin-left: 0;
+                transform: none !important;
+
+                // ScrubVideo의 outer wrapper의 desktop 사이징을 무력화하고
+                // 모바일 화면에 맞는 너비로 축소.
+                > div {
+                    height: auto !important;
+                    max-width: min(320px, 80vw);
+                }
+            }
+        }
+    }
+}
