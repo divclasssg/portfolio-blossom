@@ -36,4 +36,19 @@
             color: var(--color-gray-scale-2) !important;
         }
     }
+
+    // ─────────────────────────────────────────────
+    // Emphasis (키워드 강조) — 검정 박스
+    // 글로벌 _typography.scss 가 .section-headline-* .emphasis 만 처리하므로,
+    // scroll-scrub 콜아웃·UT results 등 그 외 컨테이너에서도 동일 스타일 적용.
+    // ─────────────────────────────────────────────
+    .keyscreen-callout-headline,
+    .key-changes-callout-headline,
+    .ut-results-headline {
+        .emphasis {
+            background: var(--color-primary);
+            display: inline-block;
+            color: var(--color-white);
+        }
+    }
 }
