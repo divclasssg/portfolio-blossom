@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import ScrubVideo from "@/_components/scrub-video";
-import { asset, QUALITY_UI } from "../_lib/media";
+import { asset } from "../_lib/media";
 import keyChanges from "../_data/keyChanges";
 import emphasize from "../_utils/emphasize";
 import ExternalLink from "./_shared/ExternalLink";
@@ -250,11 +250,7 @@ export default function SectionDeliverKeyChanges() {
                                                     height: "calc(var(--tobe-effective-height) * 0.7)",
                                                     maxWidth: "100%",
                                                 }}
-                                                sizes={`${Math.round(
-                                                    (70 * item.asIs.width) /
-                                                        item.asIs.height
-                                                )}vh`}
-                                                quality={QUALITY_UI}
+                                                unoptimized
                                             />
                                             <figcaption>AS-IS</figcaption>
                                         </figure>
