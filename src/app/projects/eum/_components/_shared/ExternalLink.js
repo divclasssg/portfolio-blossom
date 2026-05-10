@@ -3,7 +3,7 @@ import Link from "next/link";
 const VARIANT_CLASS = {
     primary: "link-primary",
     secondary: "link-secondary",
-    elevated: "button-elevated",
+    elevated: "link-elevated",
 };
 
 export default function ExternalLink({ href, variant = "primary", children, className }) {

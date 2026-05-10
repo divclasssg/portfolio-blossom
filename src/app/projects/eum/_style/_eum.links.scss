@@ -1,6 +1,6 @@
 .page-eum {
     // ─────────────────────────────────────────────
-    // Links & buttons
+    // Links (CTA용 링크 — primary / secondary / elevated)
     // ─────────────────────────────────────────────
     .button-wrapper {
         display: flex;
@@ -41,7 +41,7 @@
         color: var(--color-white);
         padding: 0 var(--space-16);
     }
-    .button-elevated {
+    .link-elevated {
         border-radius: var(--radius-8);
         background: linear-gradient(94deg, var(--color-text-primary) 29.2%, var(--color-accent) 72.46%);
         background-size: 200% 200%;
@@ -58,10 +58,10 @@
         font-style: normal;
         font-weight: 500;
         line-height: 100%;
-        animation: button-elevated-gradient 4s ease-in-out infinite;
+        animation: link-elevated-gradient 4s ease-in-out infinite;
     }
 
-    @keyframes button-elevated-gradient {
+    @keyframes link-elevated-gradient {
         0%,
         100% {
             background-position: 0% 50%;
