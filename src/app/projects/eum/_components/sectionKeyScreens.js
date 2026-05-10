@@ -137,7 +137,7 @@ export default function SectionKeyScreens() {
     }, [handleScroll]);
 
     return (
-        <section className="section section-keyscreens">
+        <section className="section">
             <div className="keyscreen-scroll-container" ref={containerRef}>
                 <h2 className="visuallyhidden">Eum Final Key Screens</h2>
 
