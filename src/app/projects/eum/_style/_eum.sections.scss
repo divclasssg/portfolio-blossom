@@ -60,10 +60,10 @@
     }
 
     .section-final-result {
-        padding: 96px 0;
+        padding: var(--space-96) 0;
     }
     .section-key-takeaways {
         background: var(--color-surface-subtle);
-        padding: 96px 0;
+        padding: var(--space-96) 0;
     }
 }

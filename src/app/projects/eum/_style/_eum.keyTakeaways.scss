@@ -1,11 +1,11 @@
 .page-eum {
     .section-key-takeaways {
         .section-headline-small {
-            padding-bottom: 12px;
+            padding-bottom: var(--space-12);
         }
 
         .typography-copy {
-            padding-bottom: 48px;
+            padding-bottom: var(--space-48);
 
             &:last-child {
                 padding-bottom: 0;

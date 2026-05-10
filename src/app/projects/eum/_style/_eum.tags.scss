@@ -5,8 +5,8 @@
     .tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        padding: 16px 0 32px;
+        gap: var(--space-8);
+        padding: var(--space-16) 0 var(--space-32);
     }
     .tags-item {
         border-radius: var(--radius-12);

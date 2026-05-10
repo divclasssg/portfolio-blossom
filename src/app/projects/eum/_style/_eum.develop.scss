@@ -7,9 +7,9 @@
     
     .card-white-wrapper {
         display: flex;
-        gap: 24px;
+        gap: var(--space-24);
         width: 100%;
-        padding-top: 48px;
+        padding-top: var(--space-48);
 
         .card-white {
             width: calc(100% / 3);

@@ -5,9 +5,9 @@
     .ai-workflow {
         display: flex;
         // align-items: center;
-        gap: 16px;
+        gap: var(--space-16);
         width: var(--layout-paragraph-width);
-        padding: 16px 0 36px;
+        padding: var(--space-16) 0 var(--space-36);
 
         dt {
             border-radius: var(--radius-8);
@@ -47,7 +47,7 @@
         .spec-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: var(--space-8);
 
             dt {
                 width: 80px;

@@ -5,7 +5,7 @@
     .button-wrapper {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: var(--space-8);
     }
 
     .link-primary {
@@ -14,7 +14,7 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        height: 36px;
+        height: var(--space-36);
         font: {
             family: var(--font-family-spoqa);
             size: var(--font-size-xsmall);
@@ -31,7 +31,7 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        height: 36px;
+        height: var(--space-36);
         font: {
             family: var(--font-family-spoqa);
             size: var(--font-size-xsmall);
@@ -42,19 +42,17 @@
         padding: 0 var(--space-16);
     }
     .button-elevated {
-        border-radius: var(--radius-8, 8px);
-        // background: linear-gradient(93deg, var(--color-text-primary, #1C1C1E) 0%, var(--color-ink-700, #4D4D54) 48.88%, var(--color-ink-500, #66666F) 97.76%);
-        background: linear-gradient(94deg, var(--color-text-primary, #1C1C1E) 29.2%, #0071E3 72.46%);
-        // background: #0071E3;
+        border-radius: var(--radius-8);
+        background: linear-gradient(94deg, var(--color-text-primary) 29.2%, var(--color-accent) 72.46%);
         background-size: 200% 200%;
         background-position: 0% 50%;
         display: inline-flex;
-        height: 48px;
+        height: var(--space-48);
         padding: 0 var(--space-24);
         align-items: center;
-        gap: var(--space-8, 8px);
+        gap: var(--space-8);
         align-self: stretch;
-        color: var(--color-white, #fff);
+        color: var(--color-white);
         font-family: var(--font-family-spoqa);
         font-size: var(--font-size-regular);
         font-style: normal;

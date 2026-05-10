@@ -6,7 +6,7 @@
     }
     .slider-content {
         display: flex;
-        gap: 24px;
+        gap: var(--space-24);
         padding-left: calc((100vw - 1024px) / 2);
         padding-right: calc((100vw - 696px) / 2);
         transition: transform 0.6s ease;
@@ -21,10 +21,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 16px;
+        gap: var(--space-16);
         width: 1024px;
         margin: 0 auto;
-        padding-top: 32px;
+        padding-top: var(--space-32);
     }
     .slider-dots {
         display: flex;
@@ -32,7 +32,7 @@
     }
     .slider-arrows {
         display: flex;
-        gap: 8px;
+        gap: var(--space-8);
     }
     .slider-arrow {
         display: flex;

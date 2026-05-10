@@ -3,10 +3,10 @@
     // Usability Testing (UT)
     // ─────────────────────────────────────────────
     .ut-results {
-        padding: 48px 0;
+        padding: var(--space-48) 0;
 
         .ut-results-item {
-            padding-bottom: 48px;
+            padding-bottom: var(--space-48);
 
             .ut-results-headline {
                 width: var(--layout-paragraph-width);
@@ -17,7 +17,7 @@
                 font-weight: 700;
                 line-height: 130%;
                 /* 31.2px */
-                padding-bottom: 12px;
+                padding-bottom: var(--space-12);
 
                 .emphasis {
                     background: var(--color-primary);
@@ -28,15 +28,15 @@
 
             .ut-results-screenshot {
                 .image-wrapper {
-                    border-radius: 12px;
+                    border-radius: var(--radius-12);
                     border: 1px solid var(--color-gray-scale-4);
-                    background: var(--color-white, #fff);
+                    background: var(--color-white);
                     display: inline-flex;
-                    padding: 12px;
+                    padding: var(--space-12);
                     flex-direction: column;
                     align-items: flex-start;
                     align-self: stretch;
-                    margin: 16px 0 12px;
+                    margin: var(--space-16) 0 var(--space-12);
                 }
 
                 figcaption {
@@ -47,7 +47,7 @@
                     font-style: normal;
                     font-weight: 400;
                     line-height: 140%;
-                    padding: 0 12px;
+                    padding: 0 var(--space-12);
                 }
             }
         }
@@ -60,14 +60,14 @@
         .ut-meta-info {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: var(--space-8);
             width: var(--layout-paragraph-width);
             margin: 0 auto;
-            padding-bottom: 64px;
+            padding-bottom: var(--space-64);
 
             .ut-meta-info-item {
                 display: flex;
-                gap: 16px;
+                gap: var(--space-16);
 
                 dt {
                     width: 50px;
@@ -91,7 +91,7 @@
                     line-height: 130%;
 
                     li:first-child {
-                        padding-bottom: 4px;
+                        padding-bottom: var(--space-4);
                     }
                 }
             }
@@ -103,11 +103,11 @@
             gap: var(--space-32) var(--space-24);
 
             figure {
-                width: calc((100% - 24px) / 2);
+                width: calc((100% - var(--space-24)) / 2);
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 24px;
+                gap: var(--space-24);
 
                 img {
                     border-radius: var(--radius-12);
@@ -133,7 +133,7 @@
                     font-style: normal;
                     font-weight: 400;
                     line-height: 130%;
-                    padding: 0 8px;
+                    padding: 0 var(--space-8);
                 }
             }
         }

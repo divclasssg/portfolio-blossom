@@ -14,7 +14,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 48px;
+        gap: var(--space-48);
         transition: background-color 0.4s ease;
 
         // 02 segment 진입 시 옅은 표면 톤으로 전환
@@ -60,7 +60,7 @@
             font-style: normal;
             font-weight: 700;
             line-height: 100%;
-            padding-bottom: 4px;
+            padding-bottom: var(--space-4);
         }
 
         .keyscreen-callout-headline {
@@ -70,7 +70,7 @@
             font-style: normal;
             font-weight: 700;
             line-height: 120%;
-            padding-bottom: 4px;
+            padding-bottom: var(--space-4);
 
             .emphasis {
                 background: var(--color-primary);
@@ -127,13 +127,13 @@
             width: auto;
             height: 85vh;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: var(--radius-12);
             display: block;
         }
 
         &.keyscreen-overview-wide {
             align-items: flex-start;
-            padding-top: calc(var(--localnav-height) + 64px);
+            padding-top: calc(var(--localnav-height) + var(--space-64));
         }
     }
 
@@ -163,8 +163,8 @@
             position: static;
             height: auto;
             flex-direction: column;
-            gap: 24px;
-            padding: 32px 0;
+            gap: var(--space-24);
+            padding: var(--space-32) 0;
         }
 
         .keyscreen-callout-area {
@@ -174,7 +174,7 @@
             -webkit-mask-image: none;
             display: flex;
             flex-direction: column;
-            gap: 64px;
+            gap: var(--space-64);
         }
 
         .keyscreen-callout {
@@ -195,7 +195,7 @@
 
         .keyscreen-overview {
             height: auto;
-            margin-bottom: 32px;
+            margin-bottom: var(--space-32);
             padding-top: 0 !important;
 
             > div {
