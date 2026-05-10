@@ -135,11 +135,13 @@
 
         // AS-IS와 TO-BE를 가로 flex 그룹으로 배치하되,
         // - TO-BE는 효과적 높이(--tobe-effective-height)에 맞춰 90vh 가까이 차지.
-        // - AS-IS는 TO-BE 높이의 90%, 자체 종횡비로 너비 결정.
-        // - TO-BE의 margin-left: -(60% × AS-IS 너비)로 좌측을 덮어 AS-IS 좌측 40%만 노출.
+        // - AS-IS는 TO-BE 높이의 (--asis-scale) 비율, 자체 종횡비로 너비 결정.
+        //   기본 0.9; phone-tall(asisAspect < 0.4)은 1.0 으로 키워 콘텐츠 가독성 보강.
+        // - TO-BE의 margin-left: -((--tobe-overlap) × AS-IS 너비)로 좌측을 덮어 AS-IS 의 (1-overlap) 노출.
+        //   기본 0.6 (40% 노출); phone-tall은 0.3 (70% 노출)로 가시 영역 확대.
         //
         // --tobe-effective-height = min(의도된 높이, 비주얼 영역 너비 / group-multiplier)
-        //   group-multiplier = tobeAspect + 0.4 × 0.9 × asisAspect = tobeAspect + 0.36 × asisAspect
+        //   group-multiplier = tobeAspect + (1 - overlap) × scale × asisAspect
         //   → 그룹 너비가 비주얼 영역(min(640px, 38vw))을 절대 초과하지 않도록 캡.
         .key-changes-asset {
             position: relative;
@@ -182,7 +184,7 @@
             will-change: opacity;
 
             img {
-                height: calc(var(--tobe-effective-height) * 0.9);
+                height: calc(var(--tobe-effective-height) * var(--asis-scale));
                 width: auto;
                 max-width: 100%;
             }
@@ -195,10 +197,12 @@
         }
 
         .key-changes-asset-tobe {
-            // 60% × AS-IS 너비만큼 좌측으로 당겨 AS-IS의 좌측 40%만 보이게.
-            // AS-IS 너비 = effective × 0.9 × asis-aspect → overlap = 0.54 × asis-aspect × effective.
+            // --tobe-overlap × AS-IS 너비만큼 좌측으로 당겨 AS-IS의 (1 - overlap) 만 보이게.
+            // AS-IS 너비 = effective × scale × asis-aspect.
+            // overlap_px = -overlap × scale × asis-aspect × effective.
             margin-left: calc(
-                -0.54 * var(--asis-aspect) * var(--tobe-effective-height)
+                -1 * var(--tobe-overlap) * var(--asis-scale) *
+                    var(--asis-aspect) * var(--tobe-effective-height)
             );
             z-index: 1;
             transform: translateY(100vh);

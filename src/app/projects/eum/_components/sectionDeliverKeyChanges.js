@@ -221,18 +221,25 @@ export default function SectionDeliverKeyChanges() {
                                 const tobeAspect = item.toBe.framed
                                     ? 1470 / 3000
                                     : item.toBe.width / item.toBe.height;
-                                // group multiplier: 그룹 너비 = TO-BE 너비 + (1 - 0.6) × AS-IS 너비
-                                //   = (tobeAspect + 0.4 × 0.9 × asisAspect) × TO-BE 높이
-                                //   = (tobeAspect + 0.36 × asisAspect) × TO-BE 높이
+                                // 좁은 phone aspect(< 0.4)는 AS-IS 가시 영역이 좁아 보이므로
+                                // height 를 더 키우고 TO-BE 덮임을 줄여 콘텐츠 가독성 보강.
+                                const isTallPhone = asisAspect < 0.4;
+                                const asisScale = isTallPhone ? 1.0 : 0.9;
+                                const tobeOverlap = isTallPhone ? 0.3 : 0.6;
+                                // group multiplier: 그룹 너비 = TO-BE 너비 + (1 - overlap) × AS-IS 너비
+                                //   = (tobeAspect + (1 - overlap) × scale × asisAspect) × TO-BE 높이
                                 // 비주얼 영역 너비 / multiplier = 허용 가능한 최대 TO-BE 높이
                                 const groupMultiplier =
-                                    tobeAspect + 0.36 * asisAspect;
+                                    tobeAspect +
+                                    (1 - tobeOverlap) * asisScale * asisAspect;
                                 return (
                                     <div
                                         className="key-changes-asset"
                                         key={item.title}
                                         style={{
                                             "--asis-aspect": asisAspect,
+                                            "--asis-scale": asisScale,
+                                            "--tobe-overlap": tobeOverlap,
                                             "--group-multiplier": groupMultiplier,
                                         }}
                                     >
