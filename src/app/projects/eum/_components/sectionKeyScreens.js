@@ -161,12 +161,12 @@ export default function SectionKeyScreens() {
                         ))}
                     </div>
 
-                    <div className="keyscreen-video-area">
-                        <div className="keyscreen-video-track" ref={trackRef}>
+                    <div className="keyscreen-asset-area">
+                        <div className="keyscreen-asset-track" ref={trackRef}>
                             {finalKeyScreens.map((screen, i) => (
                                 <div
-                                    className={`keyscreen-overview${
-                                        screen.wide ? " keyscreen-overview-wide" : ""
+                                    className={`keyscreen-asset-item${
+                                        screen.wide ? " keyscreen-asset-item-wide" : ""
                                     }`}
                                     key={screen.index}
                                 >
