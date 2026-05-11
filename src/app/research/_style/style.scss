@@ -6,6 +6,11 @@
     .section-content {
         max-width: 680px;
         margin: 0 auto;
+
+        @media (max-width: 768px) {
+            padding-left: var(--space-24);
+            padding-right: var(--space-24);
+        }
     }
 
     .section-eyebrow {
