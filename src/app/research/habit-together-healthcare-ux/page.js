@@ -245,30 +245,32 @@ export default function HabitTogetherHealthcareUX() {
                         어렵습니다. 주변 사람의 도움, 기기 기반 지원, 자동화 같은 외부 지원이
                         필요합니다.
                     </p>
-                    <figure>
-                        <picture>
-                            <img
-                                src={figureSrc("figure1")}
-                                alt="건강한 습관 항목별 관심도"
-                                width={982}
-                                height={962}
-                                loading="lazy"
-                            />
-                        </picture>
-                        <figcaption>건강한 습관 항목별 관심도</figcaption>
-                    </figure>
-                    <figure>
-                        <picture>
-                            <img
-                                src={figureSrc("figure2")}
-                                alt="건강 관리 습관 유지의 성공 이유 및 실패 원인"
-                                width={1022}
-                                height={894}
-                                loading="lazy"
-                            />
-                        </picture>
-                        <figcaption>건강 관리 습관 유지의 성공 이유 및 실패 원인</figcaption>
-                    </figure>
+                    <div className="figures-row">
+                        <figure>
+                            <picture>
+                                <img
+                                    src={figureSrc("figure1")}
+                                    alt="건강한 습관 항목별 관심도"
+                                    width={982}
+                                    height={962}
+                                    loading="lazy"
+                                />
+                            </picture>
+                            <figcaption>건강한 습관 항목별 관심도</figcaption>
+                        </figure>
+                        <figure>
+                            <picture>
+                                <img
+                                    src={figureSrc("figure2")}
+                                    alt="건강 관리 습관 유지의 성공 이유 및 실패 원인"
+                                    width={1022}
+                                    height={894}
+                                    loading="lazy"
+                                />
+                            </picture>
+                            <figcaption>건강 관리 습관 유지의 성공 이유 및 실패 원인</figcaption>
+                        </figure>
+                    </div>
                     <div className="ux-takeaway">
                         <h3>UX Takeaway</h3>
                         <p>
@@ -399,54 +401,56 @@ export default function HabitTogetherHealthcareUX() {
                         넷째, 공유 대상을 사용자가 직접 설정할 수 있게 합니다. 운동 기록은 공유하고
                         싶어도 식습관은 공유하고 싶지 않을 수 있기 때문입니다.
                     </p>
-                    <figure>
-                        <picture>
-                            <img
-                                src={figureSrc("table2")}
-                                alt="자동 기록 기능 상세 설명 및 가능 서비스"
-                                width={1028}
-                                height={980}
-                                loading="lazy"
-                            />
-                        </picture>
-                        <figcaption>자동 기록 기능 상세 설명 및 가능 서비스</figcaption>
-                    </figure>
-                    <figure>
-                        <picture>
-                            <img
-                                src={figureSrc("table3")}
-                                alt="목표 추천 기능 상세 설명"
-                                width={1028}
-                                height={412}
-                                loading="lazy"
-                            />
-                        </picture>
-                        <figcaption>목표 추천 기능 상세 설명</figcaption>
-                    </figure>
-                    <figure>
-                        <picture>
-                            <img
-                                src={figureSrc("table4")}
-                                alt="공유 기능 상세 설명 및 가능 서비스"
-                                width={1028}
-                                height={468}
-                                loading="lazy"
-                            />
-                        </picture>
-                        <figcaption>공유 기능 상세 설명 및 가능 서비스</figcaption>
-                    </figure>
-                    <figure>
-                        <picture>
-                            <img
-                                src={figureSrc("table5")}
-                                alt="공유 데이터 접근 권한 기능 상세 설명"
-                                width={1028}
-                                height={408}
-                                loading="lazy"
-                            />
-                        </picture>
-                        <figcaption>공유 데이터 접근 권한 기능 상세 설명</figcaption>
-                    </figure>
+                    <div className="figures-grid">
+                        <figure>
+                            <picture>
+                                <img
+                                    src={figureSrc("table2")}
+                                    alt="자동 기록 기능 상세 설명 및 가능 서비스"
+                                    width={1028}
+                                    height={980}
+                                    loading="lazy"
+                                />
+                            </picture>
+                            <figcaption>자동 기록 기능 상세 설명 및 가능 서비스</figcaption>
+                        </figure>
+                        <figure>
+                            <picture>
+                                <img
+                                    src={figureSrc("table3")}
+                                    alt="목표 추천 기능 상세 설명"
+                                    width={1028}
+                                    height={412}
+                                    loading="lazy"
+                                />
+                            </picture>
+                            <figcaption>목표 추천 기능 상세 설명</figcaption>
+                        </figure>
+                        <figure>
+                            <picture>
+                                <img
+                                    src={figureSrc("table4")}
+                                    alt="공유 기능 상세 설명 및 가능 서비스"
+                                    width={1028}
+                                    height={468}
+                                    loading="lazy"
+                                />
+                            </picture>
+                            <figcaption>공유 기능 상세 설명 및 가능 서비스</figcaption>
+                        </figure>
+                        <figure>
+                            <picture>
+                                <img
+                                    src={figureSrc("table5")}
+                                    alt="공유 데이터 접근 권한 기능 상세 설명"
+                                    width={1028}
+                                    height={408}
+                                    loading="lazy"
+                                />
+                            </picture>
+                            <figcaption>공유 데이터 접근 권한 기능 상세 설명</figcaption>
+                        </figure>
+                    </div>
                     <div className="ux-takeaway">
                         <h3>UX Takeaway</h3>
                         <p>
@@ -524,42 +528,46 @@ export default function HabitTogetherHealthcareUX() {
                         활동과 피드백을 볼 수 있습니다. 주간 리포트에서는 한 주 동안 쌓인 데이터를
                         바탕으로 새로운 목표를 확인합니다.
                     </p>
-                    <figure>
-                        <picture>
-                            <img
-                                src={figureSrc("figure3")}
-                                alt="웨어러블 기기 화면의 종류"
-                                width={854}
-                                height={1320}
-                                loading="lazy"
-                            />
-                        </picture>
-                        <figcaption>웨어러블 기기 화면의 종류</figcaption>
-                    </figure>
-                    <figure>
-                        <picture>
-                            <img
-                                src={figureSrc("figure4")}
-                                alt="실제 착용 모습"
-                                width={898}
-                                height={390}
-                                loading="lazy"
-                            />
-                        </picture>
-                        <figcaption>실제 착용 모습</figcaption>
-                    </figure>
-                    <figure>
-                        <picture>
-                            <img
-                                src={figureSrc("figure5")}
-                                alt="해빗 투게더 어플리케이션 화면 예시"
-                                width={1024}
-                                height={832}
-                                loading="lazy"
-                            />
-                        </picture>
-                        <figcaption>해빗 투게더 어플리케이션 화면 예시</figcaption>
-                    </figure>
+                    <div className="figures-split">
+                        <figure>
+                            <picture>
+                                <img
+                                    src={figureSrc("figure3")}
+                                    alt="웨어러블 기기 화면의 종류"
+                                    width={854}
+                                    height={1320}
+                                    loading="lazy"
+                                />
+                            </picture>
+                            <figcaption>웨어러블 기기 화면의 종류</figcaption>
+                        </figure>
+                        <div className="figures-stack">
+                            <figure>
+                                <picture>
+                                    <img
+                                        src={figureSrc("figure4")}
+                                        alt="실제 착용 모습"
+                                        width={898}
+                                        height={390}
+                                        loading="lazy"
+                                    />
+                                </picture>
+                                <figcaption>실제 착용 모습</figcaption>
+                            </figure>
+                            <figure>
+                                <picture>
+                                    <img
+                                        src={figureSrc("figure5")}
+                                        alt="해빗 투게더 어플리케이션 화면 예시"
+                                        width={1024}
+                                        height={832}
+                                        loading="lazy"
+                                    />
+                                </picture>
+                                <figcaption>해빗 투게더 어플리케이션 화면 예시</figcaption>
+                            </figure>
+                        </div>
+                    </div>
                     <div className="ux-takeaway">
                         <h3>UX Takeaway</h3>
                         <p>
