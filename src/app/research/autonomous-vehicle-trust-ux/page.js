@@ -27,9 +27,10 @@ export default function AutonomousVehicleTrustUX() {
                                 <dt>Paper Title</dt>
                                 <dd>
                                     완전자율주행 차량에서 신뢰 형성을 위한 정보 제공의 중요도와 주행
-                                    맥락별 특성 (Importance of In-Vehicle Information and Driving
-                                    Context Characteristics for Building Trust in Fully Autonomous
-                                    Vehicles)
+                                    맥락별 특성
+                                    <br />
+                                    (Importance of In-Vehicle Information and Driving Context
+                                    Characteristics for Building Trust in Fully Autonomous Vehicles)
                                 </dd>
                             </div>
                             <div className="meta-item">
@@ -57,7 +58,7 @@ export default function AutonomousVehicleTrustUX() {
                         <a
                             href="/download/Importance of In-Vehicle Information and Driving Context Characteristics for Building Trust in Fully Autonomous Vehicles.pdf"
                             target="_blank"
-                            rel="noopenner noreferrer"
+                            rel="noopener noreferrer"
                             className="button-primary"
                         >
                             논문 다운로드
