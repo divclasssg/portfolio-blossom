@@ -1,4 +1,8 @@
 import "../_style/style.scss";
+import { asset } from "@/_lib/media";
+
+const FIGURE_BASE = "research/habit-together-healthcare-ux";
+const figureSrc = (name) => asset(`${FIGURE_BASE}/${name}.webp`);
 
 export default function HabitTogetherHealthcareUX() {
     return (
@@ -243,15 +247,25 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="figure1"> */}
+                            <img
+                                src={figureSrc("figure1")}
+                                alt="건강한 습관 항목별 관심도"
+                                width={982}
+                                height={962}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>건강한 습관 항목별 관심도</figcaption>
                     </figure>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="figure2"> */}
+                            <img
+                                src={figureSrc("figure2")}
+                                alt="건강 관리 습관 유지의 성공 이유 및 실패 원인"
+                                width={1022}
+                                height={894}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>건강 관리 습관 유지의 성공 이유 및 실패 원인</figcaption>
                     </figure>
@@ -296,8 +310,13 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="table1"> */}
+                            <img
+                                src={figureSrc("table1")}
+                                alt="정성적 조사 대상자 정보"
+                                width={1028}
+                                height={646}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>정성적 조사 대상자 정보</figcaption>
                     </figure>
@@ -382,29 +401,49 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="table2"> */}
+                            <img
+                                src={figureSrc("table2")}
+                                alt="자동 기록 기능 상세 설명 및 가능 서비스"
+                                width={1028}
+                                height={980}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>자동 기록 기능 상세 설명 및 가능 서비스</figcaption>
                     </figure>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="table3"> */}
+                            <img
+                                src={figureSrc("table3")}
+                                alt="목표 추천 기능 상세 설명"
+                                width={1028}
+                                height={412}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>목표 추천 기능 상세 설명</figcaption>
                     </figure>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="table4"> */}
+                            <img
+                                src={figureSrc("table4")}
+                                alt="공유 기능 상세 설명 및 가능 서비스"
+                                width={1028}
+                                height={468}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>공유 기능 상세 설명 및 가능 서비스</figcaption>
                     </figure>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="table5"> */}
+                            <img
+                                src={figureSrc("table5")}
+                                alt="공유 데이터 접근 권한 기능 상세 설명"
+                                width={1028}
+                                height={408}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>공유 데이터 접근 권한 기능 상세 설명</figcaption>
                     </figure>
@@ -487,22 +526,37 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="figure3"> */}
+                            <img
+                                src={figureSrc("figure3")}
+                                alt="웨어러블 기기 화면의 종류"
+                                width={854}
+                                height={1320}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>웨어러블 기기 화면의 종류</figcaption>
                     </figure>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="figure4"> */}
+                            <img
+                                src={figureSrc("figure4")}
+                                alt="실제 착용 모습"
+                                width={898}
+                                height={390}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>실제 착용 모습</figcaption>
                     </figure>
                     <figure>
                         <picture>
-                            <source />
-                            {/* <img src="" alt="figure5"> */}
+                            <img
+                                src={figureSrc("figure5")}
+                                alt="해빗 투게더 어플리케이션 화면 예시"
+                                width={1024}
+                                height={832}
+                                loading="lazy"
+                            />
                         </picture>
                         <figcaption>해빗 투게더 어플리케이션 화면 예시</figcaption>
                     </figure>
