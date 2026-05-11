@@ -2,12 +2,15 @@ import Link from "next/link";
 import { asset } from "@/_lib/media";
 import { getResearchNeighbors } from "../_data/researchPages";
 
-export default function ResearchPagination({ currentSlug }) {
+export default function ResearchPagination({ currentSlug, position }) {
     const { prev, next } = getResearchNeighbors(currentSlug);
     if (!prev && !next) return null;
 
+    const ariaLabel =
+        position === "top" ? "상단 이전 다음 글 이동" : "하단 이전 다음 글 이동";
+
     return (
-        <nav className="research-pagination" aria-label="이전 다음 글 이동">
+        <nav className="research-pagination" aria-label={ariaLabel}>
             {prev && (
                 <Link
                     href={`/research/${prev.slug}`}

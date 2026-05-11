@@ -10,7 +10,7 @@ export default function HabitTogetherHealthcareUX() {
         <main className="main main-research">
             <section className="section section-hero" aria-labelledby="hero-heading">
                 <div className="section-content">
-                    <ResearchPagination currentSlug="habit-together-healthcare-ux" />
+                    <ResearchPagination currentSlug="habit-together-healthcare-ux" position="top" />
                     <div className="hero-cover">
                         <picture>
                             <img
@@ -737,7 +737,7 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                 </div>
             </section>
-            <ResearchPagination currentSlug="habit-together-healthcare-ux" />
+            <ResearchPagination currentSlug="habit-together-healthcare-ux" position="bottom" />
         </main>
     );
 }

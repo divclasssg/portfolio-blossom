@@ -12,7 +12,7 @@ export default function AutonomousVehicleTrustUX() {
         <main className="main main-research">
             <section className="section section-hero" aria-labelledby="hero-heading">
                 <div className="section-content">
-                    <ResearchPagination currentSlug="autonomous-vehicle-trust-ux" />
+                    <ResearchPagination currentSlug="autonomous-vehicle-trust-ux" position="top" />
                     <div className="hero-cover">
                         <picture>
                             <img
@@ -704,7 +704,7 @@ export default function AutonomousVehicleTrustUX() {
                     </p>
                 </div>
             </section>
-            <ResearchPagination currentSlug="autonomous-vehicle-trust-ux" />
+            <ResearchPagination currentSlug="autonomous-vehicle-trust-ux" position="bottom" />
         </main>
     );
 }
