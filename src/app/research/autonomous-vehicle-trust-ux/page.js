@@ -12,6 +12,16 @@ export default function AutonomousVehicleTrustUX() {
             <h1 className="visuallyhidden">Research - Autonomous Vehicle Trust UX</h1>
             <section className="section section-hero" aria-labelledby="hero-heading">
                 <div className="section-content">
+                    <div className="hero-cover">
+                        <picture>
+                            <img
+                                src={asset(`${FIGURE_BASE}/cover.webp`)}
+                                alt="완전자율주행차는 어떤 정보를 보여줘야 할까?"
+                                width={1672}
+                                height={941}
+                            />
+                        </picture>
+                    </div>
                     <div className="hero-headline">
                         <h1 className="label">석사 학위 논문 - KCI등재</h1>
                         <h2 id="hero-heading" className="headline">

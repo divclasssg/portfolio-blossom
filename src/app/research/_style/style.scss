@@ -232,6 +232,20 @@
             padding-bottom: 36px;
         }
 
+        .hero-cover {
+            margin-bottom: var(--space-32);
+            border-radius: var(--radius-12);
+            border: 1px solid var(--color-border-default);
+            overflow: hidden;
+
+            picture,
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        }
+
         .label {
             font-size: var(--font-size-small);
             font-weight: 700;

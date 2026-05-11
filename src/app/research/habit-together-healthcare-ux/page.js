@@ -10,6 +10,16 @@ export default function HabitTogetherHealthcareUX() {
             <h1 className="visuallyhidden">Research - Habit Together Healthcare UX</h1>
             <section className="section section-hero">
                 <div className="section-content">
+                    <div className="hero-cover">
+                        <picture>
+                            <img
+                                src={asset(`${FIGURE_BASE}/cover.webp`)}
+                                alt="건강 습관은 왜 혼자 만들기 어려울까?"
+                                width={1672}
+                                height={941}
+                            />
+                        </picture>
+                    </div>
                     <div className="hero-headline">
                         <h1 className="label">논문 - 한국HCI학회 2022년 학술대회 우수논문상</h1>
                         <h2 className="headline">건강 습관은 왜 혼자 만들기 어려울까?</h2>
