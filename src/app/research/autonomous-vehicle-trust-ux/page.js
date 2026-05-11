@@ -9,24 +9,23 @@ const figureSrc = (name) => asset(`${FIGURE_BASE}/${name}_1x.jpg`);
 export default function AutonomousVehicleTrustUX() {
     return (
         <main className="main main-research">
-            <h1 className="visuallyhidden">Research - Autonomous Vehicle Trust UX</h1>
             <section className="section section-hero" aria-labelledby="hero-heading">
                 <div className="section-content">
                     <div className="hero-cover">
                         <picture>
                             <img
                                 src={asset(`${FIGURE_BASE}/cover.webp`)}
-                                alt="완전자율주행차는 어떤 정보를 보여줘야 할까?"
+                                alt=""
                                 width={1672}
                                 height={941}
                             />
                         </picture>
                     </div>
                     <div className="hero-headline">
-                        <h1 className="label">석사 학위 논문 - KCI등재</h1>
-                        <h2 id="hero-heading" className="headline">
+                        <p className="label">석사 학위 논문 - KCI등재</p>
+                        <h1 id="hero-heading" className="headline">
                             완전자율주행차는 어떤 정보를 보여줘야 할까?
-                        </h2>
+                        </h1>
                         <p className="typography-subhead">
                             신뢰를 만들기 위한 UX 정보 가이드라인 연구
                         </p>
@@ -70,6 +69,7 @@ export default function AutonomousVehicleTrustUX() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="button-primary"
+                            aria-label="논문 다운로드 (PDF, 새 창에서 열림)"
                         >
                             논문 다운로드
                         </a>

@@ -7,22 +7,23 @@ const figureSrc = (name) => asset(`${FIGURE_BASE}/${name}.webp`);
 export default function HabitTogetherHealthcareUX() {
     return (
         <main className="main main-research">
-            <h1 className="visuallyhidden">Research - Habit Together Healthcare UX</h1>
-            <section className="section section-hero">
+            <section className="section section-hero" aria-labelledby="hero-heading">
                 <div className="section-content">
                     <div className="hero-cover">
                         <picture>
                             <img
                                 src={asset(`${FIGURE_BASE}/cover.webp`)}
-                                alt="건강 습관은 왜 혼자 만들기 어려울까?"
+                                alt=""
                                 width={1672}
                                 height={941}
                             />
                         </picture>
                     </div>
                     <div className="hero-headline">
-                        <h1 className="label">논문 - 한국HCI학회 2022년 학술대회 우수논문상</h1>
-                        <h2 className="headline">건강 습관은 왜 혼자 만들기 어려울까?</h2>
+                        <p className="label">논문 - 한국HCI학회 2022년 학술대회 우수논문상</p>
+                        <h1 id="hero-heading" className="headline">
+                            건강 습관은 왜 혼자 만들기 어려울까?
+                        </h1>
                         <p className="typography-subhead">
                             지속 가능한 습관 형성을 위한 지능형 헬스케어 서비스 제안
                         </p>
@@ -77,15 +78,18 @@ export default function HabitTogetherHealthcareUX() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="button-primary"
+                            aria-label="논문 다운로드 (PDF, 새 창에서 열림)"
                         >
                             논문 다운로드
                         </a>
                     </div>
                 </div>
             </section>
-            <section className="section section-overview">
+            <section className="section section-overview" aria-labelledby="overview-heading">
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Overview</h2>
+                    <h2 id="overview-heading" className="section-eyebrow">
+                        Overview
+                    </h2>
                     <p className="section-headline">
                         건강 습관 서비스는 기록보다 지속을 도와야한다.
                     </p>
@@ -150,9 +154,14 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                 </div>
             </section>
-            <section className="section section-research-background">
+            <section
+                className="section section-research-background"
+                aria-labelledby="research-background-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Research Background</h2>
+                    <h2 id="research-background-heading" className="section-eyebrow">
+                        Research Background
+                    </h2>
                     <p className="section-headline">팬데믹 이후 자기 관리의 중요성이 커졌다.</p>
                     <p className="section-typography-body">
                         2020년 이후 팬데믹은 사람들의 생활 방식을 크게 바꿨습니다. 비대면 활동이
@@ -172,9 +181,14 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                 </div>
             </section>
-            <section className="section section-research-design">
+            <section
+                className="section section-research-design"
+                aria-labelledby="research-design-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Research Design</h2>
+                    <h2 id="research-design-heading" className="section-eyebrow">
+                        Research Design
+                    </h2>
                     <p className="section-headline">
                         설문, 인터뷰, 다이어리 스터디, 사용성 테스트로 문제를 찾았다.
                     </p>
@@ -204,9 +218,14 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                 </div>
             </section>
-            <section className="section section-benchmarking">
+            <section
+                className="section section-benchmarking"
+                aria-labelledby="benchmarking-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Benchmarking</h2>
+                    <h2 id="benchmarking-heading" className="section-eyebrow">
+                        Benchmarking
+                    </h2>
                     <p className="section-headline">
                         기존 건강 습관 앱은 기록과 정보 부담을 만들었다.
                     </p>
@@ -231,9 +250,14 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                 </div>
             </section>
-            <section className="section section-survey-findings">
+            <section
+                className="section section-survey-findings"
+                aria-labelledby="survey-findings-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Survey Findings</h2>
+                    <h2 id="survey-findings-heading" className="section-eyebrow">
+                        Survey Findings
+                    </h2>
                     <p className="section-headline">
                         사람들은 건강 습관에 관심은 많지만, 지속에는 실패한다.
                     </p>
@@ -260,7 +284,7 @@ export default function HabitTogetherHealthcareUX() {
                             <picture>
                                 <img
                                     src={figureSrc("figure1")}
-                                    alt="건강한 습관 항목별 관심도"
+                                    alt="응답자 86명이 꼽은 건강 습관 항목별 관심도 막대그래프"
                                     width={982}
                                     height={962}
                                     loading="lazy"
@@ -272,7 +296,7 @@ export default function HabitTogetherHealthcareUX() {
                             <picture>
                                 <img
                                     src={figureSrc("figure2")}
-                                    alt="건강 관리 습관 유지의 성공 이유 및 실패 원인"
+                                    alt="건강 습관 유지의 성공 이유와 실패 원인 응답 분포 차트"
                                     width={1022}
                                     height={894}
                                     loading="lazy"
@@ -294,9 +318,14 @@ export default function HabitTogetherHealthcareUX() {
                     </div>
                 </div>
             </section>
-            <section className="section section-qualitative-analysis">
+            <section
+                className="section section-qualitative-analysis"
+                aria-labelledby="qualitative-analysis-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Qualitative Analysis</h2>
+                    <h2 id="qualitative-analysis-heading" className="section-eyebrow">
+                        Qualitative Analysis
+                    </h2>
                     <p className="section-headline">
                         사용자는 기록 피로, 무리한 목표, 공유 부담을 느꼈다.
                     </p>
@@ -324,7 +353,7 @@ export default function HabitTogetherHealthcareUX() {
                         <picture>
                             <img
                                 src={figureSrc("table1")}
-                                alt="정성적 조사 대상자 정보"
+                                alt="P1~P5 다섯 명 인터뷰 참가자의 나이·성별·자취기간·습관 형성 성공 여부 표"
                                 width={1028}
                                 height={646}
                                 loading="lazy"
@@ -349,9 +378,14 @@ export default function HabitTogetherHealthcareUX() {
                     </div>
                 </div>
             </section>
-            <section className="section section-research-synthesis">
+            <section
+                className="section section-research-synthesis"
+                aria-labelledby="research-synthesis-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Research Synthesis</h2>
+                    <h2 id="research-synthesis-heading" className="section-eyebrow">
+                        Research Synthesis
+                    </h2>
                     <p className="section-headline">
                         사용자 조사는 네 가지 핵심 문제로 정리되었다.
                     </p>
@@ -386,9 +420,14 @@ export default function HabitTogetherHealthcareUX() {
                     </div>
                 </div>
             </section>
-            <section className="section section-service-strategy">
+            <section
+                className="section section-service-strategy"
+                aria-labelledby="service-strategy-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Service Strategy</h2>
+                    <h2 id="service-strategy-heading" className="section-eyebrow">
+                        Service Strategy
+                    </h2>
                     <p className="section-headline">
                         해빗 투게더는 자동 기록, 목표 추천, 지인 공유, 선택적 공개를 제안한다.
                     </p>
@@ -416,7 +455,7 @@ export default function HabitTogetherHealthcareUX() {
                             <picture>
                                 <img
                                     src={figureSrc("table2")}
-                                    alt="자동 기록 기능 상세 설명 및 가능 서비스"
+                                    alt="자동 기록 기능의 데이터 종류와 활용 가능 서비스를 정리한 표"
                                     width={1028}
                                     height={980}
                                     loading="lazy"
@@ -428,7 +467,7 @@ export default function HabitTogetherHealthcareUX() {
                             <picture>
                                 <img
                                     src={figureSrc("table3")}
-                                    alt="목표 추천 기능 상세 설명"
+                                    alt="개인 데이터 기반 맞춤형 목표 추천 기능의 동작 방식을 설명한 표"
                                     width={1028}
                                     height={412}
                                     loading="lazy"
@@ -440,7 +479,7 @@ export default function HabitTogetherHealthcareUX() {
                             <picture>
                                 <img
                                     src={figureSrc("table4")}
-                                    alt="공유 기능 상세 설명 및 가능 서비스"
+                                    alt="지인 공유 기능의 공유 데이터 유형과 활용 가능 서비스를 정리한 표"
                                     width={1028}
                                     height={468}
                                     loading="lazy"
@@ -452,7 +491,7 @@ export default function HabitTogetherHealthcareUX() {
                             <picture>
                                 <img
                                     src={figureSrc("table5")}
-                                    alt="공유 데이터 접근 권한 기능 상세 설명"
+                                    alt="공유 대상별 데이터 접근 권한 설정 기능의 동작 방식을 설명한 표"
                                     width={1028}
                                     height={408}
                                     loading="lazy"
@@ -474,9 +513,14 @@ export default function HabitTogetherHealthcareUX() {
                     </div>
                 </div>
             </section>
-            <section className="section section-service-scenario">
+            <section
+                className="section section-service-scenario"
+                aria-labelledby="service-scenario-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Service Scenario</h2>
+                    <h2 id="service-scenario-heading" className="section-eyebrow">
+                        Service Scenario
+                    </h2>
                     <p className="section-headline">
                         습관은 혼자 관리하는 것이 아니라 함께 이어가는 경험이 된다.
                     </p>
@@ -517,9 +561,14 @@ export default function HabitTogetherHealthcareUX() {
                     </div>
                 </div>
             </section>
-            <section className="section section-prototype">
+            <section
+                className="section section-prototype"
+                aria-labelledby="prototype-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">Prototype</h2>
+                    <h2 id="prototype-heading" className="section-eyebrow">
+                        Prototype
+                    </h2>
                     <p className="section-headline">웨어러블과 앱은 서로 다른 역할을 맡는다.</p>
                     <p className="section-typography-body">
                         연구는 서비스 전략을 바탕으로 웨어러블 기기와 모바일 앱 프로토타입을
@@ -543,7 +592,7 @@ export default function HabitTogetherHealthcareUX() {
                             <picture>
                                 <img
                                     src={figureSrc("figure3")}
-                                    alt="웨어러블 기기 화면의 종류"
+                                    alt="해빗 투게더 웨어러블 기기 화면 유형별 디스플레이 시안"
                                     width={854}
                                     height={1320}
                                     loading="lazy"
@@ -556,7 +605,7 @@ export default function HabitTogetherHealthcareUX() {
                                 <picture>
                                     <img
                                         src={figureSrc("figure4")}
-                                        alt="실제 착용 모습"
+                                        alt="해빗 투게더 웨어러블 기기를 손목에 착용한 사용자 사진"
                                         width={898}
                                         height={390}
                                         loading="lazy"
@@ -568,7 +617,7 @@ export default function HabitTogetherHealthcareUX() {
                                 <picture>
                                     <img
                                         src={figureSrc("figure5")}
-                                        alt="해빗 투게더 어플리케이션 화면 예시"
+                                        alt="해빗 투게더 모바일 앱의 홈·타임라인·주간 리포트 화면 시안"
                                         width={1024}
                                         height={832}
                                         loading="lazy"
@@ -591,9 +640,14 @@ export default function HabitTogetherHealthcareUX() {
                     </div>
                 </div>
             </section>
-            <section className="section section-ux-guidelines">
+            <section
+                className="section section-ux-guidelines"
+                aria-labelledby="ux-guidelines-heading"
+            >
                 <div className="section-content">
-                    <h2 className="section-eyebrow">UX Guidelines</h2>
+                    <h2 id="ux-guidelines-heading" className="section-eyebrow">
+                        UX Guidelines
+                    </h2>
                     <p className="section-headline">
                         건강 습관 서비스는 의지를 요구하기보다 지속을 도와야 한다.
                     </p>
