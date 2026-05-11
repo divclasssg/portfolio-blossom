@@ -1,5 +1,6 @@
 import "../_style/style.scss";
 import { asset } from "@/_lib/media";
+import ResearchPagination from "../_components/ResearchPagination";
 
 const FIGURE_BASE = "research/habit-together-healthcare-ux";
 const figureSrc = (name) => asset(`${FIGURE_BASE}/${name}.webp`);
@@ -9,6 +10,7 @@ export default function HabitTogetherHealthcareUX() {
         <main className="main main-research">
             <section className="section section-hero" aria-labelledby="hero-heading">
                 <div className="section-content">
+                    <ResearchPagination currentSlug="habit-together-healthcare-ux" />
                     <div className="hero-cover">
                         <picture>
                             <img
@@ -49,7 +51,7 @@ export default function HabitTogetherHealthcareUX() {
                                 <dt>Authors</dt>
                                 <dd>
                                     Yoo, C., Bae, H., Lee, J., <strong>Park, S.</strong>, Kim, M., &
-                                    Lee, J.-H.
+                                    Lee, J.H.
                                 </dd>
                             </div>
                             <div className="meta-item">
@@ -267,7 +269,7 @@ export default function HabitTogetherHealthcareUX() {
                     <p className="section-typography-body">
                         응답자들은 주기적인 운동, 체중 유지와 다이어트, 균형 잡힌 식습관, 수면 패턴
                         관리에 높은 관심을 보였습니다. 1인 가구 응답자에서도 비슷한 경향이
-                        나타났습니다
+                        나타났습니다.
                     </p>
                     <p className="section-typography-body">
                         하지만 관심이 높다고 해서 습관이 쉽게 유지되는 것은 아니었습니다. 건강
@@ -561,10 +563,7 @@ export default function HabitTogetherHealthcareUX() {
                     </div>
                 </div>
             </section>
-            <section
-                className="section section-prototype"
-                aria-labelledby="prototype-heading"
-            >
+            <section className="section section-prototype" aria-labelledby="prototype-heading">
                 <div className="section-content">
                     <h2 id="prototype-heading" className="section-eyebrow">
                         Prototype
@@ -654,7 +653,7 @@ export default function HabitTogetherHealthcareUX() {
                     <p className="section-typography-body">
                         이 연구의 결과를 UX 가이드라인으로 정리하면 다음과 같습니다.
                     </p>
-                    <ul className="list">
+                    <ul className="list type2">
                         <li>
                             <strong>자동 기록 — 사용자의 입력 부담을 줄여야 합니다.</strong>
                             <span>
@@ -738,6 +737,7 @@ export default function HabitTogetherHealthcareUX() {
                     </p>
                 </div>
             </section>
+            <ResearchPagination currentSlug="habit-together-healthcare-ux" />
         </main>
     );
 }

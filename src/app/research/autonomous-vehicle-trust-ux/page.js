@@ -1,5 +1,6 @@
 import "../_style/style.scss";
 import { asset } from "@/_lib/media";
+import ResearchPagination from "../_components/ResearchPagination";
 
 const FIGURE_BASE = "research/autonomous-vehicle-trust-ux";
 const figureSrcSet = (name) =>
@@ -11,6 +12,7 @@ export default function AutonomousVehicleTrustUX() {
         <main className="main main-research">
             <section className="section section-hero" aria-labelledby="hero-heading">
                 <div className="section-content">
+                    <ResearchPagination currentSlug="autonomous-vehicle-trust-ux" />
                     <div className="hero-cover">
                         <picture>
                             <img
@@ -702,6 +704,7 @@ export default function AutonomousVehicleTrustUX() {
                     </p>
                 </div>
             </section>
+            <ResearchPagination currentSlug="autonomous-vehicle-trust-ux" />
         </main>
     );
 }
