@@ -13,7 +13,7 @@ export default function AutonomousVehicleTrustUX() {
             <section className="section section-hero" aria-labelledby="hero-heading">
                 <div className="section-content">
                     <div className="hero-headline">
-                        <h1 className="label">석사 학위 논문</h1>
+                        <h1 className="label">석사 학위 논문 - KCI등재</h1>
                         <h2 id="hero-heading" className="headline">
                             완전자율주행차는 어떤 정보를 보여줘야 할까?
                         </h2>
