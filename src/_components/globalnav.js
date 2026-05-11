@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import IconMenu from "./icons/menu";
-import IconClose from "./icons/close";
 import { MENU_ITEMS } from "./navMenu";
+import NavOverlay from "./navOverlay";
 
 export default function Globalnav() {
     const pathname = usePathname();
@@ -19,21 +19,6 @@ export default function Globalnav() {
         setTrackedPath(pathname);
         if (isOpen) setIsOpen(false);
     }
-
-    // ESC + body scroll lock
-    useEffect(() => {
-        if (!isOpen) return;
-        const onKey = (e) => {
-            if (e.key === "Escape") setIsOpen(false);
-        };
-        const prevOverflow = document.body.style.overflow;
-        document.body.style.overflow = "hidden";
-        window.addEventListener("keydown", onKey);
-        return () => {
-            document.body.style.overflow = prevOverflow;
-            window.removeEventListener("keydown", onKey);
-        };
-    }, [isOpen]);
 
     return (
         <nav
@@ -57,56 +42,14 @@ export default function Globalnav() {
                 )}
             </div>
             {!isHome && (
-                <div
+                <NavOverlay
                     id="globalnav-overlay"
-                    className={`globalnav-overlay${isOpen ? " is-open" : ""}`}
-                    role="dialog"
-                    aria-modal="true"
-                    aria-label="전역 메뉴"
-                    aria-hidden={!isOpen}
-                    onClick={(e) => {
-                        if (e.target === e.currentTarget) setIsOpen(false);
-                    }}
-                >
-                    <div className="globalnav-overlay-header">
-                        <button
-                            type="button"
-                            className="globalnav-overlay-close"
-                            aria-label="메뉴 닫기"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            <IconClose size={40} />
-                        </button>
-                    </div>
-                    <ul className="globalnav-overlay-list">
-                        {MENU_ITEMS.map((item) => {
-                            const active = item.match(pathname);
-                            if (item.type === "label") {
-                                return (
-                                    <li className="globalnav-overlay-item" key={item.label}>
-                                        <span
-                                            className={`globalnav-overlay-label${active ? " active" : ""}`}
-                                            aria-hidden="true"
-                                        >
-                                            {item.label}
-                                        </span>
-                                    </li>
-                                );
-                            }
-                            return (
-                                <li className="globalnav-overlay-item" key={item.href}>
-                                    <Link
-                                        href={item.href}
-                                        className={`globalnav-overlay-link${item.indent ? " is-indent" : ""}${active ? " active" : ""}`}
-                                        aria-current={active ? "page" : undefined}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
+                    ariaLabel="전역 메뉴"
+                    items={MENU_ITEMS}
+                    navHeightVar="--globalnav-height"
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                />
             )}
         </nav>
     );
