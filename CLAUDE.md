@@ -37,6 +37,16 @@ RootLayout (src/app/layout.js)
 - `_utils/` — 프로젝트 전용 유틸리티 함수 (예: `emphasize.js` 키워드 강조)
 - `_style/` — `eum.style.scss` (프로젝트 엔트리) + 섹션별 SCSS 파일
 
+### research 페이지 패턴
+
+`src/app/research/{slug}/page.js` 구조이며 eum과 다음 점이 다르다:
+- 페이지마다 page.js 하나만 두고, 본문 흐름은 JSX children으로 직접 작성
+- 반복 frame은 공통 컴포넌트가 담당. `_components/`에 `ResearchHero` / `ResearchSection` / `ResearchFigure` / `UxTakeaway` / `ResearchPagination`
+- 자산 헬퍼는 `_lib/researchAssets.js`의 `createResearchAssets(slug, { format: "jpg-srcset" | "webp" })`
+- 스타일은 `_style/style.scss` 단일 파일 (`.main-research` 네임스페이스로 스코핑)
+- `ResearchSection`은 기본 `wrap=true` (자동 `.section-content` + h2/headline 렌더). 한 section에 `.section-content`가 여러 개 필요한 예외 케이스만 `wrap=false`
+- 새 페이지 추가: ① R2에 `portfolio/research/{slug}/cover.webp` + figure 자산 업로드 ② `_data/researchPages.js`에 항목 추가 ③ `app/research/{slug}/page.js` 작성 (`<ResearchHero>` + `<ResearchSection>`들 + `<ResearchPagination position="bottom">`)
+
 ### 스타일 아키텍처
 
 - **CSS Modules 미사용**. 전역 SCSS + 클래스명 스코핑 방식.
