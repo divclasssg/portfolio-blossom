@@ -32,7 +32,7 @@
         margin: 0 auto;
         padding: 0 32px;
         box-sizing: border-box;
-        transition: opacity 0.2s ease;
+        transition: opacity 0.2s ease-out;
 
         .localnav-title {
             font-family: var(--font-family-spoqa);

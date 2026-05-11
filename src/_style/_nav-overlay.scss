@@ -6,14 +6,14 @@
     opacity: 0;
     visibility: hidden;
     transition:
-        opacity 0.25s ease,
-        visibility 0s linear 0.25s;
+        opacity 0.2s ease-out,
+        visibility 0s linear 0.2s;
 
     &.is-open {
         opacity: 1;
         visibility: visible;
         transition:
-            opacity 0.25s ease,
+            opacity 0.2s ease-out,
             visibility 0s;
     }
 
