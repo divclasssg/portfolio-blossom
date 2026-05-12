@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import { asset, sizes, QUALITY_UI } from "../_lib/media";
 import discoverPanels from "../_data/discoverPanels";
@@ -9,8 +6,6 @@ import AiWorkflowCallout from "./_shared/AiWorkflowCallout";
 import ExternalLink from "./_shared/ExternalLink";
 
 export default function SectionDiscover() {
-    const [activeTab, setActiveTab] = useState(0);
-
     return (
         <section className="section section-dd-discover">
             <div className="section-content">
@@ -32,64 +27,54 @@ export default function SectionDiscover() {
                     AI로 리서치 자료를 빠르게 정리 &middot; 비교해, 핵심 문제를 찾는 속도를
                     높였습니다.
                 </AiWorkflowCallout>
-                <div className="tabnav-box">
-                    <div className="tabnav-list">
-                        {discoverPanels.map((panel, index) => (
-                            <button
-                                type="button"
-                                className={`tabnav-button${index === activeTab ? " active" : ""}`}
-                                key={panel.tabLabel}
-                                onClick={() => setActiveTab(index)}
-                            >
-                                {panel.tabLabel}
-                            </button>
-                        ))}
-                    </div>
-                    {discoverPanels.map((panel, index) => (
-                        <div
-                            className={`tabnav-panel${index === activeTab ? " active" : ""}`}
-                            key={panel.tabLabel}
-                            hidden={index !== activeTab}
-                        >
-                            {panel.cards.map((card, cardIndex) => (
-                                <div
-                                    className={`card-row card-row--${panel.tabLabel.toLowerCase().replace(/\s+/g, "-")}-${cardIndex + 1}`}
-                                    key={card.eyebrow}
-                                >
-                                    <div className="card-row-content">
-                                        <h3 className="card-row-eyebrow">{card.eyebrow}</h3>
-                                        <p className="card-row-headline">{card.headline}</p>
-                                        <p className="card-row-typography-copy">{card.copy}</p>
-                                        <div className="card-row-keywords">
-                                            <h4 className="visuallyhidden">
-                                                UX Research Methodology keywords
-                                            </h4>
-                                            <ul className="tags">
-                                                {card.tags.map((tag) => (
-                                                    <li className="tags-item" key={tag}>
-                                                        {tag}
-                                                    </li>
-                                                ))}
-                                            </ul>
+                <div className="discover-groups">
+                    {discoverPanels.map((panel) => {
+                        const groupSlug = panel.groupLabel
+                            .toLowerCase()
+                            .replace(/\s+/g, "-");
+                        return (
+                            <div className="discover-group" key={panel.groupLabel}>
+                                <h3 className="discover-group-heading">{panel.groupLabel}</h3>
+                                {panel.cards.map((card, cardIndex) => (
+                                    <div
+                                        className={`card-row card-row--${groupSlug}-${cardIndex + 1}`}
+                                        key={card.eyebrow}
+                                    >
+                                        <div className="card-row-content">
+                                            <h4 className="card-row-eyebrow">{card.eyebrow}</h4>
+                                            <p className="card-row-headline">{card.headline}</p>
+                                            <p className="card-row-typography-copy">{card.copy}</p>
+                                            <div className="card-row-keywords">
+                                                <h5 className="visuallyhidden">
+                                                    UX Research Methodology keywords
+                                                </h5>
+                                                <ul className="tags">
+                                                    {card.tags.map((tag) => (
+                                                        <li className="tags-item" key={tag}>
+                                                            {tag}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                            <ExternalLink href={card.link.href} variant="secondary">
+                                                {card.link.label}
+                                            </ExternalLink>
                                         </div>
-                                        <ExternalLink href={card.link.href} variant="secondary">
-                                            {card.link.label}
-                                        </ExternalLink>
+                                        <div className="card-row-screenshots">
+                                            <Image
+                                                src={asset(card.image.src)}
+                                                alt={card.image.alt}
+                                                width={card.image.width}
+                                                height={card.image.height}
+                                                sizes={sizes.card}
+                                                quality={QUALITY_UI}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="card-row-screenshots">
-                                        <Image
-                                            src={asset(card.image.src)}
-                                            alt={card.image.alt}
-                                            width={card.image.width}
-                                            height={card.image.height}
-                                            sizes={sizes.card}
-                                            quality={QUALITY_UI}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ))}
+                                ))}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
