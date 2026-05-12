@@ -27,7 +27,9 @@ export default function SectionDevelop() {
                 <AiWorkflowCallout>
                     AI로 흩어진 인사이트를 묶고 비교해, 가장 먼저 풀 문제를 정의했습니다.
                 </AiWorkflowCallout>
-                <ExternalLink href="#">원문 데이터 보기</ExternalLink>
+                <ExternalLink href="https://docs.google.com/spreadsheets/d/1tJCpBBNygoD3UyTJJe1V-qORay8EaK_fVeR71OaB-qo/edit?usp=sharing">
+                    원문 데이터 보기
+                </ExternalLink>
             </div>
             <div className="section-content-wide">
                 <div className="card-wrapper">

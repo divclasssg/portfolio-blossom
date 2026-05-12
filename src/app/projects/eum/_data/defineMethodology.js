@@ -13,7 +13,10 @@ const defineMethodology = [
             "#교차검증",
             "#테마도출",
         ],
-        link: { href: "#", label: "원문 데이터 보기" },
+        link: {
+            href: "https://docs.google.com/spreadsheets/d/1HuwjtC2HgbzxtjcWFZ51el6J3z4MDcP10KVDMqAIKPs/edit?usp=sharing",
+            label: "원문 데이터 보기",
+        },
         image: {
             src: "eum/screenshots/define/patient-synthesis_kzlfhx.png",
             alt: "환자 통합 분석 원본 자료 캡쳐본",
@@ -30,7 +33,10 @@ const defineMethodology = [
             "다음으로 이 구조를 환자 니즈와 같은 비교축 위에 놓고, 실제 진료 안에서 무엇이 연결을 끊는지 다시 정의했습니다.",
         ],
         tags: ["#Affinity_Diagram"],
-        link: { href: "#", label: "원문 데이터 보기" },
+        link: {
+            href: "https://docs.google.com/spreadsheets/d/1FWwSW9vwFkGh42-jzKvIgXdk_AGPCq3DgO1H84HwQhU/edit?usp=sharing",
+            label: "원문 데이터 보기",
+        },
         image: {
             src: "eum/screenshots/define/medical_indepth_interview_iv9h6w.png",
             alt: "의료진 심층 인터뷰 분석 원본 자료 캡쳐본",
@@ -47,7 +53,10 @@ const defineMethodology = [
             "이후에는 이 통합 해석을 바탕으로, 어떤 사용자가 어떤 맥락에서 어디서 막히는지를 구체화하며 문제를 다시 정의했습니다.",
         ],
         tags: ["#비교분석", "#통합해석", "#교차해석", "#문제재정의", "#설계시사점"],
-        link: { href: "#", label: "원문 데이터 보기" },
+        link: {
+            href: "https://docs.google.com/spreadsheets/d/1TxswmSpr4aqTp-rtP-kpaFb-gpz5gYM3cDXuKLgROBw/edit?usp=sharing",
+            label: "원문 데이터 보기",
+        },
         image: {
             src: "eum/screenshots/define/patient_and_medical_ypqh6z.png",
             alt: "환자 및 의료진 통합 분석 원본 자료 캡쳐본",
@@ -70,7 +79,10 @@ const defineMethodology = [
             "#User_Story",
             "#How_Might_We",
         ],
-        link: { href: "#", label: "원문 데이터 보기" },
+        link: {
+            href: "https://docs.google.com/spreadsheets/d/1YRsENpYQKW1s_YZobZasp7vzeLFxB3HXO5e5p3BF_Hc/edit?usp=sharing",
+            label: "원문 데이터 보기",
+        },
         image: {
             src: "eum/screenshots/define/ux_strategy_aztnz2.png",
             alt: "UX 전략 및 문제 정의 원본 자료 캡쳐본",

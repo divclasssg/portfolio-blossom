@@ -18,7 +18,7 @@ const keyChanges = [
                 desc: "환자는 “어디를 눌어야 하는가”보다 “지금 내 상태가 무엇인가”를 먼저 이해할 수 있다.",
             },
         ],
-        link: { href: "", label: "원문 데이터 보기" },
+        // link: { href: "", label: "원문 데이터 보기" },
         asIs: {
             src: "eum/screenshots/deliver/key_change_01_asis.webp",
             alt: "환자 앱 메인 화면 as-is",
@@ -57,7 +57,7 @@ const keyChanges = [
                 desc: "의사는 환자 상태의 핵심을 빠르게 파악하고, AI 요약의 근거까지 확인할 수 있다.",
             },
         ],
-        link: { href: "", label: "원문 데이터 보기" },
+        // link: { href: "", label: "원문 데이터 보기" },
         asIs: {
             src: "eum/screenshots/deliver/key_change_02_asis.webp",
             alt: "의사 패널 메인 화면 as-is",
@@ -96,7 +96,7 @@ const keyChanges = [
                 desc: "환자는 결과를 보는 데서 끝나지 않고, 이유와 이후 관리까지 이해할 수 있다.",
             },
         ],
-        link: { href: "", label: "원문 데이터 보기" },
+        // link: { href: "", label: "원문 데이터 보기" },
         asIs: {
             src: "eum/screenshots/deliver/key_change_03_asis.webp",
             alt: "환자 진료 요약 상세 화면 as-is",

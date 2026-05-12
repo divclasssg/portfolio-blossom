@@ -27,10 +27,14 @@ export default function SectionDeliverStructureUpdate() {
                     제공하며, 결과 단계에서는 환자가 이해할 수 있는 설명으로 다시 풀어주는 역할로
                     나눴습니다.
                 </AiWorkflowCallout>
-                <ExternalLink href="">원문 데이터 보기</ExternalLink>
+                <ExternalLink href="https://www.figma.com/board/59wJzKn0yORxrh7Ng0iwKA/Eum-IA---User-Flow?node-id=2-2682&t=IeycooiDhm6vBtKz-1">
+                    원문 데이터 보기
+                </ExternalLink>
                 <div className="img-wrapper">
                     <Image
-                        src={asset("eum/screenshots/deliver/a90df6dd2909a5d3a10150ae1124584a8dadfdd9_bqwlct.png")}
+                        src={asset(
+                            "eum/screenshots/deliver/a90df6dd2909a5d3a10150ae1124584a8dadfdd9_bqwlct.png"
+                        )}
                         alt="유저플로우 캡쳐본"
                         width={4096}
                         height={2440}

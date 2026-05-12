@@ -6,7 +6,7 @@ import ScrubVideo from "@/_components/scrub-video";
 import { asset } from "../_lib/media";
 import keyChanges from "../_data/keyChanges";
 import emphasize from "../_utils/emphasize";
-import ExternalLink from "./_shared/ExternalLink";
+// import ExternalLink from "./_shared/ExternalLink";
 
 const ITEM_COUNT = keyChanges.length;
 
@@ -96,9 +96,7 @@ export default function SectionDeliverKeyChanges() {
                     translateY = 0;
                     opacity = 1;
                 } else if (local < 1) {
-                    const t = easeOut(
-                        (local - CALLOUT_HOLD_END) / (1 - CALLOUT_HOLD_END)
-                    );
+                    const t = easeOut((local - CALLOUT_HOLD_END) / (1 - CALLOUT_HOLD_END));
                     translateY = -t * 120;
                     opacity = 1 - t;
                 } else {
@@ -116,8 +114,7 @@ export default function SectionDeliverKeyChanges() {
                     translateYvh = 100;
                 } else if (local < TOBE_ENTER_END) {
                     const t = easeOut(
-                        (local - TOBE_ENTER_START) /
-                            (TOBE_ENTER_END - TOBE_ENTER_START)
+                        (local - TOBE_ENTER_START) / (TOBE_ENTER_END - TOBE_ENTER_START)
                     );
                     translateYvh = (1 - t) * 100;
                 } else if (local < HOLD_END) {
@@ -133,9 +130,7 @@ export default function SectionDeliverKeyChanges() {
 
             const canvas = canvasFrameRefs.current[i];
             if (canvas) {
-                canvas.setProgress(
-                    clamp01((local - TOBE_ENTER_END) / (HOLD_END - TOBE_ENTER_END))
-                );
+                canvas.setProgress(clamp01((local - TOBE_ENTER_END) / (HOLD_END - TOBE_ENTER_END)));
             }
         }
 
@@ -147,9 +142,7 @@ export default function SectionDeliverKeyChanges() {
                 const t = easeOut((local - HOLD_END) / (1 - HOLD_END));
                 offset = activeIndex + t;
             }
-            trackRef.current.style.transform = `translateY(-${
-                (offset * 100) / ITEM_COUNT
-            }%)`;
+            trackRef.current.style.transform = `translateY(-${(offset * 100) / ITEM_COUNT}%)`;
         }
     }, []);
 
@@ -193,9 +186,9 @@ export default function SectionDeliverKeyChanges() {
                                         </div>
                                     ))}
                                 </dl>
-                                <ExternalLink href={item.link.href}>
+                                {/* <ExternalLink href={item.link.href}>
                                     {item.link.label}
-                                </ExternalLink>
+                                </ExternalLink> */}
                             </div>
                         ))}
                     </div>
@@ -203,8 +196,7 @@ export default function SectionDeliverKeyChanges() {
                     <div className="key-changes-asset-area">
                         <div className="key-changes-asset-track" ref={trackRef}>
                             {keyChanges.map((item, i) => {
-                                const asisAspect =
-                                    item.asIs.width / item.asIs.height;
+                                const asisAspect = item.asIs.width / item.asIs.height;
                                 const tobeAspect = item.toBe.framed
                                     ? 1470 / 3000
                                     : item.toBe.width / item.toBe.height;
@@ -213,17 +205,14 @@ export default function SectionDeliverKeyChanges() {
                                 const asisDisplayAspect = tobeAspect;
                                 const groupMultiplier =
                                     tobeAspect +
-                                    (1 - TOBE_OVERLAP) *
-                                        ASIS_SCALE *
-                                        asisDisplayAspect;
+                                    (1 - TOBE_OVERLAP) * ASIS_SCALE * asisDisplayAspect;
                                 return (
                                     <div
                                         className="key-changes-asset"
                                         key={item.title}
                                         style={{
                                             "--asis-aspect": asisAspect,
-                                            "--asis-display-aspect":
-                                                asisDisplayAspect,
+                                            "--asis-display-aspect": asisDisplayAspect,
                                             "--asis-scale": ASIS_SCALE,
                                             "--tobe-overlap": TOBE_OVERLAP,
                                             "--group-multiplier": groupMultiplier,
@@ -244,10 +233,7 @@ export default function SectionDeliverKeyChanges() {
                                             ref={(el) => (toBeRefs.current[i] = el)}
                                         >
                                             <ScrubVideo
-                                                ref={(el) =>
-                                                    (canvasFrameRefs.current[i] =
-                                                        el)
-                                                }
+                                                ref={(el) => (canvasFrameRefs.current[i] = el)}
                                                 src={item.toBe.src}
                                                 poster={item.toBe.poster}
                                                 width={item.toBe.width}

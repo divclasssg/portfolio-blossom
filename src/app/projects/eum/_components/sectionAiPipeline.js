@@ -30,10 +30,14 @@ export default function SectionAiPipeline() {
                     환자 기록 → 의사 판단 지원 → 환자 이해와 다음 행동으로 이어지는 흐름을 설계하고,
                     Claude Code를 활용한 바이브 코딩으로 실제 프로토타입에 구현했습니다.
                 </AiWorkflowCallout>
-                <ExternalLink href="">기능 상세 정의서 보기</ExternalLink>
+                <ExternalLink href="https://docs.google.com/spreadsheets/d/1YPM1z6wQbmzmAqplHwFCDmh26li6WSvYTWiLDA7eO3A/edit?usp=sharing">
+                    원문 데이터 보기
+                </ExternalLink>
                 <div className="img-wrapper">
                     <Image
-                        src={asset("eum/screenshots/deliver/89cc14e98c484571668488158c054f951bf2d4ff_vbngsf.png")}
+                        src={asset(
+                            "eum/screenshots/deliver/89cc14e98c484571668488158c054f951bf2d4ff_vbngsf.png"
+                        )}
                         alt="AI 파이프라인 정리표 캡쳐본"
                         width={2282}
                         height={2290}

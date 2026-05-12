@@ -30,9 +30,15 @@ export default function SectionSystemDefinition() {
                     정리했습니다.
                 </AiWorkflowCallout>
                 <div className="button-wrapper">
-                    <ExternalLink href="">기능 상세 정의서 보기</ExternalLink>
-                    <ExternalLink href="">화면 상세 정의서 보기</ExternalLink>
-                    <ExternalLink href="">로직 보기</ExternalLink>
+                    <ExternalLink href="https://docs.google.com/spreadsheets/d/1KjibMYqBkqcDEf3ueW7wzibCpkCiqx-CNHhws2kgpOI/edit?usp=sharing">
+                        기능 상세 정의서 보기
+                    </ExternalLink>
+                    <ExternalLink href="https://docs.google.com/spreadsheets/d/10w9pC5azMce6IvSVPqWyVzq-adRXbPA1SYDY5R21ghg/edit?usp=sharing">
+                        화면 상세 정의서 보기
+                    </ExternalLink>
+                    <ExternalLink href="https://docs.google.com/spreadsheets/d/1Hp9t8li8eALsIwOHUNUzEwRweGLgpsIZpGKps5YGj2s/edit?usp=sharing">
+                        로직 보기
+                    </ExternalLink>
                 </div>
                 <div className="img-wrapper">
                     <Image

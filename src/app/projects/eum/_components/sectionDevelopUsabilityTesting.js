@@ -79,7 +79,9 @@ export default function SectionDevelopUsabilityTesting() {
                             )}
                         </div>
                     ))}
-                    <ExternalLink href="#">원문 데이터 보기</ExternalLink>
+                    <ExternalLink href="https://docs.google.com/spreadsheets/d/1J1dmleZlmQDXdY7xVCERsP9nrQ6EpmtDQs0qdSVgiQw/edit?usp=sharing">
+                        원문 데이터 보기
+                    </ExternalLink>
                 </div>
                 <div className="ut-overview">
                     <h5 className="visuallyhidden">Usability Testing Overview</h5>
