@@ -39,6 +39,14 @@ const SECTIONS = [
     },
     {
         label: "Research",
+        match: (p) => p?.startsWith("/research/habit-together-healthcare-ux"),
+        ctaHref:
+            "/download/Developing the Intelligent Healthcare Service Considering the Stage of User Experience.pdf",
+        ctaLabel: "논문 다운로드",
+        ctaTarget: "_blank",
+    },
+    {
+        label: "Research",
         match: (p) => p?.startsWith("/research"),
     },
 ];
